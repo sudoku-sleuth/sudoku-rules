@@ -25,7 +25,7 @@ jobs:
       - name: Lint YAML front matter
         run: bun run lint:yaml
       - name: Lint specification
-        # Stable entry point; formula checks now, case/example checks in later slices.
+        # Stable entry point; formulas and case headers/references now; full rule lines/examples follow.
         run: bun run lint:spec
       - name: Lint skill and examples
         run: bun run lint:skill

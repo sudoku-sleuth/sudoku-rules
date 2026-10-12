@@ -1,0 +1,568 @@
+[
+  {
+    "name": "hidden modular valid extent",
+    "rule": "hidden-modular",
+    "expected": true,
+    "faces": {
+      "r1c1": 3,
+      "r1c2": 1,
+      "r1c3": 2
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "extent": "first-x"
+    }
+  },
+  {
+    "name": "hidden modular invalid extent is false",
+    "rule": "hidden-modular",
+    "expected": false,
+    "faces": {
+      "r1c1": 4,
+      "r1c2": 1,
+      "r1c3": 2
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "extent": "first-x"
+    }
+  },
+  {
+    "name": "hidden modular missing maximum is false",
+    "rule": "hidden-modular",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "extent": "to-max"
+    }
+  },
+  {
+    "name": "hidden modular repeated position fails",
+    "rule": "hidden-modular",
+    "expected": false,
+    "faces": {
+      "r1c1": 3,
+      "r1c2": 1
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2",
+        "r1c1"
+      ],
+      "extent": "first-x"
+    }
+  },
+  {
+    "name": "partial single bulb uses digits when shaft values are larger",
+    "rule": "arrow",
+    "expected": true,
+    "faces": {
+      "r1c1": 6,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "values": {
+      "r1c1": 6,
+      "r1c2": 4,
+      "r1c3": 6
+    },
+    "parameters": {
+      "line": [
+        "r1c2",
+        "r1c3"
+      ],
+      "bulb": [
+        "r1c1"
+      ],
+      "partial": true
+    }
+  },
+  {
+    "name": "partial single bulb rejects digit excess despite negative values",
+    "rule": "arrow",
+    "expected": false,
+    "faces": {
+      "r1c1": 6,
+      "r1c2": 4,
+      "r1c3": 3
+    },
+    "values": {
+      "r1c1": 6,
+      "r1c2": -4,
+      "r1c3": -3
+    },
+    "parameters": {
+      "line": [
+        "r1c2",
+        "r1c3"
+      ],
+      "bulb": [
+        "r1c1"
+      ],
+      "partial": true
+    }
+  },
+  {
+    "name": "partial multi bulb uses decimal digits",
+    "rule": "arrow",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2,
+      "r1c3": 5,
+      "r1c4": 6
+    },
+    "values": {
+      "r1c1": -1,
+      "r1c2": -2,
+      "r1c3": 10,
+      "r1c4": 12
+    },
+    "parameters": {
+      "line": [
+        "r1c3",
+        "r1c4"
+      ],
+      "bulb": [
+        "r1c1",
+        "r1c2"
+      ],
+      "partial": true
+    }
+  },
+  {
+    "name": "partial multi bulb rejects decimal excess",
+    "rule": "arrow",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2,
+      "r1c3": 7,
+      "r1c4": 6
+    },
+    "values": {
+      "r1c1": -1,
+      "r1c2": -2,
+      "r1c3": -7,
+      "r1c4": -6
+    },
+    "parameters": {
+      "line": [
+        "r1c3",
+        "r1c4"
+      ],
+      "bulb": [
+        "r1c1",
+        "r1c2"
+      ],
+      "partial": true
+    }
+  },
+  {
+    "name": "complete single bulb retains effective values",
+    "rule": "arrow",
+    "expected": true,
+    "faces": {
+      "r1c1": 5,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "values": {
+      "r1c1": 10,
+      "r1c2": 4,
+      "r1c3": 6
+    },
+    "parameters": {
+      "line": [
+        "r1c2",
+        "r1c3"
+      ],
+      "bulb": [
+        "r1c1"
+      ],
+      "partial": false
+    }
+  },
+  {
+    "name": "complete single bulb rejects mismatched values despite matching digits",
+    "rule": "arrow",
+    "expected": false,
+    "faces": {
+      "r1c1": 5,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "values": {
+      "r1c1": 5,
+      "r1c2": 4,
+      "r1c3": 6
+    },
+    "parameters": {
+      "line": [
+        "r1c2",
+        "r1c3"
+      ],
+      "bulb": [
+        "r1c1"
+      ],
+      "partial": false
+    }
+  },
+  {
+    "name": "modifier finds its own witness",
+    "rule": "value-modifier",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "values": {
+      "r1c1": 2,
+      "r1c2": 2
+    },
+    "parameters": {
+      "name": "doubler",
+      "factor": 2,
+      "offset": 0,
+      "exactly": [
+        [
+          "r1c1",
+          "r1c2"
+        ]
+      ],
+      "count": 1,
+      "atMostOne": [],
+      "distinct": true
+    }
+  },
+  {
+    "name": "modifier fails when no witness fits",
+    "rule": "value-modifier",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "values": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "parameters": {
+      "name": "doubler",
+      "factor": 2,
+      "offset": 0,
+      "exactly": [
+        [
+          "r1c1",
+          "r1c2"
+        ]
+      ],
+      "count": 1,
+      "atMostOne": [],
+      "distinct": true
+    }
+  },
+  {
+    "name": "modular distinct positions pass",
+    "rule": "modular",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "loop": false,
+      "modulus": 3
+    }
+  },
+  {
+    "name": "modular repeated cell fails",
+    "rule": "modular",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c1"
+      ],
+      "loop": false,
+      "modulus": 3
+    }
+  },
+  {
+    "name": "entropic distinct positions pass",
+    "rule": "entropic",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 4,
+      "r1c3": 7
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "loop": false
+    }
+  },
+  {
+    "name": "entropic repeated cell fails",
+    "rule": "entropic",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 4
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c1"
+      ],
+      "loop": false
+    }
+  },
+  {
+    "name": "choice renban positions pass",
+    "rule": "line-choice",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "kinds": [
+        "renban"
+      ],
+      "min": 1,
+      "max": 1,
+      "loop": false
+    }
+  },
+  {
+    "name": "choice renban repeated cell fails",
+    "rule": "line-choice",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 3
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c1"
+      ],
+      "kinds": [
+        "renban"
+      ],
+      "min": 1,
+      "max": 1,
+      "loop": false
+    }
+  },
+  {
+    "name": "choice modular positions pass",
+    "rule": "line-choice",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2,
+      "r1c3": 3
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c3"
+      ],
+      "kinds": [
+        "modular"
+      ],
+      "min": 1,
+      "max": 1,
+      "loop": false
+    }
+  },
+  {
+    "name": "choice modular repeated cell fails",
+    "rule": "line-choice",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "parameters": {
+      "line": [
+        "r1c1",
+        "r1c2",
+        "r1c1"
+      ],
+      "kinds": [
+        "modular"
+      ],
+      "min": 1,
+      "max": 1,
+      "loop": false
+    }
+  },
+  {
+    "name": "integer shift accepts different polarity and same parity",
+    "rule": "pair",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 7
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2"
+      ],
+      "relation": {
+        "op": "shift"
+      }
+    }
+  },
+  {
+    "name": "integer shift rejects equal polarity and equal parity",
+    "rule": "pair",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 3
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2"
+      ],
+      "relation": {
+        "op": "shift"
+      }
+    }
+  },
+  {
+    "name": "shift excludes fractional values",
+    "rule": "pair",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 7
+    },
+    "values": {
+      "r1c1": 1.5,
+      "r1c2": 7.5
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2"
+      ],
+      "relation": {
+        "op": "shift"
+      }
+    }
+  },
+  {
+    "name": "difference still accepts fractional values",
+    "rule": "pair",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "values": {
+      "r1c1": 1.5,
+      "r1c2": 2.5
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2"
+      ],
+      "relation": {
+        "op": "difference",
+        "value": 1
+      }
+    }
+  },
+  {
+    "name": "set distinct cells pass",
+    "rule": "cage",
+    "expected": true,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 2
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2"
+      ],
+      "repeats": false
+    }
+  },
+  {
+    "name": "set equal digits fail",
+    "rule": "cage",
+    "expected": false,
+    "faces": {
+      "r1c1": 1,
+      "r1c2": 1
+    },
+    "parameters": {
+      "cells": [
+        "r1c1",
+        "r1c2"
+      ],
+      "repeats": false
+    }
+  },
+  {
+    "name": "hidden modular empty extent is false",
+    "rule": "hidden-modular",
+    "expected": false,
+    "faces": {},
+    "parameters": {
+      "cells": [],
+      "extent": "first-x"
+    }
+  }
+]

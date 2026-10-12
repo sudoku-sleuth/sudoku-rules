@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, expect, test } from "bun:test";
-import { mkdtemp, readFile, rm, writeFile, mkdir, symlink } from "node:fs/promises";
+import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { buildSite } from "../scripts/build";
@@ -100,7 +100,7 @@ test("lint and build reject invalid page slugs and metadata consistently", async
   const invalidPages = [
     { slug: "Bad_Name", metadata: "name: Invalid\nkind: Bad_Name", error: "invalid page slug" },
     { slug: "thermo.rules", metadata: "name: Invalid\nkind: thermo.rules", error: "invalid page slug" },
-    ...["cases", "style", "index"].map(slug => ({ slug, metadata: `name: Reserved\nkind: ${slug}`, error: "reserved page slug" })),
+    ...["cases", "style"].map(slug => ({ slug, metadata: `name: Reserved\nkind: ${slug}`, error: "reserved page slug" })),
     { slug: "thermo", metadata: "name: Thermo\nkind: 42", error: "kind must be a string" },
     { slug: "thermo", metadata: "name: Thermo\nkind: false", error: "kind must be a string" },
     { slug: "thermo", metadata: "name: Thermo\nkind: null", error: "kind must be a string" },
@@ -137,4 +137,42 @@ test("symlinked rule and case files are skipped by lint and build", async () => 
   expect(await Bun.file(join(result.output, "modular.md")).exists()).toBe(false);
   expect(await Bun.file(join(result.output, "modular/index.html")).exists()).toBe(false);
   expect(await Bun.file(join(result.output, "cases/to-the-revolution.rules.md")).exists()).toBe(false);
+});
+
+
+test("index rule and alias routes coexist with the home catalogue", async () => {
+  const source=join(temporary,"alias-source");
+  await mkdir(join(source,"rules"),{recursive:true});
+  for(const [slug,extra] of [["index",""],["cage",""],["killer","alias_of: cage\n"]]) {
+    await writeFile(join(source,`rules/${slug}.md`),`---\nname: ${slug}\nkind: ${slug}\nurl: https://rules.sudoku-sleuth.com/${slug}.md\n${extra}---\n# ${slug}\n`);
+  }
+  expect(await lintYaml(source)).toBe(3);
+  const built=await buildSite(source,join(temporary,"alias-site"));
+  for(const slug of ["index","cage","killer"]) {
+    expect(await readFile(join(built.output,`${slug}.md`))).toEqual(await readFile(join(source,`rules/${slug}.md`)));
+    expect(await Bun.file(join(built.output,slug,"index.html")).exists()).toBe(true);
+  }
+  expect(await readFile(join(built.output,"index.html"),"utf8")).toContain('href="/index/"');
+  expect(await readFile(join(built.output,"index/index.html"),"utf8")).toContain("<h1");
+  await writeFile(join(source,"rules/killer.md"),(await readFile(join(source,"rules/killer.md"),"utf8")).replace("alias_of: cage","alias_of: absent"));
+  await expect(lintYaml(source)).rejects.toThrow("must be an existing definition");
+  await expect(buildSite(source,join(temporary,"alias-site"))).rejects.toThrow("must be an existing definition");
+  expect(await Bun.file(join(built.output,"index/index.html")).exists()).toBe(true);
+});
+
+test("the full imported library and case collection have byte-identical public routes", async () => {
+  const built=await buildSite(".",join(temporary,"production-site"));
+  expect(built.pages).toBe(85);expect(built.cases).toBe(3892);
+  const home=await readFile(join(built.output,"index.html"),"utf8");
+  for(const name of await readdir("rules")) {
+    if(!name.endsWith(".md"))continue;
+    const slug=name.slice(0,-3);
+    expect(await readFile(join(built.output,name))).toEqual(await readFile(join("rules",name)));
+    expect(await Bun.file(join(built.output,slug,"index.html")).exists()).toBe(true);
+    expect(home).toContain(`href="/${slug}/"`);
+  }
+  const names=await readdir("cases");
+  for(let i=0;i<names.length;i+=32)await Promise.all(names.slice(i,i+32).filter(name=>name.endsWith(".rules.md")).map(async name=>{
+    expect(await readFile(join(built.output,"cases",name))).toEqual(await readFile(join("cases",name)));
+  }));
 });

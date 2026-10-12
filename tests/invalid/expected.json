@@ -2435,5 +2435,343 @@
         }
       }
     ]
+  },
+  {
+    "file": "rules/image-ordered-set.md",
+    "repair": "rules/image-ordered-set.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "C has no declared order; use an interval or ordered list to build an ordered list.",
+        "span": {
+          "file": "rules/image-ordered-set.md",
+          "start": {
+            "offset": 184,
+            "line": 11,
+            "column": 7
+          },
+          "end": {
+            "offset": 185,
+            "line": 11,
+            "column": 8
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/image-unknown-name.md",
+    "repair": "rules/image-unknown-name.md",
+    "mode": "page",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "missing is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/image-unknown-name.md",
+          "start": {
+            "offset": 180,
+            "line": 11,
+            "column": 3
+          },
+          "end": {
+            "offset": 187,
+            "line": 11,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/image-filter-type.md",
+    "repair": "rules/image-filter-type.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "1 must be a true-or-false condition; it is a number.",
+        "span": {
+          "file": "rules/image-filter-type.md",
+          "start": {
+            "offset": 190,
+            "line": 11,
+            "column": 13
+          },
+          "end": {
+            "offset": 191,
+            "line": 11,
+            "column": 14
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/image-shadow.md",
+    "repair": "rules/image-shadow.md",
+    "mode": "page",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "D is already defined; use another name for this formula variable.",
+        "span": {
+          "file": "rules/image-shadow.md",
+          "start": {
+            "offset": 182,
+            "line": 11,
+            "column": 5
+          },
+          "end": {
+            "offset": 183,
+            "line": 11,
+            "column": 6
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/image-missing-binder.md",
+    "repair": "rules/image-missing-binder.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Expected “in” here; found “C”.",
+        "span": {
+          "file": "rules/image-missing-binder.md",
+          "start": {
+            "offset": 183,
+            "line": 11,
+            "column": 6
+          },
+          "end": {
+            "offset": 184,
+            "line": 11,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/image-unguarded-index.md",
+    "repair": "rules/image-unguarded-index.md",
+    "mode": "page",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "The position i might be outside line; show that 0 ≤ i < |line| before reading it (positions start at 0).",
+        "span": {
+          "file": "rules/image-unguarded-index.md",
+          "start": {
+            "offset": 180,
+            "line": 11,
+            "column": 3
+          },
+          "end": {
+            "offset": 187,
+            "line": 11,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/filtered-image-empty-min.md",
+    "repair": "rules/filtered-image-empty-min.md",
+    "mode": "page",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "unknown is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/filtered-image-empty-min.md",
+          "start": {
+            "offset": 201,
+            "line": 11,
+            "column": 24
+          },
+          "end": {
+            "offset": 208,
+            "line": 11,
+            "column": 31
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/quoted-enum-duplicate.md",
+    "repair": "rules/quoted-enum-duplicate.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "List at least one allowed choice in enum{...}, with each choice appearing once.",
+        "span": {
+          "file": "rules/quoted-enum-duplicate.md",
+          "start": {
+            "offset": 20,
+            "line": 2,
+            "column": 8
+          },
+          "end": {
+            "offset": 21,
+            "line": 2,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/list-distinct-requires-positions.md",
+    "repair": "rules/list-distinct-requires-positions.md",
+    "mode": "public",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "line (parameter S of distinct_f) must be a set whose items are each the declared type T; it is a connected ordered list whose items are each a cell.",
+        "span": {
+          "file": "rules/list-distinct-requires-positions.md",
+          "start": {
+            "offset": 174,
+            "line": 11,
+            "column": 12
+          },
+          "end": {
+            "offset": 178,
+            "line": 11,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/set-distinct-rejects-list.md",
+    "repair": "rules/set-distinct-rejects-list.md",
+    "mode": "public",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "line (parameter S of distinct_D) must be a set whose items are each a cell; it is a connected ordered list whose items are each a cell.",
+        "span": {
+          "file": "rules/set-distinct-rejects-list.md",
+          "start": {
+            "offset": 174,
+            "line": 11,
+            "column": 12
+          },
+          "end": {
+            "offset": 178,
+            "line": 11,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/modifier-witness-must-be-bound.md",
+    "repair": "rules/modifier-witness-must-be-bound.md",
+    "mode": "public",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "M is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/modifier-witness-must-be-bound.md",
+          "start": {
+            "offset": 163,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 164,
+            "line": 11,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/letter-answers-must-be-bound.md",
+    "repair": "rules/letter-answers-must-be-bound.md",
+    "mode": "public",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "letterValues is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/letter-answers-must-be-bound.md",
+          "start": {
+            "offset": 163,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 175,
+            "line": 11,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/shift-parity-integer-domain.md",
+    "repair": "rules/shift-parity-integer-domain.md",
+    "mode": "public",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before calling odd, add a condition proving (⌊0.5⌋ = 0.5).",
+        "span": {
+          "file": "rules/shift-parity-integer-domain.md",
+          "start": {
+            "offset": 163,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 171,
+            "line": 11,
+            "column": 9
+          }
+        }
+      }
+    ]
   }
 ]

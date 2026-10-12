@@ -1,0 +1,613 @@
+---
+format: open-rules
+title: Snake in the Grass
+setter: Marty Sears
+source: https://sudokupad.app/8qonzd2qe4
+case: https://sudoku-sleuth.com/cases/snake-in-the-grass
+library: https://rules.sudoku-sleuth.com/
+status: flagged
+drawingCoverage: unclaimed-only
+flags:
+  - Some of the source rules still need to be included in our reading.
+board:
+  rows: 6
+  cols: 6
+  symbols:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+  regions:
+    - - r1c1
+      - r1c2
+      - r1c3
+      - r2c1
+      - r2c2
+      - r2c3
+    - - r1c4
+      - r1c5
+      - r1c6
+      - r2c4
+      - r2c5
+      - r2c6
+    - - r3c1
+      - r3c2
+      - r3c3
+      - r4c1
+      - r4c2
+      - r4c3
+    - - r3c4
+      - r3c5
+      - r3c6
+      - r4c4
+      - r4c5
+      - r4c6
+    - - r5c1
+      - r5c2
+      - r5c3
+      - r6c1
+      - r6c2
+      - r6c3
+    - - r5c4
+      - r5c5
+      - r5c6
+      - r6c4
+      - r6c5
+      - r6c6
+---
+
+```rules
+unique-1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6
+unique-2: unique r2c1-r2c2-r2c3-r2c4-r2c5-r2c6
+unique-3: unique r3c1-r3c2-r3c3-r3c4-r3c5-r3c6
+unique-4: unique r4c1-r4c2-r4c3-r4c4-r4c5-r4c6
+unique-5: unique r5c1-r5c2-r5c3-r5c4-r5c5-r5c6
+unique-6: unique r6c1-r6c2-r6c3-r6c4-r6c5-r6c6
+unique-7: unique r1c1-r2c1-r3c1-r4c1-r5c1-r6c1
+unique-8: unique r1c2-r2c2-r3c2-r4c2-r5c2-r6c2
+unique-9: unique r1c3-r2c3-r3c3-r4c3-r5c3-r6c3
+unique-10: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4
+unique-11: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5
+unique-12: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6
+unique-13: unique r1c1-r1c2-r1c3-r2c1-r2c2-r2c3
+unique-14: unique r1c4-r1c5-r1c6-r2c4-r2c5-r2c6
+unique-15: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
+unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
+unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
+unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
+```
+
+```drawing
+- {"id":"drawing-1","rules":[],"visual":{"kind":"shape","layer":"under","center":[3,3],"width":6.02,"height":6.02,"rounded":false,"fill":"#f7fcf0ff","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-2","rules":[],"visual":{"kind":"line","points":[[6.071,3.5],[6.071,3.357],[6.071,6.071],[-0.071,6.071],[-0.071,-0.071],[6.071,-0.071],[6.071,3.357]],"color":"#94d243ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-3","rules":[],"visual":{"kind":"line","points":[[0,1],[6,1]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-4","rules":[],"visual":{"kind":"line","points":[[6,2],[5,2],[5,0]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-5","rules":[],"visual":{"kind":"line","points":[[3,0],[3,2],[5,2],[5,4],[6,4]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-6","rules":[],"visual":{"kind":"line","points":[[6,5],[5,5],[5,4],[3,4],[3,2],[1,2],[1,0]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-7","rules":[],"visual":{"kind":"line","points":[[5,6],[5,5],[3,5],[3,6]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-8","rules":[],"visual":{"kind":"line","points":[[1,6],[1,2],[0,2]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-9","rules":[],"visual":{"kind":"line","points":[[0,5],[3,5],[3,4],[0,4]],"color":"#e2f3c3ff","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-10","rules":[],"visual":{"kind":"line","points":[[1,3],[6,3],[6,6],[0,6],[0,3],[1,3]],"color":"#c9e583ff","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-11","rules":[],"visual":{"kind":"line","points":[[6,3],[6,0],[0,0],[0,3]],"color":"#c9e583ff","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-12","rules":[],"visual":{"kind":"line","points":[[4,6],[4,0]],"color":"#c9e583ff","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-13","rules":[],"visual":{"kind":"line","points":[[2,6],[2,0]],"color":"#c9e583ff","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-14","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,0.5],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":12,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,1],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":290,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,1.5],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":215,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"shape","layer":"over","center":[2,2.5],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":329,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,4],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":135,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,5],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":289,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,5],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":31,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,5.5],"width":0,"height":0.426,"rounded":true,"thickness":0,"angle":214,"text":"🪲","textColor":"#000000","fontSize":16,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,1],"width":0.3,"height":0.3,"rounded":true,"fill":"#cac8e1ff","stroke":"#b8b2dfff","thickness":2.56,"angle":0}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,3.5],"width":0.3,"height":0.3,"rounded":true,"fill":"#cac8e1ff","stroke":"#b8b2dfff","thickness":2.56,"angle":0}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,2.5],"width":0.3,"height":0.3,"rounded":true,"fill":"#cac8e1ff","stroke":"#b8b2dfff","thickness":2.56,"angle":0}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":345}}
+- {"id":"drawing-28","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-29","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-30","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-31","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-32","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-33","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-34","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-35","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":341}}
+- {"id":"drawing-36","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-37","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-38","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-39","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-40","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-41","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-42","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-43","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-44","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-45","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-46","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-47","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-48","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-49","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-50","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-51","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-52","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-53","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-54","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-55","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-56","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-57","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-58","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-59","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-60","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-61","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-62","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-63","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-64","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-65","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-66","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-67","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-68","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-69","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-70","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-71","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-72","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-73","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-74","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":351}}
+- {"id":"drawing-75","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-76","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-77","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-78","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-79","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-80","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-81","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":351}}
+- {"id":"drawing-82","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-83","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-84","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-85","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-86","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-87","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-88","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-89","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-90","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-91","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-92","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-93","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-94","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-95","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-96","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-97","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-98","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-99","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-100","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-101","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-102","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-103","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-104","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-105","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-106","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-107","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-108","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-109","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-110","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-111","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-112","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-113","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-114","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-115","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-116","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-117","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-118","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-119","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-120","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-121","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-122","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-123","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-124","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-125","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-126","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-127","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-128","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-129","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-130","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-131","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-132","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-133","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-134","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-135","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-136","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-137","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-138","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.2],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-139","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.3],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-140","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.4],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":12}}
+- {"id":"drawing-141","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.5],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-142","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-143","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.7],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-144","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.8],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-145","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.9],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":339}}
+- {"id":"drawing-146","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,6],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":0}}
+- {"id":"drawing-147","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-148","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-149","rules":[],"visual":{"kind":"shape","layer":"over","center":[0,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-150","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-151","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-152","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-153","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.7,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-154","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-155","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.8,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-156","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-157","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-158","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":135}}
+- {"id":"drawing-159","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-160","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-161","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-162","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-163","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-164","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-165","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.7,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-166","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.8,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-167","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-168","rules":[],"visual":{"kind":"shape","layer":"over","center":[2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-169","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-170","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-171","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-172","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-173","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-174","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-175","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.7,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-176","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.8,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-177","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-178","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-179","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-180","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-181","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-182","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-183","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-184","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-185","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.7,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-186","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.8,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-187","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-188","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.9,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-189","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-190","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-191","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-192","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-193","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-194","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-195","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.8,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-196","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.7,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-197","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-198","rules":[],"visual":{"kind":"shape","layer":"over","center":[5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-199","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-200","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.2,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-201","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.3,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-202","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.4,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-203","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-204","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-205","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.8,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-206","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.7,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-207","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-208","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-209","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,-0.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":45}}
+- {"id":"drawing-210","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-211","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-212","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.8,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-213","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.7,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-214","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-215","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-216","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-217","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-218","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-219","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-220","rules":[],"visual":{"kind":"shape","layer":"over","center":[5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-221","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-222","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.8,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-223","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.7,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-224","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-225","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-226","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-227","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-228","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-229","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-230","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-231","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.9,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-232","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.8,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-233","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.7,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-234","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-235","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-236","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-237","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-238","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-239","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-240","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-241","rules":[],"visual":{"kind":"shape","layer":"over","center":[0,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-242","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-243","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-244","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-245","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-246","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-247","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-248","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.7,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-249","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.8,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-250","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-251","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-252","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-253","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-254","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-255","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-256","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-257","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-258","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.7,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-259","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.8,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-260","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-261","rules":[],"visual":{"kind":"shape","layer":"over","center":[2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":76}}
+- {"id":"drawing-262","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-263","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.2,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-264","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.3,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-265","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.4,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-266","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-267","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.6,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-268","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.8,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-269","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.7,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":104}}
+- {"id":"drawing-270","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":90}}
+- {"id":"drawing-271","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":45}}
+- {"id":"drawing-272","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,6.1],"width":0.1,"height":0.18,"rounded":true,"fill":"#adda31ff","thickness":0,"angle":135}}
+- {"id":"drawing-273","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-274","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-275","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":345}}
+- {"id":"drawing-276","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-277","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-278","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-279","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-280","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-281","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-282","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-283","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,0.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":341}}
+- {"id":"drawing-284","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-285","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-286","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-287","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-288","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-289","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-290","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-291","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-292","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,1.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-293","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-294","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-295","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-296","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-297","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-298","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-299","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-300","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-301","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-302","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,2.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-303","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-304","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-305","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-306","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-307","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-308","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-309","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-310","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-311","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-312","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,3.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-313","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-314","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-315","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-316","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-317","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-318","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-319","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-320","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-321","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-322","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,4.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":351}}
+- {"id":"drawing-323","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-324","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-325","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-326","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-327","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-328","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-329","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":351}}
+- {"id":"drawing-330","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-331","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-332","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,5.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-333","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-334","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-335","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-336","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-337","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-338","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-339","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-340","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-341","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-342","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-343","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-344","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-345","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-346","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-347","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-348","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-349","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-350","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-351","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-352","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-353","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-354","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-355","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-356","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-357","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-358","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-359","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-360","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-361","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-362","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-363","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-364","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-365","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-366","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-367","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-368","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-369","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-370","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-371","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-372","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-373","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-374","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-375","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-376","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-377","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-378","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-379","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-380","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-381","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-382","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-383","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,4.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-384","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-385","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-386","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.2],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-387","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.3],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-388","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.4],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":12}}
+- {"id":"drawing-389","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.5],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-390","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-391","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.7],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-392","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.8],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-393","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,5.9],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":339}}
+- {"id":"drawing-394","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,6],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":0}}
+- {"id":"drawing-395","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-396","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-397","rules":[],"visual":{"kind":"shape","layer":"over","center":[0,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-398","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-399","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-400","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-401","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.7,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-402","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-403","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.8,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-404","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-405","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-406","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":135}}
+- {"id":"drawing-407","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-408","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-409","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-410","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-411","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-412","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-413","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.7,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-414","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.8,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-415","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-416","rules":[],"visual":{"kind":"shape","layer":"over","center":[2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-417","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-418","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-419","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-420","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-421","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-422","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-423","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.7,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-424","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.8,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-425","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-426","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-427","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-428","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-429","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-430","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-431","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-432","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-433","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.7,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-434","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.8,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-435","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-436","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.9,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-437","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-438","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-439","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-440","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-441","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-442","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-443","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.8,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-444","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.7,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-445","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-446","rules":[],"visual":{"kind":"shape","layer":"over","center":[5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-447","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-448","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.2,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-449","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.3,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-450","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.4,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-451","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-452","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-453","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.8,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-454","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.7,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-455","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-456","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-457","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,-0.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":45}}
+- {"id":"drawing-458","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-459","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-460","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.8,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-461","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.7,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-462","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-463","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-464","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-465","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-466","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-467","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-468","rules":[],"visual":{"kind":"shape","layer":"over","center":[5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-469","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-470","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.8,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-471","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.7,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-472","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-473","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-474","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-475","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-476","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-477","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-478","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-479","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.9,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-480","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.8,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-481","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.7,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-482","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-483","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-484","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-485","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-486","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-487","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-488","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-489","rules":[],"visual":{"kind":"shape","layer":"over","center":[0,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-490","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-491","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-492","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-493","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-494","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-495","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-496","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.7,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-497","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.8,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-498","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-499","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-500","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-501","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-502","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-503","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-504","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-505","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-506","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.7,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-507","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.8,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-508","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-509","rules":[],"visual":{"kind":"shape","layer":"over","center":[2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":76}}
+- {"id":"drawing-510","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-511","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.2,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-512","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.3,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-513","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.4,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-514","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-515","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.6,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-516","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.8,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-517","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.7,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":104}}
+- {"id":"drawing-518","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":90}}
+- {"id":"drawing-519","rules":[],"visual":{"kind":"shape","layer":"over","center":[-0.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":45}}
+- {"id":"drawing-520","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,6.1],"width":0.06,"height":0.24,"rounded":true,"fill":"#c9e583ff","thickness":0,"angle":135}}
+- {"id":"drawing-521","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.938,2.563],"width":0.1,"height":0.1,"rounded":true,"fill":"#ffffff5f","thickness":0,"angle":0}}
+- {"id":"drawing-522","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.938,3.563],"width":0.1,"height":0.1,"rounded":true,"fill":"#ffffff5f","thickness":0,"angle":0}}
+- {"id":"drawing-523","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.438,1.063],"width":0.1,"height":0.1,"rounded":true,"fill":"#ffffff5f","thickness":0,"angle":0}}
+```
+
+- Normal 6x6 sudoku rules apply.
+- Draw a snake, one cell wide, that starts and ends at two neighbouring cells, only moves orthogonally, and visits every cell in the grid without crossing itself.
+- The snake must eat every insect, but must not pass through any grey pebbles.
+- Insects divide the snake into segments.
+- Adjacent segments along the snake have consecutive totals. No two segments have the same total.
+- Digits joined by a grey pebble are either consecutive, or have a 1:2 ratio.

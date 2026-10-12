@@ -1,6 +1,6 @@
 import { mkdir, rm, writeFile, readFile } from "node:fs/promises";
 import { basename, join, resolve, sep } from "node:path";
-import { escapeHtml, markdownFiles, readPage, renderMarkdown, ruleShape, summary, validatePage } from "./content";
+import { escapeHtml, markdownFiles, readPage, renderMarkdown, ruleShape, summary, validateAliases, validatePage } from "./content";
 
 function document(title: string, content: string, raw?: string) {
   return `<!doctype html>
@@ -22,6 +22,7 @@ export async function buildSite(source = ".", output = "_site") {
     const slug = validatePage(page.metadata, file);
     return { ...page, slug };
   }));
+  validateAliases(pages);
   // Parse before clearing output so invalid content leaves the last build intact.
   await rm(output, { recursive: true, force: true });
   await mkdir(output, { recursive: true });
@@ -31,15 +32,17 @@ export async function buildSite(source = ".", output = "_site") {
     await mkdir(join(output, page.slug), { recursive: true });
     await writeFile(join(output, page.slug, "index.html"), document(String(page.metadata.name ?? page.slug), renderMarkdown(page.body, names), page.slug));
   }
+  const bySlug = new Map(pages.map(page => [page.slug, page]));
+  const definition = (page: typeof pages[number]) => bySlug.get(String(page.metadata.alias_of ?? page.metadata.aliasOf)) ?? page;
   const groups = new Map<string, typeof pages>();
   for (const page of pages.filter(page => typeof page.metadata.kind === "string")) {
-    const shape = ruleShape(page.metadata);
+    const shape = ruleShape(definition(page).metadata);
     groups.set(shape, [...(groups.get(shape) ?? []), page]);
   }
   const sections = [...groups].sort(([a], [b]) => a.localeCompare(b)).map(([shape, rules]) =>
     `<section><h2>${escapeHtml(shape)}</h2><div class="table-scroll" role="region" aria-label="${escapeHtml(shape)}" tabindex="0"><table><thead><tr><th scope="col">Rule</th><th scope="col">Meaning</th><th scope="col">Class</th></tr></thead><tbody>${rules.map(page => {
-      const ruleClass = /Class:\s*\*\*([^*]+)\*\*/.exec(page.body)?.[1] ?? "—";
-      return `<tr><th scope="row"><a href="/${page.slug}/">${escapeHtml(String(page.metadata.name))}</a><span class="kind">${page.slug}</span></th><td>${renderMarkdown(summary(page.body), names)}</td><td>${escapeHtml(ruleClass)}</td></tr>`;
+      const ruleClass = /Class:\s*\*\*([^*]+)\*\*/.exec(definition(page).body)?.[1] ?? "—";
+      return `<tr><th scope="row"><a href="/${page.slug}/">${escapeHtml(String(page.metadata.name))}</a><span class="kind">${page.slug}</span></th><td>${renderMarkdown(summary(definition(page).body), names)}</td><td>${escapeHtml(ruleClass)}</td></tr>`;
     }).join("")}</tbody></table></div></section>`).join("\n");
   const definitions = pages.filter(page => !page.metadata.kind).map(page => `<li><a href="/${page.slug}/">${escapeHtml(String(page.metadata.name ?? page.slug))}</a></li>`).join("");
   await writeFile(join(output, "index.html"), document("Library", `<h1>Open Rules</h1><p>A shared library of Sudoku rules. Each rule has a name, a precise meaning, and a worked example.</p>${definitions ? `<section><h2>Shared definitions</h2><ul>${definitions}</ul></section>` : ""}${sections}`));

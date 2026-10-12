@@ -7,7 +7,7 @@ import { compilePage, compilePrelude, formulaBlocks, parseFormula, parsePrelude 
 const [libraryDirectory, specDirectory, output = "docs/reports/slice-1-source-audit"] = process.argv.slice(2);
 if (!libraryDirectory || !specDirectory) throw new Error("Usage: bun scripts/audit-language.ts <library-rules-dir> <spec-dir> [output-prefix]");
 const started = performance.now();
-const preludeSource = { file: "spec/prelude.md", text: await readFile("spec/prelude.md", "utf8") };
+const preludeSource = { file: "rules/predicates.md", text: await readFile("rules/predicates.md", "utf8") };
 const prelude = compilePrelude(preludeSource);
 if (!prelude.value) throw new Error(JSON.stringify(prelude.diagnostics));
 const pages = [];

@@ -12,7 +12,7 @@ The following inventory specifies each planned check and its deliberately invali
 | --- | --- |
 | YAML syntax, unique keys and required/typed header fields | `cases/bad-yaml.rules.md` → `E_YAML_SYNTAX @3:8`; `cases/duplicate-key.rules.md` → `E_YAML_DUPLICATE @4:1`; `cases/missing-title.rules.md` → `E_HEADER_REQUIRED @1:1`; `cases/wrong-status-type.rules.md` → `E_HEADER_TYPE @8:9` |
 | Format/status values and status–flags consistency | `cases/wrong-format.rules.md` → `E_FORMAT @2:9`; `cases/wrong-status.rules.md` → `E_STATUS @8:9`; `cases/read-with-flags.rules.md` / `confirmed-with-flags.rules.md` → `E_STATUS_FLAGS @8:9`; `cases/flagged-without-reasons.rules.md` → `E_STATUS_FLAGS @8:9` |
-| Valid configurable roots/page identity, names, kinds and slugs | `cases/malformed-library-root.rules.md` → `E_LIBRARY_URL @7:10`; `rules/bad-url.md` → `E_PAGE_URL @3:6`; `rules/no-name.md` → `E_PAGE_NAME @1:1`; `rules/kind-mismatch.md` → `E_PAGE_KIND @4:7`; `rules/Bad_Slug.md` / `index.md` → `E_PAGE_SLUG @1:1`. A valid different root is accepted, not this error. |
+| Valid configurable roots/page identity, names, kinds and slugs | `cases/malformed-library-root.rules.md` → `E_LIBRARY_URL @7:10`; `rules/bad-url.md` → `E_PAGE_URL @3:6`; `rules/no-name.md` → `E_PAGE_NAME @1:1`; `rules/kind-mismatch.md` → `E_PAGE_KIND @4:7`; `rules/Bad_Slug.md` / `style.md` → `E_PAGE_SLUG @1:1`. A valid different root is accepted, not this error. |
 | Required formula, parameter signatures and logical class | `rules/no-formula.md` → `E_FORMULA_REQUIRED @1:1`; `rules/no-parameter-type.md` → `E_SIGNATURE_REQUIRED @6:3`; `rules/wrong-class.md` → `E_LOGIC_CLASS @20:1` |
 | Formula grammar and binding/name resolution | `rules/bad-formula.md` → `E_FORMULA_SYNTAX @25:1`; `rules/undefined-partial.md` → `E_NAME_UNDEFINED @25:2`; `rules/unbound-position.md` → `E_NAME_UNBOUND @25:8` |
 | Calls, types, scope, recursion and defined operations | `rules/wrong-arity.md` → `E_CALL_ARITY @25:1`; `rules/wrong-type.md` → `E_TYPE @25:1`; `rules/shadow-term.md` → `E_NAME_SHADOW @25:1`; `rules/recursive-term.md` → `E_RECURSION @25:1`; `rules/unguarded-index.md` → `E_OPERATION_UNGUARDED @25:1` |
@@ -105,3 +105,10 @@ Generation requires a compiled library, with a separate compiled custom namespac
 ## Measurement and release gates
 
 Freeze the complete library, 3,887-case corpus and resolved page/lock fixtures with content fingerprints. Measure cold elapsed wall time on the CI runner, including reads, diagnostics and rejection fixtures, with injected fetch responses and no network. Resolve/compile each distinct definition once. Record phase times, peak memory and worst cases. The 58 s budget covers lint and bounded checks, not solving 3,887 puzzles or unbounded proof searches. Browser edits target 100 ms with checked definitions cached; network loading is separate. Missing declarations, resolver failures and known semantic disagreements block the affected release gate; none receives a silent exception.
+
+
+### Library integration rejection fixtures
+
+`tests/invalid/integration-expected.json` adds exact diagnostic/message/span expectations for case headers and library aliases; repairs are in `tests/valid/integration/`. Coverage includes missing headers/fields, field types, format/status, flags on read cases and missing flagged reasons, root URLs, missing rule blocks, unknown kinds/local URLs, malformed references, duplicate YAML keys/shortcuts, absent alias targets, alias redefinitions and cycles. Alternate roots and external URL deferral are tested without hard-coded hosts. Full rule-line parameter checks remain slice 2.
+
+Mapped/ordered/filtered comprehensions and quoted enum choices add raw language pairs under `tests/{invalid,valid}/rules/`: wrong ordering, unknown variables, non-Boolean filters, shadowing, missing binders, unsafe indices and duplicate quoted choices. The original undefined `partial`, rational-bound and recursion fixtures remain rejecting.

@@ -1,0 +1,3 @@
+```rules
+sudoku 9x9
+```

@@ -1,0 +1,791 @@
+---
+format: open-rules
+title: Clone Count
+setter: Marty Sears
+source: https://sudokupad.app/w3ftliooqf
+case: https://sudoku-sleuth.com/cases/clone-count
+library: https://rules.sudoku-sleuth.com/
+status: read
+drawingCoverage: unclaimed-only
+board:
+  rows: 9
+  cols: 11
+  symbols:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  regions:
+    - - r1c1
+      - r1c2
+      - r1c3
+      - r2c1
+      - r2c2
+      - r2c3
+      - r3c1
+      - r3c2
+      - r3c3
+    - - r1c4
+      - r1c5
+      - r1c6
+      - r2c4
+      - r2c5
+      - r2c6
+      - r3c4
+      - r3c5
+      - r3c6
+    - - r1c7
+      - r1c8
+      - r1c9
+      - r2c7
+      - r2c8
+      - r2c9
+      - r3c7
+      - r3c8
+      - r3c9
+    - - r4c1
+      - r4c2
+      - r4c3
+      - r5c1
+      - r5c2
+      - r5c3
+      - r6c1
+      - r6c2
+      - r6c3
+    - - r4c4
+      - r4c5
+      - r4c6
+      - r5c4
+      - r5c5
+      - r5c6
+      - r6c4
+      - r6c5
+      - r6c6
+    - - r4c7
+      - r4c8
+      - r4c9
+      - r5c7
+      - r5c8
+      - r5c9
+      - r6c7
+      - r6c8
+      - r6c9
+    - - r7c1
+      - r7c2
+      - r7c3
+      - r8c1
+      - r8c2
+      - r8c3
+      - r9c1
+      - r9c2
+      - r9c3
+    - - r7c4
+      - r7c5
+      - r7c6
+      - r8c4
+      - r8c5
+      - r8c6
+      - r9c4
+      - r9c5
+      - r9c6
+    - - r7c7
+      - r7c8
+      - r7c9
+      - r8c7
+      - r8c8
+      - r8c9
+      - r9c7
+      - r9c8
+      - r9c9
+---
+
+```rules
+unique-1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9
+unique-2: unique r2c1-r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9
+unique-3: unique r3c1-r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9
+unique-4: unique r4c1-r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8-r4c9
+unique-5: unique r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9
+unique-6: unique r6c1-r6c2-r6c3-r6c4-r6c5-r6c6-r6c7-r6c8-r6c9
+unique-7: unique r7c1-r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8-r7c9
+unique-8: unique r8c1-r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8-r8c9
+unique-9: unique r9c1-r9c2-r9c3-r9c4-r9c5-r9c6-r9c7-r9c8-r9c9
+unique-10: unique r1c1-r2c1-r3c1-r4c1-r5c1-r6c1-r7c1-r8c1-r9c1
+unique-11: unique r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2
+unique-12: unique r1c3-r2c3-r3c3-r4c3-r5c3-r6c3-r7c3-r8c3-r9c3
+unique-13: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4-r8c4-r9c4
+unique-14: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5-r9c5
+unique-15: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6-r9c6
+unique-16: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7-r9c7
+unique-17: unique r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8-r9c8
+unique-18: unique r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9
+unique-19: unique r1c1-r1c2-r1c3-r2c1-r2c2-r2c3-r3c1-r3c2-r3c3
+unique-20: unique r1c4-r1c5-r1c6-r2c4-r2c5-r2c6-r3c4-r3c5-r3c6
+unique-21: unique r1c7-r1c8-r1c9-r2c7-r2c8-r2c9-r3c7-r3c8-r3c9
+unique-22: unique r4c1-r4c2-r4c3-r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
+unique-23: unique r4c4-r4c5-r4c6-r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
+unique-24: unique r4c7-r4c8-r4c9-r5c7-r5c8-r5c9-r6c7-r6c8-r6c9
+unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
+unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
+unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
+```
+
+```drawing
+- {"id":"drawing-1","rules":[],"visual":{"kind":"shape","layer":"under","center":[2.75,1.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-2","rules":[],"visual":{"kind":"shape","layer":"under","center":[4.75,2.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-3","rules":[],"visual":{"kind":"shape","layer":"under","center":[4.25,1.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-4","rules":[],"visual":{"kind":"shape","layer":"under","center":[6.75,0.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-5","rules":[],"visual":{"kind":"shape","layer":"under","center":[6.75,1.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-6","rules":[],"visual":{"kind":"shape","layer":"under","center":[6.25,0.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-7","rules":[],"visual":{"kind":"shape","layer":"under","center":[6.25,2.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-8","rules":[],"visual":{"kind":"shape","layer":"under","center":[6.75,3.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-9","rules":[],"visual":{"kind":"shape","layer":"under","center":[7.25,3.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-10","rules":[],"visual":{"kind":"shape","layer":"under","center":[7.75,3.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-11","rules":[],"visual":{"kind":"shape","layer":"under","center":[7.25,4.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-12","rules":[],"visual":{"kind":"shape","layer":"under","center":[7.75,4.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-13","rules":[],"visual":{"kind":"shape","layer":"under","center":[8.25,8.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-14","rules":[],"visual":{"kind":"shape","layer":"under","center":[5.75,7.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"shape","layer":"under","center":[3.25,5.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"shape","layer":"under","center":[1.25,4.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"shape","layer":"under","center":[1.25,5.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"shape","layer":"under","center":[1.75,5.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"shape","layer":"under","center":[0.75,7.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"shape","layer":"under","center":[0.25,8.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"line","points":[[9,9],[9,11],[8,11],[8,10],[9,10]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"line","points":[[8,11],[7,11],[7,10],[8,10],[8,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"line","points":[[7,11],[6,11],[6,10],[7,10],[7,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"line","points":[[6,11],[5,11],[5,10],[6,10],[6,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"line","points":[[5,11],[4,11],[4,10],[5,10],[5,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"line","points":[[4,11],[3,11],[3,10],[4,10],[4,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"line","points":[[3,11],[2,11],[2,10],[3,10],[3,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-28","rules":[],"visual":{"kind":"line","points":[[2,11],[1,11],[1,10],[2,10],[2,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-29","rules":[],"visual":{"kind":"line","points":[[1,11],[0,11],[0,10],[1,10],[1,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-30","rules":[],"visual":{"kind":"line","points":[[0,10],[0,9]],"color":"#FFFFFF","thickness":5.76,"rounded":true,"layer":"over"}}
+- {"id":"drawing-31","rules":[],"visual":{"kind":"line","points":[[0,1],[9,1]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-32","rules":[],"visual":{"kind":"line","points":[[9,2],[8,2],[8,0]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-33","rules":[],"visual":{"kind":"line","points":[[7,0],[7,2],[8,2],[8,9]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-34","rules":[],"visual":{"kind":"line","points":[[9,4],[7,4],[7,2],[5,2],[5,0]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-35","rules":[],"visual":{"kind":"line","points":[[9,5],[7,5],[7,4],[5,4],[5,2],[4,2],[4,0]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-36","rules":[],"visual":{"kind":"line","points":[[9,7],[7,7],[7,5],[5,5],[5,4],[4,4],[4,2],[2,2],[2,0]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-37","rules":[],"visual":{"kind":"line","points":[[9,8],[7,8],[7,9]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-38","rules":[],"visual":{"kind":"line","points":[[5,9],[5,5],[4,5],[4,4],[2,4],[2,2],[1,2],[1,0]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-39","rules":[],"visual":{"kind":"line","points":[[4,9],[4,5],[2,5],[2,4],[1,4],[1,2],[0,2]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-40","rules":[],"visual":{"kind":"line","points":[[2,9],[2,5],[1,5],[1,4],[0,4]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-41","rules":[],"visual":{"kind":"line","points":[[1,9],[1,5],[0,5]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-42","rules":[],"visual":{"kind":"line","points":[[0,7],[7,7],[7,8],[0,8]],"color":"#dddf","thickness":1.92,"rounded":true,"layer":"over"}}
+- {"id":"drawing-43","rules":[],"visual":{"kind":"line","points":[[1,6],[6,6],[6,9],[9,9],[9,6],[6,6]],"color":"#8897baff","thickness":4.48,"rounded":true,"layer":"over"}}
+- {"id":"drawing-44","rules":[],"visual":{"kind":"line","points":[[1,6],[0,6],[0,9],[6,9]],"color":"#8897baff","thickness":4.48,"rounded":true,"layer":"over"}}
+- {"id":"drawing-45","rules":[],"visual":{"kind":"line","points":[[6,6],[6,3],[9,3],[9,6]],"color":"#8897baff","thickness":4.48,"rounded":true,"layer":"over"}}
+- {"id":"drawing-46","rules":[],"visual":{"kind":"line","points":[[9,3],[9,0],[6,0],[6,3],[3,3],[3,9]],"color":"#8897baff","thickness":4.48,"rounded":true,"layer":"over"}}
+- {"id":"drawing-47","rules":[],"visual":{"kind":"line","points":[[6,0],[3,0],[3,3],[0,3],[0,6]],"color":"#8897baff","thickness":4.48,"rounded":true,"layer":"over"}}
+- {"id":"drawing-48","rules":[],"visual":{"kind":"line","points":[[0,3],[0,0],[3,0]],"color":"#8897baff","thickness":4.48,"rounded":true,"layer":"over"}}
+- {"id":"drawing-49","rules":[],"visual":{"kind":"line","points":[[8.5,10.5],[9.25,10.5],[9.25,-0.25],[-0.25,-0.25],[-0.25,10.5],[8.5,10.5]],"color":"#d6e9faff","thickness":14.72,"rounded":true,"layer":"over"}}
+- {"id":"drawing-50","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,8],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-51","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-52","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,2],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-53","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-54","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,3],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-55","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,4],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-56","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,8],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-57","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,7],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-58","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,5],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-59","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,5],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-60","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,5],"width":1.82,"height":0.82,"rounded":true,"fill":"#ffffffa8","stroke":"#d5f09cff","thickness":4.48,"angle":0}}
+- {"id":"drawing-61","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":0.44,"height":0.44,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":2.56,"angle":0}}
+- {"id":"drawing-62","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1],"width":0.44,"height":0.44,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":2.56,"angle":0}}
+- {"id":"drawing-63","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-64","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-65","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-66","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-67","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-68","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-69","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-70","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-71","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,10],"width":0,"height":0.8,"rounded":true,"thickness":0,"angle":0,"text":"=","textColor":"#000000","fontSize":30.4,"textStroke":"#ffffff","textStrokeWidth":1.28}}
+- {"id":"drawing-72","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,0.5],"width":0.13,"height":0.47,"rounded":false,"fill":"#8de8a4ff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-73","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.375,3.375],"width":0.13,"height":0.13,"rounded":false,"fill":"#8cf5e4ff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-74","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.375,3.625],"width":0.13,"height":0.13,"rounded":false,"fill":"#8cf5e4ff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-75","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.625,3.375],"width":0.13,"height":0.13,"rounded":false,"fill":"#8cf5e4ff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-76","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.625,3.625],"width":0.13,"height":0.13,"rounded":false,"fill":"#8cf5e4ff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-77","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.429,4.571],"width":0.13,"height":0.16,"rounded":false,"fill":"#fcae9fff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-78","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.571,4.429],"width":0.13,"height":0.16,"rounded":false,"fill":"#fcae9fff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-79","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.438,7.438],"width":0.13,"height":0.13,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-80","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.563,7.438],"width":0.13,"height":0.13,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-81","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.563,7.563],"width":0.13,"height":0.13,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-82","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.438,7.563],"width":0.13,"height":0.13,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-83","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,1.5],"width":0.13,"height":0.47,"rounded":false,"fill":"#8de8a4ff","stroke":"#FFFFFF","thickness":3.2,"angle":45}}
+- {"id":"drawing-84","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.5],"width":0.12,"height":0.58,"rounded":false,"fill":"#acbcc5ff","stroke":"#FFFFFF","thickness":3.2,"angle":90}}
+- {"id":"drawing-85","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.375,7.375],"width":0.15,"height":0.15,"rounded":false,"fill":"#e7d6c0ff","stroke":"#FFFFFF","thickness":3.2,"angle":135}}
+- {"id":"drawing-86","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.625,7.625],"width":0.15,"height":0.15,"rounded":false,"fill":"#e7d6c0ff","stroke":"#FFFFFF","thickness":3.2,"angle":135}}
+- {"id":"drawing-87","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,0.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-88","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,2.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-89","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,3.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-90","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,4.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-91","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,7.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-92","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,6.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-93","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,4.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-94","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,7.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-95","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,8.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-96","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-97","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-98","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,1.5],"width":0.39,"height":0.39,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-99","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-100","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-101","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-102","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-103","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-104","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-105","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-106","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-107","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,10.5],"width":0.66,"height":0.66,"rounded":false,"fill":"#FFFFFF","stroke":"#89b6ecff","thickness":3.84,"angle":0}}
+- {"id":"drawing-108","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,0.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#8de8a4ff","thickness":0,"angle":45}}
+- {"id":"drawing-109","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,2.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fce69fff","thickness":0,"angle":45}}
+- {"id":"drawing-110","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,3.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-111","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,4.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-112","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,7.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#9fd7fcff","thickness":0,"angle":45}}
+- {"id":"drawing-113","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,6.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#ccb6f3ff","thickness":0,"angle":45}}
+- {"id":"drawing-114","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,4.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fbd0f8ff","thickness":0,"angle":45}}
+- {"id":"drawing-115","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,7.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":45}}
+- {"id":"drawing-116","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,8.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fce69fff","thickness":0,"angle":45}}
+- {"id":"drawing-117","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-118","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#9fd7fcff","thickness":0,"angle":45}}
+- {"id":"drawing-119","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-120","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":0.19,"height":0.19,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-121","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1],"width":0.19,"height":0.19,"rounded":false,"fill":"#ccb6f3ff","thickness":0,"angle":45}}
+- {"id":"drawing-122","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#acbcc5ff","thickness":0,"angle":45}}
+- {"id":"drawing-123","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,1.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#8de8a4ff","thickness":0,"angle":45}}
+- {"id":"drawing-124","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#ccb6f3ff","thickness":0,"angle":45}}
+- {"id":"drawing-125","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#8de8a4ff","thickness":0,"angle":45}}
+- {"id":"drawing-126","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fce69fff","thickness":0,"angle":45}}
+- {"id":"drawing-127","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#fbd0f8ff","thickness":0,"angle":45}}
+- {"id":"drawing-128","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":45}}
+- {"id":"drawing-129","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-130","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,9.5],"width":0.33,"height":0.33,"rounded":false,"fill":"#acbcc5ff","thickness":0,"angle":45}}
+- {"id":"drawing-131","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,0.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-132","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,2.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-133","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,4.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-134","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,3.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-135","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,6.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-136","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,7.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-137","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,4.429],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-138","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,4.571],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-139","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-140","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-141","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-142","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-143","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-144","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-145","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-146","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-147","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,1.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-148","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1],"width":0.09,"height":0.09,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-149","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":0.09,"height":0.09,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-150","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,8.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-151","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,9.429],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-152","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,9.571],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-153","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,9.5],"width":0.18,"height":0.18,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-154","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":0.03,"height":0.12,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-155","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,0.5],"width":0.08,"height":0.42,"rounded":false,"fill":"#8de8a4ff","thickness":0,"angle":45}}
+- {"id":"drawing-156","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.375,3.375],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-157","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.375,3.625],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-158","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.625,3.375],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-159","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.625,3.625],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-160","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.429,4.571],"width":0.08,"height":0.11,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-161","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.571,4.429],"width":0.08,"height":0.11,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-162","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.438,7.438],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-163","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.563,7.438],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-164","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.563,7.563],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-165","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.438,7.563],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-166","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.571,1.429],"width":0.08,"height":0.11,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-167","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.429,1.571],"width":0.08,"height":0.11,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-168","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,1.5],"width":0.08,"height":0.42,"rounded":false,"fill":"#8de8a4ff","thickness":0,"angle":45}}
+- {"id":"drawing-169","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.438,9.438],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-170","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.438,9.563],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-171","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.563,9.438],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-172","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.563,9.563],"width":0.08,"height":0.08,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-173","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.429,9.571],"width":0.08,"height":0.11,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-174","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.571,9.429],"width":0.08,"height":0.11,"rounded":false,"fill":"#fcae9fff","thickness":0,"angle":45}}
+- {"id":"drawing-175","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6.5],"width":0.07,"height":0.53,"rounded":false,"fill":"#acbcc5ff","thickness":0,"angle":90}}
+- {"id":"drawing-176","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1],"width":0.05,"height":0.05,"rounded":false,"fill":"#ccb6f3ff","thickness":0,"angle":45}}
+- {"id":"drawing-177","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,6.5],"width":0.09,"height":0.09,"rounded":false,"fill":"#ccb6f3ff","thickness":0,"angle":45}}
+- {"id":"drawing-178","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.6,7.5],"width":0.1,"height":0.1,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":135}}
+- {"id":"drawing-179","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.4,7.5],"width":0.1,"height":0.1,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":135}}
+- {"id":"drawing-180","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":0.04,"height":0.04,"rounded":false,"fill":"#FFFFFF","thickness":0,"angle":45}}
+- {"id":"drawing-181","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.5,9.5],"width":0.07,"height":0.53,"rounded":false,"fill":"#acbcc5ff","thickness":0,"angle":90}}
+- {"id":"drawing-182","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,9.5],"width":0.09,"height":0.09,"rounded":false,"fill":"#ccb6f3ff","thickness":0,"angle":45}}
+- {"id":"drawing-183","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,9.5],"width":0.08,"height":0.42,"rounded":false,"fill":"#8de8a4ff","thickness":0,"angle":45}}
+- {"id":"drawing-184","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.4,9.5],"width":0.1,"height":0.1,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":135}}
+- {"id":"drawing-185","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.6,9.5],"width":0.1,"height":0.1,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":135}}
+- {"id":"drawing-186","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.375,9.625],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-187","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.375,9.375],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-188","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.625,9.375],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-189","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.625,9.625],"width":0.08,"height":0.08,"rounded":false,"fill":"#8cf5e4ff","thickness":0,"angle":45}}
+- {"id":"drawing-190","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.375,9.375],"width":0.08,"height":0.08,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":45}}
+- {"id":"drawing-191","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.625,9.625],"width":0.08,"height":0.08,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":45}}
+- {"id":"drawing-192","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.375,7.375],"width":0.1,"height":0.1,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":135}}
+- {"id":"drawing-193","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.625,7.625],"width":0.1,"height":0.1,"rounded":false,"fill":"#e7d6c0ff","thickness":0,"angle":135}}
+- {"id":"drawing-194","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.8,0.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-195","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.7,0.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-196","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.6,0.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-197","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,0.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-198","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.4,0.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-199","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.3,0.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-200","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.2,0.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-201","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,0.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-202","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,0.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-203","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,0.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-204","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,0.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-205","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,0.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-206","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,0.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-207","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,0.95],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-208","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,0.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-209","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,0.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-210","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,0.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-211","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,0.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-212","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,0.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-213","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,0.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-214","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,0.95],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-215","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,1.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-216","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,1.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-217","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,1.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-218","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,1.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-219","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,1.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-220","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.7,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-221","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.6,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-222","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-223","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.4,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-224","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.3,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-225","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.2,1.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-226","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,1.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-227","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,1.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-228","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,1.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-229","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,1.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-230","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,1.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-231","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.1,1.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-232","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.15,1.05],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-233","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.85,1.05],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-234","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,1.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-235","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.833,1.222],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-236","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.111,1.389],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-237","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.111,1.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-238","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.167,1.611],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-239","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.111,1.722],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-240","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.167,1.833],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-241","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.111,1.944],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-242","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.111,2.056],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-243","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.1,2.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-244","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.15,2.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-245","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.1,2.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-246","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.15,2.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-247","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.15,2.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-248","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.15,2.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-249","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.2,2.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-250","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.3,2.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-251","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.45,2.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-252","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.55,2.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-253","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.65,2.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-254","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,2.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-255","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,2.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-256","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,2.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-257","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,2.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-258","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,2.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-259","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,2.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-260","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,2.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-261","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-262","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,1.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-263","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,1.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-264","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,1.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-265","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.85,1.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-266","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.9,1.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-267","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.875,1.375],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-268","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.8,1.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-269","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.75,1.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-270","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.65,1.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-271","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.55,1.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-272","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.45,1.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-273","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.35,1.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-274","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.15,1.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-275","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.357,2.857],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-276","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.357,0.143],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-277","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.286,0.214],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-278","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.45,0.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-279","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.55,0.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-280","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.65,0.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-281","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,0.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-282","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,0.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-283","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,0.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-284","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,0.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-285","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,0.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-286","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,0.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-287","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,0.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-288","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-289","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,1.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-290","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,1.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-291","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,1.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-292","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,1.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-293","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,1.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-294","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,1.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-295","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,1.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-296","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.7,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-297","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.6,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-298","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,1.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-299","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.4,1.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-300","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.3,1.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-301","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,1.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-302","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,1.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-303","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-304","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,1.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-305","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,1.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-306","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,1.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-307","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,1.05],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-308","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,0.95],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-309","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,0.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-310","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.111,0.722],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-311","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.167,0.611],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-312","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,0.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-313","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,0.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-314","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.111,0.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-315","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.2,1.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-316","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,2.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-317","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,2.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-318","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.8,2.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-319","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.7,2.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-320","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.6,2.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-321","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,2.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-322","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.4,2.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-323","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.3,2.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-324","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,2.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-325","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,2.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-326","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-327","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,2.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-328","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,2.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-329","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,2.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-330","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,2.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-331","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-332","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,3.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-333","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-334","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,3.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-335","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.1,3.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-336","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.15,3.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-337","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.25,3.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-338","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.35,3.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-339","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.4,3.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-340","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.5,3.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-341","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.6,3.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-342","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.7,3.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-343","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,3.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-344","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,3.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-345","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,3.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-346","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,3.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-347","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,3.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-348","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-349","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.9,2.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-350","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,2.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-351","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.85,2.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-352","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.875,3.188],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-353","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.875,3.313],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-354","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.875,2.688],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-355","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.125,3.313],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-356","rules":[],"visual":{"kind":"shape","layer":"over","center":[6.188,3.688],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-357","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,3.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-358","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,3.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-359","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.3,3.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-360","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.4,3.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-361","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,3.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-362","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.6,3.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-363","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.7,3.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-364","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,3.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-365","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,3.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-366","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,3.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-367","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.9,3.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-368","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,3.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-369","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.9,3.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-370","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,3.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-371","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.889,4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-372","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.889,4.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-373","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.857,4.214],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-374","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.9,4.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-375","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,4.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-376","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.9,4.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-377","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.1,3.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-378","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,3.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-379","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,3.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-380","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.1,3.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-381","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,3.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-382","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.111,4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-383","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.111,4.222],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-384","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,4.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-385","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,4.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-386","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.1,4.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-387","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,4.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-388","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,4.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-389","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,4.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-390","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.3,4.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-391","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.4,4.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-392","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,4.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-393","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.6,4.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-394","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.7,4.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-395","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,4.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-396","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.85,4.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-397","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,4.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-398","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,4.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-399","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,4.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-400","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,4.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-401","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.2,4.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-402","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.3,4.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-403","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.389,4.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-404","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.5,4.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-405","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.611,4.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-406","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.722,4.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-407","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.778,4.278],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-408","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.833,4.389],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-409","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.889,4.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-410","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,4.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-411","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,4.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-412","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,4.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-413","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,4.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-414","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-415","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,5.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-416","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,5.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-417","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,5.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-418","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,4.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-419","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,4.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-420","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,4.95],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-421","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,5.05],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-422","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,5.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-423","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,5.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-424","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.111,5.389],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-425","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.111,5.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-426","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.167,5.611],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-427","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.167,5.722],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-428","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.278,5.778],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-429","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.35,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-430","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.45,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-431","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.55,5.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-432","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.65,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-433","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.75,5.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-434","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.8,5.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-435","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,5.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-436","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,5.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-437","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,5.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-438","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,7.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-439","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,7.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-440","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,7.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-441","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,7.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-442","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,7.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-443","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,7.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-444","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-445","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,8.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-446","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,8.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-447","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.167,7.278],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-448","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.278,7.222],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-449","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,8.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-450","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,8.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-451","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,8.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-452","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.15,8.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-453","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.35,8.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-454","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.45,8.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-455","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.55,8.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-456","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.65,8.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-457","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.75,8.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-458","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.8,8.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-459","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,8.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-460","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,8.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-461","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,8.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-462","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,8.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-463","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.9,8.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-464","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,8.05],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-465","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.889,7.944],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-466","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.833,7.833],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-467","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.889,7.722],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-468","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.889,7.611],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-469","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.833,7.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-470","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.85,7.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-471","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.8,7.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-472","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.75,7.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-473","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.65,7.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-474","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.55,7.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-475","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.45,7.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-476","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.35,7.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-477","rules":[],"visual":{"kind":"shape","layer":"over","center":[8.1,8.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-478","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.35,6.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-479","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.25,6.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-480","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.2,6.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-481","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,6.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-482","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.15,6.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-483","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,6.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-484","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.15,6.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-485","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,6.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-486","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.45,6.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-487","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.55,6.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-488","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.65,6.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-489","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.75,6.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-490","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.8,6.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-491","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.85,6.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-492","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,6.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-493","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,6.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-494","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.85,6.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-495","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.889,6.778],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-496","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.833,6.889],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-497","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.889,7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-498","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.889,7.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-499","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.889,7.222],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-500","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.85,7.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-501","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.9,7.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-502","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.85,7.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-503","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.85,7.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-504","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.85,7.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-505","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.7,7.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-506","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.6,7.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-507","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,7.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-508","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.35,7.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-509","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.25,7.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-510","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.2,7.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-511","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.15,7.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-512","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,7.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-513","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.15,7.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-514","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,7.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-515","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.15,7.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-516","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,7.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-517","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.1,7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-518","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.15,6.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-519","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.444,7.833],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-520","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.389,4.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-521","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.278,4.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-522","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.222,4.278],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-523","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,4.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-524","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.611,4.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-525","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.722,4.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-526","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.778,4.278],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-527","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.833,4.389],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-528","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.889,4.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-529","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.833,4.611],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-530","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.889,4.722],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-531","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.889,4.833],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-532","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.833,4.944],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-533","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.889,5.056],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-534","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.85,5.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-535","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.9,5.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-536","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.85,5.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-537","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.9,5.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-538","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.85,5.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-539","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.85,5.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-540","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.8,5.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-541","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.7,5.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-542","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.6,5.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-543","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.5,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-544","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.4,5.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-545","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.3,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-546","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.15,5.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-547","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.15,5.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-548","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,5.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-549","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.15,5.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-550","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,5.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-551","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.15,5.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-552","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.167,4.389],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-553","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.111,4.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-554","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.15,4.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-555","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,4.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-556","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,4.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-557","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.15,4.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-558","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-559","rules":[],"visual":{"kind":"shape","layer":"over","center":[3.1,5.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-560","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.15,4.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-561","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.3,4.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-562","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.4,4.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-563","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,4.15],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-564","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.6,4.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-565","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.7,4.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-566","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.8,4.25],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-567","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.8,4.35],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-568","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,4.45],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-569","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,4.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-570","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,4.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-571","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,4.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-572","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.15,4.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-573","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.1,4.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-574","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.15,4.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-575","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.111,4.722],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-576","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.167,4.833],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-577","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.111,4.944],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-578","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.111,5.056],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-579","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.111,5.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-580","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.167,5.278],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-581","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.111,5.389],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-582","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.15,5.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-583","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.1,5.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-584","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.15,5.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-585","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.3,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-586","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.4,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-587","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,5.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-588","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.6,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-589","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.7,5.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-590","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,5.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-591","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,5.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-592","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,5.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-593","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,5.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-594","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,5.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-595","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,5.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-596","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.85,5.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-597","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-598","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.9,4.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-599","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.833,4.833],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-600","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.222,7.222],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-601","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.333,7.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-602","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.444,7.111],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-603","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.556,7.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-604","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.667,7.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-605","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.167,7.333],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-606","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.111,7.444],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-607","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,7.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-608","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,7.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-609","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,7.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-610","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,7.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-611","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,7.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-612","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,7.55],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-613","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.15,7.65],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-614","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.15,7.75],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-615","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,7.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-616","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.15,7.95],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-617","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.111,8.056],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-618","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.111,8.167],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-619","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.167,8.278],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-620","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.15,8.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-621","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.1,8.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-622","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.15,8.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-623","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.15,8.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-624","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.35,8.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-625","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.45,8.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-626","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.55,8.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-627","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.65,8.85],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-628","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.75,8.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-629","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.8,8.7],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-630","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,8.6],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-631","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,8.5],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-632","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,8.4],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-633","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,8.3],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-634","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,8.2],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-635","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,8.1],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-636","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,7.8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-637","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.85,7.9],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+- {"id":"drawing-638","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.9,8],"width":0.12,"height":0.12,"rounded":true,"fill":"#d5f09cff","thickness":0,"angle":0}}
+```
+
+Normal sudoku rules apply.
+
+SYMBOLS:
+Each digit 1-9 is depicted in this puzzle by a strange symbol. Deduce which symbol stands for which digit, and keep track using the key on the right.
+
+TWO-CELL BLOBS:
+This grid contains numerous blob-like alien creatures, each consisting of two horizontally adjacent cells. Some blobs are shown; the others are invisible and must be located. Blobs do not overlap each other.
+
+CLONES:
+Some blobs are clones of each other, ie: they contain the exact same two digits in the same order.
+A blob's left-hand digit always indicates exactly how many clone copies of that blob (including itself) exist in the grid.
+
+CIRCULAR LABELS:
+If there is a circular label in the centre of a blob, its symbol indicates the sum of the blob's two cells.

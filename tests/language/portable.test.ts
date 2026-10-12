@@ -12,7 +12,7 @@ test("the browser bundle parses and checks in a realm with no Node, DOM or fetch
     expect(code).not.toMatch(/(?:from|import)\s*[( ]\s*["']node:/);
     const bundle = join(directory, "core.js");
     await writeFile(bundle, code);
-    const prelude = await readFile("spec/prelude.md", "utf8");
+    const prelude = await readFile("rules/predicates.md", "utf8");
     const script = `
       import { readFileSync } from 'node:fs';
       import { createContext, SourceTextModule } from 'node:vm';

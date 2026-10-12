@@ -4,3 +4,5 @@ export * from "./language/exact.js";
 export * from "./language/parser.js";
 export * from "./language/checker.js";
 export * from "./library.js";
+
+export * from "./documents.js";

@@ -14,7 +14,7 @@ function lex(source: Source): Token[] {
     if (whitespace) { i += whitespace[0].length; continue; }
     const comment = /^#[^\n]*/.exec(rest);
     if (comment) { i += comment[0].length; continue; }
-    const match = /^(?:"(?:[^"\\\r\n]|\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})*"|\d+(?:\.\d+)?|->|<=|>=|!=|[∀∃∧∨¬→↔∈∉⊆∩∪−×≤≥≠ΣΠ∅λ⌊⌋·]|[\p{L}𝔄ℤ][\p{L}\p{N}_]*|[()\[\]{},:;|+*/^=<>._-])/u.exec(rest);
+    const match = /^(?:"(?:[^"\\\r\n]|\\["\\/bfnrt]|\\u[0-9a-fA-F]{4})*"|\d+(?:\.\d+)?|->|<=|>=|!=|[∀∃∧∨¬→↔∈∉⊆∩∪−×≤≥≠ΣΠ∅λ⌊⌋·⟨⟩]|[\p{L}𝔄ℤ][\p{L}\p{N}_]*|[()\[\]{},:;|+*/^=<>._-])/u.exec(rest);
     if (!match) fail("E_FORMULA_SYNTAX", location(source, i, i + [...rest][0].length), `The symbol ${[...rest][0]} is not supported in formulas.`);
     const raw = match[0];
     tokens.push({ text: Object.hasOwn(aliases, raw) ? aliases[raw] : raw, span: location(source, i, i + raw.length) });
@@ -54,7 +54,7 @@ export class Parser {
     const name = this.identifier().text;
     if (name === "enum") {
       this.expect("{"); const members: string[] = [];
-      do { members.push(this.identifier().text); } while (this.accept(",")); this.expect("}"); return { name, members };
+      do { members.push(this.peek().text.startsWith('"') ? JSON.parse(this.take().text) : this.identifier().text); } while (this.accept(",")); this.expect("}"); return { name, members };
     }
     if (name === "record") {
       this.expect("{"); const fields: Record<string, Type> = Object.create(null);
@@ -133,6 +133,11 @@ export class Parser {
       return { kind: "interval", inclusive: end.text === "]", span: merge(token.span, end.span), children: [lower, upper] };
     }
     if (token.text === "empty") return { ...leaf("set"), children: [] };
+    if (token.text === "⟨") {
+      const body = this.expression(); this.expect(":"); const name = this.identifier(); this.expect("in");
+      const domain = this.expression(); const filter = this.accept(",") ? this.expression() : undefined; const end = this.expect("⟩");
+      return {kind: "image", value: "list", span: merge(token.span,end.span), binders:[{name:name.text,span:name.span}], hasDomain:true, children:filter ? [domain,body,filter] : [domain,body]};
+    }
     if (token.text === "{") {
       if (this.accept("}")) return leaf("set");
       if (this.peek().text !== "<eof>" && this.tokens[this.at + 1]?.text === "in") {
@@ -140,7 +145,12 @@ export class Parser {
         const predicate = this.expression(); const end = this.expect("}");
         return { kind: "comprehension", span: merge(token.span, end.span), binders: [{ name: name.text, span: name.span }], children: [domain, predicate] };
       }
-      const members = [this.expression()]; while (this.accept(",")) members.push(this.expression());
+      const first = this.expression();
+      if (this.accept(":")) {
+        const name = this.identifier(); this.expect("in"); const domain = this.expression(); const end = this.expect("}");
+        return {kind:"image",value:"set",span:merge(token.span,end.span),binders:[{name:name.text,span:name.span}],hasDomain:true,children:[domain,first]};
+      }
+      const members = [first]; while (this.accept(",")) members.push(this.expression());
       const end = this.expect("}"); return { kind: "set", span: merge(token.span, end.span), children: members };
     }
     const aggregateStart = ["sum", "product", "count"].includes(token.text) && (this.peek().text === "_" || ["in", ":", ","].includes(this.tokens[this.at + 1]?.text));

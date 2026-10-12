@@ -6,12 +6,15 @@ import { collection, scalar, typeName, type CheckedFormula, type Declaration, ty
 export interface Environment { symbols: Record<string, Type>; terms: Record<string, Declaration>; types?: Record<string, Type>; generics?: string[] }
 export interface CheckedPrelude { environment: Environment; declarations: TypedDeclaration[] }
 const numeric = (type: Type) => ["number", "digit", "value", "position"].includes(type.name);
-const collections = ["path", "set", "list"];
-const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "path", "set", "list", "optional", "fn", "record", "enum"];
+const collections = ["path", "set", "list", "collection"];
+const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression"];
 function same(a: Type, b: Type): boolean { return typeName(a) === typeName(b); }
 function assignable(actual: Type, expected: Type): boolean {
   if (same(actual, expected)) return true;
   if (actual.name === "empty") return true;
+  if (actual.name === "digit" && expected.name === "position") return true;
+  if (actual.name === "path" && expected.name === "list") return !!actual.args?.[0] && !!expected.args?.[0] && assignable(actual.args[0],expected.args[0]);
+  if (expected.name === "collection" && collections.includes(actual.name)) return !!actual.args?.[0] && !!expected.args?.[0] && assignable(actual.args[0],expected.args[0]);
   if (expected.name === "number" && numeric(actual)) return true;
   if (actual.name === "literal" && expected.name === "enum" && actual.members?.every(value => expected.members?.includes(value))) return true;
   if (actual.name === "fn" && expected.name === "fn") return actual.args?.length === expected.args?.length && (expected.args ?? []).every((t, i) => assignable(t, actual.args![i])) && !!actual.result && !!expected.result && assignable(actual.result, expected.result);
@@ -22,7 +25,7 @@ function assignable(actual: Type, expected: Type): boolean {
 function validateType(type: Type, env: Environment, span: Span) {
   // Inferred only for an empty collection; no source declaration can name this type.
   if (type.name === "empty") return;
-  const arity = ["path", "set", "list", "optional"].includes(type.name) ? 1 : 0;
+  const arity = ["path", "set", "list", "optional", "collection"].includes(type.name) ? 1 : 0;
   if (!builtInTypes.includes(type.name) && !env.generics?.includes(type.name) && !Object.hasOwn(env.types ?? {}, type.name)) {
     fail("E_TYPE", span, `The type ${type.name} is not defined; declare it in the shared definitions.`);
   }
@@ -32,8 +35,8 @@ function validateType(type: Type, env: Environment, span: Span) {
   for (const field of Object.values(type.fields ?? {})) validateType(field, env, span);
   if (type.name === "enum" && (!type.members?.length || new Set(type.members).size !== type.members.length)) fail("E_TYPE", span, "List at least one allowed choice in enum{...}, with each choice appearing once.");
 }
-function required(node: TypedExpr, type: Type) {
-  if (type.name === "position" && node.constant !== undefined && fromConstant(node.constant, node.span).denominator === 1n) return;
+function required(node: TypedExpr, type: Type, facts: Expr[] = [], env: Environment = {symbols:{},terms:{}}) {
+  if (type.name === "position" && numeric(node.type) && integer(node, facts, env)) return;
   if (!assignable(node.type, type)) fail("E_TYPE", node.span, `${expressionLabel(node)} must be ${describeType(type)}; it is ${describeType(node.type)}.`);
 }
 export function expressionKey(node: Expr): string {
@@ -59,7 +62,7 @@ function linear(node: Expr): Linear | undefined {
     for (const [key, value] of coefficients) if (!value) coefficients.delete(key);
     return { coefficients, constant: a.constant + sign * b.constant };
   }
-  if (node.kind === "name" || (node.kind === "unary" && node.value === "magnitude")) return { coefficients: new Map([[expressionKey(node), 1n]]), constant: 0n };
+  if (["name","call","index","member"].includes(node.kind) || (node.kind === "unary" && ["magnitude","floor"].includes(node.value!))) return { coefficients: new Map([[expressionKey(node), 1n]]), constant: 0n };
 }
 function inequality(node: Expr): Linear | undefined {
   if (node.kind !== "binary" || !["<", "<=", ">", ">="].includes(node.value!)) return;
@@ -68,10 +71,20 @@ function inequality(node: Expr): Linear | undefined {
   if (result) result.strict = ["<", ">"].includes(node.value!);
   return result;
 }
-function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0): boolean {
-  if (depth > 8) return false;
-  if (goal.kind === "binary" && goal.value === "and") return goal.children.every(child => prove(child, facts, env, depth + 1));
+function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {remaining: 2000}): boolean {
+  if (--work.remaining < 0 || depth > 8) return false;
+  if (goal.kind === "binary" && goal.value === "and") return goal.children.every(child => prove(child, facts, env, depth + 1, work));
   if (facts.some(fact => expressionKey(fact) === expressionKey(goal))) return true;
+  const factKeys = new Set(facts.map(expressionKey));
+  if (facts.some(fact=>fact.kind==="boolean" && fact.value==="false" || fact.kind==="unary" && fact.value==="not" && factKeys.has(expressionKey(fact.children[0])))) return true;
+  if (goal.kind === "boolean") return goal.value === "true";
+  if (goal.kind === "unary" && goal.value === "not" && goal.children[0].kind === "boolean") return goal.children[0].value === "false";
+  if (goal.kind === "binary" && goal.value === "or") return goal.children.some(child=>prove(child,facts,env,depth+1,work));
+  if (goal.kind === "binary" && goal.value === "implies") return prove(goal.children[1],[...facts,...factsFrom(goal.children[0])],env,depth+1,work);
+  if (goal.kind === "call" && goal.children[0].kind === "name") {
+    const term=env.terms[goal.children[0].value!];
+    if (term?.body && term.result.name==="boolean" && prove(substitute(term.body,Object.fromEntries(term.parameters.map((p,i)=>[p.name,goal.children[i+1]]))),facts,env,depth+1,work)) return true;
+  }
   if (goal.kind === "binary" && goal.value === "=" && goal.children[0].kind === "unary" && goal.children[0].value === "floor" && expressionKey(goal.children[0].children[0]) === expressionKey(goal.children[1])) {
     if (integerSyntax(goal.children[1], env)) return true;
     for (const fact of facts) {
@@ -80,31 +93,90 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0): boolean 
       if (domain.type && collections.includes(domain.type.name) && ["position", "digit"].includes(domain.type.args?.[0].name ?? "")) return true;
     }
   }
+  // A mapped nonempty domain has a nonempty image, whether repeated outputs collapse or not.
+  if (goal.kind === "binary" && [">", "!=", "<"].includes(goal.value!)) {
+    const magnitude = goal.children[0];
+    if (magnitude.kind === "unary" && magnitude.value === "magnitude" && magnitude.children[0].kind === "image" && !magnitude.children[0].children[2] && goal.children[1].kind === "number" && goal.children[1].value === "0" && goal.value !== "<") {
+      return prove(binary(">",{...magnitude,children:[magnitude.children[0].children[0]]},goal.children[1]),facts,env,depth+1,work);
+    }
+  }
+  // Unfold numeric definitions; a remainder is within [0, divisor).
+  if (goal.kind === "binary" && ["<", "<=", ">", ">="].includes(goal.value!)) {
+    const [a,b] = [">", ">="].includes(goal.value!) ? [...goal.children].reverse() : goal.children;
+    const unfold = (node: Expr): Expr => {
+      if (node.kind !== "call" || node.children[0].kind !== "name") return node;
+      const term = env.terms[node.children[0].value!];
+      return term?.body && numeric(term.result) ? substitute(term.body,Object.fromEntries(term.parameters.map((p,i)=>[p.name,node.children[i+1]]))) : node;
+    };
+    const left = unfold(a), right = unfold(b);
+    if (left.kind==="binary" && left.value==="mod" && ["<",">"].includes(goal.value!) && expressionKey(left.children[1])===expressionKey(right)) return true;
+    if (right.kind==="binary" && right.value==="mod" && ["<=",">="].includes(goal.value!) && left.kind==="number" && left.value==="0") return true;
+    if (expressionKey(left)!==expressionKey(a) || expressionKey(right)!==expressionKey(b)) {
+      if (prove(binary([">",">="].includes(goal.value!) ? (goal.value===">"?"<":"<=") : goal.value!,left,right),facts,env,depth+1,work)) return true;
+    }
+  }
+  if (goal.kind === "binary" && ["<=", ">="].includes(goal.value!)) {
+    const [zero,size] = goal.value==="<=" ? goal.children : [...goal.children].reverse();
+    if (zero.kind==="number" && zero.value==="0" && size.kind==="unary" && size.value==="magnitude") {
+      const operand=size.children[0];
+      const type="type" in operand ? (operand as TypedExpr).type : operand.kind==="name" ? env.symbols[operand.value!] : operand.kind==="call" && operand.children[0].kind==="name" ? env.terms[operand.children[0].value!]?.result : undefined;
+      if (type && collections.includes(type.name) || ["set","comprehension","image","interval"].includes(operand.kind)) return true;
+    }
+  }
   const wanted = inequality(goal);
   if (wanted) {
     if (!wanted.coefficients.size) return wanted.strict ? wanted.constant < 0n : wanted.constant <= 0n;
     const key = (term: Linear) => JSON.stringify([...term.coefficients].sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => [k, String(v)]));
+    const knownInequalities: Linear[] = [];
     for (const fact of facts) {
       const alternatives = fact.kind === "binary" && fact.value === "=" ? [binary("<=", fact.children[0], fact.children[1]), binary(">=", fact.children[0], fact.children[1])] : [fact];
       for (const alternative of alternatives) {
         const given = inequality(alternative);
-        if (given && key(given) === key(wanted) && (given.constant > wanted.constant || given.constant === wanted.constant && (given.strict || !wanted.strict))) return true;
+        if (given) {
+          knownInequalities.push(given);
+          if (given.strict && alternative.children.every(child => integerSyntax(child,env))) knownInequalities.push({...given,constant:given.constant+1n,strict:false});
+        }
+        if (given && key(given) === key(wanted)) {
+          if (given.constant > wanted.constant || given.constant === wanted.constant && (given.strict || !wanted.strict)) return true;
+          if (given.strict && !wanted.strict && given.constant + 1n >= wanted.constant && alternative.children.every(child => integerSyntax(child, env)) && goal.children.every(child => integerSyntax(child, env))) return true;
+        }
       }
+    }
+    // Add pairs of inequalities: a<b and b<=c imply a<c. No floating-point rounding.
+    const combinations = knownInequalities.slice(0,64);
+    for (const a of combinations) for (const b of combinations) {
+      const coefficients = new Map(a.coefficients);
+      for (const [atom, value] of b.coefficients) coefficients.set(atom,(coefficients.get(atom)??0n)+value);
+      for (const [atom,value] of coefficients) if (!value) coefficients.delete(atom);
+      const combined = {coefficients,constant:a.constant+b.constant,strict:a.strict||b.strict};
+      if (!combined.coefficients.size && (combined.constant>0n || combined.constant===0n && combined.strict)) return true;
+      if (key(combined)===key(wanted) && (combined.constant>wanted.constant || combined.constant===wanted.constant && (combined.strict||!wanted.strict))) return true;
     }
   }
   if (goal.kind === "binary" && goal.value === "!=" && goal.children[1].kind === "number" && goal.children[1].value === "0") {
-    return prove(binary(">", goal.children[0], goal.children[1]), facts, env, depth + 1) || prove(binary("<", goal.children[0], goal.children[1]), facts, env, depth + 1);
+    return prove(binary(">", goal.children[0], goal.children[1]), facts, env, depth + 1, work) || prove(binary("<", goal.children[0], goal.children[1]), facts, env, depth + 1, work);
+  }
+  // Split disjunctive facts soundly: the goal must follow in every possible branch.
+  for (let i=0;i<facts.length;i++) {
+    const fact=facts[i];
+    if (fact.kind==="binary" && fact.value==="or") {
+      const remaining=facts.filter((_,j)=>j!==i);
+      if (fact.children.every(branch=>prove(goal,[...remaining,...factsFrom(branch)],env,depth+1,work))) return true;
+    }
   }
   // Expand checked, nonrecursive Boolean terms to their defining facts.
   const expanded: Expr[] = [];
   for (const fact of facts) {
+    if (fact.kind === "binary" && fact.value === "implies" && prove(fact.children[0],facts.filter(item=>item!==fact),env,depth+1,work)) expanded.push(...factsFrom(fact.children[1]));
     if (fact.kind !== "call" || fact.children[0].kind !== "name") continue;
     const term = Object.hasOwn(env.terms, fact.children[0].value!) ? env.terms[fact.children[0].value!] : undefined;
     if (term?.body && term.result.name === "boolean") {
       expanded.push(...factsFrom(substitute(term.body, Object.fromEntries(term.parameters.map((parameter, i) => [parameter.name, fact.children[i + 1]])))));
     }
   }
-  return expanded.length ? prove(goal, [...facts, ...expanded], { ...env, terms: {} }, depth + 1) : false;
+  const known = new Set(facts.map(expressionKey));
+  const added = expanded.filter(fact => !known.has(expressionKey(fact)));
+  return added.length ? prove(goal, [...facts, ...added], env, depth + 1, work) : false;
 }
 const nameNode = (name: string, span: Span): Expr => ({ kind: "name", value: name, span, children: [] });
 const numberNode = (value: string, span: Span): Expr => ({ kind: "number", value, span, children: [] });
@@ -116,6 +188,11 @@ function integerSyntax(node: Expr, env: Environment): boolean {
   if (node.kind === "name") return Object.hasOwn(env.symbols, node.value!) && ["position", "digit"].includes(expand(env.symbols[node.value!], env).name);
   if (node.kind === "call" && node.children[0].kind === "name") return Object.hasOwn(env.terms, node.children[0].value!) && ["position", "digit"].includes(env.terms[node.children[0].value!].result.name);
   if (node.kind === "unary" && node.value === "floor") return true;
+  if (node.kind === "unary" && node.value === "magnitude") {
+    const child = node.children[0];
+    const type = "type" in child ? (child as TypedExpr).type : child.kind === "name" ? env.symbols[child.value!] : child.kind==="call" && child.children[0].kind==="name" ? env.terms[child.children[0].value!]?.result : undefined;
+    if (type && collections.includes(type.name)) return true;
+  }
   if (node.kind === "unary" && ["+", "-", "magnitude"].includes(node.value!)) return integerSyntax(node.children[0], env);
   if (node.kind === "binary" && ["+", "-", "*", "mod", "^"].includes(node.value!)) return node.children.every(child => integerSyntax(child, env));
   return false;
@@ -134,7 +211,7 @@ function unify(actual: Type, expected: Type, generics: string[], bindings: Recor
     if (!assignable(actual, specialise(expected, bindings))) fail("E_TYPE", span, `${thing} must be ${describeType(expected)}; it is ${describeType(actual)}.`);
     return;
   }
-  if (actual.name === expected.name && expected.args) {
+  if ((actual.name === expected.name || actual.name === "path" && expected.name === "list" || expected.name === "collection" && collections.includes(actual.name)) && expected.args) {
     if (actual.args?.length !== expected.args.length) fail("E_TYPE", span, `${thing} has a different number of item types from the declared type.`);
     expected.args.forEach((child, i) => unify(actual.args![i], child, generics, bindings, span, thing));
     if (expected.result) unify(actual.result!, expected.result, generics, bindings, span, thing);
@@ -149,6 +226,7 @@ function integer(node: TypedExpr, facts: Expr[], env: Environment): boolean {
   if (["digit", "position"].includes(node.type.name)) return true;
   if (node.kind === "unary" && (node.value === "floor" || node.value === "magnitude" && collections.includes(node.children[0].type.name))) return true;
   if (node.kind === "unary" && ["+", "-", "magnitude"].includes(node.value!)) return integer(node.children[0], facts, env);
+  if (node.kind === "conditional") return node.children.slice(1).every(child=>integer(child,facts,env));
   if (node.kind === "binary" && ["+", "-", "*", "mod", "^"].includes(node.value!)) return node.children.every(child => integer(child, facts, env));
   return prove(binary("=", { kind: "unary", value: "floor", span: node.span, children: [node] }, node), facts, env);
 }
@@ -219,7 +297,7 @@ function infer(node: Expr, env: Environment, facts: Expr[] = [], requireBinding 
       const children: TypedExpr[] = [callee];
       node.children.slice(1).forEach((child, i) => {
         const checked = infer(child, env, facts, requireBinding);
-        if (expected[i].name === "position" && checked.constant !== undefined) required(checked, expected[i]);
+        if (expected[i].name === "position") required(checked, expected[i], facts, env);
         else unify(checked.type, expand(expected[i], env), term?.generics ?? [], bindings, child.span, `${expressionLabel(checked)} (parameter ${term?.parameters[i].name ?? i + 1} of ${expressionLabel(callee)})`);
         children.push(checked);
       });
@@ -257,8 +335,8 @@ function infer(node: Expr, env: Environment, facts: Expr[] = [], requireBinding 
       const item = children[0]?.type ?? scalar("empty");
       children.forEach(child => required(child, item)); return result(collection("set", item), children);
     }
-    case "comprehension": case "quantifier": case "aggregate": case "lambda": {
-      const hasDomain = node.kind === "comprehension" || node.hasDomain;
+    case "comprehension": case "image": case "quantifier": case "aggregate": case "lambda": {
+      const hasDomain = node.kind === "comprehension" || node.kind === "image" || node.hasDomain;
       const domain = hasDomain ? infer(node.children[0], env, facts) : undefined;
       if (node.kind === "aggregate" && !domain) fail("E_SIGNATURE_REQUIRED", node.span, `Specify which items ${node.value} runs over, using in followed by a set or ordered list.`);
       if (domain && !collections.includes(domain.type.name)) fail("E_TYPE", domain.span, `${expressionLabel(domain)} must be a set or ordered list for the formula variables to range over.`);
@@ -270,23 +348,36 @@ function infer(node: Expr, env: Environment, facts: Expr[] = [], requireBinding 
         validateType(type, env, binder.span); symbols[binder.name] = expand(type, env);
         if (domain && !assignable(domain.type.args![0], symbols[binder.name])) fail("E_TYPE", binder.span, `${binder.name} must accept ${describeType(domain.type.args![0])} from ${expressionLabel(domain)}; its declared type is ${describeType(symbols[binder.name])}.`);
         if (domain) binderFacts.push(binary("in", nameNode(binder.name, binder.span), domain));
-        if (domain?.kind === "interval") {
+        let boundedDomain: Expr | undefined = domain;
+        while (boundedDomain?.kind === "comprehension") {
+          const variable = nameNode(binder.name,binder.span);
+          binderFacts.push(...factsFrom(substitute(boundedDomain.children[1],{[boundedDomain.binders![0].name]:variable})));
+          boundedDomain = boundedDomain.children[0];
+        }
+        if (boundedDomain?.kind === "interval") {
           const variable = nameNode(binder.name, binder.span);
-          binderFacts.push(binary("<=", node.children[0].children[0], variable), binary(domain.inclusive ? "<=" : "<", variable, node.children[0].children[1]));
+          binderFacts.push(binary("<=", boundedDomain.children[0], variable), binary(boundedDomain.inclusive ? "<=" : "<", variable, boundedDomain.children[1]));
         }
       }
+      const filter = node.kind === "image" && node.children[2] ? infer(node.children[2],{...env,symbols},binderFacts) : undefined;
+      if (filter) {required(filter,boolean);binderFacts.push(...factsFrom(filter));}
       const body = infer(node.children[hasDomain ? 1 : 0], { ...env, symbols }, binderFacts);
-      const children = domain ? [domain, body] : [body];
+      const children = domain ? [domain, body, ...(filter ? [filter] : [])] : [body];
       const annotated = (value: TypedExpr): TypedExpr => ({ ...value, binders: node.binders?.map(binder => ({ ...binder, type: symbols[binder.name] })) });
+      if (node.kind === "image") {
+        if (node.value === "list" && domain?.kind !== "interval" && !["path", "list"].includes(domain!.type.name)) fail("E_TYPE", domain!.span, `${expressionLabel(domain!)} has no declared order; use an interval or ordered list to build an ordered list.`);
+        return annotated(result(collection(node.value!,body.type),children));
+      }
       if (node.kind === "lambda") return annotated(result({ name: "fn", args: (node.binders ?? []).map(b => symbols[b.name]), result: body.type }, children));
-      if (node.kind === "aggregate" && node.value !== "count") { if (!numeric(body.type)) fail("E_TYPE", body.span, `${expressionLabel(body)} must be a number to use it in ${node.value}.`); return annotated(result(scalar("number"), children)); }
+      if (node.kind === "aggregate" && node.value !== "count") { if (!numeric(body.type)) fail("E_TYPE", body.span, `${expressionLabel(body)} must be a number to use it in ${node.value}.`); return annotated(result(scalar(integer(body,binderFacts,{...env,symbols}) ? "position" : "number"), children)); }
       required(body, boolean);
       return annotated(result(node.kind === "comprehension" ? collection("set", symbols[node.binders![0].name]) : node.kind === "aggregate" ? scalar("position") : boolean, children));
     }
     case "conditional": {
       const condition = infer(node.children[0], env, facts); required(condition, boolean);
       const yes = infer(node.children[1], env, [...facts, ...factsFrom(condition)]);
-      const no = infer(node.children[2], env, facts);
+      const negated = condition.kind === "binary" && ({"=":"!=","!=":"=","<":">=",">":"<=","<=":">",">=":"<"} as Record<string,string>)[condition.value!] ? {...condition,value:({"=":"!=","!=":"=","<":">=",">":"<=","<=":">",">=":"<"} as Record<string,string>)[condition.value!]} : {kind:"unary" as const,value:"not",span:condition.span,children:[condition]};
+      const no = infer(node.children[2], env, [...facts,negated]);
       if (!assignable(yes.type, no.type) && !assignable(no.type, yes.type)) fail("E_TYPE", node.span, `The then and else values must have matching types; ${expressionLabel(yes)} is ${describeType(yes.type)} and ${expressionLabel(no)} is ${describeType(no.type)}.`);
       return result(assignable(yes.type, no.type) ? no.type : yes.type, [condition, yes, no]);
     }
@@ -321,7 +412,7 @@ export function logicClass(ast: TypedExpr, env: Environment): LogicClass {
     let operand = node.children[0];
     while (operand?.kind === "name" && Object.hasOwn(bindings, operand.value!)) operand = bindings[operand.value!];
     const derivedCardinality = node.kind === "unary" && node.value === "magnitude" && operand.kind !== "name" && (operand.kind === "comprehension" || "type" in operand && (operand as TypedExpr).type.name === "set");
-    if (node.kind === "aggregate" || derivedCardinality) classification = classification === "existential" ? classification : "with aggregates";
+    if (node.kind === "aggregate" || node.kind === "image" || derivedCardinality) classification = classification === "existential" ? classification : "with aggregates";
     if (node.kind === "quantifier" && !node.hasDomain) {
       for (const binder of node.binders ?? []) {
         if (!binder.type) continue;
@@ -401,7 +492,7 @@ export function checkPrelude(declarations: Declaration[]): Result<CheckedPrelude
       const requires = declaration.requires ? infer(declaration.requires, env) : undefined;
       if (requires) required(requires, scalar("boolean"));
       const body = declaration.body ? infer(declaration.body, env, requires ? factsFrom(requires) : []) : undefined;
-      if (body) required(body, expand(declaration.result, env));
+      if (body) required(body, expand(declaration.result, env), requires ? factsFrom(requires) : [], env);
       return { ...declaration, body, requires };
     });
     diagnostics.push(...result.diagnostics); if (result.value) checked.push(result.value);

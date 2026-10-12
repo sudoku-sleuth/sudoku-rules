@@ -15,7 +15,7 @@ export function expressionLabel(node: Expr, depth = 0): string {
     case "unary": text = node.value === "magnitude" ? `|${child(0)}|` : node.value === "floor" ? `⌊${child(0)}⌋` : `${node.value}(${child(0)})`; break;
     case "interval": text = `[${child(0)}, ${child(1)}${node.inclusive ? "]" : ")"}`; break;
     case "set": text = node.children.length ? "this set" : "the empty set"; break;
-    default: text = `this ${({ aggregate: "sum or count", quantifier: "condition", comprehension: "set", lambda: "function", conditional: "choice", let: "local value" } as const)[node.kind]}`;
+    default: text = `this ${({ aggregate: "sum or count", quantifier: "condition", comprehension: "set", image: "mapped collection", lambda: "function", conditional: "choice", let: "local value" } as const)[node.kind]}`;
   }
   return text.length > 100 ? `${text.slice(0, 97)}…` : text;
 }
@@ -31,6 +31,8 @@ export function describeType(type: Type, depth = 0): string {
     case "number": return "a number";
     case "boolean": return "a true-or-false condition";
     case "path": return `a connected ordered list whose items are each ${item()}`;
+    case "collection": return `a group whose items are each ${item()}`;
+    case "expression": return "an authored arithmetic expression";
     case "list": return `an ordered list whose items are each ${item()}`;
     case "set": return `a set whose items are each ${item()}`;
     case "optional": return `${item()}, or a missing answer`;
