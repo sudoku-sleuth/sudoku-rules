@@ -35,7 +35,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∧ ∀L∈boardDiagonals(): |L|>=maximumPair(3,minLength) →
   ((∃k∈classIds(classes): ∀c∈L: digitClass(classes,D(c))=k)
    ∨ (∀s∈[0,|L|-|classIds(classes)|+1):
-     distinct_f(window(L,|classIds(classes)|,s,false),λc:cell: digitClass(classes,D(c)))))
+     distinctAt(window(L,|classIds(classes)|,s,false),λc:cell: digitClass(classes,D(c)))))
 ```
 
 Every board diagonal of length at least max(3,minLength) is constant in class or has every class once in each window of class-count positions.

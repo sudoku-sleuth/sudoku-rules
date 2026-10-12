@@ -36,6 +36,8 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 The supplied relation holds between the two cage digit totals. Repeat policy belongs to separate cage rules.
 
+The shift relation is defined for integer values.
+
 ## Example
 
 ````markdown

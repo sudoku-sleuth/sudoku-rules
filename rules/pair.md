@@ -36,6 +36,8 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 The two cell values obey the supplied relation. The shared predicates define each relation: difference, ratio, sum, inequality, multiple or shift.
 
+The shift relation is defined for integer values.
+
 ## Example
 
 ````markdown

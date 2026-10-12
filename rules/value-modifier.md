@@ -51,11 +51,12 @@ Choose modified cells according to the stated group counts. Their values are the
 
 ## Maths
 
-Class: **with aggregates**.
+Class: **existential**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
+∃M:set<cell>: M⊆C ∧
 (∀G∈exactly: |G∩M|=count) ∧ (∀G∈atMostOne: |G∩M|<=1)
 ∧ (distinct → distinct_D(M))
 ∧ (∀c∈C: (c∈M → V(c)=factor*D(c)+offset) ∧ (c∉M → V(c)=D(c)))

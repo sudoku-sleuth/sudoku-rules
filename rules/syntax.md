@@ -40,7 +40,7 @@ Meaning(not R unless P) ↔ ¬P(S) → ¬R
 
 The condition applies the named shared predicate to that rule's cells; it takes no independent cell argument.
 A rule without a nonempty primary cell list cannot carry a condition.
-Only one trailing condition is allowed. The condition keywords uniform, distinct and connected call the shared unary Boolean terms uniform, distinct_D and connected, respectively. Unknown predicates and terms needing additional arguments are errors.
+Only one trailing condition is allowed. The condition keywords uniform and connected call the corresponding shared unary Boolean terms on a cell set. The distinct condition uses distinct_D for a cell set and distinctAt with D for an ordered list, comparing different positions. Unknown predicates and terms needing additional arguments are errors.
 Invalid parameters, missing definitions and off-board cells remain errors under negation or an inactive condition.
 
 `uniform` reads the single shared shading answer declared by `yin-yang`.
@@ -75,8 +75,8 @@ A global reference with no definition cannot be negated.
 `not sudoku 9x9` negates the row-column-box composition once, rather than negating each house.
 It still declares the board's dimensions, alphabet and standard boxes.
 
-Shading and other typed auxiliary choices belong to the shared case answer.
-Their existential binding stays outside the conjunction of rules.
+Shading belongs to the shared case answer. Its existential binding stays outside the conjunction of rules.
+Other witnesses keep the binders in their owning rule formulas; value-modifier binds M inside its formula.
 A negated Yin Yang formula is checked on that supplied shading, not on a separate shading chosen by a clue.
 
 ```math
@@ -93,7 +93,7 @@ Board data, givens, definitions and drawings are not predicates to negate.
 
 ## Typed composition
 
-These checked definitions operate on instantiated rule meanings. Every instance reads the same case answer; choosing shared shading or modifier cells happens outside this composition.
+These checked definitions operate on instantiated rule meanings. Every instance reads the same face/value channels and shared shading. Witnesses bound inside a rule, including the modifier set M, stay inside that rule when it is negated.
 
 ```openrules
 term negateRule(base:boolean):boolean = ¬base;

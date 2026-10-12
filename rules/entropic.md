@@ -32,7 +32,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 ```text
 |𝔄|>0 ∧ |𝔄| mod 3=0
-∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinct_f(window(line,3,s,loop),λc:cell: classEntropy(D(c))))
+∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classEntropy(D(c))))
 ∧ (¬loop ∧ |line|=2 → classEntropy(D(line[0]))!=classEntropy(D(line[1])))
 ```
 

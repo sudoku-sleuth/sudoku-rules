@@ -36,7 +36,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-modulus>=1 ∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinct_f(window(line,3,s,loop),λc:cell: rem(D(c),modulus)))
+modulus>=1 ∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: rem(D(c),modulus)))
 ∧ (¬loop ∧ |line|=2 → rem(D(line[0]),modulus)!=rem(D(line[1]),modulus))
 ```
 

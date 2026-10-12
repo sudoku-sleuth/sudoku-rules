@@ -26,7 +26,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|line|>0 ∧ distinct_V(line) ∧ max_V(line)-min_V(line)=|line|-1 ∧ ∀k∈[0,|line|): ∃c∈line: V(c)=min_V(line)+k
+|line|>0 ∧ distinctAt(line,λoccurrence:cell: V(occurrence)) ∧ max_V(line)-min_V(line)=|line|-1 ∧ ∀k∈[0,|line|): ∃c∈line: V(c)=min_V(line)+k
 ```
 
 The V values are distinct and max(V)−min(V)=length−1. On integer values, every integer in that interval appears.

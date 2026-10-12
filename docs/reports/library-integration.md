@@ -2,7 +2,9 @@
 
 12 October 2026. Public library migration on the owner-provided checkout. Files edited only; no Git operations, publication or deployment. Production case source files were read without modification.
 
-## Before and after
+This 12 October integration snapshot is superseded for rule meanings by the [13 October review corrections](meaning-review.md).
+
+## Before and after (12 October snapshot)
 
 | Check | Imported state | Current state |
 | --- | --- | --- |
@@ -27,7 +29,7 @@ The imported 84-page count excluded rules/README.md. It now declares document: h
 
 The supplied shape contracts were read as the reference. Typed formulas retain face digits versus effective values, ordered repetitions, closed windows, shared modifier/shading answers, arithmetic relations, constructed regions and hidden cages. No rule was mapped to a nearby kind. Class labels were corrected to match the checked trees.
 
-Arrow now declares the reference's partial flag: complete shafts equal the bulb; partial shafts may total at most it. Hidden Modular follows the reference's lenient invalid/missing extents: no selected span means no triples to check. Line-choice preserves its vacuous open two-cell modular/entropic choices, unlike standalone kinds. Custom sandwich crusts still select the first two occurrences. Numeric pair operands are optional for operations that do not read them, and guarded when required. Expression primitives declare exact integer evaluation and shared ordered letter bindings; their execution belongs to the evaluator slice.
+The partial-arrow value-channel and Hidden Modular extent rewrites needed correction after review. The corrected partial branch reads digits for every bulb size; Hidden Modular requires a valid extent. Its former universal implication copied a known solver disagreement. Line-choice preserves its vacuous open two-cell modular/entropic choices, unlike standalone kinds. Custom sandwich crusts still select the first two occurrences. Numeric pair operands are optional for operations that do not read them, and guarded when required. Expression primitives declare exact integer evaluation and shared ordered letter bindings; their execution belongs to the evaluator slice.
 
 ## Verification
 

@@ -26,7 +26,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∃P∈places: |P|=9 ∧ distinct_D(P) ∧ (∀c∈P: D(c)∈[1,10)) ∧ (∀T∈magicLines(P): sum_D(T)=15)
+∃P∈places: |P|=9 ∧ distinctAt(P,λoccurrence:cell: D(occurrence)) ∧ (∀c∈P: D(c)∈[1,10)) ∧ (∀T∈magicLines(P): sum_D(T)=15)
 ```
 
 At least one place holds all digits 1..9 once and has sum 15 in its three rows, three columns and two diagonals.

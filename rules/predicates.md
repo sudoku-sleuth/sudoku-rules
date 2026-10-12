@@ -18,7 +18,7 @@ Absolute value for a number and size for a group both use |x|. Σ adds and Π mu
 
 The interval [a,b) includes a and excludes b. The collection 𝒫(C) contains all subsets of the board.
 
-D is the face digit. V is the effective value: all rules share the same modifier assignment M. Without modifiers V=D. A finished answer supplies the single shared shading set H and any required modifier cells, electron cells, hidden cages, constructed regions or letter values.
+D is the face digit. V is the effective value constrained by the value-modifier rule, whose formula binds the modified cell set M. Without modifiers V=D. A finished answer supplies the shared shading set H and the numeric face/value channels. Modifier cells, electron cells, hidden cages, constructed regions and letter assignments are bound by their owning rule formulas.
 
 ## Typed vocabulary
 
@@ -31,15 +31,13 @@ input rows: position;
 input cols: position;
 input ℤ: set<position>;
 input Regions: set<set<cell>>;
-input M: set<cell>;
 input H: set<cell>;
-input modifierFactor: number;
-input modifierOffset: number;
 input ValuedRuleMeanings: list<boolean>;
 type PairRelation = record{op:enum{difference,"at-least",ratio,sum,less,multiple,shift},value:optional<number>};
 type ClassSystem = enum{parity,mod3,entropy};
 type Move = enum{knight,king,orthogonal,bishop};
 primitive face(c:cell):digit;
+primitive effective(c:cell):value;
 primitive toValue(x:number):value;
 primitive row(c:cell):position;
 primitive col(c:cell):position;
@@ -56,7 +54,7 @@ primitive letterCount(expressions:collection<expression>):position;
 primitive defined(e:expression,letters:list<position>):boolean;
 primitive eval(e:expression,letters:list<position>):position requires (defined(e,letters));
 term D(c:cell):digit = face(c);
-term V(c:cell):value = if c ∈ M then toValue(modifierFactor*D(c)+modifierOffset) else toValue(D(c));
+term V(c:cell):value = effective(c);
 term rem(x:number,m:number):position requires (⌊x⌋=x ∧ ⌊m⌋=m ∧ m>0) = x mod m;
 term odd(x:number):boolean requires (⌊x⌋=x) = rem(x,2)=1;
 term high(x:number):boolean = x>5;
@@ -93,9 +91,10 @@ term window(L:list<cell>,k:position,s:position,closed:boolean):list<cell> requir
 term first(L:list<cell>,k:position):list<cell> requires (0<=k ∧ k<=|L|) = ⟨L[t] : t∈[0,k)⟩;
 term betweenPositions(L:list<cell>,i:position,j:position):list<cell> requires (pos(L,i) ∧ pos(L,j)) = ⟨L[t] : t∈[0,|L|), minimumPosition(i,j)<t ∧ t<maximumPosition(i,j)⟩;
 term firstOccurrence(L:list<cell>,d:digit,i:position):boolean = pos(L,i) ∧ D(L[i])=d ∧ ∀j∈[0,i): D(L[j])!=d;
-term distinct_f<T>(S:collection<T>,f:fn(T)->number):boolean = ∀a,b∈S: a!=b → f(a)!=f(b);
-term distinct_D(S:collection<cell>):boolean = distinct_f(S,λc:cell: D(c));
-term distinct_V(S:collection<cell>):boolean = distinct_f(S,λc:cell: V(c));
+term distinct_f<T>(S:set<T>,f:fn(T)->number):boolean = ∀a,b∈S: a!=b → f(a)!=f(b);
+term distinctAt<T>(L:list<T>,f:fn(T)->number):boolean = ∀i,j∈[0,|L|): i!=j → f(L[i])!=f(L[j]);
+term distinct_D(S:set<cell>):boolean = distinct_f(S,λc:cell: D(c));
+term distinct_V(S:set<cell>):boolean = distinct_f(S,λc:cell: V(c));
 term valueSum(S:collection<cell>):number = Σ_{c∈S} V(c);
 term sum_D(S:collection<cell>):position = Σ_{c∈S} D(c);
 term product_D(S:collection<cell>):position = Π_{c∈S} D(c);
@@ -129,12 +128,14 @@ term countRun(L:list<cell>):position = Σ_{i∈{t∈[0,|L|): ∃j∈[0,|L|): |t-
 
 C contains every board cell. rows and cols give its dimensions; row, col and cellIndex are zero-based. boardCell(r,k) denotes that coordinate; the surrounding formula must keep it inside the board. Regions is the board's primary partition. The ordered alphabet 𝔄 contains the whole-number face digits; alphabetPosition(d) is d's zero-based position in it. ℤ denotes all whole numbers, including negative numbers. `position` means an integer used as a position, not an assertion that it is on the board.
 
-face reads the supplied face digit. toValue preserves a number exactly while identifying it as an effective value. M is the single shared modifier set; modifierFactor and modifierOffset are its multiplication and addition. H is the single shared shading answer. Without modifiers M is empty, and V=D. ValuedRuleMeanings contains the already instantiated Boolean meanings of every rule reading V, all using that same shared answer. The case binds these answers once outside its conjunction, including under negation.
+face reads the face digit; effective reads the effective value. toValue preserves a number exactly while identifying it as an effective value. The value-modifier formula existentially binds M, checks its placement and constrains every effective value using its factor and offset parameters. M is not a prelude input. Without a value modifier V=D. H is the shared shading answer. ValuedRuleMeanings contains the instantiated Boolean meanings of every rule reading the same V channel.
 
 present reports whether an optional field was supplied; unwrap reads it only after present has been proved. minimumDigit/maximumDigit and minimumValue/maximumValue return the least/greatest item of a nonempty collection. Their arguments have to be nonempty; they do not supply invented defaults.
 
-An `expression` is an authored arithmetic tree containing whole numbers, letters, addition, subtraction, multiplication, division or powers. Take the distinct letters across the supplied expressions in lexicographic order; letterCount counts them, and letterValues gives their integer answers in that order. defined is true precisely when every letter has an answer and every subexpression is defined. eval returns the exact integer result: division requires a nonzero divisor and an integer quotient; a power requires a nonnegative integer exponent. Undefined subexpressions never return a guessed value. These operations read the arithmetic tree, rather than defining a new Sudoku rule.
+An `expression` is an authored arithmetic tree containing whole numbers, letters, addition, subtraction, multiplication, division or powers. Take the distinct letters across the supplied expressions in lexicographic order; letterCount counts them, and the list passed to defined and eval gives their integer answers in that order. defined is true precisely when every letter has an answer and every subexpression is defined. eval returns the exact integer result: division requires a nonzero divisor and an integer quotient; a power requires a nonnegative integer exponent. Undefined subexpressions never return a guessed value. These operations read the arithmetic tree, rather than defining a new Sudoku rule.
 
-A `collection<T>` accepts a set, list or path of T. Aggregates over lists retain repeated positions; mapped sets remove duplicate results. Ordered comprehensions traverse intervals in increasing order or traverse a supplied list in its given order; a trailing condition filters that order. Sets have no implied order. Empty sums are zero and empty products are one. distinct_f compares different items; authored line kinds that forbid repeated cells declare that separately.
+A `collection<T>` accepts a set, list or path of T. Aggregates over lists retain repeated positions; mapped sets remove duplicate results. Ordered comprehensions traverse intervals in increasing order or traverse a supplied list in its given order; a trailing condition filters that order. Sets have no implied order. Empty sums are zero and empty products are one. distinct_f, distinct_D and distinct_V compare members of a cell set. distinctAt compares different positions of a list or path, even when those positions name the same cell.
 
 The connected formula chooses a route of at most |C| cells; revisiting cells is unnecessary for reachability on a finite board. partition covers every board cell exactly once. boardDiagonals constructs maximal straight bishop rays from top/side boundaries. magicLines lists all eight rows, columns and diagonals of a nine-cell square in reading order.
+
+Shift relations compare integer values; their parity is the normalised remainder modulo 2.

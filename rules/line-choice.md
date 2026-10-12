@@ -47,11 +47,11 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 ```text
 let selected=λoption:enum{renban,nabner,modular,entropic,parity}:
-  (option="renban" ∧ |line|>0 ∧ distinct_D(line) ∧ max_D(line)-min_D(line)=|line|-1)
+  (option="renban" ∧ |line|>0 ∧ distinctAt(line,λoccurrence:cell: D(occurrence)) ∧ max_D(line)-min_D(line)=|line|-1)
   ∨ (option="nabner" ∧ ∀i,j∈[0,|line|): i!=j → |D(line[i])-D(line[j])|!=1)
-  ∨ (option="modular" ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinct_f(window(line,3,s,loop),λc:cell: classMod3(D(c))))
-  ∨ (option="entropic" ∧ |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinct_f(window(line,3,s,loop),λc:cell: classEntropy(D(c))))
-  ∨ (option="parity" ∧ ∀s∈[0,|line|): start(line,2,s,loop) → distinct_f(window(line,2,s,loop),λc:cell: classParity(D(c))));
+  ∨ (option="modular" ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classMod3(D(c))))
+  ∨ (option="entropic" ∧ |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classEntropy(D(c))))
+  ∨ (option="parity" ∧ ∀s∈[0,|line|): start(line,2,s,loop) → distinctAt(window(line,2,s,loop),λc:cell: classParity(D(c))));
 min<=countWhere(kinds,selected)<=max
 ```
 

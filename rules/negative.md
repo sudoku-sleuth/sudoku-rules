@@ -51,6 +51,8 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 Every orthogonally neighbouring pair in scope and outside except fails every listed relationHolds check over D digits. within limits pairs to a common listed group; direction limits their orientation. Either dot colour exempts the pair from both Kropki negatives when both share except.
 
+The shift relation is defined for integer values.
+
 ## Example
 
 ````markdown

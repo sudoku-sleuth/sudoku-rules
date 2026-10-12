@@ -31,12 +31,12 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|𝔄|>0 ∧ ∀a,b∈[0,|cells|):
+|𝔄|>0 ∧ ∃a,b∈[0,|cells|):
   a<=b ∧ ((extent="to-max" ∧ a=0 ∧ firstOccurrence(cells,𝔄[|𝔄|-1],b))
     ∨ (extent="between-ends" ∧ ∃i,j∈[0,|cells|): firstOccurrence(cells,𝔄[0],i)
        ∧ firstOccurrence(cells,𝔄[|𝔄|-1],j) ∧ a=minimumPosition(i,j) ∧ b=maximumPosition(i,j))
     ∨ (extent="first-x" ∧ a=0 ∧ |cells|>0 ∧ 1<=D(cells[0])<=|cells| ∧ b=D(cells[0])-1))
-  → ∀s∈[a,b-1): distinct_f(window(cells,3,s,false),λc:cell: classMod3(D(c)))
+  ∧ ∀s∈[a,b-1): distinctAt(window(cells,3,s,false),λc:cell: classMod3(D(c)))
 ```
 
 Choose the span from the clue through the maximum (to-max), between minimum and maximum inclusive (between-ends), or the first D(cells[0]) positions (first-x). Every triple in that span has three distinct remainders modulo 3.
@@ -64,4 +64,4 @@ Satisfies the rule: r1c1=3, r1c2=1, r1c3=2. The first digit selects a three-cell
 
 Breaks the rule: r1c1=3, r1c2=1, r1c3=4. The selected span repeats a remainder.
 
-Missing endpoints or an invalid first-x extent select no span, so there are no triples to check.
+A missing endpoint or an invalid first-x extent cannot select a span, so the rule is false.

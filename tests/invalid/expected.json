@@ -2643,5 +2643,135 @@
         }
       }
     ]
+  },
+  {
+    "file": "rules/list-distinct-requires-positions.md",
+    "repair": "rules/list-distinct-requires-positions.md",
+    "mode": "public",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "line (parameter S of distinct_f) must be a set whose items are each the declared type T; it is a connected ordered list whose items are each a cell.",
+        "span": {
+          "file": "rules/list-distinct-requires-positions.md",
+          "start": {
+            "offset": 174,
+            "line": 11,
+            "column": 12
+          },
+          "end": {
+            "offset": 178,
+            "line": 11,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/set-distinct-rejects-list.md",
+    "repair": "rules/set-distinct-rejects-list.md",
+    "mode": "public",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "line (parameter S of distinct_D) must be a set whose items are each a cell; it is a connected ordered list whose items are each a cell.",
+        "span": {
+          "file": "rules/set-distinct-rejects-list.md",
+          "start": {
+            "offset": 174,
+            "line": 11,
+            "column": 12
+          },
+          "end": {
+            "offset": 178,
+            "line": 11,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/modifier-witness-must-be-bound.md",
+    "repair": "rules/modifier-witness-must-be-bound.md",
+    "mode": "public",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "M is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/modifier-witness-must-be-bound.md",
+          "start": {
+            "offset": 163,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 164,
+            "line": 11,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/letter-answers-must-be-bound.md",
+    "repair": "rules/letter-answers-must-be-bound.md",
+    "mode": "public",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "letterValues is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/letter-answers-must-be-bound.md",
+          "start": {
+            "offset": 163,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 175,
+            "line": 11,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/shift-parity-integer-domain.md",
+    "repair": "rules/shift-parity-integer-domain.md",
+    "mode": "public",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before calling odd, add a condition proving (⌊0.5⌋ = 0.5).",
+        "span": {
+          "file": "rules/shift-parity-integer-domain.md",
+          "start": {
+            "offset": 163,
+            "line": 11,
+            "column": 1
+          },
+          "end": {
+            "offset": 171,
+            "line": 11,
+            "column": 9
+          }
+        }
+      }
+    ]
   }
 ]

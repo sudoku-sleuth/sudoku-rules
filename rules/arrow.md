@@ -19,7 +19,7 @@ parameters:
 
 # Arrow
 
-Values on a complete shaft add up to the bulb. A partial shaft may total at most the bulb. A bulb with several cells forms a decimal number in the listed order.
+A complete one-cell arrow adds effective shaft values to the bulb value. A partial arrow adds face digits to at most the bulb’s face-digit number. A bulb with several cells forms a decimal number in the listed order.
 
 ## Parameters
 
@@ -37,11 +37,12 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 ```text
 |bulb|>0 ∧ let B = Σ_{i∈[0,|bulb|)} D(bulb[i])*10^(|bulb|-1-i);
-  (|bulb|=1 → if partial then valueSum(line)<=V(bulb[0]) else valueSum(line)=V(bulb[0]))
-  ∧ (|bulb|!=1 → if partial then sum_D(line)<=B else sum_D(line)=B)
+  (partial → sum_D(line)<=B)
+  ∧ (¬partial → (|bulb|=1 → valueSum(line)=V(bulb[0]))
+    ∧ (|bulb|!=1 → sum_D(line)=B))
 ```
 
-For a one-cell bulb, use shaft values; for a multi-cell bulb, use shaft digits and the decimal number formed by the bulb digits. A complete shaft has that total; a partial shaft may have a smaller total.
+A partial shaft always reads face digits and totals at most the bulb’s decimal face-digit number B. A complete one-cell bulb reads effective shaft and bulb values; a complete multi-cell bulb reads digits and totals B.
 
 ## Example
 
