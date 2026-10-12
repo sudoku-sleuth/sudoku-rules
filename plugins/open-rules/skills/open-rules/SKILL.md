@@ -1,0 +1,44 @@
+---
+name: open-rules
+description: Write Open Rules case files from a Sudoku setter's rules text and SudokuPad or f-puzzles link or drawing description. Preserve the setter's wording, use exact library meanings, embed custom definitions when needed, or draft a new rule page and pull request description. Use when a setter asks to describe, translate, check, or propose Sudoku rules in Open Rules format.
+---
+
+# Open Rules
+
+Help a setter give their puzzle a precise, shareable rules file, or propose a new rule for the public library.
+
+## Read what the task needs
+
+- For a case file, read [syntax.md](references/syntax.md). Open [examples.md](references/examples.md) when you need a complete case or a custom-rule example.
+- For formulas, read [terms.md](references/terms.md), then fetch the shared definitions linked there.
+- For a new library rule, read [new-rule.md](references/new-rule.md).
+- Before finishing either task, read [checking.md](references/checking.md) and run the checker.
+
+## Keep the meaning exact
+
+Read the setter's text and the puzzle together. Inspect a supplied SudokuPad or f-puzzles link with available tools; use the setter's drawing description when that is the supplied source. Record the board, givens, paths, endpoints, cells, regions, and clue values. If you cannot inspect part of the puzzle, ask the setter for those details.
+
+Fetch the [library index](https://rules.sudoku-sleuth.com/) and each relevant `https://rules.sudoku-sleuth.com/<kind>.md` page, or read those pages in a local library checkout. Read the parameters and defaults as well as the meaning. Use only published library kinds for named rules. A familiar visual name or colour does not establish a meaning.
+
+Ask the setter when the text or drawing leaves a choice of meanings: digit or modified value, strict or non-strict increase, bulb or tip, open path or loop, repeated positions, distinctness, negative constraints, or which cells a clue covers. Resolve the choice before writing that declaration. Never invent coordinates, clue values, givens, attribution, or source links.
+
+If no published kind expresses the rule exactly, embed a custom definition and its formula over the shared terms. Never substitute the nearest kind. Use the custom URL and `custom-rules` block described in [syntax.md](references/syntax.md); keep the complete definition in the case even when also proposing it for the library.
+
+## Write a case file
+
+1. Collect the title, setter credit, source link, and rules wording. Use empty `source` and `case` strings when no URLs were supplied. `case` is the case's public page URL, when one exists.
+2. Start `<case-name>.rules.md` with YAML front matter: `format: open-rules`, `title`, `setter`, `source`, `case`, `library: https://rules.sudoku-sleuth.com/`, and `status: read`. Use `confirmed` only when the setter explicitly confirms this reading. Use `flagged` with reasons when preserving a known unresolved issue.
+3. Put one declaration per line inside a fenced `rules` block. Declare a standard board once with `sudoku 9x9`; describe a different board explicitly. Use rXcY coordinates and list every path position in order. Give repeated kinds numbered IDs; a singleton uses its kind as its implicit ID.
+4. Include any `custom-rules` definitions. Build formulas from the shared terms and define supplied parameters. Check the formula against one satisfying and one breaking assignment.
+5. Keep the setter's own wording, in its original order, beside the structured blocks under `## Setter wording`. Preserve attribution, causal meaning, and exceptions. Put your questions or explanations outside the setter's quoted wording.
+6. Check that every statement and meaningful drawing has a declaration or a custom definition, and that each declaration follows the setter's meaning. Colours and decoration remain presentation; they do not add constraints.
+7. Run the checks in [checking.md](references/checking.md), fix the reported problems, and rerun. Deliver the case file and a brief account of the checks actually run.
+
+## Propose a new rule
+
+1. Compare the proposed meaning with existing library pages, including their optional parameters. If an existing kind fits exactly, use it in the case.
+2. For a new meaning, draft `rules/<kind>.md` in the format in [new-rule.md](references/new-rule.md). Published meanings stay fixed; choose a new kind for a changed meaning.
+3. Use setter terms for parameters, with types, defaults, and order where it matters. Write a first-order formula over the shared terms, define local notation, give its one-line reading, and select the appropriate class.
+4. Include a worked case fragment and concrete satisfying and breaking assignments. Explain which part of the formula the breaking assignment violates. These fragments demonstrate the rule; they need not be complete Sudoku solutions.
+5. Draft a PR description explaining the meaning, parameters, comparison with existing kinds, and worked examples. Drafting does not submit the PR.
+6. Run the checks in [checking.md](references/checking.md) on the rule page and any case file, fix what they report, and rerun. Deliver the page, examples, and PR description.

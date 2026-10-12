@@ -1,0 +1,62 @@
+# Case syntax
+
+A case starts with YAML front matter and contains a fenced `rules` block. Wording outside the structured blocks remains the setter's text. See [examples.md](examples.md) for complete files.
+
+## Header and board
+
+Required fields are `format: open-rules`, `title`, `setter`, `source`, `case`, `library`, and `status`. Quote strings with YAML punctuation. `source` is the original puzzle URL; `case` is its public case page URL. Either can be `""` when drafting. The library root is `https://rules.sudoku-sleuth.com/`.
+
+`status: read` records a reading, not setter confirmation. `confirmed` records explicit confirmation. `flagged` accompanies a `flags` list of unresolved reasons; it does not make an ambiguous meaning safe to guess.
+
+On a standard board, write `sudoku 9x9` once in the rules block. This supplies digits 1–9, rows, columns, and standard 3×3 boxes. Optional top-level `givens` can be `r4c8=1 r5c5=9`, or an 81-character grid string with `.` for an empty cell. Top-level `regions` lists extra regions, not the standard boxes.
+
+For a different board, omit `sudoku 9x9` and supply explicit YAML `board` fields: `rows`, `cols`, `symbols`, `givens`, and `regions`. Regions are lists of rXcY cell lists. Givens can be a grid string or a list such as `[{cell: r1c1, digit: 1}]`. Do not infer an alphabet or region layout.
+
+## Coordinates and declarations
+
+Rows run top to bottom; columns run left to right. Both start at 1. `r2c3` is row 2, column 3. Stay within the declared board.
+
+```text
+[id: ]kind-or-HTTPS-Markdown-URL [cell-path] [parameter value]...
+```
+
+One line declares one rule instance. A path uses hyphens or commas and preserves its order. `r1c1-r1c3` lists exactly two cells: it does not include r1c2. Include every intermediate position yourself. Do not sort paths or remove repeated positions.
+
+```rules
+sudoku 9x9
+thermo r1c1-r1c2-r1c3
+whispers-1: whispers r3c1-r3c2 gap 5
+whispers-2: whispers r5c1-r5c2 gap 5
+```
+
+Without an explicit ID, the canonical kind is the ID. Repeated kinds need unique IDs, such as `thermo-1`, `thermo-2`. Do not reuse the standard board's `row-1` through `row-9`, `col-1` through `col-9`, or `box-1` through `box-9` IDs. Drawing records refer to instance IDs.
+
+Values use JSON syntax: numbers, `true`/`false`, quoted strings, arrays, and objects. A single cell may be unquoted. Use rXcY strings for cells inside arrays and nested groups. IDs or parameter names containing spaces use JSON quotes.
+
+```rules
+arrow r2c2-r2c3 bulb ["r2c1"]
+equal-sums groups [["r1c1","r1c2"],["r2c1"]]
+```
+
+The short names `whisper` and `killer` alias `whispers` and `cage`. Prefer the canonical names. `gap` is the difference parameter for whisper rules. A named `line` aliases `cells` on supported cell-list rules; a primary path is the usual spelling. For other named fields, check the published page and its worked syntax; do not invent a parameter spelling from the drawing.
+
+## Custom rules
+
+When no library kind matches, reference an HTTPS `.md` URL and embed the entire definition in a fenced `custom-rules` YAML list. Each entry supplies:
+
+- `url`: exactly the URL used by the instance.
+- `name`: the setter's rule name.
+- `parameters`: supplied inputs and their meanings.
+- `definition`: the full meaning, including scope and exceptions.
+- `maths`: a formula over the shared definitions, with local notation defined.
+- `example`: one satisfying and one breaking assignment with explanations.
+
+Use a URL chosen by the setter for that definition. The definition is embedded, so the case does not depend on fetching that URL. Do not claim the URL is already hosted or assign an unpublished kind under the library root. The `setter.example` URL in [examples.md](examples.md) is illustrative.
+
+```rules
+weighted-1: https://setter.example/rules/weighted-triple.md r1c1-r1c2-r1c3
+```
+
+The URL basename supplies the custom kind. If it differs, supply an explicit `kind "chosen-kind"` parameter. Unknown kinds remain custom; embedding a definition does not make them published library kinds or executable code.
+
+The primary path is available as `cells`; define its order and length in the embedded parameters and maths. Supply additional parameters with JSON values. Keep the setter's wording outside `rules` and `custom-rules` fences.

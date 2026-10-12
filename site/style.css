@@ -1,0 +1,28 @@
+:root { color-scheme: light dark; --bg: #faf9f6; --fg: #242a30; --muted: #505c66; --link: #145b7e; --panel: #eeede7; --border: #c8ccc9; }
+@media (prefers-color-scheme: dark) { :root { --bg: #151b21; --fg: #e8edf0; --muted: #b6c2cb; --link: #8ccce8; --panel: #202a33; --border: #475663; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 1.05rem/1.65 system-ui, sans-serif; }
+header, main, footer { max-width: 66rem; margin: auto; padding: 1.5rem clamp(1rem, 4vw, 3rem); }
+header { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; border-bottom: 1px solid var(--border); }
+main { min-height: 65vh; }
+footer { margin-top: 2rem; border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; }
+a { color: var(--link); text-underline-offset: .2em; }
+a:hover { text-decoration-thickness: .15em; }
+.brand { font-weight: 750; }
+h1, h2, h3 { line-height: 1.2; overflow-wrap: anywhere; }
+h1 { font-size: clamp(2rem, 5vw, 3rem); margin: .6rem 0 1.25rem; }
+h2 { margin-top: 2.5rem; font-size: 1.45rem; }
+p, li { max-width: 75ch; }
+pre, code { font-family: "DejaVu Sans Mono", "SFMono-Regular", Consolas, monospace; }
+pre { padding: 1rem; background: var(--panel); border: 1px solid var(--border); border-radius: .35rem; white-space: pre-wrap; overflow-wrap: anywhere; font-size: .93rem; line-height: 1.7; }
+:not(pre) > code { background: var(--panel); padding: .1em .3em; overflow-wrap: anywhere; }
+table { border-collapse: collapse; width: 100%; margin: 1.25rem 0; font-size: .95rem; }
+th, td { padding: .75rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); overflow-wrap: anywhere; }
+thead { background: var(--panel); }
+td p { margin: 0; }
+.kind { display: block; color: var(--muted); font: .8rem/1.5 monospace; margin-top: .3rem; }
+.table-scroll { overflow-x: auto; }
+:focus-visible { outline: 3px solid var(--link); outline-offset: 4px; }
+.skip { position: absolute; left: 1rem; top: -5rem; padding: .6rem 1rem; background: var(--bg); z-index: 1; }
+.skip:focus { top: .5rem; }
+@media (max-width: 38rem) { th, td { padding: .5rem .35rem; } table { font-size: .86rem; } }

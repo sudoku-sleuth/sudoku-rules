@@ -1,0 +1,72 @@
+(* Open Rules formula language 0.1. Every production consumes its entire input.
+   Unicode tokens have their ASCII keyword equivalents below. Whitespace and
+   # line comments are insignificant. Identifiers use Unicode letters/digits/_;
+   '-' is subtraction, never an identifier character. Strings use JSON escapes. *)
+formula      = expression, EOF ;
+prelude      = { declaration }, EOF ;
+declaration  = ("input", identifier, ":", type
+             | "type", identifier, "=", type
+             | ("primitive" | "term"), identifier, [ generics ],
+               "(", [ parameters ], ")", ":", type, [ requirement ],
+               [ "=", expression ]), ";" ;
+(* term requires a body; primitive/input/type cannot have one. *)
+generics     = "<", identifier, { ",", identifier }, ">" ;
+parameters   = identifier, ":", type, { ",", identifier, ":", type } ;
+requirement  = "requires", "(", expression, ")" ;
+type         = scalar | identifier | container, "<", type, ">"
+             | "fn", "(", [ type, { ",", type } ], ")", "->", type
+             | "enum", "{", identifier, { ",", identifier }, "}"
+             | "record", "{", parameters, "}" ;
+scalar       = "cell" | "digit" | "value" | "position" | "number" | "boolean" ;
+container    = "set" | "path" | "list" | "optional" ;
+expression   = equivalence, [ "where", local, { ",", local } ] ;
+local        = identifier, [ ":", type ], "=", equivalence ;
+equivalence  = implication, { ("iff" | "↔"), implication } ;
+implication  = disjunction, [ ("implies" | "→"), implication ] ;
+disjunction  = conjunction, { ("or" | "∨"), conjunction } ;
+conjunction  = comparison, { ("and" | "∧"), comparison } ;
+comparison   = setoperation, { comparisonop, setoperation } ;
+comparisonop = "=" | "!=" | "≠" | "<" | "<=" | "≤" | ">" | ">=" | "≥"
+             | "in" | "∈" | "notin" | "∉" | "subset" | "⊆" ;
+setoperation = addition, { ("union" | "∪" | "intersect" | "∩"), addition } ;
+addition     = product, { ("+" | "-" | "−"), product } ;
+product      = power, { ("*" | "×" | "/" | "mod"), power } ;
+power        = prefix, [ "^", power ] ;
+prefix       = ("+" | "-" | "−"), power | ("not" | "¬"), comparison
+             | "|", expression, "|" | "⌊", expression, "⌋"
+             | quantified | aggregate | conditional | binding | postfix ;
+postfix      = atom, { "(", [ expression, { ",", expression } ], ")"
+             | "[", expression, "]" | ".", identifier } ;
+atom         = number | "true" | "false" | string | identifier | "·"
+             | "(", expression, ")" | interval | set ;
+interval     = "[", expression, ",", expression, ("]" | ")") ;
+set          = "∅" | "empty" | "{", [ expression, { ",", expression } ], "}"
+             | "{", identifier, ("in" | "∈"), setoperation, ":", expression, "}" ;
+binders      = identifier, [ ":", type ], { ",", identifier, [ ":", type ] } ;
+quantified   = ("forall" | "∀" | "exists" | "∃" | "lambda" | "λ"),
+               binders, [ ("in" | "∈"), setoperation ], ":", expression ;
+aggregate    = ("sum" | "Σ" | "product" | "Π"), aggregatehead, setoperation
+             | "count", aggregatehead, expression ;
+aggregatehead = binders, [ ("in" | "∈"), setoperation ], ":"
+              | "_", "{", binders, [ ("in" | "∈"), setoperation ], "}" ;
+(* sum/count/product are contextual keywords: an aggregate starts only with
+   _{ or a binder followed by :/in/comma; otherwise they are ordinary names.
+   Numeric sum/product bodies consume a setoperation; comparisons/connectives
+   belong outside them. Count bodies consume an expression, requiring parentheses
+   when comparing the resulting count. Quantifiers may be typed without a domain;
+   aggregates require a collection domain. *)
+conditional  = "if", expression, "then", expression, "else", expression ;
+binding      = "let", identifier, [ ":", type ], "=", expression, ";", expression ;
+number       = digit, { digit }, [ ".", digit, { digit } ] ;
+digit        = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+identifier   = letter, { letter | digit | "_" } ;
+letter       = ? Unicode category L ? ;
+string       = ? JSON double-quoted string, without literal CR/LF ? ;
+EOF          = ? end of tokens after whitespace and comments ? ;
+(* Quantifiers bind their body; lets do not bind their own value. Aggregate and
+   comprehension domains precede the binder scope. Chains A<B<C desugar to
+   A<B and B<C. Domains and types are mandatory, never inferred from English.
+   where bindings are ordered, just like nested lets. Prose for clauses,
+   implicit family subscripts and ellipses are not
+   executable declarations; the source audit returns located errors for them.
+   Core arithmetic is exact rational arithmetic, not JavaScript floating point. *)

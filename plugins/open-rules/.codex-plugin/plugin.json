@@ -1,0 +1,10 @@
+{
+  "name": "open-rules",
+  "version": "1.0.0",
+  "description": "Help puzzle setters write Open Rules case files and propose new library rules.",
+  "author": { "name": "Sudoku Sleuth", "email": "setters@sudoku-sleuth.com" },
+  "homepage": "https://rules.sudoku-sleuth.com/",
+  "repository": "https://github.com/sudoku-sleuth/sudoku-rules",
+  "license": "MIT",
+  "skills": "./skills/"
+}

@@ -1,0 +1,16 @@
+{
+  "name": "sudoku-rules",
+  "description": "Open Rules tools for Sudoku setters and their AI agents.",
+  "owner": { "name": "Sudoku Sleuth", "email": "setters@sudoku-sleuth.com", "url": "https://rules.sudoku-sleuth.com/" },
+  "plugins": [
+    {
+      "name": "open-rules",
+      "source": "./plugins/open-rules",
+      "author": { "name": "Sudoku Sleuth", "email": "setters@sudoku-sleuth.com" },
+      "homepage": "https://rules.sudoku-sleuth.com/",
+      "repository": "https://github.com/sudoku-sleuth/sudoku-rules",
+      "license": "MIT",
+      "description": "Write Open Rules case files and propose precise Sudoku rule definitions."
+    }
+  ]
+}

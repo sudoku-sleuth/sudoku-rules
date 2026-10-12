@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  pull_request:
+  merge_group:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2.0.2
+        with:
+          bun-version-file: .bun-version
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Lint YAML front matter
+        run: bun run lint:yaml
+      - name: Lint specification
+        # Stable entry point; formula checks now, case/example checks in later slices.
+        run: bun run lint:spec
+      - name: Lint skill and examples
+        run: bun run lint:skill
+      - name: Test
+        run: bun test
+      - name: Typecheck and build package
+        run: |
+          bun run typecheck
+          bun run build:package
+      - name: Build
+        run: bun run build
