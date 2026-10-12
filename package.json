@@ -1,0 +1,54 @@
+{
+  "name": "@sudoku-sleuth/open-rules",
+  "version": "0.1.0",
+  "description": "The Open Rules formula language and linter for Sudoku rule definitions.",
+  "files": [
+    "dist",
+    "spec",
+    "LICENSE",
+    "README.md"
+  ],
+  "bin": {
+    "openrules": "dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Sudoku Sleuth",
+    "email": "setters@sudoku-sleuth.com"
+  },
+  "homepage": "https://rules.sudoku-sleuth.com/",
+  "repository": "https://github.com/sudoku-sleuth/sudoku-rules",
+  "license": "MIT",
+  "type": "module",
+  "packageManager": "bun@1.2.23",
+  "scripts": {
+    "lint:yaml": "bun scripts/lint-yaml.ts",
+    "lint:spec": "bun scripts/lint-spec.ts",
+    "lint:skill": "bun scripts/lint-skill.ts",
+    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "build:package": "bun scripts/build-package.ts",
+    "openrules": "bun src/cli.ts",
+    "build": "bun scripts/build.ts"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "20.19.19",
+    "marked": "18.0.11"
+  }
+}

@@ -1,0 +1,2439 @@
+[
+  {
+    "file": "rules/bad-formula.md",
+    "repair": "rules/bad-formula.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "The symbol ? is not supported in formulas.",
+        "span": {
+          "file": "rules/bad-formula.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/undefined-partial.md",
+    "repair": "rules/undefined-partial.md",
+    "mode": "page",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "partial is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/undefined-partial.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unbound-position.md",
+    "repair": "rules/unbound-position.md",
+    "mode": "page",
+    "code": "E_NAME_UNBOUND",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNBOUND",
+        "check": "E_NAME_UNBOUND",
+        "message": "i is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/unbound-position.md",
+          "start": {
+            "offset": 234,
+            "line": 25,
+            "column": 8
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/wrong-arity.md",
+    "repair": "rules/wrong-arity.md",
+    "mode": "page",
+    "code": "E_CALL_ARITY",
+    "diagnostics": [
+      {
+        "code": "E_CALL_ARITY",
+        "check": "E_CALL_ARITY",
+        "message": "D needs 1 argument; this call gives 2.",
+        "span": {
+          "file": "rules/wrong-arity.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/wrong-type.md",
+    "repair": "rules/wrong-type.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "(true + 1) needs numbers on both sides of +.",
+        "span": {
+          "file": "rules/wrong-type.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unguarded-index.md",
+    "repair": "rules/unguarded-index.md",
+    "mode": "page",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "The position 0 might be outside line; show that 0 ≤ 0 < |line| before reading it (positions start at 0).",
+        "span": {
+          "file": "rules/unguarded-index.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 234,
+            "line": 25,
+            "column": 8
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/zero-denominator.md",
+    "repair": "rules/zero-denominator.md",
+    "mode": "page",
+    "code": "E_ARITHMETIC",
+    "diagnostics": [
+      {
+        "code": "E_ARITHMETIC",
+        "check": "E_ARITHMETIC",
+        "message": "This calculation divides by zero; the divisor must not be zero.",
+        "span": {
+          "file": "rules/zero-denominator.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 230,
+            "line": 25,
+            "column": 4
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/language-limit.md",
+    "repair": "rules/language-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This formula nests more than 128 levels; split it into named shared terms.",
+        "span": {
+          "file": "rules/language-limit.md",
+          "start": {
+            "offset": 355,
+            "line": 25,
+            "column": 129
+          },
+          "end": {
+            "offset": 356,
+            "line": 25,
+            "column": 130
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/no-parameter-type.md",
+    "repair": "rules/no-parameter-type.md",
+    "mode": "page",
+    "code": "E_SIGNATURE_REQUIRED",
+    "diagnostics": [
+      {
+        "code": "E_SIGNATURE_REQUIRED",
+        "check": "E_SIGNATURE_REQUIRED",
+        "message": "Declare a type for the parameter line, such as cell, number or path<cell>.",
+        "span": {
+          "file": "rules/no-parameter-type.md",
+          "start": {
+            "offset": 95,
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "offset": 99,
+            "line": 6,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/wrong-class.md",
+    "repair": "rules/wrong-class.md",
+    "mode": "page",
+    "code": "E_LOGIC_CLASS",
+    "diagnostics": [
+      {
+        "code": "E_LOGIC_CLASS",
+        "check": "E_LOGIC_CLASS",
+        "message": "This formula belongs to the first-order class; write Class: **first-order** on the rule page.",
+        "span": {
+          "file": "rules/wrong-class.md",
+          "start": {
+            "offset": 192,
+            "line": 20,
+            "column": 1
+          },
+          "end": {
+            "offset": 218,
+            "line": 20,
+            "column": 27
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/no-formula.md",
+    "repair": "rules/no-formula.md",
+    "mode": "page",
+    "code": "E_FORMULA_REQUIRED",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_REQUIRED",
+        "check": "E_FORMULA_REQUIRED",
+        "message": "Add the rule's formula in a fenced text or openrules block.",
+        "span": {
+          "file": "rules/no-formula.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/shadow-term.md",
+    "repair": "rules/shadow-term.md",
+    "mode": "prelude",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "D is already defined; each shared name can be declared only once.",
+        "span": {
+          "file": "rules/shadow-term.md",
+          "start": {
+            "offset": 58,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 59,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/recursive-term.md",
+    "repair": "rules/recursive-term.md",
+    "mode": "prelude",
+    "code": "E_RECURSION",
+    "diagnostics": [
+      {
+        "code": "E_RECURSION",
+        "check": "E_RECURSION",
+        "message": "again depends on itself, directly or through another term; remove that circular definition.",
+        "span": {
+          "file": "rules/recursive-term.md",
+          "start": {
+            "offset": 40,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 45,
+            "line": 25,
+            "column": 6
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/division-zero-variable.md",
+    "repair": "rules/division-zero-variable.md",
+    "mode": "page",
+    "code": "E_ARITHMETIC",
+    "diagnostics": [
+      {
+        "code": "E_ARITHMETIC",
+        "check": "E_ARITHMETIC",
+        "message": "This calculation divides by zero; the divisor must not be zero.",
+        "span": {
+          "file": "rules/division-zero-variable.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/mod-zero-variable.md",
+    "repair": "rules/mod-zero-variable.md",
+    "mode": "page",
+    "code": "E_ARITHMETIC",
+    "diagnostics": [
+      {
+        "code": "E_ARITHMETIC",
+        "check": "E_ARITHMETIC",
+        "message": "For mod, both numbers must be whole numbers and the divisor must be greater than zero.",
+        "span": {
+          "file": "rules/mod-zero-variable.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 239,
+            "line": 25,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/mod-fraction.md",
+    "repair": "rules/mod-fraction.md",
+    "mode": "page",
+    "code": "E_ARITHMETIC",
+    "diagnostics": [
+      {
+        "code": "E_ARITHMETIC",
+        "check": "E_ARITHMETIC",
+        "message": "(0.5 mod 2) needs whole numbers on both sides of mod.",
+        "span": {
+          "file": "rules/mod-fraction.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 236,
+            "line": 25,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/negative-exponent.md",
+    "repair": "rules/negative-exponent.md",
+    "mode": "page",
+    "code": "E_ARITHMETIC",
+    "diagnostics": [
+      {
+        "code": "E_ARITHMETIC",
+        "check": "E_ARITHMETIC",
+        "message": "The power must be a whole number greater than or equal to zero.",
+        "span": {
+          "file": "rules/negative-exponent.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 237,
+            "line": 25,
+            "column": 11
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/fractional-exponent.md",
+    "repair": "rules/fractional-exponent.md",
+    "mode": "page",
+    "code": "E_ARITHMETIC",
+    "diagnostics": [
+      {
+        "code": "E_ARITHMETIC",
+        "check": "E_ARITHMETIC",
+        "message": "The power must be a whole number greater than or equal to zero.",
+        "span": {
+          "file": "rules/fractional-exponent.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 237,
+            "line": 25,
+            "column": 11
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unguarded-division.md",
+    "repair": "rules/unguarded-division.md",
+    "mode": "page",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "factor could be zero; add a condition proving it is not zero before dividing by it.",
+        "span": {
+          "file": "rules/unguarded-division.md",
+          "start": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unguarded-remainder.md",
+    "repair": "rules/unguarded-remainder.md",
+    "mode": "page",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before using (factor mod offset), show that factor and offset are whole numbers and offset is greater than zero.",
+        "span": {
+          "file": "rules/unguarded-remainder.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 244,
+            "line": 25,
+            "column": 18
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unguarded-power.md",
+    "repair": "rules/unguarded-power.md",
+    "mode": "page",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before using (factor ^ offset), show that the power offset is a whole number greater than or equal to zero.",
+        "span": {
+          "file": "rules/unguarded-power.md",
+          "start": {
+            "offset": 234,
+            "line": 25,
+            "column": 8
+          },
+          "end": {
+            "offset": 240,
+            "line": 25,
+            "column": 14
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/fractional-index.md",
+    "repair": "rules/fractional-index.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The position 0.5 in line must be a whole number.",
+        "span": {
+          "file": "rules/fractional-index.md",
+          "start": {
+            "offset": 232,
+            "line": 25,
+            "column": 6
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/fractional-interval.md",
+    "repair": "rules/fractional-interval.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The range boundary 1.5 must be a whole number.",
+        "span": {
+          "file": "rules/fractional-interval.md",
+          "start": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          },
+          "end": {
+            "offset": 238,
+            "line": 25,
+            "column": 12
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/inclusive-index.md",
+    "repair": "rules/inclusive-index.md",
+    "mode": "page",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "The position i might be outside line; show that 0 ≤ i < |line| before reading it (positions start at 0).",
+        "span": {
+          "file": "rules/inclusive-index.md",
+          "start": {
+            "offset": 246,
+            "line": 25,
+            "column": 20
+          },
+          "end": {
+            "offset": 253,
+            "line": 25,
+            "column": 27
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/binder-shadows.md",
+    "repair": "rules/binder-shadows.md",
+    "mode": "page",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "D is already defined; use another name for this formula variable.",
+        "span": {
+          "file": "rules/binder-shadows.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/duplicate-binder.md",
+    "repair": "rules/duplicate-binder.md",
+    "mode": "page",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "c is already defined; use another name for this formula variable.",
+        "span": {
+          "file": "rules/duplicate-binder.md",
+          "start": {
+            "offset": 230,
+            "line": 25,
+            "column": 4
+          },
+          "end": {
+            "offset": 231,
+            "line": 25,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/binding-self-reference.md",
+    "repair": "rules/binding-self-reference.md",
+    "mode": "page",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "x is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/binding-self-reference.md",
+          "start": {
+            "offset": 233,
+            "line": 25,
+            "column": 7
+          },
+          "end": {
+            "offset": 234,
+            "line": 25,
+            "column": 8
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/scope-escape.md",
+    "repair": "rules/scope-escape.md",
+    "mode": "page",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "c is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/scope-escape.md",
+          "start": {
+            "offset": 246,
+            "line": 25,
+            "column": 20
+          },
+          "end": {
+            "offset": 247,
+            "line": 25,
+            "column": 21
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/bad-domain.md",
+    "repair": "rules/bad-domain.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "true must be a set or ordered list for the formula variables to range over.",
+        "span": {
+          "file": "rules/bad-domain.md",
+          "start": {
+            "offset": 232,
+            "line": 25,
+            "column": 6
+          },
+          "end": {
+            "offset": 236,
+            "line": 25,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/bad-set-members.md",
+    "repair": "rules/bad-set-members.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "true must be a number; it is a true-or-false condition.",
+        "span": {
+          "file": "rules/bad-set-members.md",
+          "start": {
+            "offset": 230,
+            "line": 25,
+            "column": 4
+          },
+          "end": {
+            "offset": 234,
+            "line": 25,
+            "column": 8
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/bad-membership.md",
+    "repair": "rules/bad-membership.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "true must be a cell; it is a true-or-false condition.",
+        "span": {
+          "file": "rules/bad-membership.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 231,
+            "line": 25,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/bad-set-operation.md",
+    "repair": "rules/bad-set-operation.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "C and this set must be sets of the same kind of item for union.",
+        "span": {
+          "file": "rules/bad-set-operation.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 234,
+            "line": 25,
+            "column": 8
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/non-function-call.md",
+    "repair": "rules/non-function-call.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "true is a true-or-false condition, so it cannot be called with arguments.",
+        "span": {
+          "file": "rules/non-function-call.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 231,
+            "line": 25,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/non-boolean-root.md",
+    "repair": "rules/non-boolean-root.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "(1 + 2) must be a true-or-false condition; it is a whole-number position.",
+        "span": {
+          "file": "rules/non-boolean-root.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 230,
+            "line": 25,
+            "column": 4
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/boolean-sum.md",
+    "repair": "rules/boolean-sum.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "true must be a number to use it in sum.",
+        "span": {
+          "file": "rules/boolean-sum.md",
+          "start": {
+            "offset": 241,
+            "line": 25,
+            "column": 11
+          },
+          "end": {
+            "offset": 245,
+            "line": 25,
+            "column": 15
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/bad-conditional.md",
+    "repair": "rules/bad-conditional.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The then and else values must have matching types; true is a true-or-false condition and 1 is a number.",
+        "span": {
+          "file": "rules/bad-conditional.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 251,
+            "line": 25,
+            "column": 25
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/bad-annotation.md",
+    "repair": "rules/bad-annotation.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "1 must be a true-or-false condition; it is a number.",
+        "span": {
+          "file": "rules/bad-annotation.md",
+          "start": {
+            "offset": 241,
+            "line": 25,
+            "column": 15
+          },
+          "end": {
+            "offset": 242,
+            "line": 25,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/numeric-limit.md",
+    "repair": "rules/numeric-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This number has more than 4,096 digits; use a shorter number.",
+        "span": {
+          "file": "rules/numeric-limit.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 4324,
+            "line": 25,
+            "column": 4098
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/power-limit.md",
+    "repair": "rules/power-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This power is too large to calculate exactly within the checking limit; use a smaller power or base.",
+        "span": {
+          "file": "rules/power-limit.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 233,
+            "line": 25,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/trailing-prose.md",
+    "repair": "rules/trailing-prose.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Expected the end of the formula here; found “for”.",
+        "span": {
+          "file": "rules/trailing-prose.md",
+          "start": {
+            "offset": 232,
+            "line": 25,
+            "column": 6
+          },
+          "end": {
+            "offset": 235,
+            "line": 25,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/recursive-type.md",
+    "repair": "rules/recursive-type.md",
+    "mode": "prelude",
+    "code": "E_RECURSION",
+    "diagnostics": [
+      {
+        "code": "E_RECURSION",
+        "check": "E_RECURSION",
+        "message": "The type A depends on itself, directly or through another type; remove that circular definition.",
+        "span": {
+          "file": "rules/recursive-type.md",
+          "start": {
+            "offset": 40,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 41,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/wrong-term-result.md",
+    "repair": "rules/wrong-term-result.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "1 must be a true-or-false condition; it is a number.",
+        "span": {
+          "file": "rules/wrong-term-result.md",
+          "start": {
+            "offset": 52,
+            "line": 25,
+            "column": 13
+          },
+          "end": {
+            "offset": 53,
+            "line": 25,
+            "column": 14
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/duplicate-parameter.md",
+    "repair": "rules/duplicate-parameter.md",
+    "mode": "prelude",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "The parameter x reuses a name that is already defined; choose another parameter name.",
+        "span": {
+          "file": "rules/duplicate-parameter.md",
+          "start": {
+            "offset": 51,
+            "line": 25,
+            "column": 12
+          },
+          "end": {
+            "offset": 52,
+            "line": 25,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/duplicate-generic.md",
+    "repair": "rules/duplicate-generic.md",
+    "mode": "prelude",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "a lists the same type placeholder more than once; give each placeholder a distinct name.",
+        "span": {
+          "file": "rules/duplicate-generic.md",
+          "start": {
+            "offset": 45,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 46,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/undeclared-type.md",
+    "repair": "rules/undeclared-type.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The type mystery is not defined; declare it in the shared definitions.",
+        "span": {
+          "file": "rules/undeclared-type.md",
+          "start": {
+            "offset": 41,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 42,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/wrong-container-arity.md",
+    "repair": "rules/wrong-container-arity.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The type path needs 1 item type inside <...>; this declaration gives 2.",
+        "span": {
+          "file": "rules/wrong-container-arity.md",
+          "start": {
+            "offset": 41,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 42,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/duplicate-record-field.md",
+    "repair": "rules/duplicate-record-field.md",
+    "mode": "prelude",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "The field x appears twice; give each field a distinct name.",
+        "span": {
+          "file": "rules/duplicate-record-field.md",
+          "start": {
+            "offset": 58,
+            "line": 25,
+            "column": 19
+          },
+          "end": {
+            "offset": 59,
+            "line": 25,
+            "column": 20
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/duplicate-enum.md",
+    "repair": "rules/duplicate-enum.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "List at least one allowed choice in enum{...}, with each choice appearing once.",
+        "span": {
+          "file": "rules/duplicate-enum.md",
+          "start": {
+            "offset": 40,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 41,
+            "line": 25,
+            "column": 2
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/optional-read.md",
+    "repair": "rules/optional-read.md",
+    "mode": "prelude",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before calling unwrap, add a condition proving present(x).",
+        "span": {
+          "file": "rules/optional-read.md",
+          "start": {
+            "offset": 182,
+            "line": 25,
+            "column": 13
+          },
+          "end": {
+            "offset": 191,
+            "line": 25,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/record-missing-field.md",
+    "repair": "rules/record-missing-field.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "r has no declared field named y.",
+        "span": {
+          "file": "rules/record-missing-field.md",
+          "start": {
+            "offset": 78,
+            "line": 25,
+            "column": 13
+          },
+          "end": {
+            "offset": 81,
+            "line": 25,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/invalid-enum-literal.md",
+    "repair": "rules/invalid-enum-literal.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "r and \"other\" cannot be compared: one is one of the choices same, different and the other is the choice other.",
+        "span": {
+          "file": "rules/invalid-enum-literal.md",
+          "start": {
+            "offset": 82,
+            "line": 25,
+            "column": 13
+          },
+          "end": {
+            "offset": 91,
+            "line": 25,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/function-variance.md",
+    "repair": "rules/function-variance.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "narrow (parameter 1 of consumer) must be a function taking a number and returning a true-or-false condition; it is a function taking a face digit and returning a true-or-false condition.",
+        "span": {
+          "file": "rules/function-variance.md",
+          "start": {
+            "offset": 143,
+            "line": 25,
+            "column": 22
+          },
+          "end": {
+            "offset": 149,
+            "line": 25,
+            "column": 28
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/rational-guard.md",
+    "repair": "rules/rational-guard.md",
+    "mode": "prelude",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before calling bounded, add a condition proving (x <= 0).",
+        "span": {
+          "file": "rules/rational-guard.md",
+          "start": {
+            "offset": 132,
+            "line": 25,
+            "column": 25
+          },
+          "end": {
+            "offset": 142,
+            "line": 25,
+            "column": 35
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/non-boolean-guard.md",
+    "repair": "rules/non-boolean-guard.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "1 must be a true-or-false condition; it is a number.",
+        "span": {
+          "file": "rules/non-boolean-guard.md",
+          "start": {
+            "offset": 73,
+            "line": 25,
+            "column": 29
+          },
+          "end": {
+            "offset": 74,
+            "line": 25,
+            "column": 30
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/not-number.md",
+    "repair": "rules/not-number.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "1 must be a true-or-false condition; it is a number.",
+        "span": {
+          "file": "rules/not-number.md",
+          "start": {
+            "offset": 231,
+            "line": 25,
+            "column": 5
+          },
+          "end": {
+            "offset": 232,
+            "line": 25,
+            "column": 6
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/magnitude-boolean.md",
+    "repair": "rules/magnitude-boolean.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "|true| needs a number or a group of items; true is a true-or-false condition.",
+        "span": {
+          "file": "rules/magnitude-boolean.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 232,
+            "line": 25,
+            "column": 6
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/wrong-index-target.md",
+    "repair": "rules/wrong-index-target.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "C must be an ordered list, and its position 0 must be a whole number.",
+        "span": {
+          "file": "rules/wrong-index-target.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 231,
+            "line": 25,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/let-shadows.md",
+    "repair": "rules/let-shadows.md",
+    "mode": "page",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "C is already defined; use another name for this local value.",
+        "span": {
+          "file": "rules/let-shadows.md",
+          "start": {
+            "offset": 231,
+            "line": 25,
+            "column": 5
+          },
+          "end": {
+            "offset": 232,
+            "line": 25,
+            "column": 6
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/aggregate-no-domain.md",
+    "repair": "rules/aggregate-no-domain.md",
+    "mode": "page",
+    "code": "E_SIGNATURE_REQUIRED",
+    "diagnostics": [
+      {
+        "code": "E_SIGNATURE_REQUIRED",
+        "check": "E_SIGNATURE_REQUIRED",
+        "message": "Specify which items sum runs over, using in followed by a set or ordered list.",
+        "span": {
+          "file": "rules/aggregate-no-domain.md",
+          "start": {
+            "offset": 231,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 243,
+            "line": 25,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unresolved-type-annotation.md",
+    "repair": "rules/unresolved-type-annotation.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The type mystery is not defined; declare it in the shared definitions.",
+        "span": {
+          "file": "rules/unresolved-type-annotation.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/constant-root-name.md",
+    "repair": "rules/constant-root-name.md",
+    "mode": "page",
+    "code": "E_NAME_UNDEFINED",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "constructor is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "rules/constant-root-name.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 238,
+            "line": 25,
+            "column": 12
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/arithmetic-work-limit.md",
+    "repair": "rules/arithmetic-work-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This calculation needs more than 16,384 digits; simplify it to stay within the exact arithmetic limit.",
+        "span": {
+          "file": "rules/arithmetic-work-limit.md",
+          "start": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          },
+          "end": {
+            "offset": 248,
+            "line": 25,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/reserved-type.md",
+    "repair": "rules/reserved-type.md",
+    "mode": "prelude",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "cell is already defined; each shared name can be declared only once.",
+        "span": {
+          "file": "rules/reserved-type.md",
+          "start": {
+            "offset": 40,
+            "line": 24,
+            "column": 6
+          },
+          "end": {
+            "offset": 44,
+            "line": 24,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/generic-shadows-type.md",
+    "repair": "rules/generic-shadows-type.md",
+    "mode": "prelude",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "cell is already a type name; use another name for this type placeholder.",
+        "span": {
+          "file": "rules/generic-shadows-type.md",
+          "start": {
+            "offset": 45,
+            "line": 24,
+            "column": 11
+          },
+          "end": {
+            "offset": 46,
+            "line": 24,
+            "column": 12
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unresolved-generic-result.md",
+    "repair": "rules/unresolved-generic-result.md",
+    "mode": "prelude",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "The type T is not defined; declare it in the shared definitions.",
+        "span": {
+          "file": "rules/unresolved-generic-result.md",
+          "start": {
+            "offset": 86,
+            "line": 24,
+            "column": 52
+          },
+          "end": {
+            "offset": 93,
+            "line": 24,
+            "column": 59
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/type-depth.md",
+    "repair": "rules/type-depth.md",
+    "mode": "prelude",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This type nests more than 128 levels; use simpler named types.",
+        "span": {
+          "file": "rules/type-depth.md",
+          "start": {
+            "offset": 555,
+            "line": 24,
+            "column": 521
+          },
+          "end": {
+            "offset": 558,
+            "line": 24,
+            "column": 524
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/no-header.md",
+    "repair": "rules/no-header.md",
+    "mode": "page",
+    "code": "E_SIGNATURE_REQUIRED",
+    "diagnostics": [
+      {
+        "code": "E_SIGNATURE_REQUIRED",
+        "check": "E_SIGNATURE_REQUIRED",
+        "message": "Start this rule page with a --- header declaring the types of its parameters.",
+        "span": {
+          "file": "rules/no-header.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/malformed-header.md",
+    "repair": "rules/malformed-header.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Check the type field: a field's value cannot also be the name of another field.",
+        "span": {
+          "file": "rules/malformed-header.md",
+          "start": {
+            "offset": 113,
+            "line": 7,
+            "column": 11
+          },
+          "end": {
+            "offset": 114,
+            "line": 7,
+            "column": 12
+          }
+        },
+        "detail": "BLOCK_AS_IMPLICIT_KEY: Nested mappings are not allowed in compact mappings at line 6, column 11:\n\n    type: path<cell>\n          ^\n"
+      },
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Keep the name of the type field on one line, followed by a colon.",
+        "span": {
+          "file": "rules/malformed-header.md",
+          "start": {
+            "offset": 113,
+            "line": 7,
+            "column": 11
+          },
+          "end": {
+            "offset": 114,
+            "line": 7,
+            "column": 12
+          }
+        },
+        "detail": "MULTILINE_IMPLICIT_KEY: Implicit keys need to be on a single line at line 6, column 11:\n\n    type: path<cell>\n          ^\n"
+      },
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Check the description field: a field's value cannot also be the name of another field.",
+        "span": {
+          "file": "rules/malformed-header.md",
+          "start": {
+            "offset": 141,
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "offset": 142,
+            "line": 8,
+            "column": 19
+          }
+        },
+        "detail": "BLOCK_AS_IMPLICIT_KEY: Nested mappings are not allowed in compact mappings at line 7, column 18:\n\n    description: An ordered path.\n                 ^\n"
+      },
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Keep the name of the description field on one line, followed by a colon.",
+        "span": {
+          "file": "rules/malformed-header.md",
+          "start": {
+            "offset": 141,
+            "line": 8,
+            "column": 18
+          },
+          "end": {
+            "offset": 142,
+            "line": 8,
+            "column": 19
+          }
+        },
+        "detail": "MULTILINE_IMPLICIT_KEY: Implicit keys need to be on a single line at line 7, column 18:\n\n    description: An ordered path.\n                 ^\n"
+      },
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Use either indented fields or a single bracketed list around the type field; do not mix the two forms.",
+        "span": {
+          "file": "rules/malformed-header.md",
+          "start": {
+            "offset": 107,
+            "line": 7,
+            "column": 5
+          },
+          "end": {
+            "offset": 108,
+            "line": 7,
+            "column": 6
+          }
+        },
+        "detail": "BLOCK_IN_FLOW: Block collections are not allowed within flow collections at line 6, column 5:\n\n  line:\n    type: path<cell>\n    ^\n"
+      },
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Check the indentation and closing brackets around the default field; nested fields must be indented together.",
+        "span": {
+          "file": "rules/malformed-header.md",
+          "start": {
+            "offset": 180,
+            "line": 9,
+            "column": 23
+          },
+          "end": {
+            "offset": 181,
+            "line": 10,
+            "column": 1
+          }
+        },
+        "detail": "BAD_INDENT: Flow sequence in block collection must be sufficiently indented and end with a ] at line 8, column 23:\n\n    default: Required.\n                      ^\n"
+      }
+    ]
+  },
+  {
+    "file": "rules/duplicate-header-key.md",
+    "repair": "rules/duplicate-header-key.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "kind appears twice; keep just one entry for it.",
+        "span": {
+          "file": "rules/duplicate-header-key.md",
+          "start": {
+            "offset": 81,
+            "line": 5,
+            "column": 1
+          },
+          "end": {
+            "offset": 82,
+            "line": 5,
+            "column": 2
+          }
+        },
+        "detail": "DUPLICATE_KEY: Map keys must be unique at line 4, column 1:\n\nkind: formula\nkind: duplicate\n^\n"
+      }
+    ]
+  },
+  {
+    "file": "rules/aliases-in-header.md",
+    "repair": "rules/aliases-in-header.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Write each header value directly; references to other header values using *name are not supported.",
+        "span": {
+          "file": "rules/aliases-in-header.md",
+          "start": {
+            "offset": 39,
+            "line": 3,
+            "column": 8
+          },
+          "end": {
+            "offset": 44,
+            "line": 3,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/parameters-not-map.md",
+    "repair": "rules/parameters-not-map.md",
+    "mode": "page",
+    "code": "E_SIGNATURE_REQUIRED",
+    "diagnostics": [
+      {
+        "code": "E_SIGNATURE_REQUIRED",
+        "check": "E_SIGNATURE_REQUIRED",
+        "message": "Write parameters as named fields, each with its own type, rather than a list or single value.",
+        "span": {
+          "file": "rules/parameters-not-map.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/unknown-parameter-type.md",
+    "repair": "rules/unknown-parameter-type.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "For parameter line: The type mystery is not defined; declare it in the shared definitions.",
+        "span": {
+          "file": "rules/unknown-parameter-type.md",
+          "start": {
+            "offset": 95,
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "offset": 99,
+            "line": 6,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/parameter-shadows-term.md",
+    "repair": "rules/parameter-shadows-term.md",
+    "mode": "page",
+    "code": "E_NAME_SHADOW",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "The parameter D reuses a shared name; choose another parameter name.",
+        "span": {
+          "file": "rules/parameter-shadows-term.md",
+          "start": {
+            "offset": 95,
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "offset": 96,
+            "line": 6,
+            "column": 4
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/open-formula-fence.md",
+    "repair": "rules/open-formula-fence.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Close the formula block with the same backticks or tildes that opened it.",
+        "span": {
+          "file": "rules/open-formula-fence.md",
+          "start": {
+            "offset": 237,
+            "line": 26,
+            "column": 1
+          },
+          "end": {
+            "offset": 237,
+            "line": 26,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/generic-input.md",
+    "repair": "rules/generic-input.md",
+    "mode": "prelude",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Only term and primitive definitions can use <...> type placeholders; remove them from this input or type declaration.",
+        "span": {
+          "file": "rules/generic-input.md",
+          "start": {
+            "offset": 42,
+            "line": 24,
+            "column": 8
+          },
+          "end": {
+            "offset": 43,
+            "line": 24,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/reserved-identifier.md",
+    "repair": "rules/reserved-identifier.md",
+    "mode": "prelude",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "“true” cannot be used as a name; choose a name starting with a letter that is not a formula keyword.",
+        "span": {
+          "file": "rules/reserved-identifier.md",
+          "start": {
+            "offset": 41,
+            "line": 24,
+            "column": 7
+          },
+          "end": {
+            "offset": 45,
+            "line": 24,
+            "column": 11
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/term-depth.md",
+    "repair": "rules/term-depth.md",
+    "mode": "prelude",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "f128 follows more than 128 linked term definitions; shorten the chain.",
+        "span": {
+          "file": "rules/term-depth.md",
+          "start": {
+            "offset": 3406,
+            "line": 152,
+            "column": 6
+          },
+          "end": {
+            "offset": 3410,
+            "line": 152,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/alias-depth.md",
+    "repair": "rules/alias-depth.md",
+    "mode": "prelude",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "The type T128 follows more than 128 linked type definitions; shorten the chain.",
+        "span": {
+          "file": "rules/alias-depth.md",
+          "start": {
+            "offset": 1870,
+            "line": 152,
+            "column": 6
+          },
+          "end": {
+            "offset": 1874,
+            "line": 152,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/universal-structure.md",
+    "repair": "rules/universal-structure.md",
+    "mode": "page",
+    "code": "E_LOGIC_CLASS",
+    "diagnostics": [
+      {
+        "code": "E_LOGIC_CLASS",
+        "check": "E_LOGIC_CLASS",
+        "message": "S ranges over functions or whole structures without a supplied set; this formula language does not support that. Supply the items to range over.",
+        "span": {
+          "file": "rules/universal-structure.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/function-quantification.md",
+    "repair": "rules/function-quantification.md",
+    "mode": "page",
+    "code": "E_LOGIC_CLASS",
+    "diagnostics": [
+      {
+        "code": "E_LOGIC_CLASS",
+        "check": "E_LOGIC_CLASS",
+        "message": "P ranges over functions or whole structures without a supplied set; this formula language does not support that. Supply the items to range over.",
+        "span": {
+          "file": "rules/function-quantification.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/record-choice-class.md",
+    "repair": "rules/record-choice-class.md",
+    "mode": "page",
+    "code": "E_LOGIC_CLASS",
+    "diagnostics": [
+      {
+        "code": "E_LOGIC_CLASS",
+        "check": "E_LOGIC_CLASS",
+        "message": "This formula belongs to the existential class; write Class: **existential** on the rule page.",
+        "span": {
+          "file": "rules/record-choice-class.md",
+          "start": {
+            "offset": 192,
+            "line": 20,
+            "column": 1
+          },
+          "end": {
+            "offset": 214,
+            "line": 20,
+            "column": 23
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/source-limit.md",
+    "repair": "rules/source-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This formula is too long; split it into blocks of at most 100,000 characters (some symbols count twice).",
+        "span": {
+          "file": "rules/source-limit.md",
+          "start": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          },
+          "end": {
+            "offset": 227,
+            "line": 25,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/ast-chain-limit.md",
+    "repair": "rules/ast-chain-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This formula is too complex; use at most 128 nested levels and 20,000 formula parts, or split it into named shared terms.",
+        "span": {
+          "file": "rules/ast-chain-limit.md",
+          "start": {
+            "offset": 875,
+            "line": 25,
+            "column": 649
+          },
+          "end": {
+            "offset": 879,
+            "line": 25,
+            "column": 653
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/interval-proof-collision.md",
+    "repair": "rules/interval-proof-collision.md",
+    "mode": "prelude",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before calling f, add a condition proving (1 in [0, 1)).",
+        "span": {
+          "file": "rules/interval-proof-collision.md",
+          "start": {
+            "offset": 123,
+            "line": 25,
+            "column": 31
+          },
+          "end": {
+            "offset": 127,
+            "line": 25,
+            "column": 35
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/invalid-parameter-name.md",
+    "repair": "rules/invalid-parameter-name.md",
+    "mode": "page",
+    "code": "E_FORMULA_SYNTAX",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "The parameter name line-segment cannot be used in formulas; start it with a letter, use only letters, digits or underscores, and avoid formula keywords.",
+        "span": {
+          "file": "rules/invalid-parameter-name.md",
+          "start": {
+            "offset": 95,
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "offset": 107,
+            "line": 6,
+            "column": 15
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/inline-missing-signature.md",
+    "repair": "rules/inline-missing-signature.md",
+    "mode": "page",
+    "code": "E_SIGNATURE_REQUIRED",
+    "diagnostics": [
+      {
+        "code": "E_SIGNATURE_REQUIRED",
+        "check": "E_SIGNATURE_REQUIRED",
+        "message": "Declare a type for the parameter line, such as cell, number or path<cell>.",
+        "span": {
+          "file": "rules/inline-missing-signature.md",
+          "start": {
+            "offset": 94,
+            "line": 5,
+            "column": 14
+          },
+          "end": {
+            "offset": 98,
+            "line": 5,
+            "column": 18
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/integer-domain-name.md",
+    "repair": "rules/integer-domain-name.md",
+    "mode": "prelude",
+    "code": "E_OPERATION_UNGUARDED",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "Before using (x mod 2), show that x and 2 are whole numbers and 2 is greater than zero.",
+        "span": {
+          "file": "rules/integer-domain-name.md",
+          "start": {
+            "offset": 103,
+            "line": 25,
+            "column": 27
+          },
+          "end": {
+            "offset": 110,
+            "line": 25,
+            "column": 34
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/ast-node-limit.md",
+    "repair": "rules/ast-node-limit.md",
+    "mode": "page",
+    "code": "E_LANGUAGE_LIMIT",
+    "diagnostics": [
+      {
+        "code": "E_LANGUAGE_LIMIT",
+        "check": "E_LANGUAGE_LIMIT",
+        "message": "This formula is too complex; use at most 128 nested levels and 20,000 formula parts, or split it into named shared terms.",
+        "span": {
+          "file": "rules/ast-node-limit.md",
+          "start": {
+            "offset": 263,
+            "line": 27,
+            "column": 14
+          },
+          "end": {
+            "offset": 264,
+            "line": 27,
+            "column": 15
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/binder-domain-type.md",
+    "repair": "rules/binder-domain-type.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "x must accept a whole-number position from ℤ; its declared type is a face digit.",
+        "span": {
+          "file": "rules/binder-domain-type.md",
+          "start": {
+            "offset": 228,
+            "line": 25,
+            "column": 2
+          },
+          "end": {
+            "offset": 229,
+            "line": 25,
+            "column": 3
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/setter-argument-type.md",
+    "repair": "rules/setter-argument-type.md",
+    "mode": "page",
+    "code": "E_TYPE",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "targetTotal (parameter c of D) must be a cell; it is a number.",
+        "span": {
+          "file": "rules/setter-argument-type.md",
+          "start": {
+            "offset": 188,
+            "line": 11,
+            "column": 3
+          },
+          "end": {
+            "offset": 199,
+            "line": 11,
+            "column": 14
+          }
+        }
+      }
+    ]
+  }
+]
