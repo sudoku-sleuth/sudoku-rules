@@ -15,10 +15,10 @@ parameters   = identifier, ":", type, { ",", identifier, ":", type } ;
 requirement  = "requires", "(", expression, ")" ;
 type         = scalar | identifier | container, "<", type, ">"
              | "fn", "(", [ type, { ",", type } ], ")", "->", type
-             | "enum", "{", identifier, { ",", identifier }, "}"
+             | "enum", "{", (identifier | string), { ",", (identifier | string) }, "}"
              | "record", "{", parameters, "}" ;
-scalar       = "cell" | "digit" | "value" | "position" | "number" | "boolean" ;
-container    = "set" | "path" | "list" | "optional" ;
+scalar       = "cell" | "digit" | "value" | "position" | "number" | "boolean" | "expression" ;
+container    = "set" | "path" | "list" | "optional" | "collection" ;
 expression   = equivalence, [ "where", local, { ",", local } ] ;
 local        = identifier, [ ":", type ], "=", equivalence ;
 equivalence  = implication, { ("iff" | "↔"), implication } ;
@@ -38,10 +38,16 @@ prefix       = ("+" | "-" | "−"), power | ("not" | "¬"), comparison
 postfix      = atom, { "(", [ expression, { ",", expression } ], ")"
              | "[", expression, "]" | ".", identifier } ;
 atom         = number | "true" | "false" | string | identifier | "·"
-             | "(", expression, ")" | interval | set ;
+             | "(", expression, ")" | interval | set | image ;
 interval     = "[", expression, ",", expression, ("]" | ")") ;
 set          = "∅" | "empty" | "{", [ expression, { ",", expression } ], "}"
              | "{", identifier, ("in" | "∈"), setoperation, ":", expression, "}" ;
+image        = "{", expression, ":", identifier, ("in" | "∈"), expression, "}"
+             | "⟨", expression, ":", identifier, ("in" | "∈"), expression,
+               [ ",", expression ], "⟩" ;
+(* Images bind their variable in the output expression and optional filter.
+   Ordered images require an interval or ordered list; sets supply no order.
+   The filter must be Boolean. Intervals traverse increasing positions. *)
 binders      = identifier, [ ":", type ], { ",", identifier, [ ":", type ] } ;
 quantified   = ("forall" | "∀" | "exists" | "∃" | "lambda" | "λ"),
                binders, [ ("in" | "∈"), setoperation ], ":", expression ;
@@ -70,3 +76,5 @@ EOF          = ? end of tokens after whitespace and comments ? ;
    implicit family subscripts and ellipses are not
    executable declarations; the source audit returns located errors for them.
    Core arithmetic is exact rational arithmetic, not JavaScript floating point. *)
+
+(* Enum member names may also be JSON strings, allowing setter values such as "first-five". *)

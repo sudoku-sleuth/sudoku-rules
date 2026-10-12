@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import { arithmetic, checkExpression, checkFormula, checkPrelude, compare, compilePage, compilePrelude, diagnostic, exact, floor, formulaBlocks, location, parseFormula, parsePrelude, parseType, printExact, rational, type Environment, type Expr } from "../../src/index";
 
-const prelude = compilePrelude({ file: "spec/prelude.md", text: await Bun.file("spec/prelude.md").text() });
+const prelude = compilePrelude({ file: "spec/prelude.md", text: await Bun.file("tests/fixtures/typed-prelude.md").text() });
 if (!prelude.value) throw new Error(JSON.stringify(prelude.diagnostics));
 const environment = prelude.value.environment;
 function ast(text: string): Expr {

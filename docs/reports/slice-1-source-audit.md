@@ -1,5 +1,7 @@
 # Slice 1 source audit
 
+Historical snapshot before the public library migration; see [the integration report](library-integration.md) for the current repository checks.
+
 Read-only audit of the supplied specification and generated library. Paths below are source labels, not copied public content. Exact content hashes, every fenced formula block and the full ordered diagnostics (including end spans) are in the [JSON report](slice-1-source-audit.json).
 
 91 pages; 121 formula blocks; 51 blocks parse; 2 pages fully compile; 305 diagnostics.

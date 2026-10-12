@@ -1,0 +1,471 @@
+[
+  {
+    "file": "tests/invalid/integration/no-header.md",
+    "repair": "tests/valid/integration/no-header.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_REQUIRED",
+        "check": "E_HEADER_REQUIRED",
+        "message": "Start this file with a --- header containing its named fields.",
+        "span": {
+          "file": "tests/invalid/integration/no-header.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/missing-title.md",
+    "repair": "tests/valid/integration/missing-title.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_REQUIRED",
+        "check": "E_HEADER_REQUIRED",
+        "message": "Add the title field to the case header.",
+        "span": {
+          "file": "tests/invalid/integration/missing-title.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/flagged-without-reasons.md",
+    "repair": "tests/valid/integration/flagged-without-reasons.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_TYPE",
+        "check": "E_HEADER_TYPE",
+        "message": "A flagged case needs a nonempty list of flags describing its unresolved meanings.",
+        "span": {
+          "file": "tests/invalid/integration/flagged-without-reasons.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/wrong-header-type.md",
+    "repair": "tests/valid/integration/wrong-header-type.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_TYPE",
+        "check": "E_HEADER_TYPE",
+        "message": "The setter field must be written as text.",
+        "span": {
+          "file": "tests/invalid/integration/wrong-header-type.md",
+          "start": {
+            "offset": 53,
+            "line": 4,
+            "column": 9
+          },
+          "end": {
+            "offset": 54,
+            "line": 4,
+            "column": 10
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/wrong-format.md",
+    "repair": "tests/valid/integration/wrong-format.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_TYPE",
+        "check": "E_HEADER_TYPE",
+        "message": "Set format to open-rules for an Open Rules case file.",
+        "span": {
+          "file": "tests/invalid/integration/wrong-format.md",
+          "start": {
+            "offset": 12,
+            "line": 2,
+            "column": 9
+          },
+          "end": {
+            "offset": 17,
+            "line": 2,
+            "column": 14
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/wrong-status.md",
+    "repair": "tests/valid/integration/wrong-status.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_TYPE",
+        "check": "E_HEADER_TYPE",
+        "message": "Set status to read, confirmed or flagged.",
+        "span": {
+          "file": "tests/invalid/integration/wrong-status.md",
+          "start": {
+            "offset": 130,
+            "line": 8,
+            "column": 9
+          },
+          "end": {
+            "offset": 135,
+            "line": 8,
+            "column": 14
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/read-flags.md",
+    "repair": "tests/valid/integration/read-flags.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_TYPE",
+        "check": "E_HEADER_TYPE",
+        "message": "A read case cannot have flags; use flagged status to record unresolved meanings.",
+        "span": {
+          "file": "tests/invalid/integration/read-flags.md",
+          "start": {
+            "offset": 142,
+            "line": 9,
+            "column": 8
+          },
+          "end": {
+            "offset": 153,
+            "line": 9,
+            "column": 19
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/bad-library.md",
+    "repair": "tests/valid/integration/bad-library.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LIBRARY_URL",
+        "check": "E_LIBRARY_URL",
+        "message": "The library field must be a full HTTP or HTTPS URL ending in /, without a query, fragment or login.",
+        "span": {
+          "file": "tests/invalid/integration/bad-library.md",
+          "start": {
+            "offset": 90,
+            "line": 7,
+            "column": 10
+          },
+          "end": {
+            "offset": 105,
+            "line": 7,
+            "column": 25
+          }
+        }
+      },
+      {
+        "code": "E_KIND_UNKNOWN",
+        "check": "E_KIND_UNKNOWN",
+        "message": "sudoku has no definition in this library; use a declared kind or a full URL for another rule.",
+        "span": {
+          "file": "tests/invalid/integration/bad-library.md",
+          "start": {
+            "offset": 133,
+            "line": 12,
+            "column": 1
+          },
+          "end": {
+            "offset": 139,
+            "line": 12,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/missing-rules.md",
+    "repair": "tests/valid/integration/missing-rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_RULES_REQUIRED",
+        "check": "E_RULES_REQUIRED",
+        "message": "Add a fenced rules block containing the puzzle's rule references.",
+        "span": {
+          "file": "tests/invalid/integration/missing-rules.md",
+          "start": {
+            "offset": 139,
+            "line": 10,
+            "column": 1
+          },
+          "end": {
+            "offset": 139,
+            "line": 10,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/unknown-kind.md",
+    "repair": "tests/valid/integration/unknown-kind.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_KIND_UNKNOWN",
+        "check": "E_KIND_UNKNOWN",
+        "message": "missing-rule has no definition in this library; use a declared kind or a full URL for another rule.",
+        "span": {
+          "file": "tests/invalid/integration/unknown-kind.md",
+          "start": {
+            "offset": 149,
+            "line": 12,
+            "column": 1
+          },
+          "end": {
+            "offset": 161,
+            "line": 12,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/unknown-local-url.md",
+    "repair": "tests/valid/integration/unknown-local-url.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_KIND_UNKNOWN",
+        "check": "E_KIND_UNKNOWN",
+        "message": "https://fixtures.example/rules/missing.md has no definition in this library; use a declared kind or a full URL for another rule.",
+        "span": {
+          "file": "tests/invalid/integration/unknown-local-url.md",
+          "start": {
+            "offset": 149,
+            "line": 12,
+            "column": 1
+          },
+          "end": {
+            "offset": 190,
+            "line": 12,
+            "column": 42
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/bad-reference.md",
+    "repair": "tests/valid/integration/bad-reference.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_KIND_UNKNOWN",
+        "check": "E_KIND_UNKNOWN",
+        "message": "../../missing is not a rule kind or a full Markdown rule URL.",
+        "span": {
+          "file": "tests/invalid/integration/bad-reference.md",
+          "start": {
+            "offset": 149,
+            "line": 12,
+            "column": 1
+          },
+          "end": {
+            "offset": 162,
+            "line": 12,
+            "column": 14
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/duplicate-field.md",
+    "repair": "tests/valid/integration/duplicate-field.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "This header cannot be read; check the field names, colons, indentation and brackets.",
+        "span": {
+          "file": "tests/invalid/integration/duplicate-field.md",
+          "start": {
+            "offset": 135,
+            "line": 9,
+            "column": 1
+          },
+          "end": {
+            "offset": 136,
+            "line": 9,
+            "column": 2
+          }
+        },
+        "detail": "DUPLICATE_KEY: Map keys must be unique at line 8, column 1:\n\nstatus: read\nstatus: read\n^\n"
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/header-shortcut.md",
+    "repair": "tests/valid/integration/header-shortcut.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Write each header value directly; references to other header values using *name are not supported.",
+        "span": {
+          "file": "tests/invalid/integration/header-shortcut.md",
+          "start": {
+            "offset": 81,
+            "line": 6,
+            "column": 7
+          },
+          "end": {
+            "offset": 83,
+            "line": 6,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/home-hidden-formula.md",
+    "repair": "tests/valid/integration/home-hidden-formula.md",
+    "mode": "library",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "The home index cannot declare formulas; put a rule's formula on its kind page.",
+        "span": {
+          "file": "tests/invalid/integration/home-hidden-formula.md",
+          "start": {
+            "offset": 25,
+            "line": 3,
+            "column": 11
+          },
+          "end": {
+            "offset": 29,
+            "line": 3,
+            "column": 15
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/missing-alias-target.md",
+    "repair": "tests/valid/integration/missing-alias-target.md",
+    "mode": "library",
+    "diagnostics": [
+      {
+        "code": "E_ALIAS_TARGET",
+        "check": "E_ALIAS_TARGET",
+        "message": "The alias alias must point to an existing rule definition; missing is missing, invalid or another alias.",
+        "span": {
+          "file": "tests/invalid/integration/missing-alias-target.md",
+          "start": {
+            "offset": 83,
+            "line": 5,
+            "column": 11
+          },
+          "end": {
+            "offset": 90,
+            "line": 5,
+            "column": 18
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/redefined-alias.md",
+    "repair": "tests/valid/integration/redefined-alias.md",
+    "mode": "library",
+    "diagnostics": [
+      {
+        "code": "E_ALIAS_TARGET",
+        "check": "E_ALIAS_TARGET",
+        "message": "The alias alias must name one target and must not declare parameters or a formula.",
+        "span": {
+          "file": "tests/invalid/integration/redefined-alias.md",
+          "start": {
+            "offset": 83,
+            "line": 5,
+            "column": 11
+          },
+          "end": {
+            "offset": 89,
+            "line": 5,
+            "column": 17
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/alias-cycle.md",
+    "repair": "tests/valid/integration/alias-cycle.md",
+    "mode": "library",
+    "diagnostics": [
+      {
+        "code": "E_ALIAS_TARGET",
+        "check": "E_ALIAS_TARGET",
+        "message": "The alias alias must point to an existing rule definition; alias is missing, invalid or another alias.",
+        "span": {
+          "file": "tests/invalid/integration/alias-cycle.md",
+          "start": {
+            "offset": 83,
+            "line": 5,
+            "column": 11
+          },
+          "end": {
+            "offset": 88,
+            "line": 5,
+            "column": 16
+          }
+        }
+      }
+    ]
+  }
+]

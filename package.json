@@ -5,6 +5,7 @@
   "files": [
     "dist",
     "spec",
+    "rules",
     "LICENSE",
     "README.md"
   ],

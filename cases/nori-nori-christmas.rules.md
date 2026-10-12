@@ -1,0 +1,167 @@
+---
+fog:
+  initiallyLit:
+    - 1
+    - 10
+    - 11
+format: open-rules
+title: Nori Nori Christmas
+setter: Sandra & Nala
+source: ""
+case: https://sudoku-sleuth.com/cases/nori-nori-christmas
+library: https://rules.sudoku-sleuth.com/
+status: read
+board:
+  rows: 9
+  cols: 9
+  symbols:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  regions:
+    - - r1c1
+      - r1c2
+      - r1c3
+      - r2c1
+      - r2c2
+      - r2c3
+      - r3c1
+      - r3c2
+      - r3c3
+    - - r1c4
+      - r1c5
+      - r1c6
+      - r2c4
+      - r2c5
+      - r2c6
+      - r3c4
+      - r3c5
+      - r3c6
+    - - r1c7
+      - r1c8
+      - r1c9
+      - r2c7
+      - r2c8
+      - r2c9
+      - r3c7
+      - r3c8
+      - r3c9
+    - - r4c1
+      - r4c2
+      - r4c3
+      - r5c1
+      - r5c2
+      - r5c3
+      - r6c1
+      - r6c2
+      - r6c3
+    - - r4c4
+      - r4c5
+      - r4c6
+      - r5c4
+      - r5c5
+      - r5c6
+      - r6c4
+      - r6c5
+      - r6c6
+    - - r4c7
+      - r4c8
+      - r4c9
+      - r5c7
+      - r5c8
+      - r5c9
+      - r6c7
+      - r6c8
+      - r6c9
+    - - r7c1
+      - r7c2
+      - r7c3
+      - r8c1
+      - r8c2
+      - r8c3
+      - r9c1
+      - r9c2
+      - r9c3
+    - - r7c4
+      - r7c5
+      - r7c6
+      - r8c4
+      - r8c5
+      - r8c6
+      - r9c4
+      - r9c5
+      - r9c6
+    - - r7c7
+      - r7c8
+      - r7c9
+      - r8c7
+      - r8c8
+      - r8c9
+      - r9c7
+      - r9c8
+      - r9c9
+---
+
+```rules
+unique-1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9
+unique-2: unique r2c1-r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9
+unique-3: unique r3c1-r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9
+unique-4: unique r4c1-r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8-r4c9
+unique-5: unique r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9
+unique-6: unique r6c1-r6c2-r6c3-r6c4-r6c5-r6c6-r6c7-r6c8-r6c9
+unique-7: unique r7c1-r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8-r7c9
+unique-8: unique r8c1-r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8-r8c9
+unique-9: unique r9c1-r9c2-r9c3-r9c4-r9c5-r9c6-r9c7-r9c8-r9c9
+unique-10: unique r1c1-r2c1-r3c1-r4c1-r5c1-r6c1-r7c1-r8c1-r9c1
+unique-11: unique r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2
+unique-12: unique r1c3-r2c3-r3c3-r4c3-r5c3-r6c3-r7c3-r8c3-r9c3
+unique-13: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4-r8c4-r9c4
+unique-14: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5-r9c5
+unique-15: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6-r9c6
+unique-16: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7-r9c7
+unique-17: unique r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8-r9c8
+unique-18: unique r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9
+unique-19: unique r1c1-r1c2-r1c3-r2c1-r2c2-r2c3-r3c1-r3c2-r3c3
+unique-20: unique r1c4-r1c5-r1c6-r2c4-r2c5-r2c6-r3c4-r3c5-r3c6
+unique-21: unique r1c7-r1c8-r1c9-r2c7-r2c8-r2c9-r3c7-r3c8-r3c9
+unique-22: unique r4c1-r4c2-r4c3-r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
+unique-23: unique r4c4-r4c5-r4c6-r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
+unique-24: unique r4c7-r4c8-r4c9-r5c7-r5c8-r5c9-r6c7-r6c8-r6c9
+unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
+unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
+unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
+cage-1: cage r1c2-r2c2-r2c3 total 23 connected true
+cage-2: cage r1c1-r2c1-r3c1 total 13 connected true
+cage-3: cage r1c5-r1c6-r2c6 total 12 connected true
+cage-4: cage r1c8-r1c9-r2c8-r3c8 total 21 connected true
+cage-5: cage r1c3-r1c4-r2c4-r3c3-r3c4 total 31 connected true
+cage-6: cage r1c7-r2c5-r2c7-r3c5-r3c6-r3c7 connected true
+cage-7: cage r2c9-r3c9-r4c5-r4c6-r4c7-r4c8-r4c9 connected true
+cage-8: cage r3c2-r4c2-r4c3-r4c4-r5c2 total 17 connected true
+cage-9: cage r4c1-r5c1-r5c3-r6c1-r6c2-r6c3-r7c1-r7c2 connected true
+cage-10: cage r7c3-r8c2-r8c3 total 7 connected true
+cage-11: cage r8c1-r9c1-r9c2-r9c3-r9c4 total 30 connected true
+cage-12: cage r7c5-r8c4-r8c5-r8c6-r9c5-r9c6-r9c7 connected true
+cage-13: cage r5c4-r5c5-r5c6-r6c4-r6c5-r7c4 connected true
+cage-14: cage r5c7-r5c8-r6c6-r6c7-r6c8-r7c6-r7c7 connected true
+cage-15: cage r5c9-r6c9-r7c8-r7c9-r8c7-r8c8-r8c9-r9c8-r9c9 connected true
+kropki r4c6-r5c6 colour "white"
+```
+
+Christmastime is coming soon and it’s probably not too early to do some baking! Nala is eager to help out with anything, but she may not be the best fit when it comes to cutting out the cookies and placing them on the tray so they don’t touch each other when they go into the oven. She might need some help with that. Would you mind?
+
+Normal sudoku rules apply: Place the digits 1-9 in every row, column and box exactly once each.
+
+Digits in a dashed cage must sum to the value in the top left corner of the cage (if given). Digits may not repeat within their own cage.
+
+Nori Nori Christmas: Shade exactly two cells in each cage. Each shaded area forms a domino (cookie), not necessarily within a cage. Shaded dominoes may touch diagonally, but not orthogonally. A shaded domino functions as a black Kropki dot, i.e. digits in a shaded domino are in a ratio of 2:1. It is possible for unshaded dominoes to be in a 2:1 ratio. 
+
+Digits separated by a white sugar decoration dot are consecutive. Not all possible dots are given. 
+
+Additionally the grid is partially covered in fog. Placing correct digits will clear the fog from surrounding cells, possibly revealing more clues.

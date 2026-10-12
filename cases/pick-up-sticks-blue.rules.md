@@ -1,0 +1,66 @@
+---
+format: open-rules
+title: Pick-up Sticks (Blue)
+setter: Marty Sears
+source: https://sudokupad.app/rge5pbwzk4
+case: https://sudoku-sleuth.com/cases/pick-up-sticks-blue
+library: https://rules.sudoku-sleuth.com/
+status: read
+drawingCoverage: unclaimed-only
+---
+
+```rules
+sudoku 9x9
+```
+
+```drawing
+- {"id":"drawing-2","rules":[],"visual":{"kind":"line","points":[[3,7],[3,9],[6,9],[6,6],[3,6],[3,7]],"color":"#f9d8c8ff","thickness":6.4,"rounded":true,"layer":"over"}}
+- {"id":"drawing-3","rules":[],"visual":{"kind":"line","points":[[3,9],[0,9],[0,6],[3,6],[3,3],[0,3],[0,6]],"color":"#f9d8c8ff","thickness":6.4,"rounded":true,"layer":"over"}}
+- {"id":"drawing-4","rules":[],"visual":{"kind":"line","points":[[6,9],[9,9],[9,0],[6,0],[6,6],[9,6]],"color":"#f9d8c8ff","thickness":6.4,"rounded":true,"layer":"over"}}
+- {"id":"drawing-5","rules":[],"visual":{"kind":"line","points":[[9,3],[3,3],[3,0],[0,0],[0,3]],"color":"#f9d8c8ff","thickness":6.4,"rounded":true,"layer":"over"}}
+- {"id":"drawing-6","rules":[],"visual":{"kind":"line","points":[[6,0],[3,0]],"color":"#f9d8c8ff","thickness":6.4,"rounded":true,"layer":"over"}}
+- {"id":"drawing-7","rules":[],"visual":{"kind":"line","points":[[0,1],[9,1]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-8","rules":[],"visual":{"kind":"line","points":[[9,2],[8,2],[8,0]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-9","rules":[],"visual":{"kind":"line","points":[[7,0],[7,2],[8,2],[8,4],[9,4]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-10","rules":[],"visual":{"kind":"line","points":[[9,5],[8,5],[8,4],[7,4],[7,2],[5,2],[5,0]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-11","rules":[],"visual":{"kind":"line","points":[[4,0],[4,2],[5,2],[5,4],[7,4],[7,5],[8,5],[8,7],[9,7]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-12","rules":[],"visual":{"kind":"line","points":[[9,8],[8,8],[8,7],[7,7],[7,5],[5,5],[5,4],[4,4],[4,2],[2,2],[2,0]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-13","rules":[],"visual":{"kind":"line","points":[[8,9],[8,8],[7,8],[7,9]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-14","rules":[],"visual":{"kind":"line","points":[[5,9],[5,5],[4,5],[4,4],[2,4],[2,2],[1,2],[1,0]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"line","points":[[4,9],[4,5],[2,5],[2,4],[1,4],[1,2],[0,2]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"line","points":[[2,9],[2,5],[1,5],[1,4],[0,4]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"line","points":[[1,9],[1,5],[0,5]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"line","points":[[0,8],[7,8],[7,7],[0,7]],"color":"#f9d8c8ff","thickness":2.56,"rounded":true,"layer":"over"}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"line","points":[[5.3,2.3],[6.7,3.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"line","points":[[5.3,2.3],[6.7,3.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"line","points":[[7.7,1.3],[4.3,4.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"line","points":[[7.7,1.3],[4.3,4.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"line","points":[[2.3,1.3],[7.7,6.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"line","points":[[2.3,1.3],[7.7,6.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"line","points":[[3.7,1.3],[2.3,2.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"line","points":[[3.7,1.3],[2.3,2.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"line","points":[[7.7,5.3],[6.3,6.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-28","rules":[],"visual":{"kind":"line","points":[[7.7,5.3],[6.3,6.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-29","rules":[],"visual":{"kind":"line","points":[[5.3,1.3],[7.7,3.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-30","rules":[],"visual":{"kind":"line","points":[[5.3,1.3],[7.7,3.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-31","rules":[],"visual":{"kind":"line","points":[[4.7,2.3],[1.3,5.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-32","rules":[],"visual":{"kind":"line","points":[[4.7,2.3],[1.3,5.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-33","rules":[],"visual":{"kind":"line","points":[[8.7,3.3],[3.3,8.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-34","rules":[],"visual":{"kind":"line","points":[[8.7,3.3],[3.3,8.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-35","rules":[],"visual":{"kind":"line","points":[[0.3,3.3],[5.7,8.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-36","rules":[],"visual":{"kind":"line","points":[[0.3,3.3],[5.7,8.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-37","rules":[],"visual":{"kind":"line","points":[[5.7,0.3],[0.3,5.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-38","rules":[],"visual":{"kind":"line","points":[[5.5,0.5],[5.3,0.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-39","rules":[],"visual":{"kind":"line","points":[[5.7,0.3],[0.3,5.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-40","rules":[],"visual":{"kind":"line","points":[[5.5,0.5],[5.3,0.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-41","rules":[],"visual":{"kind":"line","points":[[7.7,0.5],[1.3,0.5]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-42","rules":[],"visual":{"kind":"line","points":[[7.7,0.5],[1.3,0.5]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+- {"id":"drawing-43","rules":[],"visual":{"kind":"line","points":[[8.5,1.3],[8.5,8.7]],"color":"#FFFFFF","thickness":19.2,"rounded":true,"layer":"over"}}
+- {"id":"drawing-44","rules":[],"visual":{"kind":"line","points":[[8.5,1.3],[8.5,8.7]],"color":"#63c9ffff","thickness":9.6,"rounded":true,"layer":"over"}}
+```
+
+Normal sudoku rules apply.
+
+3x3 box borders divide a blue stick into segments. Each segment along a stick has the same sum. This segment sum can be different for different sticks.
+
+A stick always has a lower total (the sum of ALL its digits) than any stick which lies on top of it.

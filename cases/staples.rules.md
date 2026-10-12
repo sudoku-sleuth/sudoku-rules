@@ -1,0 +1,151 @@
+---
+format: open-rules
+title: Staples
+setter: sujoyku
+source: https://sudokupad.app/42kfvesv85
+case: https://sudoku-sleuth.com/cases/staples
+library: https://rules.sudoku-sleuth.com/
+status: read
+drawingCoverage: unclaimed-only
+board:
+  rows: 9
+  cols: 9
+  symbols:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  regions:
+    - - r1c1
+      - r1c2
+      - r1c3
+      - r2c1
+      - r2c2
+      - r2c3
+      - r3c1
+      - r3c2
+      - r3c3
+    - - r1c4
+      - r1c5
+      - r1c6
+      - r2c4
+      - r2c5
+      - r2c6
+      - r3c4
+      - r3c5
+      - r3c6
+    - - r1c7
+      - r1c8
+      - r1c9
+      - r2c7
+      - r2c8
+      - r2c9
+      - r3c7
+      - r3c8
+      - r3c9
+    - - r4c1
+      - r4c2
+      - r4c3
+      - r5c1
+      - r5c2
+      - r5c3
+      - r6c1
+      - r6c2
+      - r6c3
+    - - r4c4
+      - r4c5
+      - r4c6
+      - r5c4
+      - r5c5
+      - r5c6
+      - r6c4
+      - r6c5
+      - r6c6
+    - - r4c7
+      - r4c8
+      - r4c9
+      - r5c7
+      - r5c8
+      - r5c9
+      - r6c7
+      - r6c8
+      - r6c9
+    - - r7c1
+      - r7c2
+      - r7c3
+      - r8c1
+      - r8c2
+      - r8c3
+      - r9c1
+      - r9c2
+      - r9c3
+    - - r7c4
+      - r7c5
+      - r7c6
+      - r8c4
+      - r8c5
+      - r8c6
+      - r9c4
+      - r9c5
+      - r9c6
+    - - r7c7
+      - r7c8
+      - r7c9
+      - r8c7
+      - r8c8
+      - r8c9
+      - r9c7
+      - r9c8
+      - r9c9
+---
+
+```rules
+unique-1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9
+unique-2: unique r2c1-r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9
+unique-3: unique r3c1-r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9
+unique-4: unique r4c1-r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8-r4c9
+unique-5: unique r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9
+unique-6: unique r6c1-r6c2-r6c3-r6c4-r6c5-r6c6-r6c7-r6c8-r6c9
+unique-7: unique r7c1-r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8-r7c9
+unique-8: unique r8c1-r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8-r8c9
+unique-9: unique r9c1-r9c2-r9c3-r9c4-r9c5-r9c6-r9c7-r9c8-r9c9
+unique-10: unique r1c1-r2c1-r3c1-r4c1-r5c1-r6c1-r7c1-r8c1-r9c1
+unique-11: unique r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2
+unique-12: unique r1c3-r2c3-r3c3-r4c3-r5c3-r6c3-r7c3-r8c3-r9c3
+unique-13: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4-r8c4-r9c4
+unique-14: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5-r9c5
+unique-15: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6-r9c6
+unique-16: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7-r9c7
+unique-17: unique r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8-r9c8
+unique-18: unique r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9
+```
+
+```drawing
+- {"id":"drawing-1","rules":[],"visual":{"kind":"line","points":[[3.5,6.5],[4.5,5.5],[2.5,3.5],[1.5,4.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-2","rules":[],"visual":{"kind":"line","points":[[0.5,4.5],[0.5,5.5],[2.5,5.5],[2.5,4.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-3","rules":[],"visual":{"kind":"line","points":[[0.5,3.5],[1.5,3.5],[1.5,1.5],[0.5,1.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-4","rules":[],"visual":{"kind":"line","points":[[2.5,1.5],[2.5,0.5],[4.5,0.5],[4.5,1.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-5","rules":[],"visual":{"kind":"line","points":[[6.5,3.5],[5.5,2.5],[7.5,0.5],[8.5,1.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-6","rules":[],"visual":{"kind":"line","points":[[1.5,7.5],[1.5,8.5],[3.5,8.5],[3.5,7.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-7","rules":[],"visual":{"kind":"line","points":[[7.5,7.5],[8.5,6.5],[6.5,4.5],[5.5,5.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-8","rules":[],"visual":{"kind":"line","points":[[6.5,6.5],[5.5,6.5],[5.5,8.5],[6.5,8.5]],"color":"#c7d9ffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-9","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,1],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-10","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,3],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-11","rules":[],"visual":{"kind":"shape","layer":"over","center":[1,5.5],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-12","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,4],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-13","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,6],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-14","rules":[],"visual":{"kind":"shape","layer":"over","center":[7,1],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,3],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,8.5],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"shape","layer":"over","center":[8,6],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.5,8],"width":0.5,"height":0.5,"rounded":true,"fill":"#FFFFFF","stroke":"#c7d9ffff","thickness":6.4,"angle":0}}
+```
+
+Place the digits from 1-9 in the grid so that they do not repeat in any row or column. Digits can (and will) repeat in each 3x3 box. Each box will use exactly 3 of the digits from 1-9.
+
+Equal Split Lines: Dots divide blue lines into segments with equal sums. Note: Digits may repeat even within one segment.

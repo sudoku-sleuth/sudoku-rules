@@ -1,0 +1,55 @@
+---
+format: open-rules
+title: Irish Dots
+setter: Tingo
+source: https://tinyurl.com/u797k4an
+case: https://sudoku-sleuth.com/cases/irish-dots
+library: https://rules.sudoku-sleuth.com/
+status: read
+drawingCoverage: unclaimed-only
+---
+
+```rules
+sudoku 9x9
+kropki-1: kropki r5c1-r6c1 colour "white"
+kropki-2: kropki r2c4-r2c5 colour "white"
+kropki-3: kropki r6c5-r6c6 colour "white"
+kropki-4: kropki r8c6-r9c6 colour "white"
+kropki-5: kropki r9c4-r9c5 colour "white"
+kropki-6: kropki r5c9-r6c9 colour "white"
+kropki-7: kropki r2c2-r2c3 colour "white"
+kropki-8: kropki r3c3-r3c4 colour "white"
+kropki-9: kropki r5c2-r5c3 colour "white"
+kropki-10: kropki r5c7-r5c8 colour "white"
+kropki-11: kropki r4c3-r5c3 colour "white"
+kropki-12: kropki r4c1-r4c2 colour "white"
+kropki-13: kropki r4c3-r4c4 colour "white"
+```
+
+```drawing
+- {"id":"drawing-14","rules":[],"visual":{"kind":"shape","layer":"over","center":[5,1.5],"width":0.25,"height":0.25,"rounded":false,"fill":"#FF6600","stroke":"#000000","thickness":1,"textColor":"#000000","angle":45,"opacity":0.5}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,1],"width":0.25,"height":0.25,"rounded":false,"fill":"#FF6600","stroke":"#000000","thickness":1,"textColor":"#000000","angle":45,"opacity":0.5}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.5,2],"width":0.25,"height":0.25,"rounded":false,"fill":"#FF6600","stroke":"#000000","thickness":1,"textColor":"#000000","angle":45,"opacity":0.5}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,8],"width":0.25,"height":0.25,"rounded":false,"fill":"#FF6600","stroke":"#000000","thickness":1,"textColor":"#000000","angle":45,"opacity":0.5}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"shape","layer":"over","center":[4,4.5],"width":0.25,"height":0.25,"rounded":false,"fill":"#FF6600","stroke":"#000000","thickness":1,"textColor":"#000000","angle":45,"opacity":0.5}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,3],"width":0.5,"height":0.25,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,3],"width":0.5,"height":0.25,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.5,6],"width":0.5,"height":0.25,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,6],"width":0.5,"height":0.25,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.5,3],"width":0.5,"height":0.25,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"shape","layer":"over","center":[1.5,6],"width":0.5,"height":0.25,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,1.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,1.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,0.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-28","rules":[],"visual":{"kind":"shape","layer":"over","center":[7,0.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-29","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,4.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-30","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,4.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-31","rules":[],"visual":{"kind":"shape","layer":"over","center":[3,7.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+- {"id":"drawing-32","rules":[],"visual":{"kind":"shape","layer":"over","center":[6,7.5],"width":0.25,"height":0.5,"rounded":true,"fill":"#00FF00","stroke":"#000000","thickness":1,"textColor":"#000000","opacity":0.5}}
+```
+
+Normal Sudoku Rules Apply
+Cells separated by white dots have consecutive values.
+Cells separated by green dots (ovals) have a value ratio of 3:1.
+Cells separated by orange dots (diamonds) have a value difference of 3, i.e. 1.4.7, 2.5.8, 3.6.9
+Not all dots are given.

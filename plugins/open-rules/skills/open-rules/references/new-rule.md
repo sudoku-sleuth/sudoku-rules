@@ -1,6 +1,6 @@
 # Propose a rule page
 
-Use a new meaning and a new kind. Kind names use lowercase letters and digits, separated by single hyphens; `cases`, `style`, and `index` are reserved. Read comparable published pages and [terms.md](terms.md) first.
+Use a new meaning and a new kind. Kind names use lowercase letters and digits, separated by single hyphens; `cases` and `style` are reserved. Read comparable published pages and [terms.md](terms.md) first.
 
 Use this page structure, replacing the sample weighted-triple definition with the setter's proposed meaning:
 

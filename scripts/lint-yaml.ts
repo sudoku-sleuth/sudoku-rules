@@ -1,4 +1,4 @@
-import { markdownFiles, readPage, validatePage } from "./content";
+import { markdownFiles, readPage, validateAliases, validatePage } from "./content";
 import { stat } from "node:fs/promises";
 
 export async function lintFile(file: string, isCase = file.endsWith(".rules.md")) {
@@ -25,6 +25,10 @@ export async function lintYaml(root = ".") {
     try {
       await lintFile(file, caseFiles.has(file));
     } catch (error) { errors.push(`${file}: ${error instanceof Error ? error.message : error}`); }
+  }
+  if (!errors.length) {
+    const pages = await Promise.all((await markdownFiles(root, "rules")).map(async file => { const page = await readPage(file); return {...page, slug: validatePage(page.metadata,file)}; }));
+    try { validateAliases(pages); } catch(error) {errors.push(error instanceof Error ? error.message : String(error));}
   }
   if (errors.length) throw new Error(errors.join("\n"));
   return files.length;

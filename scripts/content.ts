@@ -8,12 +8,21 @@ export type Metadata = Record<string, unknown>;
 
 export function validatePage(metadata: Metadata, file: string) {
   const slug = basename(file, ".md");
+  if (slug === "README" && metadata.document === "home" && metadata.kind === undefined) {
+    if (typeof metadata.name !== "string" || !metadata.name.trim()) throw new Error(`${file}: name must be a nonempty string`);
+    if (metadata.url !== `${origin}/README.md`) throw new Error(`${file}: url must be ${origin}/README.md`);
+    return slug;
+  }
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error(`${file}: invalid page slug ${slug}`);
-  if (["cases", "style", "index"].includes(slug)) throw new Error(`${file}: reserved page slug ${slug}`);
+  if (["cases", "style"].includes(slug)) throw new Error(`${file}: reserved page slug ${slug}`);
   if (metadata.kind !== undefined) {
     if (typeof metadata.kind !== "string") throw new Error(`${file}: kind must be a string`);
     if (metadata.kind !== slug) throw new Error(`${file}: kind must match filename`);
   }
+  const alias = metadata.alias_of ?? metadata.aliasOf;
+  if (alias !== undefined && (typeof alias !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(alias) || alias === slug)) throw new Error(`${file}: alias target must be a different rule kind`);
+  if (metadata.alias_of !== undefined && metadata.aliasOf !== undefined) throw new Error(`${file}: declare alias_of only once`);
+  if (alias !== undefined && (metadata.kind !== slug || metadata.parameters !== undefined)) throw new Error(`${file}: alias pages declare their own kind and no parameters`);
   if (typeof metadata.name !== "string" || !metadata.name.trim()) throw new Error(`${file}: name must be a nonempty string`);
   if (metadata.url !== `${origin}/${slug}.md`) throw new Error(`${file}: url must be ${origin}/${slug}.md`);
   return slug;
@@ -37,7 +46,7 @@ export async function markdownFiles(root: string, folder: string, suffix = ".md"
     if (error.code === "ENOENT") return [];
     throw error;
   });
-  return entries.filter(e => e.isFile() && e.name.endsWith(suffix) && !["AGENTS.md", "CLAUDE.md", "README.md"].includes(e.name))
+  return entries.filter(e => e.isFile() && e.name.endsWith(suffix) && !["AGENTS.md", "CLAUDE.md"].includes(e.name))
     .map(e => join(directory, e.name)).sort();
 }
 
@@ -92,4 +101,15 @@ export function ruleShape(metadata: Metadata) {
 export async function readPage(file: string) {
   const bytes = await readFile(file);
   return { bytes, ...frontMatter(bytes.toString("utf8"), file) };
+}
+
+export function validateAliases(pages: {slug: string; metadata: Metadata; body: string}[]) {
+  const bySlug = new Map(pages.map(page => [page.slug, page]));
+  for (const page of pages) {
+    const target = page.metadata.alias_of ?? page.metadata.aliasOf;
+    if (target === undefined) continue;
+    const definition = bySlug.get(String(target));
+    if (!definition?.metadata.kind || definition.metadata.alias_of !== undefined || definition.metadata.aliasOf !== undefined) throw new Error(`${page.slug}: alias target ${target} must be an existing definition, not an alias`);
+    if (/^\s*```(?:text|openrules)\s*$/m.test(page.body)) throw new Error(`${page.slug}: alias pages must not redefine a formula`);
+  }
 }

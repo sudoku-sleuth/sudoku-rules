@@ -2,7 +2,7 @@ import { expect, test } from "bun:test";
 import { compileLibrary, compilePrelude } from "../../src/index";
 import { lintFiles } from "../../src/cli";
 
-const preludePage = { file: "spec/prelude.md", text: await Bun.file("spec/prelude.md").text() };
+const preludePage = { file: "spec/prelude.md", text: await Bun.file("tests/fixtures/typed-prelude.md").text() };
 test("library compilation is atomic and never returns a partially checked library", async () => {
   const good = { file: "good.md", text: await Bun.file("tests/valid/rules/undefined-partial.md").text() };
   const bad = { file: "bad.md", text: await Bun.file("tests/invalid/rules/undefined-partial.md").text() };
@@ -20,8 +20,9 @@ test("CLI reports checked formula pages and explicitly pending case checks", asy
   expect(bad.checked).toBe(0);
   expect(bad.diagnostics[0].code).toBe("E_NAME_UNDEFINED");
   const cases = await lintFiles("tests/fixtures/cases");
-  expect(cases.checked).toBe(0);
-  expect(cases.files).toBe(0);
+  expect(cases.checked).toBe(85);
+  expect(cases.cases).toBe(1);
+  expect(cases.references).toBe(9);
   expect(cases.pending).toContain("rule-line validation");
 });
 test("CLI exit status distinguishes invalid source from invocation errors", async () => {

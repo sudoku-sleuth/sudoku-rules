@@ -4,7 +4,7 @@ import { compilePage, compilePrelude, languageChecks, type Diagnostic } from "..
 
 interface Fixture { file: string; repair: string; mode: "page" | "prelude"; code: string; diagnostics: Diagnostic[] }
 const manifest: Fixture[] = await Bun.file("tests/invalid/expected.json").json();
-const prelude = compilePrelude({ file: "spec/prelude.md", text: await Bun.file("spec/prelude.md").text() }).value!;
+const prelude = compilePrelude({ file: "spec/prelude.md", text: await Bun.file("tests/fixtures/typed-prelude.md").text() }).value!;
 
 test("every registered slice-1 check has a raw rejecting fixture and a repair", async () => {
   expect([...new Set(manifest.map(entry => entry.code))].sort()).toEqual([...languageChecks].sort());

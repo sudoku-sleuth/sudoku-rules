@@ -1,0 +1,80 @@
+---
+format: open-rules
+title: Three Color Theorem
+setter: Will Power
+source: https://sudokupad.app/uawwihsu2c
+case: https://sudoku-sleuth.com/cases/three-color-theorem
+library: https://rules.sudoku-sleuth.com/
+status: read
+drawingCoverage: unclaimed-only
+---
+
+```rules
+sudoku 9x9
+cage-1: cage r4c3-r5c2-r5c3 total 10 connected true
+cage-2: cage r4c9-r5c8-r5c9 total 11 connected true
+cage-3: cage r8c3-r9c2-r9c3 total 12 connected true
+cage-4: cage r4c4-r4c5-r5c4 total 13 connected true
+cage-5: cage r6c1-r7c1-r7c2 total 14 connected true
+cage-6: cage r1c1-r1c2-r1c3 total 15 connected true
+cage-7: cage r3c4-r3c5-r3c6 total 17 connected true
+cage-8: cage r8c9-r9c8-r9c9 total 16 connected true
+cage-9: cage r3c1-r3c2-r3c3 total 18 connected true
+cage-10: cage r2c7-r2c8-r2c9 total 19 connected true
+cage-11: cage r8c1-r8c2-r9c1 total 20 connected true
+cage-12: cage r8c6-r9c5-r9c6 total 16 connected true
+cage-13: cage r4c6-r5c5-r5c6 total 16 connected true
+kropki-1: kropki r1c1-r2c1 colour "black"
+kropki-2: kropki r2c1-r3c1 colour "black"
+kropki-3: kropki r1c3-r2c3 colour "black"
+kropki-4: kropki r3c3-r3c4 colour "black"
+kropki-5: kropki r2c4-r3c4 colour "black"
+kropki-6: kropki r1c3-r1c4 colour "black"
+kropki-7: kropki r1c6-r1c7 colour "black"
+kropki-8: kropki r1c9-r2c9 colour "black"
+kropki-9: kropki r2c7-r3c7 colour "black"
+kropki-10: kropki r1c6-r2c6 colour "black"
+kropki-11: kropki r3c6-r3c7 colour "black"
+kropki-12: kropki r3c9-r4c9 colour "black"
+kropki-13: kropki r9c7-r9c8 colour "black"
+kropki-14: kropki r7c8-r8c8 colour "black"
+kropki-15: kropki r7c9-r8c9 colour "black"
+kropki-16: kropki r5c8-r6c8 colour "black"
+kropki-17: kropki r5c7-r6c7 colour "black"
+kropki-18: kropki r4c8-r4c9 colour "black"
+kropki-19: kropki r4c5-r4c6 colour "black"
+kropki-20: kropki r5c4-r6c4 colour "black"
+kropki-21: kropki r5c5-r6c5 colour "black"
+kropki-22: kropki r9c4-r9c5 colour "black"
+kropki-23: kropki r7c5-r8c5 colour "black"
+kropki-24: kropki r7c6-r8c6 colour "black"
+kropki-25: kropki r9c1-r9c2 colour "black"
+kropki-26: kropki r5c1-r6c1 colour "black"
+kropki-27: kropki r7c2-r8c2 colour "black"
+kropki-28: kropki r7c3-r8c3 colour "black"
+kropki-29: kropki r5c2-r6c2 colour "black"
+kropki-30: kropki r4c2-r4c3 colour "black"
+```
+
+```drawing
+- {"id":"drawing-14","rules":[],"visual":{"kind":"cage","cells":[66,67,75],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"cage","cells":[56,57,58],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"cage","cells":[59,60,61],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"cage","cells":[69,70,78],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"cage","cells":[52,53,62],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"cage","cells":[49,50,51],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"cage","cells":[46,47,48],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"cage","cells":[27,28,36],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"cage","cells":[33,34,42],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"cage","cells":[24,25,26],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"cage","cells":[6,7,8],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"cage","cells":[3,4,5],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"cage","cells":[12,13,14],"color":"#000000","labelColor":"#000000"}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"cage","cells":[9,10,11],"color":"#000000","labelColor":"#000000"}}
+```
+
+Normal Sudoku rules apply. 
+
+KILLER CAGES(+)- Numbers in cages sum to the number in the top left corner of the cage (if given). The center cell of ALL cages has an interesting property that must be determined by the solver. Numbers may not repeat in cages.
+
+KROPKI PAIRS- Numbers with a black dot between them are in a ratio of 2:1. Not all possible dots are given.

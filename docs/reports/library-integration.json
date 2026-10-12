@@ -1,0 +1,90 @@
+{
+  "pages": 85,
+  "ruleDefinitions": 80,
+  "aliases": 2,
+  "documents": 3,
+  "formulaBlocks": 82,
+  "sharedDeclarations": 98,
+  "cases": 3892,
+  "knownReferences": 74837,
+  "deferredReferences": 0,
+  "diagnostics": 0,
+  "tests": 278,
+  "languageFixturePairs": 98,
+  "integrationFixturePairs": 18,
+  "timings": [
+    {
+      "step": "YAML lint",
+      "seconds": 0.52,
+      "exit": 0,
+      "output": [
+        "$ bun scripts/lint-yaml.ts",
+        "YAML front matter: 3977 files checked"
+      ]
+    },
+    {
+      "step": "Spec and cases",
+      "seconds": 0.769,
+      "exit": 0,
+      "output": [
+        "$ bun scripts/lint-spec.ts",
+        "Formula lint: 85/85 pages checked; 82 formula blocks. Cases: 3892 headers/reference lists; 74837 references; 0 deferred URLs. Pending: rule-line validation, URL resolution, example evaluation."
+      ]
+    },
+    {
+      "step": "Skill lint",
+      "seconds": 0.174,
+      "exit": 0,
+      "output": [
+        "$ bun scripts/lint-skill.ts",
+        "Skill lint: 5 references and 3 case examples checked",
+        "Formula lint: 85/85 pages checked; 82 formula blocks. Cases: 3 headers/reference lists; 7 references; 1 deferred URLs. Pending: rule-line validation, URL resolution, example evaluation."
+      ]
+    },
+    {
+      "step": "Tests",
+      "seconds": 1.947,
+      "exit": 0,
+      "output": [
+        "bun test v1.2.23 (cf136713)",
+        "",
+        " 278 pass",
+        " 0 fail",
+        " 4949 expect() calls",
+        "Ran 278 tests across 7 files. [1.94s]"
+      ]
+    },
+    {
+      "step": "Typecheck",
+      "seconds": 0.517,
+      "exit": 0,
+      "output": [
+        "$ tsc --noEmit"
+      ]
+    },
+    {
+      "step": "Package build",
+      "seconds": 0.562,
+      "exit": 0,
+      "output": [
+        "$ bun scripts/build-package.ts",
+        "Built portable package and openrules CLI \u2192 dist/"
+      ]
+    },
+    {
+      "step": "Site build",
+      "seconds": 0.932,
+      "exit": 0,
+      "output": [
+        "$ bun scripts/build.ts",
+        "Built 85 pages and 3892 cases \u2192 /Users/afifim/Development/SudokuSleuth/.codex/worktrees/sudoku-rules-public/_site"
+      ]
+    },
+    {
+      "step": "actionlint",
+      "seconds": 0.037,
+      "exit": 0,
+      "output": []
+    }
+  ]
+}

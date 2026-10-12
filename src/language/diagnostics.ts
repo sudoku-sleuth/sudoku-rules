@@ -3,7 +3,7 @@ export const languageChecks = [
   "E_NAME_UNBOUND", "E_CALL_ARITY", "E_TYPE", "E_NAME_SHADOW", "E_RECURSION",
   "E_OPERATION_UNGUARDED", "E_LOGIC_CLASS", "E_ARITHMETIC", "E_LANGUAGE_LIMIT",
 ] as const;
-export type DiagnosticCode = typeof languageChecks[number];
+export type DiagnosticCode = typeof languageChecks[number] | "E_HEADER_REQUIRED" | "E_HEADER_TYPE" | "E_LIBRARY_URL" | "E_RULES_REQUIRED" | "E_KIND_UNKNOWN" | "E_ALIAS_TARGET";
 export interface Position { offset: number; line: number; column: number }
 export interface Span { file: string; start: Position; end: Position }
 export interface Diagnostic { code: DiagnosticCode; check: DiagnosticCode; message: string; span: Span; detail?: string }

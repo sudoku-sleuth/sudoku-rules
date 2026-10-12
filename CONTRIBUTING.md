@@ -4,7 +4,7 @@ Propose changes through a pull request. Published rule meanings are fixed. Clari
 
 ## Rule pages
 
-Add `rules/<kind>.md` using lowercase letters and digits, with single hyphens between segments. The slugs `cases`, `style`, and `index` are reserved. Start with YAML front matter:
+Add `rules/<kind>.md` using lowercase letters and digits, with single hyphens between segments. The slugs `cases` and `style` are reserved; `index` is a rule route, while the catalogue lives at `/`. Start with YAML front matter:
 
 ```yaml
 ---
@@ -28,7 +28,7 @@ Use the approved page order:
 
 Use setter terms for parameters. Link mathematical notation to `https://rules.sudoku-sleuth.com/predicates.md`. Keep public links public and retain Unicode maths symbols. An optional `shape` string selects the site's index group.
 
-Shared definition pages have `name` and `url`, with no `kind`. Their filenames determine their raw and HTML routes.
+Shared definition pages have `name`, `url` and `document: prelude`, `document: syntax` or `document: home`, with no `kind`. Alias pages declare their own `kind` and `alias_of` (or `aliasOf`), pointing directly to a definition; they declare no parameters or formula. Their filenames determine their raw and HTML routes.
 
 ## Cases
 
@@ -47,4 +47,4 @@ bun run build
 
 In the PR, explain the meaning and parameters, link supporting cases, and identify any changes to shared definitions. For generator changes, cover byte preservation, routes, and index entries in `tests/`. Keep `tests/fixtures/` separate from publishable content.
 
-`lint:spec` checks formula syntax, explicit parameter/term signatures, names, types, logical class and exact constant arithmetic. Use [the grammar](spec/grammar.ebnf) and [typed prelude](spec/prelude.md). Guard indexed and optional operations before reading them. Add a raw rejecting fixture and a passing repair for every new language check; record its exact ordered diagnostic and full span in `tests/invalid/expected.json`. Case syntax, URL resolution and example verdicts are later slices and are explicitly reported as pending. Preserve the package script and workflow entry point as these phases arrive.
+`lint:spec` checks formula syntax, explicit parameter/term signatures, names, types, logical class and exact constant arithmetic. Use [the grammar](spec/grammar.ebnf) and [typed prelude](rules/predicates.md). Guard indexed and optional operations before reading them. Add a raw rejecting fixture and a passing repair for every new language check; record its exact ordered diagnostic, setter-facing message and full span in `tests/invalid/expected.json`. Case headers and known rule references are checked now. Full parameter decoding, custom definitions, URL resolution and example verdicts are later slices and are explicitly reported as pending. Preserve the package script and workflow entry point as these phases arrive.

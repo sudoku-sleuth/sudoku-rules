@@ -1,0 +1,195 @@
+---
+format: open-rules
+title: Leaning Tower
+setter: Marty Sears
+source: https://tinyurl.com/3959s82c
+case: https://sudoku-sleuth.com/cases/leaning-tower
+library: https://rules.sudoku-sleuth.com/
+status: flagged
+drawingCoverage: unclaimed-only
+flags:
+  - Some of the source rules still need to be included in our reading.
+  - The source describes Renban lines that are not yet included in our reading.
+board:
+  rows: 11
+  cols: 11
+  symbols:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+  regions:
+    - - r2c2
+      - r2c3
+      - r2c4
+      - r3c2
+      - r3c3
+      - r3c4
+      - r4c2
+      - r4c3
+      - r4c4
+    - - r2c5
+      - r2c6
+      - r2c7
+      - r3c5
+      - r3c6
+      - r3c7
+      - r4c5
+      - r4c6
+      - r4c7
+    - - r2c8
+      - r2c9
+      - r2c10
+      - r3c8
+      - r3c9
+      - r3c10
+      - r4c8
+      - r4c9
+      - r4c10
+    - - r5c2
+      - r5c3
+      - r5c4
+      - r6c2
+      - r6c3
+      - r6c4
+      - r7c2
+      - r7c3
+      - r7c4
+    - - r5c5
+      - r5c6
+      - r5c7
+      - r6c5
+      - r6c6
+      - r6c7
+      - r7c5
+      - r7c6
+      - r7c7
+    - - r5c8
+      - r5c9
+      - r5c10
+      - r6c8
+      - r6c9
+      - r6c10
+      - r7c8
+      - r7c9
+      - r7c10
+    - - r8c2
+      - r8c3
+      - r8c4
+      - r9c2
+      - r9c3
+      - r9c4
+      - r10c2
+      - r10c3
+      - r10c4
+    - - r8c5
+      - r8c6
+      - r8c7
+      - r9c5
+      - r9c6
+      - r9c7
+      - r10c5
+      - r10c6
+      - r10c7
+    - - r8c8
+      - r8c9
+      - r8c10
+      - r9c8
+      - r9c9
+      - r9c10
+      - r10c8
+      - r10c9
+      - r10c10
+---
+
+```rules
+unique-1: unique r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9-r2c10
+unique-2: unique r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9-r3c10
+unique-3: unique r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8-r4c9-r4c10
+unique-4: unique r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9-r5c10
+unique-5: unique r6c2-r6c3-r6c4-r6c5-r6c6-r6c7-r6c8-r6c9-r6c10
+unique-6: unique r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8-r7c9-r7c10
+unique-7: unique r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8-r8c9-r8c10
+unique-8: unique r9c2-r9c3-r9c4-r9c5-r9c6-r9c7-r9c8-r9c9-r9c10
+unique-9: unique r10c2-r10c3-r10c4-r10c5-r10c6-r10c7-r10c8-r10c9-r10c10
+unique-10: unique r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2-r10c2
+unique-11: unique r2c3-r3c3-r4c3-r5c3-r6c3-r7c3-r8c3-r9c3-r10c3
+unique-12: unique r2c4-r3c4-r4c4-r5c4-r6c4-r7c4-r8c4-r9c4-r10c4
+unique-13: unique r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5-r9c5-r10c5
+unique-14: unique r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6-r9c6-r10c6
+unique-15: unique r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7-r9c7-r10c7
+unique-16: unique r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8-r9c8-r10c8
+unique-17: unique r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9-r10c9
+unique-18: unique r2c10-r3c10-r4c10-r5c10-r6c10-r7c10-r8c10-r9c10-r10c10
+unique-19: unique r2c2-r2c3-r2c4-r3c2-r3c3-r3c4-r4c2-r4c3-r4c4
+unique-20: unique r2c5-r2c6-r2c7-r3c5-r3c6-r3c7-r4c5-r4c6-r4c7
+unique-21: unique r2c8-r2c9-r2c10-r3c8-r3c9-r3c10-r4c8-r4c9-r4c10
+unique-22: unique r5c2-r5c3-r5c4-r6c2-r6c3-r6c4-r7c2-r7c3-r7c4
+unique-23: unique r5c5-r5c6-r5c7-r6c5-r6c6-r6c7-r7c5-r7c6-r7c7
+unique-24: unique r5c8-r5c9-r5c10-r6c8-r6c9-r6c10-r7c8-r7c9-r7c10
+unique-25: unique r8c2-r8c3-r8c4-r9c2-r9c3-r9c4-r10c2-r10c3-r10c4
+unique-26: unique r8c5-r8c6-r8c7-r9c5-r9c6-r9c7-r10c5-r10c6-r10c7
+unique-27: unique r8c8-r8c9-r8c10-r9c8-r9c9-r9c10-r10c8-r10c9-r10c10
+kropki-1: kropki r2c10-r3c10 colour "white"
+kropki-2: kropki r6c5-r7c5 colour "white"
+kropki-3: kropki r8c5-r9c5 colour "white"
+kropki-4: kropki r8c7-r9c7 colour "white"
+kropki-5: kropki r5c6-r5c7 colour "white"
+```
+
+```drawing
+- {"id":"drawing-2","rules":[],"visual":{"kind":"shape","layer":"under","center":[0.5,5.5],"width":11,"height":1,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-3","rules":[],"visual":{"kind":"shape","layer":"under","center":[0.5,5.5],"width":11,"height":1,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-4","rules":[],"visual":{"kind":"shape","layer":"under","center":[5.5,0.5],"width":1,"height":9,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-5","rules":[],"visual":{"kind":"shape","layer":"under","center":[5.5,0.5],"width":1,"height":9,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-6","rules":[],"visual":{"kind":"shape","layer":"under","center":[5.5,10.5],"width":1,"height":9,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-7","rules":[],"visual":{"kind":"shape","layer":"under","center":[5.5,10.5],"width":1,"height":9,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-8","rules":[],"visual":{"kind":"shape","layer":"under","center":[10.5,5.5],"width":11,"height":1,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-9","rules":[],"visual":{"kind":"shape","layer":"under","center":[10.5,5.5],"width":11,"height":1,"rounded":false,"fill":"#EEEEEE","thickness":0,"opacity":0.5}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"line","points":[[2.5,6.5],[2.5,9.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"line","points":[[3.5,4.5],[3.5,7.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"line","points":[[4.5,5.5],[4.5,8.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"line","points":[[5.5,4.5],[5.5,7.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"line","points":[[6.5,2.5],[6.5,5.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"line","points":[[7.5,2.5],[7.5,5.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"line","points":[[8.5,1.5],[8.5,4.5]],"color":"#D8D8D8","thickness":11,"rounded":true}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"line","points":[[1,10],[10,1]],"color":"#444444","thickness":1.7,"dash":"3.8,9","rounded":true,"layer":"over"}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"line","points":[[10,1],[1,1],[1,10],[10,10],[10,1]],"color":"#000000","thickness":4.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"line","points":[[1,2],[10,2]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"line","points":[[1,3],[10,3]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"line","points":[[1,4],[10,4]],"color":"#000000","thickness":4.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"line","points":[[1,5],[10,5]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-28","rules":[],"visual":{"kind":"line","points":[[1,6],[10,6]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-29","rules":[],"visual":{"kind":"line","points":[[1,7],[10,7]],"color":"#000000","thickness":4.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-30","rules":[],"visual":{"kind":"line","points":[[1,8],[10,8]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-31","rules":[],"visual":{"kind":"line","points":[[1,9],[10,9]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-32","rules":[],"visual":{"kind":"line","points":[[2,1],[2,10]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-33","rules":[],"visual":{"kind":"line","points":[[3,1],[3,10]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-34","rules":[],"visual":{"kind":"line","points":[[4,1],[4,10]],"color":"#000000","thickness":4.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-35","rules":[],"visual":{"kind":"line","points":[[5,1],[5,10]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-36","rules":[],"visual":{"kind":"line","points":[[6,1],[6,10]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-37","rules":[],"visual":{"kind":"line","points":[[7,1],[7,10]],"color":"#000000","thickness":4.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-38","rules":[],"visual":{"kind":"line","points":[[8,1],[8,10]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+- {"id":"drawing-39","rules":[],"visual":{"kind":"line","points":[[9,1],[9,10]],"color":"#000000","thickness":1.3,"rounded":true,"layer":"grid"}}
+```
+
+• Normal sudoku rules apply.
+• Digits along the marked diagonal don't repeat.
+• Digits separated by a white dot are consecutive. Not all possible white dots are shown.
+• A digit on a line indicates exactly how many lines contain that digit. Eg: if there is a 5 on a line, then 5 lines contain a 5.
+• The lines each have a different name, and must follow the corresponding rule. It must be determined which line is which.
+
+LINE A - Dutch whisper: Adjacent digits on the line have a difference of at least 4.
+LINE B - Parity: Digits alternate between even and odd along the line.
+LINE C - Region sum: In each 3x3 box, digits on the line have the same total.
+LINE D - Entropic: Each group of 3 adjacent cells along the line contain one low digit (1, 2 or 3), one medium digit (4, 5 or 6) and one high digit (7, 8 or 9).
+LINE E - Renban: This line contains a set of four consecutive digits, but they can be arranged in any order.
+LINE F - Nabner: No two consecutive digits appear anywhere on the line.
+LINE G - Ten Line: Each cell on this line belongs to a group of adjacent cells which sum to 10. If there are more than one of these groups, they don't overlap.
+
+The grey perimeter can be used for making notes.

@@ -7,16 +7,16 @@ The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). 
 ## Content
 
 - `rules/<kind>.md`: rule pages with YAML front matter.
-- `rules/predicates.md`: shared mathematical definitions, with no `kind` field.
+- `rules/predicates.md`: shared mathematical definitions, with `document: prelude` and no `kind` field.
 - `cases/*.rules.md`: case files, including their attribution and source links.
 - `scripts/`: static generator and lint entry points.
 - `src/`: portable formula compiler and the `openrules` file-reading CLI.
-- `spec/`: executable shared signatures, formula grammar and type contract.
+- `spec/`: formula grammar and type contract. The executable shared definitions live in `rules/predicates.md`.
 - `site/style.css`: local light and dark styles.
 - `plugins/open-rules/skills/open-rules/`: the shared setter skill and references loaded as needed.
 - `tests/fixtures/`: three sample rule pages, shared predicates, and one case. Fixtures are test inputs only.
 
-Library content is imported separately. The generator reads `rules/` and `cases/` in this repository. Fixtures are not imported automatically. The homepage index is generated from the rule pages.
+This repository owns the library definitions and the exported cases. The generator reads `rules/` and `cases/` in this repository. Fixtures are not imported automatically. The homepage index is generated from the rule pages.
 
 ## Local commands
 
@@ -33,7 +33,7 @@ bun run build:package
 bun run build
 ```
 
-`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `spec/prelude.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. The formula phase explicitly reports case syntax, URL resolution and example evaluation as pending; it does not count case files as checked.
+`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Full rule-line parameters, custom definitions, URL fetching and example verdicts remain pending; external URLs are counted separately as deferred.
 
 ## Formula package
 
@@ -43,14 +43,16 @@ The package is `@sudoku-sleuth/open-rules`, with the CLI `openrules lint`. Build
 bun run build:package
 node dist/cli.js lint rules
 bun run openrules lint rules --json
-bun run openrules lint /path/to/rule.md --prelude spec/prelude.md
+bun run openrules lint /path/to/rule.md --prelude rules/predicates.md
 ```
 
-Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code and start/end source positions. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](spec/prelude.md). Case checking and fetching definitions arrive in later slices; this package build is not a publication.
+Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; complete rule-line validation and fetching arrive in later slices.
 
 The portable entry exports `parseFormula`, `parsePrelude`, `checkFormula`, `compilePrelude`, `compilePage`, `compileLibrary` and exact rational arithmetic. It performs no I/O and imports no Node APIs. Callers supply `{file, text}` pages; future URL loading will take an injected fetch. The CLI owns file access.
 
-Rejecting Markdown fixtures and their repairs live in `tests/invalid/` and `tests/valid/`. Tests assert every full diagnostic in `tests/invalid/expected.json`; update expectations only after reviewing a deliberate diagnostic change. The [source audit](docs/reports/slice-1-source-audit.md) lists migration failures in the supplied library without editing it.
+Rejecting Markdown fixtures and their repairs live in `tests/invalid/` and `tests/valid/`. Tests assert every full diagnostic in `tests/invalid/expected.json`; update expectations only after reviewing a deliberate diagnostic change. The [integration report](docs/reports/library-integration.md) records the library migration, rejection corpus and checks.
+
+Alias pages declare their own `kind` and `alias_of: <target-kind>` (or `aliasOf`), with no parameters or formula. Targets must be ordinary rule definitions. Both alias routes are served, and their pages link to the target. The catalogue is `/`; its Markdown index is `/README.md`, declared with `document: home`. The `index` kind has `/index.md` and `/index/`. Only `cases` and `style` remain reserved.
 
 Build output goes to `_site/`. Each rule produces `/<kind>.md` and `/<kind>/index.html`; shared definitions use the same layout. Cases are copied to `/cases/`. The generator also writes the index, local stylesheet, `.nojekyll`, and `CNAME`.
 

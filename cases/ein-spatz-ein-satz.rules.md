@@ -1,0 +1,470 @@
+---
+fog:
+  initiallyLit:
+    - 0
+    - 2
+    - 20
+    - 30
+    - 31
+    - 32
+    - 39
+    - 40
+    - 41
+    - 48
+    - 49
+    - 50
+format: open-rules
+title: Ein Spatz, ein Satz.
+setter: Sandra & Nala
+source: https://sudokupad.app/z2z77agmuk
+case: https://sudoku-sleuth.com/cases/ein-spatz-ein-satz
+library: https://rules.sudoku-sleuth.com/
+status: flagged
+drawingCoverage: unclaimed-only
+flags:
+  - Some of the source rules still need to be included in our reading.
+---
+
+```rules
+sudoku 9x9
+kropki-1: kropki r1c1-r1c2 colour "black"
+kropki-2: kropki r1c1-r2c1 colour "black"
+kropki-3: kropki r4c2-r5c2 colour "black"
+kropki-4: kropki r7c2-r8c2 colour "black"
+kropki-5: kropki r5c4-r6c4 colour "black"
+kropki-6: kropki r7c5-r7c6 colour "black"
+kropki-7: kropki r8c7-r8c8 colour "black"
+kropki-8: kropki r1c3-r2c3 colour "white"
+kropki-9: kropki r2c2-r2c3 colour "white"
+kropki-10: kropki r4c1-r4c2 colour "white"
+kropki-11: kropki r6c2-r6c3 colour "white"
+kropki-12: kropki r7c5-r8c5 colour "white"
+kropki-13: kropki r6c7-r6c8 colour "white"
+kropki-14: kropki r4c8-r5c8 colour "white"
+kropki-15: kropki r3c7-r4c7 colour "white"
+```
+
+```drawing
+- {"id":"drawing-1","rules":[],"visual":{"kind":"line","points":[[3.3,4.7],[3.3,5],[3.4,5.3],[3.45,5.35],[3.45,5.45],[3.35,5.35],[3.65,5.65],[3.75,5.65]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-2","rules":[],"visual":{"kind":"line","points":[[3.3,4.8],[3.35,4.95],[3.35,5.05],[3.5,5.5],[3.6,5.6]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-3","rules":[],"visual":{"kind":"line","points":[[3.55,5.55],[3.35,5.45],[3.35,5.65],[3.3,5.7],[3.3,5.9],[3.35,5.75],[3.3,5.6],[3.45,5.65],[3.55,5.75],[3.4,5.7],[3.3,5.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-4","rules":[],"visual":{"kind":"line","points":[[3.3,5.7],[3.15,5.55],[3.2,5.7],[3.35,5.85],[3.65,5.85],[3.55,5.75],[3.7,5.8],[3.65,5.85]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-5","rules":[],"visual":{"kind":"line","points":[[3.25,5.75],[3.25,5.65],[3.3,5.6],[3.25,5.55],[3.2,5.6],[3.45,5.85]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-6","rules":[],"visual":{"kind":"line","points":[[3.25,5.65],[3.2,5.4],[3.15,5.45],[3.15,5.65],[3.2,5.7],[3.2,5.9],[3.7,5.9],[3.75,5.85],[3.65,5.85],[3.5,5.9]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-7","rules":[],"visual":{"kind":"line","points":[[3.5,5.9],[3.45,5.95],[3.25,5.95],[3.15,5.85],[3.15,5.45],[3.2,5.3],[3.2,5.2],[3.25,5.15],[3.35,5.45],[3.6,5.7],[3.7,5.7],[3.4,5.5]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-8","rules":[],"visual":{"kind":"line","points":[[3.35,5.45],[3.3,5.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-9","rules":[],"visual":{"kind":"line","points":[[3.15,5.45],[3.15,4.65],[3.2,4.6],[3.2,4.9],[3.3,5.2],[3.3,5.3],[3.35,5.35],[3.35,5.25],[3.3,5.3]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-10","rules":[],"visual":{"kind":"line","points":[[4.65,5.85],[4.7,5.9],[4.9,5.9],[4.95,5.85],[5.1,5.8],[5.3,5.8],[5.45,5.85],[5.65,5.85],[5.85,5.65],[5.85,5.55],[5.8,5.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-11","rules":[],"visual":{"kind":"line","points":[[5.1,5.8],[5,5.8],[5.15,5.75],[5.55,5.75],[5.7,5.7],[5.8,5.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-12","rules":[],"visual":{"kind":"line","points":[[5.2,5.8],[5.35,5.75],[5.65,5.75],[5.75,5.65],[5.65,5.65],[5.6,5.7],[5.45,5.75]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-13","rules":[],"visual":{"kind":"line","points":[[5.35,5.75],[5.25,5.75]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-14","rules":[],"visual":{"kind":"line","points":[[5.15,5.75],[5,5.7],[5.1,5.7],[5.45,5.75],[5.55,5.75],[5.85,5.45],[5.85,5.55],[5.9,5.5],[5.9,5.4],[5.85,5.45]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-15","rules":[],"visual":{"kind":"line","points":[[5.9,5.4],[5.9,5.3],[5.85,5.15],[5.85,5.45],[5.85,5.15]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-16","rules":[],"visual":{"kind":"line","points":[[5.9,5.3],[5.9,5.1],[5.85,4.95],[5.85,5.15],[5.85,5.05],[5.8,5],[5.8,5.1],[5.85,5.35]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-17","rules":[],"visual":{"kind":"line","points":[[5.05,3.85],[5.1,3.9],[5.35,4.05],[5.6,4.3],[5.7,4.5],[5.7,4.6],[5.8,4.9],[5.85,4.95],[5.85,4.85],[5.8,4.6],[5.75,4.45],[5.4,4.1]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-18","rules":[],"visual":{"kind":"line","points":[[5.1,3.9],[5.25,3.95],[5.4,4.1],[5.5,4.4],[5.6,4.6],[5.65,4.65],[5.6,4.5],[5.5,4.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-19","rules":[],"visual":{"kind":"line","points":[[5.6,4.6],[5.55,4.55],[5.65,4.45],[5.5,4.3],[5.5,4.4],[5.4,4.2],[5.4,3.9],[5.35,3.85],[5.35,3.75],[5.3,3.6],[5.15,3.45],[5,3.4],[4.95,3.35],[4.85,3.35],[4.8,3.3],[4.7,3.3],[4.65,3.25],[4.55,3.25],[4.2,3.2],[4.15,3.15],[4.25,3.15]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-20","rules":[],"visual":{"kind":"line","points":[[5.4,4.1],[5,3.9],[5.35,4.25],[5.55,4.35],[5.45,4.25],[5.45,4.45],[5.4,4.4],[5.3,4.2]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-21","rules":[],"visual":{"kind":"line","points":[[5.65,4.65],[5.8,4.8],[5.75,4.65],[5.75,4.45],[5.7,4.4],[5.65,4.15],[5.65,4.05],[5.7,4.2],[5.7,4.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-22","rules":[],"visual":{"kind":"line","points":[[5.75,4.55],[5.6,4.2],[5.3,3.9],[5.15,3.85],[5.1,3.8],[5.3,3.8],[5.45,3.85],[5.65,4.05]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-23","rules":[],"visual":{"kind":"line","points":[[5.3,4.2],[5.25,4.15],[5.5,4.5],[5.4,4.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-24","rules":[],"visual":{"kind":"line","points":[[5.45,4.25],[5.25,4.05],[5,3.9],[4.95,3.85],[4.95,3.75],[5,3.7],[5.1,3.7],[5.4,3.8],[5.45,3.85]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-25","rules":[],"visual":{"kind":"line","points":[[5.25,4.05],[5.1,4],[5.05,4.05],[5.05,4.15],[5.45,4.55],[5.55,4.55],[5.75,4.85],[5.7,4.7],[5.7,4.8],[5.75,4.95],[5.8,5],[5.8,4.9],[5.75,4.85]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-26","rules":[],"visual":{"kind":"line","points":[[5.55,4.55],[5.25,4.25],[4.9,4],[4.9,3.9],[5,3.9],[4.7,3.7],[4.5,3.6],[4.8,3.6],[4.95,3.65],[5.05,3.65],[5.1,3.7],[5.2,3.7],[5.05,3.75],[4.95,3.75],[4.75,3.65],[4.6,3.5],[5,3.5],[5.2,3.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-27","rules":[],"visual":{"kind":"line","points":[[5.5,4.5],[5.45,4.55],[5,4.1],[5.05,4.15],[5.15,4.35],[5.35,4.45]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-28","rules":[],"visual":{"kind":"line","points":[[5.1,3.8],[5.05,3.75]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-29","rules":[],"visual":{"kind":"line","points":[[5.5,3.9],[5.6,4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-30","rules":[],"visual":{"kind":"line","points":[[5.25,4.15],[5.2,4.1]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-31","rules":[],"visual":{"kind":"line","points":[[5.2,3.7],[5.05,3.65],[4.85,3.55],[4.55,3.45],[4.45,3.45],[4.4,3.4],[4.6,3.4],[5.05,3.45],[5,3.5],[4.9,3.5],[4.65,3.45],[4.6,3.5],[4.1,3.4],[4.05,3.35],[4.55,3.35],[4.6,3.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-32","rules":[],"visual":{"kind":"line","points":[[4.6,3.4],[4.7,3.4],[4.65,3.35],[4.55,3.35]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-33","rules":[],"visual":{"kind":"line","points":[[4.45,3.35],[4.3,3.3],[4,3.3],[4.05,3.25],[4.35,3.25]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-34","rules":[],"visual":{"kind":"line","points":[[4.15,3.25],[3.85,3.25],[4.1,3.2],[4.15,3.15],[4.05,3.15],[3.75,3.25]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-35","rules":[],"visual":{"kind":"line","points":[[3.85,3.25],[3.8,3.3]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-36","rules":[],"visual":{"kind":"line","points":[[3.2,3.8],[3.2,3.7],[3.15,3.55],[3.15,3.45],[3.3,3.6]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-37","rules":[],"visual":{"kind":"line","points":[[3.15,3.45],[3.15,3.35],[3.3,3.2],[3.5,3.2],[3.65,3.25],[3.55,3.25],[3.4,3.2]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-38","rules":[],"visual":{"kind":"line","points":[[3.25,3.55],[3.2,3.4],[3.2,3.3],[3.25,3.25],[3.55,3.25],[3.6,3.3],[3.7,3.3]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-39","rules":[],"visual":{"kind":"line","points":[[3.25,3.25],[3.5,3.3],[3.6,3.3]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-40","rules":[],"visual":{"kind":"line","points":[[3.3,3.5],[3.2,3.3],[3.4,3.4],[3.45,3.45],[3.55,3.45],[3.35,3.35],[3.3,3.3],[3.25,3.35],[3.2,3.3]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-41","rules":[],"visual":{"kind":"line","points":[[3.2,3.3],[3.15,3.25],[3.15,3.15],[3.2,3.1],[3.35,3.15],[3.4,3.2]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-42","rules":[],"visual":{"kind":"line","points":[[0.25,8.45],[0.2,8.6],[0.35,8.75],[0.5,8.8],[1.2,8.8],[1.15,8.85],[0.45,8.85],[0.4,8.8],[0.3,8.8],[0.25,8.75],[0.25,8.55],[0.2,8.5],[0.2,7.4],[0.3,7.7],[0.3,7.4],[0.2,7.1],[0.2,7.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-43","rules":[],"visual":{"kind":"line","points":[[0.2,7.1],[0.2,6.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-44","rules":[],"visual":{"kind":"line","points":[[0.2,6.8],[0.2,6.4],[0.25,6.35],[0.3,6.2],[0.3,6.1],[0.35,6.05],[0.45,6.15],[0.45,6.05],[0.35,6.05]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-45","rules":[],"visual":{"kind":"line","points":[[0.3,6.1],[0.35,6.25],[0.35,6.35],[0.45,6.35],[0.35,6.05],[0.4,6.2],[0.4,6.3],[0.45,6.35]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-46","rules":[],"visual":{"kind":"line","points":[[0.5,6.6],[0.5,6.5],[0.45,6.35],[0.5,6.4],[0.5,6.3],[0.45,6.15],[0.5,6.2],[0.5,6.4]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-47","rules":[],"visual":{"kind":"line","points":[[0.45,6.35],[0.65,6.35],[0.55,6.45],[0.5,6.4],[0.5,6.5],[0.45,6.45],[0.45,6.25],[0.5,6.2]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-48","rules":[],"visual":{"kind":"line","points":[[2.55,8.35],[2.45,8.35],[2.45,8.45],[2.4,8.5],[2.3,8.5],[2.25,8.55],[2.15,8.55],[1.7,8.7],[1.75,8.75],[1.9,8.7],[2.1,8.7],[2.15,8.65],[2.45,8.55],[2.55,8.45],[2.5,8.3],[2.35,8.25],[2.55,8.25],[2.7,8.4],[2.5,8.6],[2.35,8.65],[2.5,8.5]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-49","rules":[],"visual":{"kind":"line","points":[[2.45,8.45],[2.35,8.45],[2.55,8.45]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-50","rules":[],"visual":{"kind":"line","points":[[2.4,8.5],[2.2,8.6],[2.1,8.7],[2.3,8.7],[2.35,8.65],[2.05,8.75],[2.25,8.75],[2.3,8.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-51","rules":[],"visual":{"kind":"line","points":[[2,8.7],[1.95,8.75],[1.65,8.75],[1.6,8.8],[1.65,8.85],[1.75,8.85],[2.05,8.75],[1.95,8.75]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-52","rules":[],"visual":{"kind":"line","points":[[1.95,8.75],[2.1,8.7]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-53","rules":[],"visual":{"kind":"line","points":[[2.35,8.45],[1.85,8.45],[2.25,8.45]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-54","rules":[],"visual":{"kind":"line","points":[[1.85,8.45],[1.75,8.45]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-55","rules":[],"visual":{"kind":"line","points":[[1.65,8.35],[2.45,8.35],[1.85,8.35]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-56","rules":[],"visual":{"kind":"line","points":[[1.85,8.35],[2.2,8.3],[2.3,8.3],[2.45,8.35],[1.95,8.35]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-57","rules":[],"visual":{"kind":"line","points":[[2.25,8.35],[2.1,8.4],[1.6,8.4],[1.55,8.35],[1.55,8.25],[1.65,8.25],[1.8,8.3],[2,8.3],[2.05,8.25],[2.35,8.25],[2.15,8.25]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-58","rules":[],"visual":{"kind":"line","points":[[1.65,8.25],[2.05,8.25]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-59","rules":[],"visual":{"kind":"line","points":[[5,5.8],[4.9,5.8],[4.85,5.75],[4.65,5.75],[4.6,5.7],[4.5,5.7],[4.6,5.8],[5,5.8]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-60","rules":[],"visual":{"kind":"line","points":[[3.25,3.35],[3.4,3.5],[3.25,3.35]],"color":"#fefbe9ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-61","rules":[],"visual":{"kind":"line","points":[[3.35,4.65],[3.4,4.9],[3.4,5.1],[3.65,5.35],[3.45,5.25],[3.45,5.15]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-62","rules":[],"visual":{"kind":"line","points":[[3.45,5.15],[3.45,4.85],[3.4,4.9],[3.35,5.05],[3.45,5.25],[3.65,5.45],[3.75,5.45],[3.65,5.35],[3.8,5.4],[4.1,5.4],[3.95,5.45],[3.55,5.35]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-63","rules":[],"visual":{"kind":"line","points":[[4.5,5.4],[4.3,5.4],[3.95,5.45],[3.75,5.45],[4.1,5.6],[4.25,5.65],[4.55,5.65],[4.6,5.6],[4.7,5.6],[4.75,5.55],[5.15,5.55],[5.2,5.5],[5.05,5.55]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-64","rules":[],"visual":{"kind":"line","points":[[3.75,5.45],[3.45,5.45],[3.85,5.85],[4.15,5.85],[4.2,5.8],[4.4,5.8],[4.25,5.85],[4.15,5.85]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-65","rules":[],"visual":{"kind":"line","points":[[4.4,5.4],[3.9,5.5],[3.7,5.5],[4.1,5.5],[4.3,5.4],[4.75,5.25],[4.8,5.2],[4.85,5.25],[4.95,5.25],[4.95,5.35],[4.85,5.35],[4.3,5.3],[4.45,5.35],[5.1,5.4],[5.6,5.4],[5.65,5.35],[5.65,5.25],[5.3,5.4],[5.1,5.4]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-66","rules":[],"visual":{"kind":"line","points":[[4.8,5.2],[4.5,5.2],[4.55,5.15],[4.4,4.9],[3.45,4.85],[3.45,4.75],[3.55,4.95],[3.65,4.85],[3.75,4.85],[3.6,4.9],[3.55,4.95]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-67","rules":[],"visual":{"kind":"line","points":[[4.6,5.6],[4.2,5.6],[4.05,5.65],[3.65,5.65],[3.5,5.5]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-68","rules":[],"visual":{"kind":"line","points":[[4.7,5.6],[4.9,5.6],[5.05,5.55]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-69","rules":[],"visual":{"kind":"line","points":[[4.15,5.85],[4.1,5.8],[3.9,5.8],[3.85,5.75],[3.75,5.75],[3.45,5.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-70","rules":[],"visual":{"kind":"line","points":[[4.4,5.8],[4.5,5.8],[4.55,5.75],[4.7,5.7],[4.75,5.65],[4.9,5.6],[5.1,5.6],[5.15,5.55],[5.3,5.5],[5.2,5.5],[5.5,5.2],[5.5,5.1],[5.6,5],[5.65,5.05],[5.65,5.25]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-71","rules":[],"visual":{"kind":"line","points":[[5.3,5.5],[5.35,5.45],[5.45,5.45],[5.4,5.4],[5.2,5.4],[5.05,5.35],[4.55,5.25],[4.4,5.2],[4.6,5.2],[4.75,5.15],[4.85,5.15],[4.85,5.05],[4.9,5],[4.75,4.95],[4.85,5.05]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-72","rules":[],"visual":{"kind":"line","points":[[5.35,5.45],[5.4,5.4],[5.5,5],[5.5,5.1],[5.55,5.15],[5.3,5],[5.5,5.1]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-73","rules":[],"visual":{"kind":"line","points":[[4.5,5.8],[4.6,5.8],[4.9,5.7],[4.95,5.65],[5.1,5.6],[5.5,5.6],[5.65,5.55],[5.75,5.45],[5.75,5.05],[5.7,4.9],[5.65,4.85],[5.6,4.7],[5.4,4.6],[5.3,4.6],[5.4,4.7],[5.5,4.7],[5.35,4.75],[5.65,5.05]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-74","rules":[],"visual":{"kind":"line","points":[[3.7,5.5],[3.55,5.45],[3.5,5.4],[3.4,5.1],[3.65,5.25],[4.15,5.25],[4.5,5.2],[4,5.2],[3.75,5.15],[3.55,4.95],[3.55,5.05],[3.85,5.15],[3.75,5.15]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-75","rules":[],"visual":{"kind":"line","points":[[3.5,5.4],[3.45,5.25],[3.3,5.1],[3.3,5.4],[3.35,5.45],[3.45,5.45],[3.4,5.4],[3.35,5.25],[3.3,5.2]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-76","rules":[],"visual":{"kind":"line","points":[[3.45,5.25],[3.4,5.2],[3.3,4.9],[3.3,5.1],[3.25,5.05],[3.25,5.15],[3.3,5.2]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-77","rules":[],"visual":{"kind":"line","points":[[5.1,5.4],[4.75,5.35],[4.15,5.15],[4.25,5.15],[4.4,5.2],[4.1,5.2],[3.85,5.15],[4.05,5.25],[4.15,5.25],[4.3,5.3],[4.5,5.3],[4.35,5.35],[4.1,5.4],[4.25,5.35],[4.85,5.05],[4.35,4.95],[3.95,4.75],[3.7,4.5],[3.7,4.4],[3.8,4.4],[3.95,4.45],[4.45,4.65],[4.75,4.75],[4.95,4.95],[4.75,4.55],[5.05,4.65],[5.25,4.75],[5.35,4.75],[4.95,4.55],[5.1,4.6],[5.2,4.6],[5.25,4.65],[5.4,4.7],[5.45,4.85],[5.55,4.95],[5.5,4.9],[5.45,4.75],[5.4,4.7]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-78","rules":[],"visual":{"kind":"line","points":[[4.5,5.3],[4.55,5.25]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-79","rules":[],"visual":{"kind":"line","points":[[4.7,5.2],[3.8,5],[3.75,4.75],[3.85,4.75],[4.15,4.65],[4.35,4.65],[4.85,4.75],[5,4.8],[5.3,5],[5.35,5.05]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-80","rules":[],"visual":{"kind":"line","points":[[3.55,4.95],[3.75,5.15]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-81","rules":[],"visual":{"kind":"line","points":[[3.75,4.85],[4.15,4.85],[4.75,4.95],[4.6,4.9],[4.65,4.95],[4.7,4.9],[4.7,4.8],[4.45,4.55],[4.75,4.55],[4.75,4.65],[4.65,4.65],[5.15,4.85],[5.2,4.9],[5.3,4.9],[5.35,4.95],[5.5,5],[5.35,4.85],[4.95,4.65],[4.6,4.5],[4.45,4.45],[4.5,4.4],[3.95,4.45],[3.75,4.45],[3.6,4.5],[3.85,4.15],[3.95,3.95],[3.85,3.95],[3.4,4.2],[3.5,4],[3.7,3.8],[3.9,3.7],[3.95,3.65],[3.95,3.55],[3.45,4.05],[3.75,3.85],[3.9,3.7]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-82","rules":[],"visual":{"kind":"line","points":[[5.45,5.25],[4.9,5.2],[5.15,5.15],[5,5],[4.2,4.8],[3.6,4.8],[4.9,5.2]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-83","rules":[],"visual":{"kind":"line","points":[[5.5,5.1],[5.45,5.15],[5.35,5.15]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-84","rules":[],"visual":{"kind":"line","points":[[5.4,4.8],[5.45,4.85],[5.3,4.8],[5.05,4.65],[4.85,4.55],[5.5,4.9],[5.6,5],[5.3,4.7],[5.1,4.6],[4.95,4.45],[4.9,4.3],[5,4.3],[5.05,4.35],[4.9,4.3]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-85","rules":[],"visual":{"kind":"line","points":[[3.4,5.4],[3.3,5.3],[3.4,5.5],[3.55,5.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-86","rules":[],"visual":{"kind":"line","points":[[3.3,5.3],[3.25,5.25],[3.25,5.15]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-87","rules":[],"visual":{"kind":"line","points":[[3.3,5],[3.25,4.95],[3.25,5.05],[3.2,5],[3.2,4.9],[3.25,4.95]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-88","rules":[],"visual":{"kind":"line","points":[[3.35,4.95],[3.3,4.9],[3.3,4.6],[3.6,4.3],[3.7,4.3],[3.85,4.25],[4.05,4.45],[4.25,4.55],[4.65,4.55],[4.5,4.4],[4.7,4.4],[5.05,4.75],[5.25,4.75]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-89","rules":[],"visual":{"kind":"line","points":[[3.3,4.9],[3.25,4.85],[3.25,4.95]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-90","rules":[],"visual":{"kind":"line","points":[[3.7,4.4],[3.65,4.45],[3.95,4.35],[3.8,4.4]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-91","rules":[],"visual":{"kind":"line","points":[[4.7,4.4],[4.5,4.4],[4.7,4.6],[4.75,4.75],[5,4.9],[4.75,4.85],[4.55,4.75],[4.4,4.7],[4,4.5],[4.2,4.5],[4.65,4.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-92","rules":[],"visual":{"kind":"line","points":[[5.05,4.95],[5,4.8],[4.2,4.4],[4.25,4.45],[3.95,4.35],[3.85,4.35],[3.85,4.45],[4,4.5]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-93","rules":[],"visual":{"kind":"line","points":[[3.95,3.65],[3.65,4.15],[3.5,4.3],[3.4,4.3],[3.3,4.2],[3.3,4.6]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-94","rules":[],"visual":{"kind":"line","points":[[3.45,4.05],[3.35,4.15],[3.4,4.2],[3.45,4.35],[3.75,4.15],[3.8,4.1],[4,4],[4.15,3.95],[4.2,3.9],[4.25,3.95],[3.6,4.5],[3.55,4.55],[3.45,4.55],[3.6,4.6],[3.6,4.8],[3.95,5.15],[4.3,5.3],[4.25,5.25],[4.15,5.25],[4,5.1],[4.15,5.15],[4.05,5.05],[4.35,5.05],[4.4,5.1],[4.9,5.2]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-95","rules":[],"visual":{"kind":"line","points":[[3.2,4.9],[3.2,4.8],[3.55,4.45],[3.65,4.45],[3.4,4.6],[3.25,4.75]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-96","rules":[],"visual":{"kind":"line","points":[[3.3,4.8],[3.25,4.75],[3.25,4.85]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-97","rules":[],"visual":{"kind":"line","points":[[3.3,4.2],[3.3,4.1],[3.35,4.15]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-98","rules":[],"visual":{"kind":"line","points":[[3.6,4.6],[3.8,4.6],[4.2,4.7],[4.6,4.9],[4.35,4.75],[4.2,4.6],[4.1,4.4],[4.1,4.2],[4.15,4.05],[4.2,4],[4.9,4.7],[5.3,5],[4.25,4.45],[4.45,4.55],[4.25,4.55],[3.85,4.65],[3.45,4.65],[3.4,4.7],[3.6,4.8],[3.5,4.9],[3.6,4.9],[3.75,4.95],[4,5],[4.3,5.1],[5.1,5.1],[5.15,5.05],[5.1,5]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-99","rules":[],"visual":{"kind":"line","points":[[5.3,5],[4.15,4.45],[4.15,4.55]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-100","rules":[],"visual":{"kind":"line","points":[[3.55,3.55],[3.5,3.5],[3.4,3.5],[3.4,3.6],[3.35,3.65],[3.35,3.85],[3.3,4.1],[3.35,4.05],[3.35,3.95],[3.5,3.7],[3.7,3.5],[4.2,3.5],[4.35,3.55],[4.45,3.55],[4.5,3.6],[4.6,3.6],[4.65,3.55],[4.45,3.55]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-101","rules":[],"visual":{"kind":"line","points":[[3.35,3.65],[3.35,3.75],[3.3,3.9],[3.3,4.3],[3.25,4.45],[3.25,4.55]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-102","rules":[],"visual":{"kind":"line","points":[[3.3,4.1],[3.25,4.05],[3.25,3.95],[3.2,4],[3.2,4.5],[3.25,4.65],[3.25,4.75],[3.2,4.7],[3.2,4.5]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-103","rules":[],"visual":{"kind":"line","points":[[4.35,3.55],[4.3,3.5],[4.2,3.5],[4.15,3.45],[4.05,3.45],[4,3.4],[3.9,3.4],[3.85,3.35],[4.1,3.5],[4.15,3.55],[4.3,3.6],[4.35,3.65],[4.5,3.6],[4.55,3.65],[4.55,3.75],[4.6,4],[4.7,4.2],[4.75,4.35],[4.9,4.6],[4.75,4.45],[4.85,4.55],[4.55,4.45],[4.45,4.25],[4.3,4.1],[4.4,4.1],[4.4,3.9],[4.45,4.05],[4.85,4.75],[4.95,4.85],[5.05,4.85],[4.85,4.75]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-104","rules":[],"visual":{"kind":"line","points":[[4.85,4.75],[4.7,4.6],[4.65,4.45],[4.6,4.2],[4.6,3.9],[4.55,3.75]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-105","rules":[],"visual":{"kind":"line","points":[[4.45,3.55],[4.25,3.35],[4.15,3.35],[4.1,3.3],[3.8,3.3],[3.85,3.35]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-106","rules":[],"visual":{"kind":"line","points":[[3.25,3.95],[3.25,3.75],[3.3,3.7],[3.3,3.6],[3.55,3.35],[3.65,3.35],[3.7,3.3],[3.8,3.3]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-107","rules":[],"visual":{"kind":"line","points":[[3.4,3.5],[3.55,3.35]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-108","rules":[],"visual":{"kind":"line","points":[[3.65,3.35],[3.75,3.35]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-109","rules":[],"visual":{"kind":"line","points":[[3.2,4.4],[3.15,4.35],[3.1,4.2],[3.15,4.05]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-110","rules":[],"visual":{"kind":"line","points":[[3.25,3.75],[3.25,3.65],[3.3,3.6],[3.3,3.5],[3.4,3.4],[3.6,3.4]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-111","rules":[],"visual":{"kind":"line","points":[[4.85,4.25],[4.9,4.3],[4.85,3.95],[4.8,3.9],[4.75,3.75],[4.7,3.7],[4.7,3.6],[4.6,3.6],[4.55,3.65],[4.6,3.7],[4.7,3.9],[4.75,3.95],[4.8,4.1],[4.8,4.2]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-112","rules":[],"visual":{"kind":"line","points":[[4.55,3.65],[4.25,3.65],[4.05,3.85],[4.05,3.95],[4,4.1],[3.85,4.25],[4.3,4.2],[4.75,4.25],[4.85,4.35],[4.4,4.4],[4.05,4.15],[4.1,4.1],[4.3,4.1],[4.15,3.75],[4.35,3.75],[4.4,3.8],[4.6,4.2],[4.65,4.35],[4.75,4.45],[4.85,4.45],[5.2,4.6],[5.3,4.6],[5.05,4.35],[5.15,4.45]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-113","rules":[],"visual":{"kind":"line","points":[[5.15,4.45],[5.25,4.55]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-114","rules":[],"visual":{"kind":"line","points":[[4.6,3.7],[4.6,4.1],[4.65,4.25],[4.75,4.45],[4.95,4.55],[4.9,4.5],[4.75,4.45]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-115","rules":[],"visual":{"kind":"line","points":[[0.4,7.5],[0.35,7.55],[0.35,7.85],[0.45,8.05],[0.6,8.4],[0.75,8.55],[0.9,8.6],[1,8.6],[1.05,8.65],[1.35,8.75],[1.4,8.8],[1.6,8.8],[1.85,8.55],[2.05,8.45],[2.15,8.35],[2.25,8.45],[2.15,8.55],[1.95,8.65],[1.9,8.7],[1.7,8.7]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-116","rules":[],"visual":{"kind":"line","points":[[0.6,8.4],[0.35,8.15],[0.35,6.85],[0.4,6.7],[0.5,6.6],[0.5,6.7],[0.6,6.8],[0.6,6.9],[0.65,6.95],[0.7,7.1],[0.7,7.3],[0.65,7.45],[0.65,8.05],[0.85,8.15],[0.95,8.15],[1.1,8.2],[1.35,8.25],[1.5,8.3],[1.55,8.35],[1.65,8.35],[1.8,8.3],[2.1,8.3],[2.2,8.4],[2.1,8.5],[1.9,8.6],[1.65,8.75]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-117","rules":[],"visual":{"kind":"line","points":[[0.65,8.45],[0.8,8.5],[0.9,8.5],[0.95,8.55],[1.05,8.55],[1.3,8.6],[1.5,8.6],[1.05,8.45],[1.65,8.45],[1.55,8.35],[1.65,8.45]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-118","rules":[],"visual":{"kind":"line","points":[[1,8.6],[1.15,8.65],[1.1,8.7],[0.75,8.65],[0.55,8.55],[0.4,8.4],[0.5,8.4],[0.75,8.55],[0.8,8.6],[0.95,8.65],[1.2,8.7],[1.6,8.7],[1.75,8.65],[2,8.6],[2.05,8.55],[2,8.5],[1.75,8.45],[1.65,8.45],[1.75,8.55],[1.75,8.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-119","rules":[],"visual":{"kind":"line","points":[[0.75,8.55],[0.65,8.55],[0.45,8.45],[0.35,8.35],[0.3,8.1],[0.3,8.3],[0.4,8.6],[0.45,8.65],[0.6,8.7],[0.65,8.75],[1.55,8.75],[1.75,8.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-120","rules":[],"visual":{"kind":"line","points":[[1.5,8.3],[1.25,8.15],[0.75,7.65],[0.8,7.9],[1.25,8.35],[1,8.1],[0.6,7.5],[0.65,7.45],[0.75,7.55],[0.75,7.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-121","rules":[],"visual":{"kind":"line","points":[[0.65,7.45],[0.65,6.85],[0.7,7.1],[0.75,7.15],[0.75,7.55],[0.8,7.6],[0.9,7.8],[1.45,8.35],[1.55,8.35],[1.05,8.35],[1.2,8.4],[1.25,8.45],[1.55,8.45]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-122","rules":[],"visual":{"kind":"line","points":[[0.7,7.5],[0.7,7.6],[0.75,7.65]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-123","rules":[],"visual":{"kind":"line","points":[[0.3,8.1],[0.3,7.9]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-124","rules":[],"visual":{"kind":"line","points":[[1.45,8.45],[0.85,8.25],[0.6,8.1],[0.65,8.15],[0.8,8.2],[0.9,8.3],[1.05,8.35],[1.75,8.45],[1.8,8.4],[1.9,8.4],[2.05,8.35],[2.15,8.35],[2,8.4],[1.9,8.4]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-125","rules":[],"visual":{"kind":"line","points":[[1.9,8.4],[1.1,8.4],[1.05,8.35],[0.85,8.35],[1.05,8.45],[0.8,8.4],[0.65,8.25],[0.3,7.7],[0.3,6.5],[0.35,6.45],[0.55,6.45],[0.6,6.5],[0.6,6.7],[0.65,6.75],[0.65,6.85],[0.65,6.65],[0.6,6.5]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-126","rules":[],"visual":{"kind":"line","points":[[4.4,3.9],[4.35,3.75],[4.35,3.85],[4.4,3.9]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-127","rules":[],"visual":{"kind":"line","points":[[0.35,7.55],[0.4,7.7],[0.4,7.8],[0.45,7.95],[0.6,8.1],[0.55,8.05],[0.85,8.35],[0.75,8.35],[0.55,8.15],[0.5,8],[0.5,7.3],[0.55,7.05],[0.55,6.75],[0.5,6.8],[0.55,7.75],[0.55,7.85],[0.5,7.3]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-128","rules":[],"visual":{"kind":"line","points":[[0.35,7.55],[0.35,7.25],[0.45,7.05],[0.5,7],[0.5,6.8]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-129","rules":[],"visual":{"kind":"line","points":[[0.5,7.3],[0.5,6.9]],"color":"#c1e5ffff","thickness":15.36,"rounded":true}}
+- {"id":"drawing-130","rules":[],"visual":{"kind":"line","points":[[4.35,3.15],[4.4,3.2],[4.5,3.2],[4.55,3.15],[4.6,3.2],[4.5,3.2]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-131","rules":[],"visual":{"kind":"line","points":[[4.5,3.2],[4.45,3.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-132","rules":[],"visual":{"kind":"line","points":[[5.3,3.5],[5.45,3.55],[5.55,3.55],[5.5,3.5],[5.5,3.4],[5.55,3.35],[5.6,3.4],[5.6,3.6],[5.5,3.6],[5.45,3.55]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-133","rules":[],"visual":{"kind":"line","points":[[5.4,3.8],[5.45,3.85],[5.5,3.8],[5.5,3.7],[5.4,3.6],[5.45,3.55],[5.55,3.75],[5.55,3.85],[5.6,3.9],[5.5,3.9],[5.45,3.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-134","rules":[],"visual":{"kind":"line","points":[[5.45,3.55],[5.35,3.55],[5.45,3.85],[5.55,3.95],[5.5,3.9],[5.35,3.65],[5.3,3.6],[5.5,3.6],[5.55,3.65],[5.55,3.75]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-135","rules":[],"visual":{"kind":"line","points":[[5.6,3.9],[5.65,3.95],[5.7,4.1],[5.7,4.2],[5.75,4.15],[5.8,4.3],[5.8,4.7]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-136","rules":[],"visual":{"kind":"line","points":[[5.65,3.95],[5.65,4.05],[5.7,4.1]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-137","rules":[],"visual":{"kind":"line","points":[[5.9,5.6],[5.75,5.75],[5.75,5.85],[5.85,5.75],[5.85,5.85],[5.8,5.9],[5.75,5.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-138","rules":[],"visual":{"kind":"line","points":[[5.75,5.85],[5.55,5.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-139","rules":[],"visual":{"kind":"line","points":[[3.2,5.5],[3.1,5.4],[3.1,5.5],[3.15,5.45],[3.15,5.35],[3.1,5.3],[3.1,5.4]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-140","rules":[],"visual":{"kind":"line","points":[[3.1,5.5],[3.1,5.7],[3.2,5.8],[3.3,5.8],[3.2,5.7],[3.15,5.55],[3.15,5.75]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-141","rules":[],"visual":{"kind":"line","points":[[3.1,5.6],[3.05,5.55],[3,5.6],[3,5.7],[3.1,5.7],[3,5.8],[3,5.9],[3.05,5.85],[3.05,5.95],[3.15,6.05],[3.25,5.95],[3.2,5.9],[3.4,5.9],[3.45,5.95],[3.65,5.95],[3.6,5.9],[3.5,5.9],[3.55,5.95]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-142","rules":[],"visual":{"kind":"line","points":[[3.15,5.75],[3.15,5.85],[3.25,5.85],[3.3,5.9]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-143","rules":[],"visual":{"kind":"line","points":[[3.2,5.9],[3.35,5.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-144","rules":[],"visual":{"kind":"line","points":[[1.6,8.2],[1.55,8.15],[1.7,8.1],[1.8,8.1],[1.95,8.15],[1.55,8.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-145","rules":[],"visual":{"kind":"line","points":[[1.75,8.15],[1.8,8.1],[2.1,8.1],[2.2,8.2],[2.15,8.25],[2.15,8.15],[2.35,8.15],[2.4,8.2],[2.3,8.2],[2.35,8.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-146","rules":[],"visual":{"kind":"line","points":[[2.65,8.55],[2.6,8.7],[2.5,8.8],[2.45,8.75],[2.65,8.75],[2.65,8.65],[2.55,8.85],[2.4,8.9],[2.3,8.8],[2.25,8.85],[1.85,8.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-147","rules":[],"visual":{"kind":"line","points":[[0.15,8.25],[0.15,8.65],[0.4,8.9],[0.3,8.9],[0.25,8.85],[0.15,8.85],[0.1,8.8],[0.15,8.65]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-148","rules":[],"visual":{"kind":"line","points":[[0.15,6.85],[0.1,6.8],[0.1,6.3],[0.2,6.2],[0.3,6.2],[0.45,6.25],[0.4,6.2],[0.3,6.2]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-149","rules":[],"visual":{"kind":"line","points":[[0.2,6.2],[0.25,6.15],[0.45,6.15],[0.4,6.2],[0.5,6.2],[0.55,6.15],[0.45,6.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-150","rules":[],"visual":{"kind":"line","points":[[0.25,6.15],[0.3,6.1],[0.4,6.1]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-151","rules":[],"visual":{"kind":"line","points":[[0.45,6.25],[0.4,6.3],[0.3,6.3],[0.5,6.2]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-152","rules":[],"visual":{"kind":"line","points":[[0.4,6.2],[0.35,6.25],[0.3,6.2],[0.3,6.1],[0.45,5.95],[0.55,5.95],[0.5,5.9],[0.45,5.95]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-153","rules":[],"visual":{"kind":"line","points":[[0.3,6.2],[0.25,6.25],[0.35,6.25],[0.6,6],[0.6,6.2],[0.7,6.3],[0.75,6.45],[0.55,6.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-154","rules":[],"visual":{"kind":"line","points":[[0.75,6.45],[0.8,6.6]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-155","rules":[],"visual":{"kind":"line","points":[[3.05,3.45],[3.05,3.55],[3.1,3.6],[3.1,3.9]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-156","rules":[],"visual":{"kind":"line","points":[[3.05,3.55],[3,3.5],[3,3.3],[3.05,3.25],[3,3.2],[3,3.1],[3.05,3.05],[3.15,3.05],[3.1,3.1],[3.1,3.6],[3,3.4],[2.95,3.25],[2.95,3.15],[3.25,3.15],[3.3,3.1],[3.35,3.15],[3.4,3.1],[3.3,3.1]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-157","rules":[],"visual":{"kind":"line","points":[[3.3,3.1],[3.2,3.1]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-158","rules":[],"visual":{"kind":"line","points":[[4.35,5.95],[4.65,5.95],[4.75,5.85],[4.7,5.9],[4.6,5.9],[4.45,5.95]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-159","rules":[],"visual":{"kind":"line","points":[[4.45,5.95],[4.5,6],[4.65,6.05],[4.85,5.85],[4.95,5.85],[5,5.8],[5.15,5.75],[5.1,5.8],[5.15,5.85],[5.25,5.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-160","rules":[],"visual":{"kind":"line","points":[[5.1,5.8],[5.05,5.85],[5.15,5.85],[5.3,5.9],[5.4,5.9],[5.45,5.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-161","rules":[],"visual":{"kind":"line","points":[[5.15,5.85],[5.2,5.9],[5.3,5.9]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-162","rules":[],"visual":{"kind":"line","points":[[5.2,5.9],[5.1,5.9],[5.05,5.85],[5,5.9]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-163","rules":[],"visual":{"kind":"line","points":[[5.4,5.9],[5.35,5.95],[5.15,5.95],[5.1,5.9]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-164","rules":[],"visual":{"kind":"line","points":[[4.6,3.2],[4.65,3.15],[4.7,3.2],[4.6,3.2]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-165","rules":[],"visual":{"kind":"line","points":[[4.7,3.2],[4.8,3.3],[4.9,3.3],[4.8,3.2],[4.7,3.2]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-166","rules":[],"visual":{"kind":"line","points":[[5.35,3.55],[5.25,3.65],[5.25,3.55],[5.35,3.55]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-167","rules":[],"visual":{"kind":"line","points":[[3.1,5.3],[3.1,5.2],[3.05,5.15],[3.05,5.25],[3.1,5.3]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-168","rules":[],"visual":{"kind":"line","points":[[3.05,5.85],[3.1,5.9],[3.1,5.8],[3.05,5.85]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-169","rules":[],"visual":{"kind":"line","points":[[3.6,5.9],[3.4,5.8],[3.45,5.75],[3.6,5.9]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-170","rules":[],"visual":{"kind":"line","points":[[0.3,6.3],[0.15,6.45],[0.3,6.3]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-171","rules":[],"visual":{"kind":"line","points":[[0.7,6.3],[0.8,6.3],[0.8,6.4],[0.85,6.45],[0.8,6.3]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-172","rules":[],"visual":{"kind":"line","points":[[0.7,6.3],[0.75,6.35],[0.8,6.5],[0.85,6.55],[0.85,6.45]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-173","rules":[],"visual":{"kind":"line","points":[[0.8,6.3],[0.85,6.65],[0.85,6.85],[0.85,6.65]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-174","rules":[],"visual":{"kind":"line","points":[[0.85,6.65],[0.85,6.55]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-175","rules":[],"visual":{"kind":"line","points":[[3.4,3.1],[3.5,3.1],[3.55,3.15],[3.4,3.1]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-176","rules":[],"visual":{"kind":"line","points":[[3.5,3.1],[3.45,3.15],[3.5,3.2],[3.55,3.15],[3.65,3.15],[3.6,3.2],[3.55,3.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-177","rules":[],"visual":{"kind":"line","points":[[3.55,3.15],[3.45,3.15]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-178","rules":[],"visual":{"kind":"line","points":[[3.4,5.8],[3.2,5.6],[3.4,5.8]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-179","rules":[],"visual":{"kind":"line","points":[[3.2,5.6],[3.3,5.5],[3.4,5.6],[3.25,5.55]],"color":"#d7ffd7ff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-180","rules":[],"visual":{"kind":"line","points":[[4.45,5.65],[4.35,5.65],[4.3,5.7],[4.2,5.7],[4.05,5.75],[4.15,5.75],[4.2,5.7]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-181","rules":[],"visual":{"kind":"line","points":[[4.35,5.65],[4.15,5.65],[4,5.6],[3.9,5.6],[3.85,5.55],[3.7,5.5],[3.55,5.35],[3.5,5.2],[3.4,5.1],[3.4,5.2],[3.45,5.25],[3.45,5.35],[3.5,5.4],[3.6,5.6],[3.75,5.75],[4.05,5.75],[4,5.7],[3.9,5.7],[3.85,5.65],[3.75,5.65],[3.6,5.5],[3.4,5.4],[3.35,5.25],[3.35,5.05],[3.4,5.1]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-182","rules":[],"visual":{"kind":"line","points":[[5.25,5.55],[5.3,5.5],[5.4,5.5],[5.6,5.3],[5.6,5.2],[5.65,5.25],[5.55,5.25],[5.25,5.35],[5.2,5.4],[5.3,5.4],[5.35,5.35],[5.5,5.3]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-183","rules":[],"visual":{"kind":"line","points":[[5.6,5.2],[5.6,5.1],[5.25,4.75],[5.3,4.7],[5.45,4.95]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-184","rules":[],"visual":{"kind":"line","points":[[0.85,8.65],[1.6,8.6],[1.75,8.55],[1.85,8.45],[1.55,8.65],[1.05,8.55],[1.65,8.55],[1.6,8.6]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-185","rules":[],"visual":{"kind":"line","points":[[1.6,8.6],[0.9,8.6],[0.75,8.55],[0.8,8.5],[0.9,8.5]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-186","rules":[],"visual":{"kind":"line","points":[[0.5,6.6],[0.3,7],[0.35,7.35],[0.4,7.5],[0.4,7.6],[0.45,7.65],[0.45,7.45],[0.35,7.15],[0.35,6.75],[0.4,6.7],[0.5,6.8]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-187","rules":[],"visual":{"kind":"line","points":[[7.7,2.7],[7.7,2.8],[7.75,2.85],[7.8,2.8],[7.8,2.7],[7.75,2.65],[7.75,2.55],[7.8,2.5],[7.8,2.2]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-188","rules":[],"visual":{"kind":"line","points":[[5.2,5.4],[5.1,5.4],[5,5.5],[5.1,5.5],[5.2,5.4]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-189","rules":[],"visual":{"kind":"line","points":[[1.75,8.55],[2,8.4],[1.9,8.5],[1.65,8.55],[1.75,8.55]],"color":"#cbe8ffff","thickness":13.44,"rounded":true}}
+- {"id":"drawing-190","rules":[],"visual":{"kind":"line","points":[[3.85,4.35],[4.15,4.75],[4.3,4.9],[4.45,4.95],[4.55,4.95],[5,4.9],[5.05,4.95],[4.95,4.95],[4.8,5],[4.7,5],[4.75,4.95]],"color":"#b7dcffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-191","rules":[],"visual":{"kind":"line","points":[[4.45,4.95],[4.2,4.9],[4.05,4.85],[3.9,4.7],[3.8,4.5],[3.8,4.4],[3.85,4.55],[3.95,4.65],[4.25,4.85],[4.7,5],[4.65,5.05],[4.55,5.05],[4.4,5.1],[4.3,5.1],[4.1,4.9],[3.95,4.85],[3.9,4.8],[4.55,4.95]],"color":"#b7dcffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-192","rules":[],"visual":{"kind":"line","points":[[3.8,4.4],[3.75,4.15],[3.9,4],[4.05,4.05],[4.75,4.75],[4.9,4.8],[4.95,4.85],[4.85,4.95],[4.45,5.05],[4.1,5],[3.85,4.55]],"color":"#b7dcffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-193","rules":[],"visual":{"kind":"line","points":[[4.65,4.65],[4.25,4.25],[4.15,4.25],[4.45,4.65],[4.6,4.7],[4.55,4.65],[4.25,4.45],[4.35,4.55],[4.5,4.6],[4.65,4.55],[4.65,4.45],[4.15,3.95],[3.9,3.9],[4.05,4.35],[4.4,4.5],[3.9,4.1],[4.25,4.65],[4.65,4.75],[4.7,4.7]],"color":"#b7dcffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-194","rules":[],"visual":{"kind":"line","points":[[3.9,4.8],[3.8,4.6],[3.9,4.1],[4.1,4.1],[4.15,4.15],[4.3,4.2],[4.75,4.65],[4.9,4.9],[4.7,4.8],[4.2,4.6],[4.65,4.85],[4.6,4.8],[4.45,4.75],[4.05,4.55],[4.1,4.7],[4.2,4.8],[4.7,4.9],[4.55,4.85],[4.2,4.7],[4.4,4.9],[4.85,4.85],[4.3,4.5],[4.1,4.4],[4,4.4],[4.2,4.6]],"color":"#b7dcffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-195","rules":[],"visual":{"kind":"line","points":[[3.9,4.8],[3.65,4.55],[3.65,4.15],[3.7,4.1],[3.9,4.1],[3.9,4.3],[4.15,4.55],[4.3,4.6],[4.5,4.6],[4.5,4.5],[4.3,4.3],[4.05,4.15],[3.95,4.15],[4.05,4.25],[4,4.3],[4.1,4.5],[4.2,4.6]],"color":"#b7dcffff","thickness":9.6,"rounded":true}}
+- {"id":"drawing-196","rules":[],"visual":{"kind":"line","points":[[5.3,0.6],[5.35,0.75],[5.35,0.65],[5.4,0.6]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-197","rules":[],"visual":{"kind":"line","points":[[7.65,2.25],[7.7,2.2],[7.7,2.3]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-198","rules":[],"visual":{"kind":"line","points":[[7.2,4.9],[7.1,4.9],[7.1,5],[7.15,4.95],[7.1,4.9]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-199","rules":[],"visual":{"kind":"line","points":[[7.15,4.95],[7.15,4.85]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-200","rules":[],"visual":{"kind":"line","points":[[7.45,8.35],[7.45,8.45],[7.5,8.4],[7.4,8.4]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-201","rules":[],"visual":{"kind":"line","points":[[7.25,8.65],[7.3,8.6],[7.3,8.7]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-202","rules":[],"visual":{"kind":"line","points":[[4.3,6.2],[4.25,6.15],[4.25,6.25]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-203","rules":[],"visual":{"kind":"line","points":[[0.4,4.6],[0.4,4.7],[0.45,4.65]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-204","rules":[],"visual":{"kind":"line","points":[[2.75,2.75],[2.8,2.8],[2.9,2.8],[2.85,2.75],[2.75,2.75]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-205","rules":[],"visual":{"kind":"line","points":[[2.8,2.8],[2.85,2.75],[2.8,2.7],[2.8,2.8]],"color":"#ffd379ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-206","rules":[],"visual":{"kind":"line","points":[[2.7,2.7],[2.8,2.7],[2.8,2.8],[2.7,2.8],[2.8,2.7]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-207","rules":[],"visual":{"kind":"line","points":[[2.8,2.7],[2.75,2.65],[2.75,2.75]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-208","rules":[],"visual":{"kind":"line","points":[[2.7,2.8],[2.65,2.75],[2.65,2.65],[2.75,2.65]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-209","rules":[],"visual":{"kind":"line","points":[[2.6,2.3],[2.55,2.25],[2.45,2.25],[2.4,2.2],[2.5,2.2]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-210","rules":[],"visual":{"kind":"line","points":[[2.4,2.2],[2.35,2.15]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-211","rules":[],"visual":{"kind":"line","points":[[5.6,0.4],[5.65,0.35],[5.65,0.45],[5.55,0.45]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-212","rules":[],"visual":{"kind":"line","points":[[5.55,0.45],[5.5,0.4],[5.55,0.35],[5.65,0.35],[5.6,0.3],[5.5,0.4]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-213","rules":[],"visual":{"kind":"line","points":[[7.6,2.3],[7.65,2.25],[7.75,2.35],[7.75,2.55],[7.7,2.6],[7.6,2.6],[7.7,2.5],[7.75,2.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-214","rules":[],"visual":{"kind":"line","points":[[7.7,2.3],[7.65,2.35],[7.7,2.4],[7.7,2.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-215","rules":[],"visual":{"kind":"line","points":[[7.75,2.35],[7.65,2.35],[7.6,2.5],[7.6,2.6],[7.55,2.55],[7.7,2.4],[7.6,2.4],[7.65,2.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-216","rules":[],"visual":{"kind":"line","points":[[7.6,2.6],[7.45,2.75]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-217","rules":[],"visual":{"kind":"line","points":[[7.65,2.55],[7.6,2.5],[7.6,2.4],[7.65,2.45],[7.7,2.4]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-218","rules":[],"visual":{"kind":"line","points":[[7.6,2.5],[7.55,2.45],[7.6,2.4]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-219","rules":[],"visual":{"kind":"line","points":[[7.55,2.55],[7.55,2.45]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-220","rules":[],"visual":{"kind":"line","points":[[7.5,2.4],[7.4,2.5]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-221","rules":[],"visual":{"kind":"line","points":[[7.25,4.55],[7.3,4.5],[7.3,4.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-222","rules":[],"visual":{"kind":"line","points":[[7.3,4.5],[7.35,4.45],[7.35,4.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-223","rules":[],"visual":{"kind":"line","points":[[7.2,4.6],[7.15,4.65],[7.1,4.6],[7.1,4.7]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-224","rules":[],"visual":{"kind":"line","points":[[7.1,4.6],[7.1,4.5],[7.15,4.55]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-225","rules":[],"visual":{"kind":"line","points":[[7.1,4.5],[7.1,4.3]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-226","rules":[],"visual":{"kind":"line","points":[[7.55,4.55],[7.7,4.4],[7.65,4.55],[7.6,4.6],[7.6,4.7],[7.5,4.6],[7.6,4.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-227","rules":[],"visual":{"kind":"line","points":[[7.6,4.6],[7.55,4.65],[7.45,4.65],[7.5,4.6],[7.4,4.6],[7.25,4.75],[7.25,4.75]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-228","rules":[],"visual":{"kind":"line","points":[[7.6,4.7],[7.55,4.75],[7.4,4.8],[7.35,4.85],[7.45,4.85],[7.55,4.75]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-229","rules":[],"visual":{"kind":"line","points":[[7.45,4.65],[7.4,4.7],[7.55,4.65],[7.5,4.7],[7.35,4.75],[7.4,4.7]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-230","rules":[],"visual":{"kind":"line","points":[[7.4,4.6],[7.3,4.7],[7.35,4.75]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-231","rules":[],"visual":{"kind":"line","points":[[7.65,8.25],[7.6,8.2],[7.7,8.2],[7.75,8.25],[7.7,8.3],[7.6,8.2]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-232","rules":[],"visual":{"kind":"line","points":[[7.5,8.4],[7.45,8.35],[7.5,8.3]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-233","rules":[],"visual":{"kind":"line","points":[[7.65,8.95],[7.55,8.85],[7.65,8.75],[7.45,8.75],[7.5,8.7],[7.6,8.7],[7.6,8.8]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-234","rules":[],"visual":{"kind":"line","points":[[7.55,8.85],[7.45,8.85],[7.4,8.8],[7.6,8.8],[7.55,8.75],[7.35,8.75],[7.4,8.8]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-235","rules":[],"visual":{"kind":"line","points":[[7.55,8.75],[7.5,8.7],[7.4,8.7],[7.4,8.8]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-236","rules":[],"visual":{"kind":"line","points":[[4.3,6.4],[4.2,6.4],[4.1,6.3],[4.1,6.2]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-237","rules":[],"visual":{"kind":"line","points":[[4.35,6.55],[4.3,6.6],[4.3,6.7],[4.25,6.75],[4.25,6.65],[4.3,6.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-238","rules":[],"visual":{"kind":"line","points":[[4.75,6.85],[4.55,6.65],[4.65,6.55],[4.65,6.45],[4.6,6.4],[4.55,6.45],[4.6,6.5],[4.6,6.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-239","rules":[],"visual":{"kind":"line","points":[[4.55,6.65],[4.45,6.65],[4.4,6.6],[4.4,6.4],[4.5,6.4],[4.55,6.45],[4.45,6.45],[4.6,6.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-240","rules":[],"visual":{"kind":"line","points":[[4.4,6.4],[4.45,6.35],[4.55,6.35],[4.45,6.45],[4.45,6.55],[4.55,6.55],[4.6,6.5],[4.55,6.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-241","rules":[],"visual":{"kind":"line","points":[[4.55,6.35],[4.6,6.4],[4.5,6.4],[4.4,6.3]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-242","rules":[],"visual":{"kind":"line","points":[[2.65,2.65],[2.75,2.55],[2.75,2.45],[2.5,2.6],[2.65,2.65]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-243","rules":[],"visual":{"kind":"line","points":[[2.65,2.65],[2.55,2.65],[2.45,2.55],[2.5,2.6],[2.7,2.6],[2.7,2.5],[2.6,2.5],[2.55,2.45],[2.6,2.5]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-244","rules":[],"visual":{"kind":"line","points":[[2.75,2.45],[2.7,2.4],[2.7,2.5],[2.6,2.4],[2.65,2.45],[2.6,2.5],[2.5,2.4],[2.6,2.4]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-245","rules":[],"visual":{"kind":"line","points":[[2.5,2.6],[2.5,2.4],[2.55,2.45]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-246","rules":[],"visual":{"kind":"line","points":[[2.6,2.6],[2.45,2.45],[2.5,2.4],[2.65,2.45]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-247","rules":[],"visual":{"kind":"line","points":[[2.45,2.55],[2.45,2.45],[2.5,2.4]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-248","rules":[],"visual":{"kind":"line","points":[[2.7,2.4],[2.65,2.35],[2.45,2.35],[2.45,2.45]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-249","rules":[],"visual":{"kind":"line","points":[[5.65,0.45],[5.7,0.4],[5.6,0.3],[5.5,0.3],[5.55,0.25],[5.65,0.25],[5.7,0.3],[5.7,0.4]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-250","rules":[],"visual":{"kind":"line","points":[[5.65,0.45],[5.6,0.5],[5.5,0.5],[5.5,0.4],[5.45,0.35],[5.5,0.3]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-251","rules":[],"visual":{"kind":"line","points":[[5.7,0.4],[5.5,0.5],[5.45,0.45],[5.45,0.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-252","rules":[],"visual":{"kind":"line","points":[[5.65,0.25],[5.75,0.25],[5.75,0.45],[5.65,0.55],[5.55,0.55],[5.45,0.45],[5.35,0.55],[5.45,0.45]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-253","rules":[],"visual":{"kind":"line","points":[[5.45,0.45],[5.4,0.6],[5.3,0.6],[5.3,0.5],[5.35,0.45],[5.4,0.5]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-254","rules":[],"visual":{"kind":"line","points":[[7.3,4.8],[7.2,4.8],[7.2,4.9],[7.3,4.8]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-255","rules":[],"visual":{"kind":"line","points":[[7.2,4.8],[7.15,4.85],[7.2,4.9]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-256","rules":[],"visual":{"kind":"line","points":[[7.6,8.2],[7.6,8.3],[7.65,8.35],[7.75,8.25],[7.75,8.35],[7.65,8.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-257","rules":[],"visual":{"kind":"line","points":[[7.6,8.2],[7.55,8.25],[7.55,8.35],[7.65,8.35],[7.7,8.3],[7.6,8.3],[7.55,8.25]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-258","rules":[],"visual":{"kind":"line","points":[[7.65,8.35],[7.55,8.25]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-259","rules":[],"visual":{"kind":"line","points":[[7.75,8.35],[7.7,8.4],[7.6,8.4],[7.55,8.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-260","rules":[],"visual":{"kind":"line","points":[[7.65,8.75],[7.55,8.65],[7.45,8.65],[7.4,8.7],[7.3,8.7],[7.25,8.65],[7.2,8.7],[7.25,8.75],[7.3,8.7]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-261","rules":[],"visual":{"kind":"line","points":[[7.65,8.75],[7.55,8.65]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-262","rules":[],"visual":{"kind":"line","points":[[0.9,4.9],[0.95,4.85],[0.85,4.85],[0.8,4.8],[0.7,4.8],[0.75,4.75],[0.75,4.85],[0.9,4.9]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-263","rules":[],"visual":{"kind":"line","points":[[0.75,4.85],[0.65,4.85],[0.6,4.8],[0.7,4.8],[0.8,4.7],[0.8,4.8],[0.75,4.65],[0.75,4.75],[0.65,4.65],[0.75,4.65]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-264","rules":[],"visual":{"kind":"line","points":[[0.7,4.8],[0.55,4.65],[0.65,4.65],[0.75,4.75],[0.65,4.75],[0.55,4.65]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-265","rules":[],"visual":{"kind":"line","points":[[0.8,4.7],[0.7,4.6],[0.6,4.6],[0.55,4.65],[0.55,4.75],[0.6,4.8]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-266","rules":[],"visual":{"kind":"line","points":[[0.65,4.65],[0.6,4.7]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-267","rules":[],"visual":{"kind":"line","points":[[0.55,4.65],[0.5,4.6],[0.45,4.65],[0.45,4.55],[0.5,4.6]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-268","rules":[],"visual":{"kind":"line","points":[[0.45,4.65],[0.4,4.6],[0.45,4.55]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-269","rules":[],"visual":{"kind":"line","points":[[4.25,6.25],[4.3,6.3],[4.35,6.25],[4.25,6.25]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-270","rules":[],"visual":{"kind":"line","points":[[4.35,6.25],[4.35,6.35],[4.25,6.25],[4.25,6.35],[4.35,6.35]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-271","rules":[],"visual":{"kind":"line","points":[[5.7,0.2],[5.85,0.05],[5.9,0.1],[5.8,0.2],[5.7,0.2]],"color":"#c7b182ff","thickness":6.4,"rounded":true}}
+- {"id":"drawing-272","rules":[],"visual":{"kind":"line","points":[[5.55,0.55],[5.65,0.55],[5.7,0.5],[5.7,0.4],[5.6,0.5]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-273","rules":[],"visual":{"kind":"line","points":[[7.75,2.35],[7.75,2.45],[7.8,2.5]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-274","rules":[],"visual":{"kind":"line","points":[[7.7,2.4],[7.7,2.5],[7.75,2.55]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-275","rules":[],"visual":{"kind":"line","points":[[7.55,4.75],[7.45,4.75],[7.5,4.8],[7.45,4.85],[7.35,4.85],[7.45,4.75]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-276","rules":[],"visual":{"kind":"line","points":[[7.7,8.4],[7.65,8.35],[7.7,8.3],[7.75,8.35]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-277","rules":[],"visual":{"kind":"line","points":[[7.45,8.65],[7.55,8.65],[7.6,8.7],[7.55,8.75],[7.5,8.7],[7.55,8.65]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-278","rules":[],"visual":{"kind":"line","points":[[4.55,6.45],[4.5,6.4],[4.6,6.4],[4.55,6.35],[4.45,6.35],[4.5,6.4]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-279","rules":[],"visual":{"kind":"line","points":[[2.65,2.35],[2.75,2.45],[2.75,2.55],[2.65,2.45],[2.65,2.35]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-280","rules":[],"visual":{"kind":"line","points":[[2.7,2.4],[2.65,2.45],[2.75,2.55]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-281","rules":[],"visual":{"kind":"line","points":[[2.65,2.45],[2.65,2.55],[2.75,2.45]],"color":"#f1e1c3ff","thickness":5.76,"rounded":true}}
+- {"id":"drawing-282","rules":[],"visual":{"kind":"line","points":[[2.75,2.45],[2.85,2.45],[2.9,2.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-283","rules":[],"visual":{"kind":"line","points":[[2.85,2.45],[2.85,2.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-284","rules":[],"visual":{"kind":"line","points":[[2.9,2.6],[2.85,2.55],[2.75,2.55]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-285","rules":[],"visual":{"kind":"line","points":[[2.45,2.35],[2.55,2.35],[2.65,2.45],[2.65,2.55],[2.6,2.4]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-286","rules":[],"visual":{"kind":"line","points":[[2.55,2.35],[2.5,2.3],[2.4,2.3]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-287","rules":[],"visual":{"kind":"line","points":[[2.5,2.4],[2.6,2.4],[2.6,2.5],[2.65,2.45],[2.6,2.6],[2.65,2.55],[2.6,2.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-288","rules":[],"visual":{"kind":"line","points":[[2.65,2.45],[2.55,2.45]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-289","rules":[],"visual":{"kind":"line","points":[[5.45,0.45],[5.55,0.45],[5.7,0.3],[5.7,0.2],[5.6,0.2]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-290","rules":[],"visual":{"kind":"line","points":[[5.65,0.35],[5.55,0.35]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-291","rules":[],"visual":{"kind":"line","points":[[5.7,0.3],[5.6,0.3]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-292","rules":[],"visual":{"kind":"line","points":[[5.5,0.4],[5.6,0.4]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-293","rules":[],"visual":{"kind":"line","points":[[5.8,0.4],[5.9,0.4],[5.9,0.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-294","rules":[],"visual":{"kind":"line","points":[[5.9,0.4],[5.95,0.45]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-295","rules":[],"visual":{"kind":"line","points":[[5.8,0.5],[5.75,0.55],[5.85,0.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-296","rules":[],"visual":{"kind":"line","points":[[5.8,0.6],[5.75,0.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-297","rules":[],"visual":{"kind":"line","points":[[7.65,2.45],[7.35,2.75],[7.55,2.75],[7.65,2.65],[7.65,2.55]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-298","rules":[],"visual":{"kind":"line","points":[[7.55,2.75],[7.5,2.7]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-299","rules":[],"visual":{"kind":"line","points":[[7.6,2.7],[7.55,2.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-300","rules":[],"visual":{"kind":"line","points":[[7.65,2.65],[7.6,2.6]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-301","rules":[],"visual":{"kind":"line","points":[[7.6,2.3],[7.55,2.35],[7.45,2.35],[7.3,2.5],[7.5,2.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-302","rules":[],"visual":{"kind":"line","points":[[7.55,2.35],[7.45,2.45]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-303","rules":[],"visual":{"kind":"line","points":[[7.8,2.5],[7.85,2.45]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-304","rules":[],"visual":{"kind":"line","points":[[7.75,2.45],[7.85,2.35]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-305","rules":[],"visual":{"kind":"line","points":[[7.4,4.6],[7.3,4.6],[7.3,4.7],[7.2,4.6],[7.2,4.5],[7.4,4.3],[7.4,4.4],[7.35,4.55],[7.3,4.6]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-306","rules":[],"visual":{"kind":"line","points":[[7.35,4.55],[7.4,4.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-307","rules":[],"visual":{"kind":"line","points":[[7.4,4.4],[7.3,4.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-308","rules":[],"visual":{"kind":"line","points":[[7.2,4.5],[7.15,4.45],[7.15,4.25],[7.05,4.35]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-309","rules":[],"visual":{"kind":"line","points":[[7.1,4.6],[7.15,4.65],[7.25,4.65],[7.2,4.7],[7.1,4.7],[7.05,4.75],[7.05,4.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-310","rules":[],"visual":{"kind":"line","points":[[7.55,4.75],[7.65,4.75],[7.75,4.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-311","rules":[],"visual":{"kind":"line","points":[[7.7,4.7],[7.7,4.6]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-312","rules":[],"visual":{"kind":"line","points":[[7.6,4.8],[7.7,4.8],[7.75,4.75]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-313","rules":[],"visual":{"kind":"line","points":[[7.7,4.8],[7.8,4.8]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-314","rules":[],"visual":{"kind":"line","points":[[7.7,8.2],[7.75,8.25],[7.6,8.3],[7.7,8.3],[7.75,8.25]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-315","rules":[],"visual":{"kind":"line","points":[[7.75,8.25],[7.65,8.25],[7.6,8.3]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-316","rules":[],"visual":{"kind":"line","points":[[7.7,8.3],[7.65,8.25]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-317","rules":[],"visual":{"kind":"line","points":[[7.85,8.35],[7.8,8.3],[7.8,8.4]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-318","rules":[],"visual":{"kind":"line","points":[[7.65,8.75],[7.75,8.75],[7.8,8.7]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-319","rules":[],"visual":{"kind":"line","points":[[7.75,8.75],[7.75,8.65],[7.65,8.65],[7.7,8.6]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-320","rules":[],"visual":{"kind":"line","points":[[7.45,8.85],[7.5,8.9],[7.6,8.9],[7.55,8.85],[7.55,8.75],[7.4,8.7]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-321","rules":[],"visual":{"kind":"line","points":[[7.55,8.85],[7.5,8.8]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-322","rules":[],"visual":{"kind":"line","points":[[4.4,6.5],[4.3,6.5],[4.2,6.6],[4.2,6.8],[4.4,7]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-323","rules":[],"visual":{"kind":"line","points":[[4.2,6.8],[4.3,6.9]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-324","rules":[],"visual":{"kind":"line","points":[[4.25,6.85],[4.35,6.75],[4.4,6.8]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-325","rules":[],"visual":{"kind":"line","points":[[4.3,6.8],[4.35,6.85]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-326","rules":[],"visual":{"kind":"line","points":[[4.4,6.7],[4.35,6.65],[4.35,6.75],[4.3,6.7]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-327","rules":[],"visual":{"kind":"line","points":[[4.35,6.65],[4.4,6.6],[4.35,6.55]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-328","rules":[],"visual":{"kind":"line","points":[[4.65,6.55],[4.7,6.6],[4.8,6.6]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-329","rules":[],"visual":{"kind":"line","points":[[4.7,6.6],[4.75,6.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-330","rules":[],"visual":{"kind":"line","points":[[4.65,6.45],[4.7,6.5],[4.8,6.5]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-331","rules":[],"visual":{"kind":"line","points":[[4.7,6.5],[4.75,6.55]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-332","rules":[],"visual":{"kind":"line","points":[[0.6,4.6],[0.65,4.55],[0.75,4.55],[0.9,4.7],[0.7,4.7],[0.65,4.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-333","rules":[],"visual":{"kind":"line","points":[[0.8,4.6],[0.7,4.6]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-334","rules":[],"visual":{"kind":"line","points":[[0.85,4.65],[0.75,4.65]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-335","rules":[],"visual":{"kind":"line","points":[[7.4,4.3],[7.45,4.25],[7.4,4.2],[7.4,4.3]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-336","rules":[],"visual":{"kind":"line","points":[[0.65,4.85],[0.7,4.9],[0.55,4.85],[0.65,4.85]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-337","rules":[],"visual":{"kind":"line","points":[[0.65,4.85],[0.55,4.75],[0.55,4.85]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-338","rules":[],"visual":{"kind":"line","points":[[4.3,6.4],[4.35,6.45],[4.15,6.45],[4.1,6.4],[4.1,6.3],[4.05,6.25],[4.05,6.15],[4.15,6.25],[4.15,6.35],[4.2,6.4],[4.15,6.25]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-339","rules":[],"visual":{"kind":"line","points":[[4.25,6.45],[4.2,6.4],[4.3,6.4],[4.15,6.35]],"color":"#8f8064ff","thickness":2.56,"rounded":true}}
+- {"id":"drawing-340","rules":[],"visual":{"kind":"line","points":[[7.5,2.1],[7.55,2.15]],"color":"#cce9fdff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-341","rules":[],"visual":{"kind":"line","points":[[7.35,2.95],[7.45,2.85]],"color":"#cce9fdff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-342","rules":[],"visual":{"kind":"line","points":[[7.2,2.8],[7.25,2.75]],"color":"#cce9fdff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-343","rules":[],"visual":{"kind":"line","points":[[7.25,2.15],[7.3,2.2]],"color":"#cce9fdff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-344","rules":[],"visual":{"kind":"line","points":[[0.1,4.8],[0.2,4.8],[0.15,4.85],[0.25,4.85],[0.25,4.75],[0.2,4.8]],"color":"#cce9fdff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-345","rules":[],"visual":{"kind":"line","points":[[0.2,4.8],[0.2,4.7]],"color":"#cce9fdff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-346","rules":[],"visual":{"kind":"line","points":[[0.25,4.85],[0.15,4.75]],"color":"#a2eba9ff","thickness":3.2,"rounded":true}}
+- {"id":"drawing-347","rules":[],"visual":{"kind":"line","points":[[3.1,3.2],[3.1,3.1],[3.3,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-348","rules":[],"visual":{"kind":"line","points":[[3.1,3.3],[3.1,3.4]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-349","rules":[],"visual":{"kind":"line","points":[[3.1,3.5],[3.1,3.6]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-350","rules":[],"visual":{"kind":"line","points":[[3.1,3.7],[3.1,3.8]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-351","rules":[],"visual":{"kind":"line","points":[[3.1,3.9],[3.1,4]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-352","rules":[],"visual":{"kind":"line","points":[[3.1,4.1],[3.1,4.2]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-353","rules":[],"visual":{"kind":"line","points":[[3.1,4.3],[3.1,4.4]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-354","rules":[],"visual":{"kind":"line","points":[[3.1,4.5],[3.1,4.6]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-355","rules":[],"visual":{"kind":"line","points":[[3.1,4.7],[3.1,4.8]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-356","rules":[],"visual":{"kind":"line","points":[[3.1,4.9],[3.1,5]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-357","rules":[],"visual":{"kind":"line","points":[[3.1,5.1],[3.1,5.2]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-358","rules":[],"visual":{"kind":"line","points":[[3.1,5.3],[3.1,5.4]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-359","rules":[],"visual":{"kind":"line","points":[[3.1,5.5],[3.1,5.6]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-360","rules":[],"visual":{"kind":"line","points":[[3.1,5.7],[3.1,5.9],[3.2,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-361","rules":[],"visual":{"kind":"line","points":[[3.3,5.9],[3.4,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-362","rules":[],"visual":{"kind":"line","points":[[3.5,5.9],[3.6,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-363","rules":[],"visual":{"kind":"line","points":[[3.7,5.9],[3.8,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-364","rules":[],"visual":{"kind":"line","points":[[3.9,5.9],[4,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-365","rules":[],"visual":{"kind":"line","points":[[4.1,5.9],[4.2,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-366","rules":[],"visual":{"kind":"line","points":[[4.3,5.9],[4.4,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-367","rules":[],"visual":{"kind":"line","points":[[4.5,5.9],[4.6,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-368","rules":[],"visual":{"kind":"line","points":[[4.7,5.9],[4.8,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-369","rules":[],"visual":{"kind":"line","points":[[4.9,5.9],[5,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-370","rules":[],"visual":{"kind":"line","points":[[5.1,5.9],[5.2,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-371","rules":[],"visual":{"kind":"line","points":[[5.3,5.9],[5.4,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-372","rules":[],"visual":{"kind":"line","points":[[5.5,5.9],[5.6,5.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-373","rules":[],"visual":{"kind":"line","points":[[5.7,5.9],[5.9,5.9],[5.9,5.8]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-374","rules":[],"visual":{"kind":"line","points":[[5.9,5.6],[5.9,5.7]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-375","rules":[],"visual":{"kind":"line","points":[[5.9,5.4],[5.9,5.5]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-376","rules":[],"visual":{"kind":"line","points":[[5.9,5.2],[5.9,5.3]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-377","rules":[],"visual":{"kind":"line","points":[[5.9,5],[5.9,5.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-378","rules":[],"visual":{"kind":"line","points":[[5.9,4.8],[5.9,4.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-379","rules":[],"visual":{"kind":"line","points":[[5.9,4.6],[5.9,4.7]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-380","rules":[],"visual":{"kind":"line","points":[[5.9,4.4],[5.9,4.5]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-381","rules":[],"visual":{"kind":"line","points":[[5.9,4.3],[5.9,4.1],[5.8,4.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-382","rules":[],"visual":{"kind":"line","points":[[5.6,4.1],[5.7,4.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-383","rules":[],"visual":{"kind":"line","points":[[5.4,4.1],[5.5,4.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-384","rules":[],"visual":{"kind":"line","points":[[5.2,4.1],[5.3,4.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-385","rules":[],"visual":{"kind":"line","points":[[5.1,4.1],[4.9,4.1],[4.9,4]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-386","rules":[],"visual":{"kind":"line","points":[[4.9,3.8],[4.9,3.9]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-387","rules":[],"visual":{"kind":"line","points":[[4.9,3.6],[4.9,3.7]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-388","rules":[],"visual":{"kind":"line","points":[[4.9,3.3],[4.9,3.4]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-389","rules":[],"visual":{"kind":"line","points":[[4.9,3.2],[4.9,3.1],[4.8,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-390","rules":[],"visual":{"kind":"line","points":[[4.6,3.1],[4.7,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-391","rules":[],"visual":{"kind":"line","points":[[4.4,3.1],[4.5,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-392","rules":[],"visual":{"kind":"line","points":[[4.2,3.1],[4.3,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-393","rules":[],"visual":{"kind":"line","points":[[4,3.1],[4.1,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-394","rules":[],"visual":{"kind":"line","points":[[3.8,3.1],[3.9,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-395","rules":[],"visual":{"kind":"line","points":[[3.6,3.1],[3.7,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-396","rules":[],"visual":{"kind":"line","points":[[3.4,3.1],[3.5,3.1]],"color":"#7b7b7bff","thickness":1.92,"rounded":true}}
+- {"id":"drawing-412","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.75,2.75],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-413","rules":[],"visual":{"kind":"shape","layer":"over","center":[5.35,0.55],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-414","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.65,2.25],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-415","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.15,4.85],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-416","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.45,8.35],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-417","rules":[],"visual":{"kind":"shape","layer":"over","center":[7.25,8.7],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-418","rules":[],"visual":{"kind":"shape","layer":"over","center":[4.25,6.25],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-419","rules":[],"visual":{"kind":"shape","layer":"over","center":[0.4,4.65],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#000000","thickness":1.28,"angle":0}}
+- {"id":"drawing-420","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.9,2.9],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#ecdbc1ff","thickness":1.28,"angle":0}}
+- {"id":"drawing-421","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.95,2.7],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#ecdbc1ff","thickness":1.28,"angle":0}}
+- {"id":"drawing-422","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.95,2.8],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#ecdbc1ff","thickness":1.28,"angle":0}}
+- {"id":"drawing-423","rules":[],"visual":{"kind":"shape","layer":"over","center":[2.8,2.9],"width":0.04,"height":0.04,"rounded":true,"fill":"#FFFFFF","stroke":"#ecdbc1ff","thickness":1.28,"angle":0}}
+```
+
+One thing that never gets old for Nala is to jumpscare sparrows that are having a chill time at the lake. She loves it when they fly away while cheeping insults at her. Since the lake we visit today is part of a protected landscape we must not disturb nature as we take our walk. Easier said than done with all the sparrows around! 
+
+Normal Sudoku rules apply: Place the digits 1-9 in every row, column and box exactly once each. 
+
+Additionally the grid is partially covered in fog. Placing correct digits will clear the fog from surrounding cells, possibly revealing more clues.
+
+Draw an orthogonally connected looped path around the fenced lake area. The looped path is not allowed to touch itself orthogonally and does not branch. The looped path functions as parity line (even/odd) for the digits on it.
+
+Since there are lots of sparrows scattered everywhere, there will be some unavoidable accidents, but if we see a sparrow in time, the path is not allowed to enter the sparrow cell or any of its 4 orthogonally neighbouring cells because otherwise Nala will charge at them. Successfully dodged sparrows are maximum cells where each of its 4 orthogonally neighbouring cells is smaller than the digit in the sparrow cell. 
+
+Some sparrows appeared seemingly out of nowhere and we were way too close once we noticed them coming. Those will unavoidably be charged at. The path, once it has entered into one of the 4 cells surrounding a sparrow, must go into the sparrow cell as well. Attacked sparrows are minimum cells and each of their surrounding 4 orthogonal neighbours have to be higher than the digit in these sparrow cells. 
+
+Digits separated by a white dot are consecutive. Digits separated by a black dot are in a 1:2 ratio. Not all possible dots are given. (There is no negative constraint.)
