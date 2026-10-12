@@ -30,10 +30,10 @@ Bun 1.2.23; Node 24.20.0; TypeScript 5.9.3. Fresh compiler/CLI processes, existi
 | actionlint | 0.037 | 0 |
 | Source audit | 0.100 | 1; migration failures reported |
 
-The default test command and CI remain blocked by the existing missing `.agents/plugins/marketplace.json`. This workspace makes `.agents` read-only. The already staged `codex-marketplace.json` passes those same tests with their existing explicit override:
+The default test command and CI remain blocked by the existing missing `.agents/plugins/marketplace.json`. This workspace makes `.agents` read-only. The already staged `.agents/plugins/marketplace.json` passes those same tests with their existing explicit override:
 
 ```sh
-OPEN_RULES_CODEX_MARKETPLACE=codex-marketplace.json bun test
+OPEN_RULES_CODEX_MARKETPLACE=.agents/plugins/marketplace.json bun test
 ```
 
 Package tarball creation and its symlinked `openrules` executable passed with help/valid/invalid statuses 0/0/1; no publication. Node CLI and its packaged prelude run independently of Bun. The static build has zero publishable rule pages/cases because those folders are empty; generator fixtures are exercised by the tests.
