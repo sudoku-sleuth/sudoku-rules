@@ -34,7 +34,7 @@ test("each rule and the shared definitions have an HTML page", async () => {
   const thermo = await readFile(join(output, "thermo/index.html"), "utf8");
   expect(thermo).toContain("∀i ∈");
   expect(thermo).toContain("<table>");
-  expect(thermo).toContain('class="language-text"');
+  expect(thermo).toContain('<math xmlns="http://www.w3.org/1998/Math/MathML"');
   expect(thermo).toContain('class="language-markdown"');
   expect(thermo).toContain("Satisfies the rule:");
   expect(thermo).toContain('href="/predicates/"');
@@ -76,9 +76,35 @@ test("headings support fragment links and duplicate heading names", () => {
 
 test("shape grouping follows parameters and accepts explicit shape", () => {
   expect(ruleShape({ parameters: { line: {} } })).toBe("Lines");
-  expect(ruleShape({ parameters: { ray: {} } })).toBe("Outside clues");
+  expect(ruleShape({ parameters: { ray: {} } })).toBe("Outside");
   expect(ruleShape({ kind: "cage", parameters: { cells: {} } })).toBe("Cages");
-  expect(ruleShape({ shape: "Arrows", parameters: { line: {} } })).toBe("Arrows");
+  expect(ruleShape({ shape: "Edges", parameters: { line: {} } })).toBe("Edges");
+});
+
+test("index rule has its own route without overwriting the library homepage", async () => {
+  const source = join(temporary, "index-rule");
+  await mkdir(join(source, "rules"), { recursive: true });
+  await writeFile(join(source, "rules/index.md"), "---\nname: Index\nkind: index\nurl: https://rules.sudoku-sleuth.com/index.md\n---\n# Index\n\nA digit points to its own position.\n");
+  const result = await buildSite(source, join(temporary, "index-site"));
+  expect(await readFile(join(result.output, "index.html"), "utf8")).toContain('href="/index/"');
+  expect(await readFile(join(result.output, "index/index.html"), "utf8")).toContain('<h1 id="index">Index</h1>');
+  expect(await readFile(join(result.output, "index.md"))).toEqual(await readFile(join(source, "rules/index.md")));
+});
+
+test("case reading view preserves attribution and points to its unchanged raw file", async () => {
+  const html = await readFile(join(output, "cases/to-the-revolution/index.html"), "utf8");
+  expect(html).toContain("John Laurens");
+  expect(html).toContain('href="/cases/to-the-revolution.rules.md"');
+  expect(html).toContain('class="language-rules"');
+});
+
+test("MathML preserves complete cell names and cannot inject source HTML", () => {
+  const html = renderMarkdown('```math\n|V(r1c4) − V(r1c5)| ≥ 5\n```');
+  expect(html).toContain('>r1c4</mi>');
+  expect(html).toContain('>r1c5</mi>');
+  expect(html).not.toContain('<msub>');
+  expect(html).toContain('<annotation encoding="text/plain">');
+  expect(renderMarkdown('```math\n<script>alert(1)</script>\n```')).not.toContain('<script>');
 });
 
 test("front matter lint parses the approved fixtures and rejects duplicate keys", async () => {

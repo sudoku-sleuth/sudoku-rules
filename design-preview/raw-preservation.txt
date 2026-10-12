@@ -1,0 +1,1 @@
+3977 Markdown files match FETCH_HEAD and generated raw output byte for byte.

@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { parseDocument } from "yaml";
 import { marked } from "marked";
+import { renderMath } from "./mathml";
 
 export const origin = "https://rules.sudoku-sleuth.com";
 export type Metadata = Record<string, unknown>;
@@ -66,6 +67,12 @@ export function renderMarkdown(body: string, pageNames: Set<string> = new Set())
   };
   // Source HTML is text; Markdown links cannot introduce executable URLs.
   renderer.html = ({ text }) => escapeHtml(text);
+  renderer.code = ({ text, lang }) => {
+    if (lang === "math" || (lang === "text" && /[∀∃∧∨↔→]|[=<>≥≤]/u.test(text))) {
+      return `<div class="formula" role="region" aria-label="Mathematical formula" tabindex="0">${renderMath(text)}</div>\n`;
+    }
+    return `<pre><code${lang ? ` class="language-${escapeHtml(lang)}"` : ""}>${escapeHtml(text)}</code></pre>\n`;
+  };
   renderer.image = ({ text }) => escapeHtml(text);
   renderer.link = function ({ href, title, tokens }) {
     const label = this.parser.parseInline(tokens);
@@ -74,6 +81,7 @@ export function renderMarkdown(body: string, pageNames: Set<string> = new Set())
     const local = href.replace(`${origin}/`, "").replace(/^\/?rules\//, "").replace(/^\//, "");
     const match = /^([a-z0-9-]+)\.md(#[\w-]+)?$/.exec(local);
     if (match && pageNames.has(match[1])) href = `/${match[1]}/${match[2] ?? ""}`;
+    if (/^(spec|tests)\//.test(href)) href = `https://github.com/sudoku-sleuth/sudoku-rules/blob/main/${href}`;
     return `<a href="${escapeHtml(href)}"${title ? ` title="${escapeHtml(title)}"` : ""}>${label}</a>`;
   };
   return marked.parse(body, { renderer, gfm: true, async: false }) as string;
@@ -85,17 +93,19 @@ export function summary(body: string) {
 }
 
 export function ruleShape(metadata: Metadata) {
-  if (typeof metadata.shape === "string") return metadata.shape;
+  if (typeof metadata.shape === "string" && ["Lines", "Edges", "Cells", "Cages", "Outside", "Regions", "Global"].includes(metadata.shape)) return metadata.shape;
   const parameters = metadata.parameters as Metadata | undefined;
   const keys = Object.keys(parameters ?? {});
   const kind = String(metadata.kind);
-  if (["arrow", "double-arrow", "pointing-arrow", "coordinate-arrows"].includes(kind)) return "Arrows";
-  if (["little-killer", "sandwich", "x-sum", "skyscraper", "numbered-room", "run-sum", "outside", "ordered-block", "doll-sum"].includes(kind)) return "Outside clues";
+  if (["pair", "kropki", "negative"].includes(kind)) return "Edges";
+  if (["constructed-regions", "unique"].includes(kind)) return "Regions";
+  if (["arrow", "double-arrow", "coordinate-arrows", "hidden-modular", "run-sum"].includes(kind)) return "Lines";
+  if (["little-killer", "sandwich", "x-sum", "skyscraper", "numbered-room", "outside", "ordered-block", "doll-sum", "pointing-arrow"].includes(kind)) return "Outside";
+  if (["sudoku", "anti-king", "anti-knight", "diagonal", "diagonal-lines", "flat-mates", "index", "magic-square", "rotational-sums", "scoped-move", "value-modifier", "window-classes", "yin-yang"].includes(kind)) return "Global";
   if (keys.includes("line") || keys.includes("lines")) return "Lines";
-  if (keys.includes("ray")) return "Outside clues";
+  if (keys.includes("ray")) return "Outside";
   if (keys.includes("cage") || keys.includes("cages") || /cage|vault|look-and-say|n-mate|killer/.test(kind)) return "Cages";
-  if (keys.includes("cells") || keys.includes("cell")) return "Cells and groups";
-  return "Board and other rules";
+  return "Cells";
 }
 
 export async function readPage(file: string) {
