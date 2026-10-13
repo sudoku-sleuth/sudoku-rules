@@ -1,7 +1,8 @@
 @font-face { font-family: Inter; src: url('/fonts/inter.woff2') format('woff2'); font-weight: 400 700; font-display: swap; }
 @font-face { font-family: 'Playfair Display'; src: url('/fonts/playfair-display.ttf') format('truetype'); font-weight: 400 900; font-display: swap; }
-:root { color-scheme: light dark; --paper: oklch(.978 .005 75); --ink: oklch(.250 .045 262); --muted: oklch(.470 .030 262); --blue: oklch(.520 .135 260); --surface: oklch(.990 .004 75); --rule: oklch(.840 .014 70); }
-@media (prefers-color-scheme: dark) { :root { --paper: oklch(.215 .048 263); --ink: oklch(.950 .012 262); --muted: oklch(.760 .040 260); --blue: oklch(.660 .130 258); --surface: oklch(.262 .058 262); --rule: oklch(.340 .060 263); } }
+:root { color-scheme: light; --paper: oklch(.978 .005 75); --ink: oklch(.250 .045 262); --muted: oklch(.470 .030 262); --blue: oklch(.520 .135 260); --surface: oklch(.990 .004 75); --rule: oklch(.840 .014 70); }
+:root[data-theme="dark"] { color-scheme: dark; --paper: oklch(.215 .048 263); --ink: oklch(.950 .012 262); --muted: oklch(.760 .040 260); --blue: oklch(.660 .130 258); --surface: oklch(.262 .058 262); --rule: oklch(.340 .060 263); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-theme="dark"]) { color-scheme: dark; --paper: oklch(.215 .048 263); --ink: oklch(.950 .012 262); --muted: oklch(.760 .040 260); --blue: oklch(.660 .130 258); --surface: oklch(.262 .058 262); --rule: oklch(.340 .060 263); } }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
 body { margin: 0; background: var(--paper); color: var(--ink); font: 16px/1.6 Inter, system-ui, sans-serif; }
@@ -100,3 +101,35 @@ footer div:first-child a { margin-left: 20px; }
 .shapes a { padding-bottom: 0; border-bottom: 0; }
 .shapes a span { padding-bottom: 16px; border-bottom: 2px solid transparent; }
 .shapes a[aria-current] span { border-color: var(--blue); }
+
+/* Match the Bureau's two-second surface fade; text changes immediately. */
+@property --paper { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --surface { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@property --rule { syntax: '<color>'; inherits: true; initial-value: transparent; }
+@media (prefers-reduced-motion: no-preference) {
+  :root { transition: --paper 2s ease, --surface 2s ease, --rule 2s ease; }
+}
+.site-header { flex-wrap: wrap; }
+.site-header nav { margin-left: auto; }
+.theme-control { display: flex; gap: 2px; border: 1px solid var(--rule); border-radius: 4px; padding: 3px; }
+.theme-control button { min-height: 36px; padding: 6px 10px; border: 0; border-radius: 2px; background: transparent; color: var(--muted); font: 500 12px/1.5 Inter, system-ui, sans-serif; cursor: pointer; }
+.theme-control button[aria-pressed='true'] { background: var(--surface); color: var(--ink); box-shadow: inset 0 0 0 1px var(--rule); }
+.theme-control button:hover { color: var(--ink); }
+@media (max-width: 430px) { .site-header nav { margin-left: 0; } }
+
+/* Native maths uses the browser's maths font and the active ink colour. */
+math { font-family: math; color: var(--ink); }
+.math-source { margin-top: 12px; font-size: 12px; color: var(--muted); }
+.math-source summary { cursor: pointer; }
+.math-plain { margin: 12px 0 0; white-space: pre; overflow-x: auto; overflow-wrap: normal; color: var(--ink); }
+.rules-code { min-width: 0; max-width: 100%; margin-bottom: 20px; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); }
+.code-label { display: block; padding: 6px 16px; border-bottom: 1px solid var(--rule); font: 12px/1.5 ui-monospace, 'SFMono-Regular', Consolas, monospace; color: var(--muted); }
+.rules-code pre { display: block; max-width: 100%; margin: 0; border: 0; border-radius: 0; white-space: pre; overflow-x: auto; overflow-wrap: normal; }
+.rules-code code { font: inherit; }
+.featured .rules-code pre { display: block; }
+.featured > div { min-width: 0; }
+.case-example { min-width: 0; }
+
+.rules-inline { display: inline-flex; align-items: baseline; max-width: 100%; vertical-align: middle; overflow-x: auto; border: 1px solid var(--rule); border-radius: 4px; background: var(--surface); white-space: pre; }
+.rules-inline .code-label { border-bottom: 0; border-right: 1px solid var(--rule); padding: 2px 6px; }
+.rules-inline > code { padding: 2px 8px; overflow-wrap: normal; }

@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, expect, test } from "bun:test";
 import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
@@ -29,7 +30,7 @@ test("each rule and the shared definitions have an HTML page", async () => {
     const html = await readFile(join(output, slug, "index.html"), "utf8");
     expect(html).toContain("<h1 id=");
     expect(html).toContain(`href="/${slug}.md"`);
-    expect(html).not.toContain("<script");
+    expect(html).not.toContain("<script src=");
   }
   const thermo = await readFile(join(output, "thermo/index.html"), "utf8");
   expect(thermo).toContain("∀i ∈");
@@ -100,8 +101,8 @@ test("case reading view preserves attribution and points to its unchanged raw fi
 
 test("MathML preserves complete cell names and cannot inject source HTML", () => {
   const html = renderMarkdown('```math\n|V(r1c4) − V(r1c5)| ≥ 5\n```');
-  expect(html).toContain('>r1c4</mi>');
-  expect(html).toContain('>r1c5</mi>');
+  expect(html).toContain('mathvariant="italic">r1c4</mi>');
+  expect(html).toContain('mathvariant="italic">r1c5</mi>');
   expect(html).not.toContain('<msub>');
   expect(html).toContain('<annotation encoding="text/plain">');
   expect(renderMarkdown('```math\n<script>alert(1)</script>\n```')).not.toContain('<script>');
@@ -201,4 +202,17 @@ test("the full imported library and case collection have byte-identical public r
   for(let i=0;i<names.length;i+=32)await Promise.all(names.slice(i,i+32).filter(name=>name.endsWith(".rules.md")).map(async name=>{
     expect(await readFile(join(built.output,"cases",name))).toEqual(await readFile(join("cases",name)));
   }));
+});
+
+test("theme bootstrap is hash-authorised before the stylesheet on every reading surface", async () => {
+  for (const route of ["index.html", "thermo/index.html", "cases/to-the-revolution/index.html"]) {
+    const html = await readFile(join(output, route), "utf8");
+    const script = /<script>([\s\S]*?)<\/script>/.exec(html)![1];
+    const hash = createHash("sha256").update(script).digest("base64");
+    expect(html).toContain(`'sha256-${hash}'`);
+    expect(html.indexOf(`<script>${script}</script>`)).toBeLessThan(html.indexOf('<link rel="stylesheet"'));
+    expect(html).toContain('aria-label="Colour theme"');
+    for (const theme of ["light", "dark", "system"]) expect(html).toContain(`data-theme-choice="${theme}"`);
+    expect(html).not.toContain("unsafe-inline");
+  }
 });

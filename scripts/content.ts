@@ -2,6 +2,7 @@ import { readdir, readFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { parseDocument } from "yaml";
 import { marked } from "marked";
+import { parseFormula } from "../src/language/parser";
 import { renderMath } from "./mathml";
 
 export const origin = "https://rules.sudoku-sleuth.com";
@@ -55,6 +56,27 @@ export function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 }
 
+export function renderRuleLines(text: string) {
+  return `<div class="rules-code"><span class="code-label">rules</span><pre role="region" aria-label="Rules" tabindex="0"><code class="language-rules">${escapeHtml(text)}</code></pre></div>`;
+}
+
+// Case examples use an outer Markdown fence containing front matter and rules.
+// Keep the header as code and give each embedded rules fence the same presentation.
+function renderCaseExample(text: string) {
+  const fence = /^(`{3,}|~{3,})rules[^\n]*\n([\s\S]*?)^\1[ \t]*$/gm;
+  let result = "", end = 0;
+  for (const match of text.matchAll(fence)) {
+    const before = text.slice(end, match.index).trim();
+    if (before) result += `<pre><code class="language-markdown">${escapeHtml(before)}</code></pre>`;
+    result += renderRuleLines(match[2].trimEnd());
+    end = match.index + match[0].length;
+  }
+  if (!result) return;
+  const after = text.slice(end).trim();
+  if (after) result += `<pre><code class="language-markdown">${escapeHtml(after)}</code></pre>`;
+  return `<div class="case-example">${result}</div>`;
+}
+
 export function renderMarkdown(body: string, pageNames: Set<string> = new Set()) {
   const renderer = new marked.Renderer();
   const headingIds = new Map<string, number>();
@@ -68,10 +90,23 @@ export function renderMarkdown(body: string, pageNames: Set<string> = new Set())
   // Source HTML is text; Markdown links cannot introduce executable URLs.
   renderer.html = ({ text }) => escapeHtml(text);
   renderer.code = ({ text, lang }) => {
-    if (lang === "math" || (lang === "text" && /[∀∃∧∨↔→]|[=<>≥≤]/u.test(text))) {
+    if (lang === "rules") return renderRuleLines(text) + "\n";
+    if (lang === "markdown") {
+      const example = renderCaseExample(text);
+      if (example) return example + "\n";
+    }
+    if (lang === "math" || ((lang === "text" || (lang === "openrules" && !/^(?:input|primitive|term|type)\s/m.test(text))) && (/[∀∃∧∨↔→]|[=<>≥≤]/u.test(text) || parseFormula(text).value))) {
       return `<div class="formula" role="region" aria-label="Mathematical formula" tabindex="0">${renderMath(text)}</div>\n`;
     }
     return `<pre><code${lang ? ` class="language-${escapeHtml(lang)}"` : ""}>${escapeHtml(text)}</code></pre>\n`;
+  };
+  renderer.codespan = ({ text }) => {
+    const rule = /^(?:not\s+)*([a-z][a-z0-9-]*)\s+(?:r\d+c\d+|\d+x\d+)/.exec(text);
+    // Marked has already escaped codespan text; leave that escaping intact.
+    if (rule && (rule[1] === "sudoku" || pageNames.has(rule[1]))) {
+      return `<span class="rules-inline" role="region" aria-label="Rules" tabindex="0"><span class="code-label">rules</span><code class="language-rules">${text}</code></span>`;
+    }
+    return `<code>${text}</code>`;
   };
   renderer.image = ({ text }) => escapeHtml(text);
   renderer.link = function ({ href, title, tokens }) {
