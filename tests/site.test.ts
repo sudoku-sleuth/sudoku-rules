@@ -1,4 +1,5 @@
-import { afterAll, beforeAll, expect, test } from "bun:test";
+import { afterAll, beforeAll, expect, test, setDefaultTimeout } from "bun:test";
+
 import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { createHash } from "node:crypto";
@@ -6,6 +7,9 @@ import { tmpdir } from "node:os";
 import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
+
+// These tests build the whole library (85 pages, 3,892 cases); allow for slower CI runners.
+setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");
 let temporary: string;
