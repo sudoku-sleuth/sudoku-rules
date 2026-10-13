@@ -119,3 +119,14 @@ test("all manifests and package metadata identify Sudoku Sleuth consistently", a
     if (index >= 3) expect(document.owner).toEqual({ ...author, url: metadata.homepage });
   }
 });
+
+
+test("skill checker labels its temporary case counts as examples only", async () => {
+  const process = Bun.spawn(["bun", "run", "lint:skill"], { cwd: repo, stdout: "pipe", stderr: "pipe" });
+  const [stdout, stderr] = await Promise.all([new Response(process.stdout).text(), new Response(process.stderr).text()]);
+  expect(await process.exited).toBe(0);
+  expect(stderr).not.toContain("E_");
+  expect(stdout).toContain("Skill examples only: Formula lint:");
+  expect(stdout).toContain("Cases: 3 headers/reference lists; 11 references; 1 deferred URLs");
+  expect(stdout).not.toMatch(/^Formula lint:/m);
+});

@@ -58,3 +58,13 @@ test("CLI prints setter messages and locations, reserving parser detail for JSON
     }
   }
 });
+
+
+test("default lint:spec checks the complete production case corpus", async () => {
+  const process = Bun.spawn(["bun", "run", "lint:spec"], { stdout: "pipe", stderr: "pipe" });
+  const [stdout, stderr] = await Promise.all([new Response(process.stdout).text(), new Response(process.stderr).text()]);
+  expect(await process.exited).toBe(0);
+  expect(stderr).not.toContain("E_");
+  expect(stdout).toContain("85/85 pages checked; 82 formula blocks");
+  expect(stdout).toContain("Cases: 3892 headers/reference lists; 74879 references; 0 deferred URLs");
+});
