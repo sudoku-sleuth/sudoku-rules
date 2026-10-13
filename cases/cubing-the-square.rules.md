@@ -82,8 +82,8 @@ unique-16: unique r4c4-r4c5-r4c6-r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 renban-1: renban r1c1-r1c2-r1c3-r2c4-r2c5-r2c6
 renban-2: renban r3c1-r3c2-r3c3-r4c4-r4c5-r4c6
 renban-3: renban r5c1-r5c2-r5c3-r6c4-r6c5-r6c6
-pair-1: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-2: pair r3c2-r4c2 relation {"op":"sum","value":5}
+pair-1: pair r4c2-r5c2 sum 10
+pair-2: pair r3c2-r4c2 sum 5
 ```
 
 ```drawing

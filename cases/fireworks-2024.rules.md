@@ -48,10 +48,10 @@ thermo-34: thermo r9c4-r9c3-r9c2-r9c1
 thermo-35: thermo r9c4-r9c5-r9c6
 thermo-36: thermo r9c4-r8c5
 thermo-37: thermo r9c4-r8c4-r7c4-r6c4
-pair-1: pair r7c8-r7c9 relation {"op":"ratio","value":3}
-pair-2: pair r2c3-r2c4 relation {"op":"ratio","value":3}
-pair-3: pair r7c7-r7c8 relation {"op":"ratio","value":3}
-pair-4: pair r2c4-r3c4 relation {"op":"ratio","value":3}
+pair-1: pair r7c8-r7c9 ratio 3
+pair-2: pair r2c3-r2c4 ratio 3
+pair-3: pair r7c7-r7c8 ratio 3
+pair-4: pair r2c4-r3c4 ratio 3
 ```
 
 ```drawing

@@ -35,9 +35,9 @@ kropki-14: kropki r1c6-r1c7 colour "white"
 kropki-15: kropki r2c5-r3c5 colour "white"
 kropki-16: kropki r2c9-r3c9 colour "white"
 kropki-17: kropki r7c6-r8c6 colour "white"
-pair-1: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r3c5-r3c6 relation {"op":"sum","value":10}
-pair-3: pair r8c7-r9c7 relation {"op":"sum","value":10}
+pair-1: pair r3c3-r4c3 sum 10
+pair-2: pair r3c5-r3c6 sum 10
+pair-3: pair r8c7-r9c7 sum 10
 ```
 
 Normal Sudoku rules apply. KROPKI PAIRS- Numbers with a white dot between them are consecutive. KILLER CAGES- Numbers in cages sum to the number in the top left corner of the cage. Numbers do not repeat in cages. XV PAIRS- Numbers with an X between them sum to 10. Not all possible dots and Xs are given. GRAY LINES are only to show the constellation, and do not affect the puzzle.

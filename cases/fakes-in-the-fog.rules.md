@@ -24,9 +24,9 @@ flags:
 
 ```rules
 sudoku 9x9
-pair-1: pair r5c7-r5c8 relation {"op":"sum","value":5}
-pair-2: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-3: pair r3c3-r3c4 relation {"op":"sum","value":5}
+pair-1: pair r5c7-r5c8 sum 5
+pair-2: pair r4c6-r5c6 sum 5
+pair-3: pair r3c3-r3c4 sum 5
 ```
 
 ```drawing

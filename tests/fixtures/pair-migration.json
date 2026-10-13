@@ -1,0 +1,13 @@
+{
+  "cases": 3892,
+  "pairLines": 4492,
+  "operations": {
+    "sum": 4115,
+    "difference": 183,
+    "ratio": 85,
+    "multiple": 2,
+    "shift": 92,
+    "less": 15
+  },
+  "nonRelationSha256": "5914d93e8a4d2bd6b782fa41091f941d59086f94f75a846f51ee1e64e549a517"
+}

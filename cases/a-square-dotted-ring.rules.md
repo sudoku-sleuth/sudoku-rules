@@ -34,14 +34,14 @@ kropki-21: kropki r3c3-r3c4 colour "black"
 kropki-22: kropki r6c7-r7c7 colour "black"
 kropki-23: kropki r7c6-r7c7 colour "black"
 kropki-24: kropki r9c8-r9c9 colour "black"
-pair-1: pair r7c3-r7c4 relation {"op":"sum","value":10}
-pair-2: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-3: pair r8c8-r8c9 relation {"op":"sum","value":10}
-pair-4: pair r4c9-r5c9 relation {"op":"sum","value":10}
-pair-5: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-6: pair r3c7-r4c7 relation {"op":"sum","value":5}
-pair-7: pair r3c6-r3c7 relation {"op":"sum","value":5}
-pair-8: pair r5c1-r5c2 relation {"op":"sum","value":5}
+pair-1: pair r7c3-r7c4 sum 10
+pair-2: pair r6c3-r7c3 sum 10
+pair-3: pair r8c8-r8c9 sum 10
+pair-4: pair r4c9-r5c9 sum 10
+pair-5: pair r4c4-r5c4 sum 10
+pair-6: pair r3c7-r4c7 sum 5
+pair-7: pair r3c6-r3c7 sum 5
+pair-8: pair r5c1-r5c2 sum 5
 ```
 
 •	Normal Sudoku rules apply. 

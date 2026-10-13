@@ -159,9 +159,9 @@ whispers-6: whispers r5c1-r6c2-r7c3-r8c4-r9c5-r9c6-r8c6-r7c5-r6c5 gap 5
 whispers-7: whispers r5c6-r5c7 gap 5
 whispers-8: whispers r5c7-r6c8-r7c9-r6c9-r5c9-r4c9-r3c8-r2c7-r2c6-r1c5 gap 5
 renban r1c1-r2c2-r3c3
-pair-1: pair r2c2-r3c2 relation {"op":"sum","value":10}
-pair-2: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-3: pair r4c4-r4c5 relation {"op":"sum","value":5}
+pair-1: pair r2c2-r3c2 sum 10
+pair-2: pair r7c7-r8c7 sum 10
+pair-3: pair r4c4-r4c5 sum 5
 ```
 
 •    Normal Sudoku rules apply.  (Place the digits 1-9 in every row, column, and mini-grid).

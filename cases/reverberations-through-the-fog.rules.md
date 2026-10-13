@@ -32,9 +32,9 @@ kropki-8: kropki r3c2-r3c3 colour "black"
 kropki-9: kropki r2c5-r2c6 colour "black"
 kropki-10: kropki r8c1-r8c2 colour "black"
 palindrome r3c4-r4c3-r3c2-r2c1-r2c2-r1c3-r2c4-r1c5-r2c5-r2c6-r3c7-r4c7-r4c8-r5c9-r6c9-r6c8-r7c8-r7c7-r8c6-r8c5-r9c5-r8c4-r7c3-r8c2-r9c2-r8c1-r7c1-r7c2-r6c3-r7c4-r7c5-r7c6-r6c7-r5c7-r6c6-r5c5-r4c5
-pair-1: pair r6c5-r7c5 relation {"op":"sum","value":10}
-pair-2: pair r2c7-r3c7 relation {"op":"sum","value":10}
-pair-3: pair r5c4-r5c5 relation {"op":"sum","value":5}
+pair-1: pair r6c5-r7c5 sum 10
+pair-2: pair r2c7-r3c7 sum 10
+pair-3: pair r5c4-r5c5 sum 5
 ```
 
 •    Normal Sudoku rules apply. 

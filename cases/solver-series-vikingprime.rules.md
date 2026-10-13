@@ -33,9 +33,9 @@ kropki-10: kropki r3c2-r3c3 colour "black"
 kropki-11: kropki r1c4-r2c4 colour "black"
 kropki-12: kropki r2c7-r2c8 colour "black"
 kropki-13: kropki r7c8-r7c9 colour "black"
-pair-1: pair r7c9-r8c9 relation {"op":"sum","value":10}
-pair-2: pair r2c8-r3c8 relation {"op":"sum","value":10}
-pair-3: pair r7c7-r8c7 relation {"op":"sum","value":10}
+pair-1: pair r7c9-r8c9 sum 10
+pair-2: pair r2c8-r3c8 sum 10
+pair-3: pair r7c7-r8c7 sum 10
 ```
 
 Normal Sudoku Rules Apply

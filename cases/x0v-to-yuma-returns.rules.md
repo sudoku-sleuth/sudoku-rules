@@ -134,32 +134,32 @@ unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 anti-knight
 kropki r2c8-r3c8 colour "white"
-pair-1: pair r1c8-r1c9 relation {"op":"sum","value":10}
-pair-2: pair r1c6-r1c7 relation {"op":"sum","value":10}
-pair-3: pair r1c4-r1c5 relation {"op":"sum","value":10}
-pair-4: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-5: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-6: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-7: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-8: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-9: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-10: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-11: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-12: pair r3c7-r4c7 relation {"op":"sum","value":10}
-pair-13: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-14: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-15: pair r2c2-r3c2 relation {"op":"sum","value":5}
-pair-16: pair r7c8-r8c8 relation {"op":"sum","value":5}
-pair-17: pair r6c7-r7c7 relation {"op":"sum","value":5}
-pair-18: pair r3c3-r4c3 relation {"op":"sum","value":5}
-pair-19: pair r4c4-r5c4 relation {"op":"sum","value":5}
-pair-20: pair r5c6-r6c6 relation {"op":"sum","value":5}
-pair-21: pair r1c5-r2c5 relation {"op":"sum","value":5}
-pair-22: pair r3c5-r4c5 relation {"op":"sum","value":5}
-pair-23: pair r8c5-r9c5 relation {"op":"sum","value":5}
-pair-24: pair r4c3-r4c4 relation {"op":"sum","value":5}
-pair-25: pair r2c8-r2c9 relation {"op":"sum","value":5}
-pair-26: pair r6c6-r6c7 relation {"op":"sum","value":5}
+pair-1: pair r1c8-r1c9 sum 10
+pair-2: pair r1c6-r1c7 sum 10
+pair-3: pair r1c4-r1c5 sum 10
+pair-4: pair r1c2-r1c3 sum 10
+pair-5: pair r9c1-r9c2 sum 10
+pair-6: pair r9c3-r9c4 sum 10
+pair-7: pair r9c5-r9c6 sum 10
+pair-8: pair r9c7-r9c8 sum 10
+pair-9: pair r7c5-r8c5 sum 10
+pair-10: pair r5c4-r6c4 sum 10
+pair-11: pair r4c6-r5c6 sum 10
+pair-12: pair r3c7-r4c7 sum 10
+pair-13: pair r6c3-r7c3 sum 10
+pair-14: pair r7c2-r8c2 sum 10
+pair-15: pair r2c2-r3c2 sum 5
+pair-16: pair r7c8-r8c8 sum 5
+pair-17: pair r6c7-r7c7 sum 5
+pair-18: pair r3c3-r4c3 sum 5
+pair-19: pair r4c4-r5c4 sum 5
+pair-20: pair r5c6-r6c6 sum 5
+pair-21: pair r1c5-r2c5 sum 5
+pair-22: pair r3c5-r4c5 sum 5
+pair-23: pair r8c5-r9c5 sum 5
+pair-24: pair r4c3-r4c4 sum 5
+pair-25: pair r2c8-r2c9 sum 5
+pair-26: pair r6c6-r6c7 sum 5
 parity-cells r6c1-r5c9-r4c1-r8c6 parity "odd"
 ```
 

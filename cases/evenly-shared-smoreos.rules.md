@@ -38,7 +38,7 @@ kropki-25: kropki r8c4-r9c4 colour "black"
 kropki-26: kropki r1c6-r2c6 colour "black"
 kropki-27: kropki r5c5-r5c6 colour "black"
 kropki-28: kropki r4c8-r4c9 colour "black"
-pair r5c4-r6c4 relation {"op":"sum","value":10}
+pair r5c4-r6c4 sum 10
 parity-cells r9c4-r3c1-r1c6-r6c9-r4c5-r6c5-r7c3-r3c7 parity "even"
 ```
 

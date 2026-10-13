@@ -32,7 +32,7 @@ arrow-2: arrow r5c6-r4c6-r3c6 bulb ["r6c6"]
 arrow-3: arrow r3c8-r3c9-r2c9 bulb ["r3c7"]
 arrow-4: arrow r2c7-r1c7 bulb ["r2c6"]
 arrow-5: arrow r6c9-r5c9-r4c9 bulb ["r7c9"]
-pair r6c8-r7c8 relation {"op":"sum","value":10}
+pair r6c8-r7c8 sum 10
 ```
 
 Normal sudoku rules apply. Place the digits 1-9 once each in every row, column and 3x3 box.

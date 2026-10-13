@@ -28,10 +28,10 @@ arrow-5: arrow r8c5-r9c4 bulb ["r7c4"]
 arrow-6: arrow r8c5-r8c6 bulb ["r7c6"]
 whispers-1: whispers r7c7-r7c6-r7c5-r7c4-r7c3-r6c3-r5c3-r4c3-r3c3-r3c4-r3c5-r3c6-r3c7-r4c7-r5c7-r6c7 gap 4
 whispers-2: whispers r6c7-r7c7 gap 4
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r6c4-r6c5 relation {"op":"sum","value":10}
-pair-3: pair r3c6-r4c6 relation {"op":"sum","value":10}
-pair-4: pair r6c6-r7c6 relation {"op":"sum","value":10}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r6c4-r6c5 sum 10
+pair-3: pair r3c6-r4c6 sum 10
+pair-4: pair r6c6-r7c6 sum 10
 ```
 
 ```drawing

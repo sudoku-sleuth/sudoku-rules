@@ -41,8 +41,8 @@ kropki r3c4-r4c4 colour "black"
 whispers-1: whispers r7c2-r7c3-r6c4-r5c3-r4c4-r3c5-r2c4-r1c5-r1c6 loop false gap 5
 whispers-2: whispers r4c2-r3c1-r2c2-r3c3 loop false gap 5
 whispers-3: whispers r5c5-r6c6-r5c7-r4c6 loop false gap 5
-pair-1: pair r2c2-r3c2 relation {"op":"sum","value":5}
-pair-2: pair r6c5-r6c6 relation {"op":"sum","value":5}
+pair-1: pair r2c2-r3c2 sum 5
+pair-2: pair r6c5-r6c6 sum 5
 counting-circles r2c1-r2c3-r2c5-r2c7-r3c2-r3c4-r3c6-r4c1-r4c3-r4c5-r4c7-r5c2-r5c4-r5c6-r6c1-r6c3-r6c5-r6c7-r7c2-r7c4-r7c6
 ```
 

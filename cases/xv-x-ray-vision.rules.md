@@ -17,18 +17,18 @@ cage-4: cage r3c3-r3c4-r3c5-r4c3 total 17 connected true
 kropki-1: kropki r8c9-r9c9 colour "black"
 kropki-2: kropki r7c8-r8c8 colour "black"
 kropki-3: kropki r2c7-r2c8 colour "black"
-pair-1: pair r2c1-r2c2 relation {"op":"sum","value":10}
-pair-2: pair r1c8-r2c8 relation {"op":"sum","value":10}
-pair-3: pair r2c5-r3c5 relation {"op":"sum","value":10}
-pair-4: pair r5c7-r5c8 relation {"op":"sum","value":10}
-pair-5: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-6: pair r5c2-r5c3 relation {"op":"sum","value":10}
-pair-7: pair r8c8-r8c9 relation {"op":"sum","value":10}
-pair-8: pair r8c2-r9c2 relation {"op":"sum","value":10}
-pair-9: pair r1c1-r1c2 relation {"op":"sum","value":5}
-pair-10: pair r1c9-r2c9 relation {"op":"sum","value":5}
-pair-11: pair r9c8-r9c9 relation {"op":"sum","value":5}
-pair-12: pair r8c1-r9c1 relation {"op":"sum","value":5}
+pair-1: pair r2c1-r2c2 sum 10
+pair-2: pair r1c8-r2c8 sum 10
+pair-3: pair r2c5-r3c5 sum 10
+pair-4: pair r5c7-r5c8 sum 10
+pair-5: pair r7c5-r8c5 sum 10
+pair-6: pair r5c2-r5c3 sum 10
+pair-7: pair r8c8-r8c9 sum 10
+pair-8: pair r8c2-r9c2 sum 10
+pair-9: pair r1c1-r1c2 sum 5
+pair-10: pair r1c9-r2c9 sum 5
+pair-11: pair r9c8-r9c9 sum 5
+pair-12: pair r8c1-r9c1 sum 5
 negative relations [{"op":"sum","value":10},{"op":"sum","value":5}] except [["r8c9","r9c9"],["r7c8","r8c8"],["r2c7","r2c8"],["r1c1","r1c2"],["r2c1","r2c2"],["r1c8","r2c8"],["r1c9","r2c9"],["r2c5","r3c5"],["r5c7","r5c8"],["r7c5","r8c5"],["r5c2","r5c3"],["r8c8","r8c9"],["r9c8","r9c9"],["r8c2","r9c2"],["r8c1","r9c1"]]
 ```
 

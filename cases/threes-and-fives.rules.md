@@ -13,18 +13,18 @@ flags:
 
 ```rules
 sudoku 9x9
-pair-1: pair r7c8-r8c8 relation {"op":"sum","value":5}
-pair-2: pair r7c4-r8c4 relation {"op":"sum","value":5}
-pair-3: pair r6c2-r6c3 relation {"op":"sum","value":5}
-pair-4: pair r2c8-r3c8 relation {"op":"sum","value":5}
-pair-5: pair r5c5-r5c6 relation {"op":"sum","value":5}
-pair-6: pair r2c1-r3c1 relation {"op":"sum","value":5}
-pair-7: pair r5c9-r6c9 relation {"op":"sum","value":5}
-pair-8: pair r6c5-r7c5 relation {"op":"sum","value":5}
-pair-9: pair r7c1-r8c1 relation {"op":"sum","value":5}
-pair-10: pair r9c2-r9c3 relation {"op":"sum","value":5}
-pair-11: pair r9c6-r9c7 relation {"op":"sum","value":5}
-pair-12: pair r8c7-r9c7 relation {"op":"sum","value":5}
+pair-1: pair r7c8-r8c8 sum 5
+pair-2: pair r7c4-r8c4 sum 5
+pair-3: pair r6c2-r6c3 sum 5
+pair-4: pair r2c8-r3c8 sum 5
+pair-5: pair r5c5-r5c6 sum 5
+pair-6: pair r2c1-r3c1 sum 5
+pair-7: pair r5c9-r6c9 sum 5
+pair-8: pair r6c5-r7c5 sum 5
+pair-9: pair r7c1-r8c1 sum 5
+pair-10: pair r9c2-r9c3 sum 5
+pair-11: pair r9c6-r9c7 sum 5
+pair-12: pair r8c7-r9c7 sum 5
 negative relations [{"op":"sum","value":5}] except [["r7c8","r8c8"],["r7c4","r8c4"],["r6c2","r6c3"],["r2c8","r3c8"],["r5c5","r5c6"],["r2c1","r3c1"],["r5c9","r6c9"],["r6c5","r7c5"],["r7c1","r8c1"],["r9c2","r9c3"],["r9c6","r9c7"],["r8c7","r9c7"]]
 little-killer-1: little-killer r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c7-r8c8-r9c9 sum 43
 little-killer-2: little-killer r3c1-r4c2-r5c3-r6c4-r7c5-r8c6-r9c7 sum 33

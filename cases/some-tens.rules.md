@@ -81,9 +81,9 @@ cage-2: cage r2c2-r2c3-r3c3 repeats false total 10 connected true
 cage-3: cage r4c6-r5c6-r6c6 repeats false total 10 connected true
 cage-4: cage r4c1-r4c2-r5c1 repeats false total 10 connected true
 cage-5: cage r5c3-r5c4-r6c4 repeats false total 10 connected true
-pair-1: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-2: pair r6c2-r6c3 relation {"op":"sum","value":10}
-pair-3: pair r2c6-r3c6 relation {"op":"sum","value":10}
+pair-1: pair r1c1-r1c2 sum 10
+pair-2: pair r6c2-r6c3 sum 10
+pair-3: pair r2c6-r3c6 sum 10
 ```
 
 -Normal 6x6 sudoku rules apply: place the digits 1-6 once each in every row, column, and 2x3 box. 

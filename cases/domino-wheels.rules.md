@@ -17,22 +17,22 @@ kropki-1: kropki r4c1-r4c2 colour "white"
 kropki-2: kropki r6c8-r6c9 colour "white"
 kropki-3: kropki r8c2-r9c2 colour "white"
 kropki-4: kropki r1c8-r2c8 colour "white"
-pair-1: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r3c6-r4c6 relation {"op":"sum","value":10}
-pair-3: pair r2c8-r2c9 relation {"op":"sum","value":10}
-pair-4: pair r2c4-r2c5 relation {"op":"sum","value":10}
-pair-5: pair r5c8-r6c8 relation {"op":"sum","value":10}
-pair-6: pair r7c6-r8c6 relation {"op":"sum","value":10}
-pair-7: pair r8c2-r8c3 relation {"op":"sum","value":10}
-pair-8: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-9: pair r6c4-r7c4 relation {"op":"sum","value":5}
-pair-10: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-11: pair r2c7-r2c8 relation {"op":"sum","value":5}
-pair-12: pair r2c3-r2c4 relation {"op":"sum","value":5}
-pair-13: pair r6c8-r7c8 relation {"op":"sum","value":5}
-pair-14: pair r8c6-r9c6 relation {"op":"sum","value":5}
-pair-15: pair r8c1-r8c2 relation {"op":"sum","value":5}
-pair-16: pair r3c2-r4c2 relation {"op":"sum","value":5}
+pair-1: pair r5c4-r6c4 sum 10
+pair-2: pair r3c6-r4c6 sum 10
+pair-3: pair r2c8-r2c9 sum 10
+pair-4: pair r2c4-r2c5 sum 10
+pair-5: pair r5c8-r6c8 sum 10
+pair-6: pair r7c6-r8c6 sum 10
+pair-7: pair r8c2-r8c3 sum 10
+pair-8: pair r4c2-r5c2 sum 10
+pair-9: pair r6c4-r7c4 sum 5
+pair-10: pair r4c6-r5c6 sum 5
+pair-11: pair r2c7-r2c8 sum 5
+pair-12: pair r2c3-r2c4 sum 5
+pair-13: pair r6c8-r7c8 sum 5
+pair-14: pair r8c6-r9c6 sum 5
+pair-15: pair r8c1-r8c2 sum 5
+pair-16: pair r3c2-r4c2 sum 5
 ```
 
 ```drawing

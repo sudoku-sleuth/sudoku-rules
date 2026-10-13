@@ -14,10 +14,10 @@ sudoku 9x9
 cage-1: cage r4c5-r4c6 total 3 connected true
 cage-2: cage r4c4-r5c4 total 9 connected true
 cage-3: cage r5c6-r5c7 total 15 connected true
-pair-1: pair r1c5-r2c5 relation {"op":"sum","value":5}
-pair-2: pair r3c5-r4c5 relation {"op":"sum","value":5}
-pair-3: pair r5c3-r5c4 relation {"op":"sum","value":5}
-pair-4: pair r5c1-r5c2 relation {"op":"sum","value":5}
+pair-1: pair r1c5-r2c5 sum 5
+pair-2: pair r3c5-r4c5 sum 5
+pair-3: pair r5c3-r5c4 sum 5
+pair-4: pair r5c1-r5c2 sum 5
 ```
 
 ```drawing

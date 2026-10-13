@@ -35,9 +35,9 @@ arrow-9: arrow r3c3-r2c3 bulb ["r4c3"]
 arrow-10: arrow r4c6-r5c6 bulb ["r3c6"]
 arrow-11: arrow r4c7-r5c8 bulb ["r3c6"]
 arrow-12: arrow r3c7-r3c8 bulb ["r3c6"]
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-3: pair r5c6-r6c6 relation {"op":"sum","value":10}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r4c5-r4c6 sum 10
+pair-3: pair r5c6-r6c6 sum 10
 ```
 
 Normal Sudoku rules apply. Numbers on arrows sum to that arrow's circle. Numbers with an X between them sum to 10. Numbers with a black dot between them are in a ratio of 2:1. Numbers with a white dot between them are consecutive. Not all possible X and dots are shown.

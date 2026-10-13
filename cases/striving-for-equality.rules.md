@@ -19,7 +19,7 @@ cage-5: cage r7c2-r7c3 total 13 connected true
 cage-6: cage r8c7-r8c8 total 12 connected true
 cage-7: cage r5c7-r6c7 total 13 connected true
 kropki r5c7-r5c8 colour "black"
-pair r2c5-r2c6 relation {"op":"ratio","value":3}
+pair r2c5-r2c6 ratio 3
 ```
 
 ```drawing

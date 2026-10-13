@@ -154,9 +154,9 @@ kropki-8: kropki r4c3-r5c3 colour "black"
 kropki-9: kropki r1c3-r2c3 colour "black"
 renban-1: renban r2c6-r2c7-r3c7-r4c7-r4c6
 renban-2: renban r2c4-r2c3-r3c3-r4c3-r4c4
-pair-1: pair r3c2-r3c3 relation {"op":"sum","value":10}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-3: pair r9c5-r9c6 relation {"op":"sum","value":10}
+pair-1: pair r3c2-r3c3 sum 10
+pair-2: pair r3c7-r3c8 sum 10
+pair-3: pair r9c5-r9c6 sum 10
 ```
 
 •	Normal Sudoku rules apply. 

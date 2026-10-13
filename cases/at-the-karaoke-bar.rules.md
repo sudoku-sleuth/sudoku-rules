@@ -30,12 +30,12 @@ whispers-3: whispers r4c4-r5c4-r5c5 gap 4
 whispers-4: whispers r4c4-r5c5 gap 4
 whispers-5: whispers r2c4-r3c5-r4c6 gap 4
 whispers-6: whispers r5c7-r6c8-r7c9 gap 4
-pair-1: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-2: pair r2c1-r2c2 relation {"op":"sum","value":10}
-pair-3: pair r3c2-r3c3 relation {"op":"sum","value":10}
-pair-4: pair r4c2-r4c3 relation {"op":"sum","value":10}
-pair-5: pair r5c1-r5c2 relation {"op":"sum","value":10}
-pair-6: pair r7c2-r7c3 relation {"op":"sum","value":10}
+pair-1: pair r1c1-r1c2 sum 10
+pair-2: pair r2c1-r2c2 sum 10
+pair-3: pair r3c2-r3c3 sum 10
+pair-4: pair r4c2-r4c3 sum 10
+pair-5: pair r5c1-r5c2 sum 10
+pair-6: pair r7c2-r7c3 sum 10
 ```
 
 Normal Sudoku rules apply. 

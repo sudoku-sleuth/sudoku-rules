@@ -18,8 +18,8 @@ kropki-3: kropki r7c7-r7c8 colour "black"
 kropki-4: kropki r4c2-r4c3 colour "black"
 whispers-1: whispers r9c1-r9c2-r8c2-r8c3-r7c3-r7c4-r6c4-r6c5-r7c5-r7c6-r8c6-r8c7-r8c8-r7c8-r7c9-r6c9-r6c8-r5c8-r5c9-r4c9 gap 5
 whispers-2: whispers r1c9-r1c8-r2c8-r2c7-r3c7-r3c6-r4c6-r4c5-r3c5-r3c4-r2c4-r2c3-r2c2-r3c2-r3c1-r4c1-r4c2-r5c2-r5c1-r6c1 gap 5
-pair-1: pair r3c2-r4c2 relation {"op":"sum","value":10}
-pair-2: pair r6c8-r7c8 relation {"op":"sum","value":10}
+pair-1: pair r3c2-r4c2 sum 10
+pair-2: pair r6c8-r7c8 sum 10
 little-killer-1: little-killer r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c7-r8c8-r9c9 sum 51
 little-killer-2: little-killer r1c9-r2c8-r3c7-r4c6-r5c5-r6c4-r7c3-r8c2-r9c1 sum 42
 ```

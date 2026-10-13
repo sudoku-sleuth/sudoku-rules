@@ -155,13 +155,13 @@ renban-1: renban r5c4-r5c5-r5c6
 renban-2: renban r5c1-r4c1-r3c1-r2c2-r2c3-r2c4
 renban-3: renban r3c6-r3c7-r3c8-r4c8-r5c8
 renban-4: renban r8c6-r8c7-r8c8-r8c9-r7c9
-pair-1: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-2: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-3: pair r2c1-r2c2 relation {"op":"sum","value":10}
-pair-4: pair r5c2-r6c2 relation {"op":"sum","value":10}
-pair-5: pair r7c7-r7c8 relation {"op":"sum","value":10}
-pair-6: pair r8c8-r9c8 relation {"op":"sum","value":10}
-pair-7: pair r5c2-r5c3 relation {"op":"sum","value":5}
+pair-1: pair r5c6-r6c6 sum 10
+pair-2: pair r4c3-r4c4 sum 10
+pair-3: pair r2c1-r2c2 sum 10
+pair-4: pair r5c2-r6c2 sum 10
+pair-5: pair r7c7-r7c8 sum 10
+pair-6: pair r8c8-r9c8 sum 10
+pair-7: pair r5c2-r5c3 sum 5
 ```
 
 •	Normal Sudoku rules apply. 

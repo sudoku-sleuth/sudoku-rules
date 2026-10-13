@@ -29,12 +29,12 @@ whispers-4: whispers r4c4-r3c3-r2c2-r1c1 gap 4
 whispers-5: whispers r4c6-r3c7-r2c8-r1c9 gap 4
 whispers-6: whispers r2c1-r3c1-r4c1-r5c1-r6c1-r7c1 gap 4
 renban r5c3-r5c4-r5c5-r5c6-r5c7-r4c5-r6c5-r7c5
-pair-1: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-2: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-3: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-4: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-5: pair r5c2-r5c3 relation {"op":"sum","value":10}
-pair-6: pair r5c7-r5c8 relation {"op":"sum","value":10}
+pair-1: pair r4c6-r5c6 sum 10
+pair-2: pair r5c4-r6c4 sum 10
+pair-3: pair r6c5-r6c6 sum 10
+pair-4: pair r4c4-r4c5 sum 10
+pair-5: pair r5c2-r5c3 sum 10
+pair-6: pair r5c7-r5c8 sum 10
 ```
 
 Normal Sudoku rules apply. Dutch Whispers- Numbers on red lines are at least 4 apart from their neighbors on the line. Numbers may repeat on red lines, if other rules allow. RENBAN Line- Numbers on the one purple line are a set of non-repeating, consecutive numbers, in any order. Numbers in cages sum to the number in the top left corner of the cage. Numbers with a white dot between them are consecutive. Numbers with an X between them sum to 10. Not all possible X and dots are given.

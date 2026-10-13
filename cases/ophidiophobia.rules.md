@@ -20,7 +20,7 @@ cage-4: cage r9c4-r9c5 total 12 connected true
 cage-5: cage r5c3-r6c3 total 13 connected true
 kropki-1: kropki r7c5-r7c6 colour "black"
 kropki-2: kropki r5c1-r5c2 colour "black"
-pair r6c7-r6c8 relation {"op":"sum","value":10}
+pair r6c7-r6c8 sum 10
 ```
 
 ```drawing

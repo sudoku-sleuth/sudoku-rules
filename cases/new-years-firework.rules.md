@@ -20,9 +20,9 @@ whispers-1: whispers r1c3-r2c3-r3c3-r4c3-r5c3 gap 5
 whispers-2: whispers r1c1-r2c2-r3c3-r4c4-r5c5 gap 5
 whispers-3: whispers r1c5-r2c4-r3c3-r4c2-r5c1 gap 5
 whispers-4: whispers r3c1-r3c2-r3c3-r3c4-r3c5 gap 5
-pair-1: pair r3c9-r4c9 relation {"op":"sum","value":5}
-pair-2: pair r1c4-r2c4 relation {"op":"sum","value":5}
-pair-3: pair r2c2-r2c3 relation {"op":"sum","value":5}
+pair-1: pair r3c9-r4c9 sum 5
+pair-2: pair r1c4-r2c4 sum 5
+pair-3: pair r2c2-r2c3 sum 5
 ```
 
 Normal Sudoku Rules Apply

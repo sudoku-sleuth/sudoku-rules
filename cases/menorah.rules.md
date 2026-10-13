@@ -20,8 +20,8 @@ parity-2: parity r1c3-r2c3-r3c3
 parity-3: parity r1c7-r2c7-r3c7
 parity-4: parity r2c8-r3c8
 renban r9c3-r9c4-r8c5-r9c6-r9c7
-pair-1: pair r9c3-r9c4 relation {"op":"sum","value":5}
-pair-2: pair r9c6-r9c7 relation {"op":"sum","value":5}
+pair-1: pair r9c3-r9c4 sum 5
+pair-2: pair r9c6-r9c7 sum 5
 ```
 
 Normal sudoku rules apply.

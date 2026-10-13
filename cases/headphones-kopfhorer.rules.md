@@ -32,9 +32,9 @@ renban-2: renban r7c4-r7c5-r7c6
 renban-3: renban r5c5-r6c5
 renban-4: renban r4c3-r4c4
 renban-5: renban r4c2-r3c2-r2c3-r1c4-r1c5-r1c6-r2c7-r3c8-r4c8
-pair-1: pair r5c9-r6c9 relation {"op":"sum","value":10}
-pair-2: pair r3c9-r4c9 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":10}
+pair-1: pair r5c9-r6c9 sum 10
+pair-2: pair r3c9-r4c9 sum 10
+pair-3: pair r4c1-r5c1 sum 10
 ```
 
 ```drawing

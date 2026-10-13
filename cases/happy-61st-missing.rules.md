@@ -20,10 +20,10 @@ cage-3: cage r6c4-r6c5-r6c6 total 13 connected true
 cage-4: cage r6c4-r6c5-r6c6 total 13 connected true
 cage-5: cage r7c3-r7c4-r7c5-r7c6-r7c7 total 19 connected true
 cage-6: cage r8c3-r8c4-r8c5-r8c6-r8c7 total 29 connected true
-pair-1: pair r3c3-r4c3 relation {"op":"difference","value":6}
+pair-1: pair r3c3-r4c3 difference 6
 kropki-1: kropki r3c4-r4c4 colour "white"
 kropki-2: kropki r3c5-r4c5 colour "white"
-pair-2: pair r3c6-r4c6 relation {"op":"difference","value":6}
+pair-2: pair r3c6-r4c6 difference 6
 kropki-3: kropki r3c7-r4c7 colour "white"
 kropki-4: kropki r6c5-r6c6 colour "white"
 kropki-5: kropki r7c6-r8c6 colour "white"

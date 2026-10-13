@@ -31,8 +31,8 @@ whispers-3: whispers r3c7-r4c8 gap 5
 whispers-4: whispers r3c6-r4c7 gap 5
 palindrome-1: palindrome r6c5-r6c4-r6c3-r7c3-r8c3-r7c4-r8c4-r8c5-r8c6-r7c6
 palindrome-2: palindrome r6c5-r6c6-r7c6
-pair-1: pair r4c1-r4c2 relation {"op":"sum","value":10}
-pair-2: pair r2c1-r2c2 relation {"op":"sum","value":10}
+pair-1: pair r4c1-r4c2 sum 10
+pair-2: pair r2c1-r2c2 sum 10
 ```
 
 ```drawing

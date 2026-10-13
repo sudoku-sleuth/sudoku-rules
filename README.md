@@ -18,6 +18,20 @@ The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). 
 
 This repository owns the library definitions and the exported cases. The generator reads `rules/` and `cases/` in this repository. Fixtures are not imported automatically. The homepage index is generated from the rule pages.
 
+## Write a case
+
+Use cell coordinates and the relationship keywords declared on each rule page:
+
+```rules
+sudoku 9x9
+pair-1: pair r1c1-r1c2 ratio 3
+pair-2: pair r4c4-r4c5 difference 2
+pair-3: pair r2c2-r3c2 sum 10
+kropki r5c1-r5c2 white
+```
+
+Pair also supports `at-least n`, `less`, `multiple` and `shift`; [pair.md](rules/pair.md) defines them. Kropki is shorthand for pair: white means `difference 1`, black means `ratio 2`. A dot's painted colour is drawing metadata. State every other relationship with pair keywords, including ratio 3 or grey/brown dots. Pair JSON relations have been migrated to keywords. See [syntax.md](rules/syntax.md) and the skill's [worked cases](plugins/open-rules/skills/open-rules/references/examples.md) for full files.
+
 ## Local commands
 
 Use Bun **1.2.23** (recorded in `.bun-version`).
@@ -33,7 +47,7 @@ bun run build:package
 bun run build
 ```
 
-`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Full rule-line parameters, custom definitions, URL fetching and example verdicts remain pending; external URLs are counted separately as deferred.
+`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Other rule-line parameters, custom definitions, URL fetching and example verdicts remain pending; external URLs are counted separately as deferred.
 
 ## Formula package
 
@@ -46,7 +60,7 @@ bun run openrules lint rules --json
 bun run openrules lint /path/to/rule.md --prelude rules/predicates.md
 ```
 
-Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; complete rule-line validation and fetching arrive in later slices.
+Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; pair and Kropki keyword syntax is checked; complete rule-line validation and fetching arrive in later slices.
 
 The portable entry exports `parseFormula`, `parsePrelude`, `checkFormula`, `compilePrelude`, `compilePage`, `compileLibrary` and exact rational arithmetic. It performs no I/O and imports no Node APIs. Callers supply `{file, text}` pages; future URL loading will take an injected fetch. The CLI owns file access.
 

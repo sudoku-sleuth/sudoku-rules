@@ -12,14 +12,14 @@ status: read
 sudoku 9x9
 cage-1: cage r9c1-r9c2-r9c3 total 7 connected true
 cage-2: cage r7c9-r8c9-r9c9 total 6 connected true
-pair-1: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r7c3-r7c4 relation {"op":"sum","value":10}
-pair-3: pair r6c7-r7c7 relation {"op":"sum","value":10}
-pair-4: pair r3c6-r3c7 relation {"op":"sum","value":10}
-pair-5: pair r3c3-r3c4 relation {"op":"sum","value":5}
-pair-6: pair r6c3-r7c3 relation {"op":"sum","value":5}
-pair-7: pair r7c6-r7c7 relation {"op":"sum","value":5}
-pair-8: pair r3c7-r4c7 relation {"op":"sum","value":5}
+pair-1: pair r3c3-r4c3 sum 10
+pair-2: pair r7c3-r7c4 sum 10
+pair-3: pair r6c7-r7c7 sum 10
+pair-4: pair r3c6-r3c7 sum 10
+pair-5: pair r3c3-r3c4 sum 5
+pair-6: pair r6c3-r7c3 sum 5
+pair-7: pair r7c6-r7c7 sum 5
+pair-8: pair r3c7-r4c7 sum 5
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 anti-knight

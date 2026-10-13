@@ -25,8 +25,8 @@ whispers-2: whispers r5c7-r5c8-r6c9 gap 5
 zipper-1: zipper r1c4-r1c3-r2c3
 zipper-2: zipper r8c3-r8c4-r9c3
 nabner r2c6-r2c7-r1c8-r1c9-r2c9 distinct true
-pair-1: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-2: pair r3c8-r3c9 relation {"op":"sum","value":10}
+pair-1: pair r3c1-r3c2 sum 10
+pair-2: pair r3c8-r3c9 sum 10
 parity-cells r1c4 parity "even"
 ```
 

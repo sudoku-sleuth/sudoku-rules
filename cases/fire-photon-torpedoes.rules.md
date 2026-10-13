@@ -19,8 +19,8 @@ kropki-5: kropki r1c1-r2c1 colour "black"
 kropki-6: kropki r4c1-r4c2 colour "black"
 renban-1: renban r7c8-r7c9-r6c9
 renban-2: renban r8c8-r9c8-r9c7
-pair-1: pair r5c3-r6c3 relation {"op":"sum","value":5}
-pair-2: pair r3c6-r4c6 relation {"op":"sum","value":5}
+pair-1: pair r5c3-r6c3 sum 5
+pair-2: pair r3c6-r4c6 sum 5
 parity-cells r1c8-r2c7-r3c6-r4c5-r5c4-r6c3-r7c2-r8c1-r7c7-r8c8-r9c9-r2c2-r3c3 parity "odd"
 ```
 

@@ -17,11 +17,11 @@ kropki-1: kropki r7c8-r7c9 colour "white"
 kropki-2: kropki r5c7-r6c7 colour "white"
 whispers r3c2-r4c1-r5c1-r6c2-r5c3-r4c3 gap 5
 renban r2c8-r1c8-r1c9-r2c9-r3c9-r4c9-r4c8-r3c8
-pair-1: pair r6c1-r6c2 relation {"op":"sum","value":10}
-pair-2: pair r8c4-r8c5 relation {"op":"sum","value":10}
-pair-3: pair r2c7-r2c8 relation {"op":"sum","value":10}
-pair-4: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-5: pair r1c8-r1c9 relation {"op":"sum","value":10}
+pair-1: pair r6c1-r6c2 sum 10
+pair-2: pair r8c4-r8c5 sum 10
+pair-3: pair r2c7-r2c8 sum 10
+pair-4: pair r3c7-r3c8 sum 10
+pair-5: pair r1c8-r1c9 sum 10
 ```
 
 Normal Sudoku Rules Apply

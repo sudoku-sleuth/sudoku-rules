@@ -12,29 +12,29 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 kropki r1c5-r2c5 colour "white"
-pair-1: pair r6c1-r6c2 relation {"op":"sum","value":10}
-pair-2: pair r8c2-r9c2 relation {"op":"sum","value":10}
-pair-3: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-4: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-5: pair r5c5-r6c5 relation {"op":"sum","value":10}
-pair-6: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-7: pair r8c6-r9c6 relation {"op":"sum","value":10}
-pair-8: pair r1c7-r2c7 relation {"op":"sum","value":10}
-pair-9: pair r6c7-r7c7 relation {"op":"sum","value":10}
-pair-10: pair r7c9-r8c9 relation {"op":"sum","value":10}
-pair-11: pair r2c5-r2c6 relation {"op":"sum","value":10}
-pair-12: pair r2c8-r2c9 relation {"op":"sum","value":10}
-pair-13: pair r3c3-r3c4 relation {"op":"sum","value":10}
-pair-14: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-15: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-16: pair r6c2-r7c2 relation {"op":"sum","value":10}
-pair-17: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-18: pair r2c8-r3c8 relation {"op":"sum","value":5}
-pair-19: pair r7c2-r7c3 relation {"op":"sum","value":5}
-pair-20: pair r8c8-r8c9 relation {"op":"sum","value":5}
-pair-21: pair r7c6-r7c7 relation {"op":"sum","value":5}
-pair-22: pair r2c6-r2c7 relation {"op":"sum","value":5}
-pair-23: pair r4c5-r5c5 relation {"op":"sum","value":5}
+pair-1: pair r6c1-r6c2 sum 10
+pair-2: pair r8c2-r9c2 sum 10
+pair-3: pair r4c2-r5c2 sum 10
+pair-4: pair r9c3-r9c4 sum 10
+pair-5: pair r5c5-r6c5 sum 10
+pair-6: pair r7c5-r8c5 sum 10
+pair-7: pair r8c6-r9c6 sum 10
+pair-8: pair r1c7-r2c7 sum 10
+pair-9: pair r6c7-r7c7 sum 10
+pair-10: pair r7c9-r8c9 sum 10
+pair-11: pair r2c5-r2c6 sum 10
+pair-12: pair r2c8-r2c9 sum 10
+pair-13: pair r3c3-r3c4 sum 10
+pair-14: pair r4c5-r4c6 sum 10
+pair-15: pair r8c7-r8c8 sum 10
+pair-16: pair r6c2-r7c2 sum 10
+pair-17: pair r2c4-r3c4 sum 10
+pair-18: pair r2c8-r3c8 sum 5
+pair-19: pair r7c2-r7c3 sum 5
+pair-20: pair r8c8-r8c9 sum 5
+pair-21: pair r7c6-r7c7 sum 5
+pair-22: pair r2c6-r2c7 sum 5
+pair-23: pair r4c5-r5c5 sum 5
 negative relations [{"op":"sum","value":10},{"op":"sum","value":5}] except [["r1c5","r2c5"],["r6c1","r6c2"],["r8c2","r9c2"],["r4c2","r5c2"],["r9c3","r9c4"],["r5c5","r6c5"],["r7c5","r8c5"],["r8c6","r9c6"],["r1c7","r2c7"],["r6c7","r7c7"],["r7c9","r8c9"],["r2c5","r2c6"],["r2c8","r2c9"],["r3c3","r3c4"],["r4c5","r4c6"],["r8c7","r8c8"],["r2c8","r3c8"],["r7c2","r7c3"],["r8c8","r8c9"],["r6c2","r7c2"],["r2c4","r3c4"],["r7c6","r7c7"],["r2c6","r2c7"],["r4c5","r5c5"]]
 ```
 

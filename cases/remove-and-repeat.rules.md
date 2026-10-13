@@ -56,10 +56,10 @@ kropki-11: kropki r5c2-r5c3 colour "white"
 renban-1: renban r4c3-r4c4-r4c5-r4c6-r4c7
 renban-2: renban r7c2-r7c3-r6c3-r5c3-r4c3-r3c3-r2c3
 renban-3: renban r3c5-r3c6-r3c7
-pair-1: pair r2c3-r2c4 relation {"op":"sum","value":10}
-pair-2: pair r2c5-r2c6 relation {"op":"sum","value":10}
-pair-3: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-4: pair r2c5-r3c5 relation {"op":"sum","value":10}
+pair-1: pair r2c3-r2c4 sum 10
+pair-2: pair r2c5-r2c6 sum 10
+pair-3: pair r2c4-r3c4 sum 10
+pair-4: pair r2c5-r3c5 sum 10
 ```
 
 ```drawing

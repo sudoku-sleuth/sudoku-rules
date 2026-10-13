@@ -14,9 +14,9 @@ kropki-1: kropki r3c6-r3c7 colour "black"
 kropki-2: kropki r8c5-r8c6 colour "black"
 kropki-3: kropki r5c3-r6c3 colour "black"
 kropki-4: kropki r5c4-r6c4 colour "black"
-pair-1: pair r7c7-r7c8 relation {"op":"sum","value":10}
-pair-2: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-3: pair r6c6-r6c7 relation {"op":"sum","value":10}
+pair-1: pair r7c7-r7c8 sum 10
+pair-2: pair r8c7-r8c8 sum 10
+pair-3: pair r6c6-r6c7 sum 10
 extremum r6c5-r3c2-r2c8-r7c9-r8c3-r6c8-r3c9-r4c1-r9c1-r9c6-r1c7-r1c4-r1c9-r4c8-r3c5-r1c1-r4c6-r7c6-r9c4-r8c7-r9c8-r5c7 type "max" exhaustive true
 ```
 

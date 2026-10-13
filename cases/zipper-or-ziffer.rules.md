@@ -14,8 +14,8 @@ sudoku 9x9
 whispers-1: whispers r1c1-r2c1-r2c2-r3c2-r3c3 gap 5
 whispers-2: whispers r6c7-r5c7-r4c7 gap 5
 whispers-3: whispers r7c4-r8c5-r7c6 gap 5
-pair-1: pair r6c2-r7c2 relation {"op":"sum","value":10}
-pair-2: pair r2c6-r2c7 relation {"op":"sum","value":10}
+pair-1: pair r6c2-r7c2 sum 10
+pair-2: pair r2c6-r2c7 sum 10
 ```
 
 ```drawing

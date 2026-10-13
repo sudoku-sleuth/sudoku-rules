@@ -20,17 +20,17 @@ arrow-7: arrow r7c1-r8c2 bulb ["r6c1"]
 arrow-8: arrow r3c9-r2c8 bulb ["r4c8"]
 arrow-9: arrow r4c2-r5c2 bulb ["r3c2"]
 arrow-10: arrow r6c8-r5c8 bulb ["r7c8"]
-pair-1: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-2: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-3: pair r5c3-r5c4 relation {"op":"sum","value":10}
-pair-4: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-5: pair r3c3-r3c4 relation {"op":"sum","value":10}
-pair-6: pair r8c1-r9c1 relation {"op":"sum","value":10}
-pair-7: pair r1c6-r1c7 relation {"op":"sum","value":10}
-pair-8: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-9: pair r7c3-r8c3 relation {"op":"sum","value":10}
-pair-10: pair r8c9-r9c9 relation {"op":"sum","value":10}
-pair-11: pair r9c7-r9c8 relation {"op":"sum","value":10}
+pair-1: pair r1c2-r1c3 sum 10
+pair-2: pair r5c6-r6c6 sum 10
+pair-3: pair r5c3-r5c4 sum 10
+pair-4: pair r3c1-r3c2 sum 10
+pair-5: pair r3c3-r3c4 sum 10
+pair-6: pair r8c1-r9c1 sum 10
+pair-7: pair r1c6-r1c7 sum 10
+pair-8: pair r7c2-r8c2 sum 10
+pair-9: pair r7c3-r8c3 sum 10
+pair-10: pair r8c9-r9c9 sum 10
+pair-11: pair r9c7-r9c8 sum 10
 ```
 
 **Sudoku, Arrows, X Pairs**

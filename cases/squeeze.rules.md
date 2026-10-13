@@ -18,7 +18,7 @@ between-4: between r6c4-r5c3-r6c2 ends ["r7c5","r7c1"]
 between-5: between r6c7 ends ["r5c6","r6c8"]
 between-6: between r2c8 ends ["r1c7","r3c9"]
 between-7: between r9c8 ends ["r9c7","r9c9"]
-pair r5c1-r6c1 relation {"op":"sum","value":5}
+pair r5c1-r6c1 sum 5
 ```
 
 ```drawing

@@ -32,12 +32,12 @@ arrow-8: arrow r7c3-r8c3-r9c3-r9c2-r9c1-r8c1-r8c2 bulb ["r6c4","r6c5"]
 arrow-9: arrow r3c4-r2c4-r2c5-r1c6-r1c5-r1c4-r1c3-r1c2 bulb ["r4c4","r5c4"]
 arrow-10: arrow r4c3-r5c3-r6c3-r6c2-r7c2-r7c1-r6c1 bulb ["r4c4","r5c4"]
 arrow-11: arrow r3c3-r2c3-r2c2-r1c1-r2c1-r3c1-r3c2-r4c2-r4c1-r5c1 bulb ["r4c4","r5c4"]
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r6c4-r6c5 relation {"op":"sum","value":10}
-pair-3: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-4: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-5: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-6: pair r4c4-r4c5 relation {"op":"sum","value":5}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r6c4-r6c5 sum 10
+pair-3: pair r5c6-r6c6 sum 10
+pair-4: pair r4c5-r4c6 sum 10
+pair-5: pair r9c7-r9c8 sum 10
+pair-6: pair r4c4-r4c5 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on arrows sum to the number in the pill at the origin of the arrow. Numbers may repeat on arrows. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Numbers with a white dot between them are consecutive, Numbers with a black dot between them are in a ratio of 2:1. Not all possible X, V and dots are given.

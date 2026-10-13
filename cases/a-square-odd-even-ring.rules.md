@@ -29,11 +29,11 @@ kropki-8: kropki r5c6-r6c6 colour "white"
 kropki-9: kropki r7c3-r7c4 colour "black"
 kropki-10: kropki r3c6-r3c7 colour "black"
 kropki-11: kropki r5c5-r6c5 colour "black"
-pair-1: pair r8c1-r8c2 relation {"op":"sum","value":10}
-pair-2: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-3: pair r2c8-r2c9 relation {"op":"sum","value":10}
-pair-4: pair r1c8-r1c9 relation {"op":"sum","value":10}
-pair-5: pair r9c4-r9c5 relation {"op":"sum","value":10}
+pair-1: pair r8c1-r8c2 sum 10
+pair-2: pair r9c1-r9c2 sum 10
+pair-3: pair r2c8-r2c9 sum 10
+pair-4: pair r1c8-r1c9 sum 10
+pair-5: pair r9c4-r9c5 sum 10
 parity-cells-1: parity-cells r4c3-r3c3-r3c4-r7c6-r7c7-r6c7 parity "odd"
 parity-cells-2: parity-cells r5c3-r6c3-r7c3-r7c4-r7c5-r5c7-r4c7-r3c7-r3c6-r3c5 parity "even"
 ```

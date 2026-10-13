@@ -13,8 +13,8 @@ givens: r1c9=6
 ```rules
 sudoku 9x9
 anti-knight
-pair-1: pair r4c6-r5c6 relation {"op":"difference","value":2}
-pair-2: pair r4c4-r5c4 relation {"op":"difference","value":2}
+pair-1: pair r4c6-r5c6 difference 2
+pair-2: pair r4c4-r5c4 difference 2
 whispers-1: whispers r7c4-r8c4-r9c5-r8c6-r7c6 gap 5
 whispers-2: whispers r7c4-r7c5-r7c6 gap 5
 ```

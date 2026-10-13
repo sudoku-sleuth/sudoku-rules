@@ -23,7 +23,7 @@ slow-thermo-1: slow-thermo r6c2-r5c3-r4c4-r3c5-r2c6-r1c7-r2c8-r3c9
 slow-thermo-2: slow-thermo r9c5-r8c6-r9c7-r8c8-r7c9-r6c8-r5c7-r4c8
 slow-thermo-3: slow-thermo r9c1-r8c2-r7c3
 slow-thermo-4: slow-thermo r3c7-r4c6-r5c5
-pair r9c5-r9c6 relation {"op":"sum","value":10}
+pair r9c5-r9c6 sum 10
 ```
 
 ```drawing

@@ -23,19 +23,19 @@ arrow-7: arrow r6c3-r6c2-r7c2-r8c2-r9c2-r9c1-r8c1-r7c1 bulb ["r5c4","r5c5"]
 arrow-8: arrow r6c4-r7c4-r7c3-r8c3-r8c4-r9c4-r9c3 bulb ["r5c4","r5c5"]
 arrow-9: arrow r4c3-r4c2-r3c2-r3c3-r2c3-r2c2-r1c2-r1c3-r1c4 bulb ["r5c4","r5c5"]
 arrow-10: arrow r4c4-r3c4-r2c4-r1c5-r1c6-r1c7-r1c8 bulb ["r5c4","r5c5"]
-pair-1: pair r5c9-r6c9 relation {"op":"sum","value":10}
-pair-2: pair r3c9-r4c9 relation {"op":"sum","value":10}
-pair-3: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-4: pair r7c5-r7c6 relation {"op":"sum","value":10}
-pair-5: pair r5c1-r6c1 relation {"op":"sum","value":5}
-pair-6: pair r1c3-r2c3 relation {"op":"sum","value":5}
-pair-7: pair r8c8-r9c8 relation {"op":"sum","value":5}
-pair-8: pair r5c6-r5c7 relation {"op":"sum","value":5}
-pair-9: pair r7c2-r8c2 relation {"op":"sum","value":5}
-pair-10: pair r2c6-r3c6 relation {"op":"sum","value":5}
-pair-11: pair r3c1-r4c1 relation {"op":"sum","value":5}
-pair-12: pair r4c8-r4c9 relation {"op":"sum","value":5}
-pair-13: pair r9c4-r9c5 relation {"op":"sum","value":5}
+pair-1: pair r5c9-r6c9 sum 10
+pair-2: pair r3c9-r4c9 sum 10
+pair-3: pair r3c7-r3c8 sum 10
+pair-4: pair r7c5-r7c6 sum 10
+pair-5: pair r5c1-r6c1 sum 5
+pair-6: pair r1c3-r2c3 sum 5
+pair-7: pair r8c8-r9c8 sum 5
+pair-8: pair r5c6-r5c7 sum 5
+pair-9: pair r7c2-r8c2 sum 5
+pair-10: pair r2c6-r3c6 sum 5
+pair-11: pair r3c1-r4c1 sum 5
+pair-12: pair r4c8-r4c9 sum 5
+pair-13: pair r9c4-r9c5 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on arrows sum to the number in the pill at the center of the grid. Numbers may repeat on arrows. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Numbers with a black dot between them are in a ratio of 2:1. Not all possible X, V and dots are given.

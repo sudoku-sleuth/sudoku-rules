@@ -14,14 +14,14 @@ sudoku 9x9
 thermo r8c8-r7c8-r6c8-r5c9-r4c9-r3c9-r3c8-r3c7-r4c7
 kropki-1: kropki r9c8-r9c9 colour "white"
 kropki-2: kropki r8c4-r8c5 colour "white"
-pair-1: pair r7c8-r7c9 relation {"op":"sum","value":5}
-pair-2: pair r9c6-r9c7 relation {"op":"sum","value":5}
-pair-3: pair r6c1-r7c1 relation {"op":"sum","value":5}
-pair-4: pair r2c3-r3c3 relation {"op":"sum","value":5}
-pair-5: pair r3c5-r3c6 relation {"op":"sum","value":5}
-pair-6: pair r1c6-r1c7 relation {"op":"sum","value":5}
-pair-7: pair r2c7-r2c8 relation {"op":"sum","value":5}
-pair-8: pair r5c9-r6c9 relation {"op":"sum","value":5}
+pair-1: pair r7c8-r7c9 sum 5
+pair-2: pair r9c6-r9c7 sum 5
+pair-3: pair r6c1-r7c1 sum 5
+pair-4: pair r2c3-r3c3 sum 5
+pair-5: pair r3c5-r3c6 sum 5
+pair-6: pair r1c6-r1c7 sum 5
+pair-7: pair r2c7-r2c8 sum 5
+pair-8: pair r5c9-r6c9 sum 5
 ```
 
 ```drawing

@@ -18,8 +18,8 @@ thermo-4: thermo r9c6-r8c6-r7c5
 thermo-5: thermo r9c1-r8c2-r7c3
 thermo-6: thermo r1c9-r1c8-r1c7
 thermo-7: thermo r1c9-r2c9-r3c9
-pair-1: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-2: pair r2c2-r2c3 relation {"op":"sum","value":10}
+pair-1: pair r8c7-r8c8 sum 10
+pair-2: pair r2c2-r2c3 sum 10
 ```
 
 ```drawing

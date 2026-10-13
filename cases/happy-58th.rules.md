@@ -23,8 +23,8 @@ cage-9: cage r2c6-r3c6 total 8 connected true
 cage-10: cage r3c8-r3c9 total 8 connected true
 palindrome-1: palindrome r3c4-r3c3-r3c2-r4c2-r5c2-r5c3-r6c4-r7c4-r8c3-r8c2-r8c1
 palindrome-2: palindrome r5c6-r4c5-r3c6-r3c7-r4c8-r5c7-r6c6-r7c5-r8c6-r8c7-r7c8-r6c7
-pair-1: pair r9c3-r9c4 relation {"op":"sum","value":5}
-pair-2: pair r9c5-r9c6 relation {"op":"sum","value":5}
+pair-1: pair r9c3-r9c4 sum 5
+pair-2: pair r9c5-r9c6 sum 5
 ```
 
 Normal sudoku rules apply.

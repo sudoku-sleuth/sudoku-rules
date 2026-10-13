@@ -10,21 +10,21 @@ status: read
 
 ```rules
 sudoku 9x9
-pair-1: pair r7c1-r7c2 relation {"op":"difference","value":8}
-pair-2: pair r7c2-r7c3 relation {"op":"difference","value":7}
-pair-3: pair r7c3-r7c4 relation {"op":"difference","value":6}
-pair-4: pair r7c4-r7c5 relation {"op":"difference","value":5}
-pair-5: pair r7c5-r7c6 relation {"op":"difference","value":4}
-pair-6: pair r7c6-r7c7 relation {"op":"difference","value":3}
-pair-7: pair r7c7-r7c8 relation {"op":"difference","value":2}
+pair-1: pair r7c1-r7c2 difference 8
+pair-2: pair r7c2-r7c3 difference 7
+pair-3: pair r7c3-r7c4 difference 6
+pair-4: pair r7c4-r7c5 difference 5
+pair-5: pair r7c5-r7c6 difference 4
+pair-6: pair r7c6-r7c7 difference 3
+pair-7: pair r7c7-r7c8 difference 2
 kropki-1: kropki r7c8-r7c9 colour "white"
-pair-8: pair r1c1-r1c2 relation {"op":"difference","value":3}
-pair-9: pair r1c2-r1c3 relation {"op":"difference","value":3}
-pair-10: pair r1c4-r1c5 relation {"op":"difference","value":3}
-pair-11: pair r1c5-r1c6 relation {"op":"difference","value":3}
-pair-12: pair r1c7-r1c8 relation {"op":"difference","value":3}
-pair-13: pair r1c8-r1c9 relation {"op":"difference","value":3}
-pair-14: pair r5c4-r5c5 relation {"op":"difference","value":3}
+pair-8: pair r1c1-r1c2 difference 3
+pair-9: pair r1c2-r1c3 difference 3
+pair-10: pair r1c4-r1c5 difference 3
+pair-11: pair r1c5-r1c6 difference 3
+pair-12: pair r1c7-r1c8 difference 3
+pair-13: pair r1c8-r1c9 difference 3
+pair-14: pair r5c4-r5c5 difference 3
 kropki-2: kropki r5c5-r5c6 colour "white"
 kropki-3: kropki r4c7-r4c8 colour "black"
 kropki-4: kropki r4c8-r4c9 colour "black"

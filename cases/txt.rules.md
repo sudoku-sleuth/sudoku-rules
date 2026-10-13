@@ -33,12 +33,12 @@ whispers-3: whispers r4c4-r5c5-r6c6 gap 5
 whispers-4: whispers r6c4-r5c5-r4c6 gap 5
 whispers-5: whispers r7c7-r7c8-r7c9 gap 5
 whispers-6: whispers r9c8-r8c8-r7c8 gap 5
-pair-1: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-2: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-3: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-4: pair r9c8-r9c9 relation {"op":"sum","value":10}
-pair-5: pair r1c3-r2c3 relation {"op":"sum","value":5}
-pair-6: pair r9c7-r9c8 relation {"op":"sum","value":5}
+pair-1: pair r2c3-r3c3 sum 10
+pair-2: pair r1c1-r2c1 sum 10
+pair-3: pair r7c7-r8c7 sum 10
+pair-4: pair r9c8-r9c9 sum 10
+pair-5: pair r1c3-r2c3 sum 5
+pair-6: pair r9c7-r9c8 sum 5
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

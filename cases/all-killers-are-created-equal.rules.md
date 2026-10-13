@@ -30,11 +30,11 @@ cage-17: cage r2c8-r3c8-r4c8-r5c8 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 kropki r6c6-r7c6 colour "black"
-pair-1: pair r4c1-r5c1 relation {"op":"sum","value":10}
-pair-2: pair r6c2-r6c3 relation {"op":"sum","value":10}
-pair-3: pair r3c6-r4c6 relation {"op":"sum","value":10}
-pair-4: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-5: pair r8c4-r8c5 relation {"op":"sum","value":10}
+pair-1: pair r4c1-r5c1 sum 10
+pair-2: pair r6c2-r6c3 sum 10
+pair-3: pair r3c6-r4c6 sum 10
+pair-4: pair r3c7-r3c8 sum 10
+pair-5: pair r8c4-r8c5 sum 10
 ```
 
 Normal sudoku rules apply. In a killer box digits do not repeat. EACH killer box in the grid sums to the same total which has to be determined by the solver. On the marked diagonals digits do not repeat. Digits joined by an X sum to 10. (Not all X are given.) Digits joined by a black dot have a 1:2 ratio. (Not all black dots are given.)

@@ -23,8 +23,8 @@ arrow-2: arrow r5c7-r5c8 bulb ["r6c6"]
 arrow-3: arrow r5c3-r5c2 bulb ["r6c4"]
 arrow-4: arrow r3c3-r3c2 bulb ["r4c4"]
 renban r5c4-r4c5-r5c6-r6c5
-pair-1: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-2: pair r4c8-r5c8 relation {"op":"sum","value":10}
+pair-1: pair r4c2-r5c2 sum 10
+pair-2: pair r4c8-r5c8 sum 10
 parity-cells r5c5 parity "odd"
 anti-knight
 ```

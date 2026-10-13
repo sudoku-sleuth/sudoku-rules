@@ -80,10 +80,10 @@ thermo-3: thermo r5c4-r4c4
 thermo-4: thermo r5c6-r4c6
 thermo-5: thermo r3c1-r2c1
 thermo-6: thermo r3c3-r2c3
-pair-1: pair r1c5-r1c6 relation {"op":"sum","value":10}
-pair-2: pair r4c1-r4c2 relation {"op":"sum","value":10}
-pair-3: pair r2c5-r2c6 relation {"op":"sum","value":5}
-pair-4: pair r3c1-r3c2 relation {"op":"sum","value":5}
+pair-1: pair r1c5-r1c6 sum 10
+pair-2: pair r4c1-r4c2 sum 10
+pair-3: pair r2c5-r2c6 sum 5
+pair-4: pair r3c1-r3c2 sum 5
 unique-19: unique r1c1-r1c4-r3c1-r3c4-r5c1-r5c4
 unique-20: unique r1c2-r1c5-r3c2-r3c5-r5c2-r5c5
 unique-21: unique r1c3-r1c6-r3c3-r3c6-r5c3-r5c6

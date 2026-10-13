@@ -30,8 +30,8 @@ whispers-2: whispers r1c9-r2c9-r2c8-r2c7-r3c7-r3c6-r2c5-r1c5-r1c4-r1c3-r1c2 gap 
 whispers-3: whispers r6c1-r7c1-r8c2-r9c2 gap 4
 whispers-4: whispers r9c8-r8c9-r7c9-r7c8-r6c8-r5c8-r5c9 gap 4
 whispers-5: whispers r4c2-r5c3-r5c4-r4c4-r3c3 gap 4 loop true
-pair-1: pair r1c8-r2c8 relation {"op":"sum","value":10}
-pair-2: pair r8c2-r8c3 relation {"op":"sum","value":10}
+pair-1: pair r1c8-r2c8 sum 10
+pair-2: pair r8c2-r8c3 sum 10
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

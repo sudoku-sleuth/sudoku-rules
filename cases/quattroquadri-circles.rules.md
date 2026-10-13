@@ -78,8 +78,8 @@ unique-15: unique r4c1-r4c2-r4c3-r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-16: unique r4c4-r4c5-r4c6-r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 arrow-1: arrow r1c4-r1c5-r1c6 bulb ["r1c3"]
 arrow-2: arrow r6c2-r6c3-r6c4 bulb ["r6c1"]
-pair-1: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-2: pair r3c3-r4c3 relation {"op":"sum","value":5}
+pair-1: pair r4c5-r4c6 sum 10
+pair-2: pair r3c3-r4c3 sum 5
 negative relations [{"op":"sum","value":10},{"op":"sum","value":5}] except [["r3c3","r4c3"],["r4c5","r4c6"]]
 ```
 

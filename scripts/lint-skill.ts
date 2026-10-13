@@ -70,5 +70,5 @@ export async function lintSkill(skillDirectory = resolve(import.meta.dir, "../pl
 if (import.meta.main) {
   const result = await lintSkill(process.argv[2]);
   console.log(`Skill lint: ${result.references} references and ${result.examples} case examples checked`);
-  console.log(result.specResult);
+  console.log(`Skill examples only: ${result.specResult}`);
 }

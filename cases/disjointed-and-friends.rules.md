@@ -79,10 +79,10 @@ kropki-2: kropki r2c6-r3c6 colour "white"
 kropki-3: kropki r3c6-r4c6 colour "white"
 arrow-1: arrow r2c3 bulb ["r1c4"]
 arrow-2: arrow r5c5-r6c5 bulb ["r4c4"]
-pair-1: pair r2c5-r3c5 relation {"op":"sum","value":5}
-pair-2: pair r1c1-r1c2 relation {"op":"sum","value":5}
-pair-3: pair r4c1-r4c2 relation {"op":"sum","value":5}
-pair-4: pair r5c3-r6c3 relation {"op":"sum","value":5}
+pair-1: pair r2c5-r3c5 sum 5
+pair-2: pair r1c1-r1c2 sum 5
+pair-3: pair r4c1-r4c2 sum 5
+pair-4: pair r5c3-r6c3 sum 5
 little-killer r3c6-r4c5-r5c4-r6c3 sum 13
 unique-19: unique r1c1-r1c4-r3c1-r3c4-r5c1-r5c4
 unique-20: unique r1c2-r1c5-r3c2-r3c5-r5c2-r5c5

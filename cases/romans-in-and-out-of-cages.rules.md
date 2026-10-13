@@ -18,23 +18,23 @@ cage-5: cage r6c4-r7c3-r7c4 total 10 connected true
 cage-6: cage r6c6-r7c6-r7c7 total 18 connected true
 cage-7: cage r3c3-r3c4-r4c4 total 9 connected true
 cage-8: cage r3c6-r3c7-r4c6 total 20 connected true
-pair-1: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-2: pair r6c3-r6c4 relation {"op":"sum","value":10}
-pair-3: pair r6c7-r6c8 relation {"op":"sum","value":10}
-pair-4: pair r4c7-r4c8 relation {"op":"sum","value":10}
-pair-5: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-6: pair r2c8-r3c8 relation {"op":"sum","value":10}
-pair-7: pair r7c4-r8c4 relation {"op":"sum","value":10}
-pair-8: pair r7c6-r8c6 relation {"op":"sum","value":10}
-pair-9: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-10: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-11: pair r6c2-r6c3 relation {"op":"sum","value":5}
-pair-12: pair r4c2-r4c3 relation {"op":"sum","value":5}
-pair-13: pair r4c6-r4c7 relation {"op":"sum","value":5}
-pair-14: pair r6c6-r6c7 relation {"op":"sum","value":5}
-pair-15: pair r7c8-r8c8 relation {"op":"sum","value":5}
-pair-16: pair r2c4-r3c4 relation {"op":"sum","value":5}
-pair-17: pair r9c8-r9c9 relation {"op":"sum","value":5}
+pair-1: pair r4c3-r4c4 sum 10
+pair-2: pair r6c3-r6c4 sum 10
+pair-3: pair r6c7-r6c8 sum 10
+pair-4: pair r4c7-r4c8 sum 10
+pair-5: pair r7c2-r8c2 sum 10
+pair-6: pair r2c8-r3c8 sum 10
+pair-7: pair r7c4-r8c4 sum 10
+pair-8: pair r7c6-r8c6 sum 10
+pair-9: pair r1c2-r1c3 sum 10
+pair-10: pair r9c1-r9c2 sum 10
+pair-11: pair r6c2-r6c3 sum 5
+pair-12: pair r4c2-r4c3 sum 5
+pair-13: pair r4c6-r4c7 sum 5
+pair-14: pair r6c6-r6c7 sum 5
+pair-15: pair r7c8-r8c8 sum 5
+pair-16: pair r2c4-r3c4 sum 5
+pair-17: pair r9c8-r9c9 sum 5
 ```
 
 **Sudoku, XV, Cages**

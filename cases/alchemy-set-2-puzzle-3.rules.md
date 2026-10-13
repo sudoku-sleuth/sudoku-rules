@@ -76,7 +76,7 @@ unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 anti-knight
-pair r4c2-r5c2 relation {"op":"sum","value":10}
+pair r4c2-r5c2 sum 10
 numbered-room r2c1-r2c2-r2c3-r2c4-r2c5-r2c6 digit 6
 parity-cells-1: parity-cells r4c6 parity "odd"
 parity-cells-2: parity-cells r3c4 parity "even"

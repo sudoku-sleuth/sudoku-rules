@@ -11,18 +11,18 @@ drawingCoverage: unclaimed-only
 
 ```rules
 sudoku 9x9
-pair-1: pair r1c1-r1c2 relation {"op":"difference","value":3}
-pair-2: pair r2c3-r3c3 relation {"op":"difference","value":2}
-pair-3: pair r3c4-r3c5 relation {"op":"difference","value":5}
-pair-4: pair r1c6-r2c6 relation {"op":"difference","value":7}
-pair-5: pair r1c8-r1c9 relation {"op":"difference","value":7}
-pair-6: pair r3c9-r4c9 relation {"op":"difference","value":3}
-pair-7: pair r6c6-r6c7 relation {"op":"difference","value":5}
-pair-8: pair r5c1-r6c1 relation {"op":"difference","value":2}
-pair-9: pair r8c1-r8c2 relation {"op":"difference","value":5}
-pair-10: pair r7c4-r8c4 relation {"op":"difference","value":7}
-pair-11: pair r8c7-r8c8 relation {"op":"difference","value":6}
-pair-12: pair r7c9-r8c9 relation {"op":"difference","value":6}
+pair-1: pair r1c1-r1c2 difference 3
+pair-2: pair r2c3-r3c3 difference 2
+pair-3: pair r3c4-r3c5 difference 5
+pair-4: pair r1c6-r2c6 difference 7
+pair-5: pair r1c8-r1c9 difference 7
+pair-6: pair r3c9-r4c9 difference 3
+pair-7: pair r6c6-r6c7 difference 5
+pair-8: pair r5c1-r6c1 difference 2
+pair-9: pair r8c1-r8c2 difference 5
+pair-10: pair r7c4-r8c4 difference 7
+pair-11: pair r8c7-r8c8 difference 6
+pair-12: pair r7c9-r8c9 difference 6
 whispers-1: whispers r4c2-r5c2-r6c2-r6c3 gap 5
 whispers-2: whispers r6c4-r6c5-r5c5-r5c6 gap 5
 whispers-3: whispers r4c6-r4c7-r4c8 gap 5

@@ -81,7 +81,7 @@ whispers-2: whispers r4c4-r5c5-r6c5 loop false gap 3
 whispers-3: whispers r5c5-r4c6 loop false gap 3
 whispers-4: whispers r4c3-r5c3-r6c3-r6c2-r5c2-r5c3 loop false gap 3
 whispers-5: whispers r2c4-r2c5-r3c5-r3c4 loop true gap 3
-pair r6c1-r6c2 relation {"op":"sum","value":5}
+pair r6c1-r6c2 sum 5
 ```
 
 Normal 6x6 sudoku rules apply. Place the digits 1-6 once each in every row, column and 2x3 box.

@@ -25,8 +25,8 @@ region-sum-1: region-sum r6c2-r6c3-r6c4-r6c5-r7c5-r8c5 segments [["r6c2","r6c3"]
 region-sum-2: region-sum r4c8-r4c7-r4c6-r4c5-r3c5-r2c5 segments [["r4c8","r4c7"],["r4c6","r4c5"],["r3c5","r2c5"]]
 nabner-1: nabner r1c1-r2c1-r3c1
 nabner-2: nabner r7c9-r8c9-r9c9
-pair-1: pair r9c4-r9c5 relation {"op":"sum","value":10}
-pair-2: pair r1c5-r1c6 relation {"op":"sum","value":10}
+pair-1: pair r9c4-r9c5 sum 10
+pair-2: pair r1c5-r1c6 sum 10
 ```
 
 ```drawing

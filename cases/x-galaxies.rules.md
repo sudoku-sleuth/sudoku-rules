@@ -14,10 +14,10 @@ flags:
 
 ```rules
 sudoku 9x9
-pair-1: pair r3c5-r3c6 relation {"op":"sum","value":10}
-pair-2: pair r9c8-r9c9 relation {"op":"sum","value":10}
-pair-3: pair r7c2-r7c3 relation {"op":"sum","value":10}
-pair-4: pair r6c3-r6c4 relation {"op":"sum","value":10}
+pair-1: pair r3c5-r3c6 sum 10
+pair-2: pair r9c8-r9c9 sum 10
+pair-3: pair r7c2-r7c3 sum 10
+pair-4: pair r6c3-r6c4 sum 10
 ```
 
 ```drawing

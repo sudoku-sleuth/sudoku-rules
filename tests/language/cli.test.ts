@@ -23,7 +23,7 @@ test("CLI reports checked formula pages and explicitly pending case checks", asy
   expect(cases.checked).toBe(85);
   expect(cases.cases).toBe(1);
   expect(cases.references).toBe(9);
-  expect(cases.pending).toContain("rule-line validation");
+  expect(cases.pending).toContain("remaining rule-line validation");
 });
 test("CLI exit status distinguishes invalid source from invocation errors", async () => {
   for (const [args, exit] of [
@@ -57,4 +57,14 @@ test("CLI prints setter messages and locations, reserving parser detail for JSON
       expect(stderr).not.toContain("DUPLICATE_KEY");
     }
   }
+});
+
+
+test("default lint:spec checks the complete production case corpus", async () => {
+  const process = Bun.spawn(["bun", "run", "lint:spec"], { stdout: "pipe", stderr: "pipe" });
+  const [stdout, stderr] = await Promise.all([new Response(process.stdout).text(), new Response(process.stderr).text()]);
+  expect(await process.exited).toBe(0);
+  expect(stderr).not.toContain("E_");
+  expect(stdout).toContain("85/85 pages checked; 82 formula blocks");
+  expect(stdout).toContain("Cases: 3892 headers/reference lists; 74879 references; 0 deferred URLs");
 });

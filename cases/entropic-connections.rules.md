@@ -19,7 +19,7 @@ cage-5: cage r1c1-r2c1 total 9 connected true
 cage-6: cage r9c1-r9c2 total 10 connected true
 cage-7: cage r8c9-r9c9 total 9 connected true
 cage-8: cage r1c8-r1c9 total 12 connected true
-pair r2c6-r3c6 relation {"op":"ratio","value":3}
+pair r2c6-r3c6 ratio 3
 whispers-1: whispers r6c2-r5c3-r4c2 gap 5
 whispers-2: whispers r9c1-r8c2-r7c3 gap 5
 whispers-3: whispers r1c1-r2c2-r3c3 gap 5

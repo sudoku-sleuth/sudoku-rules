@@ -39,14 +39,14 @@ between-7: between r7c4-r7c3-r7c2 ends ["r7c5","r7c1"]
 between-8: between r9c6-r9c5-r9c4 ends ["r9c7","r9c3"]
 between-9: between r6c9-r7c9-r8c9 ends ["r5c9","r9c9"]
 between-10: between r5c1-r4c1-r3c1 ends ["r6c1","r2c1"]
-pair-1: pair r5c5-r5c6 relation {"op":"sum","value":10}
-pair-2: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-3: pair r6c9-r7c9 relation {"op":"sum","value":10}
-pair-4: pair r3c5-r3c6 relation {"op":"sum","value":10}
-pair-5: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-6: pair r8c4-r9c4 relation {"op":"sum","value":10}
-pair-7: pair r5c8-r5c9 relation {"op":"sum","value":5}
-pair-8: pair r7c7-r8c7 relation {"op":"sum","value":5}
+pair-1: pair r5c5-r5c6 sum 10
+pair-2: pair r1c2-r1c3 sum 10
+pair-3: pair r6c9-r7c9 sum 10
+pair-4: pair r3c5-r3c6 sum 10
+pair-5: pair r4c8-r5c8 sum 10
+pair-6: pair r8c4-r9c4 sum 10
+pair-7: pair r5c8-r5c9 sum 5
+pair-8: pair r7c7-r8c7 sum 5
 ```
 
 ```drawing

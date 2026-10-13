@@ -21,11 +21,11 @@ kropki-4: kropki r9c7-r9c8 colour "white"
 kropki-5: kropki r9c2-r9c3 colour "white"
 whispers-1: whispers r9c3-r8c3-r7c3-r6c3-r5c3-r4c4-r4c5-r4c6-r5c7-r6c7-r7c7-r8c7-r9c7 gap 5
 whispers-2: whispers r6c3-r6c4-r6c5-r6c6-r6c7 gap 5
-pair-1: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r3c5-r4c5 relation {"op":"sum","value":10}
-pair-3: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-4: pair r9c8-r9c9 relation {"op":"sum","value":10}
-pair-5: pair r7c8-r7c9 relation {"op":"sum","value":10}
+pair-1: pair r5c4-r6c4 sum 10
+pair-2: pair r3c5-r4c5 sum 10
+pair-3: pair r9c1-r9c2 sum 10
+pair-4: pair r9c8-r9c9 sum 10
+pair-5: pair r7c8-r7c9 sum 10
 little-killer-1: little-killer r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c7-r8c8-r9c9 sum 55
 little-killer-2: little-killer r9c5-r8c6-r7c7-r6c8-r5c9 sum 39
 parity-cells r9c5 parity "odd"

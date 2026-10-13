@@ -28,8 +28,8 @@ kropki-1: kropki r6c7-r6c8 colour "black"
 kropki-2: kropki r7c5-r7c6 colour "black"
 whispers-1: whispers r1c1-r1c2-r2c3-r2c4-r3c5-r3c6-r4c7-r4c8-r5c9-r6c8-r6c7-r7c6-r7c5-r8c4-r8c3-r9c2-r9c1 gap 4
 whispers-2: whispers r3c1-r3c2-r4c3-r4c4-r5c5-r6c4-r6c3-r7c2-r7c1 gap 4
-pair-1: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-2: pair r6c3-r6c4 relation {"op":"sum","value":10}
+pair-1: pair r6c5-r6c6 sum 10
+pair-2: pair r6c3-r6c4 sum 10
 ```
 
 Normal Sudoku rules apply.

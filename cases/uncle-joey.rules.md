@@ -20,15 +20,15 @@ renban-1: renban r7c4-r6c4-r5c4-r4c4-r3c4
 renban-2: renban r7c6-r6c6-r5c6
 region-sum-1: region-sum r3c7-r3c6-r3c5-r3c4-r3c3-r3c2-r4c2 segments [["r3c7"],["r3c6","r3c5","r3c4"],["r3c3","r3c2"],["r4c2"]]
 region-sum-2: region-sum r6c2-r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r6c7-r5c7 segments [["r6c2"],["r7c2","r7c3"],["r7c4","r7c5","r7c6"],["r7c7"],["r6c7","r5c7"]]
-pair-1: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-2: pair r2c7-r3c7 relation {"op":"sum","value":10}
-pair-3: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-4: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-5: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-6: pair r7c4-r8c4 relation {"op":"sum","value":10}
-pair-7: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-8: pair r1c7-r1c8 relation {"op":"sum","value":10}
-pair-9: pair r9c7-r9c8 relation {"op":"sum","value":10}
+pair-1: pair r7c5-r8c5 sum 10
+pair-2: pair r2c7-r3c7 sum 10
+pair-3: pair r2c4-r3c4 sum 10
+pair-4: pair r7c7-r8c7 sum 10
+pair-5: pair r2c3-r3c3 sum 10
+pair-6: pair r7c4-r8c4 sum 10
+pair-7: pair r4c4-r5c4 sum 10
+pair-8: pair r1c7-r1c8 sum 10
+pair-9: pair r9c7-r9c8 sum 10
 ```
 
 ```drawing

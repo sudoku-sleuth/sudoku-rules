@@ -27,14 +27,14 @@ whispers-13: whispers r8c7-r7c7 gap 5
 whispers-14: whispers r8c8-r7c8 gap 5
 whispers-15: whispers r1c3-r2c3 gap 5
 whispers-16: whispers r5c8-r4c8 gap 5
-pair-1: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-2: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":10}
-pair-4: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-5: pair r6c1-r6c2 relation {"op":"sum","value":10}
-pair-6: pair r8c3-r9c3 relation {"op":"sum","value":10}
-pair-7: pair r5c5-r5c6 relation {"op":"sum","value":10}
-pair-8: pair r6c5-r6c6 relation {"op":"sum","value":10}
+pair-1: pair r4c2-r5c2 sum 10
+pair-2: pair r2c3-r3c3 sum 10
+pair-3: pair r4c1-r5c1 sum 10
+pair-4: pair r7c2-r8c2 sum 10
+pair-5: pair r6c1-r6c2 sum 10
+pair-6: pair r8c3-r9c3 sum 10
+pair-7: pair r5c5-r5c6 sum 10
+pair-8: pair r6c5-r6c6 sum 10
 negative relations [{"op":"at-least","value":5}] except [["r3c5","r3c6"],["r2c8","r2c9"],["r4c2","r5c2"],["r5c6","r5c5"],["r5c5","r6c5"],["r5c4","r6c4"],["r6c6","r5c6"],["r8c6","r8c5"],["r9c4","r8c4"],["r9c5","r9c4"],["r3c8","r2c8"],["r4c9","r5c9"],["r5c7","r6c7"],["r8c7","r7c7"],["r8c8","r7c8"],["r1c3","r2c3"],["r5c8","r4c8"]]
 ```
 

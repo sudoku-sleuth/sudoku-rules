@@ -22,9 +22,9 @@ whispers-3: whispers r2c7-r3c7-r3c8-r2c8 gap 5
 whispers-4: whispers r3c4-r3c5-r2c4-r2c5-r1c4-r1c5 gap 5
 renban-1: renban r1c1-r1c2-r1c3-r2c3-r3c3-r3c2-r3c1-r2c1
 renban-2: renban r1c6-r2c6-r3c6
-pair-1: pair r5c4-r5c5 relation {"op":"sum","value":10}
-pair-2: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-3: pair r7c4-r7c5 relation {"op":"sum","value":10}
+pair-1: pair r5c4-r5c5 sum 10
+pair-2: pair r5c6-r6c6 sum 10
+pair-3: pair r7c4-r7c5 sum 10
 quadruple r2c7-r2c8-r3c7-r3c8 digits [2,4]
 parity-cells r1c3 parity "odd"
 ```

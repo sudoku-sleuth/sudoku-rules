@@ -84,11 +84,11 @@ equality-cage-7: equality-cage r5c5-r5c6
 equality-cage-8: equality-cage r1c5-r2c5
 palindrome-1: palindrome r2c2-r2c1-r3c2-r4c1
 palindrome-2: palindrome r2c3-r3c4-r4c5-r5c5-r6c6
-pair-1: pair r1c2-r1c1 relation {"op":"less"}
-pair-2: pair r2c4-r2c3 relation {"op":"less"}
-pair-3: pair r3c6-r3c5 relation {"op":"less"}
-pair-4: pair r4c2-r4c3 relation {"op":"less"}
-pair-5: pair r5c2-r5c3 relation {"op":"less"}
+pair-1: pair r1c2-r1c1 less
+pair-2: pair r2c4-r2c3 less
+pair-3: pair r3c6-r3c5 less
+pair-4: pair r4c2-r4c3 less
+pair-5: pair r5c2-r5c3 less
 ```
 
 Normal 6x6 sudoku rules apply. Place the digits 1 through 6 in each empty cell. Digits must not repeat within the same row, column, or box.

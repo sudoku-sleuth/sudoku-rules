@@ -21,10 +21,10 @@ whispers-1: whispers r4c6-r3c6-r4c5-r3c5-r2c5-r1c5-r1c6 gap 5
 whispers-2: whispers r9c4-r9c5-r8c5-r7c5-r6c5-r7c4-r6c4 gap 5
 renban-1: renban r5c4-r5c3-r5c2-r5c1-r4c2
 renban-2: renban r5c6-r5c7-r5c8-r5c9-r6c8
-pair-1: pair r1c7-r2c7 relation {"op":"sum","value":10}
-pair-2: pair r8c3-r9c3 relation {"op":"sum","value":10}
-pair-3: pair r7c9-r7c8 relation {"op":"less"}
-pair-4: pair r3c2-r3c1 relation {"op":"less"}
+pair-1: pair r1c7-r2c7 sum 10
+pair-2: pair r8c3-r9c3 sum 10
+pair-3: pair r7c9-r7c8 less
+pair-4: pair r3c2-r3c1 less
 ```
 
 ```drawing

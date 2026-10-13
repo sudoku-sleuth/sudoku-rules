@@ -12,28 +12,28 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 anti-knight
-pair-1: pair r8c2-r8c3 relation {"op":"sum","value":10}
-pair-2: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-3: pair r8c8-r9c8 relation {"op":"sum","value":10}
-pair-4: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-5: pair r3c4-r4c4 relation {"op":"sum","value":10}
-pair-6: pair r1c4-r2c4 relation {"op":"sum","value":10}
-pair-7: pair r3c4-r3c5 relation {"op":"sum","value":10}
-pair-8: pair r1c5-r1c6 relation {"op":"sum","value":10}
-pair-9: pair r3c7-r4c7 relation {"op":"sum","value":10}
-pair-10: pair r5c7-r6c7 relation {"op":"sum","value":10}
-pair-11: pair r4c6-r4c7 relation {"op":"sum","value":10}
-pair-12: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-13: pair r6c6-r6c7 relation {"op":"sum","value":10}
-pair-14: pair r9c4-r9c5 relation {"op":"sum","value":10}
-pair-15: pair r2c3-r2c4 relation {"op":"sum","value":10}
-pair-16: pair r3c5-r4c5 relation {"op":"sum","value":10}
-pair-17: pair r7c8-r7c9 relation {"op":"sum","value":10}
-pair-18: pair r1c5-r2c5 relation {"op":"sum","value":5}
-pair-19: pair r7c2-r7c3 relation {"op":"sum","value":5}
-pair-20: pair r2c4-r3c4 relation {"op":"sum","value":5}
-pair-21: pair r6c3-r7c3 relation {"op":"sum","value":5}
-pair-22: pair r2c2-r3c2 relation {"op":"sum","value":5}
+pair-1: pair r8c2-r8c3 sum 10
+pair-2: pair r7c5-r8c5 sum 10
+pair-3: pair r8c8-r9c8 sum 10
+pair-4: pair r4c6-r5c6 sum 10
+pair-5: pair r3c4-r4c4 sum 10
+pair-6: pair r1c4-r2c4 sum 10
+pair-7: pair r3c4-r3c5 sum 10
+pair-8: pair r1c5-r1c6 sum 10
+pair-9: pair r3c7-r4c7 sum 10
+pair-10: pair r5c7-r6c7 sum 10
+pair-11: pair r4c6-r4c7 sum 10
+pair-12: pair r4c4-r4c5 sum 10
+pair-13: pair r6c6-r6c7 sum 10
+pair-14: pair r9c4-r9c5 sum 10
+pair-15: pair r2c3-r2c4 sum 10
+pair-16: pair r3c5-r4c5 sum 10
+pair-17: pair r7c8-r7c9 sum 10
+pair-18: pair r1c5-r2c5 sum 5
+pair-19: pair r7c2-r7c3 sum 5
+pair-20: pair r2c4-r3c4 sum 5
+pair-21: pair r6c3-r7c3 sum 5
+pair-22: pair r2c2-r3c2 sum 5
 negative relations [{"op":"sum","value":10},{"op":"sum","value":5}] except [["r1c5","r2c5"],["r7c2","r7c3"],["r8c2","r8c3"],["r7c5","r8c5"],["r8c8","r9c8"],["r4c6","r5c6"],["r3c4","r4c4"],["r2c4","r3c4"],["r1c4","r2c4"],["r3c4","r3c5"],["r1c5","r1c6"],["r3c7","r4c7"],["r5c7","r6c7"],["r4c6","r4c7"],["r4c4","r4c5"],["r6c6","r6c7"],["r6c3","r7c3"],["r9c4","r9c5"],["r2c2","r3c2"],["r2c3","r2c4"],["r3c5","r4c5"],["r7c8","r7c9"]]
 ```
 

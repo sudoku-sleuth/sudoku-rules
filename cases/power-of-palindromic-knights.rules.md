@@ -18,15 +18,15 @@ palindrome-2: palindrome r3c4-r4c3
 palindrome-3: palindrome r6c6-r5c6-r6c7-r5c7
 palindrome-4: palindrome r9c5-r9c6-r9c7-r8c7-r8c8
 palindrome-5: palindrome r1c3-r2c2-r3c1-r4c2-r5c1-r6c1
-pair-1: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-2: pair r9c8-r9c9 relation {"op":"sum","value":10}
-pair-3: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-4: pair r5c8-r6c8 relation {"op":"sum","value":10}
-pair-5: pair r1c2-r2c2 relation {"op":"sum","value":10}
-pair-6: pair r6c7-r7c7 relation {"op":"sum","value":10}
-pair-7: pair r3c7-r4c7 relation {"op":"sum","value":10}
-pair-8: pair r6c5-r6c6 relation {"op":"sum","value":5}
-pair-9: pair r1c1-r1c2 relation {"op":"sum","value":5}
+pair-1: pair r8c7-r8c8 sum 10
+pair-2: pair r9c8-r9c9 sum 10
+pair-3: pair r4c3-r4c4 sum 10
+pair-4: pair r5c8-r6c8 sum 10
+pair-5: pair r1c2-r2c2 sum 10
+pair-6: pair r6c7-r7c7 sum 10
+pair-7: pair r3c7-r4c7 sum 10
+pair-8: pair r6c5-r6c6 sum 5
+pair-9: pair r1c1-r1c2 sum 5
 ```
 
 Normal Sudoku Rules Apply

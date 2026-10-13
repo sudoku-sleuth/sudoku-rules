@@ -32,9 +32,9 @@ renban-5: renban r4c4-r5c5-r4c5-r5c6-r4c6-r3c7
 renban-6: renban r7c1-r6c1-r6c2
 renban-7: renban r2c4-r1c5-r2c5
 renban-8: renban r8c5-r8c6-r7c6
-pair-1: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r8c9-r9c9 relation {"op":"sum","value":10}
-pair-3: pair r5c6-r5c7 relation {"op":"sum","value":10}
+pair-1: pair r3c3-r4c3 sum 10
+pair-2: pair r8c9-r9c9 sum 10
+pair-3: pair r5c6-r5c7 sum 10
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

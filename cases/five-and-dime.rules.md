@@ -18,18 +18,18 @@ cage-5: cage r7c4-r8c4-r9c4 total 12 connected true
 cage-6: cage r5c1-r5c2-r5c3 total 8 connected true
 cage-7: cage r9c7-r9c8-r9c9 total 8 connected true
 cage-8: cage r7c1-r7c2-r7c3 total 8 connected true
-pair-1: pair r2c8-r3c8 relation {"op":"sum","value":10}
-pair-2: pair r3c9-r4c9 relation {"op":"sum","value":10}
-pair-3: pair r3c6-r3c7 relation {"op":"sum","value":10}
-pair-4: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-5: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-6: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-7: pair r7c8-r8c8 relation {"op":"sum","value":10}
-pair-8: pair r1c7-r2c7 relation {"op":"sum","value":5}
-pair-9: pair r7c1-r7c2 relation {"op":"sum","value":5}
-pair-10: pair r6c1-r7c1 relation {"op":"sum","value":5}
-pair-11: pair r7c3-r8c3 relation {"op":"sum","value":5}
-pair-12: pair r5c2-r6c2 relation {"op":"sum","value":5}
+pair-1: pair r2c8-r3c8 sum 10
+pair-2: pair r3c9-r4c9 sum 10
+pair-3: pair r3c6-r3c7 sum 10
+pair-4: pair r4c3-r5c3 sum 10
+pair-5: pair r5c4-r6c4 sum 10
+pair-6: pair r6c5-r6c6 sum 10
+pair-7: pair r7c8-r8c8 sum 10
+pair-8: pair r1c7-r2c7 sum 5
+pair-9: pair r7c1-r7c2 sum 5
+pair-10: pair r6c1-r7c1 sum 5
+pair-11: pair r7c3-r8c3 sum 5
+pair-12: pair r5c2-r6c2 sum 5
 ```
 
 - Normal sudoku rules apply.

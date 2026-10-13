@@ -25,12 +25,12 @@ arrow-5: arrow r5c4-r6c3-r7c2-r8c1 bulb ["r4c5"]
 arrow-6: arrow r3c6-r2c7-r1c8 bulb ["r4c5"]
 arrow-7: arrow r3c4-r2c3-r1c2 bulb ["r4c5"]
 arrow-8: arrow r3c5-r2c5 bulb ["r4c5"]
-pair-1: pair r2c7-r3c7 relation {"op":"sum","value":10}
-pair-2: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-3: pair r7c7-r7c8 relation {"op":"sum","value":10}
-pair-4: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-5: pair r5c3-r6c3 relation {"op":"sum","value":10}
-pair-6: pair r8c8-r8c9 relation {"op":"sum","value":10}
+pair-1: pair r2c7-r3c7 sum 10
+pair-2: pair r4c8-r5c8 sum 10
+pair-3: pair r7c7-r7c8 sum 10
+pair-4: pair r2c3-r3c3 sum 10
+pair-5: pair r5c3-r6c3 sum 10
+pair-6: pair r8c8-r8c9 sum 10
 ```
 
 Normal Sudoku rules apply. ARROWS- Numbers on arrows sum to the number in the arrow's circle. Numbers may repeat on arrows, if other rules allow. THERMOMETERS- Numbers on thermometers increase from the bulb end. KROPKI PAIRS- Numbers with a white dot between them are consecutive. XV PAIRS- Numbers with an X between them sum to 10. Not all possible dots and X are given.

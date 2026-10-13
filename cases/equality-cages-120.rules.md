@@ -34,10 +34,10 @@ parity-4: parity r4c8-r5c9-r5c8-r5c7
 parity-5: parity r5c5-r5c6-r4c6
 parity-6: parity r9c8-r9c9
 parity-7: parity r4c3-r4c4-r3c5
-pair-1: pair r4c1-r4c2 relation {"op":"sum","value":10}
-pair-2: pair r8c7-r9c7 relation {"op":"sum","value":10}
-pair-3: pair r2c3-r2c4 relation {"op":"sum","value":10}
-pair-4: pair r4c5-r5c5 relation {"op":"sum","value":10}
+pair-1: pair r4c1-r4c2 sum 10
+pair-2: pair r8c7-r9c7 sum 10
+pair-3: pair r2c3-r2c4 sum 10
+pair-4: pair r4c5-r5c5 sum 10
 ```
 
 ```drawing

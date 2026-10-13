@@ -22,10 +22,10 @@ cage-9: cage r6c3-r6c4-r7c4 total 9 connected true
 cage-10: cage r6c5-r6c6 total 14 connected true
 cage-11: cage r4c4-r5c4 total 13 connected true
 thermo r3c7-r2c8
-pair-1: pair r8c6-r9c6 relation {"op":"sum","value":10}
-pair-2: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-3: pair r7c1-r8c1 relation {"op":"sum","value":5}
-pair-4: pair r9c2-r9c3 relation {"op":"sum","value":5}
+pair-1: pair r8c6-r9c6 sum 10
+pair-2: pair r4c3-r5c3 sum 10
+pair-3: pair r7c1-r8c1 sum 5
+pair-4: pair r9c2-r9c3 sum 5
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

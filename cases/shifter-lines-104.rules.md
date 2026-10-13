@@ -35,13 +35,13 @@ shifter-line-7: shifter-line r4c4-r5c3-r5c4-r6c5
 shifter-line-8: shifter-line r5c2-r6c2-r7c3
 shifter-line-9: shifter-line r8c6-r8c7-r9c7
 shifter-line-10: shifter-line r6c3-r6c4
-pair-1: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-2: pair r1c4-r2c4 relation {"op":"sum","value":10}
-pair-3: pair r4c9-r5c9 relation {"op":"sum","value":10}
-pair-4: pair r8c6-r8c7 relation {"op":"sum","value":10}
-pair-5: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-6: pair r5c2-r5c3 relation {"op":"sum","value":10}
-pair-7: pair r6c1-r7c1 relation {"op":"sum","value":10}
+pair-1: pair r1c1-r1c2 sum 10
+pair-2: pair r1c4-r2c4 sum 10
+pair-3: pair r4c9-r5c9 sum 10
+pair-4: pair r8c6-r8c7 sum 10
+pair-5: pair r4c4-r4c5 sum 10
+pair-6: pair r5c2-r5c3 sum 10
+pair-7: pair r6c1-r7c1 sum 10
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

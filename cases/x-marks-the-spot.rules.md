@@ -28,16 +28,16 @@ whispers-11: whispers r6c9-r5c8 gap 5
 whispers-12: whispers r5c7-r5c6 gap 5
 whispers-13: whispers r4c6-r3c6 gap 5
 whispers-14: whispers r2c7-r1c8 gap 5
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r7c4-r8c4 relation {"op":"sum","value":10}
-pair-3: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-4: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-5: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-6: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-7: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-8: pair r8c9-r9c9 relation {"op":"sum","value":5}
-pair-9: pair r7c1-r8c1 relation {"op":"sum","value":5}
-pair-10: pair r4c2-r5c2 relation {"op":"sum","value":5}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r7c4-r8c4 sum 10
+pair-3: pair r9c7-r9c8 sum 10
+pair-4: pair r9c1-r9c2 sum 10
+pair-5: pair r3c3-r4c3 sum 10
+pair-6: pair r7c2-r8c2 sum 10
+pair-7: pair r4c6-r5c6 sum 5
+pair-8: pair r8c9-r9c9 sum 5
+pair-9: pair r7c1-r8c1 sum 5
+pair-10: pair r4c2-r5c2 sum 5
 ```
 
 Follow the route in the map to discover the buried treasure (the solution to the puzzle).

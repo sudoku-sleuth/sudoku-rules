@@ -27,8 +27,8 @@ palindrome-8: palindrome r6c8-r7c9
 palindrome-9: palindrome r3c9-r4c8
 palindrome-10: palindrome r3c8-r4c9
 whispers r4c5-r4c4-r5c4-r6c4-r6c5-r6c6-r5c6-r4c6 gap 5
-pair-1: pair r2c8-r3c8 relation {"op":"sum","value":5}
-pair-2: pair r1c5-r1c6 relation {"op":"sum","value":5}
+pair-1: pair r2c8-r3c8 sum 5
+pair-2: pair r1c5-r1c6 sum 5
 parity-cells r9c7 parity "odd"
 scoped-move move "knight" relation "same" digits [4,8]
 ```

@@ -22,11 +22,11 @@ arrow-2: arrow r2c3-r3c3-r4c3 bulb ["r3c2"]
 whispers r4c7-r3c7-r2c7-r3c8-r2c9-r3c9-r4c9 gap 5
 renban r3c4-r4c4-r4c5-r4c6-r3c6-r2c6-r2c5-r2c4
 region-sum r7c8-r6c8-r5c7-r5c9 segments [["r7c8"],["r6c8","r5c7","r5c9"]]
-pair-1: pair r8c2-r9c2 relation {"op":"sum","value":10}
-pair-2: pair r8c6-r8c7 relation {"op":"sum","value":10}
-pair-3: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-4: pair r8c8-r9c8 relation {"op":"sum","value":5}
-pair-5: pair r1c5-r2c5 relation {"op":"sum","value":5}
+pair-1: pair r8c2-r9c2 sum 10
+pair-2: pair r8c6-r8c7 sum 10
+pair-3: pair r9c3-r9c4 sum 10
+pair-4: pair r8c8-r9c8 sum 5
+pair-5: pair r1c5-r2c5 sum 5
 ```
 
 ```drawing

@@ -151,10 +151,10 @@ arrow-2: arrow r4c4-r4c5 bulb ["r5c4"]
 renban-1: renban r4c2-r4c1-r5c1-r6c1-r6c2
 renban-2: renban r2c6-r1c6-r1c5
 renban-3: renban r9c4-r9c5
-pair-1: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-2: pair r8c8-r9c8 relation {"op":"sum","value":10}
-pair-3: pair r9c7-r9c8 relation {"op":"sum","value":5}
-pair-4: pair r7c7-r7c8 relation {"op":"sum","value":5}
+pair-1: pair r7c7-r8c7 sum 10
+pair-2: pair r8c8-r9c8 sum 10
+pair-3: pair r9c7-r9c8 sum 5
+pair-4: pair r7c7-r7c8 sum 5
 parity-cells-1: parity-cells r5c2-r4c3-r7c6-r7c4 parity "odd"
 parity-cells-2: parity-cells r6c8-r6c3-r1c6 parity "even"
 ```

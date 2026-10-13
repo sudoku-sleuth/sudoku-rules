@@ -25,11 +25,11 @@ kropki-7: kropki r3c1-r4c1 colour "white"
 kropki-8: kropki r7c2-r8c2 colour "white"
 kropki-9: kropki r3c6-r4c6 colour "white"
 kropki-10: kropki r5c5-r6c5 colour "white"
-pair-1: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-2: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-3: pair r3c9-r4c9 relation {"op":"sum","value":10}
-pair-4: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-5: pair r9c5-r9c6 relation {"op":"sum","value":10}
+pair-1: pair r3c1-r3c2 sum 10
+pair-2: pair r1c1-r1c2 sum 10
+pair-3: pair r3c9-r4c9 sum 10
+pair-4: pair r9c3-r9c4 sum 10
+pair-5: pair r9c5-r9c6 sum 10
 pointing-arrow-1: pointing-arrow target "first-five" cell "r8c3" ray ["r8c4","r8c5","r8c6","r8c7","r8c8","r8c9"]
 pointing-arrow-2: pointing-arrow target "first-five" cell "r4c2" ray ["r4c3","r4c4","r4c5","r4c6","r4c7","r4c8","r4c9"]
 pointing-arrow-3: pointing-arrow target "first-five" cell "r5c9" ray ["r6c9","r7c9","r8c9","r9c9"]

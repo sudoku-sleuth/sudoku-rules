@@ -324,9 +324,9 @@ entropic-1: entropic r3c7-r4c7-r4c8
 entropic-2: entropic r7c7-r8c8-r8c9
 parity-2: parity r1c8-r1c9-r2c9
 nabner r5c1-r5c2-r5c3
-pair-1: pair r2c1-r3c1 relation {"op":"sum","value":10}
-pair-2: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-3: pair r7c2-r8c2 relation {"op":"sum","value":10}
+pair-1: pair r2c1-r3c1 sum 10
+pair-2: pair r1c2-r1c3 sum 10
+pair-3: pair r7c2-r8c2 sum 10
 unique-1: unique r1c8-r1c9-r2c9-r5c6-r6c5-r6c6 stated true
 unique-2: unique r3c7-r4c7-r4c8-r7c7-r8c8-r8c9 stated true
 unique-3: unique r5c1-r5c2-r5c3 stated true

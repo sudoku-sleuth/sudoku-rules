@@ -24,17 +24,17 @@ whispers-8: whispers r8c6-r9c5-r9c6 gap 4 loop true
 whispers-9: whispers r5c6-r5c7-r6c8-r7c8-r7c7-r6c6 gap 4 loop true
 whispers-10: whispers r2c5-r3c5-r4c4-r3c3-r2c3-r1c3-r1c4-r2c4-r3c4-r3c5 gap 4
 whispers-11: whispers r2c5-r1c4 gap 4
-pair-1: pair r1c4-r2c4 relation {"op":"shift"}
-pair-2: pair r3c4-r3c5 relation {"op":"shift"}
-pair-3: pair r2c3-r3c3 relation {"op":"shift"}
-pair-4: pair r1c2-r2c2 relation {"op":"shift"}
-pair-5: pair r3c7-r3c8 relation {"op":"shift"}
-pair-6: pair r4c8-r5c8 relation {"op":"shift"}
-pair-7: pair r4c5-r5c5 relation {"op":"shift"}
-pair-8: pair r5c4-r6c4 relation {"op":"shift"}
-pair-9: pair r6c1-r6c2 relation {"op":"shift"}
-pair-10: pair r8c1-r8c2 relation {"op":"shift"}
-pair-11: pair r5c6-r6c6 relation {"op":"shift"}
+pair-1: pair r1c4-r2c4 shift
+pair-2: pair r3c4-r3c5 shift
+pair-3: pair r2c3-r3c3 shift
+pair-4: pair r1c2-r2c2 shift
+pair-5: pair r3c7-r3c8 shift
+pair-6: pair r4c8-r5c8 shift
+pair-7: pair r4c5-r5c5 shift
+pair-8: pair r5c4-r6c4 shift
+pair-9: pair r6c1-r6c2 shift
+pair-10: pair r8c1-r8c2 shift
+pair-11: pair r5c6-r6c6 shift
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

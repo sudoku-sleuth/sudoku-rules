@@ -143,10 +143,10 @@ renban-3: renban r2c6-r2c7-r2c8
 region-sum-1: region-sum r3c9-r4c9-r5c9 segments [["r3c9"],["r4c9","r5c9"]]
 region-sum-2: region-sum r9c3-r9c4-r9c5 segments [["r9c3"],["r9c4","r9c5"]]
 region-sum-3: region-sum r4c1-r3c1-r2c1 segments [["r4c1"],["r3c1","r2c1"]]
-pair-1: pair r7c7-r7c8 relation {"op":"sum","value":10}
-pair-2: pair r2c5-r3c5 relation {"op":"sum","value":10}
-pair-3: pair r5c2-r6c2 relation {"op":"sum","value":5}
-pair-4: pair r1c6-r1c7 relation {"op":"sum","value":5}
+pair-1: pair r7c7-r7c8 sum 10
+pair-2: pair r2c5-r3c5 sum 10
+pair-3: pair r5c2-r6c2 sum 5
+pair-4: pair r1c6-r1c7 sum 5
 ```
 
 Extended sudoku rules apply, place the digits 0-9 in each row, column, and box; however one digit will not fit. This digit can vary between rows, columns, and boxes and needs to be determined by the solver.

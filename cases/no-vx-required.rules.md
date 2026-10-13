@@ -20,10 +20,10 @@ renban-3: renban r1c4-r1c5-r1c6
 renban-4: renban r9c4-r9c5-r9c6
 renban-5: renban r4c9-r5c9-r6c9
 negative relations [{"op":"sum","value":5},{"op":"sum","value":10}] except [["r2c2","r3c2"],["r7c2","r8c2"],["r4c7","r4c8"],["r6c7","r6c8"]]
-pair-1: pair r3c2-r2c2 relation {"op":"less"}
-pair-2: pair r7c2-r8c2 relation {"op":"less"}
-pair-3: pair r4c7-r4c8 relation {"op":"less"}
-pair-4: pair r6c8-r6c7 relation {"op":"less"}
+pair-1: pair r3c2-r2c2 less
+pair-2: pair r7c2-r8c2 less
+pair-3: pair r4c7-r4c8 less
+pair-4: pair r6c8-r6c7 less
 ```
 
 Standard sudoku rules apply: each row, column, and 3x3 box must contain all the digits from 1 to 9.

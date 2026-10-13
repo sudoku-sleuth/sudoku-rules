@@ -25,12 +25,12 @@ thermo-10: thermo r7c5-r6c5-r5c5-r4c4
 thermo-11: thermo r7c7-r8c8
 thermo-12: thermo r7c4-r8c5
 thermo-13: thermo r8c3-r8c4-r9c5
-pair-1: pair r2c5-r3c5 relation {"op":"sum","value":10}
-pair-2: pair r6c5-r7c5 relation {"op":"sum","value":10}
-pair-3: pair r5c4-r5c5 relation {"op":"sum","value":10}
-pair-4: pair r5c1-r5c2 relation {"op":"sum","value":5}
-pair-5: pair r4c2-r4c3 relation {"op":"sum","value":5}
-pair-6: pair r3c5-r4c5 relation {"op":"sum","value":5}
+pair-1: pair r2c5-r3c5 sum 10
+pair-2: pair r6c5-r7c5 sum 10
+pair-3: pair r5c4-r5c5 sum 10
+pair-4: pair r5c1-r5c2 sum 5
+pair-5: pair r4c2-r4c3 sum 5
+pair-6: pair r3c5-r4c5 sum 5
 ```
 
 Normal sudoku rules apply. Digits cannot repeat along the marked diagonal.

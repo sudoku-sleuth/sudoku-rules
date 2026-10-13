@@ -22,13 +22,13 @@ renban-4: renban r1c5-r2c5-r2c6-r1c6
 renban-5: renban r3c2-r3c3-r4c3-r4c2
 renban-6: renban r1c3-r2c3-r2c4-r1c4
 renban-7: renban r1c1-r2c1-r2c2-r1c2
-pair-1: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r1c4-r1c5 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":10}
-pair-4: pair r8c3-r8c4 relation {"op":"sum","value":10}
-pair-5: pair r2c2-r3c2 relation {"op":"sum","value":5}
-pair-6: pair r2c6-r2c7 relation {"op":"sum","value":5}
-pair-7: pair r5c8-r6c8 relation {"op":"sum","value":5}
+pair-1: pair r2c2-r2c3 sum 10
+pair-2: pair r1c4-r1c5 sum 10
+pair-3: pair r4c1-r5c1 sum 10
+pair-4: pair r8c3-r8c4 sum 10
+pair-5: pair r2c2-r3c2 sum 5
+pair-6: pair r2c6-r2c7 sum 5
+pair-7: pair r5c8-r6c8 sum 5
 ```
 
 Happy Birthday, Katie!

@@ -31,9 +31,9 @@ kropki-10: kropki r3c7-r4c7 colour "black"
 kropki-11: kropki r2c7-r2c8 colour "black"
 kropki-12: kropki r1c9-r2c9 colour "black"
 kropki-13: kropki r9c1-r9c2 colour "black"
-pair-1: pair r1c2-r1c3 relation {"op":"sum","value":5}
-pair-2: pair r5c1-r6c1 relation {"op":"sum","value":5}
-pair-3: pair r8c5-r9c5 relation {"op":"sum","value":5}
+pair-1: pair r1c2-r1c3 sum 5
+pair-2: pair r5c1-r6c1 sum 5
+pair-3: pair r8c5-r9c5 sum 5
 ```
 
 Normal Sudoku rules apply. KILLER- Numbers in cages sum to 15. KROPKI PAIRS- Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. XV PAIRS- Numbers with a V between them sum to 5. Not all possible dots and V are given.

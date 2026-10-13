@@ -139,10 +139,10 @@ whispers-2: whispers r1c3-r1c2-r1c1-r2c1-r3c1 loop false gap 5
 palindrome r5c8-r6c7-r7c6-r8c5
 renban-1: renban r7c8-r7c9-r8c9
 renban-2: renban r9c9-r9c8-r9c7
-pair-1: pair r8c1-r9c1 relation {"op":"sum","value":10}
-pair-2: pair r7c3-r8c3 relation {"op":"sum","value":10}
-pair-3: pair r7c1-r7c2 relation {"op":"sum","value":5}
-pair-4: pair r9c2-r9c3 relation {"op":"sum","value":5}
+pair-1: pair r8c1-r9c1 sum 10
+pair-2: pair r7c3-r8c3 sum 10
+pair-3: pair r7c1-r7c2 sum 5
+pair-4: pair r9c2-r9c3 sum 5
 quadruple-1: quadruple r1c7-r1c8-r2c7-r2c8 digits [5,7]
 quadruple-2: quadruple r2c7-r2c8-r3c7-r3c8 digits [1]
 quadruple-3: quadruple r2c8-r2c9-r3c8-r3c9 digits [2]

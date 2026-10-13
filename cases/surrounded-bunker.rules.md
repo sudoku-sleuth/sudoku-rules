@@ -18,11 +18,11 @@ arrow-5: arrow r5c8-r4c7 bulb ["r5c9"]
 arrow-6: arrow r5c2-r6c3 bulb ["r5c1"]
 whispers-1: whispers r4c3-r3c4-r3c5-r3c6-r4c7-r5c7-r6c7-r7c6-r7c5-r7c4-r6c3-r5c3 gap 5
 whispers-2: whispers r5c6-r4c6-r4c5-r4c4-r5c4-r6c4-r6c5-r6c6 gap 5
-pair-1: pair r5c1-r5c2 relation {"op":"sum","value":5}
-pair-2: pair r5c8-r5c9 relation {"op":"sum","value":5}
-pair-3: pair r7c1-r7c2 relation {"op":"sum","value":5}
-pair-4: pair r9c5-r9c6 relation {"op":"sum","value":5}
-pair-5: pair r2c4-r2c5 relation {"op":"sum","value":5}
+pair-1: pair r5c1-r5c2 sum 5
+pair-2: pair r5c8-r5c9 sum 5
+pair-3: pair r7c1-r7c2 sum 5
+pair-4: pair r9c5-r9c6 sum 5
+pair-5: pair r2c4-r2c5 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers on arrows sum to the number in the arrow's circle. Numbers with a V between them sum to 5. Not all Vs are given.

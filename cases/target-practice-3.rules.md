@@ -26,8 +26,8 @@ arrow-3: arrow r7c8-r7c9 bulb ["r6c7"]
 arrow-4: arrow r8c7-r9c7 bulb ["r7c6"]
 arrow-5: arrow r1c2-r1c3 bulb ["r1c1"]
 arrow-6: arrow r2c1-r3c1 bulb ["r1c1"]
-pair-1: pair r7c3-r7c4 relation {"op":"sum","value":10}
-pair-2: pair r3c7-r4c7 relation {"op":"sum","value":10}
+pair-1: pair r7c3-r7c4 sum 10
+pair-2: pair r3c7-r4c7 sum 10
 ```
 
 ```drawing

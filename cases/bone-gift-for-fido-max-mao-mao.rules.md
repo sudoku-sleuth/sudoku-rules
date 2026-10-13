@@ -28,16 +28,16 @@ whispers-2: whispers r3c6-r4c5 gap 4
 whispers-3: whispers r5c6-r4c7-r4c8-r5c8-r5c7 gap 4
 whispers-4: whispers r5c7-r5c6 gap 4
 whispers-5: whispers r6c3-r5c4-r5c5-r6c5-r7c4 gap 4
-pair-1: pair r2c1-r3c1 relation {"op":"sum","value":10}
-pair-2: pair r3c2-r3c3 relation {"op":"sum","value":10}
-pair-3: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-4: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-5: pair r6c6-r7c6 relation {"op":"sum","value":10}
-pair-6: pair r7c6-r7c7 relation {"op":"sum","value":10}
-pair-7: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-8: pair r7c8-r8c8 relation {"op":"sum","value":10}
-pair-9: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-10: pair r7c9-r8c9 relation {"op":"sum","value":10}
+pair-1: pair r2c1-r3c1 sum 10
+pair-2: pair r3c2-r3c3 sum 10
+pair-3: pair r2c2-r2c3 sum 10
+pair-4: pair r1c2-r1c3 sum 10
+pair-5: pair r6c6-r7c6 sum 10
+pair-6: pair r7c6-r7c7 sum 10
+pair-7: pair r7c7-r8c7 sum 10
+pair-8: pair r7c8-r8c8 sum 10
+pair-9: pair r9c7-r9c8 sum 10
+pair-10: pair r7c9-r8c9 sum 10
 extremum r1c4 type "max" exhaustive false
 ```
 

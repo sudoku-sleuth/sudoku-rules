@@ -89,7 +89,7 @@ whispers r4c5-r5c6 loop false gap 3
 parity r6c4-r6c5-r6c6 loop false
 renban r3c5-r4c4
 region-sum r3c4-r2c5-r2c4 segments [["r3c4"],["r2c5","r2c4"]]
-pair r2c4-r3c4 relation {"op":"sum","value":5}
+pair r2c4-r3c4 sum 5
 quadruple r4c5-r4c6-r5c5-r5c6 digits [1,2,3,4]
 ```
 

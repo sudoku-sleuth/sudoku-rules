@@ -145,13 +145,13 @@ arrow-4: arrow r8c2-r9c1 bulb ["r9c2"]
 arrow-5: arrow r6c2-r7c3-r8c4-r9c5 bulb ["r5c1"]
 arrow-6: arrow r4c2-r3c2 bulb ["r5c1"]
 arrow-7: arrow r6c1-r7c2-r8c3-r9c4 bulb ["r5c1"]
-pair-1: pair r6c9-r7c9 relation {"op":"sum","value":10}
-pair-2: pair r1c5-r2c5 relation {"op":"sum","value":10}
-pair-3: pair r1c3-r2c3 relation {"op":"sum","value":10}
-pair-4: pair r8c5-r9c5 relation {"op":"sum","value":10}
-pair-5: pair r8c4-r8c5 relation {"op":"sum","value":5}
-pair-6: pair r5c2-r5c3 relation {"op":"sum","value":5}
-pair-7: pair r1c4-r2c4 relation {"op":"sum","value":5}
+pair-1: pair r6c9-r7c9 sum 10
+pair-2: pair r1c5-r2c5 sum 10
+pair-3: pair r1c3-r2c3 sum 10
+pair-4: pair r8c5-r9c5 sum 10
+pair-5: pair r8c4-r8c5 sum 5
+pair-6: pair r5c2-r5c3 sum 5
+pair-7: pair r1c4-r2c4 sum 5
 ```
 
 Extended Sudoku rules apply, place the digits 0-9 in each row, column, and box, however there will be one digit in each that does not fit. This digit can vary between rows, columns, and boxes and needs to be determined by the solver.

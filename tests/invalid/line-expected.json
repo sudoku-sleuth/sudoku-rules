@@ -1,0 +1,202 @@
+[
+  {
+    "file": "tests/invalid/lines/declaration.md",
+    "repair": "tests/valid/lines/declaration.md",
+    "mode": "page",
+    "diagnostics": [
+      {
+        "code": "E_LINE_DECLARATION",
+        "check": "E_LINE_DECLARATION",
+        "message": "The rule-line syntax must declare one cell list and one keyword parameter, with choices and fields matching their declared types.",
+        "span": {
+          "file": "tests/invalid/lines/declaration.md",
+          "start": {
+            "offset": 85,
+            "line": 6,
+            "column": 3
+          },
+          "end": {
+            "offset": 660,
+            "line": 25,
+            "column": 36
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/extra-value.rules.md",
+    "repair": "tests/valid/lines/extra-value.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_SYNTAX",
+        "check": "E_LINE_SYNTAX",
+        "message": "Unexpected 2 after less; use only its declared values and an optional if or unless condition.",
+        "span": {
+          "file": "tests/invalid/lines/extra-value.rules.md",
+          "start": {
+            "offset": 185,
+            "line": 13,
+            "column": 21
+          },
+          "end": {
+            "offset": 186,
+            "line": 13,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/legacy-json.rules.md",
+    "repair": "tests/valid/lines/legacy-json.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_KEYWORD",
+        "check": "E_LINE_KEYWORD",
+        "message": "relation is not a relation keyword; choose difference, at-least, ratio, sum, less, multiple, shift.",
+        "span": {
+          "file": "tests/invalid/lines/legacy-json.rules.md",
+          "start": {
+            "offset": 180,
+            "line": 13,
+            "column": 16
+          },
+          "end": {
+            "offset": 188,
+            "line": 13,
+            "column": 24
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/missing-value.rules.md",
+    "repair": "tests/valid/lines/missing-value.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_VALUE",
+        "check": "E_LINE_VALUE",
+        "message": "ratio needs a value; write a whole number after ratio.",
+        "span": {
+          "file": "tests/invalid/lines/missing-value.rules.md",
+          "start": {
+            "offset": 185,
+            "line": 13,
+            "column": 21
+          },
+          "end": {
+            "offset": 185,
+            "line": 13,
+            "column": 21
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/non-integer.rules.md",
+    "repair": "tests/valid/lines/non-integer.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_TYPE",
+        "check": "E_LINE_TYPE",
+        "message": "The difference value must be a whole number; 1.5 is not a whole number.",
+        "span": {
+          "file": "tests/invalid/lines/non-integer.rules.md",
+          "start": {
+            "offset": 191,
+            "line": 13,
+            "column": 27
+          },
+          "end": {
+            "offset": 194,
+            "line": 13,
+            "column": 30
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/unknown-colour.rules.md",
+    "repair": "tests/valid/lines/unknown-colour.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_KEYWORD",
+        "check": "E_LINE_KEYWORD",
+        "message": "grey is not a colour keyword; choose white, black.",
+        "span": {
+          "file": "tests/invalid/lines/unknown-colour.rules.md",
+          "start": {
+            "offset": 182,
+            "line": 13,
+            "column": 18
+          },
+          "end": {
+            "offset": 186,
+            "line": 13,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/unknown-op.rules.md",
+    "repair": "tests/valid/lines/unknown-op.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_KEYWORD",
+        "check": "E_LINE_KEYWORD",
+        "message": "divide is not a relation keyword; choose difference, at-least, ratio, sum, less, multiple, shift.",
+        "span": {
+          "file": "tests/invalid/lines/unknown-op.rules.md",
+          "start": {
+            "offset": 180,
+            "line": 13,
+            "column": 16
+          },
+          "end": {
+            "offset": 186,
+            "line": 13,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/lines/wrong-cell-count.rules.md",
+    "repair": "tests/valid/lines/wrong-cell-count.rules.md",
+    "mode": "case",
+    "diagnostics": [
+      {
+        "code": "E_LINE_SYNTAX",
+        "check": "E_LINE_SYNTAX",
+        "message": "Write 2 cells for cells, joined by hyphens, such as r1c1-r1c2.",
+        "span": {
+          "file": "tests/invalid/lines/wrong-cell-count.rules.md",
+          "start": {
+            "offset": 170,
+            "line": 13,
+            "column": 6
+          },
+          "end": {
+            "offset": 184,
+            "line": 13,
+            "column": 20
+          }
+        }
+      }
+    ]
+  }
+]

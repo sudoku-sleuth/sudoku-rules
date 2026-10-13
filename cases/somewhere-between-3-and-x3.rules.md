@@ -14,18 +14,18 @@ givens: r4c6=7 r4c9=5 r6c1=7
 sudoku 9x9
 cage-1: cage r2c4-r3c4 total 15 connected true
 cage-2: cage r1c1-r1c2 total 17 connected true
-pair-1: pair r1c6-r1c7 relation {"op":"difference","value":3}
-pair-2: pair r9c2-r9c3 relation {"op":"difference","value":3}
-pair-3: pair r8c3-r9c3 relation {"op":"difference","value":3}
-pair-4: pair r4c7-r5c7 relation {"op":"ratio","value":3}
-pair-5: pair r3c7-r4c7 relation {"op":"ratio","value":3}
-pair-6: pair r3c7-r3c8 relation {"op":"ratio","value":3}
-pair-7: pair r2c8-r3c8 relation {"op":"ratio","value":3}
-pair-8: pair r5c1-r5c2 relation {"op":"ratio","value":3}
-pair-9: pair r8c7-r8c8 relation {"op":"ratio","value":3}
-pair-10: pair r5c5-r6c5 relation {"op":"ratio","value":3}
-pair-11: pair r3c1-r3c2 relation {"op":"ratio","value":3}
-pair-12: pair r8c9-r9c9 relation {"op":"ratio","value":3}
+pair-1: pair r1c6-r1c7 difference 3
+pair-2: pair r9c2-r9c3 difference 3
+pair-3: pair r8c3-r9c3 difference 3
+pair-4: pair r4c7-r5c7 ratio 3
+pair-5: pair r3c7-r4c7 ratio 3
+pair-6: pair r3c7-r3c8 ratio 3
+pair-7: pair r2c8-r3c8 ratio 3
+pair-8: pair r5c1-r5c2 ratio 3
+pair-9: pair r8c7-r8c8 ratio 3
+pair-10: pair r5c5-r6c5 ratio 3
+pair-11: pair r3c1-r3c2 ratio 3
+pair-12: pair r8c9-r9c9 ratio 3
 ```
 
 ```drawing

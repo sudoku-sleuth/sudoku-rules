@@ -15,8 +15,8 @@ cage r1c4-r2c4 total 5 connected true
 anti-knight
 arrow r2c5-r1c5 bulb ["r3c5"]
 renban r6c4-r5c4-r4c4
-pair-1: pair r6c3-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r7c4-r8c4 relation {"op":"sum","value":5}
+pair-1: pair r6c3-r6c4 sum 10
+pair-2: pair r7c4-r8c4 sum 5
 ```
 
 ```drawing

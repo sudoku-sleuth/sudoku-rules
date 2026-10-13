@@ -40,8 +40,8 @@ parity-13: parity r5c3-r6c2
 whispers-13: whispers r5c3-r6c2 gap 5
 parity-14: parity r4c4-r5c5
 whispers-14: whispers r4c4-r5c5 gap 5
-pair-1: pair r5c8-r6c8 relation {"op":"less"}
-pair-2: pair r6c8-r6c7 relation {"op":"less"}
+pair-1: pair r5c8-r6c8 less
+pair-2: pair r6c8-r6c7 less
 ```
 
 • Normal Sudoku rules apply: Place the digits 1 to 9 once each in every row, column, and box.

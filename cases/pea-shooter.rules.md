@@ -20,14 +20,14 @@ kropki-6: kropki r5c4-r6c4 colour "black"
 kropki-7: kropki r4c2-r4c3 colour "black"
 kropki-8: kropki r3c2-r4c2 colour "black"
 kropki-9: kropki r3c1-r3c2 colour "black"
-pair-1: pair r3c4-r3c5 relation {"op":"sum","value":10}
-pair-2: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-3: pair r8c4-r8c5 relation {"op":"sum","value":10}
-pair-4: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-5: pair r1c8-r1c9 relation {"op":"sum","value":10}
-pair-6: pair r3c5-r3c6 relation {"op":"sum","value":5}
-pair-7: pair r5c3-r6c3 relation {"op":"sum","value":5}
-pair-8: pair r7c7-r7c8 relation {"op":"sum","value":5}
+pair-1: pair r3c4-r3c5 sum 10
+pair-2: pair r4c3-r5c3 sum 10
+pair-3: pair r8c4-r8c5 sum 10
+pair-4: pair r7c7-r8c7 sum 10
+pair-5: pair r1c8-r1c9 sum 10
+pair-6: pair r3c5-r3c6 sum 5
+pair-7: pair r5c3-r6c3 sum 5
+pair-8: pair r7c7-r7c8 sum 5
 window-classes classes "entropy"
 ```
 

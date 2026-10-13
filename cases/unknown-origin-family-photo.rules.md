@@ -32,9 +32,9 @@ arrow-7: arrow r5c5-r6c4-r6c3-r7c3-r7c2-r6c2-r5c2-r4c2 bulb ["r3c6","r4c6"]
 arrow-8: arrow r5c6-r6c6-r6c5-r7c4-r8c3-r8c2-r9c2-r9c1-r8c1-r7c1-r6c1-r5c1-r4c1 bulb ["r3c7","r4c7"]
 arrow-9: arrow r3c8-r4c8-r5c8-r5c9-r6c9-r7c9-r8c9-r9c9-r9c8-r8c8-r8c7-r9c7-r9c6 bulb ["r3c7","r4c7"]
 arrow-10: arrow r5c7-r6c7-r7c8-r7c7-r8c6-r9c5-r9c4-r9c3-r8c4-r8c5-r7c5 bulb ["r3c7","r4c7"]
-pair-1: pair r4c1-r4c2 relation {"op":"sum","value":10}
-pair-2: pair r7c5-r7c6 relation {"op":"sum","value":5}
-pair-3: pair r7c3-r7c4 relation {"op":"sum","value":5}
+pair-1: pair r4c1-r4c2 sum 10
+pair-2: pair r7c5-r7c6 sum 5
+pair-3: pair r7c3-r7c4 sum 5
 parity-cells r2c2-r2c3-r3c3 parity "odd"
 ```
 

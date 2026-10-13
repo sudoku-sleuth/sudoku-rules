@@ -41,8 +41,8 @@ palindrome-9: palindrome r3c6-r4c7-r3c8-r2c9
 palindrome-10: palindrome r5c9-r5c8-r4c8-r3c7-r2c8
 palindrome-11: palindrome r6c8-r7c9
 palindrome-12: palindrome r6c9-r7c8
-pair-1: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r8c4-r9c4 relation {"op":"sum","value":10}
+pair-1: pair r2c2-r2c3 sum 10
+pair-2: pair r8c4-r9c4 sum 10
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

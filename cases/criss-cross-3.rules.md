@@ -22,11 +22,11 @@ kropki-2: kropki r6c7-r6c8 colour "white"
 kropki-3: kropki r5c7-r5c8 colour "white"
 region-sum-1: region-sum r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9 segments [["r5c1","r5c2","r5c3"],["r5c4","r5c5","r5c6"],["r5c7","r5c8","r5c9"]]
 region-sum-2: region-sum r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5-r9c5 segments [["r1c5","r2c5","r3c5"],["r4c5","r5c5","r6c5"],["r7c5","r8c5","r9c5"]]
-pair-1: pair r5c7-r6c7 relation {"op":"sum","value":10}
-pair-2: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-3: pair r5c9-r6c9 relation {"op":"sum","value":10}
-pair-4: pair r5c6-r5c7 relation {"op":"sum","value":5}
-pair-5: pair r4c7-r5c7 relation {"op":"sum","value":5}
+pair-1: pair r5c7-r6c7 sum 10
+pair-2: pair r4c8-r5c8 sum 10
+pair-3: pair r5c9-r6c9 sum 10
+pair-4: pair r5c6-r5c7 sum 5
+pair-5: pair r4c7-r5c7 sum 5
 ```
 
 Normal Sudoku Rules Apply

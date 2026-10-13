@@ -25,16 +25,16 @@ cage-12: cage r6c7-r6c8 total 9 connected true
 cage-13: cage r4c2-r5c2 total 15 connected true
 cage-14: cage r3c5-r4c5 total 9 connected true
 cage-15: cage r2c4-r3c4 total 10 connected true
-pair-1: pair r2c9-r3c9 relation {"op":"sum","value":5}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-3: pair r5c5-r5c6 relation {"op":"sum","value":5}
-pair-4: pair r7c8-r8c8 relation {"op":"sum","value":5}
-pair-5: pair r8c2-r9c2 relation {"op":"sum","value":5}
-pair-6: pair r1c2-r2c2 relation {"op":"sum","value":5}
-pair-7: pair r1c4-r2c4 relation {"op":"sum","value":5}
-pair-8: pair r6c6-r6c7 relation {"op":"sum","value":5}
-pair-9: pair r1c1-r2c1 relation {"op":"sum","value":5}
-pair-10: pair r5c7-r6c7 relation {"op":"sum","value":5}
+pair-1: pair r2c9-r3c9 sum 5
+pair-2: pair r3c7-r3c8 sum 5
+pair-3: pair r5c5-r5c6 sum 5
+pair-4: pair r7c8-r8c8 sum 5
+pair-5: pair r8c2-r9c2 sum 5
+pair-6: pair r1c2-r2c2 sum 5
+pair-7: pair r1c4-r2c4 sum 5
+pair-8: pair r6c6-r6c7 sum 5
+pair-9: pair r1c1-r2c1 sum 5
+pair-10: pair r5c7-r6c7 sum 5
 negative relations [{"op":"sum","value":5}] except [["r2c9","r3c9"],["r3c7","r3c8"],["r5c5","r5c6"],["r7c8","r8c8"],["r8c2","r9c2"],["r1c2","r2c2"],["r1c4","r2c4"],["r6c6","r6c7"],["r1c1","r2c1"],["r5c7","r6c7"]]
 ```
 

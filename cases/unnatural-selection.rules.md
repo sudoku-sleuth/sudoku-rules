@@ -39,10 +39,10 @@ palindrome-1: palindrome r3c6-r4c7-r5c8-r6c7-r7c6
 palindrome-2: palindrome r3c4-r4c3-r5c2-r6c3-r7c4
 renban-1: renban r6c9-r7c8-r8c7-r9c6
 renban-2: renban r1c4-r2c3-r3c2-r4c1
-pair-1: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-2: pair r2c7-r2c8 relation {"op":"sum","value":10}
-pair-3: pair r1c8-r1c9 relation {"op":"sum","value":10}
-pair-4: pair r1c8-r2c8 relation {"op":"sum","value":10}
+pair-1: pair r3c7-r3c8 sum 10
+pair-2: pair r2c7-r2c8 sum 10
+pair-3: pair r1c8-r1c9 sum 10
+pair-4: pair r1c8-r2c8 sum 10
 quadruple-1: quadruple r6c6-r6c7-r7c6-r7c7 digits [2,3,4,9]
 quadruple-2: quadruple r3c3-r3c4-r4c3-r4c4 digits [7,7,8,9]
 ```

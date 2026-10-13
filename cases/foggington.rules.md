@@ -38,18 +38,18 @@ kropki-13: kropki r5c5-r5c6 colour "black"
 kropki-14: kropki r3c5-r3c6 colour "black"
 kropki-15: kropki r6c3-r7c3 colour "black"
 kropki-16: kropki r7c6-r7c7 colour "black"
-pair-1: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-3: pair r3c4-r3c5 relation {"op":"sum","value":10}
-pair-4: pair r2c7-r3c7 relation {"op":"sum","value":10}
-pair-5: pair r2c6-r2c7 relation {"op":"sum","value":10}
-pair-6: pair r4c7-r5c7 relation {"op":"sum","value":10}
-pair-7: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-8: pair r6c7-r6c8 relation {"op":"sum","value":10}
-pair-9: pair r4c5-r5c5 relation {"op":"sum","value":5}
-pair-10: pair r2c3-r2c4 relation {"op":"sum","value":5}
-pair-11: pair r2c3-r3c3 relation {"op":"sum","value":5}
-pair-12: pair r6c2-r7c2 relation {"op":"sum","value":5}
+pair-1: pair r5c4-r6c4 sum 10
+pair-2: pair r5c6-r6c6 sum 10
+pair-3: pair r3c4-r3c5 sum 10
+pair-4: pair r2c7-r3c7 sum 10
+pair-5: pair r2c6-r2c7 sum 10
+pair-6: pair r4c7-r5c7 sum 10
+pair-7: pair r7c2-r8c2 sum 10
+pair-8: pair r6c7-r6c8 sum 10
+pair-9: pair r4c5-r5c5 sum 5
+pair-10: pair r2c3-r2c4 sum 5
+pair-11: pair r2c3-r3c3 sum 5
+pair-12: pair r6c2-r7c2 sum 5
 ```
 
 •    Normal Sudoku rules apply. 

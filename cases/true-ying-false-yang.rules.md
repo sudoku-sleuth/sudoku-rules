@@ -31,22 +31,22 @@ arrow-1: arrow r7c1-r6c1-r5c1 bulb ["r7c2"]
 arrow-2: arrow r1c2-r1c1 bulb ["r1c3"]
 arrow-3: arrow r5c2-r4c2-r4c3 bulb ["r6c2"]
 arrow-4: arrow r1c4-r1c5 bulb ["r2c4"]
-pair-1: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-2: pair r9c4-r9c5 relation {"op":"sum","value":10}
-pair-3: pair r6c7-r6c8 relation {"op":"sum","value":10}
-pair-4: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-5: pair r2c5-r2c6 relation {"op":"sum","value":10}
-pair-6: pair r7c1-r8c1 relation {"op":"sum","value":10}
-pair-7: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-8: pair r5c9-r6c9 relation {"op":"sum","value":5}
-pair-9: pair r7c9-r8c9 relation {"op":"sum","value":5}
-pair-10: pair r9c7-r9c8 relation {"op":"sum","value":5}
-pair-11: pair r1c7-r1c8 relation {"op":"sum","value":5}
-pair-12: pair r3c1-r3c2 relation {"op":"sum","value":5}
-pair-13: pair r2c9-r3c9 relation {"op":"sum","value":5}
-pair-14: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-15: pair r4c4-r4c5 relation {"op":"sum","value":5}
-pair-16: pair r7c8-r8c8 relation {"op":"sum","value":5}
+pair-1: pair r9c1-r9c2 sum 10
+pair-2: pair r9c4-r9c5 sum 10
+pair-3: pair r6c7-r6c8 sum 10
+pair-4: pair r2c3-r3c3 sum 10
+pair-5: pair r2c5-r2c6 sum 10
+pair-6: pair r7c1-r8c1 sum 10
+pair-7: pair r6c3-r7c3 sum 10
+pair-8: pair r5c9-r6c9 sum 5
+pair-9: pair r7c9-r8c9 sum 5
+pair-10: pair r9c7-r9c8 sum 5
+pair-11: pair r1c7-r1c8 sum 5
+pair-12: pair r3c1-r3c2 sum 5
+pair-13: pair r2c9-r3c9 sum 5
+pair-14: pair r3c7-r3c8 sum 5
+pair-15: pair r4c4-r4c5 sum 5
+pair-16: pair r7c8-r8c8 sum 5
 ```
 
 ```drawing

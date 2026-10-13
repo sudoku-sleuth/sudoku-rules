@@ -30,11 +30,11 @@ whispers-13: whispers r5c7-r4c8-r5c9-r6c8 gap 5
 whispers-14: whispers r6c8-r5c7 gap 5
 renban-1: renban r7c6-r7c7-r6c7-r6c3-r7c3-r7c4-r6c5-r8c2-r8c8
 renban-2: renban r4c7-r3c7-r3c6-r3c4-r3c3-r4c3-r4c5-r2c2-r2c8
-pair-1: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-2: pair r5c4-r5c5 relation {"op":"sum","value":10}
-pair-3: pair r8c2-r9c2 relation {"op":"sum","value":10}
-pair-4: pair r2c6-r3c6 relation {"op":"sum","value":5}
-pair-5: pair r5c6-r6c6 relation {"op":"sum","value":5}
+pair-1: pair r4c4-r4c5 sum 10
+pair-2: pair r5c4-r5c5 sum 10
+pair-3: pair r8c2-r9c2 sum 10
+pair-4: pair r2c6-r3c6 sum 5
+pair-5: pair r5c6-r6c6 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers on purple lines are a set of non-repeating, consecutive numbers, in any order. Numbers with a black dot between them are in a ratio of 2:1. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Not all possible dots, X and V are given.

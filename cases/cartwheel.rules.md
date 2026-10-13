@@ -22,24 +22,24 @@ palindrome-1: palindrome r2c1-r3c1-r3c2-r3c3-r4c4-r5c5-r6c5-r7c5
 palindrome-2: palindrome r1c8-r1c7-r2c7-r3c7-r4c6-r5c5-r5c4-r5c3
 palindrome-3: palindrome r8c9-r7c9-r7c8-r7c7-r6c6-r5c5-r4c5-r3c5
 palindrome-4: palindrome r9c2-r9c3-r8c3-r7c3-r6c4-r5c5-r5c6-r5c7
-pair-1: pair r1c2-r1c3 relation {"op":"sum","value":10}
-pair-2: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-3: pair r3c3-r4c3 relation {"op":"sum","value":5}
-pair-4: pair r3c3-r3c4 relation {"op":"sum","value":5}
-pair-5: pair r3c4-r4c4 relation {"op":"sum","value":5}
-pair-6: pair r4c3-r4c4 relation {"op":"sum","value":5}
-pair-7: pair r3c6-r3c7 relation {"op":"sum","value":5}
-pair-8: pair r3c6-r4c6 relation {"op":"sum","value":5}
-pair-9: pair r3c7-r4c7 relation {"op":"sum","value":5}
-pair-10: pair r6c6-r7c6 relation {"op":"sum","value":5}
-pair-11: pair r6c7-r7c7 relation {"op":"sum","value":5}
-pair-12: pair r6c6-r6c7 relation {"op":"sum","value":5}
-pair-13: pair r7c6-r7c7 relation {"op":"sum","value":5}
-pair-14: pair r6c3-r6c4 relation {"op":"sum","value":5}
-pair-15: pair r6c4-r7c4 relation {"op":"sum","value":5}
-pair-16: pair r6c3-r7c3 relation {"op":"sum","value":5}
-pair-17: pair r7c3-r7c4 relation {"op":"sum","value":5}
-pair-18: pair r4c6-r4c7 relation {"op":"sum","value":5}
+pair-1: pair r1c2-r1c3 sum 10
+pair-2: pair r9c7-r9c8 sum 10
+pair-3: pair r3c3-r4c3 sum 5
+pair-4: pair r3c3-r3c4 sum 5
+pair-5: pair r3c4-r4c4 sum 5
+pair-6: pair r4c3-r4c4 sum 5
+pair-7: pair r3c6-r3c7 sum 5
+pair-8: pair r3c6-r4c6 sum 5
+pair-9: pair r3c7-r4c7 sum 5
+pair-10: pair r6c6-r7c6 sum 5
+pair-11: pair r6c7-r7c7 sum 5
+pair-12: pair r6c6-r6c7 sum 5
+pair-13: pair r7c6-r7c7 sum 5
+pair-14: pair r6c3-r6c4 sum 5
+pair-15: pair r6c4-r7c4 sum 5
+pair-16: pair r6c3-r7c3 sum 5
+pair-17: pair r7c3-r7c4 sum 5
+pair-18: pair r4c6-r4c7 sum 5
 quadruple-1: quadruple r8c6-r8c7-r9c6-r9c7 digits [8]
 quadruple-2: quadruple r6c1-r6c2-r7c1-r7c2 digits [6]
 quadruple-3: quadruple r1c3-r1c4-r2c3-r2c4 digits [9]

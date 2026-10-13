@@ -27,7 +27,7 @@ cage-14: cage r1c9-r2c9-r3c7-r3c8-r3c9 total 23 connected true
 cage-15: cage r1c8-r2c6-r2c7-r2c8 total 23 connected true
 cage-16: cage r2c4-r2c5-r3c5-r3c6 total 23 connected true
 cage-17: cage r1c4-r1c5-r1c6-r1c7 total 17 connected true
-pair r3c9-r4c9 relation {"op":"sum","value":10}
+pair r3c9-r4c9 sum 10
 ```
 
 Normal Sudoku rules apply. Digits in a cage do not repeat and sum to the clue in the top left. Digits joined by an X sum to 10. (Not all X are given.)

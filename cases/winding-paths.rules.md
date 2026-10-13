@@ -12,7 +12,7 @@ givens: r3c6=5 r5c2=6 r5c7=8 r8c9=2 r9c8=3
 ```rules
 sudoku 9x9
 diagonal direction "main"
-pair r1c8-r1c9 relation {"op":"ratio","value":3}
+pair r1c8-r1c9 ratio 3
 kropki r6c2-r6c3 colour "black"
 renban-1: renban r3c1-r2c1-r1c1-r1c2-r1c3
 renban-2: renban r6c1-r5c1-r4c1-r3c2-r2c3-r1c4-r1c5-r1c6

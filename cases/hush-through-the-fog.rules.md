@@ -26,10 +26,10 @@ kropki-6: kropki r2c2-r3c2 colour "black"
 kropki-7: kropki r2c6-r3c6 colour "black"
 kropki-8: kropki r1c4-r2c4 colour "black"
 whispers r2c1-r3c2-r4c2-r5c2-r6c3-r7c3-r8c2-r9c2-r9c3-r8c4-r7c5-r6c5-r7c6-r8c7-r9c8-r8c9-r7c8-r6c7-r5c6-r4c7-r3c8-r3c7-r2c7-r1c8-r1c7-r2c6-r2c5-r2c4-r3c4-r2c3-r2c2 gap 5
-pair-1: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-2: pair r1c3-r2c3 relation {"op":"sum","value":10}
-pair-3: pair r3c4-r4c4 relation {"op":"sum","value":10}
-pair-4: pair r4c1-r4c2 relation {"op":"sum","value":10}
+pair-1: pair r3c1-r3c2 sum 10
+pair-2: pair r1c3-r2c3 sum 10
+pair-3: pair r3c4-r4c4 sum 10
+pair-4: pair r4c1-r4c2 sum 10
 ```
 
 •    Normal Sudoku rules apply. 

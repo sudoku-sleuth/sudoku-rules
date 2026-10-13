@@ -27,7 +27,7 @@ kropki-5: kropki r1c8-r1c9 colour "black"
 kropki-6: kropki r3c4-r4c4 colour "white"
 kropki-7: kropki r4c8-r4c9 colour "white"
 kropki-8: kropki r7c9-r8c9 colour "white"
-pair r6c2-r6c3 relation {"op":"sum","value":5}
+pair r6c2-r6c3 sum 5
 ```
 
 ```drawing

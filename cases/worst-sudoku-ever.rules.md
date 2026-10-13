@@ -82,11 +82,11 @@ kropki-2: kropki r1c4-r1c5 colour "white"
 kropki-3: kropki r1c6-r2c6 colour "white"
 kropki-4: kropki r5c2-r5c3 colour "white"
 kropki-5: kropki r4c2-r4c3 colour "black"
-pair-1: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-2: pair r3c1-r4c1 relation {"op":"sum","value":10}
-pair-3: pair r5c1-r6c1 relation {"op":"sum","value":10}
-pair-4: pair r2c6-r3c6 relation {"op":"sum","value":10}
-pair-5: pair r4c6-r5c6 relation {"op":"sum","value":10}
+pair-1: pair r1c1-r2c1 sum 10
+pair-2: pair r3c1-r4c1 sum 10
+pair-3: pair r5c1-r6c1 sum 10
+pair-4: pair r2c6-r3c6 sum 10
+pair-5: pair r4c6-r5c6 sum 10
 ```
 
 ```drawing

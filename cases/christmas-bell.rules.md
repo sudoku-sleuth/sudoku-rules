@@ -28,12 +28,12 @@ whispers r7c1-r6c2-r5c2-r4c2-r3c3-r2c4-r2c5-r2c6-r3c7-r4c8-r5c8-r6c8-r7c9 gap 5
 renban-1: renban r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8
 renban-2: renban r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8
 renban-3: renban r3c3-r3c4-r3c5-r3c6-r3c7
-pair-1: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-2: pair r9c6-r9c7 relation {"op":"sum","value":10}
-pair-3: pair r7c1-r7c2 relation {"op":"sum","value":10}
-pair-4: pair r1c3-r1c4 relation {"op":"sum","value":10}
-pair-5: pair r2c1-r3c1 relation {"op":"sum","value":5}
-pair-6: pair r2c9-r3c9 relation {"op":"sum","value":5}
+pair-1: pair r9c3-r9c4 sum 10
+pair-2: pair r9c6-r9c7 sum 10
+pair-3: pair r7c1-r7c2 sum 10
+pair-4: pair r1c3-r1c4 sum 10
+pair-5: pair r2c1-r3c1 sum 5
+pair-6: pair r2c9-r3c9 sum 5
 ```
 
 Merry Christmas 2024, Everyone!

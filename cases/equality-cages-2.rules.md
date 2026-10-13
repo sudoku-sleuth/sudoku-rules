@@ -32,13 +32,13 @@ kropki-8: kropki r1c8-r1c9 colour "white"
 kropki-9: kropki r1c6-r1c7 colour "white"
 kropki-10: kropki r7c7-r7c8 colour "white"
 kropki-11: kropki r8c1-r8c2 colour "white"
-pair-1: pair r6c6-r7c6 relation {"op":"sum","value":10}
-pair-2: pair r8c8-r8c9 relation {"op":"sum","value":10}
-pair-3: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-4: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-5: pair r8c3-r9c3 relation {"op":"sum","value":5}
-pair-6: pair r2c1-r2c2 relation {"op":"sum","value":5}
-pair-7: pair r2c7-r2c8 relation {"op":"sum","value":5}
+pair-1: pair r6c6-r7c6 sum 10
+pair-2: pair r8c8-r8c9 sum 10
+pair-3: pair r4c4-r4c5 sum 10
+pair-4: pair r1c1-r2c1 sum 10
+pair-5: pair r8c3-r9c3 sum 5
+pair-6: pair r2c1-r2c2 sum 5
+pair-7: pair r2c7-r2c8 sum 5
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

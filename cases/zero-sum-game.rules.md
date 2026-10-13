@@ -142,11 +142,11 @@ cage-7: cage r7c9-r8c9 repeats false total 9 connected true
 cage-8: cage r9c7-r9c8 repeats false total 12 connected true
 arrow-1: arrow r4c2-r3c3-r2c4-r1c5-r2c6-r3c7 bulb ["r5c1"]
 arrow-2: arrow r6c8-r7c7-r8c6-r9c5-r8c4-r7c3 bulb ["r5c9"]
-pair-1: pair r7c8-r7c9 relation {"op":"sum","value":10}
-pair-2: pair r5c5-r5c6 relation {"op":"sum","value":10}
-pair-3: pair r5c1-r5c2 relation {"op":"sum","value":5}
-pair-4: pair r5c8-r6c8 relation {"op":"sum","value":5}
-pair-5: pair r6c6-r6c7 relation {"op":"sum","value":5}
+pair-1: pair r7c8-r7c9 sum 10
+pair-2: pair r5c5-r5c6 sum 10
+pair-3: pair r5c1-r5c2 sum 5
+pair-4: pair r5c8-r6c8 sum 5
+pair-5: pair r6c6-r6c7 sum 5
 little-killer-1: little-killer r7c1-r8c2-r9c3 sum 3
 little-killer-2: little-killer r8c1-r7c2-r6c3-r5c4-r4c5-r3c6-r2c7-r1c8 sum 62
 little-killer-3: little-killer r3c9-r2c8-r1c7 sum 5

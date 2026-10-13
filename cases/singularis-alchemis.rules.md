@@ -16,7 +16,7 @@ arrow r2c5-r3c5 bulb ["r1c4"]
 whispers r7c6-r6c7-r5c7-r4c6-r4c5-r4c4-r5c3-r6c3-r7c4 gap 5
 renban r4c1-r3c1-r2c1-r1c2
 slow-thermo r8c4-r7c3-r6c2-r5c2-r4c2-r3c3-r2c4-r3c5-r2c6-r3c7-r4c8-r5c8-r6c8-r7c7-r8c6
-pair r8c8-r9c8 relation {"op":"sum","value":5}
+pair r8c8-r9c8 sum 5
 quadruple r5c4-r5c5-r6c4-r6c5 digits [3,4,6,7]
 little-killer r6c1-r7c2-r8c3-r9c4 sum 19
 ```

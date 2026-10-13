@@ -15,8 +15,8 @@ sudoku 9x9
 parity r7c3-r6c3-r5c3-r4c3-r3c3-r3c4-r3c5-r3c6-r3c7-r4c7-r5c7-r6c7-r7c7
 whispers r6c4-r5c4-r4c4-r4c5-r4c6-r5c6-r6c6 gap 4
 region-sum r9c1-r8c1-r7c1-r6c1-r5c1-r4c1-r3c1-r2c1-r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9 segments [["r9c1","r8c1","r7c1"],["r6c1","r5c1","r4c1"],["r3c1","r2c1","r1c1","r1c2","r1c3"],["r1c4","r1c5","r1c6"],["r1c7","r1c8","r1c9","r2c9","r3c9"],["r4c9","r5c9","r6c9"],["r7c9","r8c9","r9c9"]]
-pair-1: pair r5c5-r6c5 relation {"op":"sum","value":10}
-pair-2: pair r2c5-r3c5 relation {"op":"sum","value":10}
+pair-1: pair r5c5-r6c5 sum 10
+pair-2: pair r2c5-r3c5 sum 10
 ```
 
 ```drawing

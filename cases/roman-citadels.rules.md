@@ -35,17 +35,17 @@ unique-11: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4
 unique-12: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5
 unique-13: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6
 unique-14: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7
-pair-1: pair r3c3-r3c4 relation {"op":"sum","value":10}
-pair-2: pair r7c6-r7c7 relation {"op":"sum","value":10}
-pair-3: pair r3c7-r4c7 relation {"op":"sum","value":10}
-pair-4: pair r1c6-r2c6 relation {"op":"sum","value":10}
-pair-5: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-6: pair r4c5-r5c5 relation {"op":"sum","value":5}
-pair-7: pair r6c5-r6c6 relation {"op":"sum","value":5}
-pair-8: pair r7c2-r7c3 relation {"op":"sum","value":5}
-pair-9: pair r4c1-r4c2 relation {"op":"sum","value":5}
-pair-10: pair r4c5-r4c6 relation {"op":"sum","value":5}
-pair-11: pair r4c2-r5c2 relation {"op":"sum","value":5}
+pair-1: pair r3c3-r3c4 sum 10
+pair-2: pair r7c6-r7c7 sum 10
+pair-3: pair r3c7-r4c7 sum 10
+pair-4: pair r1c6-r2c6 sum 10
+pair-5: pair r6c3-r7c3 sum 10
+pair-6: pair r4c5-r5c5 sum 5
+pair-7: pair r6c5-r6c6 sum 5
+pair-8: pair r7c2-r7c3 sum 5
+pair-9: pair r4c1-r4c2 sum 5
+pair-10: pair r4c5-r4c6 sum 5
+pair-11: pair r4c2-r5c2 sum 5
 unique-15: unique r2c6-r2c7-r3c1-r4c3-r5c2-r5c4-r7c6
 ```
 

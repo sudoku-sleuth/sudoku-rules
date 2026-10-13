@@ -32,8 +32,8 @@ palindrome r5c2-r4c1-r3c1
 between r1c2 ends ["r2c1","r1c1"]
 whispers-2: whispers r6c8-r6c9-r5c9 gap 5
 nabner r5c7-r4c8-r3c8 distinct true
-pair-1: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-2: pair r2c9-r3c9 relation {"op":"sum","value":5}
+pair-1: pair r4c4-r4c5 sum 10
+pair-2: pair r2c9-r3c9 sum 5
 ```
 
 ```drawing

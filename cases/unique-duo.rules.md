@@ -12,10 +12,10 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 kropki r6c1-r7c1 colour "black"
-pair-1: pair r7c4-r7c5 relation {"op":"ratio","value":3}
-pair-2: pair r2c9-r3c9 relation {"op":"sum","value":10}
-pair-3: pair r6c9-r7c9 relation {"op":"sum","value":10}
-pair-4: pair r2c7-r3c7 relation {"op":"sum","value":5}
+pair-1: pair r7c4-r7c5 ratio 3
+pair-2: pair r2c9-r3c9 sum 10
+pair-3: pair r6c9-r7c9 sum 10
+pair-4: pair r2c7-r3c7 sum 5
 little-killer r1c8-r2c7-r3c6-r4c5-r5c4-r6c3-r7c2-r8c1 sum 49
 ```
 

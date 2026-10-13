@@ -24,14 +24,14 @@ renban-1: renban r4c3-r5c3-r6c3-r7c3-r8c3-r8c2
 renban-2: renban r5c4-r6c4-r7c4-r8c5
 renban-3: renban r5c2-r6c2-r7c2-r8c1-r4c1-r5c1-r6c1-r7c1-r9c1
 renban-4: renban r2c2-r3c2-r4c2-r4c4-r3c4-r3c3
-pair-1: pair r5c7-r5c8 relation {"op":"sum","value":10}
-pair-2: pair r6c8-r7c8 relation {"op":"sum","value":10}
-pair-3: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-4: pair r2c7-r3c7 relation {"op":"sum","value":5}
-pair-5: pair r8c8-r9c8 relation {"op":"sum","value":5}
-pair-6: pair r8c9-r9c9 relation {"op":"sum","value":5}
-pair-7: pair r7c5-r7c6 relation {"op":"sum","value":5}
-pair-8: pair r3c1-r4c1 relation {"op":"sum","value":5}
+pair-1: pair r5c7-r5c8 sum 10
+pair-2: pair r6c8-r7c8 sum 10
+pair-3: pair r4c6-r5c6 sum 10
+pair-4: pair r2c7-r3c7 sum 5
+pair-5: pair r8c8-r9c8 sum 5
+pair-6: pair r8c9-r9c9 sum 5
+pair-7: pair r7c5-r7c6 sum 5
+pair-8: pair r3c1-r4c1 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers can repeat on green lines. Numbers on purple lines are each a set of non-repeating, consecutive numbers, in any order. Numbers on arrows sum to the number in that arrow's circle. Numbers with a V between them sum to 5. Numbers with an X between them sum to 10. Numbers with a white dot between them are consecutive. Not all possible X, V and dots are shown.

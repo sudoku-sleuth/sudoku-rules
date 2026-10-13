@@ -13,10 +13,10 @@ givens: r5c7=8 r8c3=3 r9c1=2 r9c6=1
 ```rules
 sudoku 9x9
 kropki r8c8-r8c9 colour "white"
-pair-1: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r1c6-r1c7 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":10}
-pair-4: pair r6c7-r7c7 relation {"op":"sum","value":10}
+pair-1: pair r2c2-r2c3 sum 10
+pair-2: pair r1c6-r1c7 sum 10
+pair-3: pair r4c1-r5c1 sum 10
+pair-4: pair r6c7-r7c7 sum 10
 ```
 
 ```drawing

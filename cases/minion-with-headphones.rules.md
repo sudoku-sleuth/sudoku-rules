@@ -35,11 +35,11 @@ renban-1: renban r9c8-r8c8-r7c9-r6c9-r5c9-r4c9-r3c9-r2c8-r1c7
 renban-2: renban r1c5-r1c4-r2c3-r2c2-r3c2-r4c2-r4c3
 renban-3: renban r5c3-r6c3-r7c3-r8c3-r9c3-r8c4-r8c5-r9c6-r7c4
 renban-4: renban r5c5-r4c5-r5c6-r4c6
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r3c5-r3c6 relation {"op":"sum","value":10}
-pair-3: pair r1c5-r1c6 relation {"op":"sum","value":10}
-pair-4: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-5: pair r1c2-r2c2 relation {"op":"sum","value":10}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r3c5-r3c6 sum 10
+pair-3: pair r1c5-r1c6 sum 10
+pair-4: pair r6c5-r6c6 sum 10
+pair-5: pair r1c2-r2c2 sum 10
 ```
 
 Normal Sudoku rules apply. Numbers on the green line are at least 5 apart from their neighbors on the line. Numbers on orange lines are a set of non-repeating, consecutive numbers, in any order. Numbers with an X between them sum to 10. Numbers with a black dot between them are in a ratio of 2:1. Orthogonally adjacent numbers with a white dot between them are consecutive. A white dot between two diagonal neighbors on the orange line indicates that these neighbors on the line are consecutive. These dots have no effect on the numbers on the other diagonal through them.

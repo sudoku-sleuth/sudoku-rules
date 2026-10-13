@@ -28,10 +28,10 @@ kropki-8: kropki r5c2-r5c3 colour "black"
 kropki-9: kropki r6c2-r6c3 colour "black"
 arrow-1: arrow r9c3-r8c3 bulb ["r9c2"]
 arrow-2: arrow r7c2-r7c3 bulb ["r7c1"]
-pair-1: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-3: pair r2c8-r2c9 relation {"op":"sum","value":10}
-pair-4: pair r1c7-r1c8 relation {"op":"sum","value":10}
+pair-1: pair r9c7-r9c8 sum 10
+pair-2: pair r3c7-r3c8 sum 10
+pair-3: pair r2c8-r2c9 sum 10
+pair-4: pair r1c7-r1c8 sum 10
 negative relations [{"op":"sum","value":10}] except [["r1c4","r1c5"],["r1c5","r1c6"],["r1c6","r2c6"],["r2c4","r3c4"],["r3c4","r3c5"],["r2c5","r3c5"],["r4c1","r5c1"],["r5c2","r5c3"],["r6c2","r6c3"],["r9c7","r9c8"],["r3c7","r3c8"],["r2c8","r2c9"],["r1c7","r1c8"]]
 parity-cells r6c7-r5c7-r5c8-r5c9-r4c9 parity "odd"
 ```

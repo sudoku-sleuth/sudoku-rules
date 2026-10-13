@@ -10,23 +10,23 @@ status: read
 
 ```rules
 sudoku 9x9
-pair-1: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-2: pair r8c2-r8c3 relation {"op":"sum","value":10}
-pair-3: pair r2c7-r2c8 relation {"op":"sum","value":10}
-pair-4: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-5: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-6: pair r6c4-r6c5 relation {"op":"sum","value":10}
-pair-7: pair r1c7-r1c8 relation {"op":"sum","value":10}
-pair-8: pair r9c6-r9c7 relation {"op":"sum","value":10}
-pair-9: pair r8c1-r9c1 relation {"op":"sum","value":10}
-pair-10: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-11: pair r2c5-r3c5 relation {"op":"sum","value":10}
-pair-12: pair r3c7-r4c7 relation {"op":"sum","value":10}
-pair-13: pair r4c8-r5c8 relation {"op":"sum","value":5}
-pair-14: pair r5c2-r6c2 relation {"op":"sum","value":5}
-pair-15: pair r1c4-r1c5 relation {"op":"sum","value":5}
-pair-16: pair r8c5-r8c6 relation {"op":"sum","value":5}
-pair-17: pair r7c7-r8c7 relation {"op":"sum","value":5}
+pair-1: pair r8c7-r8c8 sum 10
+pair-2: pair r8c2-r8c3 sum 10
+pair-3: pair r2c7-r2c8 sum 10
+pair-4: pair r2c2-r2c3 sum 10
+pair-5: pair r4c5-r4c6 sum 10
+pair-6: pair r6c4-r6c5 sum 10
+pair-7: pair r1c7-r1c8 sum 10
+pair-8: pair r9c6-r9c7 sum 10
+pair-9: pair r8c1-r9c1 sum 10
+pair-10: pair r1c1-r1c2 sum 10
+pair-11: pair r2c5-r3c5 sum 10
+pair-12: pair r3c7-r4c7 sum 10
+pair-13: pair r4c8-r5c8 sum 5
+pair-14: pair r5c2-r6c2 sum 5
+pair-15: pair r1c4-r1c5 sum 5
+pair-16: pair r8c5-r8c6 sum 5
+pair-17: pair r7c7-r8c7 sum 5
 quadruple-1: quadruple r4c8-r4c9-r5c8-r5c9 digits [2,3]
 quadruple-2: quadruple r5c1-r5c2-r6c1-r6c2 digits [1,4]
 quadruple-3: quadruple r1c4-r1c5-r2c4-r2c5 digits [2,3]

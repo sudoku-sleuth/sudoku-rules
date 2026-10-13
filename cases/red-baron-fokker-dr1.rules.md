@@ -29,11 +29,11 @@ renban-2: renban r5c6-r6c7
 renban-3: renban r4c4-r5c5-r6c6
 renban-4: renban r7c1-r8c1-r9c1-r9c2-r8c2
 renban-5: renban r1c8-r1c9
-pair-1: pair r5c5-r5c6 relation {"op":"sum","value":10}
-pair-2: pair r6c4-r6c5 relation {"op":"sum","value":10}
-pair-3: pair r3c6-r4c6 relation {"op":"sum","value":5}
-pair-4: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-5: pair r7c2-r7c3 relation {"op":"sum","value":5}
+pair-1: pair r5c5-r5c6 sum 10
+pair-2: pair r6c4-r6c5 sum 10
+pair-3: pair r3c6-r4c6 sum 5
+pair-4: pair r3c7-r3c8 sum 5
+pair-5: pair r7c2-r7c3 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on red lines are at least 4 apart from their neighbors on the line. The number 5 does not appear on any red lines except in box 1. Numbers on gray lines are each a set of non-repeating consecutive numbers, in any order. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Numbers with a white dot between them are consecutive. Not all possible X, V and dots are given. Numbers in cages sum to the number in the top left corner of the cage.

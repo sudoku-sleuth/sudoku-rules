@@ -16,11 +16,11 @@ sudoku 9x9
 cage-1: cage r4c5-r5c5 total 15 connected true
 cage-2: cage r8c7-r9c7-r9c8 total 9 connected true
 cage-3: cage r2c1-r3c1 total 9 connected true
-pair-1: pair r2c8-r3c8 relation {"op":"sum","value":5}
-pair-2: pair r1c9-r2c9 relation {"op":"sum","value":5}
-pair-3: pair r4c3-r4c4 relation {"op":"sum","value":5}
-pair-4: pair r8c5-r9c5 relation {"op":"sum","value":5}
-pair-5: pair r7c4-r8c4 relation {"op":"sum","value":5}
+pair-1: pair r2c8-r3c8 sum 5
+pair-2: pair r1c9-r2c9 sum 5
+pair-3: pair r4c3-r4c4 sum 5
+pair-4: pair r8c5-r9c5 sum 5
+pair-5: pair r7c4-r8c4 sum 5
 ```
 
 ```drawing
