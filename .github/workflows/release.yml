@@ -1,0 +1,57 @@
+name: Release
+
+# Publishes @sudoku-sleuth/open-rules to npm when a version tag (v1.2.3) is pushed.
+# Uses npm trusted publishing: GitHub proves the workflow's identity to npm, so no npm
+# token is stored. The tag must match package.json's version.
+
+on:
+  push:
+    tags: ["v*.*.*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Check out
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@735343b667d3e6f658f44d0eca948eb6282f2b76 # v2.0.2
+
+      - name: Set up Node for npm
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: bun install --frozen-lockfile
+
+      - name: Tag matches version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          test "v${version}" = "${GITHUB_REF_NAME}" || { echo "Tag ${GITHUB_REF_NAME} does not match package.json ${version}"; exit 1; }
+
+      - name: Check
+        run: bun run lint && bun test
+
+      - name: Build package
+        run: bun run build:package
+
+      - name: Publish
+        run: |
+          npm install -g npm@11.6.2
+          npm publish --provenance --access public
