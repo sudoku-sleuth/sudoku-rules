@@ -148,7 +148,7 @@ kropki-3: kropki r1c7-r1c8 colour "black"
 arrow-1: arrow r9c5-r8c5-r7c5-r6c5 bulb ["r9c6"]
 arrow-2: arrow r6c6-r7c6 bulb ["r5c5"]
 whispers r1c2-r1c3-r2c2-r2c3-r3c2-r3c3 loop false gap 5
-pair r9c2-r9c3 relation {"op":"sum","value":10}
+pair r9c2-r9c3 sum 10
 negative relations [{"op":"difference","value":1}] except [["r3c6","r4c6"],["r1c9","r2c9"],["r1c7","r1c8"],["r9c2","r9c3"]]
 quadruple r5c1-r5c2-r6c1-r6c2 digits [4,6,7,9]
 parity-cells r9c8 parity "odd"

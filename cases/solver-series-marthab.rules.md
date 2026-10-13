@@ -24,17 +24,17 @@ whispers-8: whispers r7c3-r8c3-r9c3 gap 2
 whispers-9: whispers r8c1-r8c2-r8c3 gap 2
 whispers-10: whispers r4c7-r4c8-r5c9-r6c8-r7c9-r8c8-r8c7-r7c7-r6c7-r5c7 gap 2
 whispers-11: whispers r5c7-r4c7 gap 2
-pair-1: pair r1c9-r2c9 relation {"op":"sum","value":10}
-pair-2: pair r3c8-r3c9 relation {"op":"sum","value":10}
-pair-3: pair r2c7-r3c7 relation {"op":"sum","value":10}
-pair-4: pair r1c7-r1c8 relation {"op":"sum","value":10}
-pair-5: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-6: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-7: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-8: pair r1c8-r1c9 relation {"op":"sum","value":5}
-pair-9: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-10: pair r2c1-r2c2 relation {"op":"sum","value":5}
-pair-11: pair r4c1-r5c1 relation {"op":"sum","value":5}
+pair-1: pair r1c9-r2c9 sum 10
+pair-2: pair r3c8-r3c9 sum 10
+pair-3: pair r2c7-r3c7 sum 10
+pair-4: pair r1c7-r1c8 sum 10
+pair-5: pair r7c2-r8c2 sum 10
+pair-6: pair r9c5-r9c6 sum 10
+pair-7: pair r1c1-r2c1 sum 10
+pair-8: pair r1c8-r1c9 sum 5
+pair-9: pair r3c7-r3c8 sum 5
+pair-10: pair r2c1-r2c2 sum 5
+pair-11: pair r4c1-r5c1 sum 5
 ```
 
 Normal Sudoku Rules Apply

@@ -17,8 +17,8 @@ kropki-2: kropki r6c6-r7c6 colour "white"
 kropki-3: kropki r1c9-r2c9 colour "black"
 arrow-1: arrow r3c3-r4c3 bulb ["r2c4"]
 arrow-2: arrow r7c3-r6c3 bulb ["r8c4"]
-pair-1: pair r2c8-r3c8 relation {"op":"sum","value":10}
-pair-2: pair r5c1-r5c2 relation {"op":"sum","value":5}
+pair-1: pair r2c8-r3c8 sum 10
+pair-2: pair r5c1-r5c2 sum 5
 little-killer r9c6-r8c7-r7c8-r6c9 sum 21
 sandwich-1: sandwich r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8-r9c8 sum 16
 sandwich-2: sandwich r8c1-r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8-r8c9 sum 35

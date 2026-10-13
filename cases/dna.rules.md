@@ -22,7 +22,7 @@ parity-1: parity r1c3-r2c4-r3c3-r4c2-r5c3
 parity-2: parity r5c3-r6c4-r7c3
 parity-3: parity r3c7-r4c6-r5c7-r6c8-r7c7
 parity-4: parity r7c7-r8c6-r9c7
-pair r9c3-r9c4 relation {"op":"sum","value":5}
+pair r9c3-r9c4 sum 5
 ```
 
 ```drawing

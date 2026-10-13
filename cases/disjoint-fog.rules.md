@@ -23,10 +23,10 @@ kropki-4: kropki r2c9-r3c9 colour "white"
 kropki-5: kropki r9c7-r9c8 colour "white"
 arrow-1: arrow r4c5-r5c5-r5c6 bulb ["r4c6"]
 arrow-2: arrow r5c8-r6c7 bulb ["r5c7"]
-pair-1: pair r2c8-r2c9 relation {"op":"sum","value":10}
-pair-2: pair r3c3-r3c4 relation {"op":"sum","value":10}
-pair-3: pair r6c3-r6c4 relation {"op":"sum","value":10}
-pair-4: pair r8c6-r9c6 relation {"op":"sum","value":10}
+pair-1: pair r2c8-r2c9 sum 10
+pair-2: pair r3c3-r3c4 sum 10
+pair-3: pair r6c3-r6c4 sum 10
+pair-4: pair r8c6-r9c6 sum 10
 little-killer-1: little-killer r4c9-r3c8-r2c7-r1c6 sum 31
 little-killer-2: little-killer r5c1-r6c2-r7c3-r8c4-r9c5 sum 41
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7 stated true

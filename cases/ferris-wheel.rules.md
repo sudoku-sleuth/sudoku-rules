@@ -27,8 +27,8 @@ between-1: between r5c4-r6c3-r7c2 ends ["r4c5","r8c1"]
 between-2: between r7c8-r6c7-r5c6 ends ["r8c9","r4c5"]
 renban-1: renban r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5
 renban-2: renban r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8
-pair-1: pair r8c3-r8c4 relation {"op":"sum","value":10}
-pair-2: pair r8c6-r8c7 relation {"op":"sum","value":10}
+pair-1: pair r8c3-r8c4 sum 10
+pair-2: pair r8c6-r8c7 sum 10
 ```
 
 Normal sudoku rules apply.

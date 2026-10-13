@@ -26,12 +26,12 @@ palindrome-6: palindrome r7c2-r6c1
 palindrome-7: palindrome r4c3-r3c2
 palindrome-8: palindrome r2c4-r1c3
 palindrome-9: palindrome r3c6-r2c7
-pair-1: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-2: pair r5c3-r5c4 relation {"op":"sum","value":10}
-pair-3: pair r5c1-r6c1 relation {"op":"sum","value":10}
-pair-4: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-5: pair r3c1-r4c1 relation {"op":"sum","value":5}
-pair-6: pair r3c3-r3c4 relation {"op":"sum","value":5}
+pair-1: pair r6c5-r6c6 sum 10
+pair-2: pair r5c3-r5c4 sum 10
+pair-3: pair r5c1-r6c1 sum 10
+pair-4: pair r4c2-r5c2 sum 10
+pair-5: pair r3c1-r4c1 sum 5
+pair-6: pair r3c3-r3c4 sum 5
 ```
 
 Normal Sudoku Rules Apply

@@ -22,8 +22,8 @@ parity-1: parity r3c1-r4c1-r5c1-r6c1-r7c1
 parity-2: parity r7c1-r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8-r7c9
 parity-3: parity r7c9-r6c9-r5c9-r4c9-r3c9
 parity-4: parity r3c1-r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9
-pair-1: pair r6c3-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r6c6-r6c7 relation {"op":"sum","value":10}
+pair-1: pair r6c3-r6c4 sum 10
+pair-2: pair r6c6-r6c7 sum 10
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

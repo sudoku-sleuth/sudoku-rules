@@ -156,8 +156,8 @@ whispers-1: whispers r6c7-r5c7-r5c6 gap 4
 palindrome r7c2-r6c1-r5c1
 between r9c2 ends ["r8c1","r8c3"]
 whispers-2: whispers r1c7-r1c6-r2c5 gap 5
-pair-1: pair r6c9-r7c9 relation {"op":"sum","value":10}
-pair-2: pair r4c6-r5c6 relation {"op":"sum","value":5}
+pair-1: pair r6c9-r7c9 sum 10
+pair-2: pair r4c6-r5c6 sum 5
 ```
 
 ```drawing

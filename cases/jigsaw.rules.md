@@ -142,15 +142,15 @@ palindrome-7: palindrome r8c3-r7c4-r6c5
 palindrome-8: palindrome r9c3-r8c4-r7c5
 palindrome-9: palindrome r7c6-r8c7-r9c8
 palindrome-10: palindrome r4c6-r5c7-r6c8
-pair-1: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-2: pair r4c1-r4c2 relation {"op":"sum","value":10}
-pair-3: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-4: pair r7c3-r7c4 relation {"op":"sum","value":10}
-pair-5: pair r7c6-r8c6 relation {"op":"sum","value":10}
-pair-6: pair r9c6-r9c7 relation {"op":"sum","value":10}
-pair-7: pair r6c7-r6c8 relation {"op":"sum","value":10}
-pair-8: pair r5c6-r5c7 relation {"op":"sum","value":10}
-pair-9: pair r1c8-r2c8 relation {"op":"sum","value":10}
+pair-1: pair r2c4-r3c4 sum 10
+pair-2: pair r4c1-r4c2 sum 10
+pair-3: pair r7c2-r8c2 sum 10
+pair-4: pair r7c3-r7c4 sum 10
+pair-5: pair r7c6-r8c6 sum 10
+pair-6: pair r9c6-r9c7 sum 10
+pair-7: pair r6c7-r6c8 sum 10
+pair-8: pair r5c6-r5c7 sum 10
+pair-9: pair r1c8-r2c8 sum 10
 negative relations [{"op":"sum","value":10}] except [["r2c4","r3c4"],["r4c1","r4c2"],["r7c2","r8c2"],["r7c3","r7c4"],["r7c6","r8c6"],["r9c6","r9c7"],["r6c7","r6c8"],["r5c6","r5c7"],["r1c8","r2c8"]]
 ```
 

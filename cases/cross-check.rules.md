@@ -18,12 +18,12 @@ thermo r1c3-r1c2-r1c1-r2c1-r3c1
 whispers-1: whispers r1c4-r2c5-r3c6-r3c7 gap 5
 whispers-2: whispers r4c1-r5c2-r6c3-r7c3 gap 5
 whispers-3: whispers r7c8-r8c9 gap 5
-pair-1: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r5c1-r5c2 relation {"op":"sum","value":10}
-pair-3: pair r1c5-r2c5 relation {"op":"sum","value":10}
-pair-4: pair r6c7-r6c8 relation {"op":"sum","value":10}
-pair-5: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-6: pair r8c4-r9c4 relation {"op":"sum","value":10}
+pair-1: pair r2c2-r2c3 sum 10
+pair-2: pair r5c1-r5c2 sum 10
+pair-3: pair r1c5-r2c5 sum 10
+pair-4: pair r6c7-r6c8 sum 10
+pair-5: pair r9c5-r9c6 sum 10
+pair-6: pair r8c4-r9c4 sum 10
 quadruple r2c2-r2c3-r3c2-r3c3 digits [1,9]
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8

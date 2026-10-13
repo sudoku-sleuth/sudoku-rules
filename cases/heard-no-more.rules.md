@@ -42,8 +42,8 @@ whispers-29: whispers r1c3-r1c4-r2c4 gap 5
 whispers-30: whispers r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r3c7 gap 5
 whispers-31: whispers r5c7-r5c8 gap 5
 whispers-32: whispers r6c1-r7c1-r7c2 gap 5
-pair-1: pair r8c8-r8c9 relation {"op":"sum","value":5}
-pair-2: pair r8c1-r8c2 relation {"op":"sum","value":5}
+pair-1: pair r8c8-r8c9 sum 5
+pair-2: pair r8c1-r8c2 sum 5
 negative relations [{"op":"at-least","value":5}] except [["r1c1","r1c2"],["r3c6","r3c5"],["r8c1","r9c1"],["r7c2","r8c2"],["r8c3","r9c3"],["r7c8","r8c8"],["r8c7","r9c7"],["r8c9","r9c9"],["r7c5","r8c5"],["r8c5","r9c5"],["r7c4","r8c4"],["r1c8","r1c9"],["r2c8","r1c8"],["r3c8","r3c7"],["r1c7","r2c7"],["r3c1","r3c2"],["r4c7","r3c7"],["r4c6","r3c6"],["r4c3","r3c3"],["r3c4","r3c3"],["r3c3","r3c2"],["r3c2","r4c2"],["r4c2","r4c3"],["r5c1","r5c2"],["r5c2","r4c2"],["r4c5","r5c5"],["r5c5","r5c6"],["r6c5","r6c4"],["r6c4","r7c4"],["r5c8","r6c8"],["r6c8","r7c8"],["r6c7","r6c8"],["r9c6","r9c7"],["r9c8","r9c9"],["r5c9","r6c9"],["r7c9","r6c9"],["r1c3","r1c4"],["r1c4","r2c4"],["r2c2","r2c3"],["r2c3","r2c4"],["r2c4","r2c5"],["r2c5","r2c6"],["r2c6","r2c7"],["r2c7","r3c7"],["r5c7","r5c8"],["r6c1","r7c1"],["r7c1","r7c2"]]
 ```
 

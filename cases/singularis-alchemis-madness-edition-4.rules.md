@@ -145,8 +145,8 @@ arrow r7c8-r8c8-r9c8 bulb ["r6c7"]
 whispers r8c3-r8c4-r8c5-r8c6-r8c7 gap 5
 renban r7c6-r7c7-r8c8
 region-sum r6c2-r6c3-r6c4-r6c5-r6c6-r6c7 segments [["r6c2","r6c3"],["r6c4","r6c5","r6c6"],["r6c7"]]
-pair-1: pair r8c7-r9c7 relation {"op":"sum","value":10}
-pair-2: pair r8c3-r9c3 relation {"op":"sum","value":5}
+pair-1: pair r8c7-r9c7 sum 10
+pair-2: pair r8c3-r9c3 sum 5
 quadruple r8c4-r8c5-r9c4-r9c5 digits [7]
 little-killer r3c9-r4c8-r5c7-r6c6-r7c5-r8c4-r9c3 sum 27
 sandwich r6c1-r6c2-r6c3-r6c4-r6c5-r6c6-r6c7-r6c8-r6c9 sum 17

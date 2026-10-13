@@ -1,3 +1,4 @@
+import { declareRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isAlias, isMap, isScalar, parseDocument, visit } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result, type Source } from "./language/diagnostics.js";
 import { parseFormula, parseIdentifier, parsePrelude, parseType } from "./language/parser.js";
@@ -6,7 +7,7 @@ import type { CheckedFormula, LogicClass, Parameter, Type } from "./language/ast
 
 export interface PageSource { file: string; text: string }
 export interface FormulaBlock extends Source { language: string; closed: boolean }
-export interface CompiledPage { file: string; parameters: Parameter[]; formulas: CheckedFormula[] }
+export interface CompiledPage { file: string; parameters: Parameter[]; formulas: CheckedFormula[]; line?: LineDeclaration }
 export interface TypedLibrary { prelude: CheckedPrelude; pages: CompiledPage[] }
 
 function metadataMessage(code: string, text: string, offset: number): string {
@@ -111,7 +112,17 @@ export function compilePage(page: PageSource, prelude: CheckedPrelude): Result<C
     const strongest = formulas.reduce<LogicClass>((current, formula) => current === "existential" || formula.logicClass === "existential" ? "existential" : current === "with aggregates" || formula.logicClass === "with aggregates" ? "with aggregates" : "first-order", "first-order");
     if (!classMatch || classMatch[1] !== strongest) diagnostics.push(diagnostic("E_LOGIC_CLASS", location(page, classMatch?.index ?? 0, (classMatch?.index ?? 0) + (classMatch?.[0].length ?? 0)), `This formula belongs to the ${strongest} class; write Class: **${strongest}** on the rule page.`));
   }
-  return { ...(diagnostics.length ? {} : { value: { file: page.file, parameters: environment.value!.parameters, formulas } }), diagnostics };
+  const compiled: CompiledPage = { file: page.file, parameters: environment.value?.parameters ?? [], formulas };
+  if (!diagnostics.length) {
+    const front = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(page.text)!;
+    const doc = parseDocument(front[1]);
+    const node = doc.get("parameters", true);
+    const start = front[0].indexOf(front[1]);
+    const declaration = declareRuleLine(doc.toJS(), compiled, prelude, location(page, start + ((isMap(node) ? node.range?.[0] : 0) ?? 0), start + ((isMap(node) ? node.range?.[1] : 0) ?? 0)));
+    diagnostics.push(...declaration.diagnostics);
+    if (declaration.value) compiled.line = declaration.value;
+  }
+  return { ...(diagnostics.length ? {} : { value: compiled }), diagnostics };
 }
 export function compileLibrary(pages: PageSource[], preludePage: PageSource): Result<TypedLibrary> {
   const prelude = compilePrelude(preludePage);

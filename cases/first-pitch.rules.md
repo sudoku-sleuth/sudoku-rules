@@ -17,10 +17,10 @@ kropki-1: kropki r7c3-r8c3 colour "white"
 kropki-2: kropki r2c3-r3c3 colour "white"
 whispers r1c6-r1c7-r2c8-r3c9-r4c9-r5c9-r6c9-r7c9-r8c8-r9c7-r9c6 gap 5
 renban r4c4-r5c5-r6c4
-pair-1: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-2: pair r1c5-r1c6 relation {"op":"sum","value":10}
-pair-3: pair r3c9-r4c9 relation {"op":"sum","value":10}
-pair-4: pair r6c9-r7c9 relation {"op":"sum","value":10}
+pair-1: pair r9c5-r9c6 sum 10
+pair-2: pair r1c5-r1c6 sum 10
+pair-3: pair r3c9-r4c9 sum 10
+pair-4: pair r6c9-r7c9 sum 10
 ```
 
 ```drawing

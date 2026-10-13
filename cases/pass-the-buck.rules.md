@@ -32,8 +32,8 @@ arrow-8: arrow r1c2-r1c3 bulb ["r1c1"]
 arrow-9: arrow r2c8-r3c7 bulb ["r1c9"]
 arrow-10: arrow r2c9-r3c9 bulb ["r1c9"]
 arrow-11: arrow r1c8-r1c7 bulb ["r1c9"]
-pair-1: pair r8c7-r9c7 relation {"op":"sum","value":5}
-pair-2: pair r3c2-r4c2 relation {"op":"sum","value":5}
+pair-1: pair r8c7-r9c7 sum 5
+pair-2: pair r3c2-r4c2 sum 5
 ```
 
 Geben Sie den Schwarzen Peter weiter. Normal Sudoku rules apply. Numbers on arrows sum to the number in that arrow's circle. Numbers with a V between them sum to 5. Numbers with a black dot between them are in a ratio of 2:1. Numbers with a white dot between them are consecutive. Not all possible V, and dots are given.

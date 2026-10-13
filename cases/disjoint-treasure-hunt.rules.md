@@ -18,8 +18,8 @@ cage-5: cage r8c6-r9c5-r9c6 total 24 connected true
 cage-6: cage r8c9-r9c8-r9c9 total 21 connected true
 cage-7: cage r8c1-r9c1 total 14 connected true
 cage-8: cage r1c9-r2c9 total 7 connected true
-pair-1: pair r4c2-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r6c7-r6c8 relation {"op":"sum","value":10}
+pair-1: pair r4c2-r4c3 sum 10
+pair-2: pair r6c7-r6c8 sum 10
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

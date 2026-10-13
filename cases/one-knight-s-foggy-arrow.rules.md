@@ -33,9 +33,9 @@ arrow-5: arrow r3c5-r4c5 bulb ["r2c5"]
 arrow-6: arrow r4c6-r3c6 bulb ["r5c6"]
 arrow-7: arrow r6c4-r6c3-r6c2 bulb ["r6c5"]
 arrow-8: arrow r8c9-r9c8 bulb ["r9c9"]
-pair-1: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r3c3-r3c4 relation {"op":"sum","value":5}
-pair-3: pair r7c8-r8c8 relation {"op":"sum","value":5}
+pair-1: pair r3c3-r4c3 sum 10
+pair-2: pair r3c3-r3c4 sum 5
+pair-3: pair r7c8-r8c8 sum 5
 ```
 
 •	Normal Sudoku rules apply. 

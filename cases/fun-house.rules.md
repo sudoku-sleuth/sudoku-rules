@@ -18,8 +18,8 @@ kropki-2: kropki r9c1-r9c2 colour "black"
 arrow-1: arrow r7c9-r8c9-r9c9 bulb ["r6c9"]
 arrow-2: arrow r9c7-r9c8 bulb ["r9c6"]
 palindrome r9c6-r8c7-r7c6-r6c7-r6c8-r6c9
-pair-1: pair r5c6-r5c7 relation {"op":"sum","value":10}
-pair-2: pair r7c8-r8c8 relation {"op":"sum","value":10}
+pair-1: pair r5c6-r5c7 sum 10
+pair-2: pair r7c8-r8c8 sum 10
 quadruple r6c2-r6c3-r7c2-r7c3 digits [6,7]
 little-killer r4c1-r3c2-r2c3-r1c4 sum 14
 sandwich r1c3-r2c3-r3c3-r4c3-r5c3-r6c3-r7c3-r8c3-r9c3 sum 0

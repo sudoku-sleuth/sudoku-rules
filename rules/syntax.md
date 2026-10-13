@@ -11,7 +11,9 @@ One line states a rule, its cells and parameters, with an optional condition.
 
 ```ebnf
 instance = [id ":" space] *("not" space) rule [space condition]
-rule = reference [space cells] *(space parameter space value)
+rule = reference [space cells] (keyword-parameters | named-parameters)
+named-parameters = *(space parameter space value)
+keyword-parameters = space declared-keyword *(space declared-operand)
 condition = ("if" | "unless") space predicate
 predicate = "uniform" | "distinct" | "connected"
 reference = kind-name | HTTPS-Markdown-URL
@@ -23,6 +25,30 @@ value = JSON-value | cell
 The instance ID precedes every operator. Repeated kinds need distinct IDs, including a positive and negated instance of the same kind.
 The `total` parameter aliases cage `sum`; the writer uses `total`.
 The cell path lists each cell explicitly; r1c1-r1c3 names two cells, not a three-cell range.
+
+## Pair relationships and Kropki
+
+The parameter declarations on [pair](pair.md) define its keyword grammar. Write two cells, the relationship keyword, then a whole-number value where needed:
+
+```rules
+pair-1: pair r1c1-r1c2 ratio 3
+pair-2: pair r4c4-r4c5 difference 2
+pair-3: pair r2c2-r3c2 sum 10
+pair-4: pair r5c1-r5c2 at-least 4
+pair-5: pair r6c1-r6c2 less
+pair-6: pair r7c1-r7c2 multiple
+pair-7: pair r8c1-r8c2 shift
+```
+
+`less`, `multiple` and `shift` take no value. `less` preserves the cells' order. The page defines each relationship. Pair lines no longer use a `relation` JSON object.
+
+[Kropki](kropki.md) is shorthand: `kropki r1c1-r1c2 white` means `pair r1c1-r1c2 difference 1`; `kropki r1c1-r1c2 black` means `pair r1c1-r1c2 ratio 2`. The existing named forms `colour "white"` and `colour "black"` are accepted too. These names state relationships; the dot's painted colour is drawing metadata. Use pair for ratio 3, difference n, sum n, grey or brown dots, and other relationships.
+
+### Declaring keyword syntax
+
+A typed parameter may opt into `syntax: {form: cells, count: 2}` for its primary cell list. Its companion parameter declares `form: keywords`, a `tag` naming a record's enum field, and `choices` mapping every enum member to an ordered mapping of operand fields and their line types. For pair, `ratio: {value: integer}` builds `{op: "ratio", value: 3}` from `ratio 3`; `less: {}` builds `{op: "less"}`. Integer operands are kept exactly, without floating-point rounding. This line notation does not narrow the formula's numeric domain.
+
+A plain enum uses keyword choices without a tag. `named: true` also accepts the parameter name followed by its keyword or quoted keyword; Kropki uses this to preserve existing case files. Declarations must match their parameter types. This grammar applies by declaration to any kind; no kind names or operation names are built into the parser.
 
 ## Negation and conditions
 

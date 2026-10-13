@@ -14,16 +14,16 @@ givens: r1c2=1 r9c9=2
 
 ```rules
 sudoku 9x9
-pair-1: pair r7c4-r7c5 relation {"op":"sum","value":10}
-pair-2: pair r4c7-r5c7 relation {"op":"sum","value":10}
-pair-3: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-4: pair r7c8-r7c9 relation {"op":"sum","value":10}
-pair-5: pair r2c9-r3c9 relation {"op":"sum","value":10}
-pair-6: pair r5c2-r6c2 relation {"op":"sum","value":10}
-pair-7: pair r2c4-r2c5 relation {"op":"sum","value":5}
-pair-8: pair r7c5-r7c6 relation {"op":"sum","value":5}
-pair-9: pair r5c7-r6c7 relation {"op":"sum","value":5}
-pair-10: pair r7c1-r8c1 relation {"op":"sum","value":5}
+pair-1: pair r7c4-r7c5 sum 10
+pair-2: pair r4c7-r5c7 sum 10
+pair-3: pair r9c7-r9c8 sum 10
+pair-4: pair r7c8-r7c9 sum 10
+pair-5: pair r2c9-r3c9 sum 10
+pair-6: pair r5c2-r6c2 sum 10
+pair-7: pair r2c4-r2c5 sum 5
+pair-8: pair r7c5-r7c6 sum 5
+pair-9: pair r5c7-r6c7 sum 5
+pair-10: pair r7c1-r8c1 sum 5
 ```
 
 ```drawing

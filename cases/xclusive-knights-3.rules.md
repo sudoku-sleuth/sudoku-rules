@@ -12,9 +12,9 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 anti-knight
-pair-1: pair r6c1-r6c2 relation {"op":"sum","value":10}
-pair-2: pair r7c8-r7c9 relation {"op":"sum","value":10}
-pair-3: pair r2c3-r3c3 relation {"op":"sum","value":10}
+pair-1: pair r6c1-r6c2 sum 10
+pair-2: pair r7c8-r7c9 sum 10
+pair-3: pair r2c3-r3c3 sum 10
 ```
 
 ```drawing

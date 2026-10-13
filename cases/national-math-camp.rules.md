@@ -18,16 +18,16 @@ whispers-5: whispers r8c5-r7c5-r6c5-r6c6-r7c6 gap 4
 whispers-6: whispers r7c6-r7c5 gap 4
 whispers-7: whispers r6c8-r7c8-r8c8-r7c9-r6c9 gap 4
 whispers-8: whispers r8c9-r7c9 gap 4
-pair-1: pair r3c1-r4c1 relation {"op":"sum","value":10}
-pair-2: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-3: pair r3c6-r3c7 relation {"op":"sum","value":10}
-pair-4: pair r7c1-r7c2 relation {"op":"sum","value":10}
-pair-5: pair r6c4-r7c4 relation {"op":"sum","value":10}
-pair-6: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-7: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-8: pair r4c9-r5c9 relation {"op":"sum","value":5}
-pair-9: pair r2c5-r2c6 relation {"op":"sum","value":5}
-pair-10: pair r5c7-r6c7 relation {"op":"sum","value":5}
+pair-1: pair r3c1-r4c1 sum 10
+pair-2: pair r4c3-r4c4 sum 10
+pair-3: pair r3c6-r3c7 sum 10
+pair-4: pair r7c1-r7c2 sum 10
+pair-5: pair r6c4-r7c4 sum 10
+pair-6: pair r4c6-r5c6 sum 10
+pair-7: pair r2c4-r3c4 sum 10
+pair-8: pair r4c9-r5c9 sum 5
+pair-9: pair r2c5-r2c6 sum 5
+pair-10: pair r5c7-r6c7 sum 5
 ```
 
 **Sudoku, Whisper-4 Lines, XV Pairs**

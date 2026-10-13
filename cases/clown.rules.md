@@ -30,9 +30,9 @@ arrow-9: arrow r2c4-r1c3 bulb ["r3c4"]
 arrow-10: arrow r2c2-r1c1 bulb ["r3c3"]
 arrow-11: arrow r5c9-r6c9 bulb ["r4c8"]
 arrow-12: arrow r5c1-r6c1 bulb ["r4c2"]
-pair-1: pair r7c5-r8c5 relation {"op":"sum","value":5}
-pair-2: pair r3c9-r4c9 relation {"op":"sum","value":5}
-pair-3: pair r3c1-r4c1 relation {"op":"sum","value":5}
+pair-1: pair r7c5-r8c5 sum 5
+pair-2: pair r3c9-r4c9 sum 5
+pair-3: pair r3c1-r4c1 sum 5
 ```
 
 Normal Sudokuy rules apply. ARROWS- Numbers on arrows sum to the number in the arrow's circle. Numbers do not repeat on arrows. KROPKI PAIRS- Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. XV PAIRS- Numbers with a V between them sum to 5. Not all possible dots and V are shown.

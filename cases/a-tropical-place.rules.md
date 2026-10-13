@@ -22,9 +22,9 @@ cage-9: cage r5c7-r6c7 total 7 connected true
 kropki-1: kropki r6c5-r6c6 colour "white"
 kropki-2: kropki r1c6-r1c7 colour "white"
 kropki-3: kropki r1c8-r2c8 colour "black"
-pair-1: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-2: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-3: pair r1c1-r1c2 relation {"op":"sum","value":5}
+pair-1: pair r4c2-r5c2 sum 10
+pair-2: pair r4c8-r5c8 sum 10
+pair-3: pair r1c1-r1c2 sum 5
 parity-cells r7c8-r4c1-r3c3-r9c6 parity "even"
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8

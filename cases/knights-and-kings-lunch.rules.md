@@ -16,11 +16,11 @@ anti-knight
 anti-king
 kropki-1: kropki r8c9-r9c9 colour "black"
 kropki-2: kropki r2c8-r3c8 colour "black"
-pair-1: pair r7c4-r8c4 relation {"op":"sum","value":5}
-pair-2: pair r1c6-r2c6 relation {"op":"sum","value":5}
-pair-3: pair r6c8-r6c9 relation {"op":"sum","value":5}
-pair-4: pair r5c2-r6c2 relation {"op":"sum","value":5}
-pair-5: pair r2c1-r2c2 relation {"op":"sum","value":5}
+pair-1: pair r7c4-r8c4 sum 5
+pair-2: pair r1c6-r2c6 sum 5
+pair-3: pair r6c8-r6c9 sum 5
+pair-4: pair r5c2-r6c2 sum 5
+pair-5: pair r2c1-r2c2 sum 5
 sandwich r2c1-r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9 sum 13
 ```
 

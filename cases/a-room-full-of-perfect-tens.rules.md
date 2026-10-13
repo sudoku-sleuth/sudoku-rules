@@ -33,7 +33,7 @@ kropki-2: kropki r5c9-r6c9 colour "black"
 kropki-3: kropki r6c9-r7c9 colour "black"
 whispers-1: whispers r1c7-r2c6-r3c5-r4c4-r5c3-r6c2-r7c1 gap 5
 whispers-2: whispers r3c9-r4c8-r5c7-r6c6-r7c5-r8c4-r9c3 gap 5
-pair r4c9-r5c9 relation {"op":"sum","value":5}
+pair r4c9-r5c9 sum 5
 ```
 
 Normal Sudoku rules apply. GERMAN WHISPERS- Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers may repeat on green lines, if other rules allow. KILLER CAGES- Numbers in cages sum to 10. RATIO PAIRS- Numbers with a black dot between them are in a ratio of 2:1. XV PAIRS- Numbers with a V between them sum to 5. Not all possible dots and V are given.

@@ -21,11 +21,11 @@ whispers-6: whispers r5c6-r4c6-r4c7-r3c7-r3c8-r2c8-r2c7-r3c7 gap 5
 whispers-7: whispers r4c6-r3c6-r3c7 gap 5
 whispers-8: whispers r6c7-r7c7-r8c7-r8c8-r7c8-r7c7 gap 5
 whispers-9: whispers r7c7-r7c6 gap 5
-pair-1: pair r8c6-r8c7 relation {"op":"sum","value":10}
-pair-2: pair r5c9-r6c9 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":5}
-pair-4: pair r1c4-r1c5 relation {"op":"sum","value":5}
-pair-5: pair r8c6-r9c6 relation {"op":"sum","value":5}
+pair-1: pair r8c6-r8c7 sum 10
+pair-2: pair r5c9-r6c9 sum 10
+pair-3: pair r4c1-r5c1 sum 5
+pair-4: pair r1c4-r1c5 sum 5
+pair-5: pair r8c6-r9c6 sum 5
 ```
 
 German whispers, X/V, Killer cages

@@ -33,7 +33,7 @@ renban-7: renban r5c1-r4c1-r4c2-r4c3-r5c3
 renban-8: renban r5c7-r6c7-r6c8-r6c9-r5c9
 renban-9: renban r4c5-r4c4-r5c4-r6c4
 renban-10: renban r6c5-r6c6-r5c6-r4c6
-pair r5c5-r6c5 relation {"op":"sum","value":10}
+pair r5c5-r6c5 sum 10
 ```
 
 Normal Sudoku rules apply. Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers on purple lines are a set of non-repeating consecutive numbers, in any order. Numbers with a black dot between them are in a ratio of 2:1. Numbers with a white dot between them are consecutive. Numbers with an X between them sum to 10. Not all dots and X are given.

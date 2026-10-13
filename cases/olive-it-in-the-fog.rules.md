@@ -34,8 +34,8 @@ palindrome r5c2-r4c2-r3c3-r2c4-r2c5
 renban r9c7-r8c7-r8c8-r7c8-r6c8-r5c8
 region-sum r7c5-r7c4-r6c3-r5c3-r4c3-r3c4-r3c5-r3c6-r4c7-r5c7 segments [["r7c5","r7c4"],["r6c3","r5c3","r4c3"],["r3c4","r3c5","r3c6"],["r4c7","r5c7"]]
 nabner r8c3-r9c3-r9c4-r8c4 distinct true
-pair-1: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r5c7-r6c7 relation {"op":"sum","value":5}
+pair-1: pair r5c4-r6c4 sum 10
+pair-2: pair r5c7-r6c7 sum 5
 parity-cells r3c4 parity "odd"
 ```
 

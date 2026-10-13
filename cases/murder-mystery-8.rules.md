@@ -146,11 +146,11 @@ whispers-1: whispers r1c7-r2c8-r3c9-r2c9-r1c9 loop false gap 5
 whispers-2: whispers r3c7-r3c8-r3c9 loop false gap 5
 whispers-3: whispers r1c8-r1c9 loop false gap 5
 whispers-4: whispers r2c7-r3c7 loop false gap 5
-pair-1: pair r7c3-r8c3 relation {"op":"sum","value":10}
-pair-2: pair r8c1-r8c2 relation {"op":"sum","value":10}
-pair-3: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-4: pair r7c1-r7c2 relation {"op":"sum","value":10}
-pair-5: pair r7c2-r8c2 relation {"op":"sum","value":5}
+pair-1: pair r7c3-r8c3 sum 10
+pair-2: pair r8c1-r8c2 sum 10
+pair-3: pair r9c1-r9c2 sum 10
+pair-4: pair r7c1-r7c2 sum 10
+pair-5: pair r7c2-r8c2 sum 5
 quadruple-1: quadruple r5c7-r5c8-r6c7-r6c8 digits [5]
 quadruple-2: quadruple r2c5-r2c6-r3c5-r3c6 digits [9]
 ```

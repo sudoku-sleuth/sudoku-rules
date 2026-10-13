@@ -13,7 +13,7 @@ flags:
 
 ```rules
 sudoku 9x9
-pair r7c7-r7c6 relation {"op":"less"}
+pair r7c7-r7c6 less
 ```
 
 ```drawing

@@ -24,8 +24,8 @@ whispers-3: whispers r4c7-r5c6-r6c5-r7c5-r8c5-r8c4-r8c3 gap 5
 whispers-4: whispers r6c5-r7c6-r8c7-r9c8 gap 5
 whispers-5: whispers r4c4-r5c3-r6c2-r7c2-r8c2-r8c1 gap 5
 whispers-6: whispers r5c2-r4c3-r4c4-r5c5-r5c6 gap 5
-pair-1: pair r7c2-r7c3 relation {"op":"sum","value":5}
-pair-2: pair r1c2-r2c2 relation {"op":"sum","value":5}
+pair-1: pair r7c2-r7c3 sum 5
+pair-2: pair r1c2-r2c2 sum 5
 extremum r3c5-r3c8 type "max" exhaustive false
 ```
 

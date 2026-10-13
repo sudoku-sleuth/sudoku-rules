@@ -137,12 +137,12 @@ unique-24: unique r4c7-r4c8-r4c9-r5c7-r5c8-r5c9-r6c7-r6c8-r6c9
 unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
 unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
-pair-1: pair r5c9-r6c9 relation {"op":"sum","value":10}
-pair-2: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-3: pair r7c5-r7c6 relation {"op":"sum","value":10}
-pair-4: pair r2c6-r2c7 relation {"op":"sum","value":10}
-pair-5: pair r6c8-r6c9 relation {"op":"sum","value":5}
-pair-6: pair r2c9-r3c9 relation {"op":"sum","value":5}
+pair-1: pair r5c9-r6c9 sum 10
+pair-2: pair r1c1-r1c2 sum 10
+pair-3: pair r7c5-r7c6 sum 10
+pair-4: pair r2c6-r2c7 sum 10
+pair-5: pair r6c8-r6c9 sum 5
+pair-6: pair r2c9-r3c9 sum 5
 negative relations [{"op":"sum","value":5}] except [["r6c8","r6c9"],["r5c9","r6c9"],["r2c9","r3c9"],["r1c1","r1c2"],["r7c5","r7c6"],["r2c6","r2c7"]]
 ```
 

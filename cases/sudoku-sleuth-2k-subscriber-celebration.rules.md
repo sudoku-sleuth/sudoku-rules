@@ -20,11 +20,11 @@ kropki-6: kropki r1c2-r1c3 colour "white"
 arrow-1: arrow r4c6-r3c6-r2c6 bulb ["r5c6"]
 arrow-2: arrow r6c7-r7c8-r8c9 bulb ["r5c6"]
 whispers r4c1-r3c1-r2c2-r2c3-r3c4-r4c4-r5c3-r6c2-r7c1-r8c1-r8c2-r8c3-r8c4 gap 5
-pair-1: pair r8c2-r8c3 relation {"op":"sum","value":10}
-pair-2: pair r7c1-r8c1 relation {"op":"sum","value":10}
-pair-3: pair r1c4-r1c5 relation {"op":"sum","value":10}
-pair-4: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-5: pair r5c8-r5c9 relation {"op":"sum","value":5}
+pair-1: pair r8c2-r8c3 sum 10
+pair-2: pair r7c1-r8c1 sum 10
+pair-3: pair r1c4-r1c5 sum 10
+pair-4: pair r4c4-r4c5 sum 10
+pair-5: pair r5c8-r5c9 sum 5
 ```
 
 ```drawing

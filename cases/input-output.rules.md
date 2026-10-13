@@ -19,14 +19,14 @@ palindrome-5: palindrome r5c1-r5c2-r4c3-r3c4-r2c4-r1c4
 palindrome-6: palindrome r2c7-r3c7-r4c8-r5c8
 palindrome-7: palindrome r2c8-r3c8-r4c9-r5c9-r6c9
 palindrome-8: palindrome r6c6-r6c5-r6c4-r7c3-r8c3-r9c3
-pair-1: pair r5c7-r6c7 relation {"op":"sum","value":10}
-pair-2: pair r6c8-r7c8 relation {"op":"sum","value":10}
-pair-3: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-4: pair r5c2-r6c2 relation {"op":"sum","value":10}
-pair-5: pair r2c7-r2c8 relation {"op":"sum","value":10}
-pair-6: pair r7c2-r7c3 relation {"op":"sum","value":10}
-pair-7: pair r4c5-r5c5 relation {"op":"sum","value":5}
-pair-8: pair r3c5-r3c6 relation {"op":"sum","value":5}
+pair-1: pair r5c7-r6c7 sum 10
+pair-2: pair r6c8-r7c8 sum 10
+pair-3: pair r9c3-r9c4 sum 10
+pair-4: pair r5c2-r6c2 sum 10
+pair-5: pair r2c7-r2c8 sum 10
+pair-6: pair r7c2-r7c3 sum 10
+pair-7: pair r4c5-r5c5 sum 5
+pair-8: pair r3c5-r3c6 sum 5
 ```
 
 **Sudoku, Palindromes, XV Pairs**

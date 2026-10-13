@@ -33,7 +33,7 @@ kropki-1: kropki r2c5-r3c5 colour "white"
 kropki-2: kropki r7c5-r8c5 colour "white"
 kropki-3: kropki r6c5-r7c5 colour "white"
 kropki-4: kropki r2c9-r3c9 colour "white"
-pair r3c1-r4c1 relation {"op":"sum","value":10}
+pair r3c1-r4c1 sum 10
 ```
 
 Normal Sudoku rules apply. Numbers in cages sum to the number in the top left corner of the cage. Numbers do not repeat in cages. Numbers with a white dot between them are consecutive. Numbers with an X between them sum to 10. Not all possible dots and X are given.

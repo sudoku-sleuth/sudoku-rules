@@ -16,10 +16,10 @@ cage-2: cage r2c5-r2c6-r2c7-r2c8-r3c6-r3c7-r3c8-r4c6-r4c7 connected true
 cage-3: cage r2c4-r3c4-r4c4-r4c5-r5c2-r5c3-r5c4-r5c5-r6c4 connected true
 cage-4: cage r5c7-r6c7-r6c8-r7c5-r7c6-r7c7-r7c8-r8c7-r9c7 connected true
 cage-5: cage r6c3-r7c3-r7c4-r8c3-r8c4-r9c2-r9c3-r9c4-r9c5 connected true
-pair-1: pair r5c3-r6c3 relation {"op":"difference","value":8}
-pair-2: pair r7c4-r7c5 relation {"op":"difference","value":3}
-pair-3: pair r2c4-r2c5 relation {"op":"difference","value":2}
-pair-4: pair r1c6-r2c6 relation {"op":"difference","value":4}
+pair-1: pair r5c3-r6c3 difference 8
+pair-2: pair r7c4-r7c5 difference 3
+pair-3: pair r2c4-r2c5 difference 2
+pair-4: pair r1c6-r2c6 difference 4
 kropki r4c5-r4c6 colour "white"
 ```
 

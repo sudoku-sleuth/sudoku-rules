@@ -49,11 +49,11 @@ kropki-36: kropki r6c1-r6c2 colour "white"
 kropki-37: kropki r5c1-r6c1 colour "white"
 kropki-38: kropki r4c5-r5c5 colour "white"
 kropki-39: kropki r8c4-r8c5 colour "white"
-pair-1: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-3: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-4: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-5: pair r5c6-r6c6 relation {"op":"sum","value":5}
+pair-1: pair r5c4-r6c4 sum 10
+pair-2: pair r4c4-r4c5 sum 10
+pair-3: pair r4c6-r5c6 sum 10
+pair-4: pair r6c5-r6c6 sum 10
+pair-5: pair r5c6-r6c6 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Numbers with a white dot between them are consecutive. Not all X, V and dots are given.

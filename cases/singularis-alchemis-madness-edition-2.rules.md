@@ -90,7 +90,7 @@ parity r6c4-r6c3-r5c3 loop false
 whispers-2: whispers r1c1-r2c1 loop false gap 2
 renban r4c5-r3c5-r4c6
 region-sum r3c6-r2c6-r1c6 segments [["r3c6"],["r2c6","r1c6"]]
-pair r5c4-r5c5 relation {"op":"sum","value":5}
+pair r5c4-r5c5 sum 5
 quadruple r4c5-r4c6-r5c5-r5c6 digits [1,2,3]
 parity-cells-1: parity-cells r1c2 parity "odd"
 parity-cells-2: parity-cells r6c5 parity "even"

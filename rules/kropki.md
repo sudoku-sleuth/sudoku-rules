@@ -7,10 +7,15 @@ parameters:
     description: "The relationship: white means difference 1; black means ratio 2."
     default: Required.
     type: enum{white,black}
+    syntax:
+      form: keywords
+      named: true
+      choices: {white: {}, black: {}}
   cells:
-    description: The marked cells, for example r1c1-r1c2-r2c2.
+    description: The two marked cells in order, for example r1c1-r1c2.
     default: Required.
     type: list<cell>
+    syntax: {form: cells, count: 2}
 ---
 
 # Kropki
@@ -22,7 +27,16 @@ A white relation joins values one apart. A black relation joins values where one
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | colour | The relationship: white means difference 1; black means ratio 2. | Required. |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| cells | The two marked cells in order, for example r1c1-r1c2. | Required. |
+
+## Rule lines
+
+Kropki is a named shorthand for [pair](pair.md):
+
+- `kropki r1c1-r1c2 white` means `pair r1c1-r1c2 difference 1`.
+- `kropki r1c1-r1c2 black` means `pair r1c1-r1c2 ratio 2`.
+
+Here `white` and `black` name relationships, not paint instructions. A dot's actual colour stays drawing metadata. For ratio 3, grey or brown dots, difference n, sum n and every other relationship, use [pair's keyword forms](pair.md). Case files state the relationship explicitly. Existing `colour "white"` and `colour "black"` spellings are also accepted.
 
 ## Maths
 
@@ -52,7 +66,7 @@ status: read
 
 ```rules
 sudoku 9x9
-kropki r1c1-r1c2 colour "black"
+kropki r1c1-r1c2 black
 ```
 ````
 

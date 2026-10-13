@@ -14,14 +14,14 @@ cage-1: cage r1c8-r1c9-r2c8-r2c9 total 10 connected true
 cage-2: cage r8c8-r8c9-r9c8-r9c9 total 14 connected true
 cage-3: cage r8c1-r8c2-r9c1-r9c2 total 20 connected true
 cage-4: cage r1c1-r1c2-r2c1-r2c2 total 19 connected true
-pair-1: pair r3c8-r4c8 relation {"op":"difference","value":2}
-pair-2: pair r2c6-r2c7 relation {"op":"difference","value":2}
-pair-3: pair r2c4-r2c5 relation {"op":"difference","value":2}
-pair-4: pair r3c2-r4c2 relation {"op":"difference","value":2}
-pair-5: pair r7c9-r8c9 relation {"op":"difference","value":2}
-pair-6: pair r5c2-r6c2 relation {"op":"difference","value":2}
-pair-7: pair r4c5-r4c6 relation {"op":"difference","value":2}
-pair-8: pair r5c5-r5c6 relation {"op":"difference","value":2}
+pair-1: pair r3c8-r4c8 difference 2
+pair-2: pair r2c6-r2c7 difference 2
+pair-3: pair r2c4-r2c5 difference 2
+pair-4: pair r3c2-r4c2 difference 2
+pair-5: pair r7c9-r8c9 difference 2
+pair-6: pair r5c2-r6c2 difference 2
+pair-7: pair r4c5-r4c6 difference 2
+pair-8: pair r5c5-r5c6 difference 2
 kropki-1: kropki r6c7-r7c7 colour "black"
 kropki-2: kropki r7c6-r7c7 colour "black"
 kropki-3: kropki r6c3-r7c3 colour "black"

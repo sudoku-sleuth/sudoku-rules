@@ -33,8 +33,8 @@ whispers-6: whispers r1c9-r2c8-r3c7-r4c6 gap 5
 whispers-7: whispers r3c7-r2c7-r2c6-r3c6 gap 5
 whispers-8: whispers r3c6-r3c7 gap 5
 renban r9c9-r8c8-r7c7-r6c8-r5c9-r4c8-r3c7-r4c7-r4c6
-pair-1: pair r2c7-r3c7 relation {"op":"sum","value":10}
-pair-2: pair r3c6-r3c7 relation {"op":"sum","value":10}
+pair-1: pair r2c7-r3c7 sum 10
+pair-2: pair r3c6-r3c7 sum 10
 ```
 
 Normal Sudoku rules apply. Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers may repeat on green lines. Numbers on the purple line are a set of non-repeating consecutive numbers, in any order. Numbers in cages sum to the number in the top left corner of the cage. Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. Numbers with an X between them sum to 10. Not all dots and X are given.

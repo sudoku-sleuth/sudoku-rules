@@ -36,7 +36,7 @@ nabner-5: nabner r7c5-r8c4-r9c5-r8c6
 nabner-6: nabner r2c8-r2c9-r3c9
 nabner-7: nabner r4c2-r5c3-r6c3
 nabner-8: nabner r4c4-r3c5-r3c6
-pair r4c7-r4c8 relation {"op":"sum","value":5}
+pair r4c7-r4c8 sum 5
 ```
 
 Normal Sudoku Rules apply.

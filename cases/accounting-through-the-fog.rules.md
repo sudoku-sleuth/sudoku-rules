@@ -156,10 +156,10 @@ kropki-5: kropki r3c1-r3c2 colour "black"
 kropki-6: kropki r4c2-r5c2 colour "black"
 kropki-7: kropki r4c5-r5c5 colour "black"
 region-sum r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r2c8-r3c7-r3c6-r3c5-r4c5-r4c6-r4c7-r5c8-r6c9-r7c8-r7c7-r8c6-r8c5-r7c5-r8c4-r8c3-r7c3-r6c3-r5c3-r4c2-r3c2-r2c2-r2c1-r1c1 segments [["r1c2","r1c3"],["r1c4","r1c5","r1c6"],["r1c7","r2c8","r3c7"],["r3c6","r3c5"],["r4c5","r4c6"],["r4c7","r5c8","r6c9"],["r7c8","r7c7"],["r8c6","r8c5","r7c5","r8c4"],["r8c3","r7c3"],["r6c3","r5c3","r4c2"],["r3c2","r2c2","r2c1","r1c1"]]
-pair-1: pair r1c2-r2c2 relation {"op":"sum","value":10}
-pair-2: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-3: pair r2c2-r3c2 relation {"op":"sum","value":5}
-pair-4: pair r8c4-r9c4 relation {"op":"sum","value":5}
+pair-1: pair r1c2-r2c2 sum 10
+pair-2: pair r4c3-r4c4 sum 10
+pair-3: pair r2c2-r3c2 sum 5
+pair-4: pair r8c4-r9c4 sum 5
 ```
 
 •    Normal Sudoku rules apply. 

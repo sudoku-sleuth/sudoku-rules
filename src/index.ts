@@ -6,3 +6,5 @@ export * from "./language/checker.js";
 export * from "./library.js";
 
 export * from "./documents.js";
+
+export * from "./rule-lines.js";

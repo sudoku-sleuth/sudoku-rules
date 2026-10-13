@@ -21,7 +21,7 @@ region-sum-1: region-sum r4c3-r3c3-r2c3-r2c4-r2c2 segments [["r4c3"],["r3c3","r2
 region-sum-2: region-sum r5c4-r4c4-r4c5-r3c5-r3c4-r5c5 segments [["r5c4","r4c4","r4c5","r5c5"],["r3c5","r3c4"]]
 region-sum-3: region-sum r4c6-r3c6-r2c6 segments [["r4c6"],["r3c6","r2c6"]]
 region-sum-4: region-sum r5c7-r5c8-r4c8-r4c7-r3c7-r3c8 segments [["r5c7","r5c8","r4c8","r4c7"],["r3c7","r3c8"]]
-pair r1c5-r1c6 relation {"op":"sum","value":5}
+pair r1c5-r1c6 sum 5
 little-killer-1: little-killer r1c3-r2c2-r3c1 sum 10
 little-killer-2: little-killer r7c1-r8c2-r9c3 sum 10
 little-killer-3: little-killer r9c7-r8c8-r7c9 sum 10

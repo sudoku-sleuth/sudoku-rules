@@ -29,9 +29,9 @@ whispers-3: whispers r5c9-r5c8-r5c7-r5c6-r6c6-r6c7-r6c8-r6c9 gap 5
 whispers-4: whispers r8c7-r9c8-r8c9-r7c9-r6c8 gap 5
 whispers-5: whispers r7c3-r8c2-r7c1-r6c1-r5c2 gap 5
 whispers-6: whispers r4c1-r4c2-r4c3-r4c4-r5c4-r5c3-r5c2 gap 5
-pair-1: pair r7c2-r8c2 relation {"op":"sum","value":5}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-3: pair r2c2-r2c3 relation {"op":"sum","value":5}
+pair-1: pair r7c2-r8c2 sum 5
+pair-2: pair r3c7-r3c8 sum 5
+pair-3: pair r2c2-r2c3 sum 5
 ```
 
 Normal Sudoku rules apply. German Whispers Lines- Numbers on red lines are at least 5 apart from their neighbors on the line. Numbers with a white dot between them are consecutive. Numbers with a V between them sum to 5.

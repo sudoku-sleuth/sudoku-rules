@@ -13,13 +13,13 @@ drawingCoverage: unclaimed-only
 sudoku 9x9
 cage-1: cage r8c3-r9c3 total 17 connected true
 cage-2: cage r4c5-r5c5 total 6 connected true
-pair-1: pair r8c1-r9c1 relation {"op":"sum","value":5}
-pair-2: pair r6c1-r7c1 relation {"op":"sum","value":5}
-pair-3: pair r6c3-r7c3 relation {"op":"sum","value":5}
-pair-4: pair r4c2-r5c2 relation {"op":"sum","value":5}
-pair-5: pair r2c2-r3c2 relation {"op":"sum","value":5}
-pair-6: pair r5c5-r6c5 relation {"op":"sum","value":5}
-pair-7: pair r1c7-r2c7 relation {"op":"sum","value":5}
+pair-1: pair r8c1-r9c1 sum 5
+pair-2: pair r6c1-r7c1 sum 5
+pair-3: pair r6c3-r7c3 sum 5
+pair-4: pair r4c2-r5c2 sum 5
+pair-5: pair r2c2-r3c2 sum 5
+pair-6: pair r5c5-r6c5 sum 5
+pair-7: pair r1c7-r2c7 sum 5
 extremum r3c1-r4c4-r6c2-r2c6-r7c5 type "max" exhaustive false
 ```
 

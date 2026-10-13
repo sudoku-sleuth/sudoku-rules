@@ -23,7 +23,7 @@ kropki-3: kropki r5c4-r5c5 colour "white"
 kropki-4: kropki r7c1-r8c1 colour "white"
 kropki-5: kropki r2c5-r2c6 colour "white"
 kropki-6: kropki r4c4-r5c4 colour "black"
-pair r4c2-r5c2 relation {"op":"sum","value":5}
+pair r4c2-r5c2 sum 5
 negative relations [{"op":"sum","value":5}] except [["r4c2","r5c2"],["r5c2","r5c3"],["r5c3","r5c4"],["r5c4","r5c5"],["r7c1","r8c1"],["r2c5","r2c6"],["r4c4","r5c4"]]
 little-killer-1: little-killer r1c5-r2c4-r3c3-r4c2-r5c1 sum 25
 little-killer-2: little-killer r1c3-r2c2-r3c1 sum 17

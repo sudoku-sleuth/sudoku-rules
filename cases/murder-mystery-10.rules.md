@@ -145,9 +145,9 @@ arrow-1: arrow r5c5-r6c4 bulb ["r4c6"]
 arrow-2: arrow r4c4-r5c4 bulb ["r4c5"]
 whispers r9c1-r9c2-r9c3-r8c3-r8c2-r8c1-r7c1-r7c2-r7c3 loop false gap 5
 renban r4c1-r5c2-r5c3
-pair-1: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-2: pair r1c3-r2c3 relation {"op":"sum","value":10}
-pair-3: pair r2c1-r2c2 relation {"op":"sum","value":5}
+pair-1: pair r1c1-r1c2 sum 10
+pair-2: pair r1c3-r2c3 sum 10
+pair-3: pair r2c1-r2c2 sum 5
 parity-cells-1: parity-cells r4c8-r8c6-r3c4 parity "odd"
 parity-cells-2: parity-cells r5c7-r3c5-r9c4 parity "even"
 allowed-digits-1: allowed-digits r2c7-r2c8-r3c7-r3c8 digits [0,3,5,6,7,8]

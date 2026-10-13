@@ -13,15 +13,15 @@ givens: r1c9=6 r5c3=1 r8c5=2
 ```rules
 sudoku 9x9
 anti-king
-pair-1: pair r7c8-r8c8 relation {"op":"ratio","value":3}
+pair-1: pair r7c8-r8c8 ratio 3
 kropki-1: kropki r3c7-r4c7 colour "black"
-pair-2: pair r7c7-r7c8 relation {"op":"ratio","value":4}
+pair-2: pair r7c7-r7c8 ratio 4
 kropki-2: kropki r7c4-r7c5 colour "black"
-pair-3: pair r1c1-r2c1 relation {"op":"ratio","value":4}
+pair-3: pair r1c1-r2c1 ratio 4
 kropki-3: kropki r5c1-r6c1 colour "black"
 kropki-4: kropki r1c4-r1c5 colour "black"
 kropki-5: kropki r2c1-r3c1 colour "black"
-pair-4: pair r3c1-r3c2 relation {"op":"ratio","value":3}
+pair-4: pair r3c1-r3c2 ratio 3
 ```
 
 ```drawing

@@ -29,10 +29,10 @@ modular-2: modular r4c7-r4c8-r5c8-r6c8-r7c8-r7c7-r6c7
 modular-3: modular r2c3-r1c2-r2c2-r3c2
 modular-4: modular r5c2-r5c3-r5c4
 modular-5: modular r1c4-r2c5
-pair-1: pair r1c8-r2c8 relation {"op":"sum","value":10}
-pair-2: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-3: pair r8c1-r8c2 relation {"op":"sum","value":10}
-pair-4: pair r2c1-r2c2 relation {"op":"sum","value":10}
+pair-1: pair r1c8-r2c8 sum 10
+pair-2: pair r7c7-r8c7 sum 10
+pair-3: pair r8c1-r8c2 sum 10
+pair-4: pair r2c1-r2c2 sum 10
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

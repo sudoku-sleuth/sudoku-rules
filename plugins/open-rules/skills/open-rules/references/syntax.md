@@ -31,7 +31,7 @@ whispers-2: whispers r5c1-r5c2 gap 5
 
 Without an explicit ID, the canonical kind is the ID. Repeated kinds need unique IDs, such as `thermo-1`, `thermo-2`. Do not reuse the standard board's `row-1` through `row-9`, `col-1` through `col-9`, or `box-1` through `box-9` IDs. Drawing records refer to instance IDs.
 
-Values use JSON syntax: numbers, `true`/`false`, quoted strings, arrays, and objects. A single cell may be unquoted. Use rXcY strings for cells inside arrays and nested groups. IDs or parameter names containing spaces use JSON quotes.
+Named parameter values usually use JSON syntax: numbers, `true`/`false`, quoted strings, arrays, and objects. A single cell may be unquoted. Use rXcY strings for cells inside arrays and nested groups. IDs or parameter names containing spaces use JSON quotes.
 
 ```rules
 arrow r2c2-r2c3 bulb ["r2c1"]
@@ -39,6 +39,24 @@ equal-sums groups [["r1c1","r1c2"],["r2c1"]]
 ```
 
 The short names `whisper` and `killer` alias `whispers` and `cage`. Prefer the canonical names. `gap` is the difference parameter for whisper rules. A named `line` aliases `cells` on supported cell-list rules; a primary path is the usual spelling. For other named fields, check the published page and its worked syntax; do not invent a parameter spelling from the drawing.
+
+## Pair relationships and Kropki
+
+Use the keywords declared on the pair page, rather than a JSON relation object:
+
+```rules
+pair-1: pair r1c1-r1c2 ratio 3
+pair-2: pair r4c4-r4c5 difference 2
+pair-3: pair r2c2-r3c2 sum 10
+pair-4: pair r5c1-r5c2 at-least 3
+pair-5: pair r6c1-r6c2 less
+pair-6: pair r7c1-r7c2 multiple
+pair-7: pair r8c1-r8c2 shift
+```
+
+The first four forms take a whole-number value; the last three take no value. `less` means the first cell's value is smaller. Check the [pair page](https://rules.sudoku-sleuth.com/pair.md) for every relationship's meaning, particularly shift. The parser derives these forms from the page's parameter declarations.
+
+[Kropki](https://rules.sudoku-sleuth.com/kropki.md) names two pair relationships: `kropki r1c1-r1c2 white` is `pair r1c1-r1c2 difference 1`; `kropki r1c1-r1c2 black` is `pair r1c1-r1c2 ratio 2`. Existing `colour "white"`/`colour "black"` spellings also work. A dot's painted colour stays drawing metadata. State the relationship, using pair for ratio 3, grey/brown dots, difference n or sum n; do not infer it from an unfamiliar colour. Ask the setter when it is ambiguous.
 
 ## Custom rules
 

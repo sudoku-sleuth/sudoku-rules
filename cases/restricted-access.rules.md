@@ -43,18 +43,18 @@ givens: r1c3=5 r9c7=5
 sudoku 9x9
 kropki-1: kropki r6c1-r7c1 colour "black"
 kropki-2: kropki r3c9-r4c9 colour "black"
-pair-1: pair r7c7-r8c7 relation {"op":"sum","value":10}
-pair-2: pair r8c6-r8c7 relation {"op":"sum","value":10}
-pair-3: pair r8c2-r9c2 relation {"op":"sum","value":5}
-pair-4: pair r7c3-r8c3 relation {"op":"sum","value":5}
-pair-5: pair r7c3-r7c4 relation {"op":"sum","value":5}
-pair-6: pair r6c4-r7c4 relation {"op":"sum","value":5}
-pair-7: pair r6c4-r6c5 relation {"op":"sum","value":5}
-pair-8: pair r4c5-r4c6 relation {"op":"sum","value":5}
-pair-9: pair r3c6-r4c6 relation {"op":"sum","value":5}
-pair-10: pair r3c6-r3c7 relation {"op":"sum","value":5}
-pair-11: pair r2c7-r3c7 relation {"op":"sum","value":5}
-pair-12: pair r1c8-r2c8 relation {"op":"sum","value":5}
+pair-1: pair r7c7-r8c7 sum 10
+pair-2: pair r8c6-r8c7 sum 10
+pair-3: pair r8c2-r9c2 sum 5
+pair-4: pair r7c3-r8c3 sum 5
+pair-5: pair r7c3-r7c4 sum 5
+pair-6: pair r6c4-r7c4 sum 5
+pair-7: pair r6c4-r6c5 sum 5
+pair-8: pair r4c5-r4c6 sum 5
+pair-9: pair r3c6-r4c6 sum 5
+pair-10: pair r3c6-r3c7 sum 5
+pair-11: pair r2c7-r3c7 sum 5
+pair-12: pair r1c8-r2c8 sum 5
 negative relations [{"op":"sum","value":5}] except [["r8c2","r9c2"],["r7c3","r8c3"],["r7c3","r7c4"],["r6c4","r7c4"],["r6c4","r6c5"],["r4c5","r4c6"],["r3c6","r4c6"],["r3c6","r3c7"],["r2c7","r3c7"],["r1c8","r2c8"],["r7c7","r8c7"],["r8c6","r8c7"],["r6c1","r7c1"],["r3c9","r4c9"]] stated true
 diagonal direction "main"
 ```

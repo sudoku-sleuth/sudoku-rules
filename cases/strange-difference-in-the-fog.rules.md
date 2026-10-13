@@ -171,13 +171,13 @@ kropki-4: kropki r5c6-r6c6 colour "black"
 kropki-5: kropki r2c9-r2c10 colour "black"
 kropki-6: kropki r6c8-r6c9 colour "black"
 whispers r10c3-r10c2-r9c2-r9c1-r8c1-r7c1-r6c2-r7c3-r8c4-r9c3-r9c4 loop false gap 6
-pair-1: pair r6c1-r7c1 relation {"op":"sum","value":10}
-pair-2: pair r5c1-r5c2 relation {"op":"sum","value":10}
-pair-3: pair r7c6-r7c7 relation {"op":"sum","value":10}
-pair-4: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-5: pair r9c1-r10c1 relation {"op":"sum","value":5}
-pair-6: pair r7c2-r7c3 relation {"op":"sum","value":5}
-pair-7: pair r8c3-r9c3 relation {"op":"sum","value":5}
+pair-1: pair r6c1-r7c1 sum 10
+pair-2: pair r5c1-r5c2 sum 10
+pair-3: pair r7c6-r7c7 sum 10
+pair-4: pair r4c3-r4c4 sum 10
+pair-5: pair r9c1-r10c1 sum 5
+pair-6: pair r7c2-r7c3 sum 5
+pair-7: pair r8c3-r9c3 sum 5
 little-killer-1: little-killer r8c1-r9c2-r10c3 sum 22
 little-killer-2: little-killer r7c1-r8c2-r9c3-r10c4 sum 10
 little-killer-3: little-killer r5c1-r6c2-r7c3-r8c4-r9c5-r10c6 sum 29

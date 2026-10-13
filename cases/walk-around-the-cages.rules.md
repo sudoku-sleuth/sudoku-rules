@@ -26,12 +26,12 @@ arrow-4: arrow r7c3-r7c2 bulb ["r7c4"]
 arrow-5: arrow r2c2-r3c2 bulb ["r1c2"]
 arrow-6: arrow r8c3-r8c2 bulb ["r8c4"]
 arrow-7: arrow r9c5-r9c6 bulb ["r9c4"]
-pair-1: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-2: pair r4c1-r4c2 relation {"op":"sum","value":10}
-pair-3: pair r5c1-r6c1 relation {"op":"sum","value":10}
-pair-4: pair r2c3-r3c3 relation {"op":"sum","value":5}
-pair-5: pair r4c9-r5c9 relation {"op":"sum","value":5}
-pair-6: pair r6c8-r6c9 relation {"op":"sum","value":5}
+pair-1: pair r4c3-r4c4 sum 10
+pair-2: pair r4c1-r4c2 sum 10
+pair-3: pair r5c1-r6c1 sum 10
+pair-4: pair r2c3-r3c3 sum 5
+pair-5: pair r4c9-r5c9 sum 5
+pair-6: pair r6c8-r6c9 sum 5
 ```
 
 Normal Sudoku rules apply. In a killer cage digits do not repeat. Digits on an arrow sum to the digit in the circle where the arrow emerges from. Digits joined by a V sum to 5. Digits joined by an X sum to 10. (Not all Vs and Xs are given.) Digits joined by a black dot have a 1:2 ratio. Digits joined by a white dot are consecutive. (Not all black and white dots are given.)

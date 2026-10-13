@@ -11,8 +11,8 @@ drawingCoverage: unclaimed-only
 
 ```rules
 sudoku 9x9
-pair-1: pair r5c5-r5c6 relation {"op":"sum","value":10}
-pair-2: pair r3c8-r3c9 relation {"op":"sum","value":10}
+pair-1: pair r5c5-r5c6 sum 10
+pair-2: pair r3c8-r3c9 sum 10
 anti-knight
 ```
 

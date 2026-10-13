@@ -11,13 +11,13 @@ drawingCoverage: unclaimed-only
 
 ```rules
 sudoku 9x9
-pair-1: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-2: pair r5c7-r5c8 relation {"op":"sum","value":10}
-pair-3: pair r6c4-r6c5 relation {"op":"sum","value":10}
-pair-4: pair r6c5-r7c5 relation {"op":"sum","value":10}
-pair-5: pair r3c8-r3c9 relation {"op":"sum","value":10}
-pair-6: pair r1c8-r1c9 relation {"op":"sum","value":5}
-pair-7: pair r5c2-r5c3 relation {"op":"sum","value":5}
+pair-1: pair r1c1-r1c2 sum 10
+pair-2: pair r5c7-r5c8 sum 10
+pair-3: pair r6c4-r6c5 sum 10
+pair-4: pair r6c5-r7c5 sum 10
+pair-5: pair r3c8-r3c9 sum 10
+pair-6: pair r1c8-r1c9 sum 5
+pair-7: pair r5c2-r5c3 sum 5
 ```
 
 ```drawing

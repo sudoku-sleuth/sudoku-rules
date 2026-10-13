@@ -1,3 +1,4 @@
+import { parseDeclaredRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result } from "./language/diagnostics.js";
 import { compilePage, compilePrelude, formulaBlocks, type PageSource, type CompiledPage } from "./library.js";
@@ -31,6 +32,7 @@ export function readHeader(page: PageSource): Result<Header> {
 export interface RuleRegistry {
     kinds: Set<string>;
     urls: Set<string>;
+    lines?: Map<string, LineDeclaration>;
 }
 export interface CaseReference {
     kind: string;
@@ -92,8 +94,14 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
                 catch { }
                 if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind) && !/^https?:\/\/[^\s]+\.md$/.test(kind))
                     errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} is not a rule kind or a full Markdown rule URL.`));
-                else if (url && registry.urls.has(url.href))
-                    references.push({ kind, url: url?.href ?? "", span });
+                else if (url && registry.urls.has(url.href)) {
+                    references.push({ kind, url: url.href, span });
+                    const declaration = registry.lines?.get(url.href);
+                    if (declaration) {
+                        const tail = begin + kind.length - at;
+                        errors.push(...parseDeclaredRuleLine({ file: page.file, text: line.slice(tail).trimEnd(), document: page.text, offset: at + tail }, declaration).diagnostics);
+                    }
+                }
                 else if (url && ![...registry.urls].some(address => url!.href.startsWith(new URL(".", address).href))) {
                     deferred.push(url.href);
                     references.push({ kind, url: url.href, span });
@@ -127,7 +135,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         return { diagnostics };
     const rules = new Map<string, CompiledPage>();
     const aliases = new Map<string, string>();
-    const registry: RuleRegistry = { kinds: new Set(), urls: new Set() };
+    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map() };
     let documents = 0;
     for (const page of pages) {
         const header = headers.get(page.file)?.value;
@@ -167,13 +175,25 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         }
         const checked = compilePage(page, parsed.value);
         diagnostics.push(...checked.diagnostics);
-        if (checked.value)
+        if (checked.value) {
             rules.set(kind, checked.value);
+            if (checked.value.line && typeof metadata.url === "string") registry.lines!.set(metadata.url, checked.value.line);
+        }
     }
     for (const [kind, target] of aliases) {
         if (!rules.has(target)) {
             const page = pages.find(page => headers.get(page.file)?.value?.metadata.kind === kind)!;
             diagnostics.push(diagnostic("E_ALIAS_TARGET", headers.get(page.file)!.value!.field(headers.get(page.file)!.value!.metadata.alias_of !== undefined ? "alias_of" : "aliasOf"), `The alias ${kind} must point to an existing rule definition; ${target} is missing, invalid or another alias.`));
+        }
+    }
+    for (const page of pages) {
+        const metadata = headers.get(page.file)?.value?.metadata;
+        if (typeof metadata?.url === "string" && typeof metadata.kind === "string") {
+            const target = aliases.get(metadata.kind);
+            const targetPage = target && pages.find(p => headers.get(p.file)?.value?.metadata.kind === target);
+            const targetUrl = targetPage && headers.get(targetPage.file)?.value?.metadata.url;
+            const declaration = typeof targetUrl === "string" ? registry.lines!.get(targetUrl) : undefined;
+            if (declaration) registry.lines!.set(metadata.url, declaration);
         }
     }
     return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, documents, registry }, diagnostics: [] };

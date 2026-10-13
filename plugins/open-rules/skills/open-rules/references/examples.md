@@ -27,12 +27,12 @@ Normal Sudoku rules apply. Digits on the thermometer strictly increase from the 
 
 Satisfies: r1c1=1, r1c2=3, r1c3=6 increases at both steps. Breaks: 1, 4, 3 decreases at the last step.
 
-## Two whisper lines
+## Two whisper lines and marked pairs
 
 ````markdown
 ---
 format: open-rules
-title: Two green lines
+title: Green lines and marked pairs
 setter: Example Setter
 source: ""
 case: ""
@@ -44,14 +44,18 @@ status: read
 sudoku 9x9
 whispers-1: whispers r2c1-r2c2 gap 5
 whispers-2: whispers r4c1-r4c2 gap 5
+pair-1: pair r6c1-r6c2 ratio 3
+pair-2: pair r7c1-r7c2 difference 2
+pair-3: pair r8c1-r8c2 sum 10
+kropki r9c1-r9c2 white
 ```
 
 ## Setter wording
 
-Normal Sudoku rules apply. Adjacent digits on each green line differ by at least 5. The lines are r2c1-r2c2 and r4c1-r4c2.
+Normal Sudoku rules apply. Adjacent digits on each green line differ by at least 5. The lines are r2c1-r2c2 and r4c1-r4c2. The brown dot at r6c1-r6c2 means one value is three times the other. The grey dot at r7c1-r7c2 means the values differ by 2. The marked pair at r8c1-r8c2 totals 10. The white Kropki dot at r9c1-r9c2 means the values differ by 1.
 ````
 
-Satisfies: 1, 6 on the first line and 2, 8 on the second. Breaks: 2, 6 on either line differs by only 4. Numbered IDs keep the two instances separate.
+Satisfies: 1, 6 on the first line and 2, 8 on the second. Breaks: 2, 6 on either line differs by only 4. Numbered IDs keep repeated kinds separate. For the pairs, 2/6, 3/5 and 3/7 satisfy their relations; 2/5, 3/6 and 3/8 respectively break them. The white Kropki shorthand is pair difference 1: 3/4 satisfies it and 3/5 breaks it. Brown and grey describe the drawing; the pair lines carry their meanings.
 
 ## A custom weighted triple
 

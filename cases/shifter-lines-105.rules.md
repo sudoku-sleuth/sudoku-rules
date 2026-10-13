@@ -22,16 +22,16 @@ shifter-line-1: shifter-line r3c4-r3c3-r4c3-r5c3
 shifter-line-2: shifter-line r6c3-r7c3-r7c4-r7c5
 shifter-line-3: shifter-line r7c6-r7c7-r6c7-r5c7
 shifter-line-4: shifter-line r4c7-r3c7-r3c6-r3c5
-pair-1: pair r7c5-r7c6 relation {"op":"sum","value":10}
-pair-2: pair r4c7-r5c7 relation {"op":"sum","value":10}
-pair-3: pair r3c4-r3c5 relation {"op":"sum","value":10}
-pair-4: pair r5c3-r6c3 relation {"op":"sum","value":10}
-pair-5: pair r8c4-r9c4 relation {"op":"sum","value":10}
-pair-6: pair r3c1-r4c1 relation {"op":"sum","value":10}
-pair-7: pair r6c7-r7c7 relation {"op":"sum","value":5}
-pair-8: pair r7c6-r7c7 relation {"op":"sum","value":5}
-pair-9: pair r3c3-r4c3 relation {"op":"sum","value":5}
-pair-10: pair r3c3-r3c4 relation {"op":"sum","value":5}
+pair-1: pair r7c5-r7c6 sum 10
+pair-2: pair r4c7-r5c7 sum 10
+pair-3: pair r3c4-r3c5 sum 10
+pair-4: pair r5c3-r6c3 sum 10
+pair-5: pair r8c4-r9c4 sum 10
+pair-6: pair r3c1-r4c1 sum 10
+pair-7: pair r6c7-r7c7 sum 5
+pair-8: pair r7c6-r7c7 sum 5
+pair-9: pair r3c3-r4c3 sum 5
+pair-10: pair r3c3-r3c4 sum 5
 parity-cells-1: parity-cells r8c1-r9c1-r9c2-r9c8-r9c9-r8c9-r2c9-r1c9-r1c8-r1c1-r1c2-r2c1 parity "odd"
 parity-cells-2: parity-cells r8c8-r8c2-r2c2-r2c8 parity "even"
 ```

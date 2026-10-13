@@ -14,18 +14,18 @@ givens: r1c2=1 r1c4=9 r1c6=6 r1c8=4
 ```rules
 sudoku 9x9
 anti-knight
-pair-1: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-2: pair r8c4-r8c5 relation {"op":"sum","value":10}
-pair-3: pair r3c3-r3c4 relation {"op":"sum","value":10}
-pair-4: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-5: pair r6c6-r6c7 relation {"op":"sum","value":10}
-pair-6: pair r7c6-r7c7 relation {"op":"sum","value":10}
-pair-7: pair r5c7-r6c7 relation {"op":"sum","value":10}
-pair-8: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-9: pair r2c4-r2c5 relation {"op":"sum","value":10}
-pair-10: pair r4c5-r5c5 relation {"op":"sum","value":10}
-pair-11: pair r5c8-r5c9 relation {"op":"sum","value":5}
-pair-12: pair r5c2-r5c3 relation {"op":"sum","value":5}
+pair-1: pair r4c8-r5c8 sum 10
+pair-2: pair r8c4-r8c5 sum 10
+pair-3: pair r3c3-r3c4 sum 10
+pair-4: pair r4c3-r4c4 sum 10
+pair-5: pair r6c6-r6c7 sum 10
+pair-6: pair r7c6-r7c7 sum 10
+pair-7: pair r5c7-r6c7 sum 10
+pair-8: pair r4c3-r5c3 sum 10
+pair-9: pair r2c4-r2c5 sum 10
+pair-10: pair r4c5-r5c5 sum 10
+pair-11: pair r5c8-r5c9 sum 5
+pair-12: pair r5c2-r5c3 sum 5
 quadruple-1: quadruple r6c6-r6c7-r7c6-r7c7 digits [1,9,6,4]
 quadruple-2: quadruple r3c3-r3c4-r4c3-r4c4 digits [1,9,6,4]
 little-killer r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c7-r8c8-r9c9 sum 60

@@ -31,11 +31,11 @@ renban-1: renban r5c4-r6c5-r7c6
 renban-2: renban r6c7-r5c6-r4c5-r3c4-r2c4-r1c4
 renban-3: renban r1c5-r2c5-r3c6-r4c7-r5c8
 renban-4: renban r1c6-r2c7-r3c8-r2c8-r1c7
-pair-1: pair r7c5-r7c6 relation {"op":"sum","value":10}
-pair-2: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-3: pair r8c5-r8c6 relation {"op":"sum","value":10}
-pair-4: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-5: pair r7c2-r8c2 relation {"op":"sum","value":10}
+pair-1: pair r7c5-r7c6 sum 10
+pair-2: pair r4c8-r5c8 sum 10
+pair-3: pair r8c5-r8c6 sum 10
+pair-4: pair r9c5-r9c6 sum 10
+pair-5: pair r7c2-r8c2 sum 10
 parity-cells r8c5-r9c5-r9c6-r8c6 parity "even"
 ```
 

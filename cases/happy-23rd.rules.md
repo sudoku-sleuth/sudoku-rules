@@ -25,9 +25,9 @@ cage-11: cage r7c4-r7c5 total 12 connected true
 cage-12: cage r8c6-r9c6 total 12 connected true
 palindrome-1: palindrome r7c4-r7c3-r7c2-r7c1-r6c2-r5c3-r4c3-r3c2-r4c1
 palindrome-2: palindrome r5c6-r5c7-r6c6-r7c7-r8c7-r8c6-r7c5
-pair-1: pair r1c8-r2c8 relation {"op":"sum","value":10}
-pair-2: pair r5c1-r6c1 relation {"op":"sum","value":5}
-pair-3: pair r5c9-r6c9 relation {"op":"sum","value":5}
+pair-1: pair r1c8-r2c8 sum 10
+pair-2: pair r5c1-r6c1 sum 5
+pair-3: pair r5c9-r6c9 sum 5
 parity-cells r1c5-r2c6-r3c7-r4c8 parity "odd"
 ```
 

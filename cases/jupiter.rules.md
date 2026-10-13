@@ -27,10 +27,10 @@ renban-1: renban r5c1-r5c2-r5c3-r5c4-r5c5-r5c6
 renban-2: renban r5c7-r5c8-r5c9
 renban-3: renban r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r6c8
 renban-4: renban r6c1-r6c2-r6c3-r6c4-r6c5
-pair-1: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-2: pair r2c5-r3c5 relation {"op":"sum","value":10}
-pair-3: pair r2c6-r3c6 relation {"op":"sum","value":10}
-pair-4: pair r2c7-r3c7 relation {"op":"sum","value":10}
+pair-1: pair r2c4-r3c4 sum 10
+pair-2: pair r2c5-r3c5 sum 10
+pair-3: pair r2c6-r3c6 sum 10
+pair-4: pair r2c7-r3c7 sum 10
 parity-cells r6c7 parity "odd"
 ```
 

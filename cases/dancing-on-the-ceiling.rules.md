@@ -35,9 +35,9 @@ whispers-6: whispers r6c8-r7c8-r7c7-r6c7 gap 4
 whispers-7: whispers r6c7-r6c8 gap 4
 whispers-8: whispers r7c9-r6c9-r5c8-r4c7-r4c6 gap 4
 whispers-9: whispers r2c6-r2c7-r3c7-r3c8 gap 4
-pair-1: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-2: pair r2c2-r3c2 relation {"op":"sum","value":10}
-pair-3: pair r5c4-r5c5 relation {"op":"sum","value":10}
+pair-1: pair r3c7-r3c8 sum 10
+pair-2: pair r2c2-r3c2 sum 10
+pair-3: pair r5c4-r5c5 sum 10
 ```
 
 Oh, what a Feeling! Normal Sudoku rules apply. DUTCH WHISPERS- Numbers on red lines are at least 4 apart from their neighbors on the line. Numbers may repeat on red lines. KROPKI PAIRS- Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. XV PAIRS- Numbers with an X between them sum to 10. Not all possible X and dots are given.

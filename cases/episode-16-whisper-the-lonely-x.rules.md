@@ -20,7 +20,7 @@ whispers-6: whispers r8c7-r8c8-r7c9-r6c9 gap 5
 whispers-7: whispers r2c5-r3c6-r4c5-r5c6-r6c5-r7c6-r8c5 gap 5
 whispers-8: whispers r8c9-r9c8 gap 5
 whispers-9: whispers r8c3-r8c4 gap 5
-pair r3c1-r3c2 relation {"op":"sum","value":10}
+pair r3c1-r3c2 sum 10
 ```
 
 Normal sudoku rules apply. Place the digits 1-9 once each in every row, column and 3x3 box.

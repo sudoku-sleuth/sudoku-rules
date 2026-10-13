@@ -13,20 +13,20 @@ drawingCoverage: unclaimed-only
 sudoku 9x9
 kropki-1: kropki r2c8-r3c8 colour "black"
 kropki-2: kropki r5c5-r5c6 colour "black"
-pair-1: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-2: pair r9c7-r9c8 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":10}
-pair-4: pair r1c4-r2c4 relation {"op":"sum","value":10}
-pair-5: pair r8c5-r8c6 relation {"op":"sum","value":10}
-pair-6: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-7: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-8: pair r2c3-r3c3 relation {"op":"sum","value":5}
-pair-9: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-10: pair r3c7-r4c7 relation {"op":"sum","value":5}
-pair-11: pair r1c8-r2c8 relation {"op":"sum","value":5}
-pair-12: pair r2c6-r3c6 relation {"op":"sum","value":5}
-pair-13: pair r6c1-r7c1 relation {"op":"sum","value":5}
-pair-14: pair r8c8-r9c8 relation {"op":"sum","value":5}
+pair-1: pair r8c7-r8c8 sum 10
+pair-2: pair r9c7-r9c8 sum 10
+pair-3: pair r4c1-r5c1 sum 10
+pair-4: pair r1c4-r2c4 sum 10
+pair-5: pair r8c5-r8c6 sum 10
+pair-6: pair r4c3-r5c3 sum 10
+pair-7: pair r4c3-r4c4 sum 10
+pair-8: pair r2c3-r3c3 sum 5
+pair-9: pair r4c6-r5c6 sum 5
+pair-10: pair r3c7-r4c7 sum 5
+pair-11: pair r1c8-r2c8 sum 5
+pair-12: pair r2c6-r3c6 sum 5
+pair-13: pair r6c1-r7c1 sum 5
+pair-14: pair r8c8-r9c8 sum 5
 ```
 
 ```drawing

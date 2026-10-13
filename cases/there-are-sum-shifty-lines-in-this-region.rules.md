@@ -22,18 +22,18 @@ region-sum-7: region-sum r9c4-r9c3-r9c2 segments [["r9c4"],["r9c3","r9c2"]]
 region-sum-8: region-sum r1c4-r2c3-r2c2 segments [["r1c4"],["r2c3","r2c2"]]
 region-sum-9: region-sum r4c1-r3c1-r3c2 segments [["r4c1"],["r3c1","r3c2"]]
 region-sum-10: region-sum r3c7-r3c6-r3c5 segments [["r3c7"],["r3c6","r3c5"]]
-pair-1: pair r5c4-r6c4 relation {"op":"shift"}
-pair-2: pair r7c4-r7c5 relation {"op":"shift"}
-pair-3: pair r7c5-r7c6 relation {"op":"shift"}
-pair-4: pair r7c4-r8c4 relation {"op":"shift"}
-pair-5: pair r7c7-r8c7 relation {"op":"shift"}
-pair-6: pair r7c8-r8c8 relation {"op":"shift"}
-pair-7: pair r8c8-r9c8 relation {"op":"shift"}
-pair-8: pair r4c5-r5c5 relation {"op":"shift"}
-pair-9: pair r5c5-r6c5 relation {"op":"shift"}
-pair-10: pair r6c1-r6c2 relation {"op":"shift"}
-pair-11: pair r2c1-r2c2 relation {"op":"shift"}
-pair-12: pair r1c2-r2c2 relation {"op":"shift"}
+pair-1: pair r5c4-r6c4 shift
+pair-2: pair r7c4-r7c5 shift
+pair-3: pair r7c5-r7c6 shift
+pair-4: pair r7c4-r8c4 shift
+pair-5: pair r7c7-r8c7 shift
+pair-6: pair r7c8-r8c8 shift
+pair-7: pair r8c8-r9c8 shift
+pair-8: pair r4c5-r5c5 shift
+pair-9: pair r5c5-r6c5 shift
+pair-10: pair r6c1-r6c2 shift
+pair-11: pair r2c1-r2c2 shift
+pair-12: pair r1c2-r2c2 shift
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

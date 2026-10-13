@@ -18,10 +18,10 @@ kropki-4: kropki r6c6-r6c7 colour "black"
 kropki-5: kropki r8c8-r9c8 colour "black"
 kropki-6: kropki r8c2-r8c3 colour "black"
 kropki-7: kropki r7c3-r7c4 colour "black"
-pair-1: pair r7c2-r8c2 relation {"op":"sum","value":10}
-pair-2: pair r8c3-r8c4 relation {"op":"sum","value":10}
-pair-3: pair r1c6-r2c6 relation {"op":"sum","value":10}
-pair-4: pair r4c7-r4c8 relation {"op":"sum","value":10}
+pair-1: pair r7c2-r8c2 sum 10
+pair-2: pair r8c3-r8c4 sum 10
+pair-3: pair r1c6-r2c6 sum 10
+pair-4: pair r4c7-r4c8 sum 10
 window-classes classes "entropy"
 index-line r2c8-r2c7-r3c6-r4c7
 ```

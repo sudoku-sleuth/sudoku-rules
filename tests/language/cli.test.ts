@@ -23,7 +23,7 @@ test("CLI reports checked formula pages and explicitly pending case checks", asy
   expect(cases.checked).toBe(85);
   expect(cases.cases).toBe(1);
   expect(cases.references).toBe(9);
-  expect(cases.pending).toContain("rule-line validation");
+  expect(cases.pending).toContain("remaining rule-line validation");
 });
 test("CLI exit status distinguishes invalid source from invocation errors", async () => {
   for (const [args, exit] of [

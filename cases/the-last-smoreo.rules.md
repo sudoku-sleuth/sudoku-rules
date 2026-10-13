@@ -30,14 +30,14 @@ kropki-17: kropki r7c8-r8c8 colour "black"
 kropki-18: kropki r6c4-r7c4 colour "black"
 kropki-19: kropki r4c4-r5c4 colour "black"
 kropki-20: kropki r4c5-r4c6 colour "black"
-pair-1: pair r4c2-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r2c9-r3c9 relation {"op":"sum","value":10}
-pair-3: pair r5c5-r5c6 relation {"op":"sum","value":10}
-pair-4: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-5: pair r8c9-r9c9 relation {"op":"sum","value":10}
-pair-6: pair r3c6-r3c7 relation {"op":"sum","value":10}
-pair-7: pair r8c3-r8c4 relation {"op":"sum","value":10}
-pair-8: pair r2c6-r2c7 relation {"op":"sum","value":10}
+pair-1: pair r4c2-r4c3 sum 10
+pair-2: pair r2c9-r3c9 sum 10
+pair-3: pair r5c5-r5c6 sum 10
+pair-4: pair r1c1-r2c1 sum 10
+pair-5: pair r8c9-r9c9 sum 10
+pair-6: pair r3c6-r3c7 sum 10
+pair-7: pair r8c3-r8c4 sum 10
+pair-8: pair r2c6-r2c7 sum 10
 little-killer r2c1-r3c2-r4c3-r5c4-r6c5-r7c6-r8c7-r9c8 sum 37
 ```
 

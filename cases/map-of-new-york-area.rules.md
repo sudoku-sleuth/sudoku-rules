@@ -19,16 +19,16 @@ cage-5: cage r6c8-r6c9-r7c8-r7c9 total 25 connected true
 cage-6: cage r9c8-r9c9 total 3 connected true
 cage-7: cage r8c6-r8c7-r9c6-r9c7 total 18 connected true
 whispers r8c9-r8c8-r7c7-r7c6-r6c5-r6c4-r6c3-r6c2-r6c1-r5c1-r4c2-r4c3-r4c4-r3c4-r2c5-r1c6-r1c7-r2c7-r3c7-r4c7-r5c7-r6c7 gap 5
-pair-1: pair r8c8-r9c8 relation {"op":"sum","value":10}
-pair-2: pair r6c8-r6c9 relation {"op":"sum","value":10}
-pair-3: pair r3c8-r3c9 relation {"op":"sum","value":10}
-pair-4: pair r2c7-r2c8 relation {"op":"sum","value":10}
-pair-5: pair r2c1-r2c2 relation {"op":"sum","value":10}
-pair-6: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-7: pair r5c2-r5c3 relation {"op":"sum","value":10}
-pair-8: pair r6c3-r6c4 relation {"op":"sum","value":10}
-pair-9: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-10: pair r5c6-r5c7 relation {"op":"sum","value":10}
+pair-1: pair r8c8-r9c8 sum 10
+pair-2: pair r6c8-r6c9 sum 10
+pair-3: pair r3c8-r3c9 sum 10
+pair-4: pair r2c7-r2c8 sum 10
+pair-5: pair r2c1-r2c2 sum 10
+pair-6: pair r4c4-r4c5 sum 10
+pair-7: pair r5c2-r5c3 sum 10
+pair-8: pair r6c3-r6c4 sum 10
+pair-9: pair r7c5-r8c5 sum 10
+pair-10: pair r5c6-r5c7 sum 10
 ```
 
 ```drawing

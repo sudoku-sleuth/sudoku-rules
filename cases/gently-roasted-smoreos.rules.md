@@ -15,14 +15,14 @@ thermo-1: thermo r5c5-r6c5-r7c5-r8c5
 thermo-2: thermo r6c2-r5c2-r4c2
 thermo-3: thermo r5c7-r6c8-r5c8
 thermo-4: thermo r3c7-r3c6
-pair-1: pair r7c5-r8c5 relation {"op":"difference","value":2}
-pair-2: pair r5c5-r6c5 relation {"op":"difference","value":2}
-pair-3: pair r2c5-r3c5 relation {"op":"difference","value":2}
-pair-4: pair r8c2-r9c2 relation {"op":"difference","value":2}
-pair-5: pair r7c8-r8c8 relation {"op":"difference","value":2}
-pair-6: pair r1c2-r2c2 relation {"op":"difference","value":2}
-pair-7: pair r5c3-r5c4 relation {"op":"difference","value":2}
-pair-8: pair r5c7-r6c7 relation {"op":"difference","value":2}
+pair-1: pair r7c5-r8c5 difference 2
+pair-2: pair r5c5-r6c5 difference 2
+pair-3: pair r2c5-r3c5 difference 2
+pair-4: pair r8c2-r9c2 difference 2
+pair-5: pair r7c8-r8c8 difference 2
+pair-6: pair r1c2-r2c2 difference 2
+pair-7: pair r5c3-r5c4 difference 2
+pair-8: pair r5c7-r6c7 difference 2
 kropki-1: kropki r7c5-r7c6 colour "black"
 kropki-2: kropki r8c4-r8c5 colour "black"
 kropki-3: kropki r6c4-r6c5 colour "black"

@@ -20,14 +20,14 @@ renban-6: renban r4c2-r5c3-r6c4-r7c5-r8c6
 renban-7: renban r6c8-r5c7-r4c6-r3c5-r2c4
 renban-8: renban r1c5-r2c5-r3c6-r4c7-r5c8-r5c9
 renban-9: renban r5c1-r5c2-r6c3-r7c4-r8c5-r9c5
-pair-1: pair r1c3-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r8c7-r8c8 relation {"op":"sum","value":10}
-pair-3: pair r1c8-r2c8 relation {"op":"sum","value":10}
-pair-4: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-5: pair r8c2-r8c3 relation {"op":"sum","value":5}
-pair-6: pair r4c6-r4c7 relation {"op":"sum","value":5}
-pair-7: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-8: pair r5c1-r6c1 relation {"op":"sum","value":5}
+pair-1: pair r1c3-r2c3 sum 10
+pair-2: pair r8c7-r8c8 sum 10
+pair-3: pair r1c8-r2c8 sum 10
+pair-4: pair r9c1-r9c2 sum 10
+pair-5: pair r8c2-r8c3 sum 5
+pair-6: pair r4c6-r4c7 sum 5
+pair-7: pair r4c6-r5c6 sum 5
+pair-8: pair r5c1-r6c1 sum 5
 ```
 
 **Sudoku, Renban Lines, XV**

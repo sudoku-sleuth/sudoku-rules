@@ -149,9 +149,9 @@ kropki-4: kropki r5c8-r6c8 colour "white"
 kropki-5: kropki r7c8-r8c8 colour "white"
 kropki-6: kropki r2c4-r2c5 colour "black"
 palindrome r2c1-r3c1-r4c1-r4c2-r4c3-r4c4-r5c4-r5c3-r6c2-r7c1-r8c2-r8c3-r9c4-r8c5-r7c5-r6c5-r7c6-r8c7-r9c8-r9c9-r8c9-r7c8-r6c9-r5c8-r4c9-r3c8-r4c7-r3c7-r2c6-r2c5-r3c4-r2c4-r1c4
-pair-1: pair r3c1-r4c1 relation {"op":"sum","value":10}
-pair-2: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-3: pair r4c3-r4c4 relation {"op":"sum","value":5}
+pair-1: pair r3c1-r4c1 sum 10
+pair-2: pair r4c3-r5c3 sum 10
+pair-3: pair r4c3-r4c4 sum 5
 ```
 
 •    Normal Sudoku rules apply. 

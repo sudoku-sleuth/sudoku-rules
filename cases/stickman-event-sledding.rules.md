@@ -36,7 +36,7 @@ whispers-6: whispers r7c6-r8c5 gap 5
 renban-1: renban r2c2-r1c2-r1c3-r2c3
 renban-2: renban r5c9-r6c9-r6c8-r6c7-r6c6-r5c7-r4c8-r3c7
 renban-3: renban r5c5-r4c4-r3c3-r3c5-r2c5-r3c4-r2c4
-pair r5c6-r6c6 relation {"op":"sum","value":5}
+pair r5c6-r6c6 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers on purple lines are a set of consecutive numbers, in any order. Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. Numbers with a V between them sum to 5. Not all possible dots and V are given.

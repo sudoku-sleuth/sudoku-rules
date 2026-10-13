@@ -149,15 +149,15 @@ kropki-8: kropki r5c1-r6c1 colour "black"
 kropki-9: kropki r6c2-r6c3 colour "black"
 kropki-10: kropki r7c4-r8c4 colour "black"
 kropki-11: kropki r7c5-r8c5 colour "black"
-pair-1: pair r5c1-r5c2 relation {"op":"sum","value":10}
-pair-2: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-3: pair r5c8-r6c8 relation {"op":"sum","value":10}
-pair-4: pair r2c6-r3c6 relation {"op":"sum","value":10}
-pair-5: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-6: pair r7c5-r7c6 relation {"op":"sum","value":10}
-pair-7: pair r4c8-r4c9 relation {"op":"sum","value":10}
-pair-8: pair r2c5-r3c5 relation {"op":"sum","value":5}
-pair-9: pair r1c8-r1c9 relation {"op":"sum","value":5}
+pair-1: pair r5c1-r5c2 sum 10
+pair-2: pair r9c5-r9c6 sum 10
+pair-3: pair r5c8-r6c8 sum 10
+pair-4: pair r2c6-r3c6 sum 10
+pair-5: pair r2c4-r3c4 sum 10
+pair-6: pair r7c5-r7c6 sum 10
+pair-7: pair r4c8-r4c9 sum 10
+pair-8: pair r2c5-r3c5 sum 5
+pair-9: pair r1c8-r1c9 sum 5
 parity-cells r2c3-r1c2-r2c1-r3c2-r2c2 parity "even"
 ```
 

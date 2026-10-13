@@ -159,10 +159,10 @@ arrow-7: arrow r6c2-r5c3 bulb ["r7c1"]
 arrow-8: arrow r8c4-r7c5 bulb ["r9c3"]
 arrow-9: arrow r6c3-r5c4 bulb ["r7c2"]
 arrow-10: arrow r3c3 bulb ["r4c2"]
-pair-1: pair r5c5-r6c5 relation {"op":"sum","value":10}
-pair-2: pair r6c9-r7c9 relation {"op":"sum","value":10}
-pair-3: pair r3c5-r3c6 relation {"op":"sum","value":5}
-pair-4: pair r4c2-r5c2 relation {"op":"sum","value":5}
+pair-1: pair r5c5-r6c5 sum 10
+pair-2: pair r6c9-r7c9 sum 10
+pair-3: pair r3c5-r3c6 sum 5
+pair-4: pair r4c2-r5c2 sum 5
 negative relations [{"op":"ratio","value":2}] except [["r8c5","r8c6"],["r9c1","r9c2"],["r4c7","r4c8"],["r3c8","r4c8"],["r1c5","r1c6"],["r5c4","r6c4"],["r7c6","r7c7"],["r1c1","r2c1"],["r5c2","r5c3"],["r7c8","r8c8"],["r9c5","r9c6"],["r3c7","r3c8"],["r3c7","r4c7"],["r6c3","r6c4"],["r7c8","r7c9"],["r1c8","r2c8"],["r7c9","r8c9"],["r3c5","r3c6"],["r4c2","r5c2"],["r5c5","r6c5"],["r6c9","r7c9"]]
 ```
 

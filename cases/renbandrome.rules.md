@@ -31,8 +31,8 @@ palindrome-5: palindrome r4c3-r3c4
 palindrome-6: palindrome r4c2-r3c3
 palindrome-7: palindrome r4c4-r3c5
 palindrome-8: palindrome r4c5-r3c6
-pair-1: pair r1c5-r1c6 relation {"op":"sum","value":10}
-pair-2: pair r9c4-r9c5 relation {"op":"sum","value":10}
+pair-1: pair r1c5-r1c6 sum 10
+pair-2: pair r9c4-r9c5 sum 10
 ```
 
 ```drawing

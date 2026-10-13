@@ -20,14 +20,14 @@ kropki-5: kropki r4c5-r4c6 colour "black"
 kropki-6: kropki r5c3-r5c4 colour "black"
 kropki-7: kropki r6c5-r7c5 colour "black"
 kropki-8: kropki r6c1-r7c1 colour "black"
-pair-1: pair r7c4-r7c5 relation {"op":"sum","value":10}
-pair-2: pair r4c7-r4c8 relation {"op":"sum","value":10}
-pair-3: pair r7c1-r8c1 relation {"op":"sum","value":10}
-pair-4: pair r9c2-r9c3 relation {"op":"sum","value":10}
-pair-5: pair r1c7-r1c8 relation {"op":"sum","value":10}
-pair-6: pair r2c9-r3c9 relation {"op":"sum","value":10}
-pair-7: pair r5c3-r6c3 relation {"op":"sum","value":5}
-pair-8: pair r2c6-r3c6 relation {"op":"sum","value":5}
+pair-1: pair r7c4-r7c5 sum 10
+pair-2: pair r4c7-r4c8 sum 10
+pair-3: pair r7c1-r8c1 sum 10
+pair-4: pair r9c2-r9c3 sum 10
+pair-5: pair r1c7-r1c8 sum 10
+pair-6: pair r2c9-r3c9 sum 10
+pair-7: pair r5c3-r6c3 sum 5
+pair-8: pair r2c6-r3c6 sum 5
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 ```

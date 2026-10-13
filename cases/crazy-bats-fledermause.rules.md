@@ -19,8 +19,8 @@ whispers-5: whispers r5c1-r6c1-r7c1-r7c2-r7c3 gap 4
 whispers-6: whispers r3c7-r3c8-r3c9-r4c9-r5c9 gap 4
 whispers-7: whispers r6c9-r7c9-r7c8-r8c8-r8c7-r9c7-r9c6 gap 4
 whispers-8: whispers r4c1-r3c1-r3c2-r2c2-r2c3-r1c3-r1c4 gap 4
-pair-1: pair r6c7-r6c8 relation {"op":"sum","value":5}
-pair-2: pair r4c5-r5c5 relation {"op":"sum","value":5}
+pair-1: pair r6c7-r6c8 sum 5
+pair-2: pair r4c5-r5c5 sum 5
 ```
 
 ```drawing

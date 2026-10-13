@@ -25,11 +25,11 @@ whispers-3: whispers r2c9-r3c8-r2c7-r1c8 gap 5
 whispers-4: whispers r2c9-r1c8 gap 5
 whispers-5: whispers r2c8-r3c9 gap 5
 renban r6c3-r5c2-r4c3-r3c4-r2c5-r3c6-r4c7-r5c8-r6c7
-pair-1: pair r7c4-r8c4 relation {"op":"sum","value":10}
-pair-2: pair r7c6-r8c6 relation {"op":"sum","value":10}
-pair-3: pair r7c2-r7c3 relation {"op":"sum","value":10}
-pair-4: pair r7c1-r7c2 relation {"op":"sum","value":5}
-pair-5: pair r7c8-r7c9 relation {"op":"sum","value":5}
+pair-1: pair r7c4-r8c4 sum 10
+pair-2: pair r7c6-r8c6 sum 10
+pair-3: pair r7c2-r7c3 sum 10
+pair-4: pair r7c1-r7c2 sum 5
+pair-5: pair r7c8-r7c9 sum 5
 ```
 
 Normal Sudoku Rules Apply

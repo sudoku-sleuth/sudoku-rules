@@ -28,14 +28,14 @@ whispers-2: whispers r7c9-r6c8-r5c7-r4c6-r3c5-r2c4-r1c3 gap 4
 whispers-3: whispers r1c6-r2c5-r3c4-r4c3-r5c2-r6c1 gap 4
 whispers-4: whispers r3c1-r4c2-r5c3-r6c4-r7c5-r8c6-r9c7 gap 4
 renban r3c5-r4c5-r5c5-r6c5-r7c5-r5c3-r5c4-r5c6-r5c7
-pair-1: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-3: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-4: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-5: pair r2c4-r3c4 relation {"op":"sum","value":5}
-pair-6: pair r5c8-r6c8 relation {"op":"sum","value":5}
-pair-7: pair r7c5-r7c6 relation {"op":"sum","value":5}
-pair-8: pair r5c3-r6c3 relation {"op":"sum","value":5}
+pair-1: pair r5c4-r6c4 sum 10
+pair-2: pair r4c6-r5c6 sum 10
+pair-3: pair r4c4-r4c5 sum 10
+pair-4: pair r6c5-r6c6 sum 10
+pair-5: pair r2c4-r3c4 sum 5
+pair-6: pair r5c8-r6c8 sum 5
+pair-7: pair r7c5-r7c6 sum 5
+pair-8: pair r5c3-r6c3 sum 5
 ```
 
 Normal Sudoku rules apply. Dutch Whispers Lines- Numbers on red lines are at least 4 apart from their neighbors on the line. RENBAN- Numbers on the purple line are a complete set of the numbers 1-9, once each, in any order. Numbers in cages sum to the number in the top left corner of the cage. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Numbers with a black dot between them are in a ratio of 2:1. Not all X, V and black dots are given. Numbers with white dots between them are the same three consecutive numbers, in order. The direction of this order must be discovered by the solver.

@@ -84,7 +84,7 @@ renban-1: renban r2c3-r2c2-r1c1
 renban-2: renban r4c1-r5c2-r4c3
 renban-3: renban r5c5-r6c4
 renban-4: renban r2c6-r3c6-r3c5-r2c5
-pair r1c2-r2c2 relation {"op":"sum","value":5}
+pair r1c2-r2c2 sum 5
 ```
 
 Normal 6x6 sudoku rules apply. Place the digits 1 through 6 in each empty cell. Digits must not repeat within the same row, column, or box.

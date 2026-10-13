@@ -60,14 +60,14 @@ kropki-8: kropki r4c3-r4c4 colour "white"
 kropki-9: kropki r2c2-r2c3 colour "white"
 kropki-10: kropki r1c1-r1c2 colour "black"
 kropki-11: kropki r7c4-r7c5 colour "black"
-pair-1: pair r8c1-r9c1 relation {"op":"sum","value":10}
-pair-2: pair r8c3-r9c3 relation {"op":"sum","value":10}
-pair-3: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-4: pair r5c6-r5c7 relation {"op":"sum","value":10}
-pair-5: pair r2c4-r2c5 relation {"op":"sum","value":10}
-pair-6: pair r5c3-r6c3 relation {"op":"sum","value":10}
-pair-7: pair r5c2-r6c2 relation {"op":"sum","value":10}
-pair-8: pair r2c2-r3c2 relation {"op":"sum","value":5}
+pair-1: pair r8c1-r9c1 sum 10
+pair-2: pair r8c3-r9c3 sum 10
+pair-3: pair r4c4-r4c5 sum 10
+pair-4: pair r5c6-r5c7 sum 10
+pair-5: pair r2c4-r2c5 sum 10
+pair-6: pair r5c3-r6c3 sum 10
+pair-7: pair r5c2-r6c2 sum 10
+pair-8: pair r2c2-r3c2 sum 5
 constructed-regions size 9 borders [] joins []
 ```
 

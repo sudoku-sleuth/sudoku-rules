@@ -17,12 +17,12 @@ between-2: between r4c9-r5c8 ends ["r5c9","r5c7"]
 between-3: between r7c5-r7c6-r8c6-r8c5 ends ["r7c4","r8c4"]
 between-4: between r8c3 ends ["r7c2","r7c3"]
 between-5: between r2c5-r3c4-r4c3-r5c4-r6c4 ends ["r3c6","r5c3"]
-pair-1: pair r1c3-r1c4 relation {"op":"sum","value":10}
-pair-2: pair r1c1-r1c2 relation {"op":"sum","value":10}
-pair-3: pair r6c2-r7c2 relation {"op":"sum","value":5}
-pair-4: pair r7c3-r8c3 relation {"op":"sum","value":5}
-pair-5: pair r8c3-r8c4 relation {"op":"sum","value":5}
-pair-6: pair r4c7-r5c7 relation {"op":"sum","value":5}
+pair-1: pair r1c3-r1c4 sum 10
+pair-2: pair r1c1-r1c2 sum 10
+pair-3: pair r6c2-r7c2 sum 5
+pair-4: pair r7c3-r8c3 sum 5
+pair-5: pair r8c3-r8c4 sum 5
+pair-6: pair r4c7-r5c7 sum 5
 ```
 
 Normal Sudoku Rules Apply

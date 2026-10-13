@@ -10,15 +10,15 @@ status: read
 
 ```rules
 sudoku 9x9
-pair-1: pair r3c2-r3c3 relation {"op":"ratio","value":3}
+pair-1: pair r3c2-r3c3 ratio 3
 kropki-1: kropki r8c2-r8c3 colour "black"
 kropki-2: kropki r8c3-r8c4 colour "black"
 kropki-3: kropki r8c4-r8c5 colour "black"
 kropki-4: kropki r8c6-r8c7 colour "black"
 kropki-5: kropki r4c8-r4c9 colour "black"
 kropki-6: kropki r2c1-r2c2 colour "black"
-pair-2: pair r1c8-r2c8 relation {"op":"ratio","value":3}
-pair-3: pair r2c8-r2c9 relation {"op":"ratio","value":3}
+pair-2: pair r1c8-r2c8 ratio 3
+pair-3: pair r2c8-r2c9 ratio 3
 arrow-1: arrow r6c4-r7c3-r8c3 bulb ["r5c5","r6c5"]
 arrow-2: arrow r7c4-r8c4 bulb ["r5c5","r6c5"]
 arrow-3: arrow r7c5-r8c5 bulb ["r5c5","r6c5"]

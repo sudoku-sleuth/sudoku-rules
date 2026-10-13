@@ -14,17 +14,17 @@ flags:
 ```rules
 sudoku 9x9
 cage r7c1-r7c2-r8c2 total 10 connected true
-pair-1: pair r5c7-r5c8 relation {"op":"sum","value":10}
-pair-2: pair r8c5-r9c5 relation {"op":"sum","value":10}
-pair-3: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-4: pair r2c1-r2c2 relation {"op":"sum","value":10}
-pair-5: pair r4c6-r4c7 relation {"op":"sum","value":10}
-pair-6: pair r7c8-r7c9 relation {"op":"sum","value":10}
-pair-7: pair r8c8-r9c8 relation {"op":"sum","value":10}
-pair-8: pair r8c4-r9c4 relation {"op":"sum","value":10}
-pair-9: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-10: pair r6c6-r6c7 relation {"op":"sum","value":10}
-pair-11: pair r6c6-r7c6 relation {"op":"sum","value":10}
+pair-1: pair r5c7-r5c8 sum 10
+pair-2: pair r8c5-r9c5 sum 10
+pair-3: pair r4c3-r4c4 sum 10
+pair-4: pair r2c1-r2c2 sum 10
+pair-5: pair r4c6-r4c7 sum 10
+pair-6: pair r7c8-r7c9 sum 10
+pair-7: pair r8c8-r9c8 sum 10
+pair-8: pair r8c4-r9c4 sum 10
+pair-9: pair r9c3-r9c4 sum 10
+pair-10: pair r6c6-r6c7 sum 10
+pair-11: pair r6c6-r7c6 sum 10
 negative relations [{"op":"sum","value":10}] except [["r5c7","r5c8"],["r8c5","r9c5"],["r4c3","r4c4"],["r2c1","r2c2"],["r4c6","r4c7"],["r7c8","r7c9"],["r8c8","r9c8"],["r8c4","r9c4"],["r9c3","r9c4"],["r6c6","r6c7"],["r6c6","r7c6"]]
 ```
 

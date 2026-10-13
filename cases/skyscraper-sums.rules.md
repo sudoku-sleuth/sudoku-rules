@@ -13,7 +13,7 @@ flags:
 
 ```rules
 sudoku 9x9
-pair r2c2-r3c2 relation {"op":"sum","value":5}
+pair r2c2-r3c2 sum 5
 ```
 
 ```drawing

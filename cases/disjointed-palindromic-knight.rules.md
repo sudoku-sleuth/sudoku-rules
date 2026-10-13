@@ -23,9 +23,9 @@ arrow r6c4-r5c4 bulb ["r7c5"]
 palindrome-1: palindrome r5c7-r6c6-r7c5
 palindrome-2: palindrome r2c9-r3c8-r4c7-r5c6-r6c5
 whispers r2c3-r2c4 gap 5
-pair-1: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-2: pair r8c8-r8c9 relation {"op":"sum","value":10}
-pair-3: pair r2c4-r3c4 relation {"op":"sum","value":5}
+pair-1: pair r2c3-r3c3 sum 10
+pair-2: pair r8c8-r8c9 sum 10
+pair-3: pair r2c4-r3c4 sum 5
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

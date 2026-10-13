@@ -25,18 +25,18 @@ arrow-6: arrow r6c2-r6c1 bulb ["r7c2"]
 arrow-7: arrow r5c5-r5c4 bulb ["r6c5"]
 arrow-8: arrow r9c6-r8c5 bulb ["r8c7"]
 arrow-9: arrow r9c2-r9c3 bulb ["r8c2"]
-pair-1: pair r1c2-r2c2 relation {"op":"shift"}
-pair-2: pair r2c2-r3c2 relation {"op":"shift"}
-pair-3: pair r6c2-r7c2 relation {"op":"shift"}
-pair-4: pair r8c6-r8c7 relation {"op":"shift"}
-pair-5: pair r8c5-r8c6 relation {"op":"shift"}
-pair-6: pair r8c6-r9c6 relation {"op":"shift"}
-pair-7: pair r4c7-r5c7 relation {"op":"shift"}
-pair-8: pair r5c6-r5c7 relation {"op":"shift"}
-pair-9: pair r5c7-r5c8 relation {"op":"shift"}
-pair-10: pair r5c7-r6c7 relation {"op":"shift"}
-pair-11: pair r4c8-r4c9 relation {"op":"shift"}
-pair-12: pair r1c5-r1c6 relation {"op":"shift"}
+pair-1: pair r1c2-r2c2 shift
+pair-2: pair r2c2-r3c2 shift
+pair-3: pair r6c2-r7c2 shift
+pair-4: pair r8c6-r8c7 shift
+pair-5: pair r8c5-r8c6 shift
+pair-6: pair r8c6-r9c6 shift
+pair-7: pair r4c7-r5c7 shift
+pair-8: pair r5c6-r5c7 shift
+pair-9: pair r5c7-r5c8 shift
+pair-10: pair r5c7-r6c7 shift
+pair-11: pair r4c8-r4c9 shift
+pair-12: pair r1c5-r1c6 shift
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

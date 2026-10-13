@@ -18,13 +18,13 @@ cage-4: cage r9c4-r9c5 total 11 connected true
 kropki-1: kropki r5c7-r5c8 colour "black"
 kropki-2: kropki r5c1-r6c1 colour "black"
 kropki-3: kropki r4c1-r5c1 colour "black"
-pair-1: pair r3c8-r4c8 relation {"op":"sum","value":5}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-3: pair r4c8-r4c9 relation {"op":"sum","value":5}
-pair-4: pair r8c3-r8c4 relation {"op":"sum","value":5}
-pair-5: pair r7c2-r8c2 relation {"op":"sum","value":5}
-pair-6: pair r4c3-r4c4 relation {"op":"sum","value":5}
-pair-7: pair r6c4-r6c5 relation {"op":"sum","value":5}
+pair-1: pair r3c8-r4c8 sum 5
+pair-2: pair r3c7-r3c8 sum 5
+pair-3: pair r4c8-r4c9 sum 5
+pair-4: pair r8c3-r8c4 sum 5
+pair-5: pair r7c2-r8c2 sum 5
+pair-6: pair r4c3-r4c4 sum 5
+pair-7: pair r6c4-r6c5 sum 5
 ```
 
 ```drawing

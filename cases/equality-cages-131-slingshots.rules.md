@@ -23,7 +23,7 @@ equality-cage-10: equality-cage r6c3-r6c4
 equality-cage-11: equality-cage r9c6-r9c7
 kropki-1: kropki r8c2-r8c3 colour "black"
 kropki-2: kropki r3c8-r3c9 colour "black"
-pair r2c8-r2c9 relation {"op":"sum","value":10}
+pair r2c8-r2c9 sum 10
 pointing-arrow-1: pointing-arrow target "source" cell "r8c3" source "r8c2" ray ["r7c3","r6c3","r5c3","r4c3","r3c3","r2c3","r1c3"]
 pointing-arrow-2: pointing-arrow target "source" cell "r8c2" source "r8c3" ray ["r7c2","r6c2","r5c2","r4c2","r3c2","r2c2","r1c2"]
 pointing-arrow-3: pointing-arrow target "source" cell "r3c2" source "r2c2" ray ["r3c3","r3c4","r3c5","r3c6","r3c7","r3c8","r3c9"]

@@ -12,13 +12,13 @@ givens: r1c6=6 r4c1=8 r6c9=8 r9c4=7
 
 ```rules
 sudoku 9x9
-pair-1: pair r7c4-r8c4 relation {"op":"sum","value":10}
-pair-2: pair r8c5-r9c5 relation {"op":"sum","value":10}
-pair-3: pair r2c4-r2c5 relation {"op":"sum","value":10}
-pair-4: pair r6c8-r6c9 relation {"op":"sum","value":10}
-pair-5: pair r2c1-r3c1 relation {"op":"sum","value":10}
-pair-6: pair r1c8-r1c9 relation {"op":"sum","value":5}
-pair-7: pair r5c8-r6c8 relation {"op":"sum","value":5}
+pair-1: pair r7c4-r8c4 sum 10
+pair-2: pair r8c5-r9c5 sum 10
+pair-3: pair r2c4-r2c5 sum 10
+pair-4: pair r6c8-r6c9 sum 10
+pair-5: pair r2c1-r3c1 sum 10
+pair-6: pair r1c8-r1c9 sum 5
+pair-7: pair r5c8-r6c8 sum 5
 ```
 
 ```drawing

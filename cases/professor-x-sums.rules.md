@@ -31,10 +31,10 @@ palindrome-7: palindrome r7c3-r6c4
 palindrome-8: palindrome r3c3-r2c4
 palindrome-9: palindrome r4c1-r3c2
 palindrome-10: palindrome r6c9-r7c8
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-3: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-4: pair r6c4-r6c5 relation {"op":"sum","value":10}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r4c5-r4c6 sum 10
+pair-3: pair r5c6-r6c6 sum 10
+pair-4: pair r6c4-r6c5 sum 10
 parity-cells-1: parity-cells r1c1-r7c5-r3c5 parity "odd"
 parity-cells-2: parity-cells r8c5 parity "even"
 ```

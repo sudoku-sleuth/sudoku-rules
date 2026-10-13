@@ -27,17 +27,17 @@ kropki-11: kropki r3c2-r3c3 colour "white"
 palindrome-1: palindrome r1c4-r2c3-r3c2-r4c1-r5c1-r6c1
 palindrome-2: palindrome r6c9-r5c9-r4c9-r3c8-r2c7-r2c6
 renban r7c1-r7c2-r8c2-r8c3-r9c3
-pair-1: pair r6c1-r7c1 relation {"op":"sum","value":10}
-pair-2: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-3: pair r6c4-r7c4 relation {"op":"sum","value":10}
-pair-4: pair r6c5-r7c5 relation {"op":"sum","value":10}
-pair-5: pair r6c6-r7c6 relation {"op":"sum","value":10}
-pair-6: pair r6c7-r7c7 relation {"op":"sum","value":10}
-pair-7: pair r6c8-r7c8 relation {"op":"sum","value":10}
-pair-8: pair r7c9-r8c9 relation {"op":"sum","value":10}
-pair-9: pair r8c6-r8c7 relation {"op":"sum","value":10}
-pair-10: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-11: pair r9c3-r9c4 relation {"op":"sum","value":10}
+pair-1: pair r6c1-r7c1 sum 10
+pair-2: pair r6c3-r7c3 sum 10
+pair-3: pair r6c4-r7c4 sum 10
+pair-4: pair r6c5-r7c5 sum 10
+pair-5: pair r6c6-r7c6 sum 10
+pair-6: pair r6c7-r7c7 sum 10
+pair-7: pair r6c8-r7c8 sum 10
+pair-8: pair r7c9-r8c9 sum 10
+pair-9: pair r8c6-r8c7 sum 10
+pair-10: pair r9c5-r9c6 sum 10
+pair-11: pair r9c3-r9c4 sum 10
 parity-cells r8c8 parity "odd"
 ```
 

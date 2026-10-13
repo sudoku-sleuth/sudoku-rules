@@ -20,8 +20,8 @@ whispers-2: whispers r8c4-r9c5-r8c6 gap 5
 renban-1: renban r3c5-r4c6-r5c7-r6c6-r7c5-r6c4-r5c3-r4c4
 renban-2: renban r2c4-r1c5-r2c6
 region-sum r5c2-r4c3-r3c4-r2c5-r3c6-r4c7-r5c8-r6c7-r7c6-r8c5-r7c4-r6c3 segments [["r5c2","r4c3","r6c3"],["r3c4","r2c5","r3c6"],["r4c7","r5c8","r6c7"],["r7c6","r8c5","r7c4"]]
-pair-1: pair r9c1-r9c2 relation {"op":"sum","value":10}
-pair-2: pair r9c8-r9c9 relation {"op":"sum","value":10}
+pair-1: pair r9c1-r9c2 sum 10
+pair-2: pair r9c8-r9c9 sum 10
 extremum r5c5 type "max" exhaustive false
 ```
 

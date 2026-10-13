@@ -51,13 +51,13 @@ renban-2: renban r6c3-r6c2-r5c2
 renban-3: renban r9c2-r9c1-r8c1
 renban-4: renban r9c8-r9c9-r8c9-r7c9
 region-sum r6c4-r6c5-r6c6-r5c7-r5c8-r4c8 segments [["r6c4","r6c5","r6c6"],["r5c7","r5c8","r4c8"]]
-pair-1: pair r1c4-r1c5 relation {"op":"sum","value":10}
-pair-2: pair r5c9-r6c9 relation {"op":"sum","value":10}
-pair-3: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-4: pair r5c1-r6c1 relation {"op":"sum","value":10}
-pair-5: pair r8c5-r8c6 relation {"op":"sum","value":10}
-pair-6: pair r1c2-r2c2 relation {"op":"sum","value":5}
-pair-7: pair r8c9-r9c9 relation {"op":"sum","value":5}
+pair-1: pair r1c4-r1c5 sum 10
+pair-2: pair r5c9-r6c9 sum 10
+pair-3: pair r9c5-r9c6 sum 10
+pair-4: pair r5c1-r6c1 sum 10
+pair-5: pair r8c5-r8c6 sum 10
+pair-6: pair r1c2-r2c2 sum 5
+pair-7: pair r8c9-r9c9 sum 5
 quadruple-1: quadruple r1c1-r1c2-r2c1-r2c2 digits [1,4]
 quadruple-2: quadruple r8c8-r8c9-r9c8-r9c9 digits [2,3]
 quadruple-3: quadruple r1c8-r1c9-r2c8-r2c9 digits [7]

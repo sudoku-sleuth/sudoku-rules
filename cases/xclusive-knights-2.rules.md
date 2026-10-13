@@ -12,7 +12,7 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 anti-knight
-pair r5c7-r5c8 relation {"op":"sum","value":10}
+pair r5c7-r5c8 sum 10
 ```
 
 ```drawing

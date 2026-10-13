@@ -12,18 +12,18 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 anti-knight
-pair-1: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-2: pair r5c3-r5c4 relation {"op":"sum","value":10}
-pair-3: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-4: pair r5c4-r6c4 relation {"op":"sum","value":10}
-pair-5: pair r2c6-r3c6 relation {"op":"sum","value":10}
-pair-6: pair r4c3-r5c3 relation {"op":"sum","value":10}
-pair-7: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-8: pair r5c6-r5c7 relation {"op":"sum","value":5}
-pair-9: pair r2c5-r3c5 relation {"op":"sum","value":5}
-pair-10: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-11: pair r7c4-r8c4 relation {"op":"sum","value":5}
-pair-12: pair r9c8-r9c9 relation {"op":"sum","value":5}
+pair-1: pair r1c1-r2c1 sum 10
+pair-2: pair r5c3-r5c4 sum 10
+pair-3: pair r7c5-r8c5 sum 10
+pair-4: pair r5c4-r6c4 sum 10
+pair-5: pair r2c6-r3c6 sum 10
+pair-6: pair r4c3-r5c3 sum 10
+pair-7: pair r2c2-r2c3 sum 10
+pair-8: pair r5c6-r5c7 sum 5
+pair-9: pair r2c5-r3c5 sum 5
+pair-10: pair r4c6-r5c6 sum 5
+pair-11: pair r7c4-r8c4 sum 5
+pair-12: pair r9c8-r9c9 sum 5
 ```
 
 ```drawing

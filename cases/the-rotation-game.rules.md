@@ -27,8 +27,8 @@ whispers-2: whispers r9c6-r8c7-r7c8-r6c9 gap 5
 whispers-3: whispers r6c1-r7c2-r8c3-r9c4 gap 5
 whispers-4: whispers r1c6-r2c7-r3c8-r4c9 gap 5
 renban r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8
-pair-1: pair r2c3-r2c4 relation {"op":"sum","value":10}
-pair-2: pair r8c6-r8c7 relation {"op":"sum","value":10}
+pair-1: pair r2c3-r2c4 sum 10
+pair-2: pair r8c6-r8c7 sum 10
 sandwich r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9 sum 5
 ```
 

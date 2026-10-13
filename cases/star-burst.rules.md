@@ -22,13 +22,13 @@ whispers-9: whispers r8c5-r9c5 gap 5
 whispers-10: whispers r6c4-r7c3-r8c2 gap 5
 whispers-11: whispers r5c4-r5c3 gap 5
 whispers-12: whispers r5c2-r5c1 gap 5
-pair-1: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-2: pair r4c2-r4c3 relation {"op":"sum","value":10}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":10}
-pair-4: pair r4c4-r4c5 relation {"op":"sum","value":5}
-pair-5: pair r2c2-r2c3 relation {"op":"sum","value":5}
-pair-6: pair r3c4-r4c4 relation {"op":"sum","value":5}
-pair-7: pair r1c7-r1c8 relation {"op":"sum","value":5}
+pair-1: pair r3c1-r3c2 sum 10
+pair-2: pair r4c2-r4c3 sum 10
+pair-3: pair r4c1-r5c1 sum 10
+pair-4: pair r4c4-r4c5 sum 5
+pair-5: pair r2c2-r2c3 sum 5
+pair-6: pair r3c4-r4c4 sum 5
+pair-7: pair r1c7-r1c8 sum 5
 negative relations [{"op":"difference","value":1}] except [["r4c4","r4c5"],["r3c1","r3c2"],["r2c2","r2c3"],["r3c4","r4c4"],["r1c7","r1c8"],["r4c2","r4c3"],["r4c1","r5c1"]]
 ```
 

@@ -20,8 +20,8 @@ nabner-1: nabner r5c7-r6c7-r7c7-r8c7 distinct true
 nabner-2: nabner r9c9-r8c9-r7c9-r6c8 distinct true
 nabner-3: nabner r6c9-r5c8-r4c8-r4c9 distinct true
 nabner-4: nabner r3c9-r3c8-r3c7-r2c7 distinct true
-pair-1: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-2: pair r8c6-r8c7 relation {"op":"sum","value":10}
+pair-1: pair r4c3-r4c4 sum 10
+pair-2: pair r8c6-r8c7 sum 10
 ```
 
 ```drawing

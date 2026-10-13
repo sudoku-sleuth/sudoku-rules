@@ -23,13 +23,13 @@ arrow-7: arrow r9c2-r8c1 bulb ["r9c3"]
 arrow-8: arrow r8c8-r9c9 bulb ["r8c7"]
 arrow-9: arrow r4c4-r4c5 bulb ["r3c3"]
 arrow-10: arrow r6c6-r6c5 bulb ["r7c7"]
-pair-1: pair r7c8-r7c9 relation {"op":"sum","value":10}
-pair-2: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-3: pair r1c5-r2c5 relation {"op":"sum","value":10}
-pair-4: pair r1c6-r2c6 relation {"op":"sum","value":10}
-pair-5: pair r8c4-r9c4 relation {"op":"sum","value":10}
-pair-6: pair r9c5-r9c6 relation {"op":"sum","value":10}
-pair-7: pair r6c7-r6c8 relation {"op":"sum","value":10}
+pair-1: pair r7c8-r7c9 sum 10
+pair-2: pair r3c1-r3c2 sum 10
+pair-3: pair r1c5-r2c5 sum 10
+pair-4: pair r1c6-r2c6 sum 10
+pair-5: pair r8c4-r9c4 sum 10
+pair-6: pair r9c5-r9c6 sum 10
+pair-7: pair r6c7-r6c8 sum 10
 ```
 
 Normal sudoku rules apply. Digits along an arrow sum to the digit in that arrow's circle. Digits separated by an X sum to 10. Digits in a cage sum to the number given.

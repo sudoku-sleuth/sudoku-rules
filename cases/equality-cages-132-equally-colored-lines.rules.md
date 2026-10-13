@@ -23,8 +23,8 @@ equality-cage-7: equality-cage r8c2-r8c3-r8c4-r9c3
 equality-cage-8: equality-cage r8c9-r9c9
 kropki-1: kropki r3c7-r3c8 colour "black"
 kropki-2: kropki r2c3-r3c3 colour "black"
-pair-1: pair r2c4-r3c4 relation {"op":"sum","value":10}
-pair-2: pair r5c4-r6c4 relation {"op":"sum","value":10}
+pair-1: pair r2c4-r3c4 sum 10
+pair-2: pair r5c4-r6c4 sum 10
 ```
 
 ```drawing

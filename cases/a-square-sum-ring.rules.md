@@ -26,10 +26,10 @@ region-sum-2: region-sum r3c2-r2c3-r2c4-r2c5-r2c6 segments [["r3c2","r2c3"],["r2
 region-sum-3: region-sum r2c7-r3c8-r4c8-r5c8-r6c8 segments [["r2c7","r3c8"],["r4c8","r5c8","r6c8"]]
 region-sum-4: region-sum r7c8-r8c7-r8c6-r8c5-r8c4 segments [["r7c8","r8c7"],["r8c6","r8c5","r8c4"]]
 region-sum-5: region-sum r8c3-r7c2-r6c2-r5c2-r4c2 segments [["r8c3","r7c2"],["r6c2","r5c2","r4c2"]]
-pair-1: pair r8c1-r9c1 relation {"op":"sum","value":5}
-pair-2: pair r8c2-r9c2 relation {"op":"sum","value":5}
-pair-3: pair r1c8-r2c8 relation {"op":"sum","value":5}
-pair-4: pair r1c9-r2c9 relation {"op":"sum","value":5}
+pair-1: pair r8c1-r9c1 sum 5
+pair-2: pair r8c2-r9c2 sum 5
+pair-3: pair r1c8-r2c8 sum 5
+pair-4: pair r1c9-r2c9 sum 5
 parity-cells r3c3-r3c7-r7c7-r7c3 parity "even"
 ```
 

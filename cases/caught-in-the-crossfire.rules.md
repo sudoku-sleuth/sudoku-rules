@@ -31,11 +31,11 @@ arrow-9: arrow r3c8-r3c9 bulb ["r3c7"]
 arrow-10: arrow r3c8-r2c8 bulb ["r4c8"]
 arrow-11: arrow r7c2-r7c1 bulb ["r7c3"]
 arrow-12: arrow r7c2-r8c2 bulb ["r6c2"]
-pair-1: pair r3c3-r3c4 relation {"op":"sum","value":5}
-pair-2: pair r1c8-r2c8 relation {"op":"sum","value":5}
-pair-3: pair r5c7-r6c7 relation {"op":"sum","value":5}
-pair-4: pair r8c4-r8c5 relation {"op":"sum","value":5}
-pair-5: pair r8c2-r8c3 relation {"op":"sum","value":5}
+pair-1: pair r3c3-r3c4 sum 5
+pair-2: pair r1c8-r2c8 sum 5
+pair-3: pair r5c7-r6c7 sum 5
+pair-4: pair r8c4-r8c5 sum 5
+pair-5: pair r8c2-r8c3 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on arrows sum to the number in the arrow's circle. Numbers with a white dot between them are consecutive. Numbers with a V between them sum to 5. Not all possible dots and Vs are given.

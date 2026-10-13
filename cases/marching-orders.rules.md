@@ -24,16 +24,16 @@ kropki-10: kropki r5c9-r6c9 colour "black"
 kropki-11: kropki r1c7-r1c8 colour "black"
 kropki-12: kropki r4c3-r5c3 colour "black"
 kropki-13: kropki r5c7-r6c7 colour "black"
-pair-1: pair r6c9-r7c9 relation {"op":"sum","value":10}
-pair-2: pair r3c1-r4c1 relation {"op":"sum","value":10}
-pair-3: pair r1c9-r2c9 relation {"op":"sum","value":10}
-pair-4: pair r3c3-r3c4 relation {"op":"sum","value":10}
-pair-5: pair r7c6-r7c7 relation {"op":"sum","value":10}
-pair-6: pair r1c3-r1c4 relation {"op":"sum","value":5}
-pair-7: pair r9c6-r9c7 relation {"op":"sum","value":5}
-pair-8: pair r8c1-r9c1 relation {"op":"sum","value":5}
-pair-9: pair r6c7-r7c7 relation {"op":"sum","value":5}
-pair-10: pair r3c3-r4c3 relation {"op":"sum","value":5}
+pair-1: pair r6c9-r7c9 sum 10
+pair-2: pair r3c1-r4c1 sum 10
+pair-3: pair r1c9-r2c9 sum 10
+pair-4: pair r3c3-r3c4 sum 10
+pair-5: pair r7c6-r7c7 sum 10
+pair-6: pair r1c3-r1c4 sum 5
+pair-7: pair r9c6-r9c7 sum 5
+pair-8: pair r8c1-r9c1 sum 5
+pair-9: pair r6c7-r7c7 sum 5
+pair-10: pair r3c3-r4c3 sum 5
 ```
 
 **Sudoku, XV, Kropki**

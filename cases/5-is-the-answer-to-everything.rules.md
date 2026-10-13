@@ -13,16 +13,16 @@ drawingCoverage: unclaimed-only
 sudoku 9x9
 kropki-1: kropki r1c2-r2c2 colour "white"
 kropki-2: kropki r7c4-r7c5 colour "white"
-pair-1: pair r7c1-r8c1 relation {"op":"sum","value":5}
-pair-2: pair r6c2-r6c3 relation {"op":"sum","value":5}
-pair-3: pair r7c4-r8c4 relation {"op":"sum","value":5}
-pair-4: pair r7c8-r8c8 relation {"op":"sum","value":5}
-pair-5: pair r8c7-r9c7 relation {"op":"sum","value":5}
-pair-6: pair r5c9-r6c9 relation {"op":"sum","value":5}
-pair-7: pair r2c8-r3c8 relation {"op":"sum","value":5}
-pair-8: pair r6c5-r7c5 relation {"op":"sum","value":5}
-pair-9: pair r5c5-r5c6 relation {"op":"sum","value":5}
-pair-10: pair r2c1-r3c1 relation {"op":"sum","value":5}
+pair-1: pair r7c1-r8c1 sum 5
+pair-2: pair r6c2-r6c3 sum 5
+pair-3: pair r7c4-r8c4 sum 5
+pair-4: pair r7c8-r8c8 sum 5
+pair-5: pair r8c7-r9c7 sum 5
+pair-6: pair r5c9-r6c9 sum 5
+pair-7: pair r2c8-r3c8 sum 5
+pair-8: pair r6c5-r7c5 sum 5
+pair-9: pair r5c5-r5c6 sum 5
+pair-10: pair r2c1-r3c1 sum 5
 ```
 
 ```drawing

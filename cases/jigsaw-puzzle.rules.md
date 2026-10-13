@@ -21,14 +21,14 @@ cage-7: cage r7c7-r8c7 total 10 connected true
 cage-8: cage r6c9-r7c9 total 10 connected true
 cage-9: cage r2c6-r2c7 total 10 connected true
 cage-10: cage r1c4-r2c4 total 14 connected true
-pair-1: pair r1c6-r2c6 relation {"op":"sum","value":5}
-pair-2: pair r2c8-r3c8 relation {"op":"sum","value":5}
-pair-3: pair r6c2-r7c2 relation {"op":"sum","value":5}
-pair-4: pair r7c4-r8c4 relation {"op":"sum","value":5}
-pair-5: pair r8c7-r9c7 relation {"op":"sum","value":5}
-pair-6: pair r5c8-r5c9 relation {"op":"sum","value":5}
-pair-7: pair r3c1-r4c1 relation {"op":"sum","value":5}
-pair-8: pair r5c4-r6c4 relation {"op":"sum","value":5}
+pair-1: pair r1c6-r2c6 sum 5
+pair-2: pair r2c8-r3c8 sum 5
+pair-3: pair r6c2-r7c2 sum 5
+pair-4: pair r7c4-r8c4 sum 5
+pair-5: pair r8c7-r9c7 sum 5
+pair-6: pair r5c8-r5c9 sum 5
+pair-7: pair r3c1-r4c1 sum 5
+pair-8: pair r5c4-r6c4 sum 5
 ```
 
 ```drawing

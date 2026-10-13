@@ -29,15 +29,15 @@ renban-1: renban r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8
 renban-2: renban r8c3-r7c3-r6c3-r5c3-r4c3-r3c3-r2c3
 renban-3: renban r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8
 renban-4: renban r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7
-pair-1: pair r5c2-r6c2 relation {"op":"sum","value":10}
-pair-2: pair r8c3-r9c3 relation {"op":"sum","value":5}
-pair-3: pair r1c3-r2c3 relation {"op":"sum","value":5}
-pair-4: pair r3c1-r3c2 relation {"op":"sum","value":5}
-pair-5: pair r7c1-r7c2 relation {"op":"sum","value":5}
-pair-6: pair r8c7-r9c7 relation {"op":"sum","value":5}
-pair-7: pair r7c8-r7c9 relation {"op":"sum","value":5}
-pair-8: pair r3c8-r3c9 relation {"op":"sum","value":5}
-pair-9: pair r1c7-r2c7 relation {"op":"sum","value":5}
+pair-1: pair r5c2-r6c2 sum 10
+pair-2: pair r8c3-r9c3 sum 5
+pair-3: pair r1c3-r2c3 sum 5
+pair-4: pair r3c1-r3c2 sum 5
+pair-5: pair r7c1-r7c2 sum 5
+pair-6: pair r8c7-r9c7 sum 5
+pair-7: pair r7c8-r7c9 sum 5
+pair-8: pair r3c8-r3c9 sum 5
+pair-9: pair r1c7-r2c7 sum 5
 ```
 
 Normal Sudoku Rules Apply

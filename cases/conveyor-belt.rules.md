@@ -22,7 +22,7 @@ arrow-7: arrow r8c5-r8c4-r7c4 bulb ["r7c5"]
 arrow-8: arrow r8c7-r8c8-r7c8 bulb ["r7c7"]
 arrow-9: arrow r1c9-r2c9-r3c9 bulb ["r1c8"]
 arrow-10: arrow r9c1-r9c2-r9c3 bulb ["r8c1"]
-pair r8c1-r9c1 relation {"op":"sum","value":10}
+pair r8c1-r9c1 sum 10
 ```
 
 Normal Sudoku rules apply.  Numbers on arrows sum to the number in the arrow's circle.  Numbers may repeat on arrows, if other rules allow.  Numbers with an X between them sum to 10.  Numbers with a white dot between them are consecutive.  Not all X's and dots are given.

@@ -12,18 +12,18 @@ givens: r1c1=1 r9c9=1
 
 ```rules
 sudoku 9x9
-pair-1: pair r2c3-r3c3 relation {"op":"difference","value":3}
-pair-2: pair r3c1-r3c2 relation {"op":"difference","value":2}
-pair-3: pair r3c4-r4c4 relation {"op":"difference","value":6}
-pair-4: pair r2c7-r3c7 relation {"op":"difference","value":5}
-pair-5: pair r2c8-r3c8 relation {"op":"difference","value":6}
-pair-6: pair r4c8-r5c8 relation {"op":"difference","value":6}
+pair-1: pair r2c3-r3c3 difference 3
+pair-2: pair r3c1-r3c2 difference 2
+pair-3: pair r3c4-r4c4 difference 6
+pair-4: pair r2c7-r3c7 difference 5
+pair-5: pair r2c8-r3c8 difference 6
+pair-6: pair r4c8-r5c8 difference 6
 kropki-1: kropki r6c6-r6c7 colour "white"
-pair-7: pair r7c8-r7c9 relation {"op":"difference","value":4}
+pair-7: pair r7c8-r7c9 difference 4
 kropki-2: kropki r8c6-r8c7 colour "white"
-pair-8: pair r7c4-r8c4 relation {"op":"difference","value":6}
-pair-9: pair r7c2-r8c2 relation {"op":"difference","value":3}
-pair-10: pair r5c3-r5c4 relation {"op":"difference","value":3}
+pair-8: pair r7c4-r8c4 difference 6
+pair-9: pair r7c2-r8c2 difference 3
+pair-10: pair r5c3-r5c4 difference 3
 ```
 
 ```drawing

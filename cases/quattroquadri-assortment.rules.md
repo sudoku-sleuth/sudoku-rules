@@ -83,8 +83,8 @@ whispers-1: whispers r3c4-r3c3-r2c4 loop false gap 5
 whispers-2: whispers r6c5-r6c6-r5c6 loop false gap 4
 renban r6c2-r6c3
 region-sum r4c6-r4c5-r4c4-r4c3 segments [["r4c6","r4c5","r4c4"],["r4c3"]]
-pair-1: pair r4c4-r5c4 relation {"op":"sum","value":10}
-pair-2: pair r5c1-r6c1 relation {"op":"sum","value":5}
+pair-1: pair r4c4-r5c4 sum 10
+pair-2: pair r5c1-r6c1 sum 5
 quadruple r5c4-r5c5-r6c4-r6c5 digits [8]
 little-killer r1c2-r2c3-r3c4-r4c5-r5c6 sum 21
 extremum r2c2 type "max" exhaustive false

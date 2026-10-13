@@ -16,12 +16,12 @@ modular-2: modular r1c6-r2c6-r2c7-r1c7-r1c8-r2c8-r2c9-r3c9-r3c8-r4c8-r4c9
 modular-3: modular r6c9-r6c8-r7c8-r7c9-r8c9-r8c8-r9c8-r9c7-r8c7-r8c6-r9c6
 modular-4: modular r9c4-r8c4-r8c3-r9c3-r9c2-r8c2-r8c1
 modular-5: modular r6c1-r6c2-r7c2-r7c1-r8c1
-pair-1: pair r4c3-r4c4 relation {"op":"sum","value":10}
-pair-2: pair r3c1-r3c2 relation {"op":"sum","value":10}
-pair-3: pair r8c8-r9c8 relation {"op":"sum","value":10}
-pair-4: pair r3c6-r4c6 relation {"op":"sum","value":5}
-pair-5: pair r6c4-r7c4 relation {"op":"sum","value":5}
-pair-6: pair r6c6-r6c7 relation {"op":"sum","value":5}
+pair-1: pair r4c3-r4c4 sum 10
+pair-2: pair r3c1-r3c2 sum 10
+pair-3: pair r8c8-r9c8 sum 10
+pair-4: pair r3c6-r4c6 sum 5
+pair-5: pair r6c4-r7c4 sum 5
+pair-6: pair r6c6-r6c7 sum 5
 ```
 
 Standard sudoku rules apply. 

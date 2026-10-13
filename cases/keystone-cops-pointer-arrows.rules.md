@@ -21,11 +21,11 @@ arrow-8: arrow r5c5-r4c5 bulb ["r6c6"]
 arrow-9: arrow r1c3-r2c4-r3c5 bulb ["r1c2"]
 arrow-10: arrow r2c3-r3c3 bulb ["r1c2"]
 arrow-11: arrow r7c3-r7c4-r7c5 bulb ["r8c4"]
-pair-1: pair r4c2-r4c3 relation {"op":"sum","value":5}
-pair-2: pair r5c7-r5c8 relation {"op":"sum","value":5}
-pair-3: pair r1c8-r2c8 relation {"op":"sum","value":5}
-pair-4: pair r1c9-r2c9 relation {"op":"sum","value":5}
-pair-5: pair r6c4-r6c5 relation {"op":"sum","value":5}
+pair-1: pair r4c2-r4c3 sum 5
+pair-2: pair r5c7-r5c8 sum 5
+pair-3: pair r1c8-r2c8 sum 5
+pair-4: pair r1c9-r2c9 sum 5
+pair-5: pair r6c4-r6c5 sum 5
 pointing-arrow-1: pointing-arrow cell "r6c7" ray ["r7c6","r8c5","r9c4"] target "source" source "r4c6"
 pointing-arrow-2: pointing-arrow cell "r8c6" ray ["r8c5","r8c4","r8c3","r8c2","r8c1"] target "source" source "r7c9"
 pointing-arrow-3: pointing-arrow cell "r7c2" ray ["r6c2","r5c2","r4c2","r3c2","r2c2","r1c2"] target "source" source "r8c1"

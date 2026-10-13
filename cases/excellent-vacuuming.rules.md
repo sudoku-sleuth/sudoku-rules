@@ -22,19 +22,19 @@ cage-6: cage r2c5-r2c6 connected true
 cage-7: cage r3c1-r4c1 connected true
 cage-8: cage r1c1-r1c2-r2c1 connected true
 cage-9: cage r1c4-r2c4 connected true
-pair-1: pair r3c5-r4c5 relation {"op":"sum","value":10}
-pair-2: pair r5c7-r5c8 relation {"op":"sum","value":10}
-pair-3: pair r8c8-r8c9 relation {"op":"sum","value":10}
-pair-4: pair r6c7-r7c7 relation {"op":"sum","value":10}
-pair-5: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-6: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-7: pair r7c4-r7c5 relation {"op":"sum","value":10}
-pair-8: pair r5c2-r5c3 relation {"op":"sum","value":10}
-pair-9: pair r7c5-r8c5 relation {"op":"sum","value":5}
-pair-10: pair r5c4-r5c5 relation {"op":"sum","value":5}
-pair-11: pair r5c8-r6c8 relation {"op":"sum","value":5}
-pair-12: pair r4c3-r5c3 relation {"op":"sum","value":5}
-pair-13: pair r8c8-r9c8 relation {"op":"sum","value":5}
+pair-1: pair r3c5-r4c5 sum 10
+pair-2: pair r5c7-r5c8 sum 10
+pair-3: pair r8c8-r8c9 sum 10
+pair-4: pair r6c7-r7c7 sum 10
+pair-5: pair r3c3-r4c3 sum 10
+pair-6: pair r6c3-r7c3 sum 10
+pair-7: pair r7c4-r7c5 sum 10
+pair-8: pair r5c2-r5c3 sum 10
+pair-9: pair r7c5-r8c5 sum 5
+pair-10: pair r5c4-r5c5 sum 5
+pair-11: pair r5c8-r6c8 sum 5
+pair-12: pair r4c3-r5c3 sum 5
+pair-13: pair r8c8-r9c8 sum 5
 ```
 
 ```drawing

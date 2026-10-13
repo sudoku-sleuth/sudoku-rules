@@ -17,18 +17,18 @@ modular-3: modular r1c3-r1c4-r1c5-r1c6-r1c7
 modular-4: modular r9c3-r8c4-r9c5-r8c6-r9c7
 modular-5: modular r3c1-r4c1-r5c2-r6c1
 modular-6: modular r3c9-r4c9-r5c8-r6c9
-pair-1: pair r2c3-r2c4 relation {"op":"sum","value":10}
-pair-2: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-3: pair r8c7-r9c7 relation {"op":"sum","value":10}
-pair-4: pair r9c6-r9c7 relation {"op":"sum","value":10}
-pair-5: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-6: pair r5c2-r5c3 relation {"op":"sum","value":10}
-pair-7: pair r4c7-r5c7 relation {"op":"sum","value":10}
-pair-8: pair r1c7-r1c8 relation {"op":"sum","value":10}
-pair-9: pair r1c5-r1c6 relation {"op":"sum","value":5}
-pair-10: pair r1c7-r2c7 relation {"op":"sum","value":5}
-pair-11: pair r1c4-r2c4 relation {"op":"sum","value":5}
-pair-12: pair r8c3-r9c3 relation {"op":"sum","value":5}
+pair-1: pair r2c3-r2c4 sum 10
+pair-2: pair r2c3-r3c3 sum 10
+pair-3: pair r8c7-r9c7 sum 10
+pair-4: pair r9c6-r9c7 sum 10
+pair-5: pair r9c3-r9c4 sum 10
+pair-6: pair r5c2-r5c3 sum 10
+pair-7: pair r4c7-r5c7 sum 10
+pair-8: pair r1c7-r1c8 sum 10
+pair-9: pair r1c5-r1c6 sum 5
+pair-10: pair r1c7-r2c7 sum 5
+pair-11: pair r1c4-r2c4 sum 5
+pair-12: pair r8c3-r9c3 sum 5
 ```
 
 **Sudoku, Modular lines, XV pairs**

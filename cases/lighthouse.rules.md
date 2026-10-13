@@ -12,8 +12,8 @@ givens: r9c2=5
 
 ```rules
 sudoku 9x9
-pair-1: pair r8c2-r8c3 relation {"op":"sum","value":5}
-pair-2: pair r8c7-r8c8 relation {"op":"sum","value":5}
+pair-1: pair r8c2-r8c3 sum 5
+pair-2: pair r8c7-r8c8 sum 5
 negative relations [{"op":"ratio","value":2}] except [["r8c2","r8c3"],["r8c7","r8c8"]]
 ```
 

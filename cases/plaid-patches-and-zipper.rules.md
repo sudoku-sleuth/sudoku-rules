@@ -31,13 +31,13 @@ renban-7: renban r1c8-r1c7-r1c6
 renban-8: renban r4c1-r5c1-r6c1
 renban-9: renban r7c1-r7c2-r7c3
 renban-10: renban r3c1-r3c2-r3c3
-pair-1: pair r2c6-r2c7 relation {"op":"sum","value":10}
-pair-2: pair r3c6-r3c7 relation {"op":"sum","value":10}
-pair-3: pair r4c6-r4c7 relation {"op":"sum","value":10}
-pair-4: pair r5c6-r5c7 relation {"op":"sum","value":10}
-pair-5: pair r6c6-r6c7 relation {"op":"sum","value":10}
-pair-6: pair r7c6-r7c7 relation {"op":"sum","value":10}
-pair-7: pair r8c6-r8c7 relation {"op":"sum","value":10}
+pair-1: pair r2c6-r2c7 sum 10
+pair-2: pair r3c6-r3c7 sum 10
+pair-3: pair r4c6-r4c7 sum 10
+pair-4: pair r5c6-r5c7 sum 10
+pair-5: pair r6c6-r6c7 sum 10
+pair-6: pair r7c6-r7c7 sum 10
+pair-7: pair r8c6-r8c7 sum 10
 ```
 
 ```drawing

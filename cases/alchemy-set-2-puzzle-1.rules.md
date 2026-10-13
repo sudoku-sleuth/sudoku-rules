@@ -81,7 +81,7 @@ whispers-1: whispers r2c5-r1c5-r1c4-r2c3 loop false gap 2
 whispers-2: whispers r1c4-r1c3-r1c2 loop false gap 2
 region-sum r6c6-r5c6-r4c6-r3c6-r2c6-r1c6 segments [["r6c6","r5c6"],["r4c6","r3c6"],["r2c6","r1c6"]]
 slow-thermo r1c1-r2c2-r3c3-r4c4-r5c5-r6c6
-pair r1c2-r1c3 relation {"op":"sum","value":5}
+pair r1c2-r1c3 sum 5
 ```
 
 Any clue type throughout the set may appear only once.

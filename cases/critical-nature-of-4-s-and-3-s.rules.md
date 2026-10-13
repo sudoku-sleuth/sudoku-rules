@@ -19,8 +19,8 @@ thermo-5: thermo r9c5-r9c4-r9c3
 thermo-6: thermo r5c1-r4c1-r3c1
 thermo-7: thermo r1c5-r1c6
 thermo-8: thermo r5c9-r6c9-r7c9-r8c9-r9c8
-pair-1: pair r5c5-r6c5 relation {"op":"sum","value":10}
-pair-2: pair r5c9-r6c9 relation {"op":"sum","value":5}
+pair-1: pair r5c5-r6c5 sum 10
+pair-2: pair r5c9-r6c9 sum 5
 ```
 
 Normal Sudoku rules apply.  Numbers on thermometers increase from the bulb end.  An "X" is between two numbers that sum to 10.  A "V" is between two numbers that sum to 5.  Not all possible X's and V's are given.

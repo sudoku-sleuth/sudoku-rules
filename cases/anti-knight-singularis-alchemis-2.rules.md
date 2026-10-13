@@ -16,8 +16,8 @@ anti-knight
 arrow r2c5-r1c5 bulb ["r3c5"]
 renban r6c4-r5c4-r4c4
 slow-thermo r8c4-r7c3-r6c2-r5c2-r4c2-r3c3-r2c4-r3c5-r2c6-r3c7-r4c8-r5c8-r6c8-r7c7-r8c6
-pair-1: pair r6c3-r6c4 relation {"op":"sum","value":10}
-pair-2: pair r7c4-r8c4 relation {"op":"sum","value":5}
+pair-1: pair r6c3-r6c4 sum 10
+pair-2: pair r7c4-r8c4 sum 5
 ```
 
 ```drawing

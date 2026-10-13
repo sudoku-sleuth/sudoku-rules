@@ -29,15 +29,15 @@ renban-4: renban r1c3-r2c4-r3c4
 renban-5: renban r1c7-r2c7-r3c6
 renban-6: renban r3c9-r4c8-r5c7
 renban-7: renban r5c9-r6c8-r7c7
-pair-1: pair r7c3-r7c4 relation {"op":"sum","value":5}
-pair-2: pair r7c4-r8c4 relation {"op":"sum","value":5}
-pair-3: pair r7c2-r8c2 relation {"op":"sum","value":5}
-pair-4: pair r3c3-r4c3 relation {"op":"sum","value":5}
-pair-5: pair r4c3-r4c4 relation {"op":"sum","value":5}
-pair-6: pair r1c5-r2c5 relation {"op":"sum","value":5}
-pair-7: pair r1c6-r2c6 relation {"op":"sum","value":5}
-pair-8: pair r1c6-r1c7 relation {"op":"sum","value":5}
-pair-9: pair r5c5-r6c5 relation {"op":"sum","value":5}
+pair-1: pair r7c3-r7c4 sum 5
+pair-2: pair r7c4-r8c4 sum 5
+pair-3: pair r7c2-r8c2 sum 5
+pair-4: pair r3c3-r4c3 sum 5
+pair-5: pair r4c3-r4c4 sum 5
+pair-6: pair r1c5-r2c5 sum 5
+pair-7: pair r1c6-r2c6 sum 5
+pair-8: pair r1c6-r1c7 sum 5
+pair-9: pair r5c5-r6c5 sum 5
 ```
 
 Normal Sudoku rules apply.  Numbers on green lines are at least 5 apart from their neighbors on the line. Numbers may repeat on green lines if allowed by other rules. Numbers on red lines are a set of non-repeating, consecutive numbers, in any order. Numbers with a white dot between them are consecutive. Numbers with a V between them sum to 5. Not all dots and V are given. The gray line has no effect on the puzzle.

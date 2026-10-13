@@ -45,7 +45,7 @@ renban-3: renban r3c6-r3c7-r4c7-r5c7
 renban-4: renban r2c7-r2c8
 renban-5: renban r7c1-r7c2-r7c3
 renban-6: renban r8c7-r8c8-r8c9
-pair r5c4-r6c4 relation {"op":"sum","value":10}
+pair r5c4-r6c4 sum 10
 ```
 
 •	Normal Sudoku rules apply. 

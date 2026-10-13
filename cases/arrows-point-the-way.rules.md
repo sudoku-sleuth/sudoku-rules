@@ -20,8 +20,8 @@ arrow-1: arrow r7c6-r6c7 bulb ["r8c5"]
 arrow-2: arrow r4c7-r3c6 bulb ["r5c8"]
 arrow-3: arrow r3c4-r4c3 bulb ["r2c5"]
 arrow-4: arrow r6c3-r7c4 bulb ["r5c2"]
-pair-1: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-2: pair r6c4-r6c5 relation {"op":"sum","value":10}
+pair-1: pair r4c4-r4c5 sum 10
+pair-2: pair r6c4-r6c5 sum 10
 little-killer-1: little-killer r1c4-r2c5-r3c6-r4c7-r5c8-r6c9 sum 21
 little-killer-2: little-killer r4c1-r5c2-r6c3-r7c4-r8c5-r9c6 sum 20
 little-killer-3: little-killer r4c9-r5c8-r6c7-r7c6-r8c5-r9c4 sum 20

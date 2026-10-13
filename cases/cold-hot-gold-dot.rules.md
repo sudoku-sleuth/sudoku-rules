@@ -20,25 +20,25 @@ kropki-1: kropki r3c8-r3c9 colour "black"
 kropki-2: kropki r2c5-r3c5 colour "black"
 kropki-3: kropki r1c1-r2c1 colour "black"
 kropki-4: kropki r8c1-r9c1 colour "black"
-pair-1: pair r2c4-r2c5 relation {"op":"shift"}
-pair-2: pair r2c5-r2c6 relation {"op":"shift"}
-pair-3: pair r3c2-r3c3 relation {"op":"shift"}
-pair-4: pair r1c7-r1c8 relation {"op":"shift"}
-pair-5: pair r7c1-r8c1 relation {"op":"shift"}
-pair-6: pair r7c8-r8c8 relation {"op":"shift"}
-pair-7: pair r8c7-r8c8 relation {"op":"shift"}
-pair-8: pair r8c8-r9c8 relation {"op":"shift"}
-pair-9: pair r8c8-r8c9 relation {"op":"shift"}
-pair-10: pair r5c7-r5c8 relation {"op":"shift"}
-pair-11: pair r6c8-r7c8 relation {"op":"shift"}
-pair-12: pair r5c2-r6c2 relation {"op":"shift"}
-pair-13: pair r6c2-r6c3 relation {"op":"shift"}
-pair-14: pair r5c6-r5c7 relation {"op":"shift"}
-pair-15: pair r5c6-r6c6 relation {"op":"shift"}
-pair-16: pair r5c1-r5c2 relation {"op":"shift"}
-pair-17: pair r6c9-r7c9 relation {"op":"shift"}
-pair-18: pair r9c5-r9c6 relation {"op":"shift"}
-pair-19: pair r8c5-r9c5 relation {"op":"shift"}
+pair-1: pair r2c4-r2c5 shift
+pair-2: pair r2c5-r2c6 shift
+pair-3: pair r3c2-r3c3 shift
+pair-4: pair r1c7-r1c8 shift
+pair-5: pair r7c1-r8c1 shift
+pair-6: pair r7c8-r8c8 shift
+pair-7: pair r8c7-r8c8 shift
+pair-8: pair r8c8-r9c8 shift
+pair-9: pair r8c8-r8c9 shift
+pair-10: pair r5c7-r5c8 shift
+pair-11: pair r6c8-r7c8 shift
+pair-12: pair r5c2-r6c2 shift
+pair-13: pair r6c2-r6c3 shift
+pair-14: pair r5c6-r5c7 shift
+pair-15: pair r5c6-r6c6 shift
+pair-16: pair r5c1-r5c2 shift
+pair-17: pair r6c9-r7c9 shift
+pair-18: pair r9c5-r9c6 shift
+pair-19: pair r8c5-r9c5 shift
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

@@ -150,9 +150,9 @@ cage-4: cage r8c4-r9c3-r9c4 total 18 connected true
 kropki-1: kropki r1c2-r2c2 colour "white"
 kropki-2: kropki r3c5-r3c6 colour "white"
 kropki-3: kropki r3c9-r4c9 colour "white"
-pair-1: pair r2c1-r3c1 relation {"op":"sum","value":10}
-pair-2: pair r2c3-r3c3 relation {"op":"sum","value":10}
-pair-3: pair r7c7-r7c8 relation {"op":"sum","value":10}
+pair-1: pair r2c1-r3c1 sum 10
+pair-2: pair r2c3-r3c3 sum 10
+pair-3: pair r7c7-r7c8 sum 10
 ```
 
 ```drawing

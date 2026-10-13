@@ -36,9 +36,9 @@ arrow-21: arrow r2c5-r1c5 bulb ["r3c5"]
 arrow-22: arrow r8c4-r7c4 bulb ["r9c4"]
 arrow-23: arrow r8c6-r7c6 bulb ["r9c6"]
 arrow-24: arrow r2c6-r1c6 bulb ["r3c6"]
-pair-1: pair r4c5-r4c6 relation {"op":"sum","value":10}
-pair-2: pair r5c6-r6c6 relation {"op":"sum","value":10}
-pair-3: pair r8c7-r8c8 relation {"op":"sum","value":5}
+pair-1: pair r4c5-r4c6 sum 10
+pair-2: pair r5c6-r6c6 sum 10
+pair-3: pair r8c7-r8c8 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on arrows sum to the number in that arrow's circle. All arrows are length 2 and straight. Numbers with a black dot between them are in a ratio of 2:1. Numbers with an X between them sum to 10. Numbers with a V between them sum to 5. Not all possible dots, X and V are given.

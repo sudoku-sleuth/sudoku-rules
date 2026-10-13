@@ -158,11 +158,11 @@ whispers-1: whispers r7c1-r8c2-r9c3 loop false gap 5
 whispers-2: whispers r7c3-r8c2-r9c1 loop false gap 5
 whispers-3: whispers r8c3-r7c3 loop false gap 5
 whispers-4: whispers r8c1-r9c1 loop false gap 5
-pair-1: pair r2c9-r3c9 relation {"op":"sum","value":10}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":10}
-pair-3: pair r2c7-r2c8 relation {"op":"sum","value":5}
-pair-4: pair r1c8-r1c9 relation {"op":"sum","value":5}
-pair-5: pair r3c8-r3c9 relation {"op":"sum","value":5}
+pair-1: pair r2c9-r3c9 sum 10
+pair-2: pair r3c7-r3c8 sum 10
+pair-3: pair r2c7-r2c8 sum 5
+pair-4: pair r1c8-r1c9 sum 5
+pair-5: pair r3c8-r3c9 sum 5
 allowed-digits-1: allowed-digits r4c7-r4c8-r5c7-r5c8 digits [0,1,2,4,5,6,7,8,9]
 allowed-digits-2: allowed-digits r1c5-r1c6-r2c5-r2c6 digits [0,3,5,7,8,9]
 allowed-digits-3: allowed-digits r2c5-r2c6-r3c5-r3c6 digits [0,2,5,6,7,9]

@@ -45,9 +45,9 @@ whispers-10: whispers r3c3-r2c3-r2c2 gap 5
 renban-1: renban r4c4-r4c5-r4c6
 renban-2: renban r3c4-r2c4-r2c5-r2c6-r3c6
 renban-3: renban r6c2-r7c2-r8c2
-pair-1: pair r4c5-r5c5 relation {"op":"sum","value":10}
-pair-2: pair r9c2-r9c3 relation {"op":"sum","value":10}
-pair-3: pair r9c6-r9c7 relation {"op":"sum","value":10}
+pair-1: pair r4c5-r5c5 sum 10
+pair-2: pair r9c2-r9c3 sum 10
+pair-3: pair r9c6-r9c7 sum 10
 ```
 
 •	Normal Sudoku rules apply. 

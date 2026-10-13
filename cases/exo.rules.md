@@ -32,15 +32,15 @@ whispers-4: whispers r4c6-r5c5 gap 5
 entropic-1: entropic r1c3-r1c2-r1c1-r2c1-r3c1-r3c2-r3c3
 entropic-2: entropic r2c2-r2c3
 entropic-3: entropic r8c7-r7c7-r7c8-r7c9-r8c9-r9c9-r9c8-r9c7
-pair-1: pair r5c6-r5c7 relation {"op":"sum","value":10}
-pair-2: pair r6c5-r7c5 relation {"op":"sum","value":10}
-pair-3: pair r5c3-r5c4 relation {"op":"sum","value":10}
-pair-4: pair r1c6-r2c6 relation {"op":"sum","value":10}
-pair-5: pair r1c6-r1c7 relation {"op":"sum","value":10}
-pair-6: pair r4c2-r5c2 relation {"op":"sum","value":10}
-pair-7: pair r5c4-r5c5 relation {"op":"sum","value":5}
-pair-8: pair r6c9-r7c9 relation {"op":"sum","value":5}
-pair-9: pair r8c2-r8c3 relation {"op":"sum","value":5}
+pair-1: pair r5c6-r5c7 sum 10
+pair-2: pair r6c5-r7c5 sum 10
+pair-3: pair r5c3-r5c4 sum 10
+pair-4: pair r1c6-r2c6 sum 10
+pair-5: pair r1c6-r1c7 sum 10
+pair-6: pair r4c2-r5c2 sum 10
+pair-7: pair r5c4-r5c5 sum 5
+pair-8: pair r6c9-r7c9 sum 5
+pair-9: pair r8c2-r8c3 sum 5
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

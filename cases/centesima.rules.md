@@ -168,7 +168,7 @@ renban-1: renban r3c1-r3c2-r2c2-r2c3-r1c3
 renban-2: renban r4c7-r5c7-r6c7-r6c8-r6c9-r5c9-r4c9-r4c8
 renban-3: renban r8c7-r7c8-r8c9-r9c8
 renban-4: renban r5c1-r4c2-r5c2-r6c2-r6c1-r6c3
-pair r4c2-r5c2 relation {"op":"sum","value":5}
+pair r4c2-r5c2 sum 5
 ```
 
 •	Normal Sudoku rules apply. 

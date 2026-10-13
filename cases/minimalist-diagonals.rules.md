@@ -12,15 +12,15 @@ status: read
 sudoku 9x9
 kropki-1: kropki r2c2-r2c3 colour "white"
 kropki-2: kropki r5c8-r6c8 colour "white"
-pair-1: pair r3c2-r3c3 relation {"op":"sum","value":10}
-pair-2: pair r9c3-r9c4 relation {"op":"sum","value":10}
-pair-3: pair r9c8-r9c9 relation {"op":"sum","value":10}
-pair-4: pair r6c3-r7c3 relation {"op":"sum","value":10}
-pair-5: pair r2c5-r2c6 relation {"op":"sum","value":10}
-pair-6: pair r4c7-r5c7 relation {"op":"sum","value":10}
-pair-7: pair r1c8-r1c9 relation {"op":"sum","value":10}
-pair-8: pair r1c2-r1c3 relation {"op":"sum","value":5}
-pair-9: pair r9c5-r9c6 relation {"op":"sum","value":5}
+pair-1: pair r3c2-r3c3 sum 10
+pair-2: pair r9c3-r9c4 sum 10
+pair-3: pair r9c8-r9c9 sum 10
+pair-4: pair r6c3-r7c3 sum 10
+pair-5: pair r2c5-r2c6 sum 10
+pair-6: pair r4c7-r5c7 sum 10
+pair-7: pair r1c8-r1c9 sum 10
+pair-8: pair r1c2-r1c3 sum 5
+pair-9: pair r9c5-r9c6 sum 5
 little-killer-1: little-killer r9c2-r8c1 sum 6
 little-killer-2: little-killer r9c4-r8c3-r7c2-r6c1 sum 10
 little-killer-3: little-killer r4c1-r3c2-r2c3-r1c4 sum 10

@@ -22,14 +22,14 @@ cage-9: cage r9c1-r9c2 total 12 connected true
 cage-10: cage r4c1-r5c1 total 15 connected true
 cage-11: cage r5c9-r6c9 total 5 connected true
 cage-12: cage r1c3-r1c4 total 9 connected true
-pair-1: pair r3c3-r4c3 relation {"op":"sum","value":10}
-pair-2: pair r6c7-r7c7 relation {"op":"sum","value":10}
-pair-3: pair r3c9-r4c9 relation {"op":"sum","value":10}
-pair-4: pair r6c1-r7c1 relation {"op":"sum","value":10}
-pair-5: pair r4c4-r4c5 relation {"op":"sum","value":10}
-pair-6: pair r6c5-r6c6 relation {"op":"sum","value":10}
-pair-7: pair r8c6-r8c7 relation {"op":"sum","value":10}
-pair-8: pair r2c3-r2c4 relation {"op":"sum","value":10}
+pair-1: pair r3c3-r4c3 sum 10
+pair-2: pair r6c7-r7c7 sum 10
+pair-3: pair r3c9-r4c9 sum 10
+pair-4: pair r6c1-r7c1 sum 10
+pair-5: pair r4c4-r4c5 sum 10
+pair-6: pair r6c5-r6c6 sum 10
+pair-7: pair r8c6-r8c7 sum 10
+pair-8: pair r2c3-r2c4 sum 10
 anti-knight
 ```
 

@@ -25,7 +25,7 @@ region-sum-2: region-sum r9c3-r8c3-r7c4-r6c5-r6c6 segments [["r9c3","r8c3"],["r7
 region-sum-3: region-sum r1c8-r2c9-r3c9-r4c8-r4c7-r4c6-r4c5-r4c4-r5c4-r6c3-r6c2-r7c1-r8c1-r9c1 segments [["r1c8","r2c9","r3c9"],["r4c8","r4c7"],["r4c6","r4c5","r4c4","r5c4"],["r6c3","r6c2"],["r7c1","r8c1","r9c1"]]
 region-sum-4: region-sum r6c9-r6c8-r7c7-r8c6-r8c5 segments [["r6c9","r6c8"],["r7c7"],["r8c6","r8c5"]]
 region-sum-5: region-sum r5c1-r4c1-r3c2-r2c2 segments [["r5c1","r4c1"],["r3c2","r2c2"]]
-pair r2c4-r3c4 relation {"op":"sum","value":10}
+pair r2c4-r3c4 sum 10
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

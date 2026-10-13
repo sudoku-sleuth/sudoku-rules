@@ -78,8 +78,8 @@ thermo-1: thermo r5c1-r4c2-r3c3
 thermo-2: thermo r2c6-r3c5-r4c4
 arrow-1: arrow r6c3-r6c4 bulb ["r6c2"]
 arrow-2: arrow r1c4-r1c3 bulb ["r1c5"]
-pair-1: pair r2c3-r3c3 relation {"op":"sum","value":5}
-pair-2: pair r4c4-r5c4 relation {"op":"sum","value":5}
+pair-1: pair r2c3-r3c3 sum 5
+pair-2: pair r4c4-r5c4 sum 5
 little-killer-1: little-killer r3c1-r4c2-r5c3-r6c4 sum 13
 little-killer-2: little-killer r1c3-r2c4-r3c5-r4c6 sum 13
 ```

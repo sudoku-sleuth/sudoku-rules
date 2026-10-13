@@ -40,12 +40,12 @@ arrow-3: arrow r1c5-r1c6 bulb ["r1c4"]
 arrow-4: arrow r9c5-r9c4 bulb ["r9c6"]
 arrow-5: arrow r8c1-r9c1 bulb ["r7c1"]
 arrow-6: arrow r2c9-r1c9 bulb ["r3c9"]
-pair-1: pair r4c6-r5c6 relation {"op":"sum","value":10}
-pair-2: pair r5c3-r5c4 relation {"op":"sum","value":10}
-pair-3: pair r3c5-r4c5 relation {"op":"sum","value":10}
-pair-4: pair r6c5-r7c5 relation {"op":"sum","value":10}
-pair-5: pair r5c4-r6c4 relation {"op":"sum","value":5}
-pair-6: pair r5c6-r5c7 relation {"op":"sum","value":5}
+pair-1: pair r4c6-r5c6 sum 10
+pair-2: pair r5c3-r5c4 sum 10
+pair-3: pair r3c5-r4c5 sum 10
+pair-4: pair r6c5-r7c5 sum 10
+pair-5: pair r5c4-r6c4 sum 5
+pair-6: pair r5c6-r5c7 sum 5
 ```
 
 - Normal sudoku rules apply, i.e. each row, column and 3x3 region has to contain the digits from 1 to 9 once each.

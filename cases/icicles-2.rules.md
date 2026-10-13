@@ -23,7 +23,7 @@ arrow-1: arrow r6c3-r5c3 bulb ["r7c3"]
 arrow-2: arrow r8c2-r7c2 bulb ["r9c2"]
 arrow-3: arrow r8c6-r7c6 bulb ["r9c6"]
 arrow-4: arrow r7c7-r6c7 bulb ["r8c7"]
-pair r7c5-r8c5 relation {"op":"sum","value":5}
+pair r7c5-r8c5 sum 5
 ```
 
 Normal Sudoku Rules Apply

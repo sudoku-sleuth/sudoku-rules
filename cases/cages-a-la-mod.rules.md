@@ -32,8 +32,8 @@ modular-6: modular r9c7-r9c8-r9c9-r8c9-r7c9
 modular-7: modular r8c5-r9c5-r9c6
 modular-8: modular r7c3-r8c3-r9c3-r9c2-r9c1-r8c2-r7c2-r6c2-r6c1-r5c1-r4c1
 modular-9: modular r1c5-r2c5-r2c4-r2c3-r2c2-r3c2-r4c2-r4c3-r5c3-r5c4-r5c5-r4c5-r3c5-r3c4
-pair-1: pair r7c1-r8c1 relation {"op":"multiple"}
-pair-2: pair r1c9-r2c9 relation {"op":"multiple"}
+pair-1: pair r7c1-r8c1 multiple
+pair-2: pair r1c9-r2c9 multiple
 ```
 
 - Normal sudoku rules apply: every row, column, and box must contain a complete set of the digits 1-9.

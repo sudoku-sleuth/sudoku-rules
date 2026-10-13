@@ -22,8 +22,8 @@ palindrome r8c5-r8c4-r7c5-r6c4-r5c3-r4c2-r3c2-r2c2
 between r3c3-r4c2-r4c3-r4c4-r3c5 ends ["r2c3","r2c5"]
 whispers r4c6-r4c7 gap 5
 renban r7c6-r8c5
-pair-1: pair r7c5-r8c5 relation {"op":"sum","value":10}
-pair-2: pair r2c2-r2c3 relation {"op":"sum","value":5}
+pair-1: pair r7c5-r8c5 sum 10
+pair-2: pair r2c2-r2c3 sum 5
 sandwich r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2 sum 2
 parity-cells-1: parity-cells r2c8 parity "odd"
 parity-cells-2: parity-cells r1c9 parity "even"

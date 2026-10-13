@@ -12,8 +12,8 @@ drawingCoverage: unclaimed-only
 ```rules
 sudoku 9x9
 kropki r5c9-r6c9 colour "black"
-pair-1: pair r1c5-r2c5 relation {"op":"sum","value":10}
-pair-2: pair r6c5-r7c5 relation {"op":"sum","value":10}
+pair-1: pair r1c5-r2c5 sum 10
+pair-2: pair r6c5-r7c5 sum 10
 ```
 
 ```drawing

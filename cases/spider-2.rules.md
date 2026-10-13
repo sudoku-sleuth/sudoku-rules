@@ -23,8 +23,8 @@ kropki-1: kropki r6c5-r7c5 colour "white"
 kropki-2: kropki r4c4-r5c4 colour "black"
 kropki-3: kropki r4c6-r5c6 colour "black"
 region-sum r5c5-r6c4-r7c4-r8c5-r7c6-r6c6 segments [["r5c5","r6c4","r6c6"],["r7c4","r8c5","r7c6"]]
-pair-1: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r2c7-r2c8 relation {"op":"sum","value":10}
+pair-1: pair r2c2-r2c3 sum 10
+pair-2: pair r2c7-r2c8 sum 10
 ```
 
 ```drawing

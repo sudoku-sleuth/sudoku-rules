@@ -21,8 +21,8 @@ whispers-1: whispers r1c4-r2c4-r3c4 gap 5
 whispers-2: whispers r4c4-r3c4 gap 5
 renban r7c4-r8c4-r9c4
 region-sum r2c5-r2c4-r2c3-r3c3-r3c2-r4c2-r5c2 segments [["r2c5","r2c4"],["r2c3","r3c3","r3c2"],["r4c2","r5c2"]]
-pair-1: pair r2c8-r2c9 relation {"op":"sum","value":10}
-pair-2: pair r8c2-r9c2 relation {"op":"sum","value":5}
+pair-1: pair r2c8-r2c9 sum 10
+pair-2: pair r8c2-r9c2 sum 5
 quadruple r8c8-r8c9-r9c8-r9c9 digits [2,8]
 parity-cells r2c2 parity "even"
 extremum-1: extremum r7c2 type "min" exhaustive false

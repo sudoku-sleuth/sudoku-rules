@@ -26,9 +26,9 @@ kropki-7: kropki r4c8-r5c8 colour "white"
 kropki-8: kropki r7c8-r8c8 colour "white"
 kropki-9: kropki r8c4-r9c4 colour "white"
 kropki-10: kropki r3c1-r3c2 colour "white"
-pair-1: pair r1c4-r2c4 relation {"op":"sum","value":10}
-pair-2: pair r3c5-r3c6 relation {"op":"sum","value":10}
-pair-3: pair r3c6-r4c6 relation {"op":"sum","value":10}
+pair-1: pair r1c4-r2c4 sum 10
+pair-2: pair r3c5-r3c6 sum 10
+pair-3: pair r3c6-r4c6 sum 10
 ```
 
 Normal Sudoku Rules Apply

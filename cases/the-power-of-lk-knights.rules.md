@@ -25,11 +25,11 @@ kropki-11: kropki r3c6-r3c7 colour "black"
 kropki-12: kropki r2c6-r2c7 colour "black"
 kropki-13: kropki r9c3-r9c4 colour "black"
 kropki-14: kropki r6c8-r7c8 colour "black"
-pair-1: pair r7c9-r8c9 relation {"op":"sum","value":5}
-pair-2: pair r3c7-r3c8 relation {"op":"sum","value":5}
-pair-3: pair r1c6-r2c6 relation {"op":"sum","value":5}
-pair-4: pair r1c2-r2c2 relation {"op":"sum","value":5}
-pair-5: pair r4c1-r5c1 relation {"op":"sum","value":5}
+pair-1: pair r7c9-r8c9 sum 5
+pair-2: pair r3c7-r3c8 sum 5
+pair-3: pair r1c6-r2c6 sum 5
+pair-4: pair r1c2-r2c2 sum 5
+pair-5: pair r4c1-r5c1 sum 5
 negative relations [{"op":"ratio","value":2}] except [["r3c1","r4c1"],["r1c2","r1c3"],["r2c6","r3c6"],["r2c7","r3c7"],["r7c8","r7c9"],["r2c5","r2c6"],["r4c5","r5c5"],["r9c5","r9c6"],["r8c4","r9c4"],["r3c7","r4c7"],["r3c6","r3c7"],["r2c6","r2c7"],["r9c3","r9c4"],["r6c8","r7c8"],["r7c9","r8c9"],["r3c7","r3c8"],["r1c6","r2c6"],["r1c2","r2c2"],["r4c1","r5c1"]]
 little-killer-1: little-killer r8c1-r9c2 sum 16
 little-killer-2: little-killer r7c1-r8c2-r9c3 sum 9

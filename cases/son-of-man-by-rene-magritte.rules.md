@@ -48,8 +48,8 @@ renban-4: renban r8c5-r9c5
 renban-5: renban r3c7-r4c7-r5c7-r6c6-r6c5-r6c4-r5c3-r4c3-r3c3
 renban-6: renban r7c1-r6c1-r6c2-r5c2-r4c2-r3c2
 renban-7: renban r4c8-r4c9-r5c9-r6c9-r7c9-r6c8
-pair-1: pair r5c2-r5c3 relation {"op":"sum","value":5}
-pair-2: pair r3c3-r3c4 relation {"op":"sum","value":5}
+pair-1: pair r5c2-r5c3 sum 5
+pair-2: pair r3c3-r3c4 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on the green line are at least 5 apart from their neighbors on the line. Numbers can repeat on the green line. The red line is for matching the necktie on Magritte's painting only. Numbers on all other lines are each a set of non-repeating, consecutive numbers, in any order. Numbers with a V between them sum to 5. Not all possible V are given. Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. All possible dots between adjacent numbers on the same line are given. Dots are not shown for other pairs of numbers.

@@ -16,26 +16,26 @@ cage-3: cage r2c7-r3c7-r3c8 total 18 connected true
 cage-4: cage r4c5-r4c6-r5c6 total 19 connected true
 cage-5: cage r5c4-r6c4-r6c5 total 11 connected true
 cage-6: cage r7c2-r7c3-r8c3 total 12 connected true
-pair-1: pair r5c2-r6c2 relation {"op":"sum","value":10}
-pair-2: pair r2c4-r2c5 relation {"op":"sum","value":10}
-pair-3: pair r4c8-r5c8 relation {"op":"sum","value":10}
-pair-4: pair r8c5-r8c6 relation {"op":"sum","value":10}
-pair-5: pair r6c7-r6c8 relation {"op":"sum","value":10}
-pair-6: pair r2c6-r3c6 relation {"op":"sum","value":10}
-pair-7: pair r4c2-r4c3 relation {"op":"sum","value":10}
-pair-8: pair r7c4-r8c4 relation {"op":"sum","value":10}
-pair-9: pair r3c3-r4c3 relation {"op":"sum","value":5}
-pair-10: pair r3c3-r3c4 relation {"op":"sum","value":5}
-pair-11: pair r3c6-r3c7 relation {"op":"sum","value":5}
-pair-12: pair r3c7-r4c7 relation {"op":"sum","value":5}
-pair-13: pair r6c7-r7c7 relation {"op":"sum","value":5}
-pair-14: pair r7c6-r7c7 relation {"op":"sum","value":5}
-pair-15: pair r7c3-r7c4 relation {"op":"sum","value":5}
-pair-16: pair r6c3-r7c3 relation {"op":"sum","value":5}
-pair-17: pair r6c2-r6c3 relation {"op":"sum","value":5}
-pair-18: pair r2c4-r3c4 relation {"op":"sum","value":5}
-pair-19: pair r4c7-r4c8 relation {"op":"sum","value":5}
-pair-20: pair r7c6-r8c6 relation {"op":"sum","value":5}
+pair-1: pair r5c2-r6c2 sum 10
+pair-2: pair r2c4-r2c5 sum 10
+pair-3: pair r4c8-r5c8 sum 10
+pair-4: pair r8c5-r8c6 sum 10
+pair-5: pair r6c7-r6c8 sum 10
+pair-6: pair r2c6-r3c6 sum 10
+pair-7: pair r4c2-r4c3 sum 10
+pair-8: pair r7c4-r8c4 sum 10
+pair-9: pair r3c3-r4c3 sum 5
+pair-10: pair r3c3-r3c4 sum 5
+pair-11: pair r3c6-r3c7 sum 5
+pair-12: pair r3c7-r4c7 sum 5
+pair-13: pair r6c7-r7c7 sum 5
+pair-14: pair r7c6-r7c7 sum 5
+pair-15: pair r7c3-r7c4 sum 5
+pair-16: pair r6c3-r7c3 sum 5
+pair-17: pair r6c2-r6c3 sum 5
+pair-18: pair r2c4-r3c4 sum 5
+pair-19: pair r4c7-r4c8 sum 5
+pair-20: pair r7c6-r8c6 sum 5
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

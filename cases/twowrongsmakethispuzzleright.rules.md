@@ -22,11 +22,11 @@ whispers-2: whispers r5c9-r6c8-r7c7-r8c6-r9c5 gap 4
 whispers-3: whispers r2c6-r3c7-r4c8 gap 4
 whispers-4: whispers r5c2-r6c3-r7c4-r8c5 gap 4
 whispers-5: whispers r1c4-r2c5 gap 4
-pair-1: pair r9c8-r9c9 relation {"op":"sum","value":10}
-pair-2: pair r1c1-r2c1 relation {"op":"sum","value":10}
-pair-3: pair r2c2-r2c3 relation {"op":"sum","value":10}
-pair-4: pair r1c8-r1c9 relation {"op":"sum","value":10}
-pair-5: pair r4c8-r5c8 relation {"op":"sum","value":10}
+pair-1: pair r9c8-r9c9 sum 10
+pair-2: pair r1c1-r2c1 sum 10
+pair-3: pair r2c2-r2c3 sum 10
+pair-4: pair r1c8-r1c9 sum 10
+pair-5: pair r4c8-r5c8 sum 10
 sandwich-1: sandwich r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9 sum 12
 sandwich-2: sandwich r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2 sum 35
 sandwich-3: sandwich r8c1-r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8-r8c9 sum 20

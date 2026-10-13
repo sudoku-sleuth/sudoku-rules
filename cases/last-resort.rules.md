@@ -17,7 +17,7 @@ region-sum-3: region-sum r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8 segments [["r1c2","r
 region-sum-4: region-sum r3c3-r4c4-r5c5-r6c6-r5c7-r4c7-r3c7-r3c8 segments [["r3c3"],["r4c4","r5c5","r6c6"],["r5c7","r4c7"],["r3c7","r3c8"]]
 region-sum-5: region-sum r4c2-r5c3-r6c3-r7c4-r8c5-r7c6-r7c7 segments [["r4c2","r5c3","r6c3"],["r7c4","r8c5","r7c6"],["r7c7"]]
 region-sum-6: region-sum r7c2-r8c3-r9c4-r9c5-r8c6 segments [["r7c2","r8c3"],["r9c4","r9c5","r8c6"]]
-pair r4c6-r4c5 relation {"op":"less"}
+pair r4c6-r4c5 less
 ```
 
 ```drawing

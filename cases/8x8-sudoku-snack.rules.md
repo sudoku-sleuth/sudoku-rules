@@ -116,11 +116,11 @@ thermo-3: thermo r1c4-r2c4-r3c4-r4c4-r5c4
 thermo-4: thermo r8c7-r8c6-r8c5-r8c4-r8c3
 palindrome-1: palindrome r4c5-r4c6-r5c6-r5c5-r6c6-r7c7-r8c8-r7c8-r6c8
 palindrome-2: palindrome r6c5-r7c4-r6c4-r5c3-r4c2-r3c1-r2c1
-pair-1: pair r1c3-r2c3 relation {"op":"sum","value":10}
-pair-2: pair r8c1-r8c2 relation {"op":"sum","value":10}
-pair-3: pair r7c4-r7c5 relation {"op":"sum","value":10}
-pair-4: pair r5c4-r5c5 relation {"op":"sum","value":10}
-pair-5: pair r3c6-r4c6 relation {"op":"sum","value":10}
+pair-1: pair r1c3-r2c3 sum 10
+pair-2: pair r8c1-r8c2 sum 10
+pair-3: pair r7c4-r7c5 sum 10
+pair-4: pair r5c4-r5c5 sum 10
+pair-5: pair r3c6-r4c6 sum 10
 ```
 
 Normal (irregular) 8x8 Sudoku rules apply, i.e. each row, column and region has to contain the digits from 1 to 8. Digits on a grey line form a palindrome, i.e. they read the same forward and backward. Digits on a thermometer increase from the bulb end. Digits joined by an X sum to 10. (Not all X are given.)

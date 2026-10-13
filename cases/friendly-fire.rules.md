@@ -30,11 +30,11 @@ arrow-17: arrow r4c6-r4c5 bulb ["r4c7"]
 arrow-18: arrow r4c4-r5c4 bulb ["r3c4"]
 arrow-19: arrow r6c4-r6c5 bulb ["r6c3"]
 arrow-20: arrow r6c6-r5c6 bulb ["r7c6"]
-pair-1: pair r4c6-r5c6 relation {"op":"sum","value":5}
-pair-2: pair r8c6-r9c6 relation {"op":"sum","value":5}
-pair-3: pair r4c1-r5c1 relation {"op":"sum","value":5}
-pair-4: pair r5c9-r6c9 relation {"op":"sum","value":5}
-pair-5: pair r1c4-r2c4 relation {"op":"sum","value":5}
+pair-1: pair r4c6-r5c6 sum 5
+pair-2: pair r8c6-r9c6 sum 5
+pair-3: pair r4c1-r5c1 sum 5
+pair-4: pair r5c9-r6c9 sum 5
+pair-5: pair r1c4-r2c4 sum 5
 ```
 
 Normal Sudoku rules apply. Numbers on arrows sum to that arrow's circle. Numbers with a V between them sum to 5. Not all V are given.
