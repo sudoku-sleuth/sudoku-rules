@@ -1,10 +1,15 @@
-import { afterAll, beforeAll, expect, test } from "bun:test";
+import { afterAll, beforeAll, expect, test, setDefaultTimeout } from "bun:test";
+
 import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
+
+// These tests build the whole library (85 pages, 3,892 cases); allow for slower CI runners.
+setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");
 let temporary: string;
@@ -29,12 +34,12 @@ test("each rule and the shared definitions have an HTML page", async () => {
     const html = await readFile(join(output, slug, "index.html"), "utf8");
     expect(html).toContain("<h1 id=");
     expect(html).toContain(`href="/${slug}.md"`);
-    expect(html).not.toContain("<script");
+    expect(html).not.toContain("<script src=");
   }
   const thermo = await readFile(join(output, "thermo/index.html"), "utf8");
   expect(thermo).toContain("∀i ∈");
   expect(thermo).toContain("<table>");
-  expect(thermo).toContain('class="language-text"');
+  expect(thermo).toContain('<math xmlns="http://www.w3.org/1998/Math/MathML"');
   expect(thermo).toContain('class="language-markdown"');
   expect(thermo).toContain("Satisfies the rule:");
   expect(thermo).toContain('href="/predicates/"');
@@ -76,9 +81,35 @@ test("headings support fragment links and duplicate heading names", () => {
 
 test("shape grouping follows parameters and accepts explicit shape", () => {
   expect(ruleShape({ parameters: { line: {} } })).toBe("Lines");
-  expect(ruleShape({ parameters: { ray: {} } })).toBe("Outside clues");
+  expect(ruleShape({ parameters: { ray: {} } })).toBe("Outside");
   expect(ruleShape({ kind: "cage", parameters: { cells: {} } })).toBe("Cages");
-  expect(ruleShape({ shape: "Arrows", parameters: { line: {} } })).toBe("Arrows");
+  expect(ruleShape({ shape: "Edges", parameters: { line: {} } })).toBe("Edges");
+});
+
+test("index rule has its own route without overwriting the library homepage", async () => {
+  const source = join(temporary, "index-rule");
+  await mkdir(join(source, "rules"), { recursive: true });
+  await writeFile(join(source, "rules/index.md"), "---\nname: Index\nkind: index\nurl: https://rules.sudoku-sleuth.com/index.md\n---\n# Index\n\nA digit points to its own position.\n");
+  const result = await buildSite(source, join(temporary, "index-site"));
+  expect(await readFile(join(result.output, "index.html"), "utf8")).toContain('href="/index/"');
+  expect(await readFile(join(result.output, "index/index.html"), "utf8")).toContain('<h1 id="index">Index</h1>');
+  expect(await readFile(join(result.output, "index.md"))).toEqual(await readFile(join(source, "rules/index.md")));
+});
+
+test("case reading view preserves attribution and points to its unchanged raw file", async () => {
+  const html = await readFile(join(output, "cases/to-the-revolution/index.html"), "utf8");
+  expect(html).toContain("John Laurens");
+  expect(html).toContain('href="/cases/to-the-revolution.rules.md"');
+  expect(html).toContain('class="language-rules"');
+});
+
+test("MathML preserves complete cell names and cannot inject source HTML", () => {
+  const html = renderMarkdown('```math\n|V(r1c4) − V(r1c5)| ≥ 5\n```');
+  expect(html).toContain('mathvariant="italic">r1c4</mi>');
+  expect(html).toContain('mathvariant="italic">r1c5</mi>');
+  expect(html).not.toContain('<msub>');
+  expect(html).toContain('<annotation encoding="text/plain">');
+  expect(renderMarkdown('```math\n<script>alert(1)</script>\n```')).not.toContain('<script>');
 });
 
 test("front matter lint parses the approved fixtures and rejects duplicate keys", async () => {
@@ -175,4 +206,17 @@ test("the full imported library and case collection have byte-identical public r
   for(let i=0;i<names.length;i+=32)await Promise.all(names.slice(i,i+32).filter(name=>name.endsWith(".rules.md")).map(async name=>{
     expect(await readFile(join(built.output,"cases",name))).toEqual(await readFile(join("cases",name)));
   }));
+});
+
+test("theme bootstrap is hash-authorised before the stylesheet on every reading surface", async () => {
+  for (const route of ["index.html", "thermo/index.html", "cases/to-the-revolution/index.html"]) {
+    const html = await readFile(join(output, route), "utf8");
+    const script = /<script>([\s\S]*?)<\/script>/.exec(html)![1];
+    const hash = createHash("sha256").update(script).digest("base64");
+    expect(html).toContain(`'sha256-${hash}'`);
+    expect(html.indexOf(`<script>${script}</script>`)).toBeLessThan(html.indexOf('<link rel="stylesheet"'));
+    expect(html).toContain('aria-label="Colour theme"');
+    for (const theme of ["light", "dark", "system"]) expect(html).toContain(`data-theme-choice="${theme}"`);
+    expect(html).not.toContain("unsafe-inline");
+  }
 });

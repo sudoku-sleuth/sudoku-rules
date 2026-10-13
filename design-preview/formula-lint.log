@@ -1,0 +1,103 @@
+$ bun scripts/lint-spec.ts
+rules/absent-digits.md:34:1 E_NAME_UNDEFINED: excludes is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/arrow.md:39:52 E_OPERATION_UNGUARDED: Before using (10 ^ ((|bulb| - 1) - i)), show that the power ((|bulb| - 1) - i) is a whole number greater than or equal to zero.
+rules/between.md:34:21 E_NAME_UNDEFINED: minimumPair is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/bremban.md:29:12 E_NAME_UNDEFINED: max_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/cage-expressions.md:6:3 E_TYPE: For parameter cages: The type expression is not defined; declare it in the shared definitions.
+rules/cage-expressions.md:10:3 E_NAME_SHADOW: The parameter distinct reuses a shared name; choose another parameter name.
+rules/cage-expressions.md:35:43 E_FORMULA_SYNTAX: Expected “}” here; found “:”.
+rules/cage-pair.md:6:3 E_TYPE: For parameter relation: The type PairRelation is not defined; declare it in the shared definitions.
+rules/cage-pair.md:34:13 E_NAME_UNDEFINED: pairRelation is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/cage-shapes.md:41:52 E_OPERATION_UNGUARDED: The position i might be outside chosen; show that 0 ≤ i < |chosen| before reading it (positions start at 0).
+rules/cage.md:39:13 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/constructed-regions.md:39:20 E_NAME_UNDEFINED: partition is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/coordinate-arrows.md:30:31 E_NAME_UNDEFINED: boardCell is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/counting-circles.md:29:23 E_NAME_UNDEFINED: countWhere is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/diagonal-lines.md:6:3 E_TYPE: For parameter classes: The type ClassSystem is not defined; declare it in the shared definitions.
+rules/diagonal-lines.md:34:2 E_NAME_UNDEFINED: classes is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/diagonal.md:29:1 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/doll-sum.md:35:11 E_NAME_UNDEFINED: betweenPositions is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/double-arrow.md:34:18 E_TYPE: line (parameter S of sum_D) must be a set whose items are each a cell; it is a connected ordered list whose items are each a cell.
+rules/entropic.md:10:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/entropic.md:35:19 E_CALL_ARITY: start needs 3 arguments; this call gives 4.
+rules/equality-cage.md:29:1 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/greek-carpet.md:34:49 E_OPERATION_UNGUARDED: The position i might be outside unrolled; show that 0 ≤ i < |unrolled| before reading it (positions start at 0).
+rules/hidden-modular.md:10:3 E_FORMULA_SYNTAX: For parameter extent: “"to-max"” cannot be used as a name; choose a name starting with a letter that is not a formula keyword.
+rules/hidden-modular.md:35:12 E_NAME_UNDEFINED: extent is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/index-line.md:29:46 E_OPERATION_UNGUARDED: The position (D(line[i]) - 1) might be outside line; show that 0 ≤ (D(line[i]) - 1) < |line| before reading it (positions start at 0).
+rules/index.md:39:46 E_NAME_UNDEFINED: boardCell is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/killer.md:1:1 E_FORMULA_REQUIRED: Add the rule's formula in a fenced text or openrules block.
+rules/limited-digits.md:34:13 E_TYPE: line (parameter S of faceDigits) must be a set whose items are each a cell; it is a connected ordered list whose items are each a cell.
+rules/line-choice.md:22:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/line-choice.md:50:33 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/little-killer.md:34:7 E_TYPE: cells (parameter S of sum_D) must be a set whose items are each a cell; it is an ordered list whose items are each a cell.
+rules/lockout.md:39:57 E_NAME_UNDEFINED: minimumPair is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/look-and-say.md:34:12 E_NAME_UNDEFINED: countWhere is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/magic-square.md:29:20 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/mean-lines.md:29:27 E_TYPE: A (parameter S of sum_D) must be a set whose items are each a cell; it is an ordered list whose items are each a cell.
+rules/modular.md:10:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/modular.md:39:30 E_CALL_ARITY: start needs 3 arguments; this call gives 4.
+rules/molecules.md:39:17 E_NAME_UNDEFINED: allCells is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/n-mate.md:6:3 E_NAME_SHADOW: The parameter cell reuses a shared name; choose another parameter name.
+rules/n-mate.md:39:9 E_TYPE: cell (parameter c of D) must be a cell; it is a function taking a whole-number position, a whole-number position and returning a cell.
+rules/nabner.md:10:3 E_NAME_SHADOW: The parameter distinct reuses a shared name; choose another parameter name.
+rules/nabner.md:35:34 E_TYPE: distinct must be a true-or-false condition; it is a function taking a set whose items are each a cell and returning a true-or-false condition.
+rules/negative.md:6:3 E_TYPE: For parameter relations: The type PairRelation is not defined; declare it in the shared definitions.
+rules/negative.md:44:12 E_NAME_UNDEFINED: relations is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/ordered-block.md:34:47 E_OPERATION_UNGUARDED: The position (p + i) might be outside cells; show that 0 ≤ (p + i) < |cells| before reading it (positions start at 0).
+rules/outside.md:34:12 E_NAME_UNDEFINED: countWhere is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/pair.md:6:3 E_TYPE: For parameter relation: The type PairRelation is not defined; declare it in the shared definitions.
+rules/pair.md:34:13 E_NAME_UNDEFINED: pairRelation is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/palindrome.md:29:38 E_OPERATION_UNGUARDED: Before calling mirror, add a condition proving pos(line, i).
+rules/parity.md:10:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/parity.md:34:18 E_CALL_ARITY: consecutive needs 3 arguments; this call gives 4.
+rules/pointing-arrow.md:6:3 E_NAME_SHADOW: The parameter cell reuses a shared name; choose another parameter name.
+rules/pointing-arrow.md:14:3 E_FORMULA_SYNTAX: For parameter target: “"first-five"” cannot be used as a name; choose a name starting with a letter that is not a formula keyword.
+rules/pointing-arrow.md:44:9 E_TYPE: cell (parameter c of D) must be a cell; it is a function taking a whole-number position, a whole-number position and returning a cell.
+rules/pointing-thermo.md:35:11 E_OPERATION_UNGUARDED: The position (|line| - 1) might be outside line; show that 0 ≤ (|line| - 1) < |line| before reading it (positions start at 0).
+rules/predicates.md:92:134 E_FORMULA_SYNTAX: The symbol ⟨ is not supported in formulas.
+rules/pressure-gauge.md:10:3 E_NAME_SHADOW: The parameter cell reuses a shared name; choose another parameter name.
+rules/pressure-gauge.md:39:15 E_NAME_UNDEFINED: countWhere is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/primality.md:10:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/primality.md:35:20 E_CALL_ARITY: consecutive needs 3 arguments; this call gives 4.
+rules/product-cage.md:14:3 E_NAME_SHADOW: The parameter distinct reuses a shared name; choose another parameter name.
+rules/product-cage.md:39:40 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/quadruple.md:34:12 E_NAME_UNDEFINED: countWhere is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/region-sum.md:34:27 E_TYPE: A (parameter S of valueSum) must be a set whose items are each a cell; it is an ordered list whose items are each a cell.
+rules/remainder-cage.md:18:3 E_NAME_SHADOW: The parameter distinct reuses a shared name; choose another parameter name.
+rules/remainder-cage.md:44:14 E_OPERATION_UNGUARDED: Before calling rem, add a condition proving (((⌊…(…)⌋ = sum_D(cells)) and (⌊modulus⌋ = modulus)) and (modulus > 0)).
+rules/renban.md:29:12 E_NAME_UNDEFINED: distinct_V is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/rotational-sums.md:29:16 E_NAME_UNDEFINED: turn is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/run-sum.md:34:1 E_NAME_UNDEFINED: countRun is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/same-class.md:6:3 E_TYPE: For parameter classes: The type ClassSystem is not defined; declare it in the shared definitions.
+rules/same-class.md:34:2 E_NAME_UNDEFINED: classes is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/sandwich.md:14:3 E_FORMULA_SYNTAX: For parameter endpointOccurrences: “"exactly-one"” cannot be used as a name; choose a name starting with a letter that is not a formula keyword.
+rules/sandwich.md:45:126 E_NAME_UNDEFINED: betweenPositions is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/scoped-move.md:6:3 E_TYPE: For parameter move: The type Move is not defined; declare it in the shared definitions.
+rules/scoped-move.md:39:9 E_NAME_UNDEFINED: moveRelation is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/shifter-line.md:30:20 E_CALL_ARITY: consecutive needs 3 arguments; this call gives 4.
+rules/skyscraper.md:34:30 E_OPERATION_UNGUARDED: The position j might be outside cells; show that 0 ≤ j < |cells| before reading it (positions start at 0).
+rules/sudoku.md:28:84 E_NAME_UNDEFINED: standardHouses is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/sum-free-cage.md:34:14 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/summit.md:10:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/summit.md:34:19 E_CALL_ARITY: consecutive needs 3 arguments; this call gives 4.
+rules/syntax.md:99:6 E_FORMULA_SYNTAX: Expected the end of the formula here; found “negateRule”.
+rules/tardis.md:6:3 E_NAME_SHADOW: The parameter cell reuses a shared name; choose another parameter name.
+rules/tardis.md:34:20 E_TYPE: cell (parameter c of D) must be a cell; it is a function taking a whole-number position, a whole-number position and returning a cell.
+rules/unique.md:29:1 E_NAME_UNDEFINED: distinct_D is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/value-modifier.md:10:3 E_NAME_SHADOW: The parameter factor reuses a shared name; choose another parameter name.
+rules/value-modifier.md:14:3 E_NAME_SHADOW: The parameter offset reuses a shared name; choose another parameter name.
+rules/value-modifier.md:22:3 E_NAME_SHADOW: The parameter count reuses a shared name; choose another parameter name.
+rules/value-modifier.md:30:3 E_NAME_SHADOW: The parameter distinct reuses a shared name; choose another parameter name.
+rules/value-modifier.md:59:14 E_TYPE: |(G intersect M)| and count cannot be compared: one is a whole-number position and the other is a function taking a set whose items are each the declared type T, a function taking the declared type T and returning a true-or-false condition and returning a number.
+rules/whisper.md:1:1 E_FORMULA_REQUIRED: Add the rule's formula in a fenced text or openrules block.
+rules/whispers.md:14:3 E_NAME_SHADOW: The parameter loop reuses a shared name; choose another parameter name.
+rules/whispers.md:39:18 E_CALL_ARITY: consecutive needs 3 arguments; this call gives 4.
+rules/window-classes.md:6:3 E_TYPE: For parameter classes: The type ClassSystem is not defined; declare it in the shared definitions.
+rules/window-classes.md:29:2 E_NAME_UNDEFINED: classes is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/x-sum.md:14:3 E_NAME_SHADOW: The parameter count reuses a shared name; choose another parameter name.
+rules/x-sum.md:39:30 E_TYPE: count (parameter x of present) must be the declared type T, or a missing answer; it is a function taking a set whose items are each the declared type T, a function taking the declared type T and returning a true-or-false condition and returning a number.
+rules/yin-yang.md:23:1 E_NAME_UNDEFINED: connected is not defined; declare it as a parameter, a formula variable or a shared term.
+rules/zipper.md:29:62 E_OPERATION_UNGUARDED: The position ((|line| - 1) - i) might be outside line; show that 0 ≤ ((|line| - 1) - i) < |line| before reading it (positions start at 0).
+Formula lint: 15/84 pages checked; 82 formula blocks. Pending: rule-line validation, URL resolution, example evaluation.
+error: script "lint:spec" exited with code 1

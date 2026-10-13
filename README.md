@@ -54,7 +54,7 @@ Rejecting Markdown fixtures and their repairs live in `tests/invalid/` and `test
 
 Alias pages declare their own `kind` and `alias_of: <target-kind>` (or `aliasOf`), with no parameters or formula. Targets must be ordinary rule definitions. Both alias routes are served, and their pages link to the target. The catalogue is `/`; its Markdown index is `/README.md`, declared with `document: home`. The `index` kind has `/index.md` and `/index/`. Only `cases` and `style` remain reserved.
 
-Build output goes to `_site/`. Each rule produces `/<kind>.md` and `/<kind>/index.html`; shared definitions use the same layout. Cases are copied to `/cases/`. The generator also writes the index, local stylesheet, `.nojekyll`, and `CNAME`.
+Build output goes to `_site/`. Each rule produces `/<kind>.md` and `/<kind>/index.html`; shared definitions use the same layout. Cases retain their raw `/cases/<name>.rules.md` URLs and also have reading views at `/cases/<name>/`. The generator also writes the index, local stylesheet, shape icons, font, search script, `.nojekyll`, and `CNAME`.
 
 For a fixture preview:
 
@@ -64,7 +64,9 @@ bun run build --source tests/fixtures
 
 This replaces `_site/` with the fixture preview. Run `bun run build` again to build repository content.
 
-Index rows show the page's opening meaning and its `Class:` value. Shape groups use an optional `shape` front matter field; otherwise they follow the parameters: line, ray, cage, cell/group, or board. Source Markdown and canonical URLs stay unchanged.
+The homepage browses Lines, Edges, Cells, Cages, Outside, Regions and Global. Rows use each page’s opening meaning; Kropki uses the plain white/black reading. An optional recognised `shape` selects the group; otherwise `ruleShape` in `scripts/content.ts` classifies the kind and parameters. Aliases share the canonical row and keep their own pages. Search includes meanings, aliases, German/Dutch whispers and XV keywords, and searches across shapes. Without JavaScript, every group remains visible and the shape links jump to its heading.
+
+Rule formulas render as native MathML with the original notation retained in a text annotation. The Bureau mark, icons and display font are local assets; light and dark use the same layout with brand colour tokens. Source Markdown and canonical URLs stay unchanged. `/writing/` provides the checker and AI skill instructions; `/contributing/` renders the contribution guide.
 
 ## Propose a rule
 
