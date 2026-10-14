@@ -2,3 +2,5 @@ node_modules/
 _site/
 dist/
 .DS_Store
+.turbo/
+*.tsbuildinfo

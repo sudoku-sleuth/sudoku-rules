@@ -30,9 +30,9 @@ Use setter terms for parameters. Link mathematical notation to `https://rules.su
 
 Shared definition pages have `name`, `url` and `document: prelude`, `document: syntax` or `document: home`, with no `kind`. A setup feature such as fog uses `document: feature`. With `domain: play-state` it names the case-file header key it reads (`header`), the play predicate it defines (`defines`), typed `parameters`, optional `requires` formulas with their messages, an `openrules` block for its own `play` types and terms, and one `text` block that defines the predicate: `∀c∈C: visible(c) ↔ …`, with the predicate absent from the right side. A case may use one feature that defines a given predicate. [spec/play-state.md](spec/play-state.md) defines the domain; the site adds the `Domain:` line from the front matter. Alias pages declare their own `kind` and `alias_of` (or `aliasOf`), pointing directly to a definition; they declare no parameters or formula. Their filenames determine their raw and HTML routes.
 
-## Cases
+## Case files
 
-Add examples under `cases/<case-name>.rules.md`. Front matter includes `format: open-rules`, `title`, `setter`, `source`, `case`, `library`, and `status`. Keep attribution and source links. Use fenced `rules` blocks for declarations. Custom rules carry their definition in the case file.
+The library holds no case files. A rule page carries its own worked example. Case files written for tools to read have front matter that includes `format: open-rules`, `title`, `setter`, `source`, `case`, `library`, and `status`. Keep attribution and source links. Use fenced `rules` blocks for declarations. Custom rules carry their definition in the case file. A test input goes under `tests/`, never in a `cases/` folder.
 
 ## Release notes
 
