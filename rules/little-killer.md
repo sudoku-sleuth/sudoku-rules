@@ -20,6 +20,7 @@ reading:
       item: "{cells} = {sum}"
       one: "The digits along {cells} add up to {sum}."
       many: "{count|Words} little killer clues. In each, the digits along the ray of cells add up to the clue."
+      rule: "In each, the digits along the ray of cells add up to the clue."
 ---
 
 # Little Killer

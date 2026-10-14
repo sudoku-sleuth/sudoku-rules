@@ -115,6 +115,8 @@ function read(text: string, library: ReadingLibrary): CaseReading {
 
   // 1. Turn each line into an instance of a kind that has a reading, or set it aside.
   const hasFog = header.fog !== undefined && header.fog !== null;
+  // The cells clear at the start. A given lights nothing, so only these are in view before the first entry.
+  const clearAtStart = isObject(header.fog) ? ((c) => (c ? new Set(c) : undefined))(normaliseCells(header.fog.initiallyLit ?? [], board.cols)) : undefined;
   const instances: Instance[] = [];
   const lineCount = parsed.lines.length;
   for (const line of parsed.lines) {
@@ -219,50 +221,76 @@ function read(text: string, library: ReadingLibrary): CaseReading {
   }
 
   // 4. Render each group; a group that cannot be rendered shows as written.
-  interface Rendered { group: Group; first: number; sentence: Part[]; short?: Part[]; lines: () => Part[][]; heading: string; join?: Variant["join"]; notes: Part[][]; spoilerNotes: Part[][]; silent: boolean }
+  interface Rendered { group: Group; members: Instance[]; fogged: boolean; first: number; sentence: Part[]; short?: Part[]; lines: () => Part[][]; heading: string; join?: Variant["join"]; notes: Part[][]; spoilerNotes: Part[][]; silent: boolean }
   const rendered: Rendered[] = [];
+  /** Every cell a line names, wherever it sits among its parameters. */
+  const cellsNamed = (v: unknown, out: string[] = []): string[] => {
+    if (typeof v === "string") { if (cellPattern.test(v)) out.push(v); }
+    else if (Array.isArray(v)) for (const x of v) cellsNamed(x, out);
+    else if (isObject(v)) for (const x of Object.values(v)) cellsNamed(x, out);
+    return out;
+  };
+  /** Behind fog: a drawn clue with a cell that is not clear at the start. Stated rules and the houses (`unique` lines that are a row, column or box) are not clues; a path that happens to cover a box is. */
+  const behindFog = (m: Instance): boolean =>
+    hasFog && !m.stated && !(m.entry.canonical === "unique" && housesOf(cellsOf(m))) && cellsNamed(m.params).some(c => !clearAtStart?.has(c));
+
   for (const group of groups.values()) {
-    const { entry, variant, instances: members } = group;
-    const params = members[0].params;
-    const covered = new Set(members.flatMap(m => entry.cellParams.flatMap(name => (m.params[name] as string[]) ?? []))).size;
-    const houseKinds = members.map(m => housesOf(cellsOf(m)));
-    const scope: Scope = {
-      params, types: entry.types, instances: members.map(m => m.params), count: members.length, covered,
-      cellParams: entry.cellParams, parts: entry.reading!.parts,
-      condition: name => (name === "housesStandAlone" ? { ok: housesStandAlone(houseKinds) } : instanceCondition(members[0])(name)),
-      typeReadings: library.typeReadings,
-    };
-    if (houseKinds.every(Boolean)) scope.houses = describeHouses(houseKinds as string[], board);
-    try {
-      const itemScope = (m: Instance, extra: Record<string, unknown> = {}): Scope => ({ ...instanceScope(m), params: { ...m.params, ...extra }, parts: entry.reading!.parts });
-      const itemLines = (): Part[][] => {
-        const lines: Part[][] = [];
-        for (const m of members) {
-          if (variant.item_over) {
-            for (const each of (m.params[variant.item_over] as unknown[]) ?? []) {
-              const cells = each as string[];
-              lines.push(renderItem(variant.item, { ...itemScope(m, { cells }), types: { ...entry.types, cells: "list<cell>" } }));
-            }
-          } else lines.push(renderItem(variant.item, itemScope(m)));
-        }
-        return lines;
+    const { entry, variant } = group;
+    const hidden = variant.join ? [] : group.instances.filter(behindFog);
+    const shown = group.instances.filter(m => !hidden.includes(m));
+    for (const [members, fogged] of [[shown, false], [hidden, true]] as const) {
+      if (!members.length) continue;
+      const params = members[0].params;
+      const covered = new Set(members.flatMap(m => entry.cellParams.flatMap(name => (m.params[name] as string[]) ?? []))).size;
+      const houseKinds = members.map(m => housesOf(cellsOf(m)));
+      const scope: Scope = {
+        params, types: entry.types, instances: members.map(m => m.params), count: members.length, covered,
+        cellParams: entry.cellParams, parts: entry.reading!.parts,
+        condition: name => (name === "housesStandAlone" ? { ok: housesStandAlone(houseKinds) } : instanceCondition(members[0])(name)),
+        typeReadings: library.typeReadings,
       };
-      const eager = itemLines();
-      scope.items = () => eager;
-      const heading = variant.heading ? flat(render(variant.heading, scope)) : entry.name;
-      const template = members.length === 1 || !variant.many ? variant.one : variant.many;
-      const sentence = template ? sentenceCase(render(template, scope)) : [];
-      const short = variant.short ? render(variant.short, scope) : undefined;
-      const notes = (variant.notes ?? []).filter(n => matchWhen(n.when, scope) && n.text).map(n => sentenceCase(render(n.text!, scope)));
-      const spoilerNotes = (variant.spoiler_notes ?? []).filter(n => matchWhen(n.when, scope) && n.text).map(n => sentenceCase(render(n.text!, scope)));
-      rendered.push({
-        group, first: Math.min(...members.map(m => m.line.index)), sentence, ...(short ? { short } : {}),
-        lines: () => eager, heading, ...(variant.join ? { join: variant.join } : {}), notes, spoilerNotes, silent: Boolean(variant.silent),
-      });
-    } catch (error) {
-      // One rule that cannot be read never costs the rest of the case.
-      const why = error instanceof Unrenderable ? "unrenderable" : "read failed";
-      for (const m of members) markWritten(m.line, entry, `${why}: ${error instanceof Error ? error.message : String(error)}`);
+      if (houseKinds.every(Boolean)) scope.houses = describeHouses(houseKinds as string[], board);
+      try {
+        const itemScope = (m: Instance, extra: Record<string, unknown> = {}): Scope => ({ ...instanceScope(m), params: { ...m.params, ...extra }, parts: entry.reading!.parts });
+        const itemLines = (): Part[][] => {
+          const lines: Part[][] = [];
+          for (const m of members) {
+            if (variant.item_over) {
+              for (const each of (m.params[variant.item_over] as unknown[]) ?? []) {
+                const cells = each as string[];
+                lines.push(renderItem(variant.item, { ...itemScope(m, { cells }), types: { ...entry.types, cells: "list<cell>" } }));
+              }
+            } else lines.push(renderItem(variant.item, itemScope(m)));
+          }
+          return lines;
+        };
+        const eager = itemLines();
+        scope.items = () => eager;
+        const named = variant.heading ? flat(render(variant.heading, scope)) : entry.name;
+        const first = Math.min(...members.map(m => m.line.index));
+        if (fogged) {
+          // What stays in view is the rule without counts or cells; every position sits in the spoiler list.
+          if (!variant.rule) throw new Unrenderable("this variant has no sentence without cells for a clue under fog");
+          rendered.push({
+            group, members, fogged, first, sentence: sentenceCase(render(variant.rule, scope)), lines: () => eager,
+            heading: shown.length ? `${named} under fog` : named, notes: [], spoilerNotes: [], silent: false,
+          });
+          continue;
+        }
+        const template = members.length === 1 || !variant.many ? variant.one : variant.many;
+        const sentence = template ? sentenceCase(render(template, scope)) : [];
+        const short = variant.short ? render(variant.short, scope) : undefined;
+        const notes = (variant.notes ?? []).filter(n => matchWhen(n.when, scope) && n.text).map(n => sentenceCase(render(n.text!, scope)));
+        const spoilerNotes = (variant.spoiler_notes ?? []).filter(n => matchWhen(n.when, scope) && n.text).map(n => sentenceCase(render(n.text!, scope)));
+        rendered.push({
+          group, members, fogged, first, sentence, ...(short ? { short } : {}),
+          lines: () => eager, heading: named, ...(variant.join ? { join: variant.join } : {}), notes, spoilerNotes, silent: Boolean(variant.silent),
+        });
+      } catch (error) {
+        // One rule that cannot be read never costs the rest of the case.
+        const why = error instanceof Unrenderable ? "unrenderable" : "read failed";
+        for (const m of members) markWritten(m.line, entry, `${why}: ${error instanceof Error ? error.message : String(error)}`);
+      }
     }
   }
 
@@ -274,7 +302,17 @@ function read(text: string, library: ReadingLibrary): CaseReading {
   for (const r of rendered.sort((a, b) => a.first - b.first)) {
     if (r.join) { joiners.push(r); continue; }
     const { entry, variant } = r.group;
-    const lines = r.group.instances.map(m => m.line.index);
+    if (r.fogged) {
+      const lines = r.lines();
+      rows.push({
+        kind: entry.canonical, kinds: [entry.canonical], heading: r.heading, link: entry.canonical, sentence: r.sentence,
+        lines: r.members.map(m => m.line.index), order: r.first, units: [r], variants: [r.group.vi],
+        items: { noun: "clues under fog", count: lines.length, lines, spoiler: "reveals cells under fog" },
+        ...(r.group.stated ? { stated: true } : {}),
+      });
+      continue;
+    }
+    const lines = r.members.map(m => m.line.index);
     const familyKey = variant.family ? JSON.stringify([entry.canonical, variant.family, r.group.stated]) : undefined;
     const existing = familyKey ? familyRows.get(familyKey) : undefined;
     if (existing) {
@@ -291,6 +329,7 @@ function read(text: string, library: ReadingLibrary): CaseReading {
     if (familyKey) familyRows.set(familyKey, row);
   }
   for (const row of rows) {
+    if (row.units[0].fogged) continue;
     // Variants of a family read in the order the page lists them.
     row.units.sort((a, b) => a.group.vi - b.group.vi);
     if (row.units.length > 1) {
@@ -299,7 +338,7 @@ function read(text: string, library: ReadingLibrary): CaseReading {
       const clauses: Part[] = [];
       row.units.forEach((u, i) => {
         // One instance reads as its own sentence; several share the family's short clause.
-        const clause = u.group.instances.length > 1 && u.short ? u.short : u.sentence;
+        const clause = u.members.length > 1 && u.short ? u.short : u.sentence;
         const text = sentenceCase(clause);
         const last = text[text.length - 1];
         if (i > 0) clauses.push(" ");
@@ -309,7 +348,7 @@ function read(text: string, library: ReadingLibrary): CaseReading {
     }
     const tagged = row.units.filter(u => u.group.variant.name).length > 1;
     const first = row.units[0].group.variant;
-    const wanted = row.units.every(u => u.group.variant.list !== "never") && row.units.some(u => u.group.instances.length > 1 || u.group.variant.list === "always" || u.group.variant.item_over);
+    const wanted = row.units.every(u => u.group.variant.list !== "never") && row.units.some(u => u.members.length > 1 || u.group.variant.list === "always" || u.group.variant.item_over);
     const lists = wanted ? row.units.flatMap(u => u.lines().map(line => (tagged && u.group.variant.name ? [...line, ` (${u.group.variant.name})`] : line))) : [];
     if (lists.length) {
       const items: ItemList = { noun: first.noun ?? "items", count: lists.length, lines: lists };
@@ -325,24 +364,24 @@ function read(text: string, library: ReadingLibrary): CaseReading {
     if (notes.length) row.notes = notes;
   }
   for (const j of joiners) {
-    const rels = j.group.instances[0].params.relations;
-    const targets = rows.filter(row => row.units.some(u => u.group.instances.some(m => {
+    const rels = j.members[0].params.relations;
+    const targets = rows.filter(row => row.units.some(u => u.members.some(m => {
       const rel = relationOfInstance(m);
       return rel && Array.isArray(rels) && rels.some(r => deepEqual(r, rel));
     })));
     if (!targets.length) {
       // The condition held for no visible group: fall back to the unjoined reading of the same lines.
-      for (const m of j.group.instances) markWritten(m.line, j.group.entry, "no group to join");
+      for (const m of j.members) markWritten(m.line, j.group.entry, "no group to join");
       continue;
     }
     const target = targets[0];
     const names = [...new Set(targets.flatMap(t => t.units.map(u => u.group.variant.name)).filter((n): n is string => Boolean(n)))];
     const scope: Scope = {
-      params: j.group.instances[0].params, types: j.group.entry.types, instances: j.group.instances.map(m => m.params), count: j.group.instances.length,
-      cellParams: j.group.entry.cellParams, condition: instanceCondition(j.group.instances[0]), typeReadings: library.typeReadings, names,
+      params: j.members[0].params, types: j.group.entry.types, instances: j.members.map(m => m.params), count: j.members.length,
+      cellParams: j.group.entry.cellParams, condition: instanceCondition(j.members[0]), typeReadings: library.typeReadings, names,
     };
     (target.notes ??= []).push(sentenceCase(render(j.join!.note, scope)));
-    target.lines.push(...j.group.instances.map(m => m.line.index));
+    target.lines.push(...j.members.map(m => m.line.index));
     if (!target.kinds.includes(j.group.entry.canonical)) target.kinds.push(j.group.entry.canonical);
   }
   function relationOfInstance(m: Instance): Record<string, unknown> | undefined { return relationOf(m); }
@@ -392,8 +431,6 @@ function read(text: string, library: ReadingLibrary): CaseReading {
       addHeader("board", boardHeader?.board, "sudoku", params, types, name => (name === "standardBoard" ? { ok: isStandardBoard(board) } : undefined));
     } else unreadable("board", "sudoku", "has no size");
   }
-  // The cells clear at the start, when the fog block is readable: they tell which givens start hidden.
-  let clearAtStart: Set<string> | undefined;
   if (hasFog) {
     kinds.add("fog");
     const fog = header.fog;
@@ -413,7 +450,6 @@ function read(text: string, library: ReadingLibrary): CaseReading {
       const givenCells = new Set((parseGivens(givensSource(header, headerBoard), board) ?? []).map(g => g.cell));
       // Off-grid triggers can be found only when the board size is known.
       const onGrid = (cell: string) => { const { row, col } = parseCellRef(cell); return (!board.rows || row <= board.rows) && (!board.cols || col <= board.cols); };
-      clearAtStart = new Set(lit);
       const typed = (links ?? []) as { trigger: string[]; lights: string[] }[];
       const params: Record<string, unknown> = { initiallyLit: [...new Set(lit)], ...(links ? { links: typed } : {}) };
       const types = { initiallyLit: "set<cell>", links: "list<link>" };

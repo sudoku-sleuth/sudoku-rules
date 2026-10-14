@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
+import { parse } from "yaml";
 import { itemLines, publicReading, readCase, readingText, type CaseReading } from "../../src";
 import { partText } from "../../src";
 import { caseFile, library } from "./library";
@@ -114,26 +115,82 @@ test("publicReading and itemLines leave spoiler parts out", () => {
   expect(publicReading(r).rows.every(row => !row.items?.spoiler)).toBe(true);
 });
 
-test("no text outside a spoiler part in any fog case names a cell only a link reveals", async () => {
-  let checked = 0;
+/** The cells that are clear at the start of a fog case, read from its header. */
+function clearCells(text: string): Set<string> | undefined {
+  const header = parse(/^---\r?\n([\s\S]*?)\r?\n---/.exec(text)![1]) as { fog?: { initiallyLit?: unknown[] }; board?: { cols?: number } };
+  if (!header.fog) return undefined;
+  const cols = header.board?.cols ?? 9;
+  return new Set((header.fog.initiallyLit ?? []).map(c => (typeof c === "number" ? `r${Math.floor(c / cols) + 1}c${(c % cols) + 1}` : String(c))));
+}
+const cellsIn = (parts: readonly (string | { cells: string })[]): string[] => parts.flatMap(p => (typeof p === "string" ? [] : p.cells.split(",")));
+
+test("in every fog case, no text outside a spoiler part names a cell that starts hidden", async () => {
+  let checked = 0, withDrawn = 0;
   for (const name of (await readdir("cases")).filter(n => n.endsWith(".rules.md"))) {
     const text = await Bun.file(`cases/${name}`).text();
-    if (!/^fog:/m.test(text) || !/^ {2}links:/m.test(text)) continue;
-    const reading = readCase(text, library);
-    const fog = reading.rows.find(row => row.kind === "fog");
-    if (!fog || fog.asWritten) continue;
-    const open = publicReading(reading);
-    const visible = [...(open.rows.find(r => r.kind === "fog")?.sentence ?? []), ...(open.rows.find(r => r.kind === "fog")?.notes ?? []).flat()];
-    const spoiler = new Set((fog.items?.lines ?? []).flatMap(line => line.flatMap(p => (typeof p === "string" ? [] : p.cells.split(",")))));
-    const lit = new Set(visible.flatMap(p => (typeof p === "string" ? [] : p.cells.split(","))));
-    // Cells the sentence names are the clear cells at the start; they may also be in links.
-    const text2 = partText(visible);
-    const hidden = [...spoiler].filter(c => !lit.has(c));
-    for (const cell of hidden) expect(new RegExp(`\\b${cell}\\b`).test(text2)).toBe(false);
+    const clear = clearCells(text);
+    if (!clear) continue;
+    const open = publicReading(readCase(text, library));
+    for (const row of open.rows) {
+      if (row.stated || row.asWritten) continue;
+      const named = [...cellsIn(row.sentence), ...(row.notes ?? []).flatMap(cellsIn), ...(row.items?.lines ?? []).flatMap(cellsIn)];
+      const hidden = named.filter(c => !clear.has(c));
+      if (hidden.length) throw new Error(`${name}: ${row.heading} names ${hidden.slice(0, 3).join(", ")} outside a spoiler`);
+      if (row.kind !== "fog" && row.kind !== "givens" && row.kind !== "board") withDrawn++;
+    }
     checked++;
   }
-  expect(checked).toBeGreaterThan(20);
+  expect(checked).toBeGreaterThan(200);
+  expect(withDrawn).toBeGreaterThan(200);
 }, 60_000);
+
+test("clues behind fog keep their rule in view and their positions in a spoiler list", () => {
+  const fog = "fog:\n  initiallyLit: [r1c1, r1c2]\n";
+  const hidden = read(["thermo-1: thermo r5c5-r5c6", "thermo-2: thermo r6c5-r6c6-r6c7"], fog);
+  const row = hidden.rows.find(r => r.kind === "thermo")!;
+  expect(row.heading).toBe("Thermometers");
+  expect(partText(row.sentence)).toBe("On each, the digits strictly increase from the bulb to the tip.");
+  expect(row.items).toMatchObject({ noun: "clues under fog", count: 2, spoiler: "reveals cells under fog" });
+  expect(readingText(hidden)).toContain("Thermometers. On each, the digits strictly increase from the bulb to the tip.\n  Show the 2 clues under fog: reveals cells under fog");
+  expect(readingText(publicReading(hidden))).not.toContain("r5c5");
+});
+
+test("visible clues stay, hidden ones move into a spoiler list under their own heading", () => {
+  const fog = "fog:\n  initiallyLit: [r1c1, r1c2]\n";
+  const r = read(["thermo-1: thermo r1c1-r1c2", "thermo-2: thermo r5c5-r5c6", "thermo-3: thermo r1c2-r2c2"], fog);
+  const text = readingText(publicReading(r));
+  expect(text).toContain("Thermometers. The digits along r1c1-r1c2 strictly increase from the bulb to the tip.");
+  // A line with any cell outside the clear ones is hidden, even where part of it shows.
+  expect(text).toContain("Thermometers under fog. On each, the digits strictly increase from the bulb to the tip.");
+  expect(text).not.toContain("r2c2");
+  const fogged = r.rows.find(row => row.heading === "Thermometers under fog")!;
+  expect(fogged.items?.count).toBe(2);
+  expect(fogged.lines).toEqual([1, 2]);
+});
+
+test("a single hidden clue reads in the singular, and a cage's total stays hidden with its cells", () => {
+  const r = read(["cage r5c5-r5c6 total 7", "cage-2: cage r1c1-r1c2 total 3"], "fog:\n  initiallyLit: [r1c1, r1c2]\n");
+  const text = readingText(publicReading(r));
+  expect(text).toContain("Cages. The digits in r1c1-r1c2 are different and sum to 3.");
+  expect(text).toContain("Cages under fog. In each, the digits are different and sum to the cage's total.");
+  expect(readingText(r)).toContain("Show the clue under fog: reveals cells under fog");
+  expect(text).not.toContain("7");
+});
+
+test("stated rules and the houses are not clues behind fog", () => {
+  const r = read(["renban r5c5-r5c6 stated true", "unique-1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9"], "fog:\n  initiallyLit: [r1c1]\nboard:\n  rows: 9\n  cols: 9\n  symbols: [1, 2, 3, 4, 5, 6, 7, 8, 9]\n");
+  expect(r.rows.some(row => row.items?.noun === "clues under fog")).toBe(false);
+  expect(readingText(r)).toContain("The digits along r5c5-r5c6");
+});
+
+test("a fog block that cannot be read counts every clue as hidden", () => {
+  const r = read(["thermo r1c1-r1c2"], "fog:\n  initiallyLit: nope\n");
+  expect(r.rows.find(row => row.kind === "thermo")?.items?.spoiler).toBe("reveals cells under fog");
+});
+
+test("without fog nothing is behind it", () => {
+  expect(read(["thermo r5c5-r5c6"]).rows.some(row => row.items?.noun === "clues under fog")).toBe(false);
+});
 
 test("no two read rows of a case share a heading", async () => {
   const clashes: string[] = [];

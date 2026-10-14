@@ -15,6 +15,7 @@ reading:
       item: "bulb {line.first}, tip {line.last} ({line.length} cells)"
       one: "The digits along {line} strictly increase from the bulb to the tip."
       many: "{count|Words} thermometers. On each, the digits strictly increase from the bulb to the tip."
+      rule: "On each, the digits strictly increase from the bulb to the tip."
 ---
 
 # Thermo

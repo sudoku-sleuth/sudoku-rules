@@ -29,6 +29,7 @@ reading:
       one: "The two digits in {cells} are consecutive."
       many: "{count|Words} white dots: in each, the two digits are consecutive."
       short: "{count|words} white dots: the two digits are consecutive"
+      rule: "In each, the two digits are consecutive."
       terms: [white dot, white dots]
     - when: {colour: black}
       family: Kropki dots
@@ -39,6 +40,7 @@ reading:
       one: "One of the two digits in {cells} is double the other."
       many: "{count|Words} black dots: in each, one digit is double the other."
       short: "{count|words} black dots: one digit is double the other"
+      rule: "In each, one digit is double the other."
       terms: [black dot, black dots]
 ---
 

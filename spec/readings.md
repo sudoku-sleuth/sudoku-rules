@@ -34,6 +34,7 @@ reading:
 | `when` | Deep partial match on parameters. Also `present`, `absent`, `{length: n}` or `{length: {min, max}}`, `{varies: true}` over a group, `same: [a, b]` for equal cell sets, and `condition: name`. An absent boolean is false. |
 | `heading` | The group's name. May use placeholders. |
 | `one`, `many` | The sentence for one instance, or for `{count}` instances. `many` says what holds for each. When `many` is missing, `one` serves both. |
+| `rule` | The sentence without counts or cells. It is what stays in view when the clues sit behind fog. Lint requires it on any variant of a page that has cell parameters, and rejects `{count}`, `{cells}` and the like in it. |
 | `short` | The clause used when variants of a family share a row. A family member with one instance reads as its own `one` sentence. |
 | `item`, `item_over` | The line for the detail list: a template, or a list of `{when, text}`. `item_over` lists the elements of a list parameter instead of the instances. |
 | `list` | `always` lists even one instance. `never` omits the list. Otherwise the list appears when a group has more than one instance. |
@@ -88,9 +89,13 @@ A host stores the result, and shows a spoiler list collapsed under a button nami
 
 A value is checked against the type its page declares before it is read. A line with a bad value, and a rule whose reading throws, shows as written; the rest of the case is read. A header that cannot be read (a fog block that is not a set of fields, a link with no trigger) becomes a header row shown as written, with a note in `problems`.
 
+## Clues behind fog
+
+In a fog case, a drawn clue (a rule line that is not `stated true`, and not a `unique` line that is a row, column or box) is behind fog when any cell it names is not in `initiallyLit`. A given lights nothing, so only the clear cells count; if the fog block cannot be read, every clue counts as hidden. Per group, the visible clues read as usual. The hidden ones move to a row of their own: the `rule` sentence stays in view, and every position sits in a spoiler list, "Show the N clues under fog: reveals cells under fog" ("Show the clue under fog" for one). A group whose clues are all hidden keeps its plain heading; otherwise the second row adds " under fog". `publicReading` drops these lists.
+
 ## Pairing
 
-`align(sentences, reading, library)` pairs a setter's sentences with rows. The host splits the sentences. A sentence matches a page or variant when it contains one of its `terms` as whole words. A term is words separated by spaces; `*` stands for one word; a leading `=` is case-sensitive. A term that is a single word of one or two letters is weak: it pairs but never counts as naming a rule. Pairing is deterministic: no network, no model.
+`align(sentences, reading, library)` pairs a setter's sentences with rows. The host splits the sentences. A sentence matches a page or variant when it contains one of its `terms` as whole words. A term is words separated by spaces; `*` stands for one word; a leading `=` is case-sensitive. A term that is a single word of one or two letters, or begins with `~`, is weak: it pairs but never counts as naming a rule. Pairing is deterministic: no network, no model.
 
 `missing` lists sentences that name a library rule while the file has none of the rules the sentence names. Nothing else is reported as missing.
 

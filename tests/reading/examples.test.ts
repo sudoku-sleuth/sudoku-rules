@@ -1,7 +1,7 @@
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
 import { align, itemsLabel, partText, readCase, readingText, type CaseReading } from "../../src";
-import { library, nonBlankRuleLines } from "./library";
+import { caseFile, library, nonBlankRuleLines } from "./library";
 
 // The seven worked examples, read from the real published case files. Golden text is reviewed data.
 const examples = ["l7-weenie", "a-killer-teacher", "li-l-worms", "twin-pines-mall", "accounting-through-the-fog", "33-x-s", "have-a-killer-birthday-bremster"];
@@ -124,4 +124,13 @@ test("modifiers show as written: not, if and unless are not read away", () => {
   const text = "---\nformat: open-rules\ntitle: T\nsetter: S\nsource: ''\ncase: ''\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncage-1: not cage r1c1-r1c2 total 3\ncage-2: cage r2c1-r2c2 total 3 if uniform\n```\n";
   const reading = readCase(text, library);
   expect(reading.rows.filter(r => r.asWritten).map(r => r.lines)).toEqual([[1, 2]]);
+});
+
+test("pairing: shifter dots pair with the pair row; parity and polarity alone never mark a missing rule", () => {
+  const withPair = readCase(caseFile(["pair r1c1-r1c2 shift"]), library);
+  const sentence = "Shifter dots: digits on different sides of a shifter dot share either parity or polarity.";
+  expect(align([sentence], withPair, library).pairs).toEqual([{ sentence: 0, rows: [0] }]);
+  const none = readCase(caseFile(["thermo r1c1-r1c2"]), library);
+  expect(align([sentence], none, library).missing).toEqual([{ sentence: 0, kinds: ["pair"] }]);
+  expect(align(["Digits on the line alternate parity.", "Neighbours share polarity."], none, library).missing).toEqual([]);
 });

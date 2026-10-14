@@ -10,7 +10,7 @@ export const readingChecks = ["E_READING_FIELD", "E_READING_PLACEHOLDER", "E_REA
 /** Named conditions are a closed list; each has a test. A new need is a pull request. */
 export const namedConditions = ["isHouse", "housesStandAlone", "exceptsAreMarked", "standardBoard", "triggersOnGivens", "neverFire", "underFog", "hiddenGivens"] as const;
 const props = ["first", "last", "length", "min", "max", "op", "value"];
-const variantKeys = ["when", "family", "heading", "name", "noun", "one", "many", "short", "item", "item_over", "list", "spoiler", "silent", "relation", "join", "notes", "spoiler_notes", "terms"];
+const variantKeys = ["when", "family", "heading", "name", "noun", "one", "many", "short", "item", "item_over", "list", "rule", "spoiler", "silent", "relation", "join", "notes", "spoiler_notes", "terms"];
 const pageKeys = ["group_by", "terms", "parts", "variants", "header"];
 
 /** What a header reading may name. */
@@ -22,11 +22,11 @@ const headerFields: Record<string, string[]> = {
 
 const isObject = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 
-interface Context { names: Set<string>; conditionValues: Set<string>; parts: Set<string>; mentioned: Set<string> }
+interface Context { types?: Record<string, string>; names: Set<string>; conditionValues: Set<string>; parts: Set<string>; mentioned: Set<string> }
 
 function templates(variant: Variant): string[] {
   const items = typeof variant.item === "string" ? [variant.item] : (variant.item ?? []).map(i => i.text ?? "");
-  return [variant.heading, variant.one, variant.many, variant.short, variant.join?.note, ...items, ...(variant.notes ?? []).map(n => n.text), ...(variant.spoiler_notes ?? []).map(n => n.text)].filter((t): t is string => typeof t === "string");
+  return [variant.heading, variant.one, variant.many, variant.short, variant.rule, variant.join?.note, ...items, ...(variant.notes ?? []).map(n => n.text), ...(variant.spoiler_notes ?? []).map(n => n.text)].filter((t): t is string => typeof t === "string");
 }
 
 function whenNames(when: unknown, found: string[] = []): string[] {
@@ -76,6 +76,14 @@ function checkReading(reading: PageReading, ctx: Context, problems: string[], wh
     for (const c of [condition, ...(variant.notes ?? []).map(n => n.when?.condition), ...(variant.spoiler_notes ?? []).map(n => n.when?.condition)]) if (typeof c === "string" && !(namedConditions as readonly string[]).includes(c)) problems.push(`${here}: ${c} is not a named condition`);
     if (variant.item_over) { ctx.mentioned.add(variant.item_over); if (!ctx.names.has(variant.item_over)) problems.push(`${here}: item_over names ${variant.item_over}, which is not declared`); }
     for (const t of templates(variant)) checkTemplate(t, ctx, problems, here);
+    // Clues behind fog keep only this sentence in view, so it names no cell and no count.
+    const holdsCells = Object.values(ctx.types ?? {}).some(t => isCellList(t) || isNestedCells(t));
+    if (holdsCells && !variant.join && !variant.silent && !variant.rule) problems.push(`${here}: needs a rule sentence without cells or counts, for clues under fog`);
+    for (const { expr } of parsePlaceholders(variant.rule ?? "")) {
+      const { head } = splitExpr(expr);
+      if (["count", "covered", "cells", "items", "houses"].includes(head) || isCellList(ctx.types?.[head]) || isNestedCells(ctx.types?.[head]))
+        problems.push(`${here}: the rule sentence uses {${expr}}, which names cells or counts`);
+    }
     if (variant.spoiler) {
       // The words outside a spoiler part must not name what the part hides.
       const open = [variant.heading, variant.one, variant.many, variant.short, ...(variant.notes ?? []).map(n => n.text)].filter((t): t is string => typeof t === "string");
@@ -116,7 +124,7 @@ export function lintReadings(pages: PageSource[], library?: ReadingLibrary): Dia
       const params = Object.keys(declared);
       const types = Object.fromEntries(params.map(n => [n, String((declared[n] as { type?: string } | undefined)?.type ?? "")]));
       if (m.alias_of !== undefined || m.aliasOf !== undefined) problems.push("an alias page has no reading; it reads as its target");
-      const base: Context = { names: new Set(params), conditionValues: new Set(["neverFire", "hiddenGivens"]), parts: new Set(Object.keys(reading.parts ?? {})), mentioned: new Set() };
+      const base: Context = { types, names: new Set(params), conditionValues: new Set(["neverFire", "hiddenGivens"]), parts: new Set(Object.keys(reading.parts ?? {})), mentioned: new Set() };
       checkReading(reading, base, problems, kind ?? "page", kind === "sudoku");
       for (const [name, sub] of Object.entries(reading.header ?? {})) {
         if (!isObject(sub)) { problems.push(`header ${name} must be a mapping`); continue; }

@@ -27,6 +27,7 @@ reading:
       one: "The digits shown on {line} add up to at most the number in the bulb {bulb}."
       many: "{count|Words} partial arrows. On each, the digits shown on the arrow add up to at most the number in its bulb."
       short: "{count|words} partial arrows add up to at most the number in the bulb"
+      rule: "On each, the digits shown on the arrow add up to at most the number in its bulb."
     - when: {bulb: {length: {min: 2}}}
       family: Arrows
       heading: Arrows with a multi-cell bulb
@@ -35,6 +36,7 @@ reading:
       one: "The digits on {line} sum to the number written in the bulb {bulb}, read in order."
       many: "{count|Words} arrows with a multi-cell bulb. On each, the digits on the arrow sum to the number written in its bulb, read in order."
       short: "{count|words} arrows sum to the number written in a multi-cell bulb"
+      rule: "On each, the digits on the arrow sum to the number written in its bulb, read in order."
     - family: Arrows
       heading: Arrows
       noun: arrows
@@ -45,6 +47,7 @@ reading:
       one: "The digits on {line} sum to the digit in the bulb {bulb}."
       many: "{count|Words} arrows. On each, the digits on the arrow sum to the digit in its bulb."
       short: "{count|words} arrows sum to the digit in the bulb"
+      rule: "On each, the digits on the arrow sum to the digit in its bulb."
 ---
 
 # Arrow

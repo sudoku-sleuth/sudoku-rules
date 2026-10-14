@@ -14,6 +14,7 @@ reading:
       noun: lines
       one: "The digits along {line} are different and form a run of consecutive numbers, in any order."
       many: "{count|Words} lines. On each, the digits are different and form a run of consecutive numbers, in any order."
+      rule: "On each, the digits are different and form a run of consecutive numbers, in any order."
 ---
 
 # Renban

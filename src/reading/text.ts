@@ -19,7 +19,8 @@ export function publicReading(reading: CaseReading): CaseReading {
 
 /** The button text for a list: "Show the 6 thermometers", "Show the pair", "Show the 13 fog links: reveals part of the puzzle". */
 export function itemsLabel(items: ItemList): string {
-  const what = items.count === 1 ? items.noun.replace(/s$/, "") : `${items.count} ${items.noun}`;
+  // One item: the plural word loses its s ("pairs" to "pair", "clues under fog" to "clue under fog").
+  const what = items.count === 1 ? items.noun.replace(/s( under fog)?$/, "$1") : `${items.count} ${items.noun}`;
   return `Show the ${what}${items.spoiler ? `: ${items.spoiler}` : ""}`;
 }
 

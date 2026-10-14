@@ -30,21 +30,25 @@ reading:
       item: "{cells} = {total}"
       one: "The digits in {cells} are different and sum to {total}."
       many: "{count|Words} cages cover {covered} cells. In each, the digits are different and sum to the cage's total.{part:totals}"
+      rule: "In each, the digits are different and sum to the cage's total."
     - when: {total: present, repeats: true}
       heading: Cages that allow repeats
       noun: cages
       item: "{cells} = {total}"
       one: "The digits in {cells} sum to {total}, and may repeat."
       many: "{count|Words} cages cover {covered} cells. In each, the digits sum to the cage's total and may repeat.{part:totals}"
+      rule: "In each, the digits sum to the cage's total and may repeat."
     - when: {repeats: false}
       heading: Cages without totals
       noun: cages
       one: "The digits in {cells} are different."
       many: "{count|Words} cages cover {covered} cells. In each, the digits are different. No totals are given."
+      rule: "In each, the digits are different. No totals are given."
     - heading: Cages without totals that allow repeats
       noun: cages
       one: "{cells} is a cage with no total that allows repeats, so it adds no rule."
       many: "{count|Words} cages cover {covered} cells. Each has no total and allows repeats, so they add no rule."
+      rule: "Each has no total and allows repeats, so they add no rule."
 ---
 
 # Killer cage

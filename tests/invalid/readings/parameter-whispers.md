@@ -33,17 +33,20 @@ reading:
       noun: lines
       one: "Neighbouring digits along {line} differ by at least 5.{part:loop}"
       many: "{count|Words} lines. On each, neighbouring digits differ by at least 5.{part:loop}"
+      rule: "On each, neighbouring digits differ by at least 5.{part:loop}"
       terms: [german whisper, german whispers, adjacent digits differ by at least 5, neighbouring digits differ by at least 5, adjacent cells differ by at least 5]
     - when: {gap: 4}
       heading: "Dutch whisper lines{part:loopTitle}"
       noun: lines
       one: "Neighbouring digits along {line} differ by at least 4.{part:loop}"
       many: "{count|Words} lines. On each, neighbouring digits differ by at least 4.{part:loop}"
+      rule: "On each, neighbouring digits differ by at least 4.{part:loop}"
       terms: [dutch whisper, dutch whispers, adjacent digits differ by at least 4, neighbouring digits differ by at least 4, adjacent cells differ by at least 4]
     - heading: "Whisper lines with a gap of {gap}{part:loopTitle}"
       noun: lines
       one: "Neighbouring digits along {line} differ by at least {gap}.{part:loop}"
       many: "{count|Words} lines. On each, neighbouring digits differ by at least {gap}.{part:loop}"
+      rule: "On each, neighbouring digits differ by at least {gap}.{part:loop}"
 ---
 
 # Whisper

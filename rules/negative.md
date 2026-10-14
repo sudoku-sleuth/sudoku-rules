@@ -50,6 +50,7 @@ reading:
       list: always
       item_over: except
       one: "{part:scope}{part:direction}neighbouring pair {relations|one}{part:except}."
+      rule: "No neighbouring pair {relations|one}, except the marked pairs."
 ---
 
 # Negative

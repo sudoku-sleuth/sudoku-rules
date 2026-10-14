@@ -16,6 +16,8 @@ export interface Variant {
   one?: string;
   many?: string;
   short?: string;
+  /** The sentence without counts or cells, for what is left visible when the clues sit behind fog. */
+  rule?: string;
   item?: string | WhenCase[];
   /** Iterate this list parameter instead of the instances when listing. */
   item_over?: string;

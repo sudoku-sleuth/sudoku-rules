@@ -21,10 +21,12 @@ reading:
       terms: [normal sudoku, standard sudoku, classic sudoku, regular sudoku]
       one: "All the digits in {cells} are different. It is one of the rows, columns or boxes."
       many: "The {count|words} lines are the {houses}."
+      rule: "All the digits in each are different."
     - heading: Extra regions
       noun: regions
       one: "All the digits in {cells} are different."
       many: "{count|Words} extra regions. In each, all the digits are different."
+      rule: "In each, all the digits are different."
 ---
 
 # Unique

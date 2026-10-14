@@ -6,8 +6,8 @@ import type { Alignment, CaseReading } from "./types.js";
  * the `terms` of a page or variant, matched as whole words. No network, no model.
  *
  * A term is words separated by spaces. `*` stands for any one word. A leading `=` makes the
- * match case-sensitive. A term that is a single word of one or two letters is weak: it
- * pairs a sentence with rows but never shows a sentence as naming a rule the file lacks.
+ * match case-sensitive. A term that is a single word of one or two letters, or begins
+ * with `~`, is weak: it pairs a sentence with rows but never shows a sentence as naming a rule the file lacks.
  */
 const split = (text: string): string[] => text.split(/[^\p{L}\p{N}'’]+/u).filter(Boolean);
 
@@ -15,8 +15,9 @@ interface Term { words: string[]; exact: boolean; weak: boolean }
 
 function parseTerm(term: string): Term {
   const exact = term.startsWith("=");
-  const words = (exact ? term.slice(1) : term).trim().split(/\s+/).filter(Boolean).map(w => (exact ? w : w.toLowerCase()));
-  return { words, exact, weak: words.length === 1 && words[0].length <= 2 };
+  const tilde = term.startsWith("~");
+  const words = (exact || tilde ? term.slice(1) : term).trim().split(/\s+/).filter(Boolean).map(w => (exact ? w : w.toLowerCase()));
+  return { words, exact, weak: tilde || (words.length === 1 && words[0].length <= 2) };
 }
 
 export function termMatches(sentence: string, term: string): boolean {
