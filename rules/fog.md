@@ -2,55 +2,6 @@
 document: feature
 name: Fog
 url: https://rules.sudoku-sleuth.com/fog.md
-reading:
-  terms: [fog, fogged]
-  parts:
-    start:
-      - when: {initiallyLit: {length: 0}}
-        text: "The grid starts fully covered."
-      - when: {initiallyLit: {length: 1}}
-        text: "The grid starts mostly hidden. One cell is clear at the start: {initiallyLit}."
-      - text: "The grid starts mostly hidden. {initiallyLit.length|Words} cells are clear at the start: {initiallyLit|rectangle}."
-  variants:
-    - when: {links: absent}
-      heading: Fog
-      one: "{part:start} Placing the right digit in a cell lights that cell and the cells around it, up to 3×3. A given lights nothing. Only the lit cells are shown."
-    - when: {links: {length: 0}}
-      heading: Fog
-      one: "{part:start} No digit lights anything: only those cells are ever shown."
-    - when: {links: {length: 1}}
-      heading: Fog
-      noun: fog links
-      list: always
-      spoiler: reveals part of the puzzle
-      one: "{part:start} Placing the right digit in the marked cell lights the cells the setter linked to it. No other digit lights anything. Only the lit cells are shown."
-      item:
-        - when: {same: [trigger, lights]}
-          text: "A right digit in {trigger|list} lights its own cell."
-        - when: {trigger: {length: 1}}
-          text: "A right digit in {trigger|list} lights {lights|list}."
-        - text: "Right digits in all of {trigger|list} light {lights|list}."
-      spoiler_notes:
-        - when: {condition: triggersOnGivens}
-          text: "A given in a trigger cell lights its link only when the player types that digit over it."
-        - when: {condition: neverFire}
-          text: "Some links ({neverFire}) name a cell outside the grid and never light anything."
-    - heading: Fog
-      noun: fog links
-      list: always
-      spoiler: reveals part of the puzzle
-      one: "{part:start} Placing the right digit in a marked cell lights the cells the setter linked to it. No other digit lights anything. Only the lit cells are shown."
-      item:
-        - when: {same: [trigger, lights]}
-          text: "A right digit in {trigger|list} lights its own cell."
-        - when: {trigger: {length: 1}}
-          text: "A right digit in {trigger|list} lights {lights|list}."
-        - text: "Right digits in all of {trigger|list} light {lights|list}."
-      spoiler_notes:
-        - when: {condition: triggersOnGivens}
-          text: "A given in a trigger cell lights its link only when the player types that digit over it."
-        - when: {condition: neverFire}
-          text: "Some links ({neverFire}) name a cell outside the grid and never light anything."
 ---
 
 # Fog

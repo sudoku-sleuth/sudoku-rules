@@ -25,6 +25,4 @@ Within a formula, parsing and checking stop at the first error. Separate formula
 Limits: 100,000 source code units per block; 128 parser/type/AST/dependency levels; 20,000 AST nodes; 4,096 literal digits; 16,384 intermediate numerator/denominator digits; constant exponent at most 4,096, additionally limited by result size. Exact arithmetic never falls back to floating point. Metadata keys must be unique and YAML aliases are rejected at their source spans.
 
 
-Reading diagnostics use E_READING_FIELD, E_READING_PLACEHOLDER, E_READING_PARAMETER and E_READING_EXAMPLE, with the same message and span contract; [readings.md](readings.md) lists what each rejects. Their rejecting pages are in `tests/invalid/readings/`, the repairs in `tests/valid/readings/`, and the exact ordered diagnostics in `tests/invalid/reading-expected.json`.
-
 Case/library integration diagnostics use E_HEADER_REQUIRED, E_HEADER_TYPE, E_LIBRARY_URL, E_RULES_REQUIRED, E_KIND_UNKNOWN and E_ALIAS_TARGET, with the same setter-facing message/span/detail contract. Their rejecting files, accepting repairs and full expectations live in tests/{invalid,valid}/integration/ and tests/invalid/integration-expected.json. Full URLs inside the configured library must name known definitions; other URLs remain explicitly deferred until the resolver slice.

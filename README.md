@@ -12,7 +12,7 @@ The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). 
 - `cases/*.rules.md`: case files, including their attribution and source links.
 - `scripts/`: static generator and lint entry points.
 - `src/`: portable formula compiler and the `openrules` file-reading CLI.
-- `spec/`: formula grammar, type contract and the [readings](spec/readings.md) format. The executable shared definitions live in `rules/predicates.md`.
+- `spec/`: formula grammar, type contract, logical classes, diagnostics and the [play-state](spec/play-state.md) domain. The executable shared definitions live in `rules/predicates.md`.
 - `site/style.css`: local light and dark styles.
 - `plugins/open-rules/skills/open-rules/`: the shared setter skill and references loaded as needed.
 - `tests/fixtures/`: three sample rule pages, shared predicates, and one case. Fixtures are test inputs only.
@@ -33,19 +33,6 @@ kropki r5c1-r5c2 white
 
 Pair also supports `at-least n`, `less`, `multiple` and `shift`; [pair.md](rules/pair.md) defines them. Kropki is shorthand for pair: white means `difference 1`, black means `ratio 2`. A dot's painted colour is drawing metadata. State every other relationship with pair keywords, including ratio 3 or grey/brown dots. Pair JSON relations have been migrated to keywords. See [syntax.md](rules/syntax.md) and the skill's [worked cases](plugins/open-rules/skills/open-rules/references/examples.md) for full files.
 
-## Readings
-
-A rule page may add a `reading` block to its front matter: plain-language templates that turn a case file into grouped sentences ("seven X pairs sum to 10, three V pairs sum to 5"), with the exact lines kept one click away. The shared wording for relations lives in `predicates.md` under `type_readings`; the readings of `givens` and `board` live on `rules/sudoku.md`; fog has its own page. The portable `readCase(text, library)` renders a case, `align` pairs a setter's sentences with the rows by each page's `terms`, and `readingText` writes plain text. [spec/readings.md](spec/readings.md) defines the format, the named conditions and the checks.
-
-```ts
-import { readingLibrary, readCase, readingText } from "@sudoku-sleuth/open-rules";
-const library = readingLibrary(pages).value!;       // pages: {file, text}[] of the rules/ folder
-const reading = readCase(caseText, library);        // rows, lines covered, complete, problems
-console.log(readingText(reading));
-```
-
-A group with no reading, or a placeholder that cannot render, shows as its exact lines. It never guesses.
-
 ## Local commands
 
 Use Bun **1.2.23** (recorded in `.bun-version`).
@@ -61,7 +48,7 @@ bun run build:package
 bun run build
 ```
 
-`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. It also checks every `reading` block: fields, placeholders, that each parameter is used, and that the page's Example reads in full. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Other rule-line parameters, custom definitions, URL fetching and example verdicts remain pending; external URLs are counted separately as deferred.
+`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Other rule-line parameters, custom definitions, URL fetching and example verdicts remain pending; external URLs are counted separately as deferred.
 
 ## Formula package
 

@@ -49,8 +49,6 @@ Satisfies the rule: r1c1=1, r1c2=2, r1c3=5. The third digit is 1+2×2=5.
 Breaks the rule: r1c1=1, r1c2=2, r1c3=6. The third digit is 6, while 1+2×2=5.
 ````
 
-Add a `reading` block to the front matter: a `variants` list whose first entry has a `heading`, a one-instance sentence (`one`) and a many-instance sentence (`many`), written in setter words with placeholders such as `{line}` and `{count}`. Every parameter that is not a cell list must appear in a sentence, a `when` or `group_by`. The checker rejects an unknown placeholder and an Example that does not read in full. The format is in the checkout's `spec/readings.md`.
-
 The proposed kind belongs in the draft page's fragment. Until the page is published, use its embedded custom definition when writing an actual case file.
 
 If the example needs board context, use a complete case inside an outer four-backtick `markdown` fence, as in [examples.md](examples.md). Use a longer outer fence whenever its contents contain a fence of the same length.

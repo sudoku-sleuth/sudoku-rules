@@ -7,8 +7,6 @@ parameters:
     description: The marked cells, for example r1c1-r1c2-r2c2.
     default: Required.
     type: set<cell>
-reading:
-  terms: [counting circles, counting circle, how many * contain that digit]
 ---
 
 # Counting Circles

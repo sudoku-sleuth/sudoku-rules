@@ -2,7 +2,7 @@
 import { readFile, readdir, realpath, stat } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkCaseReferences, compilePublicLibrary, compilePage, compilePrelude, formulaBlocks, lintReadings, type PageSource, type Diagnostic } from "./index.js";
+import { checkCaseReferences, compilePublicLibrary, compilePage, compilePrelude, formulaBlocks, type PageSource, type Diagnostic } from "./index.js";
 export interface LintReport {
     phase: "formula";
     files: number;
@@ -14,7 +14,6 @@ export interface LintReport {
     references?: number;
     aliases?: number;
     documents?: number;
-    readings?: number;
     deferredReferences?: number;
 }
 async function filesAt(target: string): Promise<string[]> {
@@ -81,9 +80,6 @@ export async function lintFiles(target: string, preludeFile?: string): Promise<L
     const library = compilePublicLibrary(pages);
     const report: LintReport = { phase: "formula", files: pages.length, formulas: pages.reduce((n, page) => n + formulaBlocks(page).length, 0), checked: library.value ? pages.length : 0, diagnostics: library.diagnostics, pending: ["remaining rule-line validation", "URL resolution", "example evaluation"], aliases: library.value?.aliases.size, documents: library.value?.documents, cases: 0, references: 0, deferredReferences: 0 };
     if (library.value) {
-        const readingDiagnostics = lintReadings(pages);
-        report.diagnostics.push(...readingDiagnostics);
-        report.readings = pages.filter(page => /^reading:/m.test(page.text.slice(0, page.text.indexOf("\n---", 4)))).length;
         casePaths ??= await filesAt(join(libraryFolder, "../cases")).catch(error => { if (error.code === "ENOENT")
             return []; throw error; });
         for (const file of casePaths.filter(file => file.endsWith(".rules.md"))) {
@@ -115,7 +111,7 @@ export async function main(args: string[]): Promise<number> {
         else {
             for (const diagnostic of report.diagnostics)
                 console.error(`${diagnostic.span.file}:${diagnostic.span.start.line}:${diagnostic.span.start.column} ${diagnostic.code}: ${diagnostic.message}`);
-            console.log(`Formula lint: ${report.checked}/${report.files} pages checked; ${report.formulas} formula blocks.${report.readings !== undefined ? ` Readings: ${report.readings} pages.` : ""}${report.cases !== undefined ? ` Cases: ${report.cases} headers/reference lists; ${report.references} references; ${report.deferredReferences} deferred URLs.` : ""} Pending: ${report.pending.join(", ")}.`);
+            console.log(`Formula lint: ${report.checked}/${report.files} pages checked; ${report.formulas} formula blocks.${report.cases !== undefined ? ` Cases: ${report.cases} headers/reference lists; ${report.references} references; ${report.deferredReferences} deferred URLs.` : ""} Pending: ${report.pending.join(", ")}.`);
         }
         return report.diagnostics.length ? 1 : 0;
     }
