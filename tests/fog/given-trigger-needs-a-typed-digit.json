@@ -1,0 +1,42 @@
+{
+  "name": "given-trigger-needs-a-typed-digit",
+  "description": "A given fires a link only when the player types its digit over it.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "givens": {
+    "r1c2": 3
+  },
+  "links": [
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r2c2"
+      ]
+    }
+  ],
+  "answer": {
+    "r1c2": 3
+  },
+  "steps": [
+    {
+      "entries": {},
+      "lit": [
+        "r1c1"
+      ]
+    },
+    {
+      "entries": {
+        "r1c2": 3
+      },
+      "lit": [
+        "r1c1",
+        "r2c2"
+      ]
+    }
+  ]
+}

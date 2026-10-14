@@ -2,6 +2,14 @@
 document: prelude
 name: Shared predicates
 url: https://rules.sudoku-sleuth.com/predicates.md
+type_readings:
+  PairRelation:
+    difference: {many: "differ by {value}", one: "differs by {value}"}
+    at-least: {many: "differ by at least {value}", one: "differs by at least {value}"}
+    ratio: {many: "are in {value|a}:1 ratio", one: "is in {value|a}:1 ratio"}
+    sum: {many: "sum to {value}", one: "sums to {value}"}
+    less: {many: "increase in reading order: the first digit is smaller than the second", one: "increases in reading order: the first digit is smaller than the second"}
+    multiple: {many: "are such that the larger is a multiple of the smaller", one: "is such that the larger is a multiple of the smaller"}
 ---
 
 # Shared predicates

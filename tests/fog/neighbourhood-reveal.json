@@ -1,0 +1,31 @@
+{
+  "name": "neighbourhood-reveal",
+  "description": "Without links, a correct digit lights its 3x3 neighbourhood.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "answer": {
+    "r3c3": 4
+  },
+  "steps": [
+    {
+      "entries": {
+        "r3c3": 4
+      },
+      "lit": [
+        "r1c1",
+        "r2c2",
+        "r2c3",
+        "r2c4",
+        "r3c2",
+        "r3c3",
+        "r3c4",
+        "r4c2",
+        "r4c3",
+        "r4c4"
+      ]
+    }
+  ]
+}

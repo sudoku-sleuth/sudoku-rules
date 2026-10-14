@@ -7,6 +7,24 @@ parameters:
     description: The marked cells, for example r1c1-r1c2-r2c2.
     default: Required.
     type: set<cell>
+reading:
+  group_by: []
+  parts:
+    housesTitle:
+      - when: {condition: housesStandAlone}
+        text: "Normal sudoku rules"
+      - text: "Unique houses"
+  variants:
+    - when: {condition: isHouse}
+      heading: "{part:housesTitle}"
+      list: never
+      terms: [normal sudoku, standard sudoku, classic sudoku, regular sudoku]
+      one: "All the digits in {cells} are different. It is one of the rows, columns or boxes."
+      many: "The {count|words} lines are the {houses}."
+    - heading: Extra regions
+      noun: regions
+      one: "All the digits in {cells} are different."
+      many: "{count|Words} extra regions. In each, all the digits are different."
 ---
 
 # Unique

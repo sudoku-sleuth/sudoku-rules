@@ -15,6 +15,36 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+reading:
+  group_by: [partial]
+  terms: [arrow, arrows]
+  variants:
+    - when: {partial: true}
+      family: Arrows
+      heading: Partial arrows
+      noun: arrows
+      item: "{line} add up to at most {bulb}"
+      one: "The digits shown on {line} add up to at most the number in the bulb {bulb}."
+      many: "{count|Words} partial arrows. On each, the digits shown on the arrow add up to at most the number in its bulb."
+      short: "{count|words} partial arrows add up to at most the number in the bulb"
+    - when: {bulb: {length: {min: 2}}}
+      family: Arrows
+      heading: Arrows with a multi-cell bulb
+      noun: arrows
+      item: "{line} sum to the number in {bulb}"
+      one: "The digits on {line} sum to the number written in the bulb {bulb}, read in order."
+      many: "{count|Words} arrows with a multi-cell bulb. On each, the digits on the arrow sum to the number written in its bulb, read in order."
+      short: "{count|words} arrows sum to the number written in a multi-cell bulb"
+    - family: Arrows
+      heading: Arrows
+      noun: arrows
+      item:
+        - when: {line: {length: 1}}
+          text: "the digit in {line} equals the digit in {bulb} (an arrow of one cell)"
+        - text: "{line} sum to {bulb}"
+      one: "The digits on {line} sum to the digit in the bulb {bulb}."
+      many: "{count|Words} arrows. On each, the digits on the arrow sum to the digit in its bulb."
+      short: "{count|words} arrows sum to the digit in the bulb"
 ---
 
 # Arrow

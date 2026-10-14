@@ -143,11 +143,12 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             continue;
         const { metadata, field } = header;
         if (metadata.document !== undefined) {
-            if (!["prelude", "syntax", "home"].includes(String(metadata.document)) || metadata.kind !== undefined || metadata.parameters !== undefined || metadata.alias_of !== undefined || metadata.aliasOf !== undefined)
-                diagnostics.push(diagnostic("E_HEADER_TYPE", field("document"), "A shared document must declare document: prelude, document: syntax or document: home, and must not declare a rule kind, parameters or an alias."));
+            if (!["prelude", "syntax", "home", "feature"].includes(String(metadata.document)) || metadata.kind !== undefined || metadata.parameters !== undefined || metadata.alias_of !== undefined || metadata.aliasOf !== undefined)
+                diagnostics.push(diagnostic("E_HEADER_TYPE", field("document"), "A shared document must declare document: prelude, document: syntax, document: feature or document: home, and must not declare a rule kind, parameters or an alias."));
             else {
                 documents++;
                 if (metadata.document === "home" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"The home index cannot declare formulas; put a rule's formula on its kind page."));
+                if (metadata.document === "feature" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"A setup feature page cannot declare rule formulas; write its maths in a math block."));
                 if (metadata.document === "syntax" && formulaBlocks(page).length) {
                     const checked = compilePrelude(page);
                     diagnostics.push(...checked.diagnostics);

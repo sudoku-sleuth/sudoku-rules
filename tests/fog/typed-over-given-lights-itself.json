@@ -1,0 +1,34 @@
+{
+  "name": "typed-over-given-lights-itself",
+  "description": "A digit typed over a given lights that cell alone, and only when it is the given's digit.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "givens": {
+    "r3c3": 5
+  },
+  "answer": {
+    "r3c3": 5
+  },
+  "steps": [
+    {
+      "entries": {
+        "r3c3": 5
+      },
+      "lit": [
+        "r1c1",
+        "r3c3"
+      ]
+    },
+    {
+      "entries": {
+        "r3c3": 6
+      },
+      "lit": [
+        "r1c1"
+      ]
+    }
+  ]
+}

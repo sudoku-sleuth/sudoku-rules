@@ -3,6 +3,13 @@ name: Anti Knight
 url: https://rules.sudoku-sleuth.com/anti-knight.md
 kind: anti-knight
 parameters: {}
+reading:
+  terms: [anti-knight, anti knight, antiknight, knight's move, knights move, chess knight]
+  variants:
+    - heading: Anti-knight
+      list: never
+      one: "Cells a chess knight's move apart hold different digits."
+      many: "Cells a chess knight's move apart hold different digits."
 ---
 
 # Anti Knight

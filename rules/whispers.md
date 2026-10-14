@@ -15,6 +15,35 @@ parameters:
     description: Whether the line closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
+reading:
+  group_by: [gap, loop]
+  terms: [whisper, whispers, whisper line, whisper lines]
+  parts:
+    loopTitle:
+      - when: {loop: true}
+        text: " (closed loops)"
+      - text: ""
+    loop:
+      - when: {loop: true}
+        text: " The line closes into a loop, so its last cell is a neighbour of its first."
+      - text: ""
+  variants:
+    - when: {gap: 5}
+      heading: "German whisper lines{part:loopTitle}"
+      noun: lines
+      one: "Neighbouring digits along {line} differ by at least 5.{part:loop}"
+      many: "{count|Words} lines. On each, neighbouring digits differ by at least 5.{part:loop}"
+      terms: [german whisper, german whispers, adjacent digits differ by at least 5, neighbouring digits differ by at least 5, adjacent cells differ by at least 5]
+    - when: {gap: 4}
+      heading: "Dutch whisper lines{part:loopTitle}"
+      noun: lines
+      one: "Neighbouring digits along {line} differ by at least 4.{part:loop}"
+      many: "{count|Words} lines. On each, neighbouring digits differ by at least 4.{part:loop}"
+      terms: [dutch whisper, dutch whispers, adjacent digits differ by at least 4, neighbouring digits differ by at least 4, adjacent cells differ by at least 4]
+    - heading: "Whisper lines with a gap of {gap}{part:loopTitle}"
+      noun: lines
+      one: "Neighbouring digits along {line} differ by at least {gap}.{part:loop}"
+      many: "{count|Words} lines. On each, neighbouring digits differ by at least {gap}.{part:loop}"
 ---
 
 # Whisper

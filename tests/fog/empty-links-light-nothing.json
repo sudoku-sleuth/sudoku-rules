@@ -1,0 +1,23 @@
+{
+  "name": "empty-links-light-nothing",
+  "description": "With links present, even an empty list, there is no neighbourhood reveal.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [],
+  "answer": {
+    "r3c3": 4
+  },
+  "steps": [
+    {
+      "entries": {
+        "r3c3": 4
+      },
+      "lit": [
+        "r1c1"
+      ]
+    }
+  ]
+}

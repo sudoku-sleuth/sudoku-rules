@@ -1,0 +1,25 @@
+{
+  "name": "no-answer-accepts-any-digit",
+  "description": "With no answer, every digit counts as correct.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [],
+  "steps": [
+    {
+      "entries": {
+        "r3c3": 9
+      },
+      "lit": [
+        "r2c2",
+        "r2c3",
+        "r2c4",
+        "r3c2",
+        "r3c3",
+        "r3c4",
+        "r4c2",
+        "r4c3",
+        "r4c4"
+      ]
+    }
+  ]
+}

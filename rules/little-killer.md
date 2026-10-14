@@ -11,6 +11,15 @@ parameters:
     description: The total the digits or values must add up to.
     default: Required.
     type: number
+reading:
+  group_by: []
+  terms: [little killer, little killers]
+  variants:
+    - heading: Little killer clues
+      noun: clues
+      item: "{cells} = {sum}"
+      one: "The digits along {cells} add up to {sum}."
+      many: "{count|Words} little killer clues. In each, the digits along the ray of cells add up to the clue."
 ---
 
 # Little Killer

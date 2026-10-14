@@ -1,0 +1,43 @@
+{
+  "name": "link-fires",
+  "description": "A link lights its cells when its trigger holds a correct entry.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r2c3",
+        "r2c4"
+      ]
+    }
+  ],
+  "answer": {
+    "r1c2": 3
+  },
+  "steps": [
+    {
+      "entries": {
+        "r1c2": 3
+      },
+      "lit": [
+        "r1c1",
+        "r2c3",
+        "r2c4"
+      ]
+    },
+    {
+      "entries": {
+        "r1c2": 4
+      },
+      "lit": [
+        "r1c1"
+      ]
+    }
+  ]
+}

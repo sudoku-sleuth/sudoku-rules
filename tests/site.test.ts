@@ -8,7 +8,7 @@ import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
 
-// These tests build the whole library (85 pages, 3,892 cases); allow for slower CI runners.
+// These tests build the whole library (86 pages, 3,892 cases); allow for slower CI runners.
 setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");
@@ -193,7 +193,7 @@ test("index rule and alias routes coexist with the home catalogue", async () => 
 
 test("the full imported library and case collection have byte-identical public routes", async () => {
   const built=await buildSite(".",join(temporary,"production-site"));
-  expect(built.pages).toBe(85);expect(built.cases).toBe(3892);
+  expect(built.pages).toBe(86);expect(built.cases).toBe(3892);
   const home=await readFile(join(built.output,"index.html"),"utf8");
   for(const name of await readdir("rules")) {
     if(!name.endsWith(".md"))continue;
