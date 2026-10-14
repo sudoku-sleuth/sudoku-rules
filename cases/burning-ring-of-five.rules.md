@@ -6,6 +6,7 @@ source: https://sudokupad.app/ixsahrr2li
 case: https://sudoku-sleuth.com/cases/burning-ring-of-five
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 047f62cacf93c8aac90dd7d59a282d0e
 ---
 
 ```rules

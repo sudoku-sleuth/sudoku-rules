@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fighting-an-uphill-battle
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2542e73b5fd4db4ed1d5a8c6a4137f3d
 ---
 
 ```rules

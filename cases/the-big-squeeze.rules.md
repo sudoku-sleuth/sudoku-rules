@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/the-big-squeeze
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c9=2 r4c2=3 r5c5=9 r6c8=2 r7c1=3
+exported: ec26e57b95658448cb32cc41a78e3091
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r1c7-r2c7 total 9 connected true
 cage-2: cage r8c3-r9c3 total 9 connected true
-kropki-1: kropki r9c6-r9c7 colour "white"
-kropki-2: kropki r1c4-r1c5 colour "white"
-kropki-3: kropki r1c3-r2c3 colour "black"
+kropki-1: kropki r9c6-r9c7 white
+kropki-2: kropki r1c4-r1c5 white
+kropki-3: kropki r1c3-r2c3 black
 arrow-1: arrow r4c3-r4c4-r4c5 bulb ["r5c2"]
 arrow-2: arrow r6c7-r6c6-r6c5 bulb ["r5c8"]
 palindrome-1: palindrome r9c2-r9c1-r8c2-r8c3-r7c4-r7c5-r8c6-r8c5

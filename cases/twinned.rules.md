@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/twinned
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d923bc134fd8fe0eb7faad5cba651123
 ---
 
 ```rules
 sudoku 9x9
 thermo-1: thermo r6c1-r7c1-r8c2-r9c3-r9c4
 thermo-2: thermo r4c9-r3c9-r2c8-r1c7-r1c6
-kropki-1: kropki r5c2-r6c2 colour "black"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r4c7-r5c7 colour "black"
-kropki-4: kropki r4c8-r5c8 colour "white"
+kropki-1: kropki r5c2-r6c2 black
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r4c7-r5c7 black
+kropki-4: kropki r4c8-r5c8 white
 parity-1: parity r1c5-r1c4-r1c3-r1c2
 parity-2: parity r9c5-r9c6-r9c7-r9c8
 whispers-1: whispers r5c1-r5c2-r5c3-r5c4 gap 5

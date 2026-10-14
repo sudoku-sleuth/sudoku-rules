@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 9
-    - 18
-    - 27
-    - 36
-    - 45
-    - 54
-    - 63
-    - 72
+    - r1c1
+    - r2c1
+    - r3c1
+    - r4c1
+    - r5c1
+    - r6c1
+    - r7c1
+    - r8c1
+    - r9c1
 format: open-rules
 title: One-Fog-Nine
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1d13607dec9716b41bee11f9cef41f51
 ---
 
 ```rules
@@ -147,16 +148,16 @@ cage-2: cage r7c3-r7c4 total 7 connected true
 cage-3: cage r8c1-r9c1 total 9 connected true
 cage-4: cage r8c9-r9c9 total 7 connected true
 cage-5: cage r8c3-r8c4 total 11 connected true
-kropki-1: kropki r5c1-r5c2 colour "black"
-kropki-2: kropki r7c4-r7c5 colour "black"
-kropki-3: kropki r3c2-r4c2 colour "black"
-kropki-4: kropki r2c2-r2c3 colour "black"
-kropki-5: kropki r1c5-r1c6 colour "black"
-kropki-6: kropki r3c8-r3c9 colour "black"
-kropki-7: kropki r5c4-r6c4 colour "black"
-kropki-8: kropki r6c3-r6c4 colour "black"
-kropki-9: kropki r9c7-r9c8 colour "black"
-kropki-10: kropki r4c8-r5c8 colour "black"
+kropki-1: kropki r5c1-r5c2 black
+kropki-2: kropki r7c4-r7c5 black
+kropki-3: kropki r3c2-r4c2 black
+kropki-4: kropki r2c2-r2c3 black
+kropki-5: kropki r1c5-r1c6 black
+kropki-6: kropki r3c8-r3c9 black
+kropki-7: kropki r5c4-r6c4 black
+kropki-8: kropki r6c3-r6c4 black
+kropki-9: kropki r9c7-r9c8 black
+kropki-10: kropki r4c8-r5c8 black
 negative relations [{"op":"ratio","value":2}] except [["r5c1","r5c2"],["r7c4","r7c5"],["r3c2","r4c2"],["r2c2","r2c3"],["r1c5","r1c6"],["r3c8","r3c9"],["r5c4","r6c4"],["r6c3","r6c4"],["r9c7","r9c8"],["r4c8","r5c8"]] stated true
 index r1c1-r1c5-r1c9-r2c1-r2c5-r2c9-r3c1-r3c5-r3c9-r4c1-r4c5-r4c9-r5c1-r5c5-r5c9-r6c1-r6c5-r6c9-r7c1-r7c5-r7c9-r8c1-r8c5-r8c9-r9c1-r9c5-r9c9 axis "column"
 ```

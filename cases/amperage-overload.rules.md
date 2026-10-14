@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/amperage-overload
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 040436db7c5443c421f1d37e23c1f446
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c7-r3c8 colour "white"
-kropki-2: kropki r2c8-r3c8 colour "white"
-kropki-3: kropki r3c6-r3c7 colour "white"
-kropki-4: kropki r5c4-r5c5 colour "white"
-kropki-5: kropki r1c8-r1c9 colour "white"
-kropki-6: kropki r7c3-r7c4 colour "black"
+kropki-1: kropki r3c7-r3c8 white
+kropki-2: kropki r2c8-r3c8 white
+kropki-3: kropki r3c6-r3c7 white
+kropki-4: kropki r5c4-r5c5 white
+kropki-5: kropki r1c8-r1c9 white
+kropki-6: kropki r7c3-r7c4 black
 whispers-1: whispers r3c6-r3c5-r3c4-r4c3-r5c3-r5c2-r6c1-r7c1-r8c1-r9c2-r9c3-r9c4-r8c5-r7c5-r7c6-r6c7-r5c7-r4c7 gap 5
 whispers-2: whispers r6c3-r7c2-r8c3-r7c4 gap 5 loop true
 region-sum-1: region-sum r4c5-r3c6-r2c7-r1c8 segments [["r4c5"],["r3c6"],["r2c7","r1c8"]]

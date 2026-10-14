@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/combination-lock
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=3 r1c9=8 r9c1=1 r9c9=9
+exported: 297dabc05e18c141b0ff211f5da695cc
 ---
 
 ```rules

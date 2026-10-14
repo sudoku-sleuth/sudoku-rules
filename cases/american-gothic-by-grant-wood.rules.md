@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/american-gothic-by-grant-wood
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0049237deecd5e2a88982548367b4b0f
 ---
 
 ```rules
@@ -14,10 +15,10 @@ sudoku 9x9
 cage-1: cage r7c6-r8c6 total 8 connected true
 cage-2: cage r7c5-r8c5 total 10 connected true
 cage-3: cage r9c5-r9c6 total 12 connected true
-kropki-1: kropki r8c8-r9c8 colour "black"
-kropki-2: kropki r7c2-r7c3 colour "black"
-kropki-3: kropki r2c4-r3c4 colour "black"
-kropki-4: kropki r8c2-r8c3 colour "black"
+kropki-1: kropki r8c8-r9c8 black
+kropki-2: kropki r7c2-r7c3 black
+kropki-3: kropki r2c4-r3c4 black
+kropki-4: kropki r8c2-r8c3 black
 whispers-1: whispers r3c3-r2c4-r1c5 gap 5
 whispers-2: whispers r1c5-r2c6 gap 5
 whispers-3: whispers r8c5-r9c5-r9c6-r9c7-r8c7 gap 5

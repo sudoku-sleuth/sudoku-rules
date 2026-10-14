@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/confusing-stop-sign
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 305ad84b07a52c6d25ba64d516ecdd67
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c5-r9c6 colour "white"
-kropki-2: kropki r9c6-r9c7 colour "white"
-kropki-3: kropki r9c7-r9c8 colour "white"
-kropki-4: kropki r4c1-r5c1 colour "white"
-kropki-5: kropki r1c4-r1c5 colour "white"
-kropki-6: kropki r1c5-r1c6 colour "white"
-kropki-7: kropki r4c9-r5c9 colour "white"
-kropki-8: kropki r9c3-r9c4 colour "white"
-kropki-9: kropki r7c2-r7c3 colour "white"
+kropki-1: kropki r9c5-r9c6 white
+kropki-2: kropki r9c6-r9c7 white
+kropki-3: kropki r9c7-r9c8 white
+kropki-4: kropki r4c1-r5c1 white
+kropki-5: kropki r1c4-r1c5 white
+kropki-6: kropki r1c5-r1c6 white
+kropki-7: kropki r4c9-r5c9 white
+kropki-8: kropki r9c3-r9c4 white
+kropki-9: kropki r7c2-r7c3 white
 whispers-1: whispers r6c4-r5c4-r4c4 gap 5
 whispers-2: whispers r4c3-r4c4-r4c5 gap 5
 whispers-3: whispers r6c2-r6c3-r5c3-r5c2-r4c2-r4c3 gap 5

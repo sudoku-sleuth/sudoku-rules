@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/taking-the-knight-air
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 63d094fc7a86c34178e70ca30c16a791
 ---
 
 ```rules

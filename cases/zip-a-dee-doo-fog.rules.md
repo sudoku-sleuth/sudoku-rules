@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Zip-a-Dee-Doo-Fog
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: dd2c45e41b1a3fe168823f1f4bee2f95
 ---
 
 ```rules
@@ -147,10 +148,10 @@ cage-1: cage r1c2-r2c2-r3c2 total 9 connected true
 cage-2: cage r1c4-r2c4 total 15 connected true
 cage-3: cage r6c5-r6c6 total 5 connected true
 cage-4: cage r3c7-r4c7-r5c7 total 10 connected true
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r1c2-r1c3 colour "white"
-kropki-3: kropki r3c6-r4c6 colour "white"
-kropki-4: kropki r4c7-r4c8 colour "white"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r1c2-r1c3 white
+kropki-3: kropki r3c6-r4c6 white
+kropki-4: kropki r4c7-r4c8 white
 pair-1: pair r1c3-r2c3 sum 10
 pair-2: pair r3c4-r4c4 sum 10
 ```

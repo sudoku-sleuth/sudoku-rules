@@ -6,6 +6,7 @@ source: https://sudokupad.app/2hywpxz3f5
 case: https://sudoku-sleuth.com/cases/triskadekasusurria
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0bb50d2ebc8abc652ab13987a713215d
 ---
 
 ```rules

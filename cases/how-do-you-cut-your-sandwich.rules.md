@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/how-do-you-cut-your-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c4=5 r9c7=6
+exported: 651326fc36d0eb22d9a3011e7ede0c22
 ---
 
 ```rules

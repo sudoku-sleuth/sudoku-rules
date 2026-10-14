@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/blizzard
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c2=3 r7c5=6
+exported: 3a67a074032cf265c2f84dfb0dbca6ae
 ---
 
 ```rules
@@ -14,9 +15,9 @@ sudoku 9x9
 thermo-1: thermo r5c5-r6c6-r7c7-r8c8-r9c9
 thermo-2: thermo r2c6-r3c7-r4c8-r5c9
 thermo-3: thermo r8c3-r9c4
-kropki-1: kropki r4c5-r5c5 colour "black"
-kropki-2: kropki r4c4-r4c5 colour "black"
-kropki-3: kropki r3c6-r4c6 colour "black"
+kropki-1: kropki r4c5-r5c5 black
+kropki-2: kropki r4c4-r4c5 black
+kropki-3: kropki r3c6-r4c6 black
 arrow-1: arrow r3c2-r4c3 bulb ["r2c1"]
 arrow-2: arrow r3c4-r4c5 bulb ["r2c3"]
 arrow-3: arrow r3c6-r4c7 bulb ["r2c5"]

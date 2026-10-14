@@ -6,6 +6,7 @@ source: https://sudokupad.app/ceiyva37rj
 case: https://sudoku-sleuth.com/cases/four-fifteen-in-the-morning
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 328e83529e4a72a339329c20de9225b3
 ---
 
 ```rules
@@ -22,21 +23,21 @@ cage-9: cage r6c3-r7c3-r7c4 total 15 connected true
 cage-10: cage r6c7-r7c6-r7c7 total 15 connected true
 cage-11: cage r3c6-r3c7-r4c7 total 15 connected true
 cage-12: cage r3c3-r3c4-r4c3 total 15 connected true
-kropki-1: kropki r1c5-r2c5 colour "white"
-kropki-2: kropki r9c4-r9c5 colour "white"
-kropki-3: kropki r6c6-r7c6 colour "white"
-kropki-4: kropki r7c2-r7c3 colour "white"
-kropki-5: kropki r2c9-r3c9 colour "white"
-kropki-6: kropki r2c1-r3c1 colour "black"
-kropki-7: kropki r1c1-r1c2 colour "black"
-kropki-8: kropki r1c9-r2c9 colour "black"
-kropki-9: kropki r9c8-r9c9 colour "black"
-kropki-10: kropki r8c1-r9c1 colour "black"
-kropki-11: kropki r6c3-r7c3 colour "black"
-kropki-12: kropki r7c6-r7c7 colour "black"
-kropki-13: kropki r3c7-r4c7 colour "black"
-kropki-14: kropki r3c4-r3c5 colour "black"
-kropki-15: kropki r5c5-r5c6 colour "black"
+kropki-1: kropki r1c5-r2c5 white
+kropki-2: kropki r9c4-r9c5 white
+kropki-3: kropki r6c6-r7c6 white
+kropki-4: kropki r7c2-r7c3 white
+kropki-5: kropki r2c9-r3c9 white
+kropki-6: kropki r2c1-r3c1 black
+kropki-7: kropki r1c1-r1c2 black
+kropki-8: kropki r1c9-r2c9 black
+kropki-9: kropki r9c8-r9c9 black
+kropki-10: kropki r8c1-r9c1 black
+kropki-11: kropki r6c3-r7c3 black
+kropki-12: kropki r7c6-r7c7 black
+kropki-13: kropki r3c7-r4c7 black
+kropki-14: kropki r3c4-r3c5 black
+kropki-15: kropki r5c5-r5c6 black
 ```
 
 **Sudoku, Cages, Kropki**

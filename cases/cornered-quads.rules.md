@@ -6,6 +6,7 @@ source: https://sudokupad.app/ml6vdmxuxo
 case: https://sudoku-sleuth.com/cases/cornered-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 76715a2579198b65f358a45b66c0ee06
 ---
 
 ```rules

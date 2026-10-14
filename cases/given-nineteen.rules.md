@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/given-nineteen
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=1 r1c7=9
+exported: 47b98b0395f54873ad1d599b74dcecf7
 ---
 
 ```rules

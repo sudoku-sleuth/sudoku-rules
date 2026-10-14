@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/entropy-spirals
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b06632b5679a97d74eeeaeeace798913
 ---
 
 ```rules
@@ -30,7 +31,7 @@ cage-16: cage r7c8-r8c8 total 11 connected true
 cage-17: cage r2c3-r3c3 total 10 connected true
 cage-18: cage r1c2-r1c3 total 10 connected true
 cage-19: cage r2c1-r2c2 total 10 connected true
-kropki r2c2-r3c2 colour "black"
+kropki r2c2-r3c2 black
 ```
 
 ```drawing

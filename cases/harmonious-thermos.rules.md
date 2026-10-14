@@ -6,6 +6,7 @@ source: https://sudokupad.app/uvd06f67g3
 case: https://sudoku-sleuth.com/cases/harmonious-thermos
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c28271b73f8ca7fc9fb5f21e3fb2b121
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/e48gucd61r
 case: https://sudoku-sleuth.com/cases/hot-cold-just-right
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e04497cb68e9d15e913c7ffcc2f8921b
 ---
 
 ```rules

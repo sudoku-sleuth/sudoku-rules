@@ -6,23 +6,24 @@ source: ""
 case: https://sudoku-sleuth.com/cases/ghostbusters
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c48685f57d34ca1abf023647f5c2de34
 ---
 
 ```rules
 sudoku 9x9
 thermo r4c4-r4c5-r4c6-r4c7-r4c8-r4c9
-kropki-1: kropki r3c3-r3c4 colour "white"
-kropki-2: kropki r8c3-r8c4 colour "white"
-kropki-3: kropki r8c4-r8c5 colour "white"
-kropki-4: kropki r8c5-r9c5 colour "white"
-kropki-5: kropki r2c3-r3c3 colour "black"
-kropki-6: kropki r2c4-r3c4 colour "black"
-kropki-7: kropki r4c3-r4c4 colour "black"
-kropki-8: kropki r8c4-r9c4 colour "black"
-kropki-9: kropki r6c6-r7c6 colour "black"
-kropki-10: kropki r6c1-r7c1 colour "black"
-kropki-11: kropki r7c1-r7c2 colour "black"
-kropki-12: kropki r8c7-r9c7 colour "black"
+kropki-1: kropki r3c3-r3c4 white
+kropki-2: kropki r8c3-r8c4 white
+kropki-3: kropki r8c4-r8c5 white
+kropki-4: kropki r8c5-r9c5 white
+kropki-5: kropki r2c3-r3c3 black
+kropki-6: kropki r2c4-r3c4 black
+kropki-7: kropki r4c3-r4c4 black
+kropki-8: kropki r8c4-r9c4 black
+kropki-9: kropki r6c6-r7c6 black
+kropki-10: kropki r6c1-r7c1 black
+kropki-11: kropki r7c1-r7c2 black
+kropki-12: kropki r8c7-r9c7 black
 whispers-1: whispers r3c1-r2c2 gap 4
 whispers-2: whispers r1c4-r1c5-r1c6 gap 4
 whispers-3: whispers r6c9-r7c9-r8c8 gap 4

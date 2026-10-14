@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/disco-diamond
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9a5975f806b78e73c9ac660dfa339eed
 ---
 
 ```rules
 sudoku 9x9
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r3c5-r4c5 colour "black"
-kropki-2: kropki r5c3-r5c4 colour "black"
-kropki-3: kropki r6c5-r7c5 colour "black"
-kropki-4: kropki r5c6-r5c7 colour "black"
+kropki-1: kropki r3c5-r4c5 black
+kropki-2: kropki r5c3-r5c4 black
+kropki-3: kropki r6c5-r7c5 black
+kropki-4: kropki r5c6-r5c7 black
 pair-1: pair r6c4-r7c4 sum 10
 pair-2: pair r6c6-r7c6 sum 10
 pair-3: pair r3c2-r4c2 sum 10

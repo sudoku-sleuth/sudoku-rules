@@ -6,14 +6,15 @@ source: https://sudokupad.app/475fqwg98u
 case: https://sudoku-sleuth.com/cases/reuben
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9204ccafa14913b83abb3d7efc94648d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c7-r3c7 colour "black"
-kropki-2: kropki r5c6-r5c7 colour "black"
-kropki-3: kropki r5c1-r5c2 colour "black"
-kropki-4: kropki r1c6-r2c6 colour "black"
+kropki-1: kropki r2c7-r3c7 black
+kropki-2: kropki r5c6-r5c7 black
+kropki-3: kropki r5c1-r5c2 black
+kropki-4: kropki r1c6-r2c6 black
 sandwich-1: sandwich r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9 sum 35
 sandwich-2: sandwich r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9 sum 33
 sandwich-3: sandwich r8c9-r8c8-r8c7-r8c6-r8c5-r8c4-r8c3-r8c2-r8c1 sum 31

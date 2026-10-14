@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/boom-box
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 85f75fd91385e5c5797451dfcd5e5cff
 ---
 
 ```rules

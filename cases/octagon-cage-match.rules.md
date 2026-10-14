@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/octagon-cage-match
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 78bb7154020adb0d8a090c6911f79e9e
 ---
 
 ```rules

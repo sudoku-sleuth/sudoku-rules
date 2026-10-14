@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Zip-Zapped Through the Fog
 setter: Meggen033
@@ -18,21 +18,22 @@ case: https://sudoku-sleuth.com/cases/zip-zapped-through-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ee99c4dac926f02cf00fc8df97f28507
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "white"
-kropki-3: kropki r1c1-r2c1 colour "white"
-kropki-4: kropki r4c1-r5c1 colour "white"
-kropki-5: kropki r5c3-r5c4 colour "white"
-kropki-6: kropki r6c5-r7c5 colour "white"
-kropki-7: kropki r9c3-r9c4 colour "white"
-kropki-8: kropki r9c4-r9c5 colour "white"
-kropki-9: kropki r9c5-r9c6 colour "white"
-kropki-10: kropki r1c2-r1c3 colour "black"
-kropki-11: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r1c2-r2c2 white
+kropki-3: kropki r1c1-r2c1 white
+kropki-4: kropki r4c1-r5c1 white
+kropki-5: kropki r5c3-r5c4 white
+kropki-6: kropki r6c5-r7c5 white
+kropki-7: kropki r9c3-r9c4 white
+kropki-8: kropki r9c4-r9c5 white
+kropki-9: kropki r9c5-r9c6 white
+kropki-10: kropki r1c2-r1c3 black
+kropki-11: kropki r3c8-r4c8 black
 pair-1: pair r2c2-r3c2 sum 10
 pair-2: pair r2c3-r3c3 sum 10
 ```

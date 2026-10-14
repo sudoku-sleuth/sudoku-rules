@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Sum Trail through the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1ee3b480cfa0960299d37cc5d2a78f8a
 ---
 
 ```rules
@@ -149,15 +150,15 @@ cage-4: cage r5c1-r5c2 total 9 connected true
 cage-5: cage r6c1-r7c1-r8c1 total 18 connected true
 cage-6: cage r8c4-r9c3-r9c4 total 13 connected true
 cage-7: cage r7c4-r7c5 total 10 connected true
-kropki-1: kropki r1c2-r1c3 colour "black"
-kropki-2: kropki r3c4-r3c5 colour "black"
-kropki-3: kropki r6c2-r7c2 colour "black"
-kropki-4: kropki r5c4-r5c5 colour "black"
-kropki-5: kropki r3c2-r3c3 colour "white"
-kropki-6: kropki r2c4-r3c4 colour "white"
-kropki-7: kropki r3c6-r3c7 colour "white"
-kropki-8: kropki r3c1-r4c1 colour "white"
-kropki-9: kropki r6c1-r7c1 colour "white"
+kropki-1: kropki r1c2-r1c3 black
+kropki-2: kropki r3c4-r3c5 black
+kropki-3: kropki r6c2-r7c2 black
+kropki-4: kropki r5c4-r5c5 black
+kropki-5: kropki r3c2-r3c3 white
+kropki-6: kropki r2c4-r3c4 white
+kropki-7: kropki r3c6-r3c7 white
+kropki-8: kropki r3c1-r4c1 white
+kropki-9: kropki r6c1-r7c1 white
 region-sum r1c2-r1c3-r1c4-r2c4-r2c5-r2c6-r2c7-r3c8-r4c8-r5c8-r6c8-r6c7-r5c6-r5c5-r6c5-r7c6-r8c6-r8c7-r9c7-r9c6-r9c5-r9c4-r8c3-r7c2-r6c3-r5c3-r4c3-r3c3-r3c2-r3c1-r2c1 segments [["r1c2","r1c3"],["r1c4","r2c4","r2c5","r2c6"],["r2c7","r3c8"],["r4c8","r5c8","r6c8","r6c7"],["r5c6","r5c5","r6c5"],["r7c6","r8c6"],["r8c7","r9c7"],["r9c6","r9c5","r9c4"],["r8c3","r7c2"],["r6c3","r5c3","r4c3"],["r3c3","r3c2","r3c1","r2c1"]]
 ```
 

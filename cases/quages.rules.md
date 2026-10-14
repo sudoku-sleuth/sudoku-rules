@@ -6,6 +6,7 @@ source: https://sudokupad.app/fk4mmssugp
 case: https://sudoku-sleuth.com/cases/quages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9e84506141c9d720e6f55fdc0cba660c
 ---
 
 ```rules

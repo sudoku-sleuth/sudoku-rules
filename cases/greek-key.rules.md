@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/greek-key
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r1c9=4 r8c5=5
+exported: 78efbb8f019b041869e45d1a9c3c3b32
 ---
 
 ```rules

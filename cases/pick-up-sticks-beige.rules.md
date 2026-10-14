@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pick-up-sticks-beige
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b621451de01b0003abab209e189603c5
 ---
 
 ```rules

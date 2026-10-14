@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 6
-    - 7
-    - 8
-    - 12
-    - 13
-    - 14
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Hmm...??????
 setter: Kennet's Dad
@@ -62,6 +62,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 55dada1e0da97041a8403a81a010e8b4
 ---
 
 ```rules

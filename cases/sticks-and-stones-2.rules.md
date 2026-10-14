@@ -6,6 +6,7 @@ source: https://sudokupad.app/nzftq0v6oe
 case: https://sudoku-sleuth.com/cases/sticks-and-stones-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bbb267b9ecdf06f982943c07c2137afd
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/at-fives-and-sixes
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r2c2=9 r8c8=7 r9c1=8
+exported: 71f030fe0bda1ffb94edf4f0e5d1a991
 ---
 
 ```rules

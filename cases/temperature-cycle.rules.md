@@ -6,6 +6,7 @@ source: https://sudokupad.app/vcftgqcy3f
 case: https://sudoku-sleuth.com/cases/temperature-cycle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 050287b0bfa73341bdabc438545317c0
 ---
 
 ```rules

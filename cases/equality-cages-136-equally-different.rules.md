@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-136-equally-different
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 490882f1dadb0b20360f33ed901ec82e
 ---
 
 ```rules
@@ -20,9 +21,9 @@ equality-cage-6: equality-cage r6c6-r7c5-r7c6-r8c6
 equality-cage-7: equality-cage r3c8-r4c8-r4c9-r5c8
 equality-cage-8: equality-cage r5c1-r6c1
 equality-cage-9: equality-cage r7c9-r8c9
-kropki-1: kropki r4c4-r5c4 colour "black"
-kropki-2: kropki r7c6-r8c6 colour "black"
-kropki-3: kropki r4c4-r4c5 colour "white"
+kropki-1: kropki r4c4-r5c4 black
+kropki-2: kropki r7c6-r8c6 black
+kropki-3: kropki r4c4-r4c5 white
 pair r5c4-r5c5 sum 5
 ```
 

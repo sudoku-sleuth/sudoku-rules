@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/galaxies-collide-again
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b6c634d9cfdc89982f43e12d48d78c96
 ---
 
 ```rules

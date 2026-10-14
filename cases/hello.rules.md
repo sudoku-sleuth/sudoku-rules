@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hello
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c3=2 r9c7=9
+exported: 0dd3049d27bb9348e5469dfc2be2d77c
 ---
 
 ```rules

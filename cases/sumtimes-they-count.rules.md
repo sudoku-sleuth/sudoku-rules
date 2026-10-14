@@ -6,6 +6,7 @@ source: https://sudokupad.app/5az147769f
 case: https://sudoku-sleuth.com/cases/sumtimes-they-count
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8e7d599be4b4d2727dc52a01e4b0dbd7
 ---
 
 ```rules

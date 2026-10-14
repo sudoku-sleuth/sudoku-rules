@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/target-practice-3
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2f229d83547232ec9c7d29a89248d91c
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r4c1-r4c2 total 5 connected true
 cage-2: cage r2c4-r3c4 total 8 connected true
-kropki-1: kropki r7c5-r7c6 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "white"
-kropki-3: kropki r8c8-r8c9 colour "white"
-kropki-4: kropki r4c7-r4c8 colour "black"
-kropki-5: kropki r7c4-r8c4 colour "black"
-kropki-6: kropki r6c1-r7c1 colour "black"
-kropki-7: kropki r1c6-r1c7 colour "black"
+kropki-1: kropki r7c5-r7c6 white
+kropki-2: kropki r5c7-r6c7 white
+kropki-3: kropki r8c8-r8c9 white
+kropki-4: kropki r4c7-r4c8 black
+kropki-5: kropki r7c4-r8c4 black
+kropki-6: kropki r6c1-r7c1 black
+kropki-7: kropki r1c6-r1c7 black
 arrow-1: arrow r4c6-r4c5 bulb ["r3c7"]
 arrow-2: arrow r6c4-r5c4 bulb ["r7c3"]
 arrow-3: arrow r7c8-r7c9 bulb ["r6c7"]

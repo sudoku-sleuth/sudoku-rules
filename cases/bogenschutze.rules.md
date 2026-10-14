@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bogenschutze
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c3=2 r7c2=2
+exported: 87b9d5f16bbbc86842b3f796578ca951
 ---
 
 ```rules

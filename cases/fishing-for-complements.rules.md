@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fishing-for-complements
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=7 r4c9=6 r5c5=5 r6c1=4 r9c4=3
+exported: a69a2c40607c2040abeeda38bc0c18d4
 ---
 
 ```rules

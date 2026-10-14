@@ -6,6 +6,7 @@ source: https://sudokupad.app/7yvtg81m4v
 case: https://sudoku-sleuth.com/cases/21-guns
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 37e3ba296008ceecb114080c91c34d8b
 ---
 
 ```rules

@@ -6,16 +6,17 @@ source: https://tinyurl.com/3n923z6f
 case: https://sudoku-sleuth.com/cases/roman-ratios
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: acdc9e11f88a01fdba709b2262cf8e73
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c2-r2c2 colour "black"
-kropki-2: kropki r2c1-r3c1 colour "black"
-kropki-3: kropki r4c7-r4c8 colour "black"
-kropki-4: kropki r7c8-r7c9 colour "black"
-kropki-5: kropki r5c9-r6c9 colour "black"
-kropki-6: kropki r6c4-r7c4 colour "black"
+kropki-1: kropki r1c2-r2c2 black
+kropki-2: kropki r2c1-r3c1 black
+kropki-3: kropki r4c7-r4c8 black
+kropki-4: kropki r7c8-r7c9 black
+kropki-5: kropki r5c9-r6c9 black
+kropki-6: kropki r6c4-r7c4 black
 pair-1: pair r7c1-r7c2 sum 10
 pair-2: pair r7c5-r8c5 sum 10
 pair-3: pair r7c8-r8c8 sum 10

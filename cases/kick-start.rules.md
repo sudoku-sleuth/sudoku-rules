@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/kick-start
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f4973ab036d64822763acb4c805c2db1
 ---
 
 ```rules

@@ -10,6 +10,7 @@ drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
 givens: r3c5=8
+exported: 0277adc152df4d7224f11bfffb158a4c
 ---
 
 ```rules
@@ -34,14 +35,14 @@ cage-17: cage r4c6-r5c6 total 0 connected true
 cage-18: cage r5c4-r6c4 total 0 connected true
 cage-19: cage r2c5-r3c5 total 0 connected true
 cage-20: cage r7c5-r8c5 total 2 connected true
-kropki-1: kropki r2c7-r2c8 colour "white"
-kropki-2: kropki r2c8-r3c8 colour "white"
-kropki-3: kropki r2c4-r2c5 colour "white"
-kropki-4: kropki r4c7-r4c8 colour "white"
-kropki-5: kropki r4c4-r5c4 colour "white"
-kropki-6: kropki r7c4-r7c5 colour "white"
-kropki-7: kropki r7c5-r7c6 colour "white"
-kropki-8: kropki r2c6-r2c7 colour "black"
+kropki-1: kropki r2c7-r2c8 white
+kropki-2: kropki r2c8-r3c8 white
+kropki-3: kropki r2c4-r2c5 white
+kropki-4: kropki r4c7-r4c8 white
+kropki-5: kropki r4c4-r5c4 white
+kropki-6: kropki r7c4-r7c5 white
+kropki-7: kropki r7c5-r7c6 white
+kropki-8: kropki r2c6-r2c7 black
 diagonal direction "main"
 ```
 

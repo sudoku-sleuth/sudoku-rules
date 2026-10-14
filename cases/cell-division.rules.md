@@ -6,17 +6,18 @@ source: https://sudokupad.app/barbie/celldivision
 case: https://sudoku-sleuth.com/cases/cell-division
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b4ef2ceb164353f8f67c9eca9aac5570
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c2-r5c3 colour "black"
-kropki-2: kropki r5c7-r6c7 colour "black"
-kropki-3: kropki r2c2-r2c3 colour "black"
-kropki-4: kropki r2c6-r2c7 colour "black"
-kropki-5: kropki r3c1-r3c2 colour "black"
-kropki-6: kropki r5c1-r6c1 colour "black"
-kropki-7: kropki r9c4-r9c5 colour "black"
+kropki-1: kropki r5c2-r5c3 black
+kropki-2: kropki r5c7-r6c7 black
+kropki-3: kropki r2c2-r2c3 black
+kropki-4: kropki r2c6-r2c7 black
+kropki-5: kropki r3c1-r3c2 black
+kropki-6: kropki r5c1-r6c1 black
+kropki-7: kropki r9c4-r9c5 black
 modular-1: modular r5c3-r6c3-r7c4-r8c4-r9c4
 modular-2: modular r5c4-r6c4-r7c3-r8c3-r9c3
 modular-3: modular r3c4-r3c5-r3c6-r4c7-r4c8

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/crossroads
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c6=2
+exported: 83b7b30c32a3e2c4ef143d77d14b4d45
 ---
 
 ```rules

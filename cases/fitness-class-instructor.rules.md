@@ -6,6 +6,7 @@ source: https://sudokupad.app/7ppy0g21fi
 case: https://sudoku-sleuth.com/cases/fitness-class-instructor
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: be3d3ec05c115ee860ed63cddf6239c7
 ---
 
 ```rules
@@ -13,13 +14,13 @@ sudoku 9x9
 thermo-1: thermo r7c4-r8c4-r9c4
 thermo-2: thermo r7c4-r8c4-r8c5-r9c5
 thermo-3: thermo r7c4-r8c4-r8c3-r7c2
-kropki-1: kropki r6c4-r7c4 colour "white"
-kropki-2: kropki r3c7-r4c7 colour "white"
-kropki-3: kropki r2c5-r2c6 colour "white"
-kropki-4: kropki r6c1-r7c1 colour "white"
-kropki-5: kropki r8c1-r8c2 colour "white"
-kropki-6: kropki r8c7-r9c7 colour "white"
-kropki-7: kropki r8c7-r8c8 colour "white"
+kropki-1: kropki r6c4-r7c4 white
+kropki-2: kropki r3c7-r4c7 white
+kropki-3: kropki r2c5-r2c6 white
+kropki-4: kropki r6c1-r7c1 white
+kropki-5: kropki r8c1-r8c2 white
+kropki-6: kropki r8c7-r9c7 white
+kropki-7: kropki r8c7-r8c8 white
 arrow-1: arrow r2c3-r3c3-r4c3-r5c2-r6c2 bulb ["r1c3"]
 arrow-2: arrow r2c3-r3c3-r4c3-r3c4-r4c4 bulb ["r1c3"]
 arrow-3: arrow r2c3-r2c4-r3c4 bulb ["r1c3"]

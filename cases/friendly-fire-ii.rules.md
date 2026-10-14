@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/friendly-fire-ii
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 64581811fb608d6e2fce23941538b549
 ---
 
 ```rules
@@ -15,8 +16,8 @@ cage-2: cage r5c2-r6c2 total 14 connected true
 cage-3: cage r4c8-r5c8 total 14 connected true
 cage-4: cage r5c9-r6c9 total 14 connected true
 cage-5: cage r4c5-r4c6 total 15 connected true
-kropki-1: kropki r2c2-r3c2 colour "white"
-kropki-2: kropki r3c2-r3c3 colour "black"
+kropki-1: kropki r2c2-r3c2 white
+kropki-2: kropki r3c2-r3c3 black
 arrow-1: arrow r1c2-r1c3 bulb ["r1c1"]
 arrow-2: arrow r2c3-r1c3 bulb ["r3c3"]
 arrow-3: arrow r2c2-r2c3 bulb ["r2c1"]

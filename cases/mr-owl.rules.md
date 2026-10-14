@@ -6,6 +6,7 @@ source: https://sudokupad.app/ryu9dv48z2
 case: https://sudoku-sleuth.com/cases/mr-owl
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dc0a0834e1a7ffaa3c3200d777987f23
 ---
 
 ```rules
@@ -18,8 +19,8 @@ thermo-1: thermo r3c5-r2c4-r2c3-r3c2
 thermo-2: thermo r3c5-r2c6-r2c7-r3c8
 thermo-3: thermo r7c8-r8c8-r9c8
 thermo-4: thermo r7c2-r8c2-r9c2
-kropki-1: kropki r2c5-r3c5 colour "white"
-kropki-2: kropki r8c3-r8c4 colour "white"
+kropki-1: kropki r2c5-r3c5 white
+kropki-2: kropki r8c3-r8c4 white
 arrow-1: arrow r4c5-r3c4-r3c3-r4c2 bulb ["r5c5"]
 arrow-2: arrow r4c5-r3c6-r3c7-r4c8 bulb ["r5c5"]
 arrow-3: arrow r6c5-r7c4-r7c3-r6c2 bulb ["r5c5"]

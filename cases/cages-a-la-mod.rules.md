@@ -6,6 +6,7 @@ source: https://sudokupad.app/u88ofi0lfa
 case: https://sudoku-sleuth.com/cases/cages-a-la-mod
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ceeea2d8b15025aed6f4354b32de3616
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ldc050ze5b
 case: https://sudoku-sleuth.com/cases/disjoint-dominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ddf2604ad17c34b9683bf74f83704158
 ---
 
 ```rules
@@ -20,11 +21,11 @@ cage-7: cage r5c3-r5c4 total 7 connected true
 cage-8: cage r5c6-r5c7 total 11 connected true
 cage-9: cage r2c3-r2c4 total 14 connected true
 cage-10: cage r8c6-r8c7 total 13 connected true
-kropki-1: kropki r4c1-r5c1 colour "white"
-kropki-2: kropki r7c6-r7c7 colour "white"
-kropki-3: kropki r6c7-r7c7 colour "white"
-kropki-4: kropki r1c3-r1c4 colour "white"
-kropki-5: kropki r7c3-r8c3 colour "white"
+kropki-1: kropki r4c1-r5c1 white
+kropki-2: kropki r7c6-r7c7 white
+kropki-3: kropki r6c7-r7c7 white
+kropki-4: kropki r1c3-r1c4 white
+kropki-5: kropki r7c3-r8c3 white
 little-killer-1: little-killer r1c2-r2c1 sum 7
 little-killer-2: little-killer r9c2-r8c1 sum 5
 little-killer-3: little-killer r9c8-r8c9 sum 11

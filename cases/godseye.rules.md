@@ -6,6 +6,7 @@ source: https://sudokupad.app/hfui1aml43
 case: https://sudoku-sleuth.com/cases/godseye
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c8fdf8fd464136b267717a5ff90ca8cd
 ---
 
 ```rules

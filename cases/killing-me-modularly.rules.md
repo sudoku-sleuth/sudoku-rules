@@ -6,6 +6,7 @@ source: https://sudokupad.app/40pptga6w6
 case: https://sudoku-sleuth.com/cases/killing-me-modularly
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d0ad9a14d86105ac6313c72744fc6f7f
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/interconnect
 case: https://sudoku-sleuth.com/cases/interconnect
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 788845408d7676de93cc247658e64ced
 ---
 
 ```rules

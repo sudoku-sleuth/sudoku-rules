@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/barrels-out-of-bond
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8e32af8a1d6fe9a802e17a7f09e8e19f
 ---
 
 ```rules

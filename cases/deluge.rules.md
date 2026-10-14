@@ -6,6 +6,7 @@ source: https://sudokupad.app/j80403skqw
 case: https://sudoku-sleuth.com/cases/deluge
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a1b32f17f0a4394fa7281937c4c44106
 ---
 
 ```rules

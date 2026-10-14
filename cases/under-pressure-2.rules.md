@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/under-pressure-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 52ee7621dad1770d3e47c5fab45d155e
 ---
 
 ```rules
@@ -22,18 +23,18 @@ cage-9: cage r1c2-r2c2 total 10 connected true
 cage-10: cage r6c6-r7c6 total 5 connected true
 cage-11: cage r3c5-r4c5 total 5 connected true
 cage-12: cage r4c4-r5c4 total 5 connected true
-kropki-1: kropki r3c2-r4c2 colour "white"
-kropki-2: kropki r4c2-r5c2 colour "white"
-kropki-3: kropki r3c8-r4c8 colour "white"
-kropki-4: kropki r4c8-r5c8 colour "white"
-kropki-5: kropki r2c4-r2c5 colour "white"
-kropki-6: kropki r2c5-r2c6 colour "white"
-kropki-7: kropki r1c4-r2c4 colour "white"
-kropki-8: kropki r2c6-r3c6 colour "white"
-kropki-9: kropki r5c9-r6c9 colour "white"
-kropki-10: kropki r6c9-r7c9 colour "white"
-kropki-11: kropki r7c9-r8c9 colour "white"
-kropki-12: kropki r7c4-r7c5 colour "white"
+kropki-1: kropki r3c2-r4c2 white
+kropki-2: kropki r4c2-r5c2 white
+kropki-3: kropki r3c8-r4c8 white
+kropki-4: kropki r4c8-r5c8 white
+kropki-5: kropki r2c4-r2c5 white
+kropki-6: kropki r2c5-r2c6 white
+kropki-7: kropki r1c4-r2c4 white
+kropki-8: kropki r2c6-r3c6 white
+kropki-9: kropki r5c9-r6c9 white
+kropki-10: kropki r6c9-r7c9 white
+kropki-11: kropki r7c9-r8c9 white
+kropki-12: kropki r7c4-r7c5 white
 ```
 
 Normal Sudoku rules apply. KILLER CAGES- Numbers in cages sum to the number in the top left corner of the cage. KROPKI PAIRS- Numbers with a white dot between them are consecutive. Not all possible dots are shown.

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sircular-logic
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=2 r3c7=8 r5c5=9 r7c7=6 r9c4=5
+exported: 934703977a0d36e0e8554aa6a1c54462
 ---
 
 ```rules

@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/hourglasses
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 88b9766b86989c7be1d9a3ab57301aee
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r8c7-r8c8 colour "white"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r8c7-r8c8 white
 between-1: between r2c1-r3c2-r4c2-r5c1 ends ["r1c1","r6c1"]
 between-2: between r2c4-r3c3-r4c3-r5c4 ends ["r1c4","r6c4"]
 between-3: between r5c6-r6c7-r7c7-r8c6 ends ["r4c6","r9c6"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/spellbound
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4576b1272a00b9d31f19647e3283f507
 ---
 
 ```rules

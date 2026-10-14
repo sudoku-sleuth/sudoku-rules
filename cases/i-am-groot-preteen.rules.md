@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/i-am-groot-preteen
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d475b20ee800dd1b85e1823db9338972
 ---
 
 ```rules

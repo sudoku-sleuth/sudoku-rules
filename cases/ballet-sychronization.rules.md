@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ballet-sychronization
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 582caad67d20675bf8ec3de9e82184f1
 ---
 
 ```rules

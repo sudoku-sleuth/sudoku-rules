@@ -6,6 +6,7 @@ source: https://sudokupad.app/w0298g25jm
 case: https://sudoku-sleuth.com/cases/hot-potato
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1f75e272cc65485144d589aea01db4f9
 ---
 
 ```rules

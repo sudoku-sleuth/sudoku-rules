@@ -6,6 +6,7 @@ source: https://sudokupad.app/d93d20aq05
 case: https://sudoku-sleuth.com/cases/five-to-twelve
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 564e13140f18d4d5957f07788fb5ced0
 ---
 
 ```rules

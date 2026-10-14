@@ -6,12 +6,13 @@ source: https://tinyurl.com/theknightwhosaysmehsudoku
 case: https://sudoku-sleuth.com/cases/the-knight-who-says-meh
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b0309f3b72d21c0060bcf5226a1f3183
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki r2c2-r2c3 colour "black"
+kropki r2c2-r2c3 black
 pair-1: pair r1c3-r2c3 sum 10
 pair-2: pair r1c2-r2c2 sum 10
 pair-3: pair r4c3-r5c3 sum 10

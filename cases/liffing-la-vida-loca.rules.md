@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/liffing-la-vida-loca
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 64f7983fb10f606726f36726a11329ea
 ---
 
 ```rules

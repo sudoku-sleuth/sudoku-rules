@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/deadly-nightshade
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=5
+exported: 66352a8b7ea43fc06e5d22012e4ba4b0
 ---
 
 ```rules

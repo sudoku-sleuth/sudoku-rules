@@ -6,6 +6,7 @@ source: https://sudokupad.app/anqbivdcat
 case: https://sudoku-sleuth.com/cases/stolen-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cbd15f1514ba24d54bcdecd18fee0781
 ---
 
 ```rules

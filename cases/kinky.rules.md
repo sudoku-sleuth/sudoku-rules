@@ -6,6 +6,7 @@ source: https://sudokupad.app/re7x2eoc4l
 case: https://sudoku-sleuth.com/cases/kinky
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9dbedd74cc242472abccaad4b602d846
 ---
 
 ```rules

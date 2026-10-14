@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: "Fog Puzzle #1"
 setter: EPH
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a0149dab421d32ca6d8d630c3d0110a4
 ---
 
 ```rules
@@ -148,9 +149,9 @@ cage-3: cage r4c4-r4c5-r5c4 total 6 connected true
 cage-4: cage r5c9-r6c9 total 10 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r1c2-r1c3 colour "black"
-kropki-2: kropki r2c1-r3c1 colour "black"
-kropki-3: kropki r6c4-r7c4 colour "black"
+kropki-1: kropki r1c2-r1c3 black
+kropki-2: kropki r2c1-r3c1 black
+kropki-3: kropki r6c4-r7c4 black
 arrow-1: arrow r2c2-r1c1 bulb ["r3c3"]
 arrow-2: arrow r5c5-r4c4 bulb ["r6c6"]
 arrow-3: arrow r3c4-r4c3 bulb ["r2c5"]

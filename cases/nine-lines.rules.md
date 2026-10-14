@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nine-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=1 r2c6=2 r3c8=3 r4c5=4 r5c7=5 r6c9=6 r7c3=7 r8c6=8 r9c9=9
+exported: 784628b2b54b765cddb179fcdd85c4cc
 ---
 
 ```rules

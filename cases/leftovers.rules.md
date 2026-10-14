@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/leftovers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=3 r7c1=7
+exported: 6befb994406a5cf0f6e4b8ddfad89ff5
 ---
 
 ```rules

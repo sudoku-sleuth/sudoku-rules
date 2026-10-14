@@ -6,6 +6,7 @@ source: https://sudokupad.app/6l7u7cbwta
 case: https://sudoku-sleuth.com/cases/one-killer-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 96924ec8269d3fc1de464f1fd0795cf7
 ---
 
 ```rules

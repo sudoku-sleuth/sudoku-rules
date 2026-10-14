@@ -6,13 +6,14 @@ source: https://sudokupad.app/wp44qfp43b
 case: https://sudoku-sleuth.com/cases/zig-zags-and-polka-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2a58e6cbbabcd4451d719e017797d268
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c6-r6c7 colour "black"
-kropki-2: kropki r8c3-r9c3 colour "black"
-kropki-3: kropki r3c4-r4c4 colour "black"
+kropki-1: kropki r6c6-r6c7 black
+kropki-2: kropki r8c3-r9c3 black
+kropki-3: kropki r3c4-r4c4 black
 arrow-1: arrow r3c4-r4c3-r5c4-r6c3-r7c4 bulb ["r2c3"]
 arrow-2: arrow r7c6-r6c7-r5c6-r4c7-r3c6 bulb ["r8c7"]
 arrow-3: arrow r7c1-r6c2-r5c1 bulb ["r8c2"]

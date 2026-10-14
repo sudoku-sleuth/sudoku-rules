@@ -1,13 +1,13 @@
 ---
 fog:
   initiallyLit:
-    - 18
-    - 19
-    - 20
-    - 21
-    - 23
-    - 24
-    - 25
+    - r3c1
+    - r3c2
+    - r3c3
+    - r3c4
+    - r3c6
+    - r3c7
+    - r3c8
 format: open-rules
 title: This FOG is a Pointy GAS
 setter: Meggen033
@@ -15,20 +15,21 @@ source: https://sudokupad.app/rx9d92ce9y
 case: https://sudoku-sleuth.com/cases/this-fog-is-a-pointy-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: afe377ec55474dd4e607bd929d768135
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r6c7-r7c7 colour "white"
-kropki-4: kropki r5c9-r6c9 colour "white"
-kropki-5: kropki r5c8-r6c8 colour "white"
-kropki-6: kropki r3c7-r3c8 colour "black"
-kropki-7: kropki r4c6-r5c6 colour "black"
-kropki-8: kropki r5c3-r6c3 colour "black"
-kropki-9: kropki r7c5-r8c5 colour "black"
-kropki-10: kropki r6c7-r6c8 colour "black"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r6c7-r7c7 white
+kropki-4: kropki r5c9-r6c9 white
+kropki-5: kropki r5c8-r6c8 white
+kropki-6: kropki r3c7-r3c8 black
+kropki-7: kropki r4c6-r5c6 black
+kropki-8: kropki r5c3-r6c3 black
+kropki-9: kropki r7c5-r8c5 black
+kropki-10: kropki r6c7-r6c8 black
 arrow-1: arrow r3c3-r3c2-r3c1 bulb ["r3c4"]
 arrow-2: arrow r3c7-r3c8 bulb ["r3c6"]
 arrow-3: arrow r3c5-r4c5 bulb ["r2c5"]

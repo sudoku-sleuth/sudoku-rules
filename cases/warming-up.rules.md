@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/warming-up
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c8=6
+exported: 09e6324fa6266d1065c2078590560449
 ---
 
 ```rules

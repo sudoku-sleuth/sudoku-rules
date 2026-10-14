@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sum-neighbors
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=3 r3c5=5 r4c6=3 r5c7=8
+exported: 8b451f62ba6b42854d6f4340dbf67f66
 ---
 
 ```rules

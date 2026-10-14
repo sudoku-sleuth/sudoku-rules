@@ -6,12 +6,13 @@ source: https://sudokupad.app/jy4ugppfo1
 case: https://sudoku-sleuth.com/cases/antiknight-xv-adventure
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7f1610ea15ff6fe187069ef02f9b683c
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki r9c3-r9c4 colour "black"
+kropki r9c3-r9c4 black
 pair-1: pair r8c5-r8c6 sum 10
 pair-2: pair r5c6-r6c6 sum 10
 pair-3: pair r1c5-r2c5 sum 10

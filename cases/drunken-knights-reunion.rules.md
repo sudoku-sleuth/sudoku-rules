@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/drunken-knights-reunion
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 432c062b5d80df55b9bd3b91f457d959
 ---
 
 ```rules

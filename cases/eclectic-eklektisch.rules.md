@@ -6,6 +6,7 @@ source: https://sudokupad.app/6rmbscyfsm
 case: https://sudoku-sleuth.com/cases/eclectic-eklektisch
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6e99f37f70c5f2467d9e03d8b3b8fc45
 ---
 
 ```rules
@@ -15,7 +16,7 @@ cage-2: cage r9c8-r9c9 total 10 connected true
 cage-3: cage r7c7-r7c8-r8c7 total 10 connected true
 cage-4: cage r8c5-r9c5-r9c6 total 10 connected true
 cage-5: cage r5c2-r5c3-r6c3 total 10 connected true
-kropki r1c4-r1c5 colour "black"
+kropki r1c4-r1c5 black
 whispers-1: whispers r5c1-r4c1-r3c1-r2c1-r1c1-r1c2-r1c3-r1c4-r1c5 gap 4
 whispers-2: whispers r3c6-r3c5-r4c5-r5c5-r5c4-r5c3-r6c3 gap 5
 whispers-3: whispers r5c9-r6c9-r6c8-r6c7-r5c7-r4c7-r4c8-r4c9 gap 5

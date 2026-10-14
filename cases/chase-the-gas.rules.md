@@ -6,6 +6,7 @@ source: https://sudokupad.app/8b9n7mtome
 case: https://sudoku-sleuth.com/cases/chase-the-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5d387531c751adb4e974a234c5c22dae
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ziffers-of-entropy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2fa35510a52103b233b2f98b636b7c49
 ---
 
 ```rules

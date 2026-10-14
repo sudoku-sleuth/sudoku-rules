@@ -6,6 +6,7 @@ source: https://tinyurl.com/mtv272jy
 case: https://sudoku-sleuth.com/cases/sweet-little-stripes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bc21298eed7409b15c802994e8b29434
 ---
 
 ```rules

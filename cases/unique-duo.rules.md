@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/unique-duo
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f661fc54f5ab5ce94ce626e9840b9377
 ---
 
 ```rules
 sudoku 9x9
-kropki r6c1-r7c1 colour "black"
+kropki r6c1-r7c1 black
 pair-1: pair r7c4-r7c5 ratio 3
 pair-2: pair r2c9-r3c9 sum 10
 pair-3: pair r6c9-r7c9 sum 10

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 11
-    - 13
-    - 15
-    - 22
-    - 43
-    - 49
-    - 61
-    - 67
-    - 79
+    - r2c3
+    - r2c5
+    - r2c7
+    - r3c5
+    - r5c8
+    - r6c5
+    - r7c8
+    - r8c5
+    - r9c8
 format: open-rules
 title: One Knight's Crusade
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: ac05415275f3384b95d52ee42ca95e65
 ---
 
 ```rules

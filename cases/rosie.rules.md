@@ -6,6 +6,7 @@ source: https://sudokupad.app/v3mshcorjl
 case: https://sudoku-sleuth.com/cases/rosie
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f8a28f76f7a80ed093ff340e20f6069d
 ---
 
 ```rules
@@ -20,9 +21,9 @@ thermo-7: thermo r4c9-r5c9-r6c9
 thermo-8: thermo r9c4-r9c5-r9c6
 thermo-9: thermo r4c1-r5c1-r6c1
 thermo-10: thermo r3c3-r3c4-r3c5-r3c6-r3c7-r4c7-r5c7-r5c6
-kropki-1: kropki r7c1-r7c2 colour "black"
-kropki-2: kropki r6c6-r7c6 colour "black"
-kropki-3: kropki r5c2-r5c3 colour "black"
+kropki-1: kropki r7c1-r7c2 black
+kropki-2: kropki r6c6-r7c6 black
+kropki-3: kropki r5c2-r5c3 black
 ```
 
 **Standard Sudoku, Thermometer, Ratio Pairs**

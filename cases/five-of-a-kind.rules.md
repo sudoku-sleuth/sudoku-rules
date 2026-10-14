@@ -6,6 +6,7 @@ source: https://sudokupad.app/m8evrtjkg2
 case: https://sudoku-sleuth.com/cases/five-of-a-kind
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ceea6ae5fb02ce6aed3443223a293425
 ---
 
 ```rules

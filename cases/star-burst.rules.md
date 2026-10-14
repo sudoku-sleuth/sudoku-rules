@@ -6,6 +6,7 @@ source: https://sudokupad.app/nr80iisqi7
 case: https://sudoku-sleuth.com/cases/star-burst
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c720f8d9868d82a30c6492e54b27ffca
 ---
 
 ```rules

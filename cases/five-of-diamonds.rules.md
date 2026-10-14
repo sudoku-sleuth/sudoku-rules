@@ -6,6 +6,7 @@ source: https://sudokupad.app/jdu71u7cqz
 case: https://sudoku-sleuth.com/cases/five-of-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c9b96009e7e5a31e2bdf96d3c29161db
 ---
 
 ```rules

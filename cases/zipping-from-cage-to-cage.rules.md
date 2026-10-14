@@ -6,6 +6,7 @@ source: https://sudokupad.app/0ugg5d75n4
 case: https://sudoku-sleuth.com/cases/zipping-from-cage-to-cage
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2c6ebcf10e77152670b5b06e5d7fb0a4
 ---
 
 ```rules

@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/shifter-lines-114-chess
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 23ee093fd096e49dac36907bfe2cfd7c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r6c5 colour "black"
-kropki-2: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r6c4-r6c5 black
+kropki-2: kropki r3c8-r4c8 black
 shifter-line-1: shifter-line r6c5-r6c6-r6c7-r6c8
 shifter-line-2: shifter-line r6c4-r7c5-r8c5
 shifter-line-3: shifter-line r3c7-r4c8

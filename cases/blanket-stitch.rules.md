@@ -6,6 +6,7 @@ source: https://sudokupad.app/eys516nsf7
 case: https://sudoku-sleuth.com/cases/blanket-stitch
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6046263cf8c2c12fcf8660ee44cc3d50
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/octopus
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=7 r4c9=8 r5c3=5 r5c7=9 r6c1=6 r7c5=9
+exported: d447d895712fd91f69d42f4d70cdac2f
 ---
 
 ```rules

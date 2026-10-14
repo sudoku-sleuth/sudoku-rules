@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/wise-old-owl
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c1=6 r2c9=4 r3c5=5 r4c8=6 r5c5=7 r8c2=3 r8c8=8
+exported: 76f02bf19cb73a5698eaa2df5baf37c7
 ---
 
 ```rules

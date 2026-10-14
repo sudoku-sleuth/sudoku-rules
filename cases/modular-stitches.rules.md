@@ -6,6 +6,7 @@ source: https://sudokupad.app/5tn8o87udn
 case: https://sudoku-sleuth.com/cases/modular-stitches
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0453a7a0b8bad6c63bd5ee7be818fae5
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/balloons
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1f37ce77ef27eb6ed8c8b27236ed71b4
 ---
 
 ```rules

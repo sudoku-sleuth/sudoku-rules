@@ -6,6 +6,7 @@ source: https://sudokupad.app/4y00jnd09d
 case: https://sudoku-sleuth.com/cases/sum-ban-your-ren-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ff5e7ae14e1e6ad521f59a23f4eea793
 ---
 
 ```rules

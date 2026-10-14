@@ -6,6 +6,7 @@ source: https://sudokupad.app/omhuh7garp
 case: https://sudoku-sleuth.com/cases/one-hot-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ffeea682ed98b56102565deff0c6b83b
 ---
 
 ```rules

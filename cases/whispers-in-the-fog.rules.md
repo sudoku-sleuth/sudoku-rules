@@ -1,14 +1,14 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Whispers in the Fog
 setter: Sir Moose
@@ -16,15 +16,16 @@ source: https://sudokupad.app/nkpsdwyoxy
 case: https://sudoku-sleuth.com/cases/whispers-in-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a7750619e749d6828a9d1a590e032663
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c4-r3c5 colour "black"
-kropki-2: kropki r8c3-r8c4 colour "black"
-kropki-3: kropki r7c5-r8c5 colour "black"
-kropki-4: kropki r8c5-r9c5 colour "black"
-kropki-5: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r3c4-r3c5 black
+kropki-2: kropki r8c3-r8c4 black
+kropki-3: kropki r7c5-r8c5 black
+kropki-4: kropki r8c5-r9c5 black
+kropki-5: kropki r8c9-r9c9 black
 whispers-1: whispers r3c3-r2c2-r1c3-r1c2-r1c1-r2c1-r3c1-r3c2 gap 5
 whispers-2: whispers r5c1-r4c2-r5c3-r6c2-r6c3 gap 5
 whispers-3: whispers r4c2-r5c2 gap 5

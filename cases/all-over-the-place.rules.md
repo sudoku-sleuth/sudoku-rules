@@ -6,6 +6,7 @@ source: https://tinyurl.com/3vrhatf2
 case: https://sudoku-sleuth.com/cases/all-over-the-place
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f8f2c0e6a9943fe1d9f7f8c8a034561c
 ---
 
 ```rules

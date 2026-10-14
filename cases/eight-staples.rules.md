@@ -6,6 +6,7 @@ source: https://sudokupad.app/k5y0itmjdc
 case: https://sudoku-sleuth.com/cases/eight-staples
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0c76cec92f64348667578cfdcfc49b3f
 ---
 
 ```rules

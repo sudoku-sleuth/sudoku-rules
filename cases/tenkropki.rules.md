@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/tenkropki
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4431e240671e57aa0bdada4186858863
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c1-r4c2 colour "black"
-kropki-2: kropki r4c2-r4c3 colour "black"
-kropki-3: kropki r2c4-r3c4 colour "black"
-kropki-4: kropki r1c4-r2c4 colour "black"
-kropki-5: kropki r7c6-r7c7 colour "black"
-kropki-6: kropki r6c7-r7c7 colour "black"
-kropki-7: kropki r4c3-r4c4 colour "white"
-kropki-8: kropki r3c4-r4c4 colour "white"
-kropki-9: kropki r6c4-r7c4 colour "white"
-kropki-10: kropki r7c3-r7c4 colour "white"
+kropki-1: kropki r4c1-r4c2 black
+kropki-2: kropki r4c2-r4c3 black
+kropki-3: kropki r2c4-r3c4 black
+kropki-4: kropki r1c4-r2c4 black
+kropki-5: kropki r7c6-r7c7 black
+kropki-6: kropki r6c7-r7c7 black
+kropki-7: kropki r4c3-r4c4 white
+kropki-8: kropki r3c4-r4c4 white
+kropki-9: kropki r6c4-r7c4 white
+kropki-10: kropki r7c3-r7c4 white
 ```
 
 ```drawing

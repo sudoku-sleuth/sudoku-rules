@@ -6,6 +6,7 @@ source: https://sudokupad.app/ouw9sglnse
 case: https://sudoku-sleuth.com/cases/cornered
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3d262115ec4e258946555691bba3823e
 ---
 
 ```rules

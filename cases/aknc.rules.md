@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/aknc
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=3 r1c7=4 r2c9=6 r4c5=8 r6c7=5 r7c1=5 r9c6=4 r9c8=3
+exported: 8d02ba8f43b51d87865a4f97362ebb9e
 ---
 
 ```rules

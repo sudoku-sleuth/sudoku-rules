@@ -6,6 +6,7 @@ source: https://sudokupad.app/ks13sz8ooy
 case: https://sudoku-sleuth.com/cases/sumthing-in-the-corner
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 13ab2b1a51f98a881d4aed2f80b75783
 ---
 
 ```rules

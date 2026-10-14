@@ -6,6 +6,7 @@ source: https://sudokupad.app/16b11h7m2r
 case: https://sudoku-sleuth.com/cases/tight-squeeze-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ae14da16970bb0e3a8f6749491516156
 ---
 
 ```rules

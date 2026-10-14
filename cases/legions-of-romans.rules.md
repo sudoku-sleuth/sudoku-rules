@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/legions-of-romans
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r4c9=8 r9c2=6
+exported: 4669461ecf2e7d519a0d3f66aa09b5a1
 ---
 
 ```rules

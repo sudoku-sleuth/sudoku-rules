@@ -6,6 +6,7 @@ source: https://sudokupad.app/9sv1v1pxvs
 case: https://sudoku-sleuth.com/cases/dutch-flat-mates-sharing-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c9775365aff1cca2a10c35faae45fab9
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/yxo5bfjpzg
 case: https://sudoku-sleuth.com/cases/square-drain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 489b4ada418d7ec9c3ee67e53eb2fbcf
 ---
 
 ```rules

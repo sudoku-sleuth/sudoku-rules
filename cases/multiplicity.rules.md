@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/multiplicity
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 86b43b2d88d85bcce783559d9219f27b
 ---
 
 ```rules

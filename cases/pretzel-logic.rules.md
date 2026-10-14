@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pretzel-logic
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=4 r1c9=5 r3c6=8 r4c3=4 r5c5=3 r6c7=2 r7c4=9 r9c1=9 r9c9=6
+exported: 814fa6cc25261b20600f0281d0d662de
 ---
 
 ```rules

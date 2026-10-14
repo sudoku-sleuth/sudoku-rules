@@ -6,6 +6,7 @@ source: https://sudokupad.app/4bw04xktgn
 case: https://sudoku-sleuth.com/cases/stingy-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 82f2680e87311a528fc3751b7fa7c75e
 ---
 
 ```rules

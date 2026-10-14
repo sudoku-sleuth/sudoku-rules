@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/let-s-get-there-sloooowly
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 080e9c33d212d63a9a23250452eff3a8
 ---
 
 ```rules

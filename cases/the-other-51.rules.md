@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-other-51
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=5 r5c1=2 r5c2=9 r6c8=5 r6c9=1 r9c8=8 r9c9=5
+exported: 09f43de48bf1277bf774c66b072128fa
 ---
 
 ```rules

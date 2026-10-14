@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/high-low-5
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2cd2977e9a84d9aef9b5c88e71022374
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c1-r5c2 colour "black"
-kropki-2: kropki r5c8-r5c9 colour "black"
-kropki-3: kropki r4c6-r5c6 colour "black"
-kropki-4: kropki r7c6-r7c7 colour "black"
-kropki-5: kropki r1c2-r2c2 colour "black"
-kropki-6: kropki r1c9-r2c9 colour "white"
-kropki-7: kropki r8c2-r8c3 colour "white"
-kropki-8: kropki r4c2-r5c2 colour "white"
+kropki-1: kropki r5c1-r5c2 black
+kropki-2: kropki r5c8-r5c9 black
+kropki-3: kropki r4c6-r5c6 black
+kropki-4: kropki r7c6-r7c7 black
+kropki-5: kropki r1c2-r2c2 black
+kropki-6: kropki r1c9-r2c9 white
+kropki-7: kropki r8c2-r8c3 white
+kropki-8: kropki r4c2-r5c2 white
 ```
 
 ```drawing

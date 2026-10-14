@@ -6,6 +6,7 @@ source: https://sudokupad.app/72oi64g3u1
 case: https://sudoku-sleuth.com/cases/construction-zone
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 294622b86dc86daaafb3c95047ce80a0
 ---
 
 ```rules

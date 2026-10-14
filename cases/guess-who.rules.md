@@ -6,6 +6,7 @@ source: https://sudokupad.app/meseqhl5mh
 case: https://sudoku-sleuth.com/cases/guess-who
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a34914507fff0441319ff6e46b94d925
 ---
 
 ```rules
@@ -25,9 +26,9 @@ cage-12: cage r9c2-r9c3 total 9 connected true
 cage-13: cage r7c5-r8c5 total 9 connected true
 cage-14: cage r1c1-r2c1 total 11 connected true
 cage-15: cage r1c9-r2c9 total 12 connected true
-kropki-1: kropki r8c2-r9c2 colour "black"
-kropki-2: kropki r8c5-r9c5 colour "black"
-kropki-3: kropki r8c8-r9c8 colour "black"
+kropki-1: kropki r8c2-r9c2 black
+kropki-2: kropki r8c5-r9c5 black
+kropki-3: kropki r8c8-r9c8 black
 modular-1: modular r4c4-r3c3-r2c3-r1c4-r1c5-r1c6-r2c7-r3c7-r4c6-r5c5-r6c5-r7c5
 modular-2: modular r6c1-r5c2-r6c3-r7c2-r8c2
 modular-3: modular r6c7-r5c8-r6c9-r7c8-r8c8

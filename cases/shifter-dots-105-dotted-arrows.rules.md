@@ -6,16 +6,17 @@ source: https://sudokupad.app/zxnvd5nmkb
 case: https://sudoku-sleuth.com/cases/shifter-dots-105-dotted-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8094608d9b6f95a62b1c83cc1b4814d6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c1-r3c1 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r1c7-r2c7 colour "black"
-kropki-4: kropki r2c6-r2c7 colour "black"
-kropki-5: kropki r6c8-r6c9 colour "black"
-kropki-6: kropki r8c4-r9c4 colour "black"
+kropki-1: kropki r2c1-r3c1 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r1c7-r2c7 black
+kropki-4: kropki r2c6-r2c7 black
+kropki-5: kropki r6c8-r6c9 black
+kropki-6: kropki r8c4-r9c4 black
 arrow-1: arrow r5c6-r6c7-r5c8 bulb ["r4c7"]
 arrow-2: arrow r3c8 bulb ["r4c9"]
 arrow-3: arrow r1c7-r2c7 bulb ["r1c6"]

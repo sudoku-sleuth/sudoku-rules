@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/contradancing
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=8 r1c9=7 r9c1=1 r9c9=2
+exported: 2650ac491d07e4d62f6edca1938e75f9
 ---
 
 ```rules

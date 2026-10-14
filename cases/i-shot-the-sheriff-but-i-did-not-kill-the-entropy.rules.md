@@ -6,6 +6,7 @@ source: https://sudokupad.app/c1lf1oo6ia
 case: https://sudoku-sleuth.com/cases/i-shot-the-sheriff-but-i-did-not-kill-the-entropy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 943cdb4a8d23e4d13ca63ac7c1a76fcd
 ---
 
 ```rules

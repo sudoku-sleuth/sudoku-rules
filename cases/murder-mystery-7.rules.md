@@ -103,6 +103,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1916d7a655f5dd4e8b7ea4a722e548d8
 ---
 
 ```rules
@@ -141,18 +142,18 @@ diagonal-2: diagonal direction "anti"
 thermo-1: thermo r7c7-r8c8-r9c9
 thermo-2: thermo r7c8-r8c9-r7c9
 thermo-3: thermo r8c7-r9c8-r9c7
-kropki-1: kropki r4c3-r5c3 colour "white"
-kropki-2: kropki r5c1-r6c1 colour "white"
-kropki-3: kropki r2c6-r3c6 colour "white"
-kropki-4: kropki r4c7-r5c7 colour "white"
-kropki-5: kropki r4c8-r5c8 colour "white"
-kropki-6: kropki r8c5-r8c6 colour "white"
-kropki-7: kropki r5c2-r6c2 colour "white"
-kropki-8: kropki r9c5-r9c6 colour "black"
-kropki-9: kropki r8c5-r9c5 colour "black"
-kropki-10: kropki r7c4-r7c5 colour "black"
-kropki-11: kropki r4c9-r5c9 colour "black"
-kropki-12: kropki r6c1-r6c2 colour "black"
+kropki-1: kropki r4c3-r5c3 white
+kropki-2: kropki r5c1-r6c1 white
+kropki-3: kropki r2c6-r3c6 white
+kropki-4: kropki r4c7-r5c7 white
+kropki-5: kropki r4c8-r5c8 white
+kropki-6: kropki r8c5-r8c6 white
+kropki-7: kropki r5c2-r6c2 white
+kropki-8: kropki r9c5-r9c6 black
+kropki-9: kropki r8c5-r9c5 black
+kropki-10: kropki r7c4-r7c5 black
+kropki-11: kropki r4c9-r5c9 black
+kropki-12: kropki r6c1-r6c2 black
 arrow r1c3-r2c3-r3c3-r3c2-r3c1-r2c1-r2c2 bulb ["r1c1","r1c2"]
 whispers-1: whispers r7c1-r8c2-r9c3 loop false gap 5
 whispers-2: whispers r7c3-r8c2-r9c1 loop false gap 5

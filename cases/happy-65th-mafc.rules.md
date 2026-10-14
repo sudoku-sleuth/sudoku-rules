@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-65th-mafc
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=3 r6c6=9
+exported: 7e6961ea828c57d6c09242dfbaa84aae
 ---
 
 ```rules

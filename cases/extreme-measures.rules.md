@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A source feature has no drawing in our reading yet.
+exported: 6f3704a941d41558fa3fb25ef787170e
 ---
 
 ```rules

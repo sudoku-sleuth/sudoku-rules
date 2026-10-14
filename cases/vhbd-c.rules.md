@@ -6,6 +6,7 @@ source: https://sudokupad.app/bkgt70h452
 case: https://sudoku-sleuth.com/cases/vhbd-c
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e45f4ba25f06b20957c96be1e553d563
 ---
 
 ```rules
@@ -14,28 +15,28 @@ cage-1: cage r8c1-r9c1 total 13 connected true
 cage-2: cage r1c9-r2c9 total 8 connected true
 cage-3: cage r1c1-r2c1 total 8 connected true
 cage-4: cage r8c9-r9c9 total 6 connected true
-kropki-1: kropki r1c8-r1c9 colour "white"
-kropki-2: kropki r6c8-r6c9 colour "white"
-kropki-3: kropki r7c1-r7c2 colour "white"
-kropki-4: kropki r6c2-r7c2 colour "white"
-kropki-5: kropki r2c1-r2c2 colour "white"
-kropki-6: kropki r9c7-r9c8 colour "white"
-kropki-7: kropki r8c5-r8c6 colour "white"
-kropki-8: kropki r7c4-r7c5 colour "white"
-kropki-9: kropki r3c6-r3c7 colour "white"
-kropki-10: kropki r7c1-r8c1 colour "white"
-kropki-11: kropki r8c4-r8c5 colour "white"
-kropki-12: kropki r6c4-r7c4 colour "white"
-kropki-13: kropki r1c2-r1c3 colour "black"
-kropki-14: kropki r2c5-r2c6 colour "black"
-kropki-15: kropki r3c8-r3c9 colour "black"
-kropki-16: kropki r6c2-r6c3 colour "black"
-kropki-17: kropki r5c4-r5c5 colour "black"
-kropki-18: kropki r7c5-r8c5 colour "black"
-kropki-19: kropki r3c6-r4c6 colour "black"
-kropki-20: kropki r5c1-r5c2 colour "black"
-kropki-21: kropki r3c9-r4c9 colour "black"
-kropki-22: kropki r2c8-r2c9 colour "black"
+kropki-1: kropki r1c8-r1c9 white
+kropki-2: kropki r6c8-r6c9 white
+kropki-3: kropki r7c1-r7c2 white
+kropki-4: kropki r6c2-r7c2 white
+kropki-5: kropki r2c1-r2c2 white
+kropki-6: kropki r9c7-r9c8 white
+kropki-7: kropki r8c5-r8c6 white
+kropki-8: kropki r7c4-r7c5 white
+kropki-9: kropki r3c6-r3c7 white
+kropki-10: kropki r7c1-r8c1 white
+kropki-11: kropki r8c4-r8c5 white
+kropki-12: kropki r6c4-r7c4 white
+kropki-13: kropki r1c2-r1c3 black
+kropki-14: kropki r2c5-r2c6 black
+kropki-15: kropki r3c8-r3c9 black
+kropki-16: kropki r6c2-r6c3 black
+kropki-17: kropki r5c4-r5c5 black
+kropki-18: kropki r7c5-r8c5 black
+kropki-19: kropki r3c6-r4c6 black
+kropki-20: kropki r5c1-r5c2 black
+kropki-21: kropki r3c9-r4c9 black
+kropki-22: kropki r2c8-r2c9 black
 whispers-1: whispers r1c3-r1c2-r1c1-r2c1-r3c1-r3c2-r3c3 gap 4
 whispers-2: whispers r1c6-r1c5-r1c4-r2c4-r3c4-r3c5-r3c6 gap 4
 whispers-3: whispers r2c5-r2c4 gap 4

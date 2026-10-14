@@ -6,6 +6,7 @@ source: https://sudokupad.app/1b1iwp4ny0
 case: https://sudoku-sleuth.com/cases/containing-chaos
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 462d7acea6fdb77a8ff99372d4764a22
 ---
 
 ```rules

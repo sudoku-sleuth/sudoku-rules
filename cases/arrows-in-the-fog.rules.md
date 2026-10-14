@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 2
-    - 8
+    - r1c3
+    - r2c3
 format: open-rules
 title: Arrows in the Fog
 setter: FullDeck and Missing a Few Cards
@@ -58,6 +58,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 5148e2c6af758ecb0b28c75199269ca9
 ---
 
 ```rules

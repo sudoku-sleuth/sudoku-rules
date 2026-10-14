@@ -6,6 +6,7 @@ source: https://sudokupad.app/7b80ibv08q
 case: https://sudoku-sleuth.com/cases/fish-and-chips-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7d97d54b0ef377c5d8fe03c476d617f9
 ---
 
 ```rules

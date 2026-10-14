@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/strung-together
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=5 r2c2=2 r2c7=7 r4c3=5 r4c8=2 r5c5=8 r6c4=1 r8c3=9 r8c7=1 r8c9=3
+exported: 79d1f75f4fae7cb92ca5dd916077a443
 ---
 
 ```rules

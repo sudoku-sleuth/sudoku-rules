@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/helium-neon-gas-lasers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f79668258bf84559df0faa868419887c
 ---
 
 ```rules
 sudoku 9x9
 cage r1c1-r1c2-r1c3 total 18 connected true
 anti-knight
-kropki r2c8-r2c9 colour "white"
+kropki r2c8-r2c9 white
 whispers-1: whispers r6c5-r6c6-r6c7-r6c8-r6c9 gap 5
 whispers-2: whispers r7c4-r7c5-r7c6-r7c7-r7c8-r7c9 gap 5
 whispers-3: whispers r7c1-r7c2 gap 5

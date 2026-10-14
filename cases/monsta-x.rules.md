@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/monsta-x
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=1
+exported: a60c0faa75eba6786bbc170ca15ea771
 ---
 
 ```rules

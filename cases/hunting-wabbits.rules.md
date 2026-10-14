@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hunting-wabbits
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=6 r9c8=5
+exported: 9a5c071c3a333c7ab0893e46e526b564
 ---
 
 ```rules

@@ -1,14 +1,14 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Three Hidden Lakes
 setter: Sandra & Nala
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f49643f8e581e674fc1d042b4d828647
 ---
 
 ```rules

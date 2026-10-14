@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/you-ll-know-it-when-you-see-it
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: aa9621e037e0caa1f1256e1a5053faaa
 ---
 
 ```rules

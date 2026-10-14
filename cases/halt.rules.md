@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/halt
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 78d3ffa9c911fe3a8a4f25f907954f16
 ---
 
 ```rules

@@ -6,15 +6,16 @@ source: ""
 case: https://sudoku-sleuth.com/cases/le-reve-by-pablo-picasso
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b2947b64be70662e6214d6ccdc6a21fd
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c2-r9c3 colour "white"
-kropki-2: kropki r8c2-r9c2 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r3c1-r3c2 colour "black"
-kropki-5: kropki r5c4-r6c4 colour "black"
+kropki-1: kropki r9c2-r9c3 white
+kropki-2: kropki r8c2-r9c2 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r3c1-r3c2 black
+kropki-5: kropki r5c4-r6c4 black
 whispers-1: whispers r7c8-r6c8-r5c8-r6c7-r7c6-r7c5-r8c4 gap 5
 whispers-2: whispers r4c8-r3c8-r2c7-r1c6-r1c5-r1c4-r1c3-r2c2-r3c2 gap 5
 whispers-3: whispers r4c6-r3c6-r3c5-r3c4-r3c3-r3c2 gap 5

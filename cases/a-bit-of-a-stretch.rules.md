@@ -6,6 +6,7 @@ source: https://sudokupad.app/4d60jyvth1
 case: https://sudoku-sleuth.com/cases/a-bit-of-a-stretch
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3e82d4b11f623e3df5fb431b19f417cf
 ---
 
 ```rules

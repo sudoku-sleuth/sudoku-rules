@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/supearior
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6e17e9716fe554d3f8d39b0353a0b612
 ---
 
 ```rules

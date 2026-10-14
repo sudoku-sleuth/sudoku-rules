@@ -6,6 +6,7 @@ source: https://sudokupad.app/x4bawubwgx
 case: https://sudoku-sleuth.com/cases/cage-quivers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 41d2e5d1234eeed42a62307977ed78b1
 ---
 
 ```rules

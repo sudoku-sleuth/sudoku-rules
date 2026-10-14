@@ -6,6 +6,7 @@ source: https://sudokupad.app/sy55ff86i3
 case: https://sudoku-sleuth.com/cases/torque
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 22f0ae72c9bad6ef3dc28ce039a16c63
 ---
 
 ```rules

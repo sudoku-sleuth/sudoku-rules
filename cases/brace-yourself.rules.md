@@ -6,14 +6,15 @@ source: https://sudokupad.app/d0fx6gyg17
 case: https://sudoku-sleuth.com/cases/brace-yourself
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5522ec602fd6487c8320f4bbb0ee8dce
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c8-r5c9 colour "white"
-kropki-2: kropki r5c1-r5c2 colour "white"
-kropki-3: kropki r4c1-r4c2 colour "black"
-kropki-4: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r5c8-r5c9 white
+kropki-2: kropki r5c1-r5c2 white
+kropki-3: kropki r4c1-r4c2 black
+kropki-4: kropki r8c9-r9c9 black
 modular-1: modular r6c1-r6c2-r7c3-r8c4-r9c4
 modular-2: modular r4c1-r4c2-r3c3-r2c4-r1c4
 modular-3: modular r1c6-r2c6-r3c7-r4c8-r4c9

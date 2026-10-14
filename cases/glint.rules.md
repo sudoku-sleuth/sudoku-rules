@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/glint
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=2 r5c1=3 r5c9=4 r9c5=1
+exported: 2ec0577d2769192318b1a2d90ec83154
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ren-and-thermy
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c8=7
+exported: 972fcb6af9bcd9bde11973be6d5e5977
 ---
 
 ```rules

@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/rat-run-35-locked-out
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cad5397d52bbf24b80d4edcd08a082ba
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c4-r9c4 colour "black"
-kropki-2: kropki r9c3-r9c4 colour "black"
-kropki-3: kropki r5c3-r6c3 colour "black"
+kropki-1: kropki r8c4-r9c4 black
+kropki-2: kropki r9c3-r9c4 black
+kropki-3: kropki r5c3-r6c3 black
 ```
 
 ```drawing

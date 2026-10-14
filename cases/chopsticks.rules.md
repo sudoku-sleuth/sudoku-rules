@@ -6,6 +6,7 @@ source: https://sudokupad.app/btitmcs1u5
 case: https://sudoku-sleuth.com/cases/chopsticks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 759e7ce0fce7fbfedc97e5d1f34e7dab
 ---
 
 ```rules

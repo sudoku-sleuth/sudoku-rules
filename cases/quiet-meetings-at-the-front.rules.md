@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quiet-meetings-at-the-front
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=2 r3c1=1 r3c9=3 r7c9=2 r9c3=1
+exported: d14031e8bb3867845cb40c41479074a6
 ---
 
 ```rules

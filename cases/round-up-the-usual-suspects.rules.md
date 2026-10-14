@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/round-up-the-usual-suspects
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4460b29f853f9cf4b9ed7aec71e5b032
 ---
 
 ```rules

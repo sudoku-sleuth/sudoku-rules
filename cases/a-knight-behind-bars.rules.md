@@ -6,6 +6,7 @@ source: https://sudokupad.app/pb9ruhw25b
 case: https://sudoku-sleuth.com/cases/a-knight-behind-bars
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c60c61d2779985bf52004d68ccad0953
 ---
 
 ```rules

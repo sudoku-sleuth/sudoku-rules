@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/novak-djokovic-400-weeks-at-1
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f0f256ec2815dc39858259fc9137af26
 ---
 
 ```rules
@@ -22,15 +23,15 @@ cage-9: cage r2c2-r2c3 total 10 connected true
 cage-10: cage r9c1-r9c2 total 10 connected true
 cage-11: cage r8c4-r8c5 total 5 connected true
 cage-12: cage r9c7-r9c8 total 5 connected true
-kropki-1: kropki r5c6-r6c6 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r6c4-r6c5 colour "white"
-kropki-4: kropki r4c4-r5c4 colour "white"
-kropki-5: kropki r5c4-r5c5 colour "white"
-kropki-6: kropki r5c6-r5c7 colour "white"
-kropki-7: kropki r5c7-r5c8 colour "white"
-kropki-8: kropki r4c5-r4c6 colour "black"
-kropki-9: kropki r3c5-r4c5 colour "black"
+kropki-1: kropki r5c6-r6c6 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r6c4-r6c5 white
+kropki-4: kropki r4c4-r5c4 white
+kropki-5: kropki r5c4-r5c5 white
+kropki-6: kropki r5c6-r5c7 white
+kropki-7: kropki r5c7-r5c8 white
+kropki-8: kropki r4c5-r4c6 black
+kropki-9: kropki r3c5-r4c5 black
 whispers-1: whispers r2c1-r1c1-r2c2-r1c2 gap 4
 whispers-2: whispers r1c5-r2c5-r1c6 gap 4
 whispers-3: whispers r1c8-r2c8-r3c8 gap 4

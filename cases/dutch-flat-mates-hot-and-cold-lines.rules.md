@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-hot-and-cold-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 46f15fe2026aa17dfac12b5d049cd893
 ---
 
 ```rules

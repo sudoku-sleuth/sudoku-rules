@@ -6,6 +6,7 @@ source: https://sudokupad.app/srbn9tt8b2
 case: https://sudoku-sleuth.com/cases/happy-mother-s-day-2026
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e2b4eb1f8259cef986d44cce25597ac4
 ---
 
 ```rules

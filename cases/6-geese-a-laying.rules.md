@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/6-geese-a-laying
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ee9b1579c9c9c6b6963e9b77f5d029fb
 ---
 
 ```rules

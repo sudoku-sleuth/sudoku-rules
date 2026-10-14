@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/what-s-in-my-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f92c774340cf3333f1a50723fdd3e110
 ---
 
 ```rules

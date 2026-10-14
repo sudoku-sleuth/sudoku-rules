@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/intersection
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1a86ebaf41f44649fd4024719786d5aa
 ---
 
 ```rules
 sudoku 9x9
-kropki r8c9-r9c9 colour "white"
+kropki r8c9-r9c9 white
 arrow-1: arrow r2c3-r3c4-r4c5 bulb ["r1c2"]
 arrow-2: arrow r3c2-r4c3-r5c4 bulb ["r2c1"]
 arrow-3: arrow r2c7-r3c6-r4c5 bulb ["r1c8"]

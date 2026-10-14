@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/present-tens
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3bc7a0cc850b5f625f65a630bd3d87c3
 ---
 
 ```rules

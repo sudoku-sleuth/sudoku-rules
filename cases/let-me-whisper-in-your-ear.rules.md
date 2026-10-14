@@ -6,6 +6,7 @@ source: https://sudokupad.app/fgns93vji6
 case: https://sudoku-sleuth.com/cases/let-me-whisper-in-your-ear
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1c65da7f64c441866c2806f96d2fc958
 ---
 
 ```rules

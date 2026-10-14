@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/that-would-be-enough
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=3 r7c5=5
+exported: 7e605f0f292df1fc0008ac0f1e9d6ba6
 ---
 
 ```rules

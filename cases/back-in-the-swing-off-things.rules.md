@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/back-in-the-swing-off-things
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 35afc9a54dc141bf6e15822a7ade179c
 ---
 
 ```rules
@@ -18,11 +19,11 @@ cage-4: cage r4c1-r4c2-r5c1 total 12 connected true
 cage-5: cage r3c5-r4c5-r5c5 total 16 connected true
 cage-6: cage r6c6-r7c6 total 9 connected true
 cage-7: cage r1c3-r2c3 total 9 connected true
-kropki-1: kropki r6c8-r6c9 colour "black"
-kropki-2: kropki r7c1-r8c1 colour "black"
-kropki-3: kropki r1c8-r1c9 colour "white"
-kropki-4: kropki r8c1-r9c1 colour "white"
-kropki-5: kropki r1c5-r1c6 colour "white"
+kropki-1: kropki r6c8-r6c9 black
+kropki-2: kropki r7c1-r8c1 black
+kropki-3: kropki r1c8-r1c9 white
+kropki-4: kropki r8c1-r9c1 white
+kropki-5: kropki r1c5-r1c6 white
 little-killer-1: little-killer r3c9-r4c8-r5c7-r6c6-r7c5-r8c4-r9c3 sum 18
 little-killer-2: little-killer r1c4-r2c3-r3c2-r4c1 sum 14
 little-killer-3: little-killer r1c9-r2c8-r3c7-r4c6-r5c5-r6c4-r7c3-r8c2-r9c1 sum 44

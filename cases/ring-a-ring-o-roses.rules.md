@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ring-a-ring-o-roses
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 768a5b430df8b72bdd76dc9512e2f62c
 ---
 
 ```rules

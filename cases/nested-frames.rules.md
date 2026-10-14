@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/nested-frames
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c1=2 r4c4=8 r7c7=3
+exported: fe90e78a53c61d88858d69a9bed1d10f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c4-r1c5 colour "white"
-kropki-2: kropki r4c9-r5c9 colour "white"
-kropki-3: kropki r8c7-r8c8 colour "white"
-kropki-4: kropki r2c4-r3c4 colour "black"
-kropki-5: kropki r7c6-r8c6 colour "black"
-kropki-6: kropki r4c7-r4c8 colour "black"
-kropki-7: kropki r7c9-r8c9 colour "black"
+kropki-1: kropki r1c4-r1c5 white
+kropki-2: kropki r4c9-r5c9 white
+kropki-3: kropki r8c7-r8c8 white
+kropki-4: kropki r2c4-r3c4 black
+kropki-5: kropki r7c6-r8c6 black
+kropki-6: kropki r4c7-r4c8 black
+kropki-7: kropki r7c9-r8c9 black
 renban-1: renban r3c2-r2c2-r2c3
 renban-2: renban r2c1-r1c1-r1c2
 renban-3: renban r2c7-r2c8-r3c8

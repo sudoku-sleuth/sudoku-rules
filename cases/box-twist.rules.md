@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/box-twist
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bcd22937890c06802f1d03e59584a31e
 ---
 
 ```rules

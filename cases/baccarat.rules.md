@@ -6,6 +6,7 @@ source: https://tinyurl.com/2uhm2w46
 case: https://sudoku-sleuth.com/cases/baccarat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 87f0b67ed00443358cd80422d048ed1d
 ---
 
 ```rules

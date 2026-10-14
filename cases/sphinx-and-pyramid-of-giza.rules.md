@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sphinx-and-pyramid-of-giza
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 422ade4fc9e643d76baa2b7dd1112888
 ---
 
 ```rules
@@ -22,7 +23,7 @@ cage-8: cage r6c5-r7c5 total 13 connected true
 cage-9: cage r2c5-r2c6 total 12 connected true
 cage-10: cage r1c1-r1c2 total 16 connected true
 cage-11: cage r1c3-r1c4 total 14 connected true
-kropki r8c7-r8c8 colour "black"
+kropki r8c7-r8c8 black
 whispers-1: whispers r5c1-r4c2-r3c3-r2c4-r1c5-r2c6-r3c7-r4c8-r5c9 gap 4
 whispers-2: whispers r9c1-r8c1-r7c1-r6c1-r5c2-r4c3-r4c4-r4c5-r4c6-r4c7-r5c8-r6c9-r7c9 gap 4
 whispers-3: whispers r8c9-r9c9 gap 4

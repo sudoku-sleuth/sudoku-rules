@@ -103,6 +103,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 23eca625c9dc45e02f9c18e2b1745c65
 ---
 
 ```rules
@@ -138,17 +139,17 @@ cage-2: cage r4c4-r5c4-r6c4-r6c5 repeats false total 30 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 thermo r7c2-r7c3-r8c3-r9c3-r9c2-r9c1-r8c1-r7c1
-kropki-1: kropki r6c1-r6c2 colour "white"
-kropki-2: kropki r5c2-r5c3 colour "white"
-kropki-3: kropki r2c5-r2c6 colour "white"
-kropki-4: kropki r1c4-r1c5 colour "white"
-kropki-5: kropki r7c4-r7c5 colour "white"
-kropki-6: kropki r7c6-r8c6 colour "white"
-kropki-7: kropki r4c9-r5c9 colour "white"
-kropki-8: kropki r5c1-r6c1 colour "black"
-kropki-9: kropki r6c2-r6c3 colour "black"
-kropki-10: kropki r7c4-r8c4 colour "black"
-kropki-11: kropki r7c5-r8c5 colour "black"
+kropki-1: kropki r6c1-r6c2 white
+kropki-2: kropki r5c2-r5c3 white
+kropki-3: kropki r2c5-r2c6 white
+kropki-4: kropki r1c4-r1c5 white
+kropki-5: kropki r7c4-r7c5 white
+kropki-6: kropki r7c6-r8c6 white
+kropki-7: kropki r4c9-r5c9 white
+kropki-8: kropki r5c1-r6c1 black
+kropki-9: kropki r6c2-r6c3 black
+kropki-10: kropki r7c4-r8c4 black
+kropki-11: kropki r7c5-r8c5 black
 pair-1: pair r5c1-r5c2 sum 10
 pair-2: pair r9c5-r9c6 sum 10
 pair-3: pair r5c8-r6c8 sum 10

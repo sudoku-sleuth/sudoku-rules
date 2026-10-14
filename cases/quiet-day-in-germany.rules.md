@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/quiet-day-in-germany
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r1c9=4 r9c1=9 r9c9=3
+exported: 300b5122baef0d524972a81b66fd3dc3
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r8c6-r9c6 colour "black"
-kropki-2: kropki r8c6-r8c7 colour "black"
-kropki-3: kropki r8c4-r8c5 colour "black"
-kropki-4: kropki r7c1-r8c1 colour "black"
-kropki-5: kropki r3c1-r4c1 colour "black"
-kropki-6: kropki r5c8-r6c8 colour "black"
-kropki-7: kropki r1c4-r2c4 colour "black"
-kropki-8: kropki r5c3-r6c3 colour "black"
-kropki-9: kropki r7c2-r7c3 colour "black"
-kropki-10: kropki r7c7-r8c7 colour "black"
-kropki-11: kropki r6c2-r7c2 colour "black"
+kropki-1: kropki r8c6-r9c6 black
+kropki-2: kropki r8c6-r8c7 black
+kropki-3: kropki r8c4-r8c5 black
+kropki-4: kropki r7c1-r8c1 black
+kropki-5: kropki r3c1-r4c1 black
+kropki-6: kropki r5c8-r6c8 black
+kropki-7: kropki r1c4-r2c4 black
+kropki-8: kropki r5c3-r6c3 black
+kropki-9: kropki r7c2-r7c3 black
+kropki-10: kropki r7c7-r8c7 black
+kropki-11: kropki r6c2-r7c2 black
 whispers-1: whispers r3c3-r4c3-r4c4-r3c4 gap 5 loop true
 whispers-2: whispers r3c6-r4c6-r4c7-r3c7 gap 5 loop true
 whispers-3: whispers r6c3-r7c3-r7c4-r6c4 gap 5 loop true

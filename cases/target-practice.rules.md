@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/target-practice
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=3 r2c2=6 r4c4=3 r5c9=1 r8c1=5
+exported: 5515e41a9d251848dae9011114debc3a
 ---
 
 ```rules

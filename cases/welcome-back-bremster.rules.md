@@ -6,6 +6,7 @@ source: https://sudokupad.app/zbmg0fmzc5
 case: https://sudoku-sleuth.com/cases/welcome-back-bremster
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2259830cbc482e00a61866a3b4958236
 ---
 
 ```rules

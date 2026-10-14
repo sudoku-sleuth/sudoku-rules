@@ -6,6 +6,7 @@ source: https://sudokupad.app/y1ulrq1bks
 case: https://sudoku-sleuth.com/cases/caging-the-rebellion
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 68c05d1b1c3ddb3d7070d7803e3f9ff0
 ---
 
 ```rules

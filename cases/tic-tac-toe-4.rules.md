@@ -6,6 +6,7 @@ source: https://tinyurl.com/4uerj9mx
 case: https://sudoku-sleuth.com/cases/tic-tac-toe-4
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 23ce783277de69d5319ca8d7b0fe6fa5
 ---
 
 ```rules
@@ -20,11 +21,11 @@ thermo-7: thermo r6c7-r5c8-r4c9
 thermo-8: thermo r6c9-r5c8-r4c7
 thermo-9: thermo r9c7-r8c8-r7c9
 thermo-10: thermo r9c9-r8c8-r7c7
-kropki-1: kropki r3c2-r4c2 colour "white"
-kropki-2: kropki r6c6-r6c7 colour "black"
-kropki-3: kropki r6c6-r7c6 colour "black"
-kropki-4: kropki r3c4-r4c4 colour "black"
-kropki-5: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r3c2-r4c2 white
+kropki-2: kropki r6c6-r6c7 black
+kropki-3: kropki r6c6-r7c6 black
+kropki-4: kropki r3c4-r4c4 black
+kropki-5: kropki r4c3-r4c4 black
 renban-1: renban r1c2-r2c1-r3c2-r2c3
 renban-2: renban r4c2-r5c1-r6c2-r5c3
 renban-3: renban r7c1-r8c2-r9c3-r7c3-r9c1

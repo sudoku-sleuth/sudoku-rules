@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/just-between-us
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=7 r1c9=2 r4c7=5 r5c1=9 r9c1=3
+exported: 3fecc3d790adfe486bb0cc7721850e5d
 ---
 
 ```rules

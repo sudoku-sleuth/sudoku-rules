@@ -6,24 +6,25 @@ source: https://sudokupad.app/38tb632hu1
 case: https://sudoku-sleuth.com/cases/blue-ridge-region-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7ef3699e8086bc89428ada6a280d24bd
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c2-r7c2 colour "black"
-kropki-2: kropki r4c6-r5c6 colour "black"
-kropki-3: kropki r2c6-r3c6 colour "black"
-kropki-4: kropki r2c4-r3c4 colour "black"
-kropki-5: kropki r2c2-r3c2 colour "black"
-kropki-6: kropki r4c2-r5c2 colour "black"
-kropki-7: kropki r3c8-r4c8 colour "black"
-kropki-8: kropki r1c3-r1c4 colour "black"
-kropki-9: kropki r6c9-r7c9 colour "black"
-kropki-10: kropki r8c6-r9c6 colour "black"
-kropki-11: kropki r7c5-r8c5 colour "white"
-kropki-12: kropki r1c6-r1c7 colour "white"
-kropki-13: kropki r7c9-r8c9 colour "white"
-kropki-14: kropki r7c2-r8c2 colour "white"
+kropki-1: kropki r6c2-r7c2 black
+kropki-2: kropki r4c6-r5c6 black
+kropki-3: kropki r2c6-r3c6 black
+kropki-4: kropki r2c4-r3c4 black
+kropki-5: kropki r2c2-r3c2 black
+kropki-6: kropki r4c2-r5c2 black
+kropki-7: kropki r3c8-r4c8 black
+kropki-8: kropki r1c3-r1c4 black
+kropki-9: kropki r6c9-r7c9 black
+kropki-10: kropki r8c6-r9c6 black
+kropki-11: kropki r7c5-r8c5 white
+kropki-12: kropki r1c6-r1c7 white
+kropki-13: kropki r7c9-r8c9 white
+kropki-14: kropki r7c2-r8c2 white
 region-sum-1: region-sum r8c1-r7c2-r6c3-r7c4-r6c5-r5c6-r6c7-r6c8-r6c9 segments [["r8c1","r7c2"],["r6c3"],["r7c4"],["r6c5","r5c6"],["r6c7","r6c8","r6c9"]]
 region-sum-2: region-sum r4c1-r3c2-r2c3-r3c4-r2c5-r3c6-r4c7-r5c8 segments [["r4c1"],["r3c2","r2c3"],["r3c4","r2c5","r3c6"],["r4c7","r5c8"]]
 region-sum-3: region-sum r2c6-r1c7-r2c8-r3c9 segments [["r2c6"],["r1c7","r2c8","r3c9"]]

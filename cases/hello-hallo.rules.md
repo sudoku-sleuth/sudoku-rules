@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/hello-hallo
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3b59e48eb0c4eb7fcd3beb13b9018cbe
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c9-r5c9 colour "white"
-kropki-2: kropki r8c7-r9c7 colour "white"
-kropki-3: kropki r5c3-r5c4 colour "white"
+kropki-1: kropki r4c9-r5c9 white
+kropki-2: kropki r8c7-r9c7 white
+kropki-3: kropki r5c3-r5c4 white
 arrow r2c1-r3c1 bulb ["r1c2"]
 whispers-1: whispers r2c7-r2c8-r2c9-r3c9-r4c8-r5c8 gap 5
 whispers-2: whispers r8c7-r8c8-r7c8-r6c8-r5c8 gap 5

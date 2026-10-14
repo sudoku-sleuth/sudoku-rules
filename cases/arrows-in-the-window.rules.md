@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/arrows-in-the-window
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 23075abb3abcf31f61329c34871ec78f
 ---
 
 ```rules

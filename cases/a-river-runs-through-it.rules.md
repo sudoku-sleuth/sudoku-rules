@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/a-river-runs-through-it
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: be7c9c7fb33898bb910216aaa781aaf7
 ---
 
 ```rules

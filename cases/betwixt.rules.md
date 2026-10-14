@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/betwixt
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=8 r4c7=5 r6c2=7 r7c4=4
+exported: ef99d7e5dda96ad707368dd81fa05d76
 ---
 
 ```rules

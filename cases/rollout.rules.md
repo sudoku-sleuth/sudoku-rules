@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rollout
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 6.........5.....37....5....8.4............2..1....9......1......3............2..4
+exported: 815f6eb22e57689e4a29ad4ce8194320
 ---
 
 ```rules

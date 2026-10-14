@@ -6,6 +6,7 @@ source: https://sudokupad.app/1cbfr84g8d
 case: https://sudoku-sleuth.com/cases/crazy-eights-and-others
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 510d8b1a407e3ff6f636e2fb82a62cb6
 ---
 
 ```rules

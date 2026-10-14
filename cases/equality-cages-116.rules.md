@@ -6,6 +6,7 @@ source: https://sudokupad.app/lunoa97u72
 case: https://sudoku-sleuth.com/cases/equality-cages-116
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 67aea2a162b8b20cfb4cccdc83c64968
 ---
 
 ```rules
@@ -20,11 +21,11 @@ equality-cage-7: equality-cage r3c2-r3c3-r4c2-r4c3
 equality-cage-8: equality-cage r5c1-r6c1
 equality-cage-9: equality-cage r8c9-r9c9
 equality-cage-10: equality-cage r8c7-r8c8
-kropki-1: kropki r5c6-r6c6 colour "black"
-kropki-2: kropki r6c4-r6c5 colour "black"
-kropki-3: kropki r1c9-r2c9 colour "black"
-kropki-4: kropki r5c5-r5c6 colour "white"
-kropki-5: kropki r1c1-r1c2 colour "white"
+kropki-1: kropki r5c6-r6c6 black
+kropki-2: kropki r6c4-r6c5 black
+kropki-3: kropki r1c9-r2c9 black
+kropki-4: kropki r5c5-r5c6 white
+kropki-5: kropki r1c1-r1c2 white
 whispers-1: whispers r4c5-r5c5-r6c6-r6c5-r6c4-r7c4-r8c5-r9c5-r9c4 gap 4
 whispers-2: whispers r1c9-r2c9-r2c8-r2c7-r3c7-r3c6-r2c5-r1c5-r1c4-r1c3-r1c2 gap 4
 whispers-3: whispers r6c1-r7c1-r8c2-r9c2 gap 4

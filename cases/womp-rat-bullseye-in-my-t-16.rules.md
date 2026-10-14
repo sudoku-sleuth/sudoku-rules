@@ -6,6 +6,7 @@ source: https://sudokupad.app/mnf6p1p16v
 case: https://sudoku-sleuth.com/cases/womp-rat-bullseye-in-my-t-16
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 50664ae1f3bd30f0377c2a103472aebb
 ---
 
 ```rules
@@ -14,8 +15,8 @@ cage-1: cage r5c1-r5c2 total 9 connected true
 cage-2: cage r5c8-r5c9 total 9 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r6c6-r6c7 colour "white"
-kropki-2: kropki r6c3-r6c4 colour "black"
+kropki-1: kropki r6c6-r6c7 white
+kropki-2: kropki r6c3-r6c4 black
 whispers-1: whispers r5c4-r4c5-r5c6-r6c5 gap 5 loop true
 whispers-2: whispers r1c1-r2c2-r3c3-r4c4 gap 5
 whispers-3: whispers r1c9-r2c8-r3c7-r4c6 gap 5

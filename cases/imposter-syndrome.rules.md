@@ -6,6 +6,7 @@ source: https://sudokupad.app/l57rfugnlw
 case: https://sudoku-sleuth.com/cases/imposter-syndrome
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 49be853d29575cc2da43ddb6c30d7c79
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/cues5j0avn
 case: https://sudoku-sleuth.com/cases/triscuit
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dc4984b8aff2470a90a6abf2fbd3b54f
 ---
 
 ```rules

@@ -10,25 +10,26 @@ drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
 givens: r1c1=1 r8c9=4
+exported: 4357f9dad561ee9fabaf70d5b5c307f8
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r4c1-r5c1 colour "white"
-kropki-3: kropki r8c2-r8c3 colour "white"
-kropki-4: kropki r1c3-r1c4 colour "white"
-kropki-5: kropki r1c5-r2c5 colour "white"
-kropki-6: kropki r2c5-r2c6 colour "white"
-kropki-7: kropki r4c9-r5c9 colour "white"
-kropki-8: kropki r7c8-r8c8 colour "white"
-kropki-9: kropki r8c8-r8c9 colour "white"
-kropki-10: kropki r8c4-r8c5 colour "white"
-kropki-11: kropki r7c5-r8c5 colour "white"
-kropki-12: kropki r7c5-r7c6 colour "white"
-kropki-13: kropki r9c8-r9c9 colour "white"
-kropki-14: kropki r4c6-r5c6 colour "white"
-kropki-15: kropki r9c2-r9c3 colour "white"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r4c1-r5c1 white
+kropki-3: kropki r8c2-r8c3 white
+kropki-4: kropki r1c3-r1c4 white
+kropki-5: kropki r1c5-r2c5 white
+kropki-6: kropki r2c5-r2c6 white
+kropki-7: kropki r4c9-r5c9 white
+kropki-8: kropki r7c8-r8c8 white
+kropki-9: kropki r8c8-r8c9 white
+kropki-10: kropki r8c4-r8c5 white
+kropki-11: kropki r7c5-r8c5 white
+kropki-12: kropki r7c5-r7c6 white
+kropki-13: kropki r9c8-r9c9 white
+kropki-14: kropki r4c6-r5c6 white
+kropki-15: kropki r9c2-r9c3 white
 negative relations [{"op":"difference","value":1}] except [["r3c1","r4c1"],["r4c1","r5c1"],["r8c2","r8c3"],["r1c3","r1c4"],["r1c5","r2c5"],["r2c5","r2c6"],["r4c9","r5c9"],["r7c8","r8c8"],["r8c8","r8c9"],["r8c4","r8c5"],["r7c5","r8c5"],["r7c5","r7c6"],["r9c8","r9c9"],["r4c6","r5c6"],["r9c2","r9c3"]]
 ```
 

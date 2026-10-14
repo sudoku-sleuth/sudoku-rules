@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/new-year-s-resolution
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5e511e1f8b799da8d0a48754b187def3
 ---
 
 ```rules

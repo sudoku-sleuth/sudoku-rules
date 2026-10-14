@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/sawyer-beetle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b369cecaf7034ab70d10fd9ac3fe19a6
 ---
 
 ```rules

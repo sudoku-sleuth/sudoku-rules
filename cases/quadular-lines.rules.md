@@ -6,6 +6,7 @@ source: https://sudokupad.app/fd1yp6f37v
 case: https://sudoku-sleuth.com/cases/quadular-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bfb87121b8fca6f9850904bcd5187a2d
 ---
 
 ```rules

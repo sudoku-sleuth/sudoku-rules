@@ -6,6 +6,7 @@ source: https://sudokupad.app/t54xtm5ylt
 case: https://sudoku-sleuth.com/cases/hashtag-double-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5c18e52f1c2aefd427b2c92eb946fe23
 ---
 
 ```rules

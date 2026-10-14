@@ -6,6 +6,7 @@ source: https://sudokupad.app/2kmmtycdma
 case: https://sudoku-sleuth.com/cases/lennon-or-potter
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b30d662cb141f99f85c58b423b03504c
 ---
 
 ```rules
@@ -29,8 +30,8 @@ cage-16: cage r4c7-r5c7-r6c7-r6c8 total 12 connected true
 cage-17: cage r8c3-r9c3 total 11 connected true
 cage-18: cage r4c8-r5c8 total 15 connected true
 cage-19: cage r9c8-r9c9 total 7 connected true
-kropki-1: kropki r1c2-r1c3 colour "black"
-kropki-2: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r1c2-r1c3 black
+kropki-2: kropki r5c9-r6c9 black
 whispers-1: whispers r2c5-r2c4-r3c3-r4c2 gap 4
 whispers-2: whispers r5c4-r4c3-r4c2-r5c1-r6c1-r7c2-r7c3-r6c4 gap 4
 whispers-3: whispers r6c4-r5c4-r5c5-r5c6-r6c6 gap 4

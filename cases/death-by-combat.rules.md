@@ -6,6 +6,7 @@ source: https://sudokupad.app/fia59ze9lk
 case: https://sudoku-sleuth.com/cases/death-by-combat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 57470872cc5d168053fc0b008571d1cb
 ---
 
 ```rules

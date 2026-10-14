@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/deck-the-halls
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5e74f2004f7913b21d21d8af5de94746
 ---
 
 ```rules

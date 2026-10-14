@@ -8,17 +8,18 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r8c2=4 r8c8=5
+exported: cd34d764c4acbc4ca0d588947f90033f
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r3c8-r3c9 colour "white"
-kropki-3: kropki r6c2-r7c2 colour "white"
-kropki-4: kropki r6c8-r7c8 colour "white"
-kropki-5: kropki r4c4-r4c5 colour "black"
-kropki-6: kropki r4c5-r4c6 colour "black"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r3c8-r3c9 white
+kropki-3: kropki r6c2-r7c2 white
+kropki-4: kropki r6c8-r7c8 white
+kropki-5: kropki r4c4-r4c5 black
+kropki-6: kropki r4c5-r4c6 black
 region-sum r6c5-r5c6-r5c7-r4c8-r3c9-r3c8-r3c7-r4c6-r4c5-r4c4-r3c3-r3c2-r3c1-r4c2-r5c3-r5c4 segments [["r6c5","r5c6","r5c4"],["r5c7","r4c8"],["r3c9","r3c8","r3c7"],["r4c6","r4c5","r4c4"],["r3c3","r3c2","r3c1"],["r4c2","r5c3"]]
 ```
 

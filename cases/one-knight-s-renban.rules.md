@@ -6,6 +6,7 @@ source: https://sudokupad.app/rsfg2xbh71
 case: https://sudoku-sleuth.com/cases/one-knight-s-renban
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2710385bc79cc2fe7e9c51589c26d767
 ---
 
 ```rules
@@ -15,10 +16,10 @@ cage-2: cage r1c8-r2c8 total 13 connected true
 cage-3: cage r5c8-r6c8 total 7 connected true
 cage-4: cage r4c2-r5c2 total 9 connected true
 anti-knight
-kropki-1: kropki r4c7-r4c8 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "black"
-kropki-3: kropki r5c6-r6c6 colour "black"
-kropki-4: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r4c7-r4c8 white
+kropki-2: kropki r2c5-r3c5 black
+kropki-3: kropki r5c6-r6c6 black
+kropki-4: kropki r4c4-r5c4 black
 whispers r5c4-r4c5-r5c6-r6c5 gap 5 loop true
 renban-1: renban r1c4-r2c4-r2c3-r3c3
 renban-2: renban r1c6-r2c6-r2c7-r3c7

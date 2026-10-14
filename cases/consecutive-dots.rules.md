@@ -54,6 +54,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 0a39a5ff6c30d48a8b830c7067a08767
 ---
 
 ```rules
@@ -75,19 +76,19 @@ unique-15: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
 unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
-kropki-1: kropki r1c4-r2c4 colour "white"
-kropki-2: kropki r5c1-r5c2 colour "white"
-kropki-3: kropki r4c2-r5c2 colour "white"
-kropki-4: kropki r4c2-r4c3 colour "white"
-kropki-5: kropki r3c3-r4c3 colour "white"
-kropki-6: kropki r3c2-r3c3 colour "white"
-kropki-7: kropki r2c2-r3c2 colour "white"
-kropki-8: kropki r2c1-r2c2 colour "white"
-kropki-9: kropki r2c4-r3c4 colour "white"
-kropki-10: kropki r2c5-r2c6 colour "white"
-kropki-11: kropki r1c3-r2c3 colour "white"
-kropki-12: kropki r3c5-r3c6 colour "white"
-kropki-13: kropki r1c6-r2c6 colour "white"
+kropki-1: kropki r1c4-r2c4 white
+kropki-2: kropki r5c1-r5c2 white
+kropki-3: kropki r4c2-r5c2 white
+kropki-4: kropki r4c2-r4c3 white
+kropki-5: kropki r3c3-r4c3 white
+kropki-6: kropki r3c2-r3c3 white
+kropki-7: kropki r2c2-r3c2 white
+kropki-8: kropki r2c1-r2c2 white
+kropki-9: kropki r2c4-r3c4 white
+kropki-10: kropki r2c5-r2c6 white
+kropki-11: kropki r1c3-r2c3 white
+kropki-12: kropki r3c5-r3c6 white
+kropki-13: kropki r1c6-r2c6 white
 ```
 
 Normal 6x6 sudoku rules apply.

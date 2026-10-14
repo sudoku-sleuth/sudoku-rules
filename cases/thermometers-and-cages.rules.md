@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/thermometers-and-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=3 r2c9=5 r4c9=9
+exported: f1680fcc0efb6002ddec8fc939e1c85f
 ---
 
 ```rules

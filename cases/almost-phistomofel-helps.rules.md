@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/almost-phistomofel-helps
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=1 r6c9=4 r7c3=6 r9c1=4
+exported: 9740f2304fc2926a2378ffde99c95350
 ---
 
 ```rules

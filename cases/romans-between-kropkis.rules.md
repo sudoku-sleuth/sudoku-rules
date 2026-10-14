@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/romans-between-kropkis
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: faf84babfa34e648c7b15f5c98865195
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r2c9-r3c9 colour "white"
-kropki-2: kropki r8c4-r8c5 colour "white"
-kropki-3: kropki r8c2-r9c2 colour "black"
-kropki-4: kropki r3c8-r4c8 colour "black"
-kropki-5: kropki r6c9-r7c9 colour "black"
-kropki-6: kropki r6c1-r6c2 colour "black"
-kropki-7: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r2c9-r3c9 white
+kropki-2: kropki r8c4-r8c5 white
+kropki-3: kropki r8c2-r9c2 black
+kropki-4: kropki r3c8-r4c8 black
+kropki-5: kropki r6c9-r7c9 black
+kropki-6: kropki r6c1-r6c2 black
+kropki-7: kropki r7c8-r8c8 black
 palindrome-1: palindrome r3c3-r4c3-r5c4-r6c5
 palindrome-2: palindrome r3c5-r4c6-r5c7-r6c7
 pair-1: pair r7c6-r7c7 sum 10

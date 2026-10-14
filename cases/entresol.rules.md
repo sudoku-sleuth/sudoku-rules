@@ -6,6 +6,7 @@ source: https://sudokupad.app/8yzowt1xce
 case: https://sudoku-sleuth.com/cases/entresol
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f84ab0e29653dee965b71a138c96264d
 ---
 
 ```rules

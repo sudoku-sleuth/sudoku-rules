@@ -6,6 +6,7 @@ source: https://sudokupad.app/r68lsifivy
 case: https://sudoku-sleuth.com/cases/anti-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fe915717fd280751ff1904b846015d9a
 ---
 
 ```rules

@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/zarrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 53c45a25a0fde5ae1d38cb9e430a9072
 ---
 
 ```rules
 sudoku 9x9
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki r2c8-r2c9 colour "black"
+kropki r2c8-r2c9 black
 zipper-1: zipper r1c4-r1c5-r1c6
 zipper-2: zipper r1c1-r1c2-r1c3
 zipper-3: zipper r3c3-r2c2-r3c1-r4c2-r5c1-r6c2-r7c1-r8c2-r7c3

@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=yfm3mgbh
 case: https://sudoku-sleuth.com/cases/test-tube
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0f8288d5e9d63737ce25359ba480ee13
 ---
 
 ```rules

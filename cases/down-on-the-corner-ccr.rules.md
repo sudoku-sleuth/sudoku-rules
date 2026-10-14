@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/down-on-the-corner-ccr
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8ecf883c4ec91eb1e77bc1c1b4caf129
 ---
 
 ```rules
@@ -13,24 +14,24 @@ sudoku 9x9
 cage-1: cage r3c7-r3c8 total 5 connected true
 cage-2: cage r3c4-r3c5 total 13 connected true
 cage-3: cage r5c6-r6c6 total 8 connected true
-kropki-1: kropki r1c2-r1c3 colour "white"
-kropki-2: kropki r1c3-r1c4 colour "white"
-kropki-3: kropki r1c4-r1c5 colour "white"
-kropki-4: kropki r1c6-r1c7 colour "white"
-kropki-5: kropki r1c7-r1c8 colour "white"
-kropki-6: kropki r1c8-r1c9 colour "white"
-kropki-7: kropki r2c9-r3c9 colour "white"
-kropki-8: kropki r3c9-r4c9 colour "white"
-kropki-9: kropki r4c9-r5c9 colour "white"
-kropki-10: kropki r7c9-r8c9 colour "white"
-kropki-11: kropki r7c7-r7c8 colour "white"
-kropki-12: kropki r7c6-r7c7 colour "white"
-kropki-13: kropki r6c8-r6c9 colour "white"
-kropki-14: kropki r6c7-r6c8 colour "white"
-kropki-15: kropki r6c5-r6c6 colour "white"
-kropki-16: kropki r6c4-r6c5 colour "white"
-kropki-17: kropki r6c2-r6c3 colour "white"
-kropki-18: kropki r6c1-r6c2 colour "white"
+kropki-1: kropki r1c2-r1c3 white
+kropki-2: kropki r1c3-r1c4 white
+kropki-3: kropki r1c4-r1c5 white
+kropki-4: kropki r1c6-r1c7 white
+kropki-5: kropki r1c7-r1c8 white
+kropki-6: kropki r1c8-r1c9 white
+kropki-7: kropki r2c9-r3c9 white
+kropki-8: kropki r3c9-r4c9 white
+kropki-9: kropki r4c9-r5c9 white
+kropki-10: kropki r7c9-r8c9 white
+kropki-11: kropki r7c7-r7c8 white
+kropki-12: kropki r7c6-r7c7 white
+kropki-13: kropki r6c8-r6c9 white
+kropki-14: kropki r6c7-r6c8 white
+kropki-15: kropki r6c5-r6c6 white
+kropki-16: kropki r6c4-r6c5 white
+kropki-17: kropki r6c2-r6c3 white
+kropki-18: kropki r6c1-r6c2 white
 little-killer-1: little-killer r1c8-r2c9 sum 9
 little-killer-2: little-killer r1c7-r2c8-r3c9 sum 14
 little-killer-3: little-killer r1c6-r2c7-r3c8-r4c9 sum 19

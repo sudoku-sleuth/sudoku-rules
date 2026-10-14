@@ -6,6 +6,7 @@ source: https://tinyurl.com/r25ky9xc
 case: https://sudoku-sleuth.com/cases/mind-the-gaps
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a31aaa149da7aedf253ee3361b84dd4e
 ---
 
 ```rules

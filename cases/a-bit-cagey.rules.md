@@ -6,6 +6,7 @@ source: https://sudokupad.app/d5vbkox4qt
 case: https://sudoku-sleuth.com/cases/a-bit-cagey
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 052b72083e6ec64434b36522d91a4674
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/so-much-negativity
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=2 r2c3=8 r3c7=3 r4c4=6 r5c1=3 r6c6=9 r6c9=1 r7c3=1 r8c7=5 r9c6=7
+exported: fc510ed3dfb37225368a49c0e8a408e8
 ---
 
 ```rules

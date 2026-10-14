@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sands-of-time
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=3 r2c4=4 r2c6=9 r4c3=2 r5c5=5 r6c7=7 r7c9=9 r8c4=8 r8c6=1 r9c3=7
+exported: e74e52d82fdcbc49c46dcced7f3cccf3
 ---
 
 ```rules

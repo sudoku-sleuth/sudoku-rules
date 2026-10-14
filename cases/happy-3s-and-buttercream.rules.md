@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-3s-and-buttercream
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 90c078cee34fa60632658f7ff7e77db1
 ---
 
 ```rules

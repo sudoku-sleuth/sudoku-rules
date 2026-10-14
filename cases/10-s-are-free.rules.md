@@ -6,6 +6,7 @@ source: https://sudokupad.app/v8727nbq5t
 case: https://sudoku-sleuth.com/cases/10-s-are-free
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fc3a9bffdc8e46eb405c782e3cfb8268
 ---
 
 ```rules
@@ -14,9 +15,9 @@ cage-1: cage r3c3-r3c4-r4c3-r4c4 total 10 connected true
 cage-2: cage r3c6-r3c7-r4c6-r4c7 total 10 connected true
 cage-3: cage r6c3-r6c4-r7c3-r7c4 total 10 connected true
 cage-4: cage r6c6-r6c7-r7c6-r7c7 total 10 connected true
-kropki-1: kropki r9c3-r9c4 colour "white"
-kropki-2: kropki r8c4-r9c4 colour "white"
-kropki-3: kropki r1c2-r1c3 colour "white"
+kropki-1: kropki r9c3-r9c4 white
+kropki-2: kropki r8c4-r9c4 white
+kropki-3: kropki r1c2-r1c3 white
 pair-1: pair r2c3-r3c3 sum 10
 pair-2: pair r3c7-r3c8 sum 10
 pair-3: pair r7c7-r8c7 sum 10

@@ -6,6 +6,7 @@ source: https://sudokupad.app/zmnmixlff8
 case: https://sudoku-sleuth.com/cases/entropular-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1c539596ebba9ce455eea0f59f680b3e
 ---
 
 ```rules

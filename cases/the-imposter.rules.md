@@ -6,6 +6,7 @@ source: https://sudokupad.app/rh8u70dcxa
 case: https://sudoku-sleuth.com/cases/the-imposter
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: abadc54eec6b0cfca08bfeb5171f87c1
 ---
 
 ```rules

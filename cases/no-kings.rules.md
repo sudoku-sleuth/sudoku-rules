@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/no-kings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=7 r4c1=4 r4c6=7 r4c9=6 r5c5=1 r5c8=7
+exported: 61770316ff5802aab754eb68c43901c5
 ---
 
 ```rules

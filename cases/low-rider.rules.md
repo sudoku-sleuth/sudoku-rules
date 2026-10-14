@@ -6,6 +6,7 @@ source: https://sudokupad.app/68zdk5iloa
 case: https://sudoku-sleuth.com/cases/low-rider
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b7f60211438edc48f9f7036ada4b6f80
 ---
 
 ```rules

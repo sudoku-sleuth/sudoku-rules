@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/four-corners-ut-co-az-nm
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4080896215a8ba6be6b2e025cfc0f090
 ---
 
 ```rules
@@ -15,13 +16,13 @@ cage-2: cage r5c9-r6c9 total 10 connected true
 cage-3: cage r6c1-r6c2 total 11 connected true
 cage-4: cage r7c5-r8c5 total 10 connected true
 cage-5: cage r3c2-r3c3 total 10 connected true
-kropki-1: kropki r4c5-r4c6 colour "white"
-kropki-2: kropki r4c6-r5c6 colour "white"
-kropki-3: kropki r5c6-r6c6 colour "white"
-kropki-4: kropki r4c4-r5c4 colour "white"
-kropki-5: kropki r5c4-r6c4 colour "white"
-kropki-6: kropki r6c4-r6c5 colour "white"
-kropki-7: kropki r4c4-r4c5 colour "black"
+kropki-1: kropki r4c5-r4c6 white
+kropki-2: kropki r4c6-r5c6 white
+kropki-3: kropki r5c6-r6c6 white
+kropki-4: kropki r4c4-r5c4 white
+kropki-5: kropki r5c4-r6c4 white
+kropki-6: kropki r6c4-r6c5 white
+kropki-7: kropki r4c4-r4c5 black
 quadruple-1: quadruple r1c1-r1c2-r2c1-r2c2 digits [2,4,5,9]
 quadruple-2: quadruple r1c8-r1c9-r2c8-r2c9 digits [2,5,7,9]
 quadruple-3: quadruple r8c8-r8c9-r9c8-r9c9 digits [4,5,7,9]

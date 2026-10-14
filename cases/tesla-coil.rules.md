@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/tesla-coil
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: bd8d2756bda822963d65044c745aa0de
 ---
 
 ```rules
 sudoku 9x9
 thermo r5c5-r6c5-r7c5-r8c5-r9c5
-kropki r6c5-r7c5 colour "black"
+kropki r6c5-r7c5 black
 ```
 
 ```drawing

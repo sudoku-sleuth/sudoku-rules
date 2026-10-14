@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=ydg7byuw
 case: https://sudoku-sleuth.com/cases/ascent-descent
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c8a6a5172739ed6e6a3aaa7b88b377c8
 ---
 
 ```rules
@@ -25,8 +26,8 @@ cage-12: cage r6c6-r7c6 total 3 connected true
 cage-13: cage r7c7-r8c7 total 4 connected true
 cage-14: cage r7c8-r7c9 total 16 connected true
 cage-15: cage r1c6-r2c6 total 17 connected true
-kropki-1: kropki r1c4-r1c5 colour "black"
-kropki-2: kropki r2c2-r2c3 colour "black"
+kropki-1: kropki r1c4-r1c5 black
+kropki-2: kropki r2c2-r2c3 black
 ```
 
 Normal Sudoku rules apply. Numbers in cages sum to the number in the top left corner of the cage. Numbers with a black dot between them are in a ratio of 2:1.

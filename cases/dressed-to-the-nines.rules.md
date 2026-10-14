@@ -6,14 +6,15 @@ source: ""
 case: https://sudoku-sleuth.com/cases/dressed-to-the-nines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 402d5dde62537236fcec9948b95d59c2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c8-r4c8 colour "black"
-kropki-2: kropki r3c2-r4c2 colour "black"
-kropki-3: kropki r4c1-r4c2 colour "black"
-kropki-4: kropki r1c6-r1c7 colour "black"
+kropki-1: kropki r3c8-r4c8 black
+kropki-2: kropki r3c2-r4c2 black
+kropki-3: kropki r4c1-r4c2 black
+kropki-4: kropki r1c6-r1c7 black
 arrow-1: arrow r7c8-r6c7-r5c6-r4c5-r3c4-r2c3-r1c2 bulb ["r8c9"]
 arrow-2: arrow r5c4-r6c4-r7c4 bulb ["r4c4"]
 arrow-3: arrow r9c5-r9c4-r9c3 bulb ["r9c6"]

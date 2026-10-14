@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/diamond-heist
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c26c08869a2b1ef51c43dca1eea23ecf
 ---
 
 ```rules

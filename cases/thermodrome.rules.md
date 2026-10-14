@@ -6,6 +6,7 @@ source: https://tinyurl.com/mryxjm36
 case: https://sudoku-sleuth.com/cases/thermodrome
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 577eac4b7120689c7912482514f72b6e
 ---
 
 ```rules
@@ -13,10 +14,10 @@ sudoku 9x9
 anti-knight
 thermo-1: thermo r2c3-r1c3-r2c2-r3c3-r4c3
 thermo-2: thermo r8c7-r9c7-r8c8-r7c7-r6c7
-kropki-1: kropki r3c3-r4c3 colour "white"
-kropki-2: kropki r5c6-r6c6 colour "white"
-kropki-3: kropki r4c3-r5c3 colour "white"
-kropki-4: kropki r1c4-r1c5 colour "black"
+kropki-1: kropki r3c3-r4c3 white
+kropki-2: kropki r5c6-r6c6 white
+kropki-3: kropki r4c3-r5c3 white
+kropki-4: kropki r1c4-r1c5 black
 palindrome-1: palindrome r2c4-r3c4-r4c3-r3c3
 palindrome-2: palindrome r2c6-r3c7-r4c8
 palindrome-3: palindrome r6c8-r7c7-r8c6

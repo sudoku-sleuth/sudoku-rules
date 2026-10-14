@@ -6,6 +6,7 @@ source: https://sudokupad.app/6ljqu55g6n
 case: https://sudoku-sleuth.com/cases/spiralling-gossip
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7d4c526e3c2b2922b12f79ebbfdebde0
 ---
 
 ```rules

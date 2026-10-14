@@ -9,8 +9,8 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some source features still need to be checked against our reading.
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: 45c5f6f4d09040c6130a43c681ecf841
 ---
 
 ```rules
@@ -19,10 +19,10 @@ cage-1: cage r1c1-r1c2-r2c1-r2c2 total 29 connected true
 cage-2: cage r8c1-r8c2-r9c1-r9c2 total 12 connected true
 cage-3: cage r1c8-r1c9-r2c8-r2c9 total 25 connected true
 cage-4: cage r8c8-r8c9-r9c8-r9c9 total 14 connected true
-kropki-1: kropki r1c1-r2c1 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "white"
-kropki-3: kropki r8c4-r8c5 colour "white"
-kropki-4: kropki r2c8-r2c9 colour "white"
+kropki-1: kropki r1c1-r2c1 white
+kropki-2: kropki r8c1-r8c2 white
+kropki-3: kropki r8c4-r8c5 white
+kropki-4: kropki r2c8-r2c9 white
 palindrome-1: palindrome r6c8-r7c7
 palindrome-2: palindrome r6c7-r7c6
 palindrome-3: palindrome r6c6-r7c5

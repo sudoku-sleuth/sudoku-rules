@@ -6,6 +6,7 @@ source: https://sudokupad.app/85zm5qe0yd
 case: https://sudoku-sleuth.com/cases/quad-corner-entropy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 51d037a9886dea24a7250861b59bb9d3
 ---
 
 ```rules

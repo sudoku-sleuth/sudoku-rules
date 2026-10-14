@@ -6,6 +6,7 @@ source: https://sudokupad.app/p3ozjtths8
 case: https://sudoku-sleuth.com/cases/hot-mess
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3de34ff5b7d8be1fbfe76d57dd78a253
 ---
 
 ```rules

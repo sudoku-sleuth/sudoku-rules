@@ -7,25 +7,26 @@ case: https://sudoku-sleuth.com/cases/denver-officiating-travesty
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c667fcd46c0dcb6943fec93648c2f59b
 ---
 
 ```rules
 sudoku 9x9
 cage r5c4-r5c5 total 15 connected true
-kropki-1: kropki r8c2-r8c3 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "white"
-kropki-3: kropki r1c2-r1c3 colour "white"
-kropki-4: kropki r6c1-r7c1 colour "black"
-kropki-5: kropki r6c1-r6c2 colour "black"
-kropki-6: kropki r4c8-r4c9 colour "black"
-kropki-7: kropki r5c8-r5c9 colour "black"
-kropki-8: kropki r2c9-r3c9 colour "black"
-kropki-9: kropki r3c8-r3c9 colour "black"
-kropki-10: kropki r2c8-r3c8 colour "black"
-kropki-11: kropki r2c3-r2c4 colour "black"
-kropki-12: kropki r5c1-r5c2 colour "black"
-kropki-13: kropki r5c3-r6c3 colour "black"
-kropki-14: kropki r1c6-r2c6 colour "black"
+kropki-1: kropki r8c2-r8c3 white
+kropki-2: kropki r8c1-r8c2 white
+kropki-3: kropki r1c2-r1c3 white
+kropki-4: kropki r6c1-r7c1 black
+kropki-5: kropki r6c1-r6c2 black
+kropki-6: kropki r4c8-r4c9 black
+kropki-7: kropki r5c8-r5c9 black
+kropki-8: kropki r2c9-r3c9 black
+kropki-9: kropki r3c8-r3c9 black
+kropki-10: kropki r2c8-r3c8 black
+kropki-11: kropki r2c3-r2c4 black
+kropki-12: kropki r5c1-r5c2 black
+kropki-13: kropki r5c3-r6c3 black
+kropki-14: kropki r1c6-r2c6 black
 whispers-1: whispers r7c4-r7c3-r8c3-r8c4 gap 5
 whispers-2: whispers r7c4-r8c4 gap 5
 whispers-3: whispers r8c4-r8c5-r8c6 gap 5

@@ -6,6 +6,7 @@ source: https://sudokupad.app/6x5p22xuhx
 case: https://sudoku-sleuth.com/cases/the-point-of-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 207e39e35d57430505bf568c2d56ff55
 ---
 
 ```rules

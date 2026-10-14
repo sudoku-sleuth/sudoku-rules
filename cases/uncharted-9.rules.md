@@ -20,6 +20,7 @@ board:
     - 7
     - 8
     - 9
+exported: 4a457ee8fce5b7ce66df26f0ce7bc887
 ---
 
 ```rules
@@ -47,15 +48,15 @@ cage-3: cage r6c6-r7c6 total 9 connected true
 cage-4: cage r2c7-r2c8 total 9 connected true
 cage-5: cage r9c4-r9c5 total 9 connected true
 cage-6: cage r5c5-r6c5 total 9 connected true
-kropki-1: kropki r8c5-r9c5 colour "black"
-kropki-2: kropki r7c8-r7c9 colour "black"
-kropki-3: kropki r3c6-r4c6 colour "black"
-kropki-4: kropki r1c3-r2c3 colour "black"
-kropki-5: kropki r3c3-r3c4 colour "black"
-kropki-6: kropki r7c4-r7c5 colour "black"
-kropki-7: kropki r4c4-r4c5 colour "black"
-kropki-8: kropki r4c3-r5c3 colour "white"
-kropki-9: kropki r3c2-r4c2 colour "white"
+kropki-1: kropki r8c5-r9c5 black
+kropki-2: kropki r7c8-r7c9 black
+kropki-3: kropki r3c6-r4c6 black
+kropki-4: kropki r1c3-r2c3 black
+kropki-5: kropki r3c3-r3c4 black
+kropki-6: kropki r7c4-r7c5 black
+kropki-7: kropki r4c4-r4c5 black
+kropki-8: kropki r4c3-r5c3 white
+kropki-9: kropki r3c2-r4c2 white
 ```
 
 ```drawing

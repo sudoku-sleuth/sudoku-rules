@@ -6,12 +6,13 @@ source: https://sudokupad.app/oc4k2aaxd9
 case: https://sudoku-sleuth.com/cases/rocket
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8418b8f00339f981664b030311684f4b
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "anti"
-kropki r3c9-r4c9 colour "white"
+kropki r3c9-r4c9 white
 arrow-1: arrow r8c3-r7c3 bulb ["r9c3"]
 arrow-2: arrow r7c2-r7c3 bulb ["r7c1"]
 arrow-3: arrow r6c3-r6c4 bulb ["r6c2"]

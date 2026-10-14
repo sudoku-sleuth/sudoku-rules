@@ -6,6 +6,7 @@ source: https://sudokupad.app/z62omfful2
 case: https://sudoku-sleuth.com/cases/playing-with-blocks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0dd1c181b20eb7be85642c1c299f31da
 ---
 
 ```rules

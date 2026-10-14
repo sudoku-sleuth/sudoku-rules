@@ -6,6 +6,7 @@ source: https://sudokupad.app/ob6z3508gs
 case: https://sudoku-sleuth.com/cases/greek-fire
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 60980a67c4b66c18f96dd8256a3d5c68
 ---
 
 ```rules

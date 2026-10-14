@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/i-m-a-frayed-knot
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f34e9647f5b5721cefd172aeb7cf0d65
 ---
 
 ```rules

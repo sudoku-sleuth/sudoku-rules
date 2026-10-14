@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sunburn
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a17cd2182c7c7af6e280d81a200f04e6
 ---
 
 ```rules
@@ -14,7 +15,7 @@ sudoku 9x9
 thermo-1: thermo r1c9-r2c8-r3c7-r4c6-r5c5
 thermo-2: thermo r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9
 thermo-3: thermo r1c9-r1c8-r1c7-r1c6-r1c5-r1c4-r1c3
-kropki r7c8-r7c9 colour "black"
+kropki r7c8-r7c9 black
 palindrome-1: palindrome r6c1-r7c2-r8c3-r9c4-r9c5-r9c6-r9c7
 palindrome-2: palindrome r4c2-r5c3-r6c4-r7c5-r7c6-r7c7-r7c8
 palindrome-3: palindrome r5c6-r4c7

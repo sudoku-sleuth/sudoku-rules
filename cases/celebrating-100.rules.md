@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/celebrating-100
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5d37f7f37d756b50ff68cc0438168dcf
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/map-of-new-york-area
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c6f60b28959003f22eb7e0812f4077fd
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/f1y37w90o4
 case: https://sudoku-sleuth.com/cases/safe-at-the-plate
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f3054b5ac29b82ca31bfb847e3e998df
 ---
 
 ```rules
@@ -16,12 +17,12 @@ thermo-3: thermo r6c5-r5c4-r4c3-r5c3-r5c2
 thermo-4: thermo r9c6-r8c5-r7c4-r6c3-r5c2
 thermo-5: thermo r9c6-r8c5-r7c4-r7c3-r7c2
 thermo-6: thermo r9c6-r8c5-r8c6-r8c7
-kropki-1: kropki r9c4-r9c5 colour "white"
-kropki-2: kropki r1c6-r2c6 colour "black"
-kropki-3: kropki r2c6-r2c7 colour "black"
-kropki-4: kropki r2c7-r3c7 colour "black"
-kropki-5: kropki r3c7-r3c8 colour "black"
-kropki-6: kropki r4c3-r5c3 colour "black"
+kropki-1: kropki r9c4-r9c5 white
+kropki-2: kropki r1c6-r2c6 black
+kropki-3: kropki r2c6-r2c7 black
+kropki-4: kropki r2c7-r3c7 black
+kropki-5: kropki r3c7-r3c8 black
+kropki-6: kropki r4c3-r5c3 black
 arrow-1: arrow r3c6-r2c7-r2c6-r1c6 bulb ["r4c5"]
 arrow-2: arrow r3c6-r2c7-r3c7-r3c8 bulb ["r4c5"]
 arrow-3: arrow r3c6-r2c5 bulb ["r4c5"]

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/coffee-bean
 case: https://sudoku-sleuth.com/cases/coffee-bean
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bb62a8f52be6a99be4d83743cabe70ea
 ---
 
 ```rules

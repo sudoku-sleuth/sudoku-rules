@@ -6,6 +6,7 @@ source: https://tinyurl.com/4vdu3y7u
 case: https://sudoku-sleuth.com/cases/entropic-zigzag
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 056ca3f90fa471818fb190b1aa783194
 ---
 
 ```rules

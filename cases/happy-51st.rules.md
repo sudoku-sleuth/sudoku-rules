@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-51st
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=1 r2c7=9 r3c8=7 r4c9=1
+exported: 37b35aa51ce04f3bc759a942f094ebd2
 ---
 
 ```rules
@@ -22,7 +23,7 @@ cage-8: cage r7c1-r7c2 total 13 connected true
 cage-9: cage r8c2-r9c2 total 13 connected true
 cage-10: cage r9c7-r9c8 total 13 connected true
 thermo r8c7-r7c7-r6c7-r5c7-r4c7-r3c7-r4c6
-kropki r8c1-r9c1 colour "white"
+kropki r8c1-r9c1 white
 palindrome r3c4-r3c3-r3c2-r4c2-r5c2-r5c3-r6c4-r7c4-r8c3-r8c2-r8c1
 ```
 

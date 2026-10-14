@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-first-christmas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f2d55c86076c31c860a9ebb58ac6e09f
 ---
 
 ```rules

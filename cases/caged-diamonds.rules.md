@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/caged-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9d58aea3b1515855439a6cbed165dfd2
 ---
 
 ```rules
@@ -16,8 +17,8 @@ cage-2: cage r8c4-r9c3-r9c4 connected true
 diagonal direction "main"
 thermo-1: thermo r1c1-r2c1-r3c1
 thermo-2: thermo r3c3-r2c3-r1c3
-kropki-1: kropki r8c7-r9c7 colour "white"
-kropki-2: kropki r4c8-r4c9 colour "white"
+kropki-1: kropki r8c7-r9c7 white
+kropki-2: kropki r4c8-r4c9 white
 whispers-1: whispers r5c1-r5c2-r5c3 gap 5
 whispers-2: whispers r2c4-r2c5-r2c6 gap 5
 whispers-3: whispers r6c4-r6c5-r5c6-r4c5-r4c4 gap 5

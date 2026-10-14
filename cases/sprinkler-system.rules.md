@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/sprinkler-system
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3a251232712d5d2b8b32fc23a8840e78
 ---
 
 ```rules

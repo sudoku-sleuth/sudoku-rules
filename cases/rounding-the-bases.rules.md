@@ -6,6 +6,7 @@ source: https://sudokupad.app/3drc943fyp
 case: https://sudoku-sleuth.com/cases/rounding-the-bases
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ee18acb5748a44ba3586f34fc0f58427
 ---
 
 ```rules

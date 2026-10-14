@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/oil-water-paths
 case: https://sudoku-sleuth.com/cases/oil-water-paths
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3f6d8563404bfc99857c0258f7aa7f2a
 ---
 
 ```rules

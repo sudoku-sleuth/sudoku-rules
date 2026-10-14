@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 7
-    - 8
-    - 9
-    - 18
-    - 63
-    - 72
+    - r1c1
+    - r1c2
+    - r1c3
+    - r1c8
+    - r1c9
+    - r2c1
+    - r3c1
+    - r8c1
+    - r9c1
 format: open-rules
 title: Sublimation
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 19f200f7d66a368039ca9fb0c02c4904
 ---
 
 ```rules
@@ -150,15 +151,15 @@ cage-5: cage r4c4-r4c5 total 10 connected true
 cage-6: cage r6c4-r6c5-r7c5 total 6 connected true
 cage-7: cage r5c8-r6c8-r7c8 total 8 connected true
 thermo r3c1-r2c1-r1c1-r1c2-r1c3
-kropki-1: kropki r5c3-r6c3 colour "white"
-kropki-2: kropki r5c2-r6c2 colour "white"
-kropki-3: kropki r8c5-r9c5 colour "white"
-kropki-4: kropki r8c4-r8c5 colour "white"
-kropki-5: kropki r2c4-r2c5 colour "black"
-kropki-6: kropki r3c7-r4c7 colour "black"
-kropki-7: kropki r5c2-r5c3 colour "black"
-kropki-8: kropki r6c5-r6c6 colour "black"
-kropki-9: kropki r8c6-r8c7 colour "black"
+kropki-1: kropki r5c3-r6c3 white
+kropki-2: kropki r5c2-r6c2 white
+kropki-3: kropki r8c5-r9c5 white
+kropki-4: kropki r8c4-r8c5 white
+kropki-5: kropki r2c4-r2c5 black
+kropki-6: kropki r3c7-r4c7 black
+kropki-7: kropki r5c2-r5c3 black
+kropki-8: kropki r6c5-r6c6 black
+kropki-9: kropki r8c6-r8c7 black
 ```
 
 Normal Sudoku rules apply. 

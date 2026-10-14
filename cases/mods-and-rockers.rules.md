@@ -6,6 +6,7 @@ source: https://sudokupad.app/idyl1sc0ee
 case: https://sudoku-sleuth.com/cases/mods-and-rockers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 286c6eb46185c0fc00ed3d7a48ce8295
 ---
 
 ```rules

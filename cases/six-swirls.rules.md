@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/six-swirls
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r5c5=7
+exported: 0bb2d0a8c839fb0ad8ce8e3ca3128c17
 ---
 
 ```rules

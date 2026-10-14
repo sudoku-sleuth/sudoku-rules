@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/invader-s-sword-and-shield
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 13c0187962c34d842e842b81e28543d0
 ---
 
 ```rules

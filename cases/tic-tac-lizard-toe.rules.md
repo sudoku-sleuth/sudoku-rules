@@ -6,6 +6,7 @@ source: https://sudokupad.app/1m0m628h4g
 case: https://sudoku-sleuth.com/cases/tic-tac-lizard-toe
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 654dad211dab738cc12331c77d6d1b26
 ---
 
 ```rules

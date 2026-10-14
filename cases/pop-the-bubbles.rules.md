@@ -6,6 +6,7 @@ source: https://sudokupad.app/l1i1ahci5v
 case: https://sudoku-sleuth.com/cases/pop-the-bubbles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f3d821540d0abbe04a1b3f557b79b365
 ---
 
 ```rules

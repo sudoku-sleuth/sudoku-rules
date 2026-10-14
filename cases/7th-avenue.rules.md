@@ -6,6 +6,7 @@ source: https://sudokupad.app/tjzgwdsbm0
 case: https://sudoku-sleuth.com/cases/7th-avenue
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ed3ab99e5c55943aca996b59e27fb6b4
 ---
 
 ```rules

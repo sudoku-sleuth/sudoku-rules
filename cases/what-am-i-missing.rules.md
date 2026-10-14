@@ -6,6 +6,7 @@ source: https://tinyurl.com/ax38c28f
 case: https://sudoku-sleuth.com/cases/what-am-i-missing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3d556b1701a5381ff35009bbafe4ce69
 ---
 
 ```rules

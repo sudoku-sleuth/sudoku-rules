@@ -6,14 +6,15 @@ source: https://sudokupad.app/myu4zi3vc0
 case: https://sudoku-sleuth.com/cases/yeti-tracks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 36e88d7fc3a32c78f75f19d54cdec6eb
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r4c2-r5c2 colour "white"
-kropki-2: kropki r6c7-r6c8 colour "white"
-kropki-3: kropki r2c4-r3c4 colour "white"
+kropki-1: kropki r4c2-r5c2 white
+kropki-2: kropki r6c7-r6c8 white
+kropki-3: kropki r2c4-r3c4 white
 pair-1: pair r4c1-r4c2 sum 10
 pair-2: pair r4c3-r4c4 sum 10
 pair-3: pair r4c5-r4c6 sum 10

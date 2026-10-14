@@ -6,6 +6,7 @@ source: https://sudokupad.app/vzoofi242p
 case: https://sudoku-sleuth.com/cases/national-math-camp
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 602deb3a11ef4de1aaabb229ee221ad4
 ---
 
 ```rules

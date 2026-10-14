@@ -6,6 +6,7 @@ source: https://sudokupad.app/kimk47rym6
 case: https://sudoku-sleuth.com/cases/tight-fit-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c34a011a973f0e3d369ceaecdc422637
 ---
 
 ```rules

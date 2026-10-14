@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/heat-exchange
 case: https://sudoku-sleuth.com/cases/heat-exchange
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 30804697de70f5f0e51722418096e164
 ---
 
 ```rules
@@ -22,9 +23,9 @@ thermo-7: thermo r6c2-r6c3-r7c2-r8c1
 thermo-8: thermo r4c8-r4c7-r3c8-r2c9
 thermo-9: thermo r7c4-r8c5-r7c6
 thermo-10: thermo r3c6-r2c5-r3c4
-kropki-1: kropki r5c5-r5c6 colour "black"
-kropki-2: kropki r8c5-r9c5 colour "black"
-kropki-3: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r5c5-r5c6 black
+kropki-2: kropki r8c5-r9c5 black
+kropki-3: kropki r4c4-r5c4 black
 ```
 
 **Sudoku, Diagonal, Thermometers, Ratio Dots**

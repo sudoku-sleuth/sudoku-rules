@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 40
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c5
 format: open-rules
 title: Sequentially Quiet
 setter: Meggen033
@@ -12,26 +12,27 @@ source: https://sudokupad.app/29akakkb2u
 case: https://sudoku-sleuth.com/cases/sequentially-quiet
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 481f94c723607e1a40a28e3d8fc341d1
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r4c6 colour "white"
-kropki-2: kropki r4c3-r5c3 colour "white"
-kropki-3: kropki r4c7-r5c7 colour "white"
-kropki-4: kropki r2c6-r2c7 colour "white"
-kropki-5: kropki r1c6-r1c7 colour "white"
-kropki-6: kropki r5c7-r6c7 colour "white"
-kropki-7: kropki r2c2-r2c3 colour "white"
-kropki-8: kropki r1c9-r2c9 colour "white"
-kropki-9: kropki r4c9-r5c9 colour "white"
-kropki-10: kropki r9c3-r9c4 colour "white"
-kropki-11: kropki r2c2-r3c2 colour "white"
-kropki-12: kropki r8c6-r9c6 colour "white"
-kropki-13: kropki r3c5-r4c5 colour "black"
-kropki-14: kropki r1c6-r2c6 colour "black"
-kropki-15: kropki r5c3-r5c4 colour "black"
-kropki-16: kropki r5c6-r5c7 colour "black"
+kropki-1: kropki r4c5-r4c6 white
+kropki-2: kropki r4c3-r5c3 white
+kropki-3: kropki r4c7-r5c7 white
+kropki-4: kropki r2c6-r2c7 white
+kropki-5: kropki r1c6-r1c7 white
+kropki-6: kropki r5c7-r6c7 white
+kropki-7: kropki r2c2-r2c3 white
+kropki-8: kropki r1c9-r2c9 white
+kropki-9: kropki r4c9-r5c9 white
+kropki-10: kropki r9c3-r9c4 white
+kropki-11: kropki r2c2-r3c2 white
+kropki-12: kropki r8c6-r9c6 white
+kropki-13: kropki r3c5-r4c5 black
+kropki-14: kropki r1c6-r2c6 black
+kropki-15: kropki r5c3-r5c4 black
+kropki-16: kropki r5c6-r5c7 black
 arrow-1: arrow r5c5-r4c4 bulb ["r4c6"]
 arrow-2: arrow r3c7-r2c8 bulb ["r4c6"]
 whispers-1: whispers r3c4-r3c5-r3c6 gap 5

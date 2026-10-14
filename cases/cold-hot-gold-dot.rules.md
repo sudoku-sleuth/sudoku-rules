@@ -6,6 +6,7 @@ source: https://sudokupad.app/3ukixndpda
 case: https://sudoku-sleuth.com/cases/cold-hot-gold-dot
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b9f30ee655c62b42e5d790091faa58e9
 ---
 
 ```rules
@@ -16,10 +17,10 @@ thermo-3: thermo r7c8-r8c7-r9c8-r8c9
 thermo-4: thermo r4c8-r5c8-r5c7-r6c6-r5c5
 thermo-5: thermo r7c4-r6c3-r5c3-r5c2
 thermo-6: thermo r9c5-r8c4-r8c5-r9c6
-kropki-1: kropki r3c8-r3c9 colour "black"
-kropki-2: kropki r2c5-r3c5 colour "black"
-kropki-3: kropki r1c1-r2c1 colour "black"
-kropki-4: kropki r8c1-r9c1 colour "black"
+kropki-1: kropki r3c8-r3c9 black
+kropki-2: kropki r2c5-r3c5 black
+kropki-3: kropki r1c1-r2c1 black
+kropki-4: kropki r8c1-r9c1 black
 pair-1: pair r2c4-r2c5 shift
 pair-2: pair r2c5-r2c6 shift
 pair-3: pair r3c2-r3c3 shift

@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/diffambiguate
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f2c6bf9c61b5eebe53c598a15c506518
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c3-r2c4 colour "black"
-kropki-2: kropki r1c3-r2c3 colour "black"
+kropki-1: kropki r2c3-r2c4 black
+kropki-2: kropki r1c3-r2c3 black
 ```
 
 ```drawing

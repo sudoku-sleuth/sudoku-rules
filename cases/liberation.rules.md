@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdkbzfq200
 case: https://sudoku-sleuth.com/cases/liberation
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e518b5dc87791bd8feda54e5328f94ae
 ---
 
 ```rules

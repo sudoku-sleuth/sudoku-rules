@@ -6,6 +6,7 @@ source: https://sudokupad.app/hft61pijhz
 case: https://sudoku-sleuth.com/cases/outside-influencer-set-puzzle-1
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cac9b76d6b8d4e1cff69fc628a63b3a6
 ---
 
 ```rules

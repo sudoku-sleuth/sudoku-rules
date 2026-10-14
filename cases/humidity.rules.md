@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/humidity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 068b81dd33ed9427dd33f4ddf2e7656d
 ---
 
 ```rules

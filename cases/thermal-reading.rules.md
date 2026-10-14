@@ -6,6 +6,7 @@ source: https://sudokupad.app/tdb4x6ftjn
 case: https://sudoku-sleuth.com/cases/thermal-reading
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2aaf0b51bac33cfb90f4f85e59606b48
 ---
 
 ```rules

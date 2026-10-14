@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/finding-your-match
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 593815fa3b351341c1da13aabf1720d0
 ---
 
 ```rules
@@ -17,9 +18,9 @@ cage-3: cage r3c1-r4c1 total 12 connected true
 cage-4: cage r5c5-r6c5 total 15 connected true
 cage-5: cage r9c2-r9c3 total 4 connected true
 cage-6: cage r3c3-r4c3 total 10 connected true
-kropki-1: kropki r7c7-r8c7 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "white"
-kropki-3: kropki r6c6-r6c7 colour "white"
+kropki-1: kropki r7c7-r8c7 white
+kropki-2: kropki r5c7-r6c7 white
+kropki-3: kropki r6c6-r6c7 white
 zipper-1: zipper r1c7-r1c8-r2c9-r3c8-r3c7
 zipper-2: zipper r2c6-r2c5-r3c4-r4c5-r4c6
 zipper-3: zipper r5c7-r5c8-r6c9-r7c8-r7c7

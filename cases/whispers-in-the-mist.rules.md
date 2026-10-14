@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Whispers in the Mist
 setter: Sir Moose
@@ -14,17 +14,18 @@ source: https://sudokupad.app/dnhrhvm3ib
 case: https://sudoku-sleuth.com/cases/whispers-in-the-mist
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c7c513d481fbe98be2d36b4f713d376a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c3-r3c3 colour "black"
-kropki-2: kropki r3c1-r3c2 colour "black"
-kropki-3: kropki r4c2-r5c2 colour "black"
-kropki-4: kropki r9c3-r9c4 colour "black"
-kropki-5: kropki r9c5-r9c6 colour "black"
-kropki-6: kropki r8c7-r8c8 colour "black"
-kropki-7: kropki r6c8-r7c8 colour "black"
+kropki-1: kropki r2c3-r3c3 black
+kropki-2: kropki r3c1-r3c2 black
+kropki-3: kropki r4c2-r5c2 black
+kropki-4: kropki r9c3-r9c4 black
+kropki-5: kropki r9c5-r9c6 black
+kropki-6: kropki r8c7-r8c8 black
+kropki-7: kropki r6c8-r7c8 black
 whispers-1: whispers r3c3-r3c2-r2c3-r2c2-r3c1-r2c1-r1c1-r1c2-r1c3 gap 4
 whispers-2: whispers r4c1-r4c2-r5c2-r6c3-r7c3-r8c3-r9c2-r8c2 gap 4
 whispers-3: whispers r4c2-r4c3 gap 4

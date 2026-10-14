@@ -6,11 +6,12 @@ source: ""
 case: https://sudoku-sleuth.com/cases/squared-away
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: feba1c5c3186da0e8f3e61810b6209f9
 ---
 
 ```rules
 sudoku 9x9
-kropki r3c2-r4c2 colour "white"
+kropki r3c2-r4c2 white
 arrow-1: arrow r9c1-r9c2-r9c3-r8c3-r8c2-r7c2-r7c3-r6c3-r6c2 bulb ["r7c1","r8c1"]
 arrow-2: arrow r4c7 bulb ["r3c8"]
 arrow-3: arrow r5c2-r4c2-r4c1 bulb ["r5c1","r6c1"]

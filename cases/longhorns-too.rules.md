@@ -6,6 +6,7 @@ source: https://sudokupad.app/8ckz5n4dhf
 case: https://sudoku-sleuth.com/cases/longhorns-too
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4c5e368d5b65c92af9a0fcbcd6c87016
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/eights-all-over
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c5=8
+exported: 5eafc5c8e8ef848c0d68137e20bd45ff
 ---
 
 ```rules

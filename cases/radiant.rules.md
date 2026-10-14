@@ -6,6 +6,7 @@ source: https://sudokupad.app/7s1a7cf5jv
 case: https://sudoku-sleuth.com/cases/radiant
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cf516b2894a689b69e9a9b30f557608f
 ---
 
 ```rules

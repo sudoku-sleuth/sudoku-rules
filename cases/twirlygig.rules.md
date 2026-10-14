@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/twirlygig
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c8=3 r5c7=7 r9c2=1
+exported: 356f50721202baf25cc86198fa050c82
 ---
 
 ```rules

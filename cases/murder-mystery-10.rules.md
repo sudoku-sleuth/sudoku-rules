@@ -103,6 +103,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 634487035b6080a7a5fbe1b28707f151
 ---
 
 ```rules
@@ -135,12 +136,12 @@ unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r7c7-r7c8 colour "white"
-kropki-2: kropki r7c8-r7c9 colour "white"
-kropki-3: kropki r9c7-r9c8 colour "white"
-kropki-4: kropki r7c9-r8c9 colour "black"
-kropki-5: kropki r8c8-r9c8 colour "black"
-kropki-6: kropki r7c7-r8c7 colour "black"
+kropki-1: kropki r7c7-r7c8 white
+kropki-2: kropki r7c8-r7c9 white
+kropki-3: kropki r9c7-r9c8 white
+kropki-4: kropki r7c9-r8c9 black
+kropki-5: kropki r8c8-r9c8 black
+kropki-6: kropki r7c7-r8c7 black
 arrow-1: arrow r5c5-r6c4 bulb ["r4c6"]
 arrow-2: arrow r4c4-r5c4 bulb ["r4c5"]
 whispers r9c1-r9c2-r9c3-r8c3-r8c2-r8c1-r7c1-r7c2-r7c3 loop false gap 5

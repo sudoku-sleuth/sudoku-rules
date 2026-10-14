@@ -6,6 +6,7 @@ source: https://sudokupad.app/fx7woycana
 case: https://sudoku-sleuth.com/cases/chase-the-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ecb58874cda0cd425af64b12d00f65e3
 ---
 
 ```rules

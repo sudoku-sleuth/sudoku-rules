@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
+exported: 27b9697445da0f94cf6d5aa732161bff
 ---
 
 ```rules
@@ -17,7 +18,7 @@ cage-1: cage r7c1-r8c1-r9c1 total 8 connected true
 cage-2: cage r7c4-r8c4-r9c4 total 9 connected true
 cage-3: cage r1c6-r2c6-r3c6 total 8 connected true
 cage-4: cage r1c9-r2c9-r3c9 total 9 connected true
-kropki r2c2-r3c2 colour "black"
+kropki r2c2-r3c2 black
 region-sum-1: region-sum r3c8-r4c8-r4c9-r3c9 segments [["r3c8","r3c9"],["r4c8","r4c9"]]
 region-sum-2: region-sum r6c4-r7c4-r7c5-r6c5 segments [["r6c4","r6c5"],["r7c4","r7c5"]]
 region-sum-3: region-sum r5c6-r6c7-r5c8-r4c7 segments [["r5c6"],["r6c7","r5c8","r4c7"]]

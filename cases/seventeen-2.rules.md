@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/seventeen-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=1 r4c6=7
+exported: b7ee0b31d3c133796818c2bfc9dabed7
 ---
 
 ```rules
@@ -24,8 +25,8 @@ cage-10: cage r5c7-r6c7 total 17 connected true
 cage-11: cage r4c8-r5c8-r6c8-r7c8-r8c8 total 17 connected true
 cage-12: cage r2c5-r2c6-r2c7-r2c8-r3c8 total 17 connected true
 cage-13: cage r1c6-r1c7-r1c8 total 17 connected true
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r5c8-r5c9 colour "white"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r5c8-r5c9 white
 ```
 
 Normal sudoku rules apply.

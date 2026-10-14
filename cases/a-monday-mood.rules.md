@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-monday-mood
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=4 r5c3=8 r5c7=5 r8c1=4 r8c9=1 r9c5=2
+exported: 475e81a3361802218c5ae4a0b322a73a
 ---
 
 ```rules

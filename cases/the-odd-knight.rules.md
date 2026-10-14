@@ -6,6 +6,7 @@ source: https://sudokupad.app/gdnkjg1jf2
 case: https://sudoku-sleuth.com/cases/the-odd-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 092b4592098c6896ee86533fc5c1c9ff
 ---
 
 ```rules

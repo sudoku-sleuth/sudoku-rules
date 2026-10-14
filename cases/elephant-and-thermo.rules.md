@@ -6,6 +6,7 @@ source: https://sudokupad.app/ks7ky8gsmm
 case: https://sudoku-sleuth.com/cases/elephant-and-thermo
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0d25931f7b15544f5234ba999349834c
 ---
 
 ```rules

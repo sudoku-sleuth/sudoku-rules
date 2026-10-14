@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/santa-s-sleigh
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c8=1 r3c9=2 r4c3=2 r5c3=5
+exported: dbf1e9776220fc05c891cb606ad468ba
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c8-r7c8 colour "white"
-kropki-2: kropki r3c6-r4c6 colour "white"
-kropki-3: kropki r5c4-r5c5 colour "white"
-kropki-4: kropki r4c8-r4c9 colour "white"
-kropki-5: kropki r2c2-r2c3 colour "white"
-kropki-6: kropki r3c2-r3c3 colour "white"
-kropki-7: kropki r7c3-r8c3 colour "black"
-kropki-8: kropki r7c7-r8c7 colour "black"
+kropki-1: kropki r6c8-r7c8 white
+kropki-2: kropki r3c6-r4c6 white
+kropki-3: kropki r5c4-r5c5 white
+kropki-4: kropki r4c8-r4c9 white
+kropki-5: kropki r2c2-r2c3 white
+kropki-6: kropki r3c2-r3c3 white
+kropki-7: kropki r7c3-r8c3 black
+kropki-8: kropki r7c7-r8c7 black
 whispers-1: whispers r3c3-r4c2-r5c2-r6c2-r6c3-r6c4-r5c4-r4c4 gap 5
 whispers-2: whispers r4c4-r3c3-r2c2 gap 5
 whispers-3: whispers r3c3-r2c4 gap 5

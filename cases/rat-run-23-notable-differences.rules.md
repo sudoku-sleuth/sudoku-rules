@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/rat-run-23-notable-differences
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 983f8924d266dcfebff263b17519aa06
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c5-r9c6 colour "black"
-kropki-2: kropki r7c9-r8c9 colour "black"
-kropki-3: kropki r5c9-r6c9 colour "black"
-kropki-4: kropki r8c7-r8c8 colour "black"
-kropki-5: kropki r8c3-r8c4 colour "black"
-kropki-6: kropki r8c1-r9c1 colour "black"
-kropki-7: kropki r1c1-r2c1 colour "black"
+kropki-1: kropki r9c5-r9c6 black
+kropki-2: kropki r7c9-r8c9 black
+kropki-3: kropki r5c9-r6c9 black
+kropki-4: kropki r8c7-r8c8 black
+kropki-5: kropki r8c3-r8c4 black
+kropki-6: kropki r8c1-r9c1 black
+kropki-7: kropki r1c1-r2c1 black
 ```
 
 ```drawing

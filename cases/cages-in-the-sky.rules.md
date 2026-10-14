@@ -6,6 +6,7 @@ source: https://sudokupad.app/fx44egpkq8
 case: https://sudoku-sleuth.com/cases/cages-in-the-sky
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5f532dc36836004b6f94839bbf866ed6
 ---
 
 ```rules

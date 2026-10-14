@@ -6,6 +6,7 @@ source: https://sudokupad.app/13g6lehjxg
 case: https://sudoku-sleuth.com/cases/untouched-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f3f34e0872262b263ce6670d418b6e44
 ---
 
 ```rules

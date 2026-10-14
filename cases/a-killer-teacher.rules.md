@@ -6,6 +6,7 @@ source: https://sudokupad.app/6k4339rm6i
 case: https://sudoku-sleuth.com/cases/a-killer-teacher
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3bb1ee10837e6923c34f9fa47ca37345
 ---
 
 ```rules

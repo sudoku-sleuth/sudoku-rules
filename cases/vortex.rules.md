@@ -6,6 +6,7 @@ source: https://sudokupad.app/sv3s571h04
 case: https://sudoku-sleuth.com/cases/vortex
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: db5ff6b4830ad2983a0f74bd9068f5ce
 ---
 
 ```rules

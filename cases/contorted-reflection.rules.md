@@ -6,22 +6,23 @@ source: https://sudokupad.app/lv4qqnckke
 case: https://sudoku-sleuth.com/cases/contorted-reflection
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4d87a63d66a4b608d28a5a6b891188ac
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "main"
-kropki-1: kropki r2c1-r2c2 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "white"
-kropki-3: kropki r4c4-r5c4 colour "white"
-kropki-4: kropki r4c4-r4c5 colour "white"
-kropki-5: kropki r7c6-r7c7 colour "white"
-kropki-6: kropki r6c7-r7c7 colour "white"
-kropki-7: kropki r1c3-r1c4 colour "white"
-kropki-8: kropki r5c3-r6c3 colour "black"
-kropki-9: kropki r3c5-r3c6 colour "black"
-kropki-10: kropki r5c4-r6c4 colour "black"
-kropki-11: kropki r4c5-r4c6 colour "black"
+kropki-1: kropki r2c1-r2c2 white
+kropki-2: kropki r1c2-r2c2 white
+kropki-3: kropki r4c4-r5c4 white
+kropki-4: kropki r4c4-r4c5 white
+kropki-5: kropki r7c6-r7c7 white
+kropki-6: kropki r6c7-r7c7 white
+kropki-7: kropki r1c3-r1c4 white
+kropki-8: kropki r5c3-r6c3 black
+kropki-9: kropki r3c5-r3c6 black
+kropki-10: kropki r5c4-r6c4 black
+kropki-11: kropki r4c5-r4c6 black
 arrow-1: arrow r9c3-r8c3 bulb ["r9c2"]
 arrow-2: arrow r3c9-r3c8 bulb ["r2c9"]
 arrow-3: arrow r4c7-r4c8 bulb ["r3c7"]

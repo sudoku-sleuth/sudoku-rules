@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/how-shall-we-split-this
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5bdd21d28db4cd2ddcd68fcf800321bc
 ---
 
 ```rules

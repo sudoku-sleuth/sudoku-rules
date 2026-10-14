@@ -6,6 +6,7 @@ source: https://sudokupad.app/n1pfl0d4cw
 case: https://sudoku-sleuth.com/cases/parity-modularity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fe3f159fd77174f3dfaa5c087b16ff13
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lock-sum-and-eight-smoking-digits
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r4c3=2 r4c6=7 r4c9=1 r5c2=7 r6c4=6 r6c7=2 r9c1=6
+exported: 9df8d802b241cad56373c3867f457c59
 ---
 
 ```rules

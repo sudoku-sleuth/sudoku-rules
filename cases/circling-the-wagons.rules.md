@@ -6,6 +6,7 @@ source: https://sudokupad.app/2wwep02vpy
 case: https://sudoku-sleuth.com/cases/circling-the-wagons
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8fd8e28aa44df7be9bda6e34801a743c
 ---
 
 ```rules

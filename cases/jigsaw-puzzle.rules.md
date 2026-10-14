@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/jigsaw-puzzle
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4f37ced751f0945bdaf0ea9433a53e83
 ---
 
 ```rules

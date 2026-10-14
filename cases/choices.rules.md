@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/choices
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c9=4
+exported: 5568b8a91ff43d16c561f0b7ad6171f2
 ---
 
 ```rules

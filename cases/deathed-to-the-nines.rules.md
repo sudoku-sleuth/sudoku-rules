@@ -6,6 +6,7 @@ source: https://sudokupad.app/khltfc3ax7
 case: https://sudoku-sleuth.com/cases/deathed-to-the-nines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 851cfd2aa2d7f817778d46ade1e0e951
 ---
 
 ```rules

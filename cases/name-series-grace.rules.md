@@ -6,6 +6,7 @@ source: https://tinyurl.com/ynswfrew
 case: https://sudoku-sleuth.com/cases/name-series-grace
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 13004e0d79fa26373da03f829d20834d
 ---
 
 ```rules

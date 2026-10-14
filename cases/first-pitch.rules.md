@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/first-pitch
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: fd8540fa2b84f38566c3be96bfde2eac
 ---
 
 ```rules
 sudoku 9x9
 thermo-1: thermo r5c1-r4c2-r3c3-r2c4-r1c5
 thermo-2: thermo r5c1-r6c2-r7c3-r8c4-r9c5
-kropki-1: kropki r7c3-r8c3 colour "white"
-kropki-2: kropki r2c3-r3c3 colour "white"
+kropki-1: kropki r7c3-r8c3 white
+kropki-2: kropki r2c3-r3c3 white
 whispers r1c6-r1c7-r2c8-r3c9-r4c9-r5c9-r6c9-r7c9-r8c8-r9c7-r9c6 gap 5
 renban r4c4-r5c5-r6c4
 pair-1: pair r9c5-r9c6 sum 10

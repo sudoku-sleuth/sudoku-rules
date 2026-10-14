@@ -6,6 +6,7 @@ source: https://sudokupad.app/ung4vgup0n
 case: https://sudoku-sleuth.com/cases/not-quite-symmetric
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 616bf7b2d418c0ffe2ecb150e0aa6494
 ---
 
 ```rules

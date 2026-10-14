@@ -6,6 +6,7 @@ source: https://sudokupad.app/gdvetpxi8p
 case: https://sudoku-sleuth.com/cases/swim-competition-breaststroke
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 14333a3bf81733e6d5ed75c8cf7002db
 ---
 
 ```rules
@@ -13,9 +14,9 @@ sudoku 9x9
 anti-king
 thermo-1: thermo r5c1-r4c2-r3c3-r2c4-r1c5
 thermo-2: thermo r9c5-r8c6-r7c7-r6c8-r5c9
-kropki-1: kropki r6c4-r7c4 colour "black"
-kropki-2: kropki r5c8-r6c8 colour "black"
-kropki-3: kropki r2c3-r2c4 colour "black"
+kropki-1: kropki r6c4-r7c4 black
+kropki-2: kropki r5c8-r6c8 black
+kropki-3: kropki r2c3-r2c4 black
 arrow-1: arrow r5c5-r6c4-r7c4-r8c4-r9c3 bulb ["r4c6"]
 arrow-2: arrow r5c5-r6c4-r6c3-r6c2-r7c1 bulb ["r4c6"]
 arrow-3: arrow r5c5-r5c6-r5c7-r4c8 bulb ["r4c6"]

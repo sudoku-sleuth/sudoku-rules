@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/sparkly-engagement-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 64f94179fc8ddcc20d4531d09b6cea83
 ---
 
 ```rules
 sudoku 9x9
 cage r2c3-r3c3 total 14 connected true
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r4c1-r4c2 colour "white"
-kropki-3: kropki r3c2-r4c2 colour "white"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r4c1-r4c2 white
+kropki-3: kropki r3c2-r4c2 white
 ```
 
 ```drawing

@@ -6,18 +6,19 @@ source: ""
 case: https://sudoku-sleuth.com/cases/drop-anchor-vor-anker-gehen
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dab42b35e2bc06e9dc8bef6ec7f35835
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r6c4 colour "white"
-kropki-2: kropki r6c4-r6c5 colour "white"
-kropki-3: kropki r4c5-r4c6 colour "white"
-kropki-4: kropki r5c5-r5c6 colour "white"
-kropki-5: kropki r4c3-r5c3 colour "white"
-kropki-6: kropki r5c3-r6c3 colour "white"
-kropki-7: kropki r4c3-r4c4 colour "white"
-kropki-8: kropki r6c2-r6c3 colour "white"
+kropki-1: kropki r5c4-r6c4 white
+kropki-2: kropki r6c4-r6c5 white
+kropki-3: kropki r4c5-r4c6 white
+kropki-4: kropki r5c5-r5c6 white
+kropki-5: kropki r4c3-r5c3 white
+kropki-6: kropki r5c3-r6c3 white
+kropki-7: kropki r4c3-r4c4 white
+kropki-8: kropki r6c2-r6c3 white
 palindrome-1: palindrome r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r6c7-r6c8-r5c9-r4c9-r3c8
 palindrome-2: palindrome r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c6-r8c6-r9c5-r9c4-r8c3
 palindrome-3: palindrome r9c2-r9c1-r8c1-r7c1-r6c2-r6c3-r5c3-r4c3

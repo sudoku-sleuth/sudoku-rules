@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vaulted-paths
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c4=2 r7c8=4
+exported: d15b034730b85c9bc65ea01f87d31999
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ipq9ipq3th
 case: https://sudoku-sleuth.com/cases/double-down
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9a63f24005a5604ba5a6764cea08cadd
 ---
 
 ```rules

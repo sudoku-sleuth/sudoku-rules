@@ -6,25 +6,26 @@ source: https://tinyurl.com/thepowerofthelkknights
 case: https://sudoku-sleuth.com/cases/the-power-of-lk-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 75d89637b5d7f194f6ac73842bdcabcb
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r3c1-r4c1 colour "black"
-kropki-2: kropki r1c2-r1c3 colour "black"
-kropki-3: kropki r2c6-r3c6 colour "black"
-kropki-4: kropki r2c7-r3c7 colour "black"
-kropki-5: kropki r7c8-r7c9 colour "black"
-kropki-6: kropki r2c5-r2c6 colour "black"
-kropki-7: kropki r4c5-r5c5 colour "black"
-kropki-8: kropki r9c5-r9c6 colour "black"
-kropki-9: kropki r8c4-r9c4 colour "black"
-kropki-10: kropki r3c7-r4c7 colour "black"
-kropki-11: kropki r3c6-r3c7 colour "black"
-kropki-12: kropki r2c6-r2c7 colour "black"
-kropki-13: kropki r9c3-r9c4 colour "black"
-kropki-14: kropki r6c8-r7c8 colour "black"
+kropki-1: kropki r3c1-r4c1 black
+kropki-2: kropki r1c2-r1c3 black
+kropki-3: kropki r2c6-r3c6 black
+kropki-4: kropki r2c7-r3c7 black
+kropki-5: kropki r7c8-r7c9 black
+kropki-6: kropki r2c5-r2c6 black
+kropki-7: kropki r4c5-r5c5 black
+kropki-8: kropki r9c5-r9c6 black
+kropki-9: kropki r8c4-r9c4 black
+kropki-10: kropki r3c7-r4c7 black
+kropki-11: kropki r3c6-r3c7 black
+kropki-12: kropki r2c6-r2c7 black
+kropki-13: kropki r9c3-r9c4 black
+kropki-14: kropki r6c8-r7c8 black
 pair-1: pair r7c9-r8c9 sum 5
 pair-2: pair r3c7-r3c8 sum 5
 pair-3: pair r1c6-r2c6 sum 5

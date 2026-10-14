@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 19
-    - 21
-    - 22
-    - 23
-    - 25
+    - r3c2
+    - r3c4
+    - r3c5
+    - r3c6
+    - r3c8
 format: open-rules
 title: This FOG is a Spotted Killer GAS
 setter: Meggen033
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 8cd8c8f6d48fe0b3bda78cc1f3d07fde
 ---
 
 ```rules
@@ -146,21 +147,21 @@ cage-5: cage r5c9-r6c9-r7c9 total 12 connected true
 cage-6: cage r6c1-r6c2 total 11 connected true
 cage-7: cage r8c1-r8c2-r8c3 total 9 connected true
 cage-8: cage r7c6-r8c6-r8c7-r9c7 total 24 connected true
-kropki-1: kropki r2c4-r3c4 colour "white"
-kropki-2: kropki r2c6-r3c6 colour "white"
-kropki-3: kropki r4c2-r5c2 colour "white"
-kropki-4: kropki r3c2-r4c2 colour "white"
-kropki-5: kropki r3c8-r4c8 colour "white"
-kropki-6: kropki r2c2-r2c3 colour "white"
-kropki-7: kropki r6c2-r7c2 colour "white"
-kropki-8: kropki r8c4-r9c4 colour "white"
-kropki-9: kropki r7c5-r7c6 colour "white"
-kropki-10: kropki r3c1-r3c2 colour "black"
-kropki-11: kropki r3c8-r3c9 colour "black"
-kropki-12: kropki r4c5-r4c6 colour "black"
-kropki-13: kropki r4c4-r4c5 colour "black"
-kropki-14: kropki r5c3-r5c4 colour "black"
-kropki-15: kropki r5c7-r5c8 colour "black"
+kropki-1: kropki r2c4-r3c4 white
+kropki-2: kropki r2c6-r3c6 white
+kropki-3: kropki r4c2-r5c2 white
+kropki-4: kropki r3c2-r4c2 white
+kropki-5: kropki r3c8-r4c8 white
+kropki-6: kropki r2c2-r2c3 white
+kropki-7: kropki r6c2-r7c2 white
+kropki-8: kropki r8c4-r9c4 white
+kropki-9: kropki r7c5-r7c6 white
+kropki-10: kropki r3c1-r3c2 black
+kropki-11: kropki r3c8-r3c9 black
+kropki-12: kropki r4c5-r4c6 black
+kropki-13: kropki r4c4-r4c5 black
+kropki-14: kropki r5c3-r5c4 black
+kropki-15: kropki r5c7-r5c8 black
 ```
 
 •	Normal Sudoku rules apply. 

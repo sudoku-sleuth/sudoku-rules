@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/take-the-wheel
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=8
+exported: 37d183eb8e609cdf4039ca6fba39523d
 ---
 
 ```rules

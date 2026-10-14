@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/modouble
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=8 r3c3=4 r4c4=3 r6c6=7 r7c7=5 r7c8=7
+exported: cfae49266269e677c0427d35606eaf58
 ---
 
 ```rules

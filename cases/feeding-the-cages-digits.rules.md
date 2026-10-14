@@ -6,6 +6,7 @@ source: https://sudokupad.app/5e0yri41ki
 case: https://sudoku-sleuth.com/cases/feeding-the-cages-digits
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ee81ba9fbbdfc70e749e989b44ddc5c1
 ---
 
 ```rules

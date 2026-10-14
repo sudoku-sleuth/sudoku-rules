@@ -6,6 +6,7 @@ source: https://tinyurl.com/2rkyja8y
 case: https://sudoku-sleuth.com/cases/framed-cross
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9409281f11d938f5da8341adef3726f7
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/not-helpful
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 992f62b32c0224b672d4c0ddcaedba2a
 ---
 
 ```rules
@@ -30,15 +31,15 @@ thermo-7: thermo r4c6-r3c6
 thermo-8: thermo r4c6-r4c7
 thermo-9: thermo r4c6-r5c6
 thermo-10: thermo r4c6-r4c5
-kropki-1: kropki r5c7-r6c7 colour "white"
-kropki-2: kropki r6c2-r6c3 colour "white"
-kropki-3: kropki r9c1-r9c2 colour "white"
-kropki-4: kropki r1c8-r1c9 colour "white"
-kropki-5: kropki r3c1-r3c2 colour "white"
-kropki-6: kropki r5c8-r5c9 colour "white"
-kropki-7: kropki r7c6-r7c7 colour "white"
-kropki-8: kropki r2c8-r2c9 colour "black"
-kropki-9: kropki r6c4-r6c5 colour "black"
+kropki-1: kropki r5c7-r6c7 white
+kropki-2: kropki r6c2-r6c3 white
+kropki-3: kropki r9c1-r9c2 white
+kropki-4: kropki r1c8-r1c9 white
+kropki-5: kropki r3c1-r3c2 white
+kropki-6: kropki r5c8-r5c9 white
+kropki-7: kropki r7c6-r7c7 white
+kropki-8: kropki r2c8-r2c9 black
+kropki-9: kropki r6c4-r6c5 black
 whispers-1: whispers r9c1-r8c2-r7c3-r6c4-r5c5-r4c6-r3c7-r2c8-r1c9 gap 5
 whispers-2: whispers r5c9-r6c9 gap 5
 whispers-3: whispers r9c5-r9c6 gap 5

@@ -6,6 +6,7 @@ source: https://sudokupad.app/q5oivz51z3
 case: https://sudoku-sleuth.com/cases/asking-good-questions
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bda2323e4c049afed7a44d7e7549eaea
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pick-up-sticks-yellow
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f7393dbac7cd5c46dbba2ccf755dc58d
 ---
 
 ```rules

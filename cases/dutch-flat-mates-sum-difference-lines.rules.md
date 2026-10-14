@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-sum-difference-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a133940a6f6e2ed7e3a606368594ddd7
 ---
 
 ```rules

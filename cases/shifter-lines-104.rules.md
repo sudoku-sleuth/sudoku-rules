@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 18
-    - 19
+    - r3c1
+    - r3c2
 format: open-rules
 title: "Shifter Lines 104: Shift your foglights on"
 setter: gUBBLOR and EFlatMinor
@@ -10,21 +10,22 @@ source: ""
 case: https://sudoku-sleuth.com/cases/shifter-lines-104
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fa27b8495b2516b0855587b1943e694f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c1-r3c1 colour "black"
-kropki-2: kropki r3c1-r4c1 colour "black"
-kropki-3: kropki r3c8-r4c8 colour "black"
-kropki-4: kropki r6c9-r7c9 colour "black"
-kropki-5: kropki r2c2-r3c2 colour "black"
-kropki-6: kropki r8c2-r9c2 colour "black"
-kropki-7: kropki r3c2-r3c3 colour "white"
-kropki-8: kropki r1c3-r2c3 colour "white"
-kropki-9: kropki r1c4-r1c5 colour "white"
-kropki-10: kropki r5c8-r6c8 colour "white"
-kropki-11: kropki r6c7-r7c7 colour "white"
+kropki-1: kropki r2c1-r3c1 black
+kropki-2: kropki r3c1-r4c1 black
+kropki-3: kropki r3c8-r4c8 black
+kropki-4: kropki r6c9-r7c9 black
+kropki-5: kropki r2c2-r3c2 black
+kropki-6: kropki r8c2-r9c2 black
+kropki-7: kropki r3c2-r3c3 white
+kropki-8: kropki r1c3-r2c3 white
+kropki-9: kropki r1c4-r1c5 white
+kropki-10: kropki r5c8-r6c8 white
+kropki-11: kropki r6c7-r7c7 white
 shifter-line-1: shifter-line r2c1-r3c1-r4c1
 shifter-line-2: shifter-line r2c5-r2c4-r2c3-r3c4-r3c5
 shifter-line-3: shifter-line r2c7-r3c6-r3c7

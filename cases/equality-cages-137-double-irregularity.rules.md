@@ -102,6 +102,7 @@ board:
       - r9c6
       - r9c7
       - r9c8
+exported: 1970ed2e6359377a93c438b9e01f6847
 ---
 
 ```rules
@@ -143,10 +144,10 @@ equality-cage-8: equality-cage r4c1-r5c1
 equality-cage-9: equality-cage r3c4-r3c5-r3c6-r4c4
 equality-cage-10: equality-cage r6c4-r6c5
 equality-cage-11: equality-cage r5c8-r5c9
-kropki-1: kropki r8c8-r9c8 colour "black"
-kropki-2: kropki r1c6-r1c7 colour "black"
-kropki-3: kropki r1c1-r1c2 colour "white"
-kropki-4: kropki r5c6-r6c6 colour "white"
+kropki-1: kropki r8c8-r9c8 black
+kropki-2: kropki r1c6-r1c7 black
+kropki-3: kropki r1c1-r1c2 white
+kropki-4: kropki r5c6-r6c6 white
 pair-1: pair r3c2-r4c2 sum 10
 pair-2: pair r7c5-r7c6 sum 10
 pair-3: pair r7c1-r7c2 sum 5

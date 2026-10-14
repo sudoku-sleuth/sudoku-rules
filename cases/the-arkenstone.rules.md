@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-arkenstone
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e29717416ccceb4a60e11e8023922f57
 ---
 
 ```rules

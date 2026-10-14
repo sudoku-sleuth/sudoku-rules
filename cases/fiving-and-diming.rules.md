@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fiving-and-diming
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=9 r1c9=8 r3c6=7 r4c7=8 r6c2=6 r6c8=7 r8c4=9 r9c1=6 r9c9=7
+exported: c00fa43a1661d518071dae7e420bc9e7
 ---
 
 ```rules

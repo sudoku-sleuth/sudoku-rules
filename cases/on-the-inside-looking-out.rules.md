@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/on-the-inside-looking-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0712c10bea0dbbfe81163d78fee4bcb3
 ---
 
 ```rules

@@ -6,13 +6,14 @@ source: https://tinyurl.com/powerofthepalindromicknights
 case: https://sudoku-sleuth.com/cases/power-of-palindromic-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8b96d1b61731658d1d7c6c88a932f091
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r5c1-r6c1 colour "white"
-kropki-2: kropki r4c2-r4c3 colour "white"
+kropki-1: kropki r5c1-r6c1 white
+kropki-2: kropki r4c2-r4c3 white
 palindrome-1: palindrome r6c5-r7c4-r8c3
 palindrome-2: palindrome r3c4-r4c3
 palindrome-3: palindrome r6c6-r5c6-r6c7-r5c7

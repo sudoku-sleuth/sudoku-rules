@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/rat-run-21-friendly
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 144d2f76971743cc2a9e8f79000f1ac8
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c3-r9c3 colour "black"
-kropki-2: kropki r5c3-r6c3 colour "black"
-kropki-3: kropki r3c2-r4c2 colour "black"
+kropki-1: kropki r8c3-r9c3 black
+kropki-2: kropki r5c3-r6c3 black
+kropki-3: kropki r3c2-r4c2 black
 ```
 
 ```drawing

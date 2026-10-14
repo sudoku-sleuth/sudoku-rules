@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/prime-directive
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1e752db59748e02a5eb21f67728b45c6
 ---
 
 ```rules
 sudoku 9x9
-kropki r9c6-r9c7 colour "black"
+kropki r9c6-r9c7 black
 parity-cells-1: parity-cells r9c8-r8c4-r7c1-r8c1-r5c3-r5c7-r4c7-r3c8-r3c7-r1c6-r2c1 parity "odd"
 parity-cells-2: parity-cells r1c2-r1c3-r2c4-r2c7-r2c8-r3c5-r3c6-r3c9-r4c1-r4c8-r4c9-r5c4-r5c5-r5c6-r6c1-r6c4-r6c8-r6c9-r7c2-r7c3-r7c6-r7c7-r8c7-r9c3-r9c6-r9c7 parity "even"
 ```

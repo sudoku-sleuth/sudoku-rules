@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-power-of-the-white-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d2c809b135610aaf204efd491b01cd7f
 ---
 
 ```rules
@@ -19,12 +20,12 @@ thermo-4: thermo r4c4-r4c5
 thermo-5: thermo r4c4-r3c4-r2c4
 thermo-6: thermo r4c4-r4c3-r3c3-r2c4
 thermo-7: thermo r2c3-r3c3-r4c2
-kropki-1: kropki r7c2-r8c2 colour "white"
-kropki-2: kropki r9c2-r9c3 colour "white"
-kropki-3: kropki r8c3-r9c3 colour "white"
-kropki-4: kropki r1c3-r2c3 colour "white"
-kropki-5: kropki r4c5-r4c6 colour "white"
-kropki-6: kropki r6c5-r6c6 colour "white"
+kropki-1: kropki r7c2-r8c2 white
+kropki-2: kropki r9c2-r9c3 white
+kropki-3: kropki r8c3-r9c3 white
+kropki-4: kropki r1c3-r2c3 white
+kropki-5: kropki r4c5-r4c6 white
+kropki-6: kropki r6c5-r6c6 white
 ```
 
 ```drawing

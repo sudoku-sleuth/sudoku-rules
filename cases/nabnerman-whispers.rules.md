@@ -6,11 +6,12 @@ source: https://sudokupad.app/j8w8x8m49u
 case: https://sudoku-sleuth.com/cases/nabnerman-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e186180dd50e68d24f4fb3daafa83667
 ---
 
 ```rules
 sudoku 9x9
-kropki r2c5-r2c6 colour "black"
+kropki r2c5-r2c6 black
 whispers-1: whispers r4c2-r3c2-r2c3-r2c4 gap 5
 whispers-2: whispers r7c4-r6c4-r6c5 gap 5
 whispers-3: whispers r4c7-r4c6-r5c6 gap 5

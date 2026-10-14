@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/marked-trail
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=4
+exported: 8d3527d408b2f6e4e400ed0790c9f5e5
 ---
 
 ```rules

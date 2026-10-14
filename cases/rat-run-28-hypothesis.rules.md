@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-28-hypothesis
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5a1f56922b7835dac1c91c9b6e8f92cf
 ---
 
 ```rules

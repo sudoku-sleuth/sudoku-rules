@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/base-15
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e10640e982191a40caabb816f108031e
 ---
 
 ```rules
@@ -28,11 +29,11 @@ cage-15: cage r8c3-r9c3 total 14 connected true
 cage-16: cage r7c2-r8c2 total 10 connected true
 cage-17: cage r8c7-r8c8 total 13 connected true
 cage-18: cage r8c9-r9c9 total 3 connected true
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
-kropki-3: kropki r6c5-r7c5 colour "white"
-kropki-4: kropki r8c3-r8c4 colour "white"
-kropki-5: kropki r1c6-r1c7 colour "white"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c5-r6c5 white
+kropki-3: kropki r6c5-r7c5 white
+kropki-4: kropki r8c3-r8c4 white
+kropki-5: kropki r1c6-r1c7 white
 parity-cells r6c4-r6c6-r6c8-r6c2-r4c8-r4c3-r4c1-r4c2 parity "odd"
 ```
 

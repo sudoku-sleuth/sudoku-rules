@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/rainbow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e6fd2bf32ca72a6a358e79ba63fe6cc9
 ---
 
 ```rules
@@ -29,10 +30,10 @@ cage-16: cage r6c3-r6c4 total 12 connected true
 cage-17: cage r6c6-r6c7 total 8 connected true
 cage-18: cage r7c3-r8c1-r8c2-r8c3 total 24 connected true
 cage-19: cage r7c7-r8c7-r8c8-r8c9 total 14 connected true
-kropki-1: kropki r2c5-r3c5 colour "white"
-kropki-2: kropki r7c5-r8c5 colour "white"
-kropki-3: kropki r6c5-r7c5 colour "white"
-kropki-4: kropki r2c9-r3c9 colour "white"
+kropki-1: kropki r2c5-r3c5 white
+kropki-2: kropki r7c5-r8c5 white
+kropki-3: kropki r6c5-r7c5 white
+kropki-4: kropki r2c9-r3c9 white
 pair r3c1-r4c1 sum 10
 ```
 

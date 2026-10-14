@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/central-tendencies
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r2c6=1 r3c1=5 r4c8=7 r5c3=2 r7c3=3 r7c5=9 r9c7=4
+exported: d332c20f5e1e7a1aed9bd9ae2a91e130
 ---
 
 ```rules

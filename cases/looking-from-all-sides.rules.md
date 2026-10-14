@@ -6,6 +6,7 @@ source: https://sudokupad.app/i0w55kfc1p
 case: https://sudoku-sleuth.com/cases/looking-from-all-sides
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 933a6bff511cf5738a1cbb94539fae6f
 ---
 
 ```rules

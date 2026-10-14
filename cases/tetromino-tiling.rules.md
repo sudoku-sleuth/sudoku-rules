@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tetromino-tiling
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=4
+exported: dae2f160cf65f2a7f05ae1eb6d8398e1
 ---
 
 ```rules

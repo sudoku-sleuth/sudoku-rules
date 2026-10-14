@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/always-13-degrees
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 70f94193f80c46ad6991c76f60ba26ee
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=y3yw8wzg
 case: https://sudoku-sleuth.com/cases/the-path
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5ffc51a4d8d894793f8c3236cf2700ac
 ---
 
 ```rules

@@ -8,14 +8,15 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: 13.....289.......6......................9......................3.......924.....71
+exported: 8e5b10934407851b12b5e4ccf24e03e5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r1c6-r2c6 colour "white"
-kropki-3: kropki r5c8-r5c9 colour "white"
-kropki-4: kropki r8c5-r9c5 colour "white"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r1c6-r2c6 white
+kropki-3: kropki r5c8-r5c9 white
+kropki-4: kropki r8c5-r9c5 white
 whispers-1: whispers r2c4-r2c3-r3c2-r4c2-r5c2 gap 5
 whispers-2: whispers r6c2-r7c2-r8c3-r8c4 gap 5
 whispers-3: whispers r8c6-r8c7-r7c8-r6c8-r5c8 gap 5

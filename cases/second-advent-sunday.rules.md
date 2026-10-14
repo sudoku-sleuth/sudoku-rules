@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 34
-    - 35
-    - 44
-    - 51
-    - 52
-    - 60
+    - r4c8
+    - r4c9
+    - r5c9
+    - r6c7
+    - r6c8
+    - r7c7
 format: open-rules
 title: Second Advent Sunday
 setter: Sandra & Nala
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 7a9edbc7ff1130f0845ad7e2837d82b7
 ---
 
 ```rules
@@ -148,18 +149,18 @@ cage-3: cage r1c5-r2c5-r2c6-r3c6 total 14 connected true
 cage-4: cage r2c2-r3c2-r3c3-r3c4 total 18 connected true
 cage-5: cage r5c2-r5c3-r6c1-r6c2-r7c1 connected true
 cage-6: cage r8c3-r8c4-r9c2-r9c3 total 24 connected true
-kropki-1: kropki r4c8-r5c8 colour "black"
-kropki-2: kropki r2c8-r3c8 colour "black"
-kropki-3: kropki r2c5-r2c6 colour "black"
-kropki-4: kropki r4c3-r5c3 colour "black"
-kropki-5: kropki r5c8-r6c8 colour "white"
-kropki-6: kropki r2c7-r3c7 colour "white"
-kropki-7: kropki r1c4-r2c4 colour "white"
-kropki-8: kropki r2c3-r2c4 colour "white"
-kropki-9: kropki r7c3-r7c4 colour "white"
-kropki-10: kropki r6c5-r7c5 colour "white"
-kropki-11: kropki r7c1-r8c1 colour "white"
-kropki-12: kropki r6c3-r7c3 colour "white"
+kropki-1: kropki r4c8-r5c8 black
+kropki-2: kropki r2c8-r3c8 black
+kropki-3: kropki r2c5-r2c6 black
+kropki-4: kropki r4c3-r5c3 black
+kropki-5: kropki r5c8-r6c8 white
+kropki-6: kropki r2c7-r3c7 white
+kropki-7: kropki r1c4-r2c4 white
+kropki-8: kropki r2c3-r2c4 white
+kropki-9: kropki r7c3-r7c4 white
+kropki-10: kropki r6c5-r7c5 white
+kropki-11: kropki r7c1-r8c1 white
+kropki-12: kropki r6c3-r7c3 white
 parity r4c7-r5c7
 ```
 

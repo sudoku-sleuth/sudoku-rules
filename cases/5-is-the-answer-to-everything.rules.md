@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/5-is-the-answer-to-everything
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0ab3b71bf634b61680ab313bf165af72
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c2-r2c2 colour "white"
-kropki-2: kropki r7c4-r7c5 colour "white"
+kropki-1: kropki r1c2-r2c2 white
+kropki-2: kropki r7c4-r7c5 white
 pair-1: pair r7c1-r8c1 sum 5
 pair-2: pair r6c2-r6c3 sum 5
 pair-3: pair r7c4-r8c4 sum 5

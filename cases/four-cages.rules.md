@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/four-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c7=1 r3c2=7 r7c8=5 r8c3=4
+exported: d9c4dc0b95b1be17e8fd450315f6fcca
 ---
 
 ```rules

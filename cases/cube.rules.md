@@ -6,6 +6,7 @@ source: https://sudokupad.app/4vr9o6icr5
 case: https://sudoku-sleuth.com/cases/cube
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 597a77981e0862d5dc079a54a1d20ed6
 ---
 
 ```rules
@@ -17,9 +18,9 @@ thermo-4: thermo r7c2-r6c2-r5c2-r4c2-r3c2
 thermo-5: thermo r7c2-r8c3-r9c4
 thermo-6: thermo r7c8-r6c8-r5c8-r4c8-r3c8
 thermo-7: thermo r7c8-r8c7-r9c6
-kropki-1: kropki r2c5-r3c5 colour "black"
-kropki-2: kropki r3c5-r4c5 colour "black"
-kropki-3: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r2c5-r3c5 black
+kropki-2: kropki r3c5-r4c5 black
+kropki-3: kropki r8c9-r9c9 black
 region-sum r2c5-r3c4-r4c5-r3c6 segments [["r2c5","r3c4","r3c6"],["r4c5"]]
 ```
 

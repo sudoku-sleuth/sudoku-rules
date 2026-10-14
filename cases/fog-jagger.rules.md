@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fog Jagger
 setter: Meggen033
@@ -17,20 +17,21 @@ source: https://sudokupad.app/jht5duig7b
 case: https://sudoku-sleuth.com/cases/fog-jagger
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 29e171c48926d6d2792dc5dd1b9eb11c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r7c4 colour "white"
-kropki-2: kropki r6c6-r7c6 colour "white"
-kropki-3: kropki r7c9-r8c9 colour "white"
-kropki-4: kropki r3c1-r4c1 colour "white"
-kropki-5: kropki r3c9-r4c9 colour "white"
-kropki-6: kropki r3c5-r4c5 colour "black"
-kropki-7: kropki r7c5-r8c5 colour "black"
-kropki-8: kropki r5c1-r6c1 colour "black"
-kropki-9: kropki r5c9-r6c9 colour "black"
-kropki-10: kropki r1c1-r1c2 colour "black"
+kropki-1: kropki r6c4-r7c4 white
+kropki-2: kropki r6c6-r7c6 white
+kropki-3: kropki r7c9-r8c9 white
+kropki-4: kropki r3c1-r4c1 white
+kropki-5: kropki r3c9-r4c9 white
+kropki-6: kropki r3c5-r4c5 black
+kropki-7: kropki r7c5-r8c5 black
+kropki-8: kropki r5c1-r6c1 black
+kropki-9: kropki r5c9-r6c9 black
+kropki-10: kropki r1c1-r1c2 black
 whispers-1: whispers r6c4-r5c5-r4c6 gap 5
 whispers-2: whispers r4c4-r5c5-r6c6 gap 5
 whispers-3: whispers r3c7-r4c6 gap 5

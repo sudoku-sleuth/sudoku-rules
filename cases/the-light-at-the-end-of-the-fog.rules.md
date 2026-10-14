@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 46
-    - 47
-    - 55
-    - 56
-    - 76
+    - r6c2
+    - r6c3
+    - r7c2
+    - r7c3
+    - r9c5
 format: open-rules
 title: The Light at the End of the Fog
 setter: Chip Sounder
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1a5c502ef43616ce04623fa158e48b55
 ---
 
 ```rules
@@ -145,9 +146,9 @@ cage-4: cage r2c7-r2c8-r2c9 total 12 connected true
 anti-king
 thermo-1: thermo r4c3-r5c4-r6c4-r7c4-r8c5
 thermo-2: thermo r4c5-r5c5-r6c5
-kropki-1: kropki r6c3-r7c3 colour "black"
-kropki-2: kropki r6c7-r6c8 colour "black"
-kropki-3: kropki r4c7-r5c7 colour "black"
+kropki-1: kropki r6c3-r7c3 black
+kropki-2: kropki r6c7-r6c8 black
+kropki-3: kropki r4c7-r5c7 black
 little-killer-1: little-killer r5c1-r6c2-r7c3-r8c4-r9c5 sum 8
 little-killer-2: little-killer r7c1-r8c2-r9c3 sum 10
 little-killer-3: little-killer r4c1-r5c2-r6c3-r7c4-r8c5-r9c6 sum 32

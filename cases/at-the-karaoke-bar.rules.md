@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 2f88be9853c71850bc03755dc488c31d
 ---
 
 ```rules
@@ -19,11 +20,11 @@ cage-4: cage r5c7-r5c8 total 5 connected true
 cage-5: cage r7c6-r7c7 total 5 connected true
 cage-6: cage r8c7-r9c7 total 5 connected true
 cage-7: cage r4c4-r4c5 total 5 connected true
-kropki-1: kropki r1c5-r1c6 colour "white"
-kropki-2: kropki r1c6-r1c7 colour "white"
-kropki-3: kropki r1c7-r2c7 colour "white"
-kropki-4: kropki r9c3-r9c4 colour "white"
-kropki-5: kropki r5c5-r6c5 colour "white"
+kropki-1: kropki r1c5-r1c6 white
+kropki-2: kropki r1c6-r1c7 white
+kropki-3: kropki r1c7-r2c7 white
+kropki-4: kropki r9c3-r9c4 white
+kropki-5: kropki r5c5-r6c5 white
 whispers-1: whispers r9c2-r8c1-r7c1-r7c2-r7c3-r6c2-r5c3-r4c2-r4c3-r4c4-r3c5-r2c6-r2c7-r3c8-r4c9-r5c9-r6c8-r7c7-r8c6-r9c5 gap 4
 whispers-2: whispers r7c5-r7c6-r6c7 gap 4
 whispers-3: whispers r4c4-r5c4-r5c5 gap 4

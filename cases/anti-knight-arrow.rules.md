@@ -6,6 +6,7 @@ source: https://sudokupad.app/2xxgsi4aua
 case: https://sudoku-sleuth.com/cases/anti-knight-arrow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 55fa3e5c35393e22fadada41cafb3887
 ---
 
 ```rules

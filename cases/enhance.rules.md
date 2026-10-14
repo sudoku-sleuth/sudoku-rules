@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/enhance
 case: https://sudoku-sleuth.com/cases/enhance
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4b45ad35591a56b9e69b5b0c30f1cda1
 ---
 
 ```rules

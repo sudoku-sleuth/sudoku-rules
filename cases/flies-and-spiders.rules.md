@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flies-and-spiders
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: dea2af5bdb8bfefab03572165f50ed0a
 ---
 
 ```rules

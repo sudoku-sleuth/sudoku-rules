@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 19
-    - 21
-    - 22
-    - 23
-    - 25
+    - r3c2
+    - r3c4
+    - r3c5
+    - r3c6
+    - r3c8
 format: open-rules
 title: This FOG is a Killer Whisper GAS
 setter: Meggen033
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f56298ec0e4a1fb5f00a70ef17afb832
 ---
 
 ```rules

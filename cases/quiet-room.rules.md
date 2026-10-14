@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/quiet-room
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 60b11b929d74f83564f523d5ebfc4fb1
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c8-r1c9 colour "black"
-kropki-2: kropki r2c6-r2c7 colour "black"
+kropki-1: kropki r1c8-r1c9 black
+kropki-2: kropki r2c6-r2c7 black
 ```
 
 ```drawing

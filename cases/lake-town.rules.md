@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lake-town
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5b8a560789280a643bd7991fb7b604c8
 ---
 
 ```rules

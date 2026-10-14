@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tartan-macgregor
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c4=5 r4c7=2 r6c3=3 r7c6=6
+exported: fc604a0ae7ffc04fddd9be1971515fe8
 ---
 
 ```rules

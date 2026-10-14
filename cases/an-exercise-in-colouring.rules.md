@@ -83,6 +83,7 @@ board:
       - r6c7
       - r7c5
       - r7c6
+exported: f9dfe988a4839600f3af0d176e1d056e
 ---
 
 ```rules
@@ -114,7 +115,7 @@ anti-knight
 anti-king
 thermo-1: thermo r7c2-r8c3
 thermo-2: thermo r7c2-r6c1
-kropki r1c4-r1c5 colour "black"
+kropki r1c4-r1c5 black
 arrow r8c7-r8c6-r8c5 bulb ["r7c7"]
 whispers-1: whispers r4c1-r3c2-r2c3-r1c4 loop false gap 5
 whispers-2: whispers r1c5-r2c6-r3c7-r4c8 loop false gap 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/line-art
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=1 r4c3=6 r8c2=2
+exported: 1a05ef6caf0630cc9ebdfd381f837e03
 ---
 
 ```rules

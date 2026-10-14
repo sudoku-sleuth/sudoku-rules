@@ -6,6 +6,7 @@ source: https://sudokupad.app/e7j2m0ooag
 case: https://sudoku-sleuth.com/cases/whisper-4rrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 509979a3e10260518626cb61e2e66e9d
 ---
 
 ```rules

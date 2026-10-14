@@ -7,32 +7,33 @@ case: https://sudoku-sleuth.com/cases/all-roads-lead-to-blue
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ca0ebc3647f1d5648412e632a4772a07
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c9-r7c9 colour "white"
-kropki-2: kropki r8c6-r9c6 colour "white"
-kropki-3: kropki r7c3-r8c3 colour "white"
-kropki-4: kropki r5c4-r5c5 colour "white"
-kropki-5: kropki r5c5-r6c5 colour "white"
-kropki-6: kropki r4c1-r5c1 colour "white"
-kropki-7: kropki r2c2-r3c2 colour "white"
-kropki-8: kropki r2c1-r2c2 colour "white"
-kropki-9: kropki r1c4-r1c5 colour "white"
-kropki-10: kropki r1c4-r2c4 colour "white"
-kropki-11: kropki r3c7-r4c7 colour "white"
-kropki-12: kropki r3c7-r3c8 colour "white"
-kropki-13: kropki r6c4-r6c5 colour "white"
-kropki-14: kropki r4c7-r4c8 colour "white"
-kropki-15: kropki r5c1-r5c2 colour "white"
-kropki-16: kropki r4c4-r5c4 colour "black"
-kropki-17: kropki r3c4-r4c4 colour "black"
-kropki-18: kropki r5c6-r5c7 colour "black"
-kropki-19: kropki r5c7-r6c7 colour "black"
-kropki-20: kropki r6c7-r6c8 colour "black"
-kropki-21: kropki r8c3-r8c4 colour "black"
-kropki-22: kropki r1c5-r2c5 colour "black"
+kropki-1: kropki r6c9-r7c9 white
+kropki-2: kropki r8c6-r9c6 white
+kropki-3: kropki r7c3-r8c3 white
+kropki-4: kropki r5c4-r5c5 white
+kropki-5: kropki r5c5-r6c5 white
+kropki-6: kropki r4c1-r5c1 white
+kropki-7: kropki r2c2-r3c2 white
+kropki-8: kropki r2c1-r2c2 white
+kropki-9: kropki r1c4-r1c5 white
+kropki-10: kropki r1c4-r2c4 white
+kropki-11: kropki r3c7-r4c7 white
+kropki-12: kropki r3c7-r3c8 white
+kropki-13: kropki r6c4-r6c5 white
+kropki-14: kropki r4c7-r4c8 white
+kropki-15: kropki r5c1-r5c2 white
+kropki-16: kropki r4c4-r5c4 black
+kropki-17: kropki r3c4-r4c4 black
+kropki-18: kropki r5c6-r5c7 black
+kropki-19: kropki r5c7-r6c7 black
+kropki-20: kropki r6c7-r6c8 black
+kropki-21: kropki r8c3-r8c4 black
+kropki-22: kropki r1c5-r2c5 black
 arrow-1: arrow r1c3-r1c2 bulb ["r1c4"]
 arrow-2: arrow r7c2-r7c1 bulb ["r7c3"]
 arrow-3: arrow r3c6-r3c5 bulb ["r3c7"]

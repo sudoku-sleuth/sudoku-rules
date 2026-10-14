@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-x-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 59bb419552367019693a2d286c83b1ee
 ---
 
 ```rules

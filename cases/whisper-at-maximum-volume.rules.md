@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/whisper-at-maximum-volume
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=7
+exported: bc4ca8f428bcf2d6056b1924f069e931
 ---
 
 ```rules

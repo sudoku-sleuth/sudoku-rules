@@ -6,6 +6,7 @@ source: https://sudokupad.app/ajaif8n9xs
 case: https://sudoku-sleuth.com/cases/brembans
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3742239e4dd22a671d7159a8593fc53d
 ---
 
 ```rules

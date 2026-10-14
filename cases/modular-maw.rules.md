@@ -6,6 +6,7 @@ source: https://sudokupad.app/7uogjsirk8
 case: https://sudoku-sleuth.com/cases/modular-maw
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3301e3d26d824999b016b1b2fa08915e
 ---
 
 ```rules

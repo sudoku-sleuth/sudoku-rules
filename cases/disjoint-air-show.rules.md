@@ -6,6 +6,7 @@ source: https://sudokupad.app/zgx830vq61
 case: https://sudoku-sleuth.com/cases/disjoint-air-show
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 26d07c4f453f9edfc89dafcf00e50bf9
 ---
 
 ```rules

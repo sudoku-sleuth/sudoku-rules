@@ -1,17 +1,17 @@
 ---
 fog:
   initiallyLit:
-    - 4
-    - 14
-    - 16
-    - 18
-    - 20
-    - 31
-    - 33
-    - 37
-    - 51
-    - 64
-    - 69
+    - r1c5
+    - r2c6
+    - r2c8
+    - r3c1
+    - r3c3
+    - r4c5
+    - r4c7
+    - r5c2
+    - r6c7
+    - r8c2
+    - r8c7
 format: open-rules
 title: One Knight's Venture
 setter: Meggen033
@@ -114,6 +114,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: bc1d9580ec5de8ff7aee5cda8a5ae634
 ---
 
 ```rules

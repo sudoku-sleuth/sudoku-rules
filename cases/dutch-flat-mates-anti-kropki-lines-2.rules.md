@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-anti-kropki-lines-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 37ada01d9eea78304691f44a70c36af5
 ---
 
 ```rules

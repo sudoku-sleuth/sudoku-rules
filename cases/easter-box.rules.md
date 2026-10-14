@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/easter-box
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=2 r4c9=9 r5c3=6 r5c7=1 r6c6=4 r7c3=3 r9c6=8
+exported: ff91b59ba11bfd6fef5847f3ce6ad9ba
 ---
 
 ```rules

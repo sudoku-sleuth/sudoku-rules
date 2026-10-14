@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/information-trickle
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c3=1
+exported: 01a26798b25dcff398c0ae1d2ff01b9b
 ---
 
 ```rules

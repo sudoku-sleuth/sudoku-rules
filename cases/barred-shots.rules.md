@@ -6,6 +6,7 @@ source: https://sudokupad.app/klq70ge7uh
 case: https://sudoku-sleuth.com/cases/barred-shots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2cc14f67767e802b22f8c13210605fe1
 ---
 
 ```rules

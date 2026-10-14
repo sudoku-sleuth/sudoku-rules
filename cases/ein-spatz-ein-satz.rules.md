@@ -1,18 +1,18 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 2
-    - 20
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r1c1
+    - r1c3
+    - r3c3
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Ein Spatz, ein Satz.
 setter: Sandra & Nala
@@ -23,25 +23,26 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: fa92f7de552524908f6e38bde7249d63
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r1c1-r2c1 colour "black"
-kropki-3: kropki r4c2-r5c2 colour "black"
-kropki-4: kropki r7c2-r8c2 colour "black"
-kropki-5: kropki r5c4-r6c4 colour "black"
-kropki-6: kropki r7c5-r7c6 colour "black"
-kropki-7: kropki r8c7-r8c8 colour "black"
-kropki-8: kropki r1c3-r2c3 colour "white"
-kropki-9: kropki r2c2-r2c3 colour "white"
-kropki-10: kropki r4c1-r4c2 colour "white"
-kropki-11: kropki r6c2-r6c3 colour "white"
-kropki-12: kropki r7c5-r8c5 colour "white"
-kropki-13: kropki r6c7-r6c8 colour "white"
-kropki-14: kropki r4c8-r5c8 colour "white"
-kropki-15: kropki r3c7-r4c7 colour "white"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r1c1-r2c1 black
+kropki-3: kropki r4c2-r5c2 black
+kropki-4: kropki r7c2-r8c2 black
+kropki-5: kropki r5c4-r6c4 black
+kropki-6: kropki r7c5-r7c6 black
+kropki-7: kropki r8c7-r8c8 black
+kropki-8: kropki r1c3-r2c3 white
+kropki-9: kropki r2c2-r2c3 white
+kropki-10: kropki r4c1-r4c2 white
+kropki-11: kropki r6c2-r6c3 white
+kropki-12: kropki r7c5-r8c5 white
+kropki-13: kropki r6c7-r6c8 white
+kropki-14: kropki r4c8-r5c8 white
+kropki-15: kropki r3c7-r4c7 white
 ```
 
 ```drawing

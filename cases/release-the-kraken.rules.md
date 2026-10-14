@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/release-the-kraken
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c5=3
+exported: 86a03c1fde35eef8bd1b6b9c3e259c90
 ---
 
 ```rules

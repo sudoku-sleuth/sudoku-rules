@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 31
-    - 32
+    - r4c5
+    - r4c6
 format: open-rules
 title: This FOG is a GAS!!!
 setter: Meggen033
@@ -105,6 +105,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 85d72af545ed55cb2d0fc2476d84fdea
 ---
 
 ```rules
@@ -150,10 +151,10 @@ cage-12: cage r5c3-r6c3 total 9 connected true
 cage-13: cage r7c5-r8c5 total 8 connected true
 cage-14: cage r7c1-r8c1 total 12 connected true
 cage-15: cage r6c1-r6c2-r7c2 total 10 connected true
-kropki-1: kropki r4c5-r5c5 colour "black"
-kropki-2: kropki r5c5-r6c5 colour "black"
-kropki-3: kropki r5c7-r5c8 colour "black"
-kropki-4: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r4c5-r5c5 black
+kropki-2: kropki r5c5-r6c5 black
+kropki-3: kropki r5c7-r5c8 black
+kropki-4: kropki r3c7-r4c7 black
 negative relations [{"op":"ratio","value":2}] except [["r4c5","r5c5"],["r5c5","r6c5"],["r5c7","r5c8"],["r3c7","r4c7"]] stated true
 ```
 

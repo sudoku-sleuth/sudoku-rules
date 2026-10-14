@@ -6,14 +6,15 @@ source: https://sudokupad.app/qha8395w5s
 case: https://sudoku-sleuth.com/cases/zip-line-tower
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 707e6bd225fe16a4e8033b2aa5d0086d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r2c1 colour "white"
-kropki-2: kropki r5c6-r5c7 colour "white"
-kropki-3: kropki r5c3-r5c4 colour "white"
-kropki-4: kropki r7c9-r8c9 colour "black"
+kropki-1: kropki r1c1-r2c1 white
+kropki-2: kropki r5c6-r5c7 white
+kropki-3: kropki r5c3-r5c4 white
+kropki-4: kropki r7c9-r8c9 black
 zipper-1: zipper r9c2-r9c3-r9c4-r9c5-r9c6-r9c7-r9c8
 zipper-2: zipper r3c4-r3c5-r3c6
 zipper-3: zipper r6c3-r6c4-r6c5-r6c6-r6c7

@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/ten-to-n
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d70ce0a0dd11d243b50756eaaca3d9b5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c8-r4c9 colour "black"
-kropki-2: kropki r3c8-r4c8 colour "black"
-kropki-3: kropki r2c6-r3c6 colour "black"
+kropki-1: kropki r4c8-r4c9 black
+kropki-2: kropki r3c8-r4c8 black
+kropki-3: kropki r2c6-r3c6 black
 ```
 
 ```drawing

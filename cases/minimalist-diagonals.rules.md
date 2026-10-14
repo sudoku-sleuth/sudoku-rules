@@ -6,12 +6,13 @@ source: https://tinyurl.com/ykstjk3r
 case: https://sudoku-sleuth.com/cases/minimalist-diagonals
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 279a7f4ed2b4f52b90749c57c8fb2bc4
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c2-r2c3 colour "white"
-kropki-2: kropki r5c8-r6c8 colour "white"
+kropki-1: kropki r2c2-r2c3 white
+kropki-2: kropki r5c8-r6c8 white
 pair-1: pair r3c2-r3c3 sum 10
 pair-2: pair r9c3-r9c4 sum 10
 pair-3: pair r9c8-r9c9 sum 10

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 54
-    - 55
-    - 56
-    - 63
-    - 64
-    - 65
-    - 72
-    - 73
-    - 74
+    - r7c1
+    - r7c2
+    - r7c3
+    - r8c1
+    - r8c2
+    - r8c3
+    - r9c1
+    - r9c2
+    - r9c3
 format: open-rules
 title: Parity in the fog
 setter: Chip Sounder
@@ -18,6 +18,7 @@ case: https://sudoku-sleuth.com/cases/parity-in-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: efa62cc84d289ed0bd20fb6b98208b3b
 ---
 
 ```rules

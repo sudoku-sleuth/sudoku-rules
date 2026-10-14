@@ -6,6 +6,7 @@ source: https://tinyurl.com/3szsze3e
 case: https://sudoku-sleuth.com/cases/cuatro-cruces
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 39321a6e74bf1d1bf764a94018869cc5
 ---
 
 ```rules

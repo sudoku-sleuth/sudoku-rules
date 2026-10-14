@@ -6,6 +6,7 @@ source: https://sudokupad.app/2ohj1ljgsk
 case: https://sudoku-sleuth.com/cases/whirling-knives
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 341b32f2186ffbcdb78d44bfeb4a3beb
 ---
 
 ```rules

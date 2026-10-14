@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-split-ends
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 207fe12a3a237d3d19fe45edf6ebf532
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/unuyb7h1ip
 case: https://sudoku-sleuth.com/cases/entropic-rows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 067ed692cd751234c8baba67592e8bee
 ---
 
 ```rules

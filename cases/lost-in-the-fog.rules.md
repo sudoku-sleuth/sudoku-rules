@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Lost in the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: c40e85785e51c25a8bcb2379e03aecf1
 ---
 
 ```rules
@@ -147,17 +148,17 @@ cage-2: cage r3c2-r3c3-r3c4 total 9 connected true
 cage-3: cage r7c2-r8c2 total 10 connected true
 cage-4: cage r9c7-r9c8 total 10 connected true
 cage-5: cage r2c2-r2c3 total 12 connected true
-kropki-1: kropki r5c5-r5c6 colour "white"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r6c4-r7c4 colour "white"
-kropki-4: kropki r7c4-r7c5 colour "white"
-kropki-5: kropki r6c6-r7c6 colour "white"
-kropki-6: kropki r8c5-r9c5 colour "white"
-kropki-7: kropki r7c7-r8c7 colour "white"
-kropki-8: kropki r6c7-r6c8 colour "white"
-kropki-9: kropki r5c2-r6c2 colour "white"
-kropki-10: kropki r2c5-r2c6 colour "white"
-kropki-11: kropki r7c5-r7c6 colour "black"
+kropki-1: kropki r5c5-r5c6 white
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r6c4-r7c4 white
+kropki-4: kropki r7c4-r7c5 white
+kropki-5: kropki r6c6-r7c6 white
+kropki-6: kropki r8c5-r9c5 white
+kropki-7: kropki r7c7-r8c7 white
+kropki-8: kropki r6c7-r6c8 white
+kropki-9: kropki r5c2-r6c2 white
+kropki-10: kropki r2c5-r2c6 white
+kropki-11: kropki r7c5-r7c6 black
 arrow-1: arrow r5c5-r5c6 bulb ["r5c4"]
 arrow-2: arrow r5c3-r6c3 bulb ["r4c3"]
 arrow-3: arrow r2c9-r1c8-r2c7 bulb ["r3c9"]

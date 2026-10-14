@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/irish-dots-iii
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6f2a8471998dc4cf38950f32a261aac8
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r8c1-r8c2 colour "white"
-kropki-2: kropki r4c5-r5c5 colour "white"
-kropki-3: kropki r8c3-r8c4 colour "white"
-kropki-4: kropki r3c5-r4c5 colour "white"
-kropki-5: kropki r2c5-r3c5 colour "white"
-kropki-6: kropki r5c5-r5c6 colour "white"
-kropki-7: kropki r5c8-r6c8 colour "white"
-kropki-8: kropki r1c8-r1c9 colour "white"
+kropki-1: kropki r8c1-r8c2 white
+kropki-2: kropki r4c5-r5c5 white
+kropki-3: kropki r8c3-r8c4 white
+kropki-4: kropki r3c5-r4c5 white
+kropki-5: kropki r2c5-r3c5 white
+kropki-6: kropki r5c5-r5c6 white
+kropki-7: kropki r5c8-r6c8 white
+kropki-8: kropki r1c8-r1c9 white
 ```
 
 ```drawing

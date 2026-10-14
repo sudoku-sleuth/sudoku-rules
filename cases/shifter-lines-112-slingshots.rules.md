@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/shifter-lines-112-slingshots
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4edd9ca0d6741da189f4d340f29f887c
 ---
 
 ```rules

@@ -6,16 +6,17 @@ source: https://sudokupad.app/zwpdevn7f4
 case: https://sudoku-sleuth.com/cases/slow-down
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ca03f037193df0fb23fa88155bc5db88
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r7c4 colour "black"
-kropki-2: kropki r3c6-r4c6 colour "black"
-kropki-3: kropki r1c8-r2c8 colour "black"
-kropki-4: kropki r9c7-r9c8 colour "black"
-kropki-5: kropki r7c5-r7c6 colour "black"
-kropki-6: kropki r7c2-r8c2 colour "white"
+kropki-1: kropki r6c4-r7c4 black
+kropki-2: kropki r3c6-r4c6 black
+kropki-3: kropki r1c8-r2c8 black
+kropki-4: kropki r9c7-r9c8 black
+kropki-5: kropki r7c5-r7c6 black
+kropki-6: kropki r7c2-r8c2 white
 slow-thermo-1: slow-thermo r2c2-r3c3-r4c4-r4c5-r4c6-r3c7-r2c8
 slow-thermo-2: slow-thermo r8c2-r7c3-r6c4-r6c5-r6c6-r7c7-r8c8
 slow-thermo-3: slow-thermo r3c6-r2c7-r1c8-r2c9-r3c8-r4c7

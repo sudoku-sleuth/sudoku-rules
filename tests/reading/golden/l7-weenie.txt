@@ -3,7 +3,7 @@ Normal sudoku rules. Each row, column and 3×3 box holds 1 to 9 once.
 Kropki dots. Four white dots: the two digits are consecutive. Two black dots: one digit is double the other.
   Show the 6 dots
     r2c5-r2c6 (white dot) · r5c9-r6c9 (white dot) · r5c6-r6c6 (white dot) · r5c5-r6c5 (white dot) · r6c2-r6c3 (black dot) · r3c5-r3c6 (black dot)
-  Lines: kropki-1: kropki r6c2-r6c3 colour "black" … (6 lines)
+  Lines: kropki-1: kropki r6c2-r6c3 black … (6 lines)
 Shown as written: Entropic
   Lines: entropic-1: entropic r2c3-r2c2-r3c2-r3c3 … (6 lines)
 Shown as written: Modular

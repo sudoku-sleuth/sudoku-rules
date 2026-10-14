@@ -6,6 +6,7 @@ source: https://sudokupad.app/jb2ohuz6l0
 case: https://sudoku-sleuth.com/cases/159-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fb5de7d14642df9c2461821620281118
 ---
 
 ```rules

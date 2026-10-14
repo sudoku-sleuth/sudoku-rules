@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/safecracker
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ef0695da577e557ede7741694dc3eeac
 ---
 
 ```rules

@@ -6,19 +6,20 @@ source: https://sudokupad.app/gr9sme8tfd
 case: https://sudoku-sleuth.com/cases/halfway
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5fcd497205b553f42b3e7b41797ff7fa
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "black"
-kropki-2: kropki r6c4-r6c5 colour "black"
-kropki-3: kropki r2c9-r3c9 colour "black"
-kropki-4: kropki r7c1-r8c1 colour "black"
-kropki-5: kropki r1c3-r1c4 colour "black"
-kropki-6: kropki r1c7-r1c8 colour "black"
-kropki-7: kropki r9c2-r9c3 colour "black"
-kropki-8: kropki r6c5-r7c5 colour "black"
-kropki-9: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r4c4-r4c5 black
+kropki-2: kropki r6c4-r6c5 black
+kropki-3: kropki r2c9-r3c9 black
+kropki-4: kropki r7c1-r8c1 black
+kropki-5: kropki r1c3-r1c4 black
+kropki-6: kropki r1c7-r1c8 black
+kropki-7: kropki r9c2-r9c3 black
+kropki-8: kropki r6c5-r7c5 black
+kropki-9: kropki r3c7-r4c7 black
 arrow-1: arrow r5c3-r6c2-r6c1 bulb ["r4c4"]
 arrow-2: arrow r3c5-r2c4-r1c4 bulb ["r4c6"]
 arrow-3: arrow r5c7-r4c8-r4c9 bulb ["r6c6"]

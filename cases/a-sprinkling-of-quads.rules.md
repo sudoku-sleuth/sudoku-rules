@@ -6,6 +6,7 @@ source: https://sudokupad.app/kjo9ixh6ug
 case: https://sudoku-sleuth.com/cases/a-sprinkling-of-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f5fb0b5ec80431a66cb6cb0d8e5eb5a9
 ---
 
 ```rules

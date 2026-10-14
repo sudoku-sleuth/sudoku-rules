@@ -6,6 +6,7 @@ source: https://sudokupad.app/uv5mp2euer
 case: https://sudoku-sleuth.com/cases/swing-me-daddy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8ef45a7a7ed31072e3c0223551bca7b9
 ---
 
 ```rules
@@ -21,8 +22,8 @@ cage-8: cage r6c1-r7c1 total 15 connected true
 cage-9: cage r6c7-r6c8 total 12 connected true
 cage-10: cage r5c5-r6c5 total 5 connected true
 cage-11: cage r5c6-r6c6 total 5 connected true
-kropki-1: kropki r7c9-r8c9 colour "white"
-kropki-2: kropki r8c7-r9c7 colour "white"
+kropki-1: kropki r7c9-r8c9 white
+kropki-2: kropki r8c7-r9c7 white
 whispers-1: whispers r8c2-r7c3-r6c4 gap 5
 whispers-2: whispers r6c4-r5c5 gap 5
 whispers-3: whispers r6c3-r5c2-r4c3-r5c4 gap 5

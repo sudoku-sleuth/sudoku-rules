@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/neurotic-tranquility
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 50ed110861f6fed1537a0254a62ae85a
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/vlqgrfsgh6
 case: https://sudoku-sleuth.com/cases/in-order-to-succeed
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9aacfabb8b626e295c5aa258d4fa6f29
 ---
 
 ```rules

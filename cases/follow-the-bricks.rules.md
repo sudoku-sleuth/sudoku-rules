@@ -6,6 +6,7 @@ source: https://sudokupad.app/0cw2bl7f29
 case: https://sudoku-sleuth.com/cases/follow-the-bricks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d87af3ae4a225d63cfdfd4a292a8a03d
 ---
 
 ```rules

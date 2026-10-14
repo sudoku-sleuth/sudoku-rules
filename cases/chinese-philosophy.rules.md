@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/chinese-philosophy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8ac21c4afeb60a9c8cf6ce8d8124f557
 ---
 
 ```rules
@@ -18,13 +19,13 @@ equality-cage-4: equality-cage r4c7-r5c7
 equality-cage-5: equality-cage r5c3-r5c4
 equality-cage-6: equality-cage r7c1-r7c2
 equality-cage-7: equality-cage r8c3-r8c4
-kropki-1: kropki r2c2-r2c3 colour "black"
-kropki-2: kropki r1c3-r1c4 colour "black"
-kropki-3: kropki r4c7-r5c7 colour "black"
-kropki-4: kropki r7c7-r8c7 colour "black"
-kropki-5: kropki r5c7-r6c7 colour "white"
-kropki-6: kropki r9c2-r9c3 colour "white"
-kropki-7: kropki r7c5-r8c5 colour "white"
+kropki-1: kropki r2c2-r2c3 black
+kropki-2: kropki r1c3-r1c4 black
+kropki-3: kropki r4c7-r5c7 black
+kropki-4: kropki r7c7-r8c7 black
+kropki-5: kropki r5c7-r6c7 white
+kropki-6: kropki r9c2-r9c3 white
+kropki-7: kropki r7c5-r8c5 white
 pair-1: pair r6c8-r7c8 sum 10
 pair-2: pair r2c3-r3c3 sum 5
 ```

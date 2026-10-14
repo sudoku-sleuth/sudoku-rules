@@ -6,6 +6,7 @@ source: https://sudokupad.app/fr428k48l7
 case: https://sudoku-sleuth.com/cases/disjointages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 089c077bae8498ab35dc97da24bc62b1
 ---
 
 ```rules
@@ -21,15 +22,15 @@ cage-8: cage r3c3-r4c3 total 5 connected true
 cage-9: cage r8c7-r9c7 total 15 connected true
 cage-10: cage r5c4-r6c4 total 15 connected true
 cage-11: cage r5c1-r6c1 total 15 connected true
-kropki-1: kropki r4c9-r5c9 colour "white"
-kropki-2: kropki r1c3-r2c3 colour "white"
-kropki-3: kropki r5c7-r6c7 colour "white"
-kropki-4: kropki r2c4-r3c4 colour "white"
-kropki-5: kropki r8c4-r9c4 colour "white"
-kropki-6: kropki r7c2-r7c3 colour "white"
-kropki-7: kropki r5c2-r5c3 colour "white"
-kropki-8: kropki r3c6-r4c6 colour "black"
-kropki-9: kropki r6c6-r7c6 colour "black"
+kropki-1: kropki r4c9-r5c9 white
+kropki-2: kropki r1c3-r2c3 white
+kropki-3: kropki r5c7-r6c7 white
+kropki-4: kropki r2c4-r3c4 white
+kropki-5: kropki r8c4-r9c4 white
+kropki-6: kropki r7c2-r7c3 white
+kropki-7: kropki r5c2-r5c3 white
+kropki-8: kropki r3c6-r4c6 black
+kropki-9: kropki r6c6-r7c6 black
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

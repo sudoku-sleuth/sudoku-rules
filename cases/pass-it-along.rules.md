@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/pass-it-along
 case: https://sudoku-sleuth.com/cases/pass-it-along
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 65c80147b67c86915927d0bcf69c87a6
 ---
 
 ```rules

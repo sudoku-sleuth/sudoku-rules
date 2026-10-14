@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/barn-dance
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b2a62d6015965154a30013c535fbe09d
 ---
 
 ```rules
@@ -15,19 +16,19 @@ cage-1: cage r1c1-r1c2-r2c1-r2c2 total 14 connected true
 cage-2: cage r8c8-r8c9-r9c8-r9c9 total 14 connected true
 cage-3: cage r1c7-r2c7 total 9 connected true
 cage-4: cage r8c3-r9c3 total 9 connected true
-kropki-1: kropki r8c7-r9c7 colour "white"
-kropki-2: kropki r1c3-r2c3 colour "white"
-kropki-3: kropki r1c5-r2c5 colour "white"
-kropki-4: kropki r5c8-r5c9 colour "white"
-kropki-5: kropki r6c5-r6c6 colour "white"
-kropki-6: kropki r4c2-r5c2 colour "white"
-kropki-7: kropki r6c1-r7c1 colour "white"
-kropki-8: kropki r6c9-r7c9 colour "white"
-kropki-9: kropki r7c1-r7c2 colour "black"
-kropki-10: kropki r3c8-r3c9 colour "black"
-kropki-11: kropki r5c1-r5c2 colour "black"
-kropki-12: kropki r8c5-r9c5 colour "black"
-kropki-13: kropki r4c4-r4c5 colour "black"
+kropki-1: kropki r8c7-r9c7 white
+kropki-2: kropki r1c3-r2c3 white
+kropki-3: kropki r1c5-r2c5 white
+kropki-4: kropki r5c8-r5c9 white
+kropki-5: kropki r6c5-r6c6 white
+kropki-6: kropki r4c2-r5c2 white
+kropki-7: kropki r6c1-r7c1 white
+kropki-8: kropki r6c9-r7c9 white
+kropki-9: kropki r7c1-r7c2 black
+kropki-10: kropki r3c8-r3c9 black
+kropki-11: kropki r5c1-r5c2 black
+kropki-12: kropki r8c5-r9c5 black
+kropki-13: kropki r4c4-r4c5 black
 arrow-1: arrow r5c3-r4c3-r3c3-r3c4 bulb ["r6c3"]
 arrow-2: arrow r5c7-r6c7-r7c7-r7c6 bulb ["r4c7"]
 arrow-3: arrow r7c4-r7c5-r7c6 bulb ["r7c3"]

@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 40
+    - r5c5
 format: open-rules
 title: Leidenfog
 setter: FullDeck and Missing a Few Cards
@@ -9,20 +9,21 @@ source: https://sudokupad.app/710vjy4vuv
 case: https://sudoku-sleuth.com/cases/leidenfog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dd14ba86862fefdd43681acd2e3e2e91
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r5c2-r5c3 colour "white"
-kropki-3: kropki r3c4-r3c5 colour "white"
-kropki-4: kropki r7c4-r8c4 colour "white"
-kropki-5: kropki r7c7-r8c7 colour "white"
-kropki-6: kropki r5c5-r5c6 colour "black"
-kropki-7: kropki r5c5-r6c5 colour "black"
-kropki-8: kropki r8c5-r9c5 colour "black"
-kropki-9: kropki r3c5-r3c6 colour "black"
-kropki-10: kropki r6c3-r7c3 colour "black"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r5c2-r5c3 white
+kropki-3: kropki r3c4-r3c5 white
+kropki-4: kropki r7c4-r8c4 white
+kropki-5: kropki r7c7-r8c7 white
+kropki-6: kropki r5c5-r5c6 black
+kropki-7: kropki r5c5-r6c5 black
+kropki-8: kropki r8c5-r9c5 black
+kropki-9: kropki r3c5-r3c6 black
+kropki-10: kropki r6c3-r7c3 black
 whispers-1: whispers r5c4-r5c5-r5c6 gap 4
 whispers-2: whispers r3c5-r4c4-r5c3-r6c4-r7c5-r6c6-r5c7-r4c6 gap 4
 whispers-3: whispers r2c5-r3c5 gap 4

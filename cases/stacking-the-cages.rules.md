@@ -6,6 +6,7 @@ source: https://sudokupad.app/mt1fim68m8
 case: https://sudoku-sleuth.com/cases/stacking-the-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4806b5865c8f53d14ac4e719c22055a8
 ---
 
 ```rules

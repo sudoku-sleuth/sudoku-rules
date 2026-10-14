@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-circles-of-power
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f42c34bc1a37584f9b123d775553e712
 ---
 
 ```rules

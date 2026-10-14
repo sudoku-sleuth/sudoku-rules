@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/killer-eights
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=8 r9c4=8
+exported: ec4ff2571383dca1f9289d0fb3fabd7c
 ---
 
 ```rules

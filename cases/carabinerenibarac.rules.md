@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/carabinerenibarac
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r9c1=4
+exported: 6b5cc5be1ad4e7e8137a5ce80ae33925
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/gpk5jlsjpa
 case: https://sudoku-sleuth.com/cases/a-pushy-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d9cd18a2e953d0449c2f09530d7ce5e5
 ---
 
 ```rules

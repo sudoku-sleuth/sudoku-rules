@@ -7,27 +7,28 @@ case: https://sudoku-sleuth.com/cases/physics-is-fun
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=9 r1c8=8 r1c9=1
+exported: 76ced874a441f465e268d562dc8cac1e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c3-r4c4 colour "white"
-kropki-2: kropki r8c6-r8c7 colour "white"
-kropki-3: kropki r2c6-r2c7 colour "white"
-kropki-4: kropki r5c6-r5c7 colour "white"
-kropki-5: kropki r4c5-r5c5 colour "white"
-kropki-6: kropki r7c3-r7c4 colour "white"
-kropki-7: kropki r6c6-r7c6 colour "white"
-kropki-8: kropki r7c6-r7c7 colour "white"
-kropki-9: kropki r8c1-r9c1 colour "white"
-kropki-10: kropki r7c1-r8c1 colour "white"
-kropki-11: kropki r8c3-r9c3 colour "white"
-kropki-12: kropki r3c9-r4c9 colour "white"
-kropki-13: kropki r1c6-r1c7 colour "black"
-kropki-14: kropki r9c6-r9c7 colour "black"
-kropki-15: kropki r7c7-r8c7 colour "black"
-kropki-16: kropki r6c7-r7c7 colour "black"
-kropki-17: kropki r5c2-r6c2 colour "black"
+kropki-1: kropki r4c3-r4c4 white
+kropki-2: kropki r8c6-r8c7 white
+kropki-3: kropki r2c6-r2c7 white
+kropki-4: kropki r5c6-r5c7 white
+kropki-5: kropki r4c5-r5c5 white
+kropki-6: kropki r7c3-r7c4 white
+kropki-7: kropki r6c6-r7c6 white
+kropki-8: kropki r7c6-r7c7 white
+kropki-9: kropki r8c1-r9c1 white
+kropki-10: kropki r7c1-r8c1 white
+kropki-11: kropki r8c3-r9c3 white
+kropki-12: kropki r3c9-r4c9 white
+kropki-13: kropki r1c6-r1c7 black
+kropki-14: kropki r9c6-r9c7 black
+kropki-15: kropki r7c7-r8c7 black
+kropki-16: kropki r6c7-r7c7 black
+kropki-17: kropki r5c2-r6c2 black
 whispers-1: whispers r6c1-r5c1-r4c1-r3c1-r2c1-r2c2-r2c3 gap 5
 whispers-2: whispers r4c3-r4c2-r4c1 gap 5
 whispers-3: whispers r4c4-r4c5 gap 5

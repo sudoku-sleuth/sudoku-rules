@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/shazam
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5ae4a81ce728f974a412e30a2ea27387
 ---
 
 ```rules

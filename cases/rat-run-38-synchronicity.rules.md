@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/rat-run-38-synchronicity
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 32f0604129b41b19917530e822fc1e8c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c4-r2c5 colour "black"
-kropki-2: kropki r3c4-r4c4 colour "black"
+kropki-1: kropki r2c4-r2c5 black
+kropki-2: kropki r3c4-r4c4 black
 ```
 
 ```drawing

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/blobz-does-oil-and-water
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c4=7
+exported: 2d0571c25b942e2032c5d303cb69b879
 ---
 
 ```rules

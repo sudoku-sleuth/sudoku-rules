@@ -6,6 +6,7 @@ source: https://sudokupad.app/d16ztnxtb6
 case: https://sudoku-sleuth.com/cases/slither-up
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a573fccf9563ecb47b11232277b328ea
 ---
 
 ```rules

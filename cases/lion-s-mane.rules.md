@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lion-s-mane
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7839890d2674c386280d86a25ba6b154
 ---
 
 ```rules

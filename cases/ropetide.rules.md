@@ -6,6 +6,7 @@ source: https://sudokupad.app/kkdcb4rrku
 case: https://sudoku-sleuth.com/cases/ropetide
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5d63149611f3cc61f3ed1c1ae341c1d0
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/whisper-my-little-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=5 r1c9=2 r4c6=2 r6c6=6 r8c9=7 r9c1=5
+exported: 239092a3b54cfd789d0dd0ca5e88ab93
 ---
 
 ```rules

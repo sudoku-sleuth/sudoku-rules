@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Dime Line through the Fog
 setter: Meggen033
@@ -18,22 +18,23 @@ case: https://sudoku-sleuth.com/cases/dime-line-through-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: aa7409d2e4e07dfe052dce4766656ca5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r1c3-r1c4 colour "white"
-kropki-3: kropki r4c2-r4c3 colour "white"
-kropki-4: kropki r1c5-r2c5 colour "white"
-kropki-5: kropki r3c5-r3c6 colour "white"
-kropki-6: kropki r8c8-r9c8 colour "white"
-kropki-7: kropki r7c6-r7c7 colour "white"
-kropki-8: kropki r6c4-r7c4 colour "white"
-kropki-9: kropki r3c2-r3c3 colour "black"
-kropki-10: kropki r2c3-r3c3 colour "black"
-kropki-11: kropki r3c9-r4c9 colour "black"
-kropki-12: kropki r6c8-r7c8 colour "black"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r1c3-r1c4 white
+kropki-3: kropki r4c2-r4c3 white
+kropki-4: kropki r1c5-r2c5 white
+kropki-5: kropki r3c5-r3c6 white
+kropki-6: kropki r8c8-r9c8 white
+kropki-7: kropki r7c6-r7c7 white
+kropki-8: kropki r6c4-r7c4 white
+kropki-9: kropki r3c2-r3c3 black
+kropki-10: kropki r2c3-r3c3 black
+kropki-11: kropki r3c9-r4c9 black
+kropki-12: kropki r6c8-r7c8 black
 ```
 
 ```drawing

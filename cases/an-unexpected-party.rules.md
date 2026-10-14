@@ -1,27 +1,27 @@
 ---
 fog:
   initiallyLit:
-    - 21
-    - 22
-    - 23
-    - 29
-    - 30
-    - 31
-    - 32
-    - 33
-    - 38
-    - 39
-    - 40
-    - 41
-    - 42
-    - 47
-    - 48
-    - 49
-    - 50
-    - 51
-    - 57
-    - 58
-    - 59
+    - r3c4
+    - r3c5
+    - r3c6
+    - r4c3
+    - r4c4
+    - r4c5
+    - r4c6
+    - r4c7
+    - r5c3
+    - r5c4
+    - r5c5
+    - r5c6
+    - r5c7
+    - r6c3
+    - r6c4
+    - r6c5
+    - r6c6
+    - r6c7
+    - r7c4
+    - r7c5
+    - r7c6
 format: open-rules
 title: An Unexpected Party
 setter: Blobz
@@ -126,6 +126,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 0fe1428c9ff75f4864aa4f8b61bf1033
 ---
 
 ```rules

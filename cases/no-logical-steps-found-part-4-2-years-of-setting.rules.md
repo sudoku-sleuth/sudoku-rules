@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r6c2=4 r6c8=5 r8c2=8 r8c8=7
+exported: 306e78b98feb9e1c8358b513aeece7a2
 ---
 
 ```rules
@@ -20,11 +21,11 @@ cage-5: cage r1c7-r2c7 total 9 connected true
 cage-6: cage r3c7-r4c7 total 9 connected true
 cage-7: cage r6c9-r7c9-r8c9 total 15 connected true
 cage-8: cage r3c3-r4c3-r5c3 total 15 connected true
-kropki-1: kropki r9c4-r9c5 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r2c7-r3c7 colour "black"
-kropki-4: kropki r2c1-r3c1 colour "black"
-kropki-5: kropki r4c6-r5c6 colour "black"
+kropki-1: kropki r9c4-r9c5 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r2c7-r3c7 black
+kropki-4: kropki r2c1-r3c1 black
+kropki-5: kropki r4c6-r5c6 black
 little-killer-1: little-killer r4c1-r5c2-r6c3-r7c4-r8c5-r9c6 sum 30
 little-killer-2: little-killer r1c4-r2c5-r3c6-r4c7-r5c8-r6c9 sum 30
 ```

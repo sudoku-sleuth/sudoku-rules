@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-knight-s-rulebook
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d64936cf710b6dec38c5d74628ed0690
 ---
 
 ```rules
@@ -15,8 +16,8 @@ cage r5c6-r5c7 total 11 connected true
 anti-knight
 diagonal direction "anti"
 thermo r1c7-r1c6-r1c5-r1c4-r1c3-r1c2
-kropki-1: kropki r2c2-r3c2 colour "white"
-kropki-2: kropki r8c4-r8c5 colour "black"
+kropki-1: kropki r2c2-r3c2 white
+kropki-2: kropki r8c4-r8c5 black
 arrow r6c6 bulb ["r7c5"]
 palindrome r8c5-r8c4-r7c5-r6c4-r5c3-r4c2-r3c2-r2c2
 between r3c3-r4c2-r4c3-r4c4-r3c5 ends ["r2c3","r2c5"]

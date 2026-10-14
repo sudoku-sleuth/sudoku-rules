@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/g-a-s-compression
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ..6.......2...9..1..........9....5.....4............8.............9.7.1.4........
+exported: 6398bfacddfb814ea1cf1d3b2596560a
 ---
 
 ```rules

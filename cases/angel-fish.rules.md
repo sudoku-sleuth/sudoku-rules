@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/angel-fish
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=7
+exported: 4c6179a26e76c60b5f81d9a3bfff92f2
 ---
 
 ```rules

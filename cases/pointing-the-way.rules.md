@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pointing-the-way
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=6 r6c7=2 r7c6=8 r8c2=7 r9c9=3
+exported: d480cbf5fb9fde88b8654763eb173b56
 ---
 
 ```rules

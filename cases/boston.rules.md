@@ -6,6 +6,7 @@ source: https://sudokupad.app/ywk15epckl
 case: https://sudoku-sleuth.com/cases/boston
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7f94568228a14345c35dc90ed6ca0757
 ---
 
 ```rules
@@ -25,9 +26,9 @@ cage-12: cage r3c9-r4c9 total 9 connected true
 cage-13: cage r6c1-r7c1 total 13 connected true
 cage-14: cage r3c1-r4c1 total 16 connected true
 cage-15: cage r1c3-r1c4 total 14 connected true
-kropki-1: kropki r6c2-r7c2 colour "black"
-kropki-2: kropki r4c4-r4c5 colour "black"
-kropki-3: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r6c2-r7c2 black
+kropki-2: kropki r4c4-r4c5 black
+kropki-3: kropki r5c9-r6c9 black
 ```
 
 **Sudoku, Cages, Ratio Pairs**

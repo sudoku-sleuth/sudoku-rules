@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/be-vewy-vewy-quiet
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: de9b05a74f157227828790adfd062c00
 ---
 
 ```rules
@@ -17,12 +18,12 @@ cage-3: cage r1c4-r1c5 total 10 connected true
 cage-4: cage r7c4-r8c4 total 11 connected true
 cage-5: cage r5c8-r5c9 total 11 connected true
 cage-6: cage r6c6-r6c7-r7c6 connected true
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r5c3-r5c4 colour "white"
-kropki-3: kropki r5c4-r5c5 colour "white"
-kropki-4: kropki r7c1-r8c1 colour "white"
-kropki-5: kropki r2c5-r2c6 colour "white"
-kropki-6: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r5c3-r5c4 white
+kropki-3: kropki r5c4-r5c5 white
+kropki-4: kropki r7c1-r8c1 white
+kropki-5: kropki r2c5-r2c6 white
+kropki-6: kropki r4c4-r5c4 black
 pair r4c2-r5c2 sum 5
 negative relations [{"op":"sum","value":5}] except [["r4c2","r5c2"],["r5c2","r5c3"],["r5c3","r5c4"],["r5c4","r5c5"],["r7c1","r8c1"],["r2c5","r2c6"],["r4c4","r5c4"]]
 little-killer-1: little-killer r1c5-r2c4-r3c3-r4c2-r5c1 sum 25

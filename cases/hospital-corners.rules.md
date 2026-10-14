@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hospital-corners
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c8=1 r5c4=3 r8c6=7
+exported: b2dd52687703a6a14e6261fd1a55741d
 ---
 
 ```rules

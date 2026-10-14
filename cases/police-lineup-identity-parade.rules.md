@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/police-lineup-identity-parade
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 54bc100d39d96313b914c256ae38bc50
 ---
 
 ```rules

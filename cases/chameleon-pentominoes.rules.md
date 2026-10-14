@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/chameleon-pentominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d5b0dcbf849a8c630676257f414ae5cf
 ---
 
 ```rules
@@ -27,24 +28,24 @@ cage-13: cage r5c3-r6c3-r6c4-r7c4-r8c4 total 25 connected true
 cage-14: cage r5c2-r6c2-r7c1-r7c2-r8c1 total 25 connected true
 cage-15: cage r7c3-r8c2-r8c3-r9c1-r9c2 total 25 connected true
 cage-16: cage r6c9-r7c8-r7c9-r8c9-r9c9 total 25 connected true
-kropki-1: kropki r1c2-r2c2 colour "white"
-kropki-2: kropki r1c4-r2c4 colour "white"
-kropki-3: kropki r4c8-r5c8 colour "white"
-kropki-4: kropki r6c5-r7c5 colour "white"
-kropki-5: kropki r3c4-r4c4 colour "white"
-kropki-6: kropki r4c2-r4c3 colour "white"
-kropki-7: kropki r3c1-r3c2 colour "white"
-kropki-8: kropki r6c2-r7c2 colour "white"
-kropki-9: kropki r9c1-r9c2 colour "white"
-kropki-10: kropki r7c6-r7c7 colour "white"
-kropki-11: kropki r4c5-r4c6 colour "white"
-kropki-12: kropki r1c1-r2c1 colour "black"
-kropki-13: kropki r2c3-r3c3 colour "black"
-kropki-14: kropki r2c6-r3c6 colour "black"
-kropki-15: kropki r1c8-r1c9 colour "black"
-kropki-16: kropki r4c1-r5c1 colour "black"
-kropki-17: kropki r7c1-r7c2 colour "black"
-kropki-18: kropki r7c6-r8c6 colour "black"
+kropki-1: kropki r1c2-r2c2 white
+kropki-2: kropki r1c4-r2c4 white
+kropki-3: kropki r4c8-r5c8 white
+kropki-4: kropki r6c5-r7c5 white
+kropki-5: kropki r3c4-r4c4 white
+kropki-6: kropki r4c2-r4c3 white
+kropki-7: kropki r3c1-r3c2 white
+kropki-8: kropki r6c2-r7c2 white
+kropki-9: kropki r9c1-r9c2 white
+kropki-10: kropki r7c6-r7c7 white
+kropki-11: kropki r4c5-r4c6 white
+kropki-12: kropki r1c1-r2c1 black
+kropki-13: kropki r2c3-r3c3 black
+kropki-14: kropki r2c6-r3c6 black
+kropki-15: kropki r1c8-r1c9 black
+kropki-16: kropki r4c1-r5c1 black
+kropki-17: kropki r7c1-r7c2 black
+kropki-18: kropki r7c6-r8c6 black
 little-killer-1: little-killer r1c7-r2c8-r3c9 sum 8
 little-killer-2: little-killer r1c6-r2c7-r3c8-r4c9 sum 15
 little-killer-3: little-killer r1c8-r2c9 sum 17

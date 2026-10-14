@@ -6,6 +6,7 @@ source: https://sudokupad.app/mjh4odd01g
 case: https://sudoku-sleuth.com/cases/relax-in-the-sauna
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ed61f0b151ae000604e1629a3cd1dbfc
 ---
 
 ```rules

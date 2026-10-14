@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-pad
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=6 r3c9=8 r4c1=2 r6c9=5 r9c3=3 r9c6=9
+exported: 730973ade88221b0014e98e68b58762c
 ---
 
 ```rules

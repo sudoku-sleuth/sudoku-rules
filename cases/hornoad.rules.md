@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hornoad
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c2=4 r9c9=1
+exported: 83bea4cc1da4c09f2768ac50e4c1a009
 ---
 
 ```rules

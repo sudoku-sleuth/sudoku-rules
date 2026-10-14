@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/rat-run-31-equivalence
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b656399596908c415085c9a2ba3a3fdc
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "black"
-kropki-2: kropki r4c7-r4c8 colour "black"
-kropki-3: kropki r4c8-r5c8 colour "black"
-kropki-4: kropki r7c3-r7c4 colour "black"
-kropki-5: kropki r7c8-r7c9 colour "black"
-kropki-6: kropki r6c1-r6c2 colour "black"
+kropki-1: kropki r3c2-r3c3 black
+kropki-2: kropki r4c7-r4c8 black
+kropki-3: kropki r4c8-r5c8 black
+kropki-4: kropki r7c3-r7c4 black
+kropki-5: kropki r7c8-r7c9 black
+kropki-6: kropki r6c1-r6c2 black
 ```
 
 ```drawing

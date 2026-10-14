@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/kill-dis
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e4761dc31b3ec750aacba01e47e80aa8
 ---
 
 ```rules

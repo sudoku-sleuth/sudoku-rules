@@ -6,6 +6,7 @@ source: https://sudokupad.app/yaq8d21wlm
 case: https://sudoku-sleuth.com/cases/sprinkles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 51af11e43cf5676181032eea7ad48581
 ---
 
 ```rules

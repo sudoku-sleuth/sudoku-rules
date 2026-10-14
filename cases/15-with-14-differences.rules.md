@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/15-with-14-differences
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=1 r2c5=2 r2c8=3 r5c2=4 r5c5=5 r5c8=6 r8c2=7 r8c5=8 r8c8=9
+exported: 84ef43d181633a57d898bdc7f5093b51
 ---
 
 ```rules
@@ -27,20 +28,20 @@ cage-13: cage r6c4-r7c4-r7c5 total 15 connected true
 cage-14: cage r4c3-r4c4-r5c3 total 15 connected true
 cage-15: cage r3c5-r3c6-r4c6 total 15 connected true
 cage-16: cage r5c7-r6c6-r6c7 total 15 connected true
-kropki-1: kropki r1c5-r2c5 colour "white"
-kropki-2: kropki r8c5-r9c5 colour "white"
-kropki-3: kropki r8c8-r9c8 colour "white"
-kropki-4: kropki r1c2-r2c2 colour "white"
-kropki-5: kropki r8c2-r8c3 colour "white"
-kropki-6: kropki r2c7-r2c8 colour "white"
-kropki-7: kropki r6c1-r7c1 colour "white"
-kropki-8: kropki r3c9-r4c9 colour "white"
-kropki-9: kropki r4c3-r4c4 colour "white"
-kropki-10: kropki r6c6-r6c7 colour "white"
-kropki-11: kropki r8c6-r8c7 colour "white"
-kropki-12: kropki r2c3-r2c4 colour "white"
-kropki-13: kropki r1c7-r2c7 colour "white"
-kropki-14: kropki r8c3-r9c3 colour "white"
+kropki-1: kropki r1c5-r2c5 white
+kropki-2: kropki r8c5-r9c5 white
+kropki-3: kropki r8c8-r9c8 white
+kropki-4: kropki r1c2-r2c2 white
+kropki-5: kropki r8c2-r8c3 white
+kropki-6: kropki r2c7-r2c8 white
+kropki-7: kropki r6c1-r7c1 white
+kropki-8: kropki r3c9-r4c9 white
+kropki-9: kropki r4c3-r4c4 white
+kropki-10: kropki r6c6-r6c7 white
+kropki-11: kropki r8c6-r8c7 white
+kropki-12: kropki r2c3-r2c4 white
+kropki-13: kropki r1c7-r2c7 white
+kropki-14: kropki r8c3-r9c3 white
 ```
 
 - Normal sudoku rules apply.

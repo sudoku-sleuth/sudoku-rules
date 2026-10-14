@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 37347ec8f43d051517a75a568bf488b1
 ---
 
 ```rules
@@ -132,13 +133,13 @@ unique-24: unique r4c7-r4c8-r4c9-r5c7-r5c8-r5c9-r6c7-r6c8-r6c9
 unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
 unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
-kropki-1: kropki r3c6-r3c7 colour "black"
-kropki-2: kropki r7c3-r8c3 colour "black"
-kropki-3: kropki r6c1-r7c1 colour "black"
-kropki-4: kropki r4c8-r5c8 colour "black"
-kropki-5: kropki r8c4-r9c4 colour "black"
-kropki-6: kropki r1c4-r1c5 colour "black"
-kropki-7: kropki r3c5-r3c6 colour "black"
+kropki-1: kropki r3c6-r3c7 black
+kropki-2: kropki r7c3-r8c3 black
+kropki-3: kropki r6c1-r7c1 black
+kropki-4: kropki r4c8-r5c8 black
+kropki-5: kropki r8c4-r9c4 black
+kropki-6: kropki r1c4-r1c5 black
+kropki-7: kropki r3c5-r3c6 black
 arrow-1: arrow r2c4-r3c3-r4c4-r5c3-r6c4-r7c3 bulb ["r1c3"]
 arrow-2: arrow r8c6-r7c7-r6c6-r5c7-r4c6-r3c7 bulb ["r9c7"]
 arrow-3: arrow r2c7-r3c6 bulb ["r1c6"]

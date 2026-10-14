@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/lazer-maze
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e1f682624f8a097e2214d3feeba99109
 ---
 
 ```rules

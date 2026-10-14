@@ -6,6 +6,7 @@ source: https://sudokupad.app/onv29nsceq
 case: https://sudoku-sleuth.com/cases/xv-circles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 34dd66cc1004c4c51832976d1177079c
 ---
 
 ```rules

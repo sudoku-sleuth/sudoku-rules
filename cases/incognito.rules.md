@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/incognito
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 495c8fdafd0e3dcb45a5535b8c04b044
 ---
 
 ```rules

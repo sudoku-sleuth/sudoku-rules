@@ -6,23 +6,24 @@ source: https://sudokupad.app/gps5i2lq1x
 case: https://sudoku-sleuth.com/cases/bone-gift-for-fido-max-mao-mao
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 985e5c12de420aa0f86be9f3ae44a9d0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c5-r5c6 colour "white"
-kropki-3: kropki r5c6-r6c6 colour "white"
-kropki-4: kropki r4c4-r4c5 colour "white"
-kropki-5: kropki r3c3-r4c3 colour "white"
-kropki-6: kropki r5c1-r6c1 colour "white"
-kropki-7: kropki r4c3-r4c4 colour "black"
-kropki-8: kropki r3c1-r3c2 colour "black"
-kropki-9: kropki r2c1-r2c2 colour "black"
-kropki-10: kropki r1c3-r2c3 colour "black"
-kropki-11: kropki r8c7-r9c7 colour "black"
-kropki-12: kropki r8c8-r9c8 colour "black"
-kropki-13: kropki r7c8-r7c9 colour "black"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c5-r5c6 white
+kropki-3: kropki r5c6-r6c6 white
+kropki-4: kropki r4c4-r4c5 white
+kropki-5: kropki r3c3-r4c3 white
+kropki-6: kropki r5c1-r6c1 white
+kropki-7: kropki r4c3-r4c4 black
+kropki-8: kropki r3c1-r3c2 black
+kropki-9: kropki r2c1-r2c2 black
+kropki-10: kropki r1c3-r2c3 black
+kropki-11: kropki r8c7-r9c7 black
+kropki-12: kropki r8c8-r9c8 black
+kropki-13: kropki r7c8-r7c9 black
 whispers-1: whispers r4c5-r3c5-r2c5-r2c6-r3c6 gap 4
 whispers-2: whispers r3c6-r4c5 gap 4
 whispers-3: whispers r5c6-r4c7-r4c8-r5c8-r5c7 gap 4

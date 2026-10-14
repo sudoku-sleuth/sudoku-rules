@@ -6,6 +6,7 @@ source: https://sudokupad.app/5u192wsyuy
 case: https://sudoku-sleuth.com/cases/scirocco
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8cb0fa671df1234b8f046654d545d97f
 ---
 
 ```rules

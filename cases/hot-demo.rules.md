@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/hot-demo
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 970b0323c1ae508211b1752b6ea46a23
 ---
 
 ```rules
@@ -18,12 +19,12 @@ thermo-5: thermo r9c1-r9c2-r9c3
 thermo-6: thermo r9c1-r8c1-r7c1
 thermo-7: thermo r1c8-r1c7
 thermo-8: thermo r1c8-r1c9-r2c9-r3c9
-kropki-1: kropki r5c6-r5c7 colour "white"
-kropki-2: kropki r7c2-r7c3 colour "white"
-kropki-3: kropki r3c7-r3c8 colour "white"
-kropki-4: kropki r1c3-r2c3 colour "white"
-kropki-5: kropki r8c7-r9c7 colour "white"
-kropki-6: kropki r5c3-r5c4 colour "black"
+kropki-1: kropki r5c6-r5c7 white
+kropki-2: kropki r7c2-r7c3 white
+kropki-3: kropki r3c7-r3c8 white
+kropki-4: kropki r1c3-r2c3 white
+kropki-5: kropki r8c7-r9c7 white
+kropki-6: kropki r5c3-r5c4 black
 ```
 
 Normal sudoku rules apply: every row, column, and box must include a complete set of the digits 1-9 without repetition.

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/turnip-court
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c6=2 r6c8=1 r8c4=9
+exported: 26c7e177dfe94e51e1b6e3d417b803e6
 ---
 
 ```rules

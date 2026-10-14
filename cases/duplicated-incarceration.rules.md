@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/duplicated-incarceration
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e1161d1b33af97ef9bd1d6e607d59bb7
 ---
 
 ```rules
@@ -23,16 +24,16 @@ cage-10: cage r8c1-r8c2 total 7 connected true
 cage-11: cage r7c4-r8c4 total 9 connected true
 cage-12: cage r7c6-r8c6 total 9 connected true
 cage-13: cage r8c5-r9c5 total 13 connected true
-kropki-1: kropki r2c1-r2c2 colour "white"
-kropki-2: kropki r1c5-r2c5 colour "black"
-kropki-3: kropki r3c3-r3c4 colour "black"
-kropki-4: kropki r3c6-r3c7 colour "black"
-kropki-5: kropki r4c6-r5c6 colour "black"
-kropki-6: kropki r4c8-r4c9 colour "black"
-kropki-7: kropki r5c3-r6c3 colour "black"
-kropki-8: kropki r6c1-r7c1 colour "black"
-kropki-9: kropki r9c2-r9c3 colour "black"
-kropki-10: kropki r9c7-r9c8 colour "black"
+kropki-1: kropki r2c1-r2c2 white
+kropki-2: kropki r1c5-r2c5 black
+kropki-3: kropki r3c3-r3c4 black
+kropki-4: kropki r3c6-r3c7 black
+kropki-5: kropki r4c6-r5c6 black
+kropki-6: kropki r4c8-r4c9 black
+kropki-7: kropki r5c3-r6c3 black
+kropki-8: kropki r6c1-r7c1 black
+kropki-9: kropki r9c2-r9c3 black
+kropki-10: kropki r9c7-r9c8 black
 ```
 
 Normal Sudoku rules apply.

@@ -9,11 +9,12 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
+exported: 1e3fa00b6b7ac67d892bab503dc7b16f
 ---
 
 ```rules
 sudoku 9x9
-kropki r7c3-r7c4 colour "black"
+kropki r7c3-r7c4 black
 whispers-1: whispers r8c1-r8c2-r8c3 gap 5
 whispers-2: whispers r8c4-r7c4-r6c4-r5c4-r4c4-r3c4 gap 5
 whispers-3: whispers r2c5-r3c4 gap 5

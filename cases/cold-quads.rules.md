@@ -6,6 +6,7 @@ source: https://sudokupad.app/o29tpbn7mp
 case: https://sudoku-sleuth.com/cases/cold-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d72eb152738ab05283d83d9de40b4a6a
 ---
 
 ```rules

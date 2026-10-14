@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/irish-dots-v
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 687d07a8fc5da9ff66568ff62d9b7b3f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r1c8-r2c8 colour "white"
-kropki-3: kropki r1c4-r2c4 colour "white"
-kropki-4: kropki r1c6-r2c6 colour "white"
-kropki-5: kropki r4c1-r4c2 colour "white"
-kropki-6: kropki r6c2-r7c2 colour "white"
-kropki-7: kropki r7c8-r7c9 colour "white"
-kropki-8: kropki r7c4-r8c4 colour "white"
-kropki-9: kropki r8c4-r8c5 colour "white"
-kropki-10: kropki r4c6-r4c7 colour "white"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r1c8-r2c8 white
+kropki-3: kropki r1c4-r2c4 white
+kropki-4: kropki r1c6-r2c6 white
+kropki-5: kropki r4c1-r4c2 white
+kropki-6: kropki r6c2-r7c2 white
+kropki-7: kropki r7c8-r7c9 white
+kropki-8: kropki r7c4-r8c4 white
+kropki-9: kropki r8c4-r8c5 white
+kropki-10: kropki r4c6-r4c7 white
 pair-1: pair r5c1-r6c1 sum 5
 pair-2: pair r2c3-r2c4 sum 5
 pair-3: pair r3c5-r4c5 sum 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/piccadilly-to-euston
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c1=6 r3c7=5 r5c5=1 r6c9=7 r7c8=1 r9c2=2 r9c6=3
+exported: f04c02e84815eafcbea5db0abd815f58
 ---
 
 ```rules

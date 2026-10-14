@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/equality-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c2e9da62ba5f98654067699cc5d20570
 ---
 
 ```rules
@@ -21,14 +22,14 @@ equality-cage-8: equality-cage r9c1-r9c2
 equality-cage-9: equality-cage r6c3-r7c3
 equality-cage-10: equality-cage r5c1-r5c2
 equality-cage-11: equality-cage r1c2-r2c2
-kropki-1: kropki r3c6-r3c7 colour "black"
-kropki-2: kropki r2c9-r3c9 colour "black"
-kropki-3: kropki r1c4-r1c5 colour "black"
-kropki-4: kropki r5c7-r6c7 colour "black"
-kropki-5: kropki r4c8-r5c8 colour "black"
-kropki-6: kropki r9c8-r9c9 colour "black"
-kropki-7: kropki r6c3-r7c3 colour "black"
-kropki-8: kropki r4c1-r5c1 colour "black"
+kropki-1: kropki r3c6-r3c7 black
+kropki-2: kropki r2c9-r3c9 black
+kropki-3: kropki r1c4-r1c5 black
+kropki-4: kropki r5c7-r6c7 black
+kropki-5: kropki r4c8-r5c8 black
+kropki-6: kropki r9c8-r9c9 black
+kropki-7: kropki r6c3-r7c3 black
+kropki-8: kropki r4c1-r5c1 black
 region-sum-1: region-sum r3c1-r3c2-r3c3-r4c3-r4c4-r4c5-r3c4-r2c5-r1c5 segments [["r3c1","r3c2","r3c3"],["r4c3"],["r4c4","r4c5"],["r3c4","r2c5","r1c5"]]
 region-sum-2: region-sum r2c9-r3c9-r4c9-r5c9 segments [["r2c9","r3c9"],["r4c9","r5c9"]]
 region-sum-3: region-sum r6c7-r5c7-r5c6 segments [["r6c7","r5c7"],["r5c6"]]

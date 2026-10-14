@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/everywhere-an-x-sum
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 34ac774588f26236edeeefc42bce41ac
 ---
 
 ```rules

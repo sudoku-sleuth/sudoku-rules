@@ -6,6 +6,7 @@ source: https://tinyurl.com/2p999fde
 case: https://sudoku-sleuth.com/cases/cage-opposition
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7357f48923b86c5de111f6812de4cadd
 ---
 
 ```rules

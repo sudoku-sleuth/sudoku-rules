@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oil-water-glyph
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 574a287877cd879adbb128f457f35591
 ---
 
 ```rules

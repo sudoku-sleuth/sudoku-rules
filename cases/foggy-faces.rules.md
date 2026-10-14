@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 10
-    - 20
-    - 73
-    - 80
+    - r1c1
+    - r2c2
+    - r3c3
+    - r9c2
+    - r9c9
 format: open-rules
 title: Foggy Faces
 setter: Dr Logic
@@ -14,6 +14,7 @@ case: https://sudoku-sleuth.com/cases/foggy-faces
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c9=5
+exported: 004fa643931edd0bbeefbcbd9378d367
 ---
 
 ```rules
@@ -21,15 +22,15 @@ sudoku 9x9
 diagonal-1: diagonal direction "main" stated true
 diagonal-2: diagonal direction "anti" stated true
 thermo r8c2-r9c2
-kropki-1: kropki r8c5-r9c5 colour "white"
-kropki-2: kropki r7c3-r8c3 colour "white"
-kropki-3: kropki r4c7-r5c7 colour "white"
-kropki-4: kropki r5c7-r5c8 colour "white"
-kropki-5: kropki r5c1-r5c2 colour "white"
-kropki-6: kropki r4c4-r5c4 colour "black"
-kropki-7: kropki r4c4-r4c5 colour "black"
-kropki-8: kropki r1c1-r2c1 colour "black"
-kropki-9: kropki r1c1-r1c2 colour "black"
+kropki-1: kropki r8c5-r9c5 white
+kropki-2: kropki r7c3-r8c3 white
+kropki-3: kropki r4c7-r5c7 white
+kropki-4: kropki r5c7-r5c8 white
+kropki-5: kropki r5c1-r5c2 white
+kropki-6: kropki r4c4-r5c4 black
+kropki-7: kropki r4c4-r4c5 black
+kropki-8: kropki r1c1-r2c1 black
+kropki-9: kropki r1c1-r1c2 black
 whispers-1: whispers r3c2-r3c3-r2c3 gap 5
 whispers-2: whispers r6c5-r5c5-r5c6 gap 5
 whispers-3: whispers r9c7-r9c8-r8c9-r7c9 gap 5

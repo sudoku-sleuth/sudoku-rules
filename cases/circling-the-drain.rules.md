@@ -6,20 +6,21 @@ source: https://sudokupad.app/1lwycdhbq6
 case: https://sudoku-sleuth.com/cases/circling-the-drain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 458368802abc12695fc105657fb99785
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c6-r3c6 colour "black"
-kropki-2: kropki r7c4-r8c4 colour "black"
-kropki-3: kropki r6c3-r7c3 colour "black"
-kropki-4: kropki r8c3-r9c3 colour "black"
-kropki-5: kropki r4c1-r5c1 colour "black"
-kropki-6: kropki r1c5-r2c5 colour "black"
-kropki-7: kropki r3c7-r4c7 colour "black"
-kropki-8: kropki r5c7-r5c8 colour "black"
-kropki-9: kropki r6c4-r6c5 colour "black"
-kropki-10: kropki r3c2-r4c2 colour "black"
+kropki-1: kropki r2c6-r3c6 black
+kropki-2: kropki r7c4-r8c4 black
+kropki-3: kropki r6c3-r7c3 black
+kropki-4: kropki r8c3-r9c3 black
+kropki-5: kropki r4c1-r5c1 black
+kropki-6: kropki r1c5-r2c5 black
+kropki-7: kropki r3c7-r4c7 black
+kropki-8: kropki r5c7-r5c8 black
+kropki-9: kropki r6c4-r6c5 black
+kropki-10: kropki r3c2-r4c2 black
 arrow-1: arrow r8c1-r7c1-r6c2 bulb ["r9c1"]
 arrow-2: arrow r5c1-r4c1-r3c2 bulb ["r6c1"]
 arrow-3: arrow r1c2-r1c3-r2c4 bulb ["r1c1"]

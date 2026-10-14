@@ -6,6 +6,7 @@ source: https://sudokupad.app/7svx618wyi
 case: https://sudoku-sleuth.com/cases/how-did-i-get-locked-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d2759cbbce7211bc24d615340cb9e610
 ---
 
 ```rules

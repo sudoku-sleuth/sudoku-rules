@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/acrobats
 case: https://sudoku-sleuth.com/cases/acrobats
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 28ffab087531ee182ae32709af4f9e5f
 ---
 
 ```rules

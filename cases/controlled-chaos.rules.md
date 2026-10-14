@@ -6,6 +6,7 @@ source: https://sudokupad.app/3vgtordv6v
 case: https://sudoku-sleuth.com/cases/controlled-chaos
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 99fcc6cf542e607d493de39e5bec5219
 ---
 
 ```rules
@@ -13,12 +14,12 @@ sudoku 9x9
 cage-1: cage r1c7-r1c8-r1c9 total 10 connected true
 cage-2: cage r8c4-r9c4 total 5 connected true
 cage-3: cage r4c4-r5c4 total 10 connected true
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r7c7-r7c8 colour "white"
-kropki-3: kropki r2c3-r3c3 colour "black"
-kropki-4: kropki r3c3-r4c3 colour "black"
-kropki-5: kropki r6c7-r7c7 colour "black"
-kropki-6: kropki r7c7-r8c7 colour "black"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r7c7-r7c8 white
+kropki-3: kropki r2c3-r3c3 black
+kropki-4: kropki r3c3-r4c3 black
+kropki-5: kropki r6c7-r7c7 black
+kropki-6: kropki r7c7-r8c7 black
 arrow-1: arrow r7c6-r8c7 bulb ["r6c5"]
 arrow-2: arrow r8c7-r7c8 bulb ["r9c6"]
 arrow-3: arrow r7c8-r6c7 bulb ["r8c9"]

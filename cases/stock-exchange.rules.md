@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/stock-exchange
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b90cacbe2e38a69930cbb5717f80d236
 ---
 
 ```rules

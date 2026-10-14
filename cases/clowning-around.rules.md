@@ -6,6 +6,7 @@ source: https://sudokupad.app/0mjrcepd2s
 case: https://sudoku-sleuth.com/cases/clowning-around
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 28ad6f6a1ef3041fef55a02a90387e48
 ---
 
 ```rules

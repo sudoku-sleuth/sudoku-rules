@@ -6,6 +6,7 @@ source: https://sudokupad.app/2d6c6zf430
 case: https://sudoku-sleuth.com/cases/countdown-10-9-8
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 825bddd8546054b7e1d977b4ef529627
 ---
 
 ```rules

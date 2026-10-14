@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/a-walk-in-the-park-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e2b810165aee7924673b4ed60b47022e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c8-r2c9 colour "white"
-kropki-2: kropki r2c5-r2c6 colour "white"
-kropki-3: kropki r3c5-r4c5 colour "white"
+kropki-1: kropki r2c8-r2c9 white
+kropki-2: kropki r2c5-r2c6 white
+kropki-3: kropki r3c5-r4c5 white
 arrow-1: arrow r3c3-r4c3-r5c3 bulb ["r2c3"]
 arrow-2: arrow r4c7-r5c7 bulb ["r3c7"]
 whispers-1: whispers r3c3-r4c2-r5c1 gap 5

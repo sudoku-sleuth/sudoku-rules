@@ -6,6 +6,7 @@ source: https://sudokupad.app/r5m97ptttw
 case: https://sudoku-sleuth.com/cases/five-and-dime
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 90d3e502b69eef62d02b09121c2e080a
 ---
 
 ```rules

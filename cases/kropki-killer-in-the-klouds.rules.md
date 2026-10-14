@@ -1,13 +1,13 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Kropki Killer in the Klouds
 setter: Meggen033
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 11013271190de502206f880ae4575165
 ---
 
 ```rules
@@ -149,21 +150,21 @@ cage-6: cage r7c5-r7c6 total 8 connected true
 cage-7: cage r3c2-r4c2 total 15 connected true
 cage-8: cage r1c5-r2c5 total 7 connected true
 cage-9: cage r2c7-r2c8-r3c8 total 9 connected true
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r9c3-r9c4 colour "white"
-kropki-3: kropki r2c4-r3c4 colour "white"
-kropki-4: kropki r8c5-r8c6 colour "white"
-kropki-5: kropki r6c1-r7c1 colour "white"
-kropki-6: kropki r1c4-r1c5 colour "white"
-kropki-7: kropki r3c6-r3c7 colour "white"
-kropki-8: kropki r1c7-r1c8 colour "white"
-kropki-9: kropki r8c9-r9c9 colour "white"
-kropki-10: kropki r4c3-r5c3 colour "black"
-kropki-11: kropki r9c1-r9c2 colour "black"
-kropki-12: kropki r8c4-r9c4 colour "black"
-kropki-13: kropki r1c2-r2c2 colour "black"
-kropki-14: kropki r4c7-r5c7 colour "black"
-kropki-15: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r9c3-r9c4 white
+kropki-3: kropki r2c4-r3c4 white
+kropki-4: kropki r8c5-r8c6 white
+kropki-5: kropki r6c1-r7c1 white
+kropki-6: kropki r1c4-r1c5 white
+kropki-7: kropki r3c6-r3c7 white
+kropki-8: kropki r1c7-r1c8 white
+kropki-9: kropki r8c9-r9c9 white
+kropki-10: kropki r4c3-r5c3 black
+kropki-11: kropki r9c1-r9c2 black
+kropki-12: kropki r8c4-r9c4 black
+kropki-13: kropki r1c2-r2c2 black
+kropki-14: kropki r4c7-r5c7 black
+kropki-15: kropki r5c9-r6c9 black
 ```
 
 Normal Sudoku rules apply. 

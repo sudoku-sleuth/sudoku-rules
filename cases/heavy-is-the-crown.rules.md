@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/heavy-is-the-crown
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a29b40553e9cad44d7a3c97dbcb7eae1
 ---
 
 ```rules

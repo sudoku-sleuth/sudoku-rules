@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/confederation-of-pentominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 76b0992ccb712e31028cece1d6a1416e
 ---
 
 ```rules
@@ -20,17 +21,17 @@ cage-6: cage r7c5-r7c6-r8c4-r8c5-r9c4 total 25 connected true
 cage-7: cage r8c1-r8c2-r8c3-r9c2-r9c3 total 25 connected true
 cage-8: cage r4c2-r5c1-r5c2-r5c3-r6c3 total 25 connected true
 cage-9: cage r1c2-r1c3-r2c2-r3c1-r3c2 total 25 connected true
-kropki-1: kropki r4c7-r4c8 colour "white"
-kropki-2: kropki r4c7-r5c7 colour "white"
-kropki-3: kropki r5c7-r6c7 colour "white"
-kropki-4: kropki r6c7-r6c8 colour "white"
-kropki-5: kropki r4c8-r4c9 colour "white"
-kropki-6: kropki r4c9-r5c9 colour "white"
-kropki-7: kropki r6c8-r6c9 colour "white"
-kropki-8: kropki r4c2-r5c2 colour "white"
-kropki-9: kropki r5c2-r5c3 colour "white"
-kropki-10: kropki r5c4-r5c5 colour "black"
-kropki-11: kropki r5c5-r5c6 colour "black"
+kropki-1: kropki r4c7-r4c8 white
+kropki-2: kropki r4c7-r5c7 white
+kropki-3: kropki r5c7-r6c7 white
+kropki-4: kropki r6c7-r6c8 white
+kropki-5: kropki r4c8-r4c9 white
+kropki-6: kropki r4c9-r5c9 white
+kropki-7: kropki r6c8-r6c9 white
+kropki-8: kropki r4c2-r5c2 white
+kropki-9: kropki r5c2-r5c3 white
+kropki-10: kropki r5c4-r5c5 black
+kropki-11: kropki r5c5-r5c6 black
 whispers-1: whispers r7c9-r8c9-r9c9 gap 5
 whispers-2: whispers r8c7-r8c8-r8c9 gap 5
 whispers-3: whispers r8c2-r8c3-r9c3-r9c2 gap 4

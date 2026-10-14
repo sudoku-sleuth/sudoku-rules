@@ -6,6 +6,7 @@ source: https://sudokupad.app/rbdqwbqwr5
 case: https://sudoku-sleuth.com/cases/heated-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bb15d4ef1f54be398e3f57a39a8ba95b
 ---
 
 ```rules

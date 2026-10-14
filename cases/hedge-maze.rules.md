@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/hedge-maze
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e520c86a4f3eabacdb6119d065d45e83
 ---
 
 ```rules
 sudoku 9x9
-kropki r8c9-r9c9 colour "black"
+kropki r8c9-r9c9 black
 whispers-1: whispers r1c1-r2c1-r2c2-r2c3-r2c4-r3c4 gap 5
 whispers-2: whispers r1c5-r2c5-r2c6-r3c6-r3c7 gap 5
 whispers-3: whispers r1c6-r1c7-r1c8-r1c9 gap 5

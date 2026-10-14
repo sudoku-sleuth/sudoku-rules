@@ -6,6 +6,7 @@ source: https://tinyurl.com/y2sdpyd9
 case: https://sudoku-sleuth.com/cases/building-blocks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 762fc9faca42af4fb5ba7ffd30d0bcf9
 ---
 
 ```rules

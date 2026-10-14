@@ -6,6 +6,7 @@ source: https://tinyurl.com/5ctc9xs2
 case: https://sudoku-sleuth.com/cases/pigeonhole
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b7e0da2ae30545e1d789f78ccba64465
 ---
 
 ```rules

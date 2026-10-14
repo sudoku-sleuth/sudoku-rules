@@ -6,6 +6,7 @@ source: https://sudokupad.app/hl1h0btfae
 case: https://sudoku-sleuth.com/cases/quadriplex
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d10a1a532e8ce1c781f0cbc16a95fb31
 ---
 
 ```rules

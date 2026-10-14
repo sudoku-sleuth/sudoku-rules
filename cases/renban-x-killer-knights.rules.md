@@ -6,6 +6,7 @@ source: https://sudokupad.app/tbsbh24a0d
 case: https://sudoku-sleuth.com/cases/renban-x-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 353aa0d386eace69697eb10094fafa2a
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oil-water-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=1 r3c3=3 r3c9=7 r4c7=4 r6c2=8 r9c2=9 r9c8=6
+exported: ec528935bf980a39ed1ed082fcadfa7b
 ---
 
 ```rules

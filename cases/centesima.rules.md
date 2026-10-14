@@ -1,28 +1,28 @@
 ---
 fog:
   initiallyLit:
-    - 28
-    - 30
-    - 31
-    - 32
-    - 33
-    - 34
-    - 35
-    - 36
-    - 37
-    - 39
-    - 41
-    - 42
-    - 44
-    - 45
-    - 46
-    - 47
-    - 48
-    - 49
-    - 50
-    - 51
-    - 52
-    - 53
+    - r4c2
+    - r4c4
+    - r4c5
+    - r4c6
+    - r4c7
+    - r4c8
+    - r4c9
+    - r5c1
+    - r5c2
+    - r5c4
+    - r5c6
+    - r5c7
+    - r5c9
+    - r6c1
+    - r6c2
+    - r6c3
+    - r6c4
+    - r6c5
+    - r6c6
+    - r6c7
+    - r6c8
+    - r6c9
 format: open-rules
 title: Centésima
 setter: Meggen033
@@ -125,6 +125,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: ef4c167e37c98ed7c879042d8c27fd9c
 ---
 
 ```rules

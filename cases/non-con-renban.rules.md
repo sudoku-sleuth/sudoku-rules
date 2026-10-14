@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/non-con-renban
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=9 r5c9=5 r8c3=5 r9c7=9
+exported: 2721b7a9de669ca85c4aa6ab49169898
 ---
 
 ```rules

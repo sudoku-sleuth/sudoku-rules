@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 11
-    - 12
-    - 18
-    - 20
-    - 27
+    - r2c3
+    - r2c4
+    - r3c1
+    - r3c3
+    - r4c1
 format: open-rules
 title: RACECAR through the Fog
 setter: Meggen033
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 5069b4d9a7ec5501d486d83cc70f3ad2
 ---
 
 ```rules
@@ -144,12 +145,12 @@ cage-3: cage r1c3-r1c4-r1c5 total 13 connected true
 cage-4: cage r5c1-r5c2-r5c3 total 13 connected true
 cage-5: cage r7c1-r7c2-r8c1 total 8 connected true
 cage-6: cage r1c8-r2c8-r3c8 total 11 connected true
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r2c3-r3c3 colour "white"
-kropki-3: kropki r4c3-r4c4 colour "white"
-kropki-4: kropki r1c4-r2c4 colour "white"
-kropki-5: kropki r4c2-r4c3 colour "black"
-kropki-6: kropki r2c5-r3c5 colour "black"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r2c3-r3c3 white
+kropki-3: kropki r4c3-r4c4 white
+kropki-4: kropki r1c4-r2c4 white
+kropki-5: kropki r4c2-r4c3 black
+kropki-6: kropki r2c5-r3c5 black
 palindrome r4c1-r3c1-r2c2-r3c2-r4c2-r5c3-r6c2-r7c2-r8c1-r8c2-r7c3-r7c4-r6c3-r5c4-r6c4-r7c5-r6c6-r6c7-r7c7-r7c8-r7c9-r6c8-r5c7-r4c7-r4c8-r3c7-r3c8-r3c9-r2c8-r2c7-r1c6-r2c6-r3c5-r2c5-r1c5-r2c4-r3c3
 ```
 

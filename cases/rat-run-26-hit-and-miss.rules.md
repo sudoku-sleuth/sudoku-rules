@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-26-hit-and-miss
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2e27d10270be9c2434d0be125ebd0ea8
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/vaulted-banquet
 case: https://sudoku-sleuth.com/cases/vaulted-banquet
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 80236f65817791b1fa5c64883c692afd
 ---
 
 ```rules

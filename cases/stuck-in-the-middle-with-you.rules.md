@@ -7,28 +7,29 @@ case: https://sudoku-sleuth.com/cases/stuck-in-the-middle-with-you
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: abbe3a04fd1dd93a6f93d7cea0ada34f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r1c3-r1c4 colour "white"
-kropki-3: kropki r4c1-r5c1 colour "white"
-kropki-4: kropki r2c1-r3c1 colour "white"
-kropki-5: kropki r3c3-r3c4 colour "white"
-kropki-6: kropki r3c4-r3c5 colour "white"
-kropki-7: kropki r3c6-r3c7 colour "white"
-kropki-8: kropki r1c3-r2c3 colour "white"
-kropki-9: kropki r7c3-r7c4 colour "white"
-kropki-10: kropki r9c4-r9c5 colour "white"
-kropki-11: kropki r7c9-r8c9 colour "white"
-kropki-12: kropki r5c6-r5c7 colour "white"
-kropki-13: kropki r6c5-r7c5 colour "white"
-kropki-14: kropki r4c5-r5c5 colour "white"
-kropki-15: kropki r3c5-r4c5 colour "white"
-kropki-16: kropki r5c7-r6c7 colour "white"
-kropki-17: kropki r6c7-r7c7 colour "white"
-kropki-18: kropki r8c7-r9c7 colour "white"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r1c3-r1c4 white
+kropki-3: kropki r4c1-r5c1 white
+kropki-4: kropki r2c1-r3c1 white
+kropki-5: kropki r3c3-r3c4 white
+kropki-6: kropki r3c4-r3c5 white
+kropki-7: kropki r3c6-r3c7 white
+kropki-8: kropki r1c3-r2c3 white
+kropki-9: kropki r7c3-r7c4 white
+kropki-10: kropki r9c4-r9c5 white
+kropki-11: kropki r7c9-r8c9 white
+kropki-12: kropki r5c6-r5c7 white
+kropki-13: kropki r6c5-r7c5 white
+kropki-14: kropki r4c5-r5c5 white
+kropki-15: kropki r3c5-r4c5 white
+kropki-16: kropki r5c7-r6c7 white
+kropki-17: kropki r6c7-r7c7 white
+kropki-18: kropki r8c7-r9c7 white
 between-1: between r1c2-r1c3-r1c4 ends ["r1c1","r1c5"]
 between-2: between r2c3-r3c3-r4c3 ends ["r1c3","r5c3"]
 between-3: between r3c4-r3c5-r3c6 ends ["r3c3","r3c7"]

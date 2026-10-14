@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/warp-speed-factor-3
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 669dd0ce4ed51547d45c4425cebed082
 ---
 
 ```rules

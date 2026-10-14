@@ -6,21 +6,22 @@ source: ""
 case: https://sudoku-sleuth.com/cases/pass-the-buck
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3a51ef8a9116d084ccbf8079922b170e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c6-r6c7 colour "white"
-kropki-2: kropki r7c9-r8c9 colour "black"
-kropki-3: kropki r2c8-r2c9 colour "black"
-kropki-4: kropki r8c2-r9c2 colour "black"
-kropki-5: kropki r4c9-r5c9 colour "black"
-kropki-6: kropki r1c4-r2c4 colour "black"
-kropki-7: kropki r3c5-r4c5 colour "black"
-kropki-8: kropki r5c3-r5c4 colour "black"
-kropki-9: kropki r4c4-r5c4 colour "black"
-kropki-10: kropki r4c6-r5c6 colour "black"
-kropki-11: kropki r4c5-r4c6 colour "black"
+kropki-1: kropki r6c6-r6c7 white
+kropki-2: kropki r7c9-r8c9 black
+kropki-3: kropki r2c8-r2c9 black
+kropki-4: kropki r8c2-r9c2 black
+kropki-5: kropki r4c9-r5c9 black
+kropki-6: kropki r1c4-r2c4 black
+kropki-7: kropki r3c5-r4c5 black
+kropki-8: kropki r5c3-r5c4 black
+kropki-9: kropki r4c4-r5c4 black
+kropki-10: kropki r4c6-r5c6 black
+kropki-11: kropki r4c5-r4c6 black
 arrow-1: arrow r8c9-r7c9 bulb ["r9c9"]
 arrow-2: arrow r8c8-r7c7 bulb ["r9c9"]
 arrow-3: arrow r9c8-r9c7 bulb ["r9c9"]

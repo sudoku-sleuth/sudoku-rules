@@ -6,6 +6,7 @@ source: https://sudokupad.app/u233l3i1c4
 case: https://sudoku-sleuth.com/cases/antiknight-fog-adventure
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 930bc18c0c57ea5f97503b3763b1d682
 ---
 
 ```rules
@@ -18,14 +19,14 @@ cage-5: cage r2c4-r3c4 total 4 connected true
 cage-6: cage r4c8-r4c9 total 3 connected true
 cage-7: cage r2c5-r2c6-r3c6 total 12 connected true
 anti-knight
-kropki-1: kropki r7c5-r8c5 colour "black"
-kropki-2: kropki r8c5-r9c5 colour "black"
-kropki-3: kropki r7c3-r8c3 colour "black"
-kropki-4: kropki r6c4-r6c5 colour "black"
-kropki-5: kropki r8c7-r9c7 colour "black"
-kropki-6: kropki r3c3-r4c3 colour "black"
-kropki-7: kropki r1c8-r1c9 colour "black"
-kropki-8: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r7c5-r8c5 black
+kropki-2: kropki r8c5-r9c5 black
+kropki-3: kropki r7c3-r8c3 black
+kropki-4: kropki r6c4-r6c5 black
+kropki-5: kropki r8c7-r9c7 black
+kropki-6: kropki r3c3-r4c3 black
+kropki-7: kropki r1c8-r1c9 black
+kropki-8: kropki r8c9-r9c9 black
 whispers-1: whispers r6c5-r6c6 gap 5
 whispers-2: whispers r8c2-r7c3-r6c3-r5c4 gap 5
 whispers-3: whispers r6c3-r5c2-r4c2 gap 5

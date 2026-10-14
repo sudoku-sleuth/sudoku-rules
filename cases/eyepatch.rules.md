@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/eyepatch
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=8
+exported: 63365178787bf2c72b06cf24d8a6319b
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/icicles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c2=6
+exported: cd53f9c08a02e93b40598e6fd7def27d
 ---
 
 ```rules

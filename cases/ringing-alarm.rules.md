@@ -6,6 +6,7 @@ source: https://sudokupad.app/81oybc1fip
 case: https://sudoku-sleuth.com/cases/ringing-alarm
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 750382fe2ecea4d3f8b29ccdd22e7a35
 ---
 
 ```rules

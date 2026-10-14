@@ -6,20 +6,21 @@ source: https://sudokupad.app/5sra3emkmt
 case: https://sudoku-sleuth.com/cases/golden-ratio
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 83061b8076d331beee6cf3b007872063
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c2-r4c3 colour "black"
-kropki-2: kropki r6c7-r6c8 colour "black"
-kropki-3: kropki r1c2-r1c3 colour "black"
-kropki-4: kropki r9c2-r9c3 colour "black"
-kropki-5: kropki r1c8-r1c9 colour "black"
-kropki-6: kropki r3c9-r4c9 colour "black"
-kropki-7: kropki r6c1-r7c1 colour "black"
-kropki-8: kropki r3c4-r4c4 colour "black"
-kropki-9: kropki r6c6-r7c6 colour "black"
-kropki-10: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r4c2-r4c3 black
+kropki-2: kropki r6c7-r6c8 black
+kropki-3: kropki r1c2-r1c3 black
+kropki-4: kropki r9c2-r9c3 black
+kropki-5: kropki r1c8-r1c9 black
+kropki-6: kropki r3c9-r4c9 black
+kropki-7: kropki r6c1-r7c1 black
+kropki-8: kropki r3c4-r4c4 black
+kropki-9: kropki r6c6-r7c6 black
+kropki-10: kropki r9c8-r9c9 black
 nabner-1: nabner r4c1-r4c2-r4c3-r4c4
 nabner-2: nabner r6c9-r6c8-r6c7-r6c6
 nabner-3: nabner r6c5-r6c4-r6c3-r6c2-r6c1

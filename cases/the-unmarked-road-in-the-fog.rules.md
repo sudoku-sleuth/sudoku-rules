@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 63
-    - 64
-    - 73
+    - r8c1
+    - r8c2
+    - r9c2
 format: open-rules
 title: The unmarked road in the fog
 setter: Chip Sounder
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d83d02a90e7bda2250a27e23ae4e5d77
 ---
 
 ```rules
@@ -146,12 +147,12 @@ cage-7: cage r5c7-r5c8 total 14 connected true
 cage-8: cage r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r4c8 total 35 connected true
 cage-9: cage r3c9-r4c9-r5c9 total 17 connected true
 cage-10: cage r2c4-r2c5-r2c6 total 17 connected true
-kropki-1: kropki r8c2-r8c3 colour "black"
-kropki-2: kropki r7c1-r8c1 colour "black"
-kropki-3: kropki r5c1-r6c1 colour "black"
-kropki-4: kropki r9c4-r9c5 colour "black"
-kropki-5: kropki r9c7-r9c8 colour "black"
-kropki-6: kropki r3c6-r3c7 colour "black"
+kropki-1: kropki r8c2-r8c3 black
+kropki-2: kropki r7c1-r8c1 black
+kropki-3: kropki r5c1-r6c1 black
+kropki-4: kropki r9c4-r9c5 black
+kropki-5: kropki r9c7-r9c8 black
+kropki-6: kropki r3c6-r3c7 black
 little-killer-1: little-killer r7c1-r8c2-r9c3 sum 13
 little-killer-2: little-killer r5c1-r6c2-r7c3-r8c4-r9c5 sum 20
 little-killer-3: little-killer r6c9-r7c8-r8c7-r9c6 sum 17

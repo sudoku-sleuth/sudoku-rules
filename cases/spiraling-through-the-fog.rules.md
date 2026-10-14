@@ -1,14 +1,14 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Spiraling Through the Fog
 setter: Sir Moose
@@ -16,6 +16,7 @@ source: https://sudokupad.app/y9m5b6vfqa
 case: https://sudoku-sleuth.com/cases/spiraling-through-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b4fd5ed1143021e2d4e29a40b03680ff
 ---
 
 ```rules

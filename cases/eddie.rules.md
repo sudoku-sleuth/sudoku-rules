@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/eddie
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5a9d576ccc299502a4f4dc293946bfc1
 ---
 
 ```rules

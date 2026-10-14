@@ -6,13 +6,14 @@ source: https://tinyurl.com/5theoddmanoutsudoku
 case: https://sudoku-sleuth.com/cases/5-the-odd-man-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1e974fa4fc7efd865f1125bf066bb654
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c3-r4c4 colour "white"
-kropki-2: kropki r4c4-r4c5 colour "white"
-kropki-3: kropki r7c8-r8c8 colour "white"
+kropki-1: kropki r4c3-r4c4 white
+kropki-2: kropki r4c4-r4c5 white
+kropki-3: kropki r7c8-r8c8 white
 palindrome-1: palindrome r3c2-r2c3-r3c3-r2c4-r3c4-r4c5
 palindrome-2: palindrome r4c3-r5c4
 palindrome-3: palindrome r2c7-r3c8-r4c9-r5c8

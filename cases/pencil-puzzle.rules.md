@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/pencil-puzzle
 case: https://sudoku-sleuth.com/cases/pencil-puzzle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bd85511e179d58c4fda8f408a9716fbf
 ---
 
 ```rules

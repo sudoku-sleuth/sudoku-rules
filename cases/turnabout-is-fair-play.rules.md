@@ -6,6 +6,7 @@ source: https://tinyurl.com/3dprv2t6
 case: https://sudoku-sleuth.com/cases/turnabout-is-fair-play
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8430d8c3e885c2abeeb1d956e71e555e
 ---
 
 ```rules

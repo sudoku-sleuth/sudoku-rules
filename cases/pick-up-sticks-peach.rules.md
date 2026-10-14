@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pick-up-sticks-peach
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: fa4ac6cb63ea773126f7222dd46fa15a
 ---
 
 ```rules

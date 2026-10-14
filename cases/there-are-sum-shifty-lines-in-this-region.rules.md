@@ -6,12 +6,13 @@ source: https://sudokupad.app/d0z9o7bjny
 case: https://sudoku-sleuth.com/cases/there-are-sum-shifty-lines-in-this-region
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 551505bdbc37778712cff6c4ce453797
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c5-r9c6 colour "black"
-kropki-2: kropki r2c2-r2c3 colour "black"
+kropki-1: kropki r9c5-r9c6 black
+kropki-2: kropki r2c2-r2c3 black
 region-sum-1: region-sum r7c6-r7c5-r7c4-r6c4-r5c4-r4c3-r3c4-r2c4 segments [["r7c6","r7c5","r7c4"],["r6c4","r5c4"],["r4c3"],["r3c4","r2c4"]]
 region-sum-2: region-sum r9c6-r9c7-r8c7-r7c7 segments [["r9c6"],["r9c7","r8c7","r7c7"]]
 region-sum-3: region-sum r8c9-r7c9-r6c8 segments [["r8c9","r7c9"],["r6c8"]]

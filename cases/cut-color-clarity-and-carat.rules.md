@@ -6,14 +6,15 @@ source: ""
 case: https://sudoku-sleuth.com/cases/cut-color-clarity-and-carat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0fc6b810322b253bcc915374dc2c7941
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c3-r4c3 colour "black"
-kropki-2: kropki r3c3-r3c4 colour "black"
-kropki-3: kropki r7c6-r7c7 colour "black"
-kropki-4: kropki r6c2-r6c3 colour "black"
+kropki-1: kropki r3c3-r4c3 black
+kropki-2: kropki r3c3-r3c4 black
+kropki-3: kropki r7c6-r7c7 black
+kropki-4: kropki r6c2-r6c3 black
 whispers-1: whispers r3c4-r3c5-r3c6 gap 5
 whispers-2: whispers r4c7-r5c7-r6c7 gap 5
 whispers-3: whispers r7c6-r7c5-r7c4 gap 5

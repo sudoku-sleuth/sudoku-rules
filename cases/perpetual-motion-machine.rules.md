@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/perpetual-motion-machine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8a2ffef271e65bac8c88173e231037e0
 ---
 
 ```rules

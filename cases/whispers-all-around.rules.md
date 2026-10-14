@@ -67,6 +67,7 @@ board:
       - r7c5
       - r7c6
       - r7c7
+exported: 41be69bf796ac576aceb7f03551d991e
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/u-can-t-touch-this-mc-hammer
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cb95cc4519e862bbef697eb08333332a
 ---
 
 ```rules
@@ -23,13 +24,13 @@ cage-9: cage r4c5-r5c5-r6c5 total 7 connected true
 cage-10: cage r4c1-r4c2-r4c3 total 22 connected true
 cage-11: cage r6c1-r6c2-r6c3-r7c2 total 17 connected true
 cage-12: cage r7c1-r8c1-r9c1 total 12 connected true
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r2c1-r2c2 colour "white"
-kropki-3: kropki r3c1-r3c2 colour "white"
-kropki-4: kropki r6c2-r6c3 colour "white"
-kropki-5: kropki r9c1-r9c2 colour "white"
-kropki-6: kropki r8c5-r9c5 colour "white"
-kropki-7: kropki r8c8-r8c9 colour "white"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r2c1-r2c2 white
+kropki-3: kropki r3c1-r3c2 white
+kropki-4: kropki r6c2-r6c3 white
+kropki-5: kropki r9c1-r9c2 white
+kropki-6: kropki r8c5-r9c5 white
+kropki-7: kropki r8c8-r8c9 white
 whispers-1: whispers r6c4-r5c5-r6c6-r7c5 gap 4
 whispers-2: whispers r6c4-r7c5 gap 4
 whispers-3: whispers r9c3-r9c4-r8c4-r8c5-r8c6-r9c6-r9c7 gap 4

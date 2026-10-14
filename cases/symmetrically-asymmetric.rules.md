@@ -6,6 +6,7 @@ source: https://tinyurl.com/uz7c7tbc
 case: https://sudoku-sleuth.com/cases/symmetrically-asymmetric
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c31ca9fc215bc3e07290e309a31c378e
 ---
 
 ```rules

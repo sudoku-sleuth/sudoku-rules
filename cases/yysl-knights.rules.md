@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/yysl-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c516ad27f977b06f4e0f817ac5a6d486
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r3c8-r3c9 colour "white"
-kropki-2: kropki r3c8-r4c8 colour "white"
-kropki-3: kropki r3c7-r3c8 colour "white"
-kropki-4: kropki r3c6-r3c7 colour "white"
-kropki-5: kropki r4c6-r4c7 colour "white"
-kropki-6: kropki r4c8-r5c8 colour "white"
-kropki-7: kropki r8c5-r8c6 colour "white"
-kropki-8: kropki r9c4-r9c5 colour "white"
-kropki-9: kropki r8c1-r8c2 colour "white"
+kropki-1: kropki r3c8-r3c9 white
+kropki-2: kropki r3c8-r4c8 white
+kropki-3: kropki r3c7-r3c8 white
+kropki-4: kropki r3c6-r3c7 white
+kropki-5: kropki r4c6-r4c7 white
+kropki-6: kropki r4c8-r5c8 white
+kropki-7: kropki r8c5-r8c6 white
+kropki-8: kropki r9c4-r9c5 white
+kropki-9: kropki r8c1-r8c2 white
 ```
 
 ```drawing

@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/donut-hole
 case: https://sudoku-sleuth.com/cases/donut-hole
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7a72134098f8d3aeb957402be1f68119
 ---
 
 ```rules

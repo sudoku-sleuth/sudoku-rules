@@ -6,6 +6,7 @@ source: https://sudokupad.app/n28rdx81gj
 case: https://sudoku-sleuth.com/cases/robot-dance-party
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 879f2de7334a0f1c7a8391a88b9f8d11
 ---
 
 ```rules
@@ -14,7 +15,7 @@ thermo-1: thermo r6c4-r7c3-r8c2-r9c1
 thermo-2: thermo r6c6-r7c7-r8c8-r9c9
 thermo-3: thermo r4c1-r3c1-r3c2
 thermo-4: thermo r4c8-r3c7
-kropki r7c5-r8c5 colour "white"
+kropki r7c5-r8c5 white
 whispers-1: whispers r5c4-r4c5-r5c6-r6c5 gap 5 loop true
 whispers-2: whispers r8c4-r9c5-r8c6 gap 5
 renban-1: renban r3c5-r4c6-r5c7-r6c6-r7c5-r6c4-r5c3-r4c4

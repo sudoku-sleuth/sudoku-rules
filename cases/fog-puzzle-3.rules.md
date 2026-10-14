@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 39
-    - 40
+    - r4c4
+    - r4c5
+    - r5c4
+    - r5c5
 format: open-rules
 title: "Fog Puzzle #3"
 setter: EPH
@@ -12,16 +12,17 @@ source: https://tinyurl.com/4devkpht
 case: https://sudoku-sleuth.com/cases/fog-puzzle-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e94cbccba385593f28a0291e7097c685
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c9-r2c9 colour "white"
-kropki-2: kropki r3c3-r3c4 colour "black"
-kropki-3: kropki r3c4-r3c5 colour "black"
-kropki-4: kropki r2c3-r3c3 colour "black"
-kropki-5: kropki r3c3-r4c3 colour "black"
-kropki-6: kropki r6c3-r7c3 colour "black"
+kropki-1: kropki r1c9-r2c9 white
+kropki-2: kropki r3c3-r3c4 black
+kropki-3: kropki r3c4-r3c5 black
+kropki-4: kropki r2c3-r3c3 black
+kropki-5: kropki r3c3-r4c3 black
+kropki-6: kropki r6c3-r7c3 black
 whispers-1: whispers r5c4-r6c5-r5c5-r4c5 gap 5
 whispers-2: whispers r1c2-r1c1-r2c2-r2c1 gap 5
 whispers-3: whispers r3c2-r2c1 gap 5

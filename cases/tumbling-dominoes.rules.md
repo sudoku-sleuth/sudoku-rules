@@ -6,6 +6,7 @@ source: https://sudokupad.app/y0l5zsdss5
 case: https://sudoku-sleuth.com/cases/tumbling-dominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4c1f9d262b4c1f8df28258aa4def21ad
 ---
 
 ```rules

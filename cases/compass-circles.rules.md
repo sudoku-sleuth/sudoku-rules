@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/compass-circles
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4316e2015b3794fc2edd8d850821bf9b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c4-r8c5 colour "white"
-kropki-2: kropki r2c7-r3c7 colour "white"
-kropki-3: kropki r2c8-r2c9 colour "white"
+kropki-1: kropki r8c4-r8c5 white
+kropki-2: kropki r2c7-r3c7 white
+kropki-3: kropki r2c8-r2c9 white
 ```
 
 ```drawing

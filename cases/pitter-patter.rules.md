@@ -6,6 +6,7 @@ source: https://sudokupad.app/2ok9b4w3xm
 case: https://sudoku-sleuth.com/cases/pitter-patter
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d59846f07ad57384941c9d49dd07db20
 ---
 
 ```rules

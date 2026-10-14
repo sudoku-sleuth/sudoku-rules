@@ -6,6 +6,7 @@ source: https://sudokupad.app/fwrhxck7jz
 case: https://sudoku-sleuth.com/cases/eights-uncaged
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 44324fbca56642914c337ed3a4c7e68b
 ---
 
 ```rules
@@ -22,14 +23,14 @@ cage-9: cage r5c1-r5c2 total 8 connected true
 cage-10: cage r5c8-r5c9 total 8 connected true
 cage-11: cage r1c5-r2c5 total 8 connected true
 cage-12: cage r8c5-r9c5 total 8 connected true
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r1c4-r1c5 colour "white"
-kropki-3: kropki r1c7-r2c7 colour "white"
-kropki-4: kropki r7c7-r8c7 colour "white"
-kropki-5: kropki r2c5-r3c5 colour "black"
-kropki-6: kropki r9c4-r9c5 colour "black"
-kropki-7: kropki r5c1-r6c1 colour "black"
-kropki-8: kropki r5c8-r6c8 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r1c4-r1c5 white
+kropki-3: kropki r1c7-r2c7 white
+kropki-4: kropki r7c7-r8c7 white
+kropki-5: kropki r2c5-r3c5 black
+kropki-6: kropki r9c4-r9c5 black
+kropki-7: kropki r5c1-r6c1 black
+kropki-8: kropki r5c8-r6c8 black
 ```
 
 **Standard Sudoku, Cages, Kropki Pairs**

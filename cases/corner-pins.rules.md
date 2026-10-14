@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/corner-pins
 case: https://sudoku-sleuth.com/cases/corner-pins
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 12d1a48a75b7eb7596b68ee00bb5050f
 ---
 
 ```rules

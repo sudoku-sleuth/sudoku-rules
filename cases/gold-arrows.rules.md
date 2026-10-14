@@ -102,6 +102,7 @@ board:
       - r10c8
       - r10c9
       - r10c10
+exported: 69db3200ca5dbb99827c28a242ceff50
 ---
 
 ```rules

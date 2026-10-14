@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/rat-run-34-on-reflection
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6032841d8d38a20d80b8fa20a83452ad
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c1-r7c2 colour "black"
-kropki-2: kropki r8c3-r9c3 colour "black"
+kropki-1: kropki r7c1-r7c2 black
+kropki-2: kropki r8c3-r9c3 black
 ```
 
 ```drawing

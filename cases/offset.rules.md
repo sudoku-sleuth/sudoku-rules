@@ -6,38 +6,39 @@ source: https://sudokupad.app/qrlcx2xyaw
 case: https://sudoku-sleuth.com/cases/offset
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aa2cf628c20e1d44ae0c86c3e8721c08
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c3-r3c3 colour "white"
-kropki-2: kropki r2c4-r3c4 colour "white"
-kropki-3: kropki r1c6-r2c6 colour "white"
-kropki-4: kropki r2c6-r3c6 colour "white"
-kropki-5: kropki r4c4-r4c5 colour "white"
-kropki-6: kropki r4c4-r5c4 colour "white"
-kropki-7: kropki r5c6-r6c6 colour "white"
-kropki-8: kropki r6c5-r6c6 colour "white"
-kropki-9: kropki r7c4-r8c4 colour "white"
-kropki-10: kropki r7c6-r8c6 colour "white"
-kropki-11: kropki r7c7-r8c7 colour "white"
-kropki-12: kropki r8c4-r9c4 colour "white"
-kropki-13: kropki r2c3-r3c3 colour "white"
-kropki-14: kropki r2c4-r3c4 colour "white"
-kropki-15: kropki r1c6-r2c6 colour "white"
-kropki-16: kropki r2c6-r3c6 colour "white"
-kropki-17: kropki r4c4-r4c5 colour "white"
-kropki-18: kropki r4c4-r5c4 colour "white"
-kropki-19: kropki r5c6-r6c6 colour "white"
-kropki-20: kropki r6c5-r6c6 colour "white"
-kropki-21: kropki r7c4-r8c4 colour "white"
-kropki-22: kropki r7c6-r8c6 colour "white"
-kropki-23: kropki r7c7-r8c7 colour "white"
-kropki-24: kropki r3c1-r4c1 colour "black"
-kropki-25: kropki r5c1-r5c2 colour "black"
-kropki-26: kropki r1c5-r1c6 colour "black"
-kropki-27: kropki r6c3-r7c3 colour "black"
-kropki-28: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r2c3-r3c3 white
+kropki-2: kropki r2c4-r3c4 white
+kropki-3: kropki r1c6-r2c6 white
+kropki-4: kropki r2c6-r3c6 white
+kropki-5: kropki r4c4-r4c5 white
+kropki-6: kropki r4c4-r5c4 white
+kropki-7: kropki r5c6-r6c6 white
+kropki-8: kropki r6c5-r6c6 white
+kropki-9: kropki r7c4-r8c4 white
+kropki-10: kropki r7c6-r8c6 white
+kropki-11: kropki r7c7-r8c7 white
+kropki-12: kropki r8c4-r9c4 white
+kropki-13: kropki r2c3-r3c3 white
+kropki-14: kropki r2c4-r3c4 white
+kropki-15: kropki r1c6-r2c6 white
+kropki-16: kropki r2c6-r3c6 white
+kropki-17: kropki r4c4-r4c5 white
+kropki-18: kropki r4c4-r5c4 white
+kropki-19: kropki r5c6-r6c6 white
+kropki-20: kropki r6c5-r6c6 white
+kropki-21: kropki r7c4-r8c4 white
+kropki-22: kropki r7c6-r8c6 white
+kropki-23: kropki r7c7-r8c7 white
+kropki-24: kropki r3c1-r4c1 black
+kropki-25: kropki r5c1-r5c2 black
+kropki-26: kropki r1c5-r1c6 black
+kropki-27: kropki r6c3-r7c3 black
+kropki-28: kropki r5c9-r6c9 black
 whispers-1: whispers r6c1-r7c1-r8c1-r9c1-r9c2-r9c3-r9c4 gap 4
 whispers-2: whispers r1c6-r1c7-r1c8-r1c9-r2c9-r3c9-r4c9 gap 4
 whispers-3: whispers r6c6-r7c6-r7c7-r6c7 gap 4 loop true

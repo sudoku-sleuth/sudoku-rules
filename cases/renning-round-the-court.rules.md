@@ -6,6 +6,7 @@ source: https://sudokupad.app/3oxhng1ep6
 case: https://sudoku-sleuth.com/cases/renning-round-the-court
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e48b899231d1a8f9f0132fcb3cbdca3b
 ---
 
 ```rules

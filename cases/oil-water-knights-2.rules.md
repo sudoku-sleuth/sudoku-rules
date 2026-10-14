@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/oil-water-knights-2
 case: https://sudoku-sleuth.com/cases/oil-water-knights-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d95905da3e8350cc251f44e9dc9d3fd2
 ---
 
 ```rules

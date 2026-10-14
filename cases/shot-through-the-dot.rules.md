@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 27
-    - 28
-    - 30
-    - 31
-    - 32
-    - 34
-    - 35
-    - 36
-    - 44
+    - r4c1
+    - r4c2
+    - r4c4
+    - r4c5
+    - r4c6
+    - r4c8
+    - r4c9
+    - r5c1
+    - r5c9
 format: open-rules
 title: Shot Through the Dot
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f0e0479fabb4c3509f1f0e6540b5083c
 ---
 
 ```rules
@@ -145,16 +146,16 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r5c5-r5c6 total 13 connected true
 cage-2: cage r7c7-r8c6-r8c7 total 19 connected true
 cage-3: cage r9c3-r9c4 total 12 connected true
-kropki-1: kropki r4c3-r4c4 colour "white"
-kropki-2: kropki r2c4-r2c5 colour "white"
-kropki-3: kropki r6c2-r7c2 colour "white"
-kropki-4: kropki r6c6-r7c6 colour "white"
-kropki-5: kropki r7c3-r7c4 colour "white"
-kropki-6: kropki r7c1-r7c2 colour "white"
-kropki-7: kropki r4c4-r4c5 colour "black"
-kropki-8: kropki r4c5-r4c6 colour "black"
-kropki-9: kropki r2c2-r2c3 colour "black"
-kropki-10: kropki r7c4-r7c5 colour "black"
+kropki-1: kropki r4c3-r4c4 white
+kropki-2: kropki r2c4-r2c5 white
+kropki-3: kropki r6c2-r7c2 white
+kropki-4: kropki r6c6-r7c6 white
+kropki-5: kropki r7c3-r7c4 white
+kropki-6: kropki r7c1-r7c2 white
+kropki-7: kropki r4c4-r4c5 black
+kropki-8: kropki r4c5-r4c6 black
+kropki-9: kropki r2c2-r2c3 black
+kropki-10: kropki r7c4-r7c5 black
 arrow-1: arrow r4c1-r4c2 bulb ["r5c1"]
 arrow-2: arrow r4c9-r4c8 bulb ["r5c9"]
 arrow-3: arrow r2c8-r2c7-r2c6 bulb ["r3c9"]

@@ -6,6 +6,7 @@ source: https://sudokupad.app/qhybrqkov4
 case: https://sudoku-sleuth.com/cases/the-23-enigma
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c4289daf6a0772b6d210effd9694ab88
 ---
 
 ```rules

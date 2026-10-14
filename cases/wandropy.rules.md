@@ -6,6 +6,7 @@ source: https://sudokupad.app/7g2ggoh9z4
 case: https://sudoku-sleuth.com/cases/wandropy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 51574157aad0eb14f69ae69c767b493a
 ---
 
 ```rules

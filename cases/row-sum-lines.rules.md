@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/row-sum-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: aa764caaf377e2e821277d3b8ada9a9f
 ---
 
 ```rules

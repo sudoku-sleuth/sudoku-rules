@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/two-tone-totals
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6f8360ee1057d0ea17b356fcc89178ff
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c1-r5c1 colour "black"
-kropki-2: kropki r7c3-r8c3 colour "black"
-kropki-3: kropki r3c3-r3c4 colour "black"
-kropki-4: kropki r8c7-r8c8 colour "black"
+kropki-1: kropki r4c1-r5c1 black
+kropki-2: kropki r7c3-r8c3 black
+kropki-3: kropki r3c3-r3c4 black
+kropki-4: kropki r8c7-r8c8 black
 ```
 
 ```drawing

@@ -9,6 +9,7 @@ status: flagged
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
 givens: r1c8=2 r1c9=4
+exported: 0c48c39e979139991d31636208c542c2
 ---
 
 ```rules

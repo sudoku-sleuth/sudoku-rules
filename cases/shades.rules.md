@@ -6,6 +6,7 @@ source: https://sudokupad.app/hs1w938s15
 case: https://sudoku-sleuth.com/cases/shades
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3b4f4cefcba2bcadcc1fcbbb2afba0f3
 ---
 
 ```rules

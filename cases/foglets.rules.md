@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 4
-    - 5
+    - r1c1
+    - r1c2
+    - r2c1
+    - r2c2
 format: open-rules
 title: Foglets
 setter: FullDeck and Missing a Few Cards
@@ -38,6 +38,7 @@ board:
       - r3c4
       - r4c3
       - r4c4
+exported: 659f1142dec464e3509e8043bd048d17
 ---
 
 ```rules

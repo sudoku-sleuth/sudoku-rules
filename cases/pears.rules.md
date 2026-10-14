@@ -6,12 +6,13 @@ source: https://sudokupad.app/336018f74n
 case: https://sudoku-sleuth.com/cases/pears
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 913d1e3046d979a0658e40738cdd6574
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c2-r8c2 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "white"
+kropki-1: kropki r7c2-r8c2 white
+kropki-2: kropki r8c1-r8c2 white
 arrow-1: arrow r4c6-r3c6-r2c6 bulb ["r5c6"]
 arrow-2: arrow r6c6-r7c6 bulb ["r5c6"]
 arrow-3: arrow r4c7-r3c7-r2c7 bulb ["r5c7"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/friend-zone
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ef3e20df0ee6f6d8a2118de6b667b702
 ---
 
 ```rules

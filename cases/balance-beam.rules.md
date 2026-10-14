@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/balance-beam
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c1=7
+exported: 89f6bac8be7e8f88cb4ee109c826d451
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c5-r6c5 white
 arrow-1: arrow r3c2-r3c1 bulb ["r3c3"]
 arrow-2: arrow r3c4-r3c5 bulb ["r3c3"]
 arrow-3: arrow r4c3-r4c2 bulb ["r4c4"]

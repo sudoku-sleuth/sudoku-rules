@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-one-true-miracle
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=4 r2c3=6 r3c8=5 r5c1=9 r5c4=8 r6c3=4 r7c5=7 r8c2=5 r8c7=6
+exported: 45e0f01ede61b05b1209417d684ebf5f
 ---
 
 ```rules

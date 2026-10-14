@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
+exported: 0238287a3c120b03414a0de211248897
 ---
 
 ```rules

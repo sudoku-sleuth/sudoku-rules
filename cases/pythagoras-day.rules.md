@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pythagoras-day
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e8353cbd48b999a5d0141813a3bf27e2
 ---
 
 ```rules

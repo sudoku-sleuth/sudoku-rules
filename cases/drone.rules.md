@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/drone
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 135c1082c1dc6a4c98b7d2c367179ea3
 ---
 
 ```rules

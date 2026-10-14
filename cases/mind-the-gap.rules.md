@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/mind-the-gap
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c8=6 r8c2=1
+exported: c346b66b66fe3cff01d486656fdf0671
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c6-r6c6 colour "white"
-kropki-2: kropki r4c9-r5c9 colour "white"
+kropki-1: kropki r5c6-r6c6 white
+kropki-2: kropki r4c9-r5c9 white
 zipper-1: zipper r8c1-r7c1-r6c1-r5c1-r4c1-r3c1-r2c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8
 zipper-2: zipper r4c3-r5c3-r6c3
 zipper-3: zipper r3c4-r3c5-r3c6

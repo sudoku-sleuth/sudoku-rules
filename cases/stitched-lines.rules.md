@@ -6,17 +6,18 @@ source: https://sudokupad.app/falhq6bz4v
 case: https://sudoku-sleuth.com/cases/stitched-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ba2afde91f694e68cffa31ec07b27837
 ---
 
 ```rules
 sudoku 9x9
 cage r9c8-r9c9 total 5 connected true
-kropki-1: kropki r6c6-r6c7 colour "white"
-kropki-2: kropki r6c7-r7c7 colour "white"
-kropki-3: kropki r2c4-r2c5 colour "white"
-kropki-4: kropki r2c5-r2c6 colour "white"
-kropki-5: kropki r2c6-r2c7 colour "white"
-kropki-6: kropki r5c7-r6c7 colour "black"
+kropki-1: kropki r6c6-r6c7 white
+kropki-2: kropki r6c7-r7c7 white
+kropki-3: kropki r2c4-r2c5 white
+kropki-4: kropki r2c5-r2c6 white
+kropki-5: kropki r2c6-r2c7 white
+kropki-6: kropki r5c7-r6c7 black
 whispers-1: whispers r7c4-r8c3-r9c4-r8c5 gap 5
 whispers-2: whispers r5c2-r4c1-r3c2-r4c3 gap 5
 whispers-3: whispers r2c5-r1c6-r2c7-r3c6 gap 5

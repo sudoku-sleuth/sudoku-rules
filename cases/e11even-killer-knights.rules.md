@@ -6,6 +6,7 @@ source: https://sudokupad.app/99kb77t9w0
 case: https://sudoku-sleuth.com/cases/e11even-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ad4533a3642ce5fed108696e95123f7a
 ---
 
 ```rules

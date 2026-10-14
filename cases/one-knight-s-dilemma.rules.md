@@ -6,6 +6,7 @@ source: https://sudokupad.app/jrcovqhrcu
 case: https://sudoku-sleuth.com/cases/one-knight-s-dilemma
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 952d409f298ec879bb9f27f9970c335a
 ---
 
 ```rules

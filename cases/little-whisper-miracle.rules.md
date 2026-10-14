@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/little-whisper-miracle
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 886dc861eb4ae4397e12c7d0ea8617a0
 ---
 
 ```rules

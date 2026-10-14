@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Olive It in the Fog
 setter: Meggen033
@@ -18,13 +18,14 @@ case: https://sudoku-sleuth.com/cases/olive-it-in-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3b4cb67931c2bd77a709499ff8a8e736
 ---
 
 ```rules
 sudoku 9x9
 thermo r3c7-r3c8-r4c8
-kropki-1: kropki r7c4-r7c5 colour "white"
-kropki-2: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r7c4-r7c5 white
+kropki-2: kropki r4c3-r4c4 black
 arrow r8c6-r7c6-r7c7-r7c8 bulb ["r8c5"]
 whispers-1: whispers r5c4-r5c5-r5c6 gap 5
 whispers-2: whispers r4c4-r5c4 gap 5

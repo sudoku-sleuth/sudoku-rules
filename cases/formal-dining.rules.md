@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/formal-dining
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 682d4ccc505150e06c9f29bec6fa085a
 ---
 
 ```rules
@@ -22,11 +23,11 @@ cage-8: cage r4c8-r5c8-r6c8-r6c9 total 10 connected true
 cage-9: cage r3c2-r4c2-r4c3 total 10 connected true
 cage-10: cage r7c4-r7c5-r8c5 total 10 connected true
 cage-11: cage r5c2-r5c3 total 10 connected true
-kropki-1: kropki r1c7-r2c7 colour "white"
-kropki-2: kropki r1c6-r2c6 colour "white"
-kropki-3: kropki r2c8-r2c9 colour "white"
-kropki-4: kropki r3c8-r3c9 colour "white"
-kropki-5: kropki r7c6-r7c7 colour "white"
+kropki-1: kropki r1c7-r2c7 white
+kropki-2: kropki r1c6-r2c6 white
+kropki-3: kropki r2c8-r2c9 white
+kropki-4: kropki r3c8-r3c9 white
+kropki-5: kropki r7c6-r7c7 white
 whispers-1: whispers r4c5-r4c6-r4c7 gap 4
 whispers-2: whispers r6c2-r7c2-r8c2 gap 4
 whispers-3: whispers r6c1-r7c1-r8c1 gap 4

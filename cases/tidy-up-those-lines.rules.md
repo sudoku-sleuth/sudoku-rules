@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/tidy-up-those-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5c816a006b70f732634e6676f2173a4b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r7c4-r7c5 colour "white"
-kropki-3: kropki r8c2-r9c2 colour "white"
-kropki-4: kropki r7c6-r7c7 colour "white"
-kropki-5: kropki r2c4-r3c4 colour "black"
-kropki-6: kropki r4c1-r4c2 colour "black"
-kropki-7: kropki r7c7-r7c8 colour "black"
-kropki-8: kropki r1c9-r2c9 colour "black"
-kropki-9: kropki r5c6-r5c7 colour "black"
-kropki-10: kropki r9c5-r9c6 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r7c4-r7c5 white
+kropki-3: kropki r8c2-r9c2 white
+kropki-4: kropki r7c6-r7c7 white
+kropki-5: kropki r2c4-r3c4 black
+kropki-6: kropki r4c1-r4c2 black
+kropki-7: kropki r7c7-r7c8 black
+kropki-8: kropki r1c9-r2c9 black
+kropki-9: kropki r5c6-r5c7 black
+kropki-10: kropki r9c5-r9c6 black
 ```
 
 ```drawing

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/go-with-the-tide
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a295546fe15f161859720c57a71eb54a
 ---
 
 ```rules

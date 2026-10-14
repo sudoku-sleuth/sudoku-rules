@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flustern-kylo-renban
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b0b62d613051fb12a3bae22228bcd661
 ---
 
 ```rules

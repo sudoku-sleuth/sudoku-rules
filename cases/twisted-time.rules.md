@@ -6,6 +6,7 @@ source: https://sudokupad.app/tty37k77t8
 case: https://sudoku-sleuth.com/cases/twisted-time
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 28236cc50f576e43eb69965ed185ba80
 ---
 
 ```rules

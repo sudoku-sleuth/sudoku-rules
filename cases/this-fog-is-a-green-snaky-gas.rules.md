@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 21
-    - 23
-    - 24
+    - r3c3
+    - r3c4
+    - r3c6
+    - r3c7
 format: open-rules
 title: This FOG is a green snaky GAS
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 6f2b690f69e476a8b2c026af93d74713
 ---
 
 ```rules

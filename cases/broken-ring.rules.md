@@ -6,6 +6,7 @@ source: https://sudokupad.app/xoeo1c965c
 case: https://sudoku-sleuth.com/cases/broken-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 12dee1812c378aad6be08c8078f4a3ef
 ---
 
 ```rules

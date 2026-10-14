@@ -31,6 +31,7 @@ board:
       - r3c4
       - r4c3
       - r4c4
+exported: f3cf638e99fdc83399f4a056da7b8d72
 ---
 
 ```rules
@@ -47,7 +48,7 @@ unique-10: unique r1c3-r1c4-r2c3-r2c4
 unique-11: unique r3c1-r3c2-r4c1-r4c2
 unique-12: unique r3c3-r3c4-r4c3-r4c4
 cage r1c1-r1c2-r2c1 repeats false total 8 connected true
-kropki r4c1-r4c2 colour "white"
+kropki r4c1-r4c2 white
 modular-1: modular r1c1-r2c2-r3c3 loop false modulus 3
 modular-2: modular r4c2-r4c3-r4c4-r3c4-r2c4 loop false modulus 3
 ```

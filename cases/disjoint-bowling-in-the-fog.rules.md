@@ -1,24 +1,24 @@
 ---
 fog:
   initiallyLit:
-    - 4
-    - 5
-    - 14
-    - 15
-    - 24
-    - 25
-    - 34
-    - 35
-    - 36
-    - 44
-    - 45
-    - 46
-    - 55
-    - 56
-    - 65
-    - 66
-    - 75
-    - 76
+    - r1c5
+    - r1c6
+    - r2c6
+    - r2c7
+    - r3c7
+    - r3c8
+    - r4c8
+    - r4c9
+    - r5c1
+    - r5c9
+    - r6c1
+    - r6c2
+    - r7c2
+    - r7c3
+    - r8c3
+    - r8c4
+    - r9c4
+    - r9c5
 format: open-rules
 title: Disjoint Bowling in the Fog
 setter: Meggen033
@@ -121,6 +121,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 3720ff0078d3807b82626991eaaf11ec
 ---
 
 ```rules

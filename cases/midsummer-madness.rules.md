@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 66
-    - 67
-    - 68
-    - 75
-    - 76
-    - 77
+    - r8c4
+    - r8c5
+    - r8c6
+    - r9c4
+    - r9c5
+    - r9c6
 format: open-rules
 title: Midsummer Madness
 setter: The Bard
@@ -109,6 +109,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 46d776b5e0587ec727c3c2af49fb4423
 ---
 
 ```rules
@@ -142,16 +143,16 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r8c4-r8c5 total 3 connected true
 cage-2: cage r9c4-r9c5 total 11 connected true
 cage-3: cage r8c6-r9c6 total 7 connected true
-kropki-1: kropki r8c3-r9c3 colour "white"
-kropki-2: kropki r6c1-r7c1 colour "white"
-kropki-3: kropki r6c5-r6c6 colour "white"
-kropki-4: kropki r6c6-r6c7 colour "white"
-kropki-5: kropki r6c7-r6c8 colour "white"
-kropki-6: kropki r2c8-r2c9 colour "white"
-kropki-7: kropki r7c6-r8c6 colour "black"
-kropki-8: kropki r8c6-r8c7 colour "black"
-kropki-9: kropki r5c7-r5c8 colour "black"
-kropki-10: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r8c3-r9c3 white
+kropki-2: kropki r6c1-r7c1 white
+kropki-3: kropki r6c5-r6c6 white
+kropki-4: kropki r6c6-r6c7 white
+kropki-5: kropki r6c7-r6c8 white
+kropki-6: kropki r2c8-r2c9 white
+kropki-7: kropki r7c6-r8c6 black
+kropki-8: kropki r8c6-r8c7 black
+kropki-9: kropki r5c7-r5c8 black
+kropki-10: kropki r4c3-r4c4 black
 whispers r8c7-r8c8-r8c9-r7c9-r6c9-r5c9-r4c9 gap 5
 palindrome-1: palindrome r3c4-r2c5-r3c6-r4c7-r5c7-r5c8
 palindrome-2: palindrome r4c5-r5c5-r6c5-r7c4-r8c4-r9c4

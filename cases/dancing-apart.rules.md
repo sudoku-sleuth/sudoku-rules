@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dancing-apart
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=7 r5c2=6 r5c8=3 r9c5=4
+exported: 923c275cb57ffc902c10bf2f1bb0642a
 ---
 
 ```rules

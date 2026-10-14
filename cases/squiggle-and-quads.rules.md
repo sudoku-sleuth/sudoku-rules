@@ -6,6 +6,7 @@ source: https://sudokupad.app/7rrjbj1lxn
 case: https://sudoku-sleuth.com/cases/squiggle-and-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ef0ba3926aec9075abd766000c3c24a5
 ---
 
 ```rules

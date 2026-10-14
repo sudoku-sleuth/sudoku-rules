@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 10
-    - 11
-    - 12
-    - 26
-    - 35
-    - 44
+    - r2c2
+    - r2c3
+    - r2c4
+    - r3c9
+    - r4c9
+    - r5c9
 format: open-rules
 title: Foggy Man in the Mirror
 setter: Meggen033
@@ -109,6 +109,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: cbcfc9387eee71b848da3e75a804f129
 ---
 
 ```rules
@@ -144,16 +145,16 @@ cage-2: cage r4c8-r5c8 total 13 connected true
 cage-3: cage r4c5-r5c5-r6c5 total 10 connected true
 cage-4: cage r7c1-r8c1-r9c1 total 16 connected true
 cage-5: cage r7c9-r8c9-r9c9 total 16 connected true
-kropki-1: kropki r3c9-r4c9 colour "white"
-kropki-2: kropki r3c8-r3c9 colour "white"
-kropki-3: kropki r5c7-r6c7 colour "white"
-kropki-4: kropki r4c3-r5c3 colour "white"
-kropki-5: kropki r2c2-r3c2 colour "black"
-kropki-6: kropki r2c3-r3c3 colour "black"
-kropki-7: kropki r2c4-r3c4 colour "black"
-kropki-8: kropki r3c6-r4c6 colour "black"
-kropki-9: kropki r7c6-r7c7 colour "black"
-kropki-10: kropki r7c4-r8c4 colour "black"
+kropki-1: kropki r3c9-r4c9 white
+kropki-2: kropki r3c8-r3c9 white
+kropki-3: kropki r5c7-r6c7 white
+kropki-4: kropki r4c3-r5c3 white
+kropki-5: kropki r2c2-r3c2 black
+kropki-6: kropki r2c3-r3c3 black
+kropki-7: kropki r2c4-r3c4 black
+kropki-8: kropki r3c6-r4c6 black
+kropki-9: kropki r7c6-r7c7 black
+kropki-10: kropki r7c4-r8c4 black
 palindrome r2c2-r2c3-r2c4-r3c5-r4c6-r5c5-r4c4-r4c3-r5c2-r6c3-r7c3-r8c4-r9c5-r8c6-r7c7-r6c7-r6c8-r5c7-r4c8-r3c8-r4c9-r5c9
 ```
 

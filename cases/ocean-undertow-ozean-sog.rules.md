@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/ocean-undertow-ozean-sog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 22002e9bce234da96cbda2ca9fc715e7
 ---
 
 ```rules

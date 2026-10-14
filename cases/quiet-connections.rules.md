@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quiet-connections
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=6 r5c9=8 r7c5=3
+exported: 1e8cdb7aafcfeb7daf402e6588d83d47
 ---
 
 ```rules

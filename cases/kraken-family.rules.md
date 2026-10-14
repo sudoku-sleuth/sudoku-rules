@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/kraken-family
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 43f08f87c2963cc7cd142c454ac9d464
 ---
 
 ```rules

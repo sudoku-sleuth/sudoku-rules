@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-120
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 83002dbc8013c9b3d5104a7a918137f6
 ---
 
 ```rules
@@ -23,10 +24,10 @@ equality-cage-9: equality-cage r5c1-r5c2
 equality-cage-10: equality-cage r5c7-r5c8
 equality-cage-11: equality-cage r5c9-r6c9
 equality-cage-12: equality-cage r5c4-r5c5-r5c6-r6c5
-kropki-1: kropki r8c1-r8c2 colour "black"
-kropki-2: kropki r8c2-r8c3 colour "black"
-kropki-3: kropki r2c8-r2c9 colour "black"
-kropki-4: kropki r2c7-r2c8 colour "black"
+kropki-1: kropki r8c1-r8c2 black
+kropki-2: kropki r8c2-r8c3 black
+kropki-3: kropki r2c8-r2c9 black
+kropki-4: kropki r2c7-r2c8 black
 parity-1: parity r8c3-r8c2-r7c2
 parity-2: parity r1c7-r1c8
 parity-3: parity r2c2-r2c1-r3c2-r2c3

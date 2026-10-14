@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/three-strings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c9=1 r9c1=8
+exported: cf94a303e847ee094f7db6e7d291f7cf
 ---
 
 ```rules

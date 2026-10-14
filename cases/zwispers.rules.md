@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/zwispers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c1=1 r4c4=1 r4c5=2 r4c6=3 r5c4=4 r5c5=5 r5c6=6 r6c4=7 r6c5=8 r6c6=9
+exported: 2788f5644e46fe254a44885826013010
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/water-ice-vapor
 case: https://sudoku-sleuth.com/cases/water-ice-vapor
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8c6b05313feba46b05e69a89af2f5c8c
 ---
 
 ```rules

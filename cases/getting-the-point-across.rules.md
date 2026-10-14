@@ -6,6 +6,7 @@ source: https://sudokupad.app/xz0xo85k3y
 case: https://sudoku-sleuth.com/cases/getting-the-point-across
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b6f93f0bd88b6084f00a11848b4fc07e
 ---
 
 ```rules

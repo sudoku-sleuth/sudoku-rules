@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 33
-    - 34
-    - 35
-    - 42
-    - 43
-    - 44
-    - 51
-    - 52
-    - 53
+    - r4c7
+    - r4c8
+    - r4c9
+    - r5c7
+    - r5c8
+    - r5c9
+    - r6c7
+    - r6c8
+    - r6c9
 format: open-rules
 title: Fakes in the Fog
 setter: Marty Sears
@@ -20,6 +20,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 1072d0326183fe5a9ff97f1b8321ca60
 ---
 
 ```rules

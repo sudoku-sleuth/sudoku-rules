@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/feeding-the-flames
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=7
+exported: 27cd9297dc31e69d842c0887dbc35390
 ---
 
 ```rules

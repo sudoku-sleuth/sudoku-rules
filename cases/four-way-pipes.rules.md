@@ -6,6 +6,7 @@ source: https://sudokupad.app/urxwacfey2
 case: https://sudoku-sleuth.com/cases/four-way-pipes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a2f3dc1456ebac0d8d8b7059ce798ad3
 ---
 
 ```rules

@@ -6,21 +6,22 @@ source: https://tinyurl.com/349tdckc
 case: https://sudoku-sleuth.com/cases/solver-series-skorp17
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ec52f77ada52b1a1c880c7ca6252561c
 ---
 
 ```rules
 sudoku 9x9
 thermo r3c8-r3c7-r2c7-r1c7-r1c8-r1c9-r2c9-r3c9
-kropki-1: kropki r1c2-r2c2 colour "white"
-kropki-2: kropki r2c2-r3c2 colour "white"
-kropki-3: kropki r1c3-r2c3 colour "white"
-kropki-4: kropki r2c1-r3c1 colour "white"
-kropki-5: kropki r1c4-r1c5 colour "white"
-kropki-6: kropki r7c5-r8c5 colour "white"
-kropki-7: kropki r1c1-r2c1 colour "black"
-kropki-8: kropki r2c3-r3c3 colour "black"
-kropki-9: kropki r3c4-r3c5 colour "black"
-kropki-10: kropki r5c2-r5c3 colour "black"
+kropki-1: kropki r1c2-r2c2 white
+kropki-2: kropki r2c2-r3c2 white
+kropki-3: kropki r1c3-r2c3 white
+kropki-4: kropki r2c1-r3c1 white
+kropki-5: kropki r1c4-r1c5 white
+kropki-6: kropki r7c5-r8c5 white
+kropki-7: kropki r1c1-r2c1 black
+kropki-8: kropki r2c3-r3c3 black
+kropki-9: kropki r3c4-r3c5 black
+kropki-10: kropki r5c2-r5c3 black
 whispers-1: whispers r1c3-r1c2-r1c1-r2c1-r2c2-r2c3 gap 2
 whispers-2: whispers r3c1-r3c2-r3c3-r2c3 gap 2
 whispers-3: whispers r1c4-r2c4-r3c4 gap 2

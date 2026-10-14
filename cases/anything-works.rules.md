@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anything-works
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: adebaa27c727fe7a4fa5e015a1aec742
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/zipper-or-ziffer
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8756cb03de36a98d27cb7fdc4c06a16e
 ---
 
 ```rules

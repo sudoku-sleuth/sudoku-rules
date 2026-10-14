@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/whirling-blade
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=3 r2c1=5 r3c8=1 r4c4=7 r5c1=8 r5c9=1 r7c2=9 r8c6=8 r8c7=2
+exported: bc0b76e36dd9cfa215fd04c6ce6c845b
 ---
 
 ```rules

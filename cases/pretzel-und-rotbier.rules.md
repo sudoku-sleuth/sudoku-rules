@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pretzel-und-rotbier
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 117090aa87996989ba6736bc03ab01f4
 ---
 
 ```rules

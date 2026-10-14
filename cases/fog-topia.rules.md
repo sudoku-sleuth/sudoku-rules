@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fog-Topia
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 0400ee08c6c0317c61f8776b8cc30e96
 ---
 
 ```rules
@@ -148,16 +149,16 @@ cage-3: cage r5c3-r6c3 total 7 connected true
 cage-4: cage r8c3-r8c4-r8c5 total 10 connected true
 cage-5: cage r9c3-r9c4 total 12 connected true
 cage-6: cage r6c8-r7c7-r7c8 total 14 connected true
-kropki-1: kropki r1c4-r2c4 colour "white"
-kropki-2: kropki r6c4-r7c4 colour "white"
-kropki-3: kropki r2c5-r3c5 colour "white"
-kropki-4: kropki r1c7-r2c7 colour "white"
-kropki-5: kropki r4c1-r4c2 colour "white"
-kropki-6: kropki r4c4-r5c4 colour "black"
-kropki-7: kropki r4c4-r4c5 colour "black"
-kropki-8: kropki r3c6-r4c6 colour "black"
-kropki-9: kropki r5c7-r6c7 colour "black"
-kropki-10: kropki r8c8-r8c9 colour "black"
+kropki-1: kropki r1c4-r2c4 white
+kropki-2: kropki r6c4-r7c4 white
+kropki-3: kropki r2c5-r3c5 white
+kropki-4: kropki r1c7-r2c7 white
+kropki-5: kropki r4c1-r4c2 white
+kropki-6: kropki r4c4-r5c4 black
+kropki-7: kropki r4c4-r4c5 black
+kropki-8: kropki r3c6-r4c6 black
+kropki-9: kropki r5c7-r6c7 black
+kropki-10: kropki r8c8-r8c9 black
 arrow-1: arrow r5c5-r4c4 bulb ["r6c6"]
 arrow-2: arrow r6c1-r5c2-r4c3 bulb ["r6c2"]
 arrow-3: arrow r7c6-r8c6 bulb ["r8c7"]

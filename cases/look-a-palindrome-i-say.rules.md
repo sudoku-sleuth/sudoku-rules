@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/look-a-palindrome-i-say
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ca3524fb71d4631c975e00e7c42d1cfd
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/acid-redux
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=3
+exported: a2bd1d298bd9db4411527e38aa7c217b
 ---
 
 ```rules

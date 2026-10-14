@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/unspooled
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r2c9=4 r4c5=2 r6c8=6 r7c4=3 r9c3=7 r9c7=8
+exported: 183a2ccc20667773198ba56bca15643c
 ---
 
 ```rules

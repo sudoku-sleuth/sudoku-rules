@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/rat-run-14-thermoregulation
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f5b0a339ee39aa6a81137c73179d3117
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c3-r3c3 colour "black"
-kropki-2: kropki r7c6-r7c7 colour "black"
-kropki-3: kropki r1c1-r1c2 colour "black"
-kropki-4: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r2c3-r3c3 black
+kropki-2: kropki r7c6-r7c7 black
+kropki-3: kropki r1c1-r1c2 black
+kropki-4: kropki r5c9-r6c9 black
 ```
 
 ```drawing

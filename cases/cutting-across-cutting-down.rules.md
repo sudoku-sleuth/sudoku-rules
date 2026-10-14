@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cutting-across-cutting-down
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c9=1 r3c1=5 r4c3=6 r7c5=9 r9c8=3
+exported: fb75100e25705b62e89427147f94484f
 ---
 
 ```rules

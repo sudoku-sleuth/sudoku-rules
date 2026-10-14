@@ -6,6 +6,7 @@ source: https://sudokupad.app/f6br23ndpp
 case: https://sudoku-sleuth.com/cases/eddies
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1b469cf34e37956e7923bf0122d320e0
 ---
 
 ```rules

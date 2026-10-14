@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/prime-cuts-and-perfect-squares
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 275b17204ded32f1bd553ddf602c77fe
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/shifter-lines-103
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0ee69962fa38f4b5f1e6a542f7fd89b8
 ---
 
 ```rules

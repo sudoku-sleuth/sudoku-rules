@@ -6,6 +6,7 @@ source: https://sudokupad.app/bacl71210m
 case: https://sudoku-sleuth.com/cases/se7en
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 56698c81137119deb61b766ae55910d9
 ---
 
 ```rules

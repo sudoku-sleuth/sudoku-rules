@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/w8t-4-it
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=4 r6c6=8
+exported: 0c9788d357186367322c0778def3750b
 ---
 
 ```rules
@@ -22,10 +23,10 @@ cage-8: cage r9c8-r9c9 total 4 connected true
 cage-9: cage r8c4-r8c5 total 4 connected true
 cage-10: cage r8c2-r8c3 total 8 connected true
 cage-11: cage r7c1-r8c1 total 8 connected true
-kropki-1: kropki r6c2-r7c2 colour "black"
-kropki-2: kropki r8c6-r8c7 colour "black"
-kropki-3: kropki r3c8-r4c8 colour "black"
-kropki-4: kropki r2c3-r2c4 colour "black"
+kropki-1: kropki r6c2-r7c2 black
+kropki-2: kropki r8c6-r8c7 black
+kropki-3: kropki r3c8-r4c8 black
+kropki-4: kropki r2c3-r2c4 black
 negative relations [{"op":"ratio","value":2}] except [["r6c2","r7c2"],["r8c6","r8c7"],["r3c8","r4c8"],["r2c3","r2c4"]]
 ```
 

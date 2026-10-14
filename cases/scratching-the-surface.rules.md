@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/scratching-the-surface
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c2=3 r5c8=7
+exported: 4ec8754810d4a0c9760cdf1bcafe6b8d
 ---
 
 ```rules

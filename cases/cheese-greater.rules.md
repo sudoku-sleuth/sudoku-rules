@@ -1,148 +1,148 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 6
-    - 7
-    - 8
-    - 9
-    - 12
-    - 13
-    - 14
-    - 15
-    - 18
-    - 19
-    - 20
-    - 21
+    - r1c1
+    - r1c2
+    - r1c3
+    - r1c4
+    - r2c1
+    - r2c2
+    - r2c3
+    - r2c4
+    - r3c1
+    - r3c2
+    - r3c3
+    - r3c4
+    - r4c1
+    - r4c2
+    - r4c3
+    - r4c4
   links:
     - trigger:
-        - 21
-        - 6
+        - r4c4
+        - r2c1
       lights:
-        - 24
-        - 25
-        - 26
-        - 30
-        - 31
-        - 32
+        - r5c1
+        - r5c2
+        - r5c3
+        - r6c1
+        - r6c2
+        - r6c3
     - trigger:
-        - 1
-        - 7
-        - 13
-        - 12
-        - 14
-        - 15
-        - 26
-        - 19
+        - r1c2
+        - r2c2
+        - r3c2
+        - r3c1
+        - r3c3
+        - r3c4
+        - r5c3
+        - r4c2
       lights:
-        - 4
-        - 5
-        - 10
-        - 11
+        - r1c5
+        - r1c6
+        - r2c5
+        - r2c6
     - trigger:
-        - 0
-        - 2
-        - 8
-        - 9
-        - 3
-        - 4
-        - 5
-        - 11
-        - 17
-        - 16
-        - 10
-        - 35
+        - r1c1
+        - r1c3
+        - r2c3
+        - r2c4
+        - r1c4
+        - r1c5
+        - r1c6
+        - r2c6
+        - r3c6
+        - r3c5
+        - r2c5
+        - r6c6
       lights:
-        - 22
-        - 23
-        - 27
-        - 28
-        - 29
-        - 33
-        - 34
+        - r4c5
+        - r4c6
+        - r5c4
+        - r5c5
+        - r5c6
+        - r6c4
+        - r6c5
     - trigger:
-        - 4
+        - r1c5
       lights:
-        - 4
+        - r1c5
     - trigger:
-        - 5
+        - r1c6
       lights:
-        - 5
+        - r1c6
     - trigger:
-        - 10
+        - r2c5
       lights:
-        - 10
+        - r2c5
     - trigger:
-        - 11
+        - r2c6
       lights:
-        - 11
+        - r2c6
     - trigger:
-        - 16
+        - r3c5
       lights:
-        - 16
+        - r3c5
     - trigger:
-        - 17
+        - r3c6
       lights:
-        - 17
+        - r3c6
     - trigger:
-        - 22
+        - r4c5
       lights:
-        - 22
+        - r4c5
     - trigger:
-        - 23
+        - r4c6
       lights:
-        - 23
+        - r4c6
     - trigger:
-        - 24
+        - r5c1
       lights:
-        - 24
+        - r5c1
     - trigger:
-        - 25
+        - r5c2
       lights:
-        - 25
+        - r5c2
     - trigger:
-        - 26
+        - r5c3
       lights:
-        - 26
+        - r5c3
     - trigger:
-        - 27
+        - r5c4
       lights:
-        - 27
+        - r5c4
     - trigger:
-        - 28
+        - r5c5
       lights:
-        - 28
+        - r5c5
     - trigger:
-        - 29
+        - r5c6
       lights:
-        - 29
+        - r5c6
     - trigger:
-        - 30
+        - r6c1
       lights:
-        - 30
+        - r6c1
     - trigger:
-        - 31
+        - r6c2
       lights:
-        - 31
+        - r6c2
     - trigger:
-        - 32
+        - r6c3
       lights:
-        - 32
+        - r6c3
     - trigger:
-        - 33
+        - r6c4
       lights:
-        - 33
+        - r6c4
     - trigger:
-        - 34
+        - r6c5
       lights:
-        - 34
+        - r6c5
     - trigger:
-        - 35
+        - r6c6
       lights:
-        - 35
+        - r6c6
 format: open-rules
 title: Cheese Greater
 setter: Marty Sears
@@ -161,6 +161,7 @@ board:
     - 4
     - 5
     - 6
+exported: d5183a5609bd24d16aa78cb98b2d37e9
 ---
 
 ```rules

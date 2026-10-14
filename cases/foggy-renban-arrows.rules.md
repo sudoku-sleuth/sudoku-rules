@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 5
-    - 12
-    - 13
-    - 14
-    - 21
-    - 22
-    - 23
+    - r1c4
+    - r1c5
+    - r1c6
+    - r2c4
+    - r2c5
+    - r2c6
+    - r3c4
+    - r3c5
+    - r3c6
 format: open-rules
 title: Foggy Renban Arrows
 setter: Sir Moose
@@ -18,6 +18,7 @@ case: https://sudoku-sleuth.com/cases/foggy-renban-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 81db1f0d2745c6d7160644e4f1f272d6
 ---
 
 ```rules

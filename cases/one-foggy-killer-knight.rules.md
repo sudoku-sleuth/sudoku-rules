@@ -1,14 +1,14 @@
 ---
 fog:
   initiallyLit:
-    - 1
-    - 10
-    - 12
-    - 22
-    - 28
-    - 29
-    - 49
-    - 67
+    - r1c2
+    - r2c2
+    - r2c4
+    - r3c5
+    - r4c2
+    - r4c3
+    - r6c5
+    - r8c5
 format: open-rules
 title: One Foggy Killer Knight
 setter: Meggen033
@@ -111,6 +111,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 8560c247ebb9544caaf5399afe786b05
 ---
 
 ```rules

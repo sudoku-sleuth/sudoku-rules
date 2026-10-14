@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/seventeen
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r2c2=7 r5c7=1 r6c9=7 r8c4=1 r9c5=7
+exported: d9c39c7d2253a8123355a473e46134ec
 ---
 
 ```rules

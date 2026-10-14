@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dialectics
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d93d47d828dfcbc6d87b990dabb142c8
 ---
 
 ```rules

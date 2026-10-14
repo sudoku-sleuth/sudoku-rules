@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/looking-for-a-partner
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1073640212515f4d0f59e7bf2729df23
 ---
 
 ```rules

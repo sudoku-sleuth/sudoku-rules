@@ -6,6 +6,7 @@ source: https://sudokupad.app/q5v50bc904
 case: https://sudoku-sleuth.com/cases/city-congestion
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b34248a37528cfcf127992ff4434ee2b
 ---
 
 ```rules

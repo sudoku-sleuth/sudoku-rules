@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sum-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=2 r5c7=5 r6c4=3 r9c2=4 r9c6=1
+exported: 8febd534aaf9b715ea5c19d196a3b8ee
 ---
 
 ```rules

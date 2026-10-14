@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/see-three
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c4=4 r4c3=3 r6c7=7 r7c6=6
+exported: ee92533c59855b190fad5c8705e21e84
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/good-fences
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c7=3 r3c4=5 r4c3=2 r4c9=4 r5c5=9 r6c1=5 r6c7=7 r7c6=4 r8c3=6 r9c8=1
+exported: 907c254ac1aab676495f27fcd58a7113
 ---
 
 ```rules

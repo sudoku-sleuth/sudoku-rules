@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/circular-reasoning
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c1=6 r5c3=3 r5c5=5 r5c7=7 r8c9=4
+exported: 608efc9889790a4cf8470b79c02aa030
 ---
 
 ```rules

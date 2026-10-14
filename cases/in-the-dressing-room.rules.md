@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/in-the-dressing-room
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9fd737ac14fc2b50ccac2dd003741575
 ---
 
 ```rules
@@ -21,13 +22,13 @@ cage-8: cage r2c5-r2c6 total 13 connected true
 cage-9: cage r8c4-r8c5 total 10 connected true
 cage-10: cage r7c6-r7c7 total 16 connected true
 cage-11: cage r3c5-r4c5 total 8 connected true
-kropki-1: kropki r8c1-r9c1 colour "white"
-kropki-2: kropki r7c1-r8c1 colour "white"
-kropki-3: kropki r7c1-r7c2 colour "white"
-kropki-4: kropki r6c2-r7c2 colour "white"
-kropki-5: kropki r6c1-r6c2 colour "white"
-kropki-6: kropki r5c1-r6c1 colour "white"
-kropki-7: kropki r7c4-r7c5 colour "white"
+kropki-1: kropki r8c1-r9c1 white
+kropki-2: kropki r7c1-r8c1 white
+kropki-3: kropki r7c1-r7c2 white
+kropki-4: kropki r6c2-r7c2 white
+kropki-5: kropki r6c1-r6c2 white
+kropki-6: kropki r5c1-r6c1 white
+kropki-7: kropki r7c4-r7c5 white
 renban-1: renban r5c9-r6c9-r7c9-r8c9-r9c9-r9c8-r8c8-r7c8
 renban-2: renban r4c2-r5c2-r6c2-r7c2-r8c2-r8c3-r7c3-r6c3
 renban-3: renban r5c7-r5c8-r4c9-r3c9-r2c9-r2c8-r3c8-r4c8-r3c7

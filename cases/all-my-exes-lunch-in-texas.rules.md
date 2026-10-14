@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/all-my-exes-lunch-in-texas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 05ec76d720deb633724ff13ab556f76e
 ---
 
 ```rules

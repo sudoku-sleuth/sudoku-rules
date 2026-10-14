@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-wondering-traveler
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5821d77361d572eb952556eb56e9320e
 ---
 
 ```rules
@@ -17,11 +18,11 @@ cage-4: cage r1c2-r1c3-r1c4-r2c4 total 25 connected true
 cage-5: cage r1c6-r1c7-r1c8-r2c6 total 17 connected true
 cage-6: cage r7c1-r7c2 total 8 connected true
 thermo r3c7-r3c8-r3c9-r4c9-r4c8-r4c7
-kropki-1: kropki r7c7-r8c7 colour "white"
-kropki-2: kropki r7c5-r8c5 colour "white"
-kropki-3: kropki r9c1-r9c2 colour "white"
-kropki-4: kropki r3c8-r3c9 colour "white"
-kropki-5: kropki r3c1-r3c2 colour "black"
+kropki-1: kropki r7c7-r8c7 white
+kropki-2: kropki r7c5-r8c5 white
+kropki-3: kropki r9c1-r9c2 white
+kropki-4: kropki r3c8-r3c9 white
+kropki-5: kropki r3c1-r3c2 black
 arrow-1: arrow r3c4-r3c5 bulb ["r4c3"]
 arrow-2: arrow r6c4-r6c5 bulb ["r7c3"]
 quadruple r8c3-r8c4-r9c3-r9c4 digits [6,7]

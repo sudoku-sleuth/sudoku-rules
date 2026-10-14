@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/plaid-patches-and-zipper
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5d6312fd1d41d5046587476c5fd618fc
 ---
 
 ```rules

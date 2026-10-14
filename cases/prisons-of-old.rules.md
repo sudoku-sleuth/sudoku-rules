@@ -6,6 +6,7 @@ source: https://sudokupad.app/9f1xszb3ow
 case: https://sudoku-sleuth.com/cases/prisons-of-old
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 57fc84373d3878eb76e30c284f921164
 ---
 
 ```rules

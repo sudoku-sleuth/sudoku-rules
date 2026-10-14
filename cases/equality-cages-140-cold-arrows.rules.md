@@ -6,6 +6,7 @@ source: https://sudokupad.app/1t38d1q2qu
 case: https://sudoku-sleuth.com/cases/equality-cages-140-cold-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f22d9dfb388066e0b256d0f4d1e7d001
 ---
 
 ```rules

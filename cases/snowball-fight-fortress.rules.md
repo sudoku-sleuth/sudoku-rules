@@ -6,16 +6,17 @@ source: https://sudokupad.app/1pwhjz5uqi
 case: https://sudoku-sleuth.com/cases/snowball-fight-fortress
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aa76491c09470c2cf3591e1014b9d4f4
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r4c1-r5c1 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r6c7-r7c7 colour "white"
-kropki-5: kropki r9c2-r9c3 colour "white"
-kropki-6: kropki r5c3-r6c3 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r4c1-r5c1 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r6c7-r7c7 white
+kropki-5: kropki r9c2-r9c3 white
+kropki-6: kropki r5c3-r6c3 black
 arrow-1: arrow r8c1-r7c1 bulb ["r9c1"]
 arrow-2: arrow r9c2-r9c3 bulb ["r9c1"]
 arrow-3: arrow r7c2-r6c2 bulb ["r8c2"]

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogs-n-Dots-n-Knights
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 9f15392798372821ec69a0edcc4aaa46
 ---
 
 ```rules
@@ -146,17 +147,17 @@ cage-1: cage r6c5-r6c6 total 7 connected true
 cage-2: cage r6c4-r7c3-r7c4 total 10 connected true
 cage-3: cage r5c3-r6c3 total 5 connected true
 anti-knight
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r6c2-r6c3 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "white"
-kropki-4: kropki r5c6-r5c7 colour "white"
-kropki-5: kropki r7c2-r7c3 colour "white"
-kropki-6: kropki r4c4-r5c4 colour "black"
-kropki-7: kropki r4c6-r4c7 colour "black"
-kropki-8: kropki r3c5-r4c5 colour "black"
-kropki-9: kropki r7c4-r7c5 colour "black"
-kropki-10: kropki r3c6-r4c6 colour "black"
-kropki-11: kropki r6c6-r7c6 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r6c2-r6c3 white
+kropki-3: kropki r7c5-r8c5 white
+kropki-4: kropki r5c6-r5c7 white
+kropki-5: kropki r7c2-r7c3 white
+kropki-6: kropki r4c4-r5c4 black
+kropki-7: kropki r4c6-r4c7 black
+kropki-8: kropki r3c5-r4c5 black
+kropki-9: kropki r7c4-r7c5 black
+kropki-10: kropki r3c6-r4c6 black
+kropki-11: kropki r6c6-r7c6 black
 renban-1: renban r4c5-r5c5-r5c6-r4c6
 renban-2: renban r8c7-r8c8-r7c8
 little-killer-1: little-killer r1c6-r2c7-r3c8-r4c9 sum 6

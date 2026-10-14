@@ -101,6 +101,7 @@ board:
       - r7c4
       - r7c5
       - r7c6
+exported: f0c77dceaeaf737aa322d6cac1341040
 ---
 
 ```rules

@@ -9,16 +9,17 @@ status: flagged
 flags:
   - A feature in the source still needs a drawing definition.
   - Some source features still need to be checked against our reading.
+exported: 97b5f678558c7c6ff3434de4b2144d26
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c2-r6c3 colour "black"
-kropki-2: kropki r3c5-r3c6 colour "black"
-kropki-3: kropki r2c5-r2c6 colour "white"
-kropki-4: kropki r5c9-r6c9 colour "white"
-kropki-5: kropki r5c6-r6c6 colour "white"
-kropki-6: kropki r5c5-r6c5 colour "white"
+kropki-1: kropki r6c2-r6c3 black
+kropki-2: kropki r3c5-r3c6 black
+kropki-3: kropki r2c5-r2c6 white
+kropki-4: kropki r5c9-r6c9 white
+kropki-5: kropki r5c6-r6c6 white
+kropki-6: kropki r5c5-r6c5 white
 entropic-1: entropic r2c3-r2c2-r3c2-r3c3
 entropic-2: entropic r5c2-r6c2-r6c3-r5c3
 entropic-3: entropic r2c9-r2c8-r3c8-r3c9

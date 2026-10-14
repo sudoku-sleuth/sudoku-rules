@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/passing-through
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c8=7 r7c2=3
+exported: 8a9211f59aff4069687a6e0defee2e45
 ---
 
 ```rules

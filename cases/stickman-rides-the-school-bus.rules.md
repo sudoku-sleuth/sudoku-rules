@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/stickman-rides-the-school-bus
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8d40677ceb9d5036bad984fab3420a10
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c3-r7c4 colour "black"
-kropki-2: kropki r7c2-r8c2 colour "black"
-kropki-3: kropki r3c2-r4c2 colour "black"
+kropki-1: kropki r7c3-r7c4 black
+kropki-2: kropki r7c2-r8c2 black
+kropki-3: kropki r3c2-r4c2 black
 whispers-1: whispers r7c9-r6c9-r5c8 gap 5
 whispers-2: whispers r4c7-r4c6-r3c6-r2c6-r1c6 gap 5
 whispers-3: whispers r1c5-r1c4-r1c3-r1c2 gap 5

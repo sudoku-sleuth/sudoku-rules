@@ -6,14 +6,15 @@ source: https://tinyurl.com/xmarksthespotsudoku
 case: https://sudoku-sleuth.com/cases/x-marks-the-spot
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3123ba6e2de09d7cd77b22db87cc16e2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c8-r5c8 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "white"
-kropki-3: kropki r5c7-r5c8 colour "black"
-kropki-4: kropki r7c4-r7c5 colour "black"
+kropki-1: kropki r4c8-r5c8 white
+kropki-2: kropki r4c5-r4c6 white
+kropki-3: kropki r5c7-r5c8 black
+kropki-4: kropki r7c4-r7c5 black
 whispers-1: whispers r1c4-r2c3-r3c2 gap 5
 whispers-2: whispers r1c2-r2c3-r3c4 gap 5
 whispers-3: whispers r4c3-r5c3 gap 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-grey-havens
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 37c945c4f9c9d65b1981b05b1a748a34
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/9yns5ra2o2
 case: https://sudoku-sleuth.com/cases/passing-the-bans
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cdcbca351bffeb0b3f7539cf18e3ed29
 ---
 
 ```rules

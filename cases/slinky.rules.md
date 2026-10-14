@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/slinky
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ea70e5ccba0252d6b32f6e504cb58863
 ---
 
 ```rules

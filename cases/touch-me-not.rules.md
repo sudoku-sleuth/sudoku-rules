@@ -6,6 +6,7 @@ source: https://sudokupad.app/aasvu64l71
 case: https://sudoku-sleuth.com/cases/touch-me-not
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f6e5546ab2b042328043e0b0c3e4e610
 ---
 
 ```rules

@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/ceiling-fan
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c1=3
+exported: a6703dcf4cb6763f7396b18b51a2e2bc
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c5-r6c6 colour "white"
-kropki-2: kropki r5c4-r6c4 colour "white"
-kropki-3: kropki r4c4-r4c5 colour "white"
-kropki-4: kropki r8c8-r8c9 colour "white"
-kropki-5: kropki r5c5-r5c6 colour "white"
-kropki-6: kropki r1c2-r2c2 colour "black"
-kropki-7: kropki r8c2-r9c2 colour "black"
-kropki-8: kropki r1c8-r2c8 colour "black"
+kropki-1: kropki r6c5-r6c6 white
+kropki-2: kropki r5c4-r6c4 white
+kropki-3: kropki r4c4-r4c5 white
+kropki-4: kropki r8c8-r8c9 white
+kropki-5: kropki r5c5-r5c6 white
+kropki-6: kropki r1c2-r2c2 black
+kropki-7: kropki r8c2-r9c2 black
+kropki-8: kropki r1c8-r2c8 black
 whispers-1: whispers r4c3-r3c2-r2c1-r1c2-r2c3-r3c4 gap 5
 whispers-2: whispers r3c6-r2c7-r1c8-r2c9-r3c8-r4c7 gap 5
 whispers-3: whispers r4c5-r3c5-r2c5-r1c5 gap 5

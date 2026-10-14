@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r1c9=5 r6c9=9 r7c4=4 r8c2=5
+exported: 0728f2550932b547e8be8e82ff1de3b6
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/coqkbex7db
 case: https://sudoku-sleuth.com/cases/centering-practice
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aa8f1bba2f20a1e4106288a5e20dbda6
 ---
 
 ```rules
@@ -24,15 +25,15 @@ cage-11: cage r6c1-r6c2-r6c3-r7c2 total 24 connected true
 cage-12: cage r6c7-r6c8-r6c9-r7c8 total 16 connected true
 cage-13: cage r8c3-r9c3-r9c4 total 12 connected true
 cage-14: cage r8c7-r9c6-r9c7 total 12 connected true
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r1c8-r1c9 colour "black"
-kropki-3: kropki r3c4-r4c4 colour "black"
-kropki-4: kropki r3c6-r4c6 colour "black"
-kropki-5: kropki r4c2-r5c2 colour "black"
-kropki-6: kropki r4c8-r5c8 colour "black"
-kropki-7: kropki r6c5-r7c5 colour "black"
-kropki-8: kropki r7c2-r8c2 colour "black"
-kropki-9: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r1c8-r1c9 black
+kropki-3: kropki r3c4-r4c4 black
+kropki-4: kropki r3c6-r4c6 black
+kropki-5: kropki r4c2-r5c2 black
+kropki-6: kropki r4c8-r5c8 black
+kropki-7: kropki r6c5-r7c5 black
+kropki-8: kropki r7c2-r8c2 black
+kropki-9: kropki r7c8-r8c8 black
 ```
 
 - Normal sudoku rules apply.

@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/support-structures
 case: https://sudoku-sleuth.com/cases/support-structures
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 796d89b00ef6e2f7cb9ccf03286a8139
 ---
 
 ```rules

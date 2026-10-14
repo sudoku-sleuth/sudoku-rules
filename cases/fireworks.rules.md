@@ -6,6 +6,7 @@ source: https://sudokupad.app/oza5o47z3b
 case: https://sudoku-sleuth.com/cases/fireworks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: eb7422f67b3b8e90c735006449c21931
 ---
 
 ```rules
@@ -13,14 +14,14 @@ sudoku 9x9
 thermo-1: thermo r9c5-r8c5-r7c5-r6c5-r5c5-r4c5
 thermo-2: thermo r9c4-r8c3-r7c3-r6c2-r5c2-r4c2
 thermo-3: thermo r9c6-r8c7-r7c7-r6c8-r5c8-r4c8
-kropki-1: kropki r9c1-r9c2 colour "white"
-kropki-2: kropki r1c4-r1c5 colour "black"
-kropki-3: kropki r1c9-r2c9 colour "black"
-kropki-4: kropki r2c1-r3c1 colour "black"
-kropki-5: kropki r4c6-r4c7 colour "black"
-kropki-6: kropki r8c4-r8c5 colour "black"
-kropki-7: kropki r6c1-r6c2 colour "black"
-kropki-8: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r9c1-r9c2 white
+kropki-2: kropki r1c4-r1c5 black
+kropki-3: kropki r1c9-r2c9 black
+kropki-4: kropki r2c1-r3c1 black
+kropki-5: kropki r4c6-r4c7 black
+kropki-6: kropki r8c4-r8c5 black
+kropki-7: kropki r6c1-r6c2 black
+kropki-8: kropki r3c8-r4c8 black
 whispers-1: whispers r4c5-r3c5-r2c5-r1c5 gap 5
 whispers-2: whispers r2c3-r3c4-r4c5-r3c6-r2c7 gap 4
 entropic-1: entropic r4c2-r3c2-r2c2

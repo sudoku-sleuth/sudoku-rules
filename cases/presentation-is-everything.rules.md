@@ -6,6 +6,7 @@ source: https://sudokupad.app/puqkwcee3v
 case: https://sudoku-sleuth.com/cases/presentation-is-everything
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a43842a49e7769f0378d962fea39058b
 ---
 
 ```rules
@@ -23,13 +24,13 @@ cage-10: cage r3c4-r3c5-r3c6 total 17 connected true
 cage-11: cage r4c3-r5c3-r6c3 total 19 connected true
 cage-12: cage r7c4-r7c5-r7c6 total 18 connected true
 cage-13: cage r2c3-r2c4-r2c5-r2c6-r2c7 total 24 connected true
-kropki-1: kropki r4c4-r5c4 colour "black"
-kropki-2: kropki r5c6-r6c6 colour "black"
-kropki-3: kropki r6c4-r6c5 colour "black"
-kropki-4: kropki r7c5-r8c5 colour "black"
-kropki-5: kropki r8c5-r9c5 colour "black"
-kropki-6: kropki r2c5-r2c6 colour "black"
-kropki-7: kropki r9c6-r9c7 colour "black"
+kropki-1: kropki r4c4-r5c4 black
+kropki-2: kropki r5c6-r6c6 black
+kropki-3: kropki r6c4-r6c5 black
+kropki-4: kropki r7c5-r8c5 black
+kropki-5: kropki r8c5-r9c5 black
+kropki-6: kropki r2c5-r2c6 black
+kropki-7: kropki r9c6-r9c7 black
 whispers-1: whispers r1c1-r2c2-r3c3-r4c4 gap 4
 whispers-2: whispers r4c6-r3c7-r2c8-r1c9 gap 5
 whispers-3: whispers r6c4-r7c3-r8c2-r9c1 gap 5

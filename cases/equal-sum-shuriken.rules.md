@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/equal-sum-shuriken
 case: https://sudoku-sleuth.com/cases/equal-sum-shuriken
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c2a020a936b2141a5c7204586e0a462e
 ---
 
 ```rules
@@ -22,10 +23,10 @@ cage-9: cage r7c5-r8c4-r8c5 total 21 connected true
 cage-10: cage r7c2-r8c2-r8c3 total 12 connected true
 cage-11: cage r9c1-r9c2 total 12 connected true
 cage-12: cage r8c9-r9c9 total 7 connected true
-kropki-1: kropki r2c3-r3c3 colour "white"
-kropki-2: kropki r1c2-r1c3 colour "white"
-kropki-3: kropki r5c5-r5c6 colour "white"
-kropki-4: kropki r7c7-r8c7 colour "white"
+kropki-1: kropki r2c3-r3c3 white
+kropki-2: kropki r1c2-r1c3 white
+kropki-3: kropki r5c5-r5c6 white
+kropki-4: kropki r7c7-r8c7 white
 region-sum r2c2-r3c2-r4c2-r5c3-r6c3-r7c3-r8c2-r8c3-r8c4-r8c5-r7c6-r7c7-r8c8-r7c8-r6c8-r5c7-r4c7-r3c7-r2c8-r2c7-r2c6-r2c5-r3c4-r3c3 segments [["r2c2","r3c2","r3c3"],["r4c2","r5c3","r6c3"],["r7c3","r8c2","r8c3"],["r8c4","r8c5","r7c6"],["r7c7","r8c8","r7c8"],["r6c8","r5c7","r4c7"],["r3c7","r2c8","r2c7"],["r2c6","r2c5","r3c4"]]
 ```
 

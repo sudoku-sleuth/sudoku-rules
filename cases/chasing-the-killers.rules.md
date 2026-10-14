@@ -6,6 +6,7 @@ source: https://sudokupad.app/5z0na7x7c0
 case: https://sudoku-sleuth.com/cases/chasing-the-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 52c5d1c9a9494ef54f0f7cd2328f4d5a
 ---
 
 ```rules

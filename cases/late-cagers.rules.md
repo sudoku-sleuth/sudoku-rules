@@ -6,6 +6,7 @@ source: https://sudokupad.app/zzlo8cazt4
 case: https://sudoku-sleuth.com/cases/late-cagers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b13571d6ab02dbddab798d2295073520
 ---
 
 ```rules

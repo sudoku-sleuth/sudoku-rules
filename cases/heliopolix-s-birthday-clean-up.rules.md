@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
+exported: e515f39dcb17187a13401adcfbce097b
 ---
 
 ```rules
@@ -22,18 +23,18 @@ cage-6: cage r8c3-r9c3 connected true
 cage-7: cage r5c8-r5c9 connected true
 cage-8: cage r6c5-r6c6 connected true
 cage-9: cage r6c1-r6c2-r6c3 connected true
-kropki-1: kropki r3c2-r4c2 colour "black"
-kropki-2: kropki r1c5-r2c5 colour "black"
-kropki-3: kropki r7c7-r7c8 colour "black"
-kropki-4: kropki r8c7-r9c7 colour "black"
-kropki-5: kropki r4c8-r5c8 colour "black"
-kropki-6: kropki r2c5-r2c6 colour "white"
-kropki-7: kropki r8c6-r9c6 colour "white"
-kropki-8: kropki r8c1-r8c2 colour "white"
-kropki-9: kropki r8c5-r8c6 colour "white"
-kropki-10: kropki r5c5-r6c5 colour "white"
-kropki-11: kropki r2c7-r3c7 colour "white"
-kropki-12: kropki r5c2-r6c2 colour "white"
+kropki-1: kropki r3c2-r4c2 black
+kropki-2: kropki r1c5-r2c5 black
+kropki-3: kropki r7c7-r7c8 black
+kropki-4: kropki r8c7-r9c7 black
+kropki-5: kropki r4c8-r5c8 black
+kropki-6: kropki r2c5-r2c6 white
+kropki-7: kropki r8c6-r9c6 white
+kropki-8: kropki r8c1-r8c2 white
+kropki-9: kropki r8c5-r8c6 white
+kropki-10: kropki r5c5-r6c5 white
+kropki-11: kropki r2c7-r3c7 white
+kropki-12: kropki r5c2-r6c2 white
 ```
 
 ```drawing

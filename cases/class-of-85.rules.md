@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/class-of-85
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=8 r1c7=5
+exported: cf9dcfcc410cb7c6f5f2cd0622c65830
 ---
 
 ```rules

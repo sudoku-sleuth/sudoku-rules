@@ -6,6 +6,7 @@ source: https://sudokupad.app/6g8ogssn34
 case: https://sudoku-sleuth.com/cases/interlocked
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 16657d5769162f80a9dfc2d5da0b257e
 ---
 
 ```rules

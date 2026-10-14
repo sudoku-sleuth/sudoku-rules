@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/nothing-in-the-grid
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 83feab51fcfe79e61e73b7e3c901568b
 ---
 
 ```rules

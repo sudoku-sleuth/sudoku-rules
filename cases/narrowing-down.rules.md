@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/narrowing-down
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c3=4
+exported: 2a0d61072857a14382fcd41bc9c4cd59
 ---
 
 ```rules

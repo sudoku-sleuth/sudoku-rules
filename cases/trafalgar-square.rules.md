@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/trafalgar-square
 case: https://sudoku-sleuth.com/cases/trafalgar-square
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 230daad2ebad67d8553841dd1ee3755b
 ---
 
 ```rules

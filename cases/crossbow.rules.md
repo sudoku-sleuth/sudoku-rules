@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/crossbow
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=7 r3c2=4 r3c5=1 r3c7=7 r4c8=5 r5c3=5 r5c7=3 r7c2=3 r7c5=4 r8c3=9 r8c7=5
+exported: fe6568eb63f4e97276eeb1cfe13e307b
 ---
 
 ```rules

@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/con-grad-ulations
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c1=2 r4c1=8 r6c6=5 r9c3=2 r9c4=6
+exported: b3b2b2c8f28a632d978f8e3a1023c4a5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c8-r3c9 colour "white"
-kropki-2: kropki r7c5-r8c5 colour "white"
-kropki-3: kropki r4c2-r4c3 colour "white"
+kropki-1: kropki r3c8-r3c9 white
+kropki-2: kropki r7c5-r8c5 white
+kropki-3: kropki r4c2-r4c3 white
 whispers-1: whispers r1c4-r1c3-r1c2-r2c2-r3c2-r3c3-r3c4 gap 5
 whispers-2: whispers r2c3-r2c2 gap 5
 whispers-3: whispers r3c6-r2c6-r1c7-r2c8-r3c8 gap 5

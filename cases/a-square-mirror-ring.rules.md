@@ -6,6 +6,7 @@ source: https://sudokupad.app/2w976myysr
 case: https://sudoku-sleuth.com/cases/a-square-mirror-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8684d95e12f3d2268844e48bbe27cd7b
 ---
 
 ```rules

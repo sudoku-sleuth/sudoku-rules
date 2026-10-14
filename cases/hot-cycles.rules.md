@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-cycles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c7=9
+exported: e5a9d218c84ebfe7837f5a9873681f54
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/orange-vs-blue-boxing
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8f1809eaf0a83df87bff427912f4bb26
 ---
 
 ```rules
@@ -14,16 +15,16 @@ sudoku 9x9
 cage-1: cage r4c1-r4c2 total 6 connected true
 cage-2: cage r6c4-r6c5-r6c6 total 23 connected true
 cage-3: cage r2c4-r2c5 total 7 connected true
-kropki-1: kropki r6c1-r6c2 colour "black"
-kropki-2: kropki r7c1-r7c2 colour "black"
-kropki-3: kropki r8c1-r8c2 colour "black"
-kropki-4: kropki r7c7-r7c8 colour "black"
-kropki-5: kropki r7c8-r7c9 colour "black"
-kropki-6: kropki r7c4-r8c4 colour "black"
-kropki-7: kropki r8c6-r9c6 colour "black"
-kropki-8: kropki r9c4-r9c5 colour "black"
-kropki-9: kropki r8c6-r8c7 colour "black"
-kropki-10: kropki r3c5-r3c6 colour "black"
+kropki-1: kropki r6c1-r6c2 black
+kropki-2: kropki r7c1-r7c2 black
+kropki-3: kropki r8c1-r8c2 black
+kropki-4: kropki r7c7-r7c8 black
+kropki-5: kropki r7c8-r7c9 black
+kropki-6: kropki r7c4-r8c4 black
+kropki-7: kropki r8c6-r9c6 black
+kropki-8: kropki r9c4-r9c5 black
+kropki-9: kropki r8c6-r8c7 black
+kropki-10: kropki r3c5-r3c6 black
 arrow-1: arrow r3c2-r4c1 bulb ["r2c3"]
 arrow-2: arrow r4c3-r3c2 bulb ["r3c4"]
 arrow-3: arrow r4c2-r3c2 bulb ["r5c3"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cruel-summer-bananarama-1983
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=5
+exported: 9e26c5272bf21107a2c4aad517874866
 ---
 
 ```rules
@@ -14,9 +15,9 @@ sudoku 9x9
 cage-1: cage r5c2-r6c2 total 8 connected true
 cage-2: cage r3c9-r4c9 total 7 connected true
 cage-3: cage r5c5-r5c6 total 14 connected true
-kropki-1: kropki r4c1-r5c1 colour "black"
-kropki-2: kropki r4c3-r5c3 colour "black"
-kropki-3: kropki r4c8-r4c9 colour "black"
+kropki-1: kropki r4c1-r5c1 black
+kropki-2: kropki r4c3-r5c3 black
+kropki-3: kropki r4c8-r4c9 black
 whispers-1: whispers r2c9-r3c8-r4c8-r5c7-r5c8-r6c8-r6c9-r7c8-r8c9 gap 4
 whispers-2: whispers r5c2-r6c2 gap 4
 whispers-3: whispers r2c4-r1c5-r1c6-r1c7 gap 4

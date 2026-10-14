@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/checkerboard-speed-run
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3716257cc9fb270945cfbb0cedc85417
 ---
 
 ```rules

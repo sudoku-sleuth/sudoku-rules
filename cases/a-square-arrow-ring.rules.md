@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/a-square-arrow-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c8=5
+exported: bfaa8ba457e540f941193c7c091ea5b6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c8-r8c9 colour "white"
-kropki-2: kropki r3c9-r4c9 colour "white"
-kropki-3: kropki r4c3-r4c4 colour "white"
-kropki-4: kropki r3c6-r4c6 colour "white"
-kropki-5: kropki r6c6-r7c6 colour "white"
+kropki-1: kropki r8c8-r8c9 white
+kropki-2: kropki r3c9-r4c9 white
+kropki-3: kropki r4c3-r4c4 white
+kropki-4: kropki r3c6-r4c6 white
+kropki-5: kropki r6c6-r7c6 white
 arrow-1: arrow r7c4-r7c5-r7c6 bulb ["r7c3"]
 arrow-2: arrow r6c7-r5c7-r4c7 bulb ["r7c7"]
 arrow-3: arrow r3c6-r3c5-r3c4 bulb ["r3c7"]

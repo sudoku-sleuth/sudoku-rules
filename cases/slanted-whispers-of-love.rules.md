@@ -6,6 +6,7 @@ source: https://sudokupad.app/yrovzxitfe
 case: https://sudoku-sleuth.com/cases/slanted-whispers-of-love
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d47d891d01e98cdd337fae6f83a2eb1a
 ---
 
 ```rules

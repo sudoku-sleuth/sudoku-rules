@@ -6,6 +6,7 @@ source: https://tinyurl.com/3wmybjsd
 case: https://sudoku-sleuth.com/cases/square-dance-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3c998d39091fed3119157d8683c3bb50
 ---
 
 ```rules

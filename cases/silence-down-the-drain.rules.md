@@ -6,6 +6,7 @@ source: https://sudokupad.app/deutai2ugw
 case: https://sudoku-sleuth.com/cases/silence-down-the-drain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4f3382a8830dcacb1a3971540d26ec98
 ---
 
 ```rules

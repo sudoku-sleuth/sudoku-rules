@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/point-break
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b1299d5af8157cb98b29d864eef79a1b
 ---
 
 ```rules

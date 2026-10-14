@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Foganapur
 setter: Meggen033
@@ -17,21 +17,22 @@ source: https://sudokupad.app/z3e4zdx0l9
 case: https://sudoku-sleuth.com/cases/foganapur
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fe51a79d397e19452cdea53c1dbcd078
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r6c4 colour "white"
-kropki-2: kropki r4c3-r5c3 colour "white"
-kropki-3: kropki r3c1-r3c2 colour "white"
-kropki-4: kropki r6c3-r7c3 colour "white"
-kropki-5: kropki r7c5-r7c6 colour "white"
-kropki-6: kropki r4c8-r5c8 colour "white"
-kropki-7: kropki r3c8-r4c8 colour "white"
-kropki-8: kropki r1c6-r1c7 colour "white"
-kropki-9: kropki r4c3-r4c4 colour "black"
-kropki-10: kropki r7c4-r8c4 colour "black"
-kropki-11: kropki r1c7-r2c7 colour "black"
+kropki-1: kropki r5c4-r6c4 white
+kropki-2: kropki r4c3-r5c3 white
+kropki-3: kropki r3c1-r3c2 white
+kropki-4: kropki r6c3-r7c3 white
+kropki-5: kropki r7c5-r7c6 white
+kropki-6: kropki r4c8-r5c8 white
+kropki-7: kropki r3c8-r4c8 white
+kropki-8: kropki r1c6-r1c7 white
+kropki-9: kropki r4c3-r4c4 black
+kropki-10: kropki r7c4-r8c4 black
+kropki-11: kropki r1c7-r2c7 black
 whispers-1: whispers r6c4-r6c5 gap 5
 whispers-2: whispers r4c4-r5c4 gap 5
 whispers-3: whispers r7c1-r7c2-r8c2 gap 5

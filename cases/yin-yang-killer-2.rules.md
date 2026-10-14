@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yin-yang-killer-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 08fb74bd2566befadd4642f9c28cbbba
 ---
 
 ```rules

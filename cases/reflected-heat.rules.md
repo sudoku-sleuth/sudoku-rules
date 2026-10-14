@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/reflected-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r9c9=9
+exported: 52f05dea2ebf1b17532a278b0cf43891
 ---
 
 ```rules

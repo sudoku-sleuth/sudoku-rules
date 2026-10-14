@@ -6,6 +6,7 @@ source: https://sudokupad.app/fxaxpagglo
 case: https://sudoku-sleuth.com/cases/celsius-417
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ebed83b3c3b6fc73b8451998c258cb8f
 ---
 
 ```rules

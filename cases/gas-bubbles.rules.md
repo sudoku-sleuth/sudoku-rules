@@ -6,6 +6,7 @@ source: https://sudokupad.app/evkj6h5tcy
 case: https://sudoku-sleuth.com/cases/gas-bubbles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ebec0eb27f4ead1a62540b33b2e4778c
 ---
 
 ```rules

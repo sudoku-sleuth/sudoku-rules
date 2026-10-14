@@ -6,16 +6,17 @@ source: https://sudokupad.app/n1knh35nzd
 case: https://sudoku-sleuth.com/cases/roman-squarrow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 966192c4021959b147476f85c465e8ea
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
 anti-king
-kropki-1: kropki r8c5-r8c6 colour "white"
-kropki-2: kropki r8c4-r8c5 colour "white"
-kropki-3: kropki r2c3-r2c4 colour "black"
-kropki-4: kropki r3c5-r3c6 colour "black"
+kropki-1: kropki r8c5-r8c6 white
+kropki-2: kropki r8c4-r8c5 white
+kropki-3: kropki r2c3-r2c4 black
+kropki-4: kropki r3c5-r3c6 black
 arrow-1: arrow r1c5-r2c6 bulb ["r2c4"]
 arrow-2: arrow r5c1-r4c2 bulb ["r6c2"]
 arrow-3: arrow r9c5-r8c4 bulb ["r8c6"]

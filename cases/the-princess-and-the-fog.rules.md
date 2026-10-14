@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: The Princess and the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: dfd79ab654272faa944fd926f94908a0
 ---
 
 ```rules
@@ -149,19 +150,19 @@ cage-4: cage r2c7-r2c8-r3c8 total 19 connected true
 cage-5: cage r8c9-r9c8-r9c9 total 16 connected true
 cage-6: cage r8c2-r8c3 total 12 connected true
 cage-7: cage r1c1-r2c1-r3c1-r4c1-r5c1-r6c1-r6c2-r7c1-r8c1 connected true
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r3c3-r4c3 colour "white"
-kropki-3: kropki r5c3-r6c3 colour "white"
-kropki-4: kropki r6c3-r7c3 colour "white"
-kropki-5: kropki r4c7-r5c7 colour "white"
-kropki-6: kropki r3c7-r4c7 colour "white"
-kropki-7: kropki r7c8-r8c8 colour "white"
-kropki-8: kropki r1c2-r1c3 colour "white"
-kropki-9: kropki r6c4-r6c5 colour "black"
-kropki-10: kropki r6c5-r6c6 colour "black"
-kropki-11: kropki r7c5-r8c5 colour "black"
-kropki-12: kropki r4c3-r5c3 colour "black"
-kropki-13: kropki r7c3-r7c4 colour "black"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r3c3-r4c3 white
+kropki-3: kropki r5c3-r6c3 white
+kropki-4: kropki r6c3-r7c3 white
+kropki-5: kropki r4c7-r5c7 white
+kropki-6: kropki r3c7-r4c7 white
+kropki-7: kropki r7c8-r8c8 white
+kropki-8: kropki r1c2-r1c3 white
+kropki-9: kropki r6c4-r6c5 black
+kropki-10: kropki r6c5-r6c6 black
+kropki-11: kropki r7c5-r8c5 black
+kropki-12: kropki r4c3-r5c3 black
+kropki-13: kropki r7c3-r7c4 black
 ```
 
 •	Normal Sudoku rules apply. 

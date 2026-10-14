@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bots-and-doxes
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=8
+exported: 3d091d2d050b6bed3abe4403d53edea9
 ---
 
 ```rules

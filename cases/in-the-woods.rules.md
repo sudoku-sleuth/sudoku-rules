@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 6
-    - 7
-    - 8
-    - 15
-    - 25
+    - r1c7
+    - r1c8
+    - r1c9
+    - r2c7
+    - r3c8
 format: open-rules
 title: In The Woods
 setter: Sandra & Nala
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 3c35421e28ade25500cbd08d5f834767
 ---
 
 ```rules

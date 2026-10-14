@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/do-you-want-to-know-a-secret
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=2 r2c4=3
+exported: 2f8a655f064f15c591e98a9c461de4c1
 ---
 
 ```rules

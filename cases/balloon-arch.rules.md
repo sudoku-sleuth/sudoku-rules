@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/balloon-arch
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c5=8
+exported: e2ad36936f495035f551524bcc6b837a
 ---
 
 ```rules

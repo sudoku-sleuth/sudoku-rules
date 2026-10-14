@@ -6,6 +6,7 @@ source: https://sudokupad.app/v6b0kmzhke
 case: https://sudoku-sleuth.com/cases/laser-pointers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fa743c21adf5347309c701452ffdc946
 ---
 
 ```rules

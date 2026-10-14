@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/an-archery-contest
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9fa567fd8c5a80faaff373fd8e19543f
 ---
 
 ```rules

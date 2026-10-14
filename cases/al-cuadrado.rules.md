@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/al-cuadrado
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b4fafbfda3b3dd0bebda0a55cd48185d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c5-r8c6 colour "white"
-kropki-2: kropki r7c9-r8c9 colour "white"
-kropki-3: kropki r2c7-r3c7 colour "black"
-kropki-4: kropki r3c4-r3c5 colour "black"
+kropki-1: kropki r8c5-r8c6 white
+kropki-2: kropki r7c9-r8c9 white
+kropki-3: kropki r2c7-r3c7 black
+kropki-4: kropki r3c4-r3c5 black
 ```
 
 ```drawing

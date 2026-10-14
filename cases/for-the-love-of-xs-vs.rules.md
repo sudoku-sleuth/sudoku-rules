@@ -6,6 +6,7 @@ source: https://sudokupad.app/bky4w9dhyr
 case: https://sudoku-sleuth.com/cases/for-the-love-of-xs-vs
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2599e49d3cb8c109b6b54a1411942fda
 ---
 
 ```rules

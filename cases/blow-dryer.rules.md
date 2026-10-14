@@ -6,22 +6,23 @@ source: https://sudokupad.app/7ys3pa359r
 case: https://sudoku-sleuth.com/cases/blow-dryer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 71863a5c2d2e0df5c0f20d094094032f
 ---
 
 ```rules
 sudoku 9x9
 cage r4c4-r5c4 total 11 connected true
-kropki-1: kropki r4c8-r5c8 colour "black"
-kropki-2: kropki r3c6-r3c7 colour "black"
-kropki-3: kropki r2c6-r3c6 colour "black"
-kropki-4: kropki r1c4-r2c4 colour "black"
-kropki-5: kropki r2c4-r2c5 colour "black"
-kropki-6: kropki r1c5-r2c5 colour "black"
-kropki-7: kropki r3c1-r3c2 colour "black"
-kropki-8: kropki r9c3-r9c4 colour "black"
-kropki-9: kropki r6c6-r7c6 colour "black"
-kropki-10: kropki r7c6-r8c6 colour "black"
-kropki-11: kropki r8c6-r9c6 colour "black"
+kropki-1: kropki r4c8-r5c8 black
+kropki-2: kropki r3c6-r3c7 black
+kropki-3: kropki r2c6-r3c6 black
+kropki-4: kropki r1c4-r2c4 black
+kropki-5: kropki r2c4-r2c5 black
+kropki-6: kropki r1c5-r2c5 black
+kropki-7: kropki r3c1-r3c2 black
+kropki-8: kropki r9c3-r9c4 black
+kropki-9: kropki r6c6-r7c6 black
+kropki-10: kropki r7c6-r8c6 black
+kropki-11: kropki r8c6-r9c6 black
 arrow-1: arrow r2c4-r2c5 bulb ["r2c3"]
 arrow-2: arrow r3c3-r3c4 bulb ["r3c2"]
 arrow-3: arrow r4c2-r4c3 bulb ["r4c1"]

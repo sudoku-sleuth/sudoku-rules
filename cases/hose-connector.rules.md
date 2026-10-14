@@ -6,6 +6,7 @@ source: https://sudokupad.app/k7nz08zisq
 case: https://sudoku-sleuth.com/cases/hose-connector
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 030b9eb28c99ee342d377a4b1803e811
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/rumyds93jy
 case: https://sudoku-sleuth.com/cases/calembour
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 29fb6cb382319851f336a7984d863a31
 ---
 
 ```rules

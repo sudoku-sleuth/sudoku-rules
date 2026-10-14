@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/temperamental-serenity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 451314cbe12f6fb83feec8caa9f1fa23
 ---
 
 ```rules

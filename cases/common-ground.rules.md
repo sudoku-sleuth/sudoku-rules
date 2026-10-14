@@ -6,6 +6,7 @@ source: https://sudokupad.app/7wqd8je4di
 case: https://sudoku-sleuth.com/cases/common-ground
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e0ae32d30f52347ac6bcb201e0a12dae
 ---
 
 ```rules

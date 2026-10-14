@@ -8,7 +8,6 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Our reading does not yet cover all the puzzle's stated conditions.
   - Our reading does not yet cover the rules that change cell values.
 board:
   rows: 6
@@ -57,6 +56,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 6ea894d4e1c065f035010e1ecd7e170b
 ---
 
 ```rules

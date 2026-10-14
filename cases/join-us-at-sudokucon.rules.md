@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/join-us-at-sudokucon
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=4 r4c7=5 r6c5=2 r7c6=5
+exported: ca983552dc42b57df5e27650e1fc50af
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c1-r6c2 colour "white"
-kropki-2: kropki r1c8-r1c9 colour "white"
-kropki-3: kropki r8c8-r9c8 colour "white"
-kropki-4: kropki r3c3-r4c3 colour "white"
-kropki-5: kropki r8c7-r8c8 colour "black"
-kropki-6: kropki r1c1-r1c2 colour "black"
-kropki-7: kropki r4c6-r5c6 colour "black"
+kropki-1: kropki r6c1-r6c2 white
+kropki-2: kropki r1c8-r1c9 white
+kropki-3: kropki r8c8-r9c8 white
+kropki-4: kropki r3c3-r4c3 white
+kropki-5: kropki r8c7-r8c8 black
+kropki-6: kropki r1c1-r1c2 black
+kropki-7: kropki r4c6-r5c6 black
 whispers-1: whispers r7c3-r7c2-r8c2-r9c2-r9c3 gap 5
 whispers-2: whispers r8c4-r8c5-r9c5-r9c4 gap 5 loop true
 whispers-3: whispers r9c6-r8c6-r9c7-r8c7 gap 5

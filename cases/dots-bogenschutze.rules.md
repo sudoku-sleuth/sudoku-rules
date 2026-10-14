@@ -6,19 +6,20 @@ source: https://sudokupad.app/wg6vi4rgs8
 case: https://sudoku-sleuth.com/cases/dots-bogenschutze
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3803a2ad25a0166bea644610f49f7c46
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r7c7-r8c7 colour "white"
-kropki-3: kropki r7c7-r7c8 colour "white"
-kropki-4: kropki r7c3-r7c4 colour "white"
-kropki-5: kropki r8c1-r9c1 colour "white"
-kropki-6: kropki r4c4-r4c5 colour "black"
-kropki-7: kropki r3c7-r4c7 colour "black"
-kropki-8: kropki r1c8-r1c9 colour "black"
-kropki-9: kropki r1c6-r2c6 colour "black"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r7c7-r8c7 white
+kropki-3: kropki r7c7-r7c8 white
+kropki-4: kropki r7c3-r7c4 white
+kropki-5: kropki r8c1-r9c1 white
+kropki-6: kropki r4c4-r4c5 black
+kropki-7: kropki r3c7-r4c7 black
+kropki-8: kropki r1c8-r1c9 black
+kropki-9: kropki r1c6-r2c6 black
 arrow-1: arrow r9c4-r8c4-r7c4 bulb ["r9c5"]
 arrow-2: arrow r4c9-r4c8-r4c7 bulb ["r5c9"]
 arrow-3: arrow r7c2-r7c3 bulb ["r7c1"]

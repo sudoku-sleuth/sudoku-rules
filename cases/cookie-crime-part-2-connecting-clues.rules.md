@@ -1,820 +1,820 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 7
-    - 16
-    - 34
-    - 35
+    - r1c4
+    - r1c5
+    - r1c8
+    - r2c8
+    - r4c8
+    - r4c9
   links:
     - trigger:
-        - 21
+        - r3c4
       lights:
-        - 21
-        - 22
-        - 29
-        - 30
-        - 31
+        - r3c4
+        - r3c5
+        - r4c3
+        - r4c4
+        - r4c5
     - trigger:
-        - 29
+        - r4c3
       lights:
-        - 28
-        - 37
-        - 38
-        - 39
+        - r4c2
+        - r5c2
+        - r5c3
+        - r5c4
     - trigger:
-        - 4
+        - r1c5
       lights:
-        - 5
-        - 14
+        - r1c6
+        - r2c6
     - trigger:
-        - 3
+        - r1c4
       lights:
-        - 12
-        - 13
+        - r2c4
+        - r2c5
     - trigger:
-        - 12
+        - r2c4
       lights:
-        - 11
+        - r2c3
     - trigger:
-        - 0
+        - r1c1
       lights:
-        - 0
-        - 1
-        - 9
-        - 10
+        - r1c1
+        - r1c2
+        - r2c1
+        - r2c2
     - trigger:
-        - 1
+        - r1c2
       lights:
-        - 1
-        - 0
-        - 2
-        - 10
-        - 9
-        - 11
+        - r1c2
+        - r1c1
+        - r1c3
+        - r2c2
+        - r2c1
+        - r2c3
     - trigger:
-        - 2
+        - r1c3
       lights:
-        - 2
-        - 1
-        - 11
-        - 10
-        - 12
-    - trigger:
-        - 5
-      lights:
-        - 5
-        - 6
-        - 14
-        - 13
-        - 15
+        - r1c3
+        - r1c2
+        - r2c3
+        - r2c2
+        - r2c4
+    - trigger:
+        - r1c6
+      lights:
+        - r1c6
+        - r1c7
+        - r2c6
+        - r2c5
+        - r2c7
     - trigger:
-        - 6
+        - r1c7
       lights:
-        - 6
-        - 5
-        - 15
-        - 14
-    - trigger:
-        - 7
-      lights:
-        - 6
-        - 8
-        - 15
-        - 17
-    - trigger:
-        - 8
-      lights:
-        - 8
-        - 17
-    - trigger:
-        - 9
-      lights:
-        - 9
-        - 0
-        - 10
-        - 18
-        - 1
-        - 19
-    - trigger:
-        - 10
-      lights:
-        - 10
-        - 9
-        - 1
-        - 11
-        - 19
-        - 0
-        - 2
-        - 18
-        - 20
-    - trigger:
-        - 11
-      lights:
-        - 11
-        - 10
-        - 2
-        - 12
-        - 20
-        - 1
-        - 19
-        - 21
-    - trigger:
-        - 13
-      lights:
-        - 13
-        - 12
-        - 14
-        - 22
-        - 5
-        - 21
-        - 23
-    - trigger:
-        - 14
-      lights:
-        - 14
-        - 13
-        - 5
-        - 15
-        - 23
-        - 6
-        - 22
-        - 24
-    - trigger:
-        - 15
-      lights:
-        - 15
-        - 14
-        - 6
-        - 24
-        - 5
-        - 23
-        - 25
-    - trigger:
-        - 16
-      lights:
-        - 15
-        - 17
-        - 25
-        - 6
-        - 8
-        - 24
-        - 26
-    - trigger:
-        - 17
-      lights:
-        - 17
-        - 8
-        - 26
-        - 25
-    - trigger:
-        - 18
-      lights:
-        - 18
-        - 9
-        - 19
-        - 27
-        - 10
-        - 28
-    - trigger:
-        - 19
-      lights:
-        - 19
-        - 18
-        - 10
-        - 20
-        - 28
-        - 9
-        - 11
-        - 27
-        - 29
-    - trigger:
-        - 20
-      lights:
-        - 20
-        - 19
-        - 11
-        - 21
-        - 29
-        - 10
-        - 12
-        - 28
-        - 30
-    - trigger:
-        - 22
-      lights:
-        - 22
-        - 21
-        - 13
-        - 23
-        - 31
-        - 12
-        - 14
-        - 30
-        - 32
-    - trigger:
-        - 23
-      lights:
-        - 23
-        - 22
-        - 14
-        - 24
-        - 32
-        - 13
-        - 15
-        - 31
-        - 33
-    - trigger:
-        - 24
-      lights:
-        - 24
-        - 23
-        - 15
-        - 25
-        - 33
-        - 14
-        - 32
-    - trigger:
-        - 25
-      lights:
-        - 25
-        - 24
-        - 26
-        - 15
-        - 17
-        - 33
-    - trigger:
-        - 26
-      lights:
-        - 26
-        - 25
-        - 17
-    - trigger:
-        - 27
-      lights:
-        - 27
-        - 18
-        - 28
-        - 36
-        - 19
-        - 37
-    - trigger:
-        - 28
-      lights:
-        - 28
-        - 27
-        - 19
-        - 29
-        - 37
-        - 18
-        - 20
-        - 36
-        - 38
-    - trigger:
-        - 30
-      lights:
-        - 30
-        - 29
-        - 21
-        - 31
-        - 39
-        - 20
-        - 22
-        - 38
-        - 40
-    - trigger:
-        - 31
-      lights:
-        - 31
-        - 30
-        - 22
-        - 32
-        - 40
-        - 21
-        - 23
-        - 39
-        - 41
-    - trigger:
-        - 32
-      lights:
-        - 32
-        - 31
-        - 23
-        - 33
-        - 41
-        - 22
-        - 24
-        - 40
-        - 42
-    - trigger:
-        - 33
-      lights:
-        - 33
-        - 32
-        - 24
-        - 42
-        - 23
-        - 25
-        - 41
-        - 43
-    - trigger:
-        - 34
-      lights:
-        - 33
-        - 25
-        - 43
-        - 24
-        - 26
-        - 42
-        - 44
-    - trigger:
-        - 35
-      lights:
-        - 26
-        - 44
-        - 25
-        - 43
-    - trigger:
-        - 36
-      lights:
-        - 36
-        - 27
-        - 37
-        - 45
-        - 28
-        - 46
-    - trigger:
-        - 37
-      lights:
-        - 37
-        - 36
-        - 28
-        - 38
-        - 46
-        - 27
-        - 29
-        - 45
-        - 47
-    - trigger:
-        - 38
-      lights:
-        - 38
-        - 37
-        - 29
-        - 39
-        - 47
-        - 28
-        - 30
-        - 46
-        - 48
-    - trigger:
-        - 39
-      lights:
-        - 39
-        - 38
-        - 30
-        - 40
-        - 48
-        - 29
-        - 31
-        - 47
-        - 49
-    - trigger:
-        - 40
-      lights:
-        - 40
-        - 39
-        - 31
-        - 41
-        - 49
-        - 30
-        - 32
-        - 48
-        - 50
-    - trigger:
-        - 41
-      lights:
-        - 41
-        - 40
-        - 32
-        - 42
-        - 50
-        - 31
-        - 33
-        - 49
-        - 51
-    - trigger:
-        - 42
-      lights:
-        - 42
-        - 41
-        - 33
-        - 43
-        - 51
-        - 32
-        - 50
-        - 52
-    - trigger:
-        - 43
-      lights:
-        - 43
-        - 42
-        - 44
-        - 52
-        - 33
-        - 51
-        - 53
-    - trigger:
-        - 44
-      lights:
-        - 44
-        - 43
-        - 53
-        - 52
-    - trigger:
-        - 45
-      lights:
-        - 45
-        - 36
-        - 46
-        - 54
-        - 37
-        - 55
-    - trigger:
-        - 46
-      lights:
-        - 46
-        - 45
-        - 37
-        - 47
-        - 55
-        - 36
-        - 38
-        - 54
-        - 56
-    - trigger:
-        - 47
-      lights:
-        - 47
-        - 46
-        - 38
-        - 48
-        - 56
-        - 37
-        - 39
-        - 55
-        - 57
-    - trigger:
-        - 48
-      lights:
-        - 48
-        - 47
-        - 39
-        - 49
-        - 57
-        - 38
-        - 40
-        - 56
-        - 58
-    - trigger:
-        - 49
-      lights:
-        - 49
-        - 48
-        - 40
-        - 50
-        - 58
-        - 39
-        - 41
-        - 57
-        - 59
-    - trigger:
-        - 50
-      lights:
-        - 50
-        - 49
-        - 41
-        - 51
-        - 59
-        - 40
-        - 42
-        - 58
-        - 60
-    - trigger:
-        - 51
-      lights:
-        - 51
-        - 50
-        - 42
-        - 52
-        - 60
-        - 41
-        - 43
-        - 59
-        - 61
-    - trigger:
-        - 52
-      lights:
-        - 52
-        - 51
-        - 43
-        - 53
-        - 61
-        - 42
-        - 44
-        - 60
-        - 62
-    - trigger:
-        - 53
-      lights:
-        - 53
-        - 52
-        - 44
-        - 62
-        - 43
-        - 61
-    - trigger:
-        - 54
-      lights:
-        - 54
-        - 45
-        - 55
-        - 63
-        - 46
-        - 64
-    - trigger:
-        - 55
-      lights:
-        - 55
-        - 54
-        - 46
-        - 56
-        - 64
-        - 45
-        - 47
-        - 63
-        - 65
-    - trigger:
-        - 56
-      lights:
-        - 56
-        - 55
-        - 47
-        - 57
-        - 65
-        - 46
-        - 48
-        - 64
-        - 66
-    - trigger:
-        - 57
-      lights:
-        - 57
-        - 56
-        - 48
-        - 58
-        - 66
-        - 47
-        - 49
-        - 65
-        - 67
-    - trigger:
-        - 58
-      lights:
-        - 58
-        - 57
-        - 49
-        - 59
-        - 67
-        - 48
-        - 50
-        - 66
-        - 68
-    - trigger:
-        - 59
-      lights:
-        - 59
-        - 58
-        - 50
-        - 60
-        - 68
-        - 49
-        - 51
-        - 67
-        - 69
-    - trigger:
-        - 60
-      lights:
-        - 60
-        - 59
-        - 51
-        - 61
-        - 69
-        - 50
-        - 52
-        - 68
-        - 70
-    - trigger:
-        - 61
-      lights:
-        - 61
-        - 60
-        - 52
-        - 62
-        - 70
-        - 51
-        - 53
-        - 69
-        - 71
-    - trigger:
-        - 62
-      lights:
-        - 62
-        - 61
-        - 53
-        - 71
-        - 52
-        - 70
-    - trigger:
-        - 63
-      lights:
-        - 63
-        - 54
-        - 64
-        - 72
-        - 55
-        - 73
-    - trigger:
-        - 64
-      lights:
-        - 64
-        - 63
-        - 55
-        - 65
-        - 73
-        - 54
-        - 56
-        - 72
-        - 74
-    - trigger:
-        - 65
-      lights:
-        - 65
-        - 64
-        - 56
-        - 66
-        - 74
-        - 55
-        - 57
-        - 73
-        - 75
-    - trigger:
-        - 66
-      lights:
-        - 66
-        - 65
-        - 57
-        - 67
-        - 75
-        - 56
-        - 58
-        - 74
-        - 76
-    - trigger:
-        - 67
-      lights:
-        - 67
-        - 66
-        - 58
-        - 68
-        - 76
-        - 57
-        - 59
-        - 75
-        - 77
-    - trigger:
-        - 68
-      lights:
-        - 68
-        - 67
-        - 59
-        - 69
-        - 77
-        - 58
-        - 60
-        - 76
-        - 78
-    - trigger:
-        - 69
-      lights:
-        - 69
-        - 68
-        - 60
-        - 70
-        - 78
-        - 59
-        - 61
-        - 77
-        - 79
-    - trigger:
-        - 70
-      lights:
-        - 70
-        - 69
-        - 61
-        - 71
-        - 79
-        - 60
-        - 62
-        - 78
-        - 80
-    - trigger:
-        - 71
-      lights:
-        - 71
-        - 70
-        - 62
-        - 80
-        - 61
-        - 79
-    - trigger:
-        - 72
-      lights:
-        - 72
-        - 63
-        - 73
-        - 64
-    - trigger:
-        - 73
-      lights:
-        - 73
-        - 72
-        - 64
-        - 74
-        - 63
-        - 65
-    - trigger:
-        - 74
-      lights:
-        - 74
-        - 73
-        - 65
-        - 75
-        - 64
-        - 66
-    - trigger:
-        - 75
-      lights:
-        - 75
-        - 74
-        - 66
-        - 76
-        - 65
-        - 67
-    - trigger:
-        - 76
-      lights:
-        - 76
-        - 75
-        - 67
-        - 77
-        - 66
-        - 68
-    - trigger:
-        - 77
-      lights:
-        - 77
-        - 76
-        - 68
-        - 78
-        - 67
-        - 69
-    - trigger:
-        - 78
-      lights:
-        - 78
-        - 77
-        - 69
-        - 79
-        - 68
-        - 70
-    - trigger:
-        - 79
-      lights:
-        - 79
-        - 78
-        - 70
-        - 80
-        - 69
-        - 71
-    - trigger:
-        - 80
-      lights:
-        - 80
-        - 79
-        - 71
-        - 70
+        - r1c7
+        - r1c6
+        - r2c7
+        - r2c6
+    - trigger:
+        - r1c8
+      lights:
+        - r1c7
+        - r1c9
+        - r2c7
+        - r2c9
+    - trigger:
+        - r1c9
+      lights:
+        - r1c9
+        - r2c9
+    - trigger:
+        - r2c1
+      lights:
+        - r2c1
+        - r1c1
+        - r2c2
+        - r3c1
+        - r1c2
+        - r3c2
+    - trigger:
+        - r2c2
+      lights:
+        - r2c2
+        - r2c1
+        - r1c2
+        - r2c3
+        - r3c2
+        - r1c1
+        - r1c3
+        - r3c1
+        - r3c3
+    - trigger:
+        - r2c3
+      lights:
+        - r2c3
+        - r2c2
+        - r1c3
+        - r2c4
+        - r3c3
+        - r1c2
+        - r3c2
+        - r3c4
+    - trigger:
+        - r2c5
+      lights:
+        - r2c5
+        - r2c4
+        - r2c6
+        - r3c5
+        - r1c6
+        - r3c4
+        - r3c6
+    - trigger:
+        - r2c6
+      lights:
+        - r2c6
+        - r2c5
+        - r1c6
+        - r2c7
+        - r3c6
+        - r1c7
+        - r3c5
+        - r3c7
+    - trigger:
+        - r2c7
+      lights:
+        - r2c7
+        - r2c6
+        - r1c7
+        - r3c7
+        - r1c6
+        - r3c6
+        - r3c8
+    - trigger:
+        - r2c8
+      lights:
+        - r2c7
+        - r2c9
+        - r3c8
+        - r1c7
+        - r1c9
+        - r3c7
+        - r3c9
+    - trigger:
+        - r2c9
+      lights:
+        - r2c9
+        - r1c9
+        - r3c9
+        - r3c8
+    - trigger:
+        - r3c1
+      lights:
+        - r3c1
+        - r2c1
+        - r3c2
+        - r4c1
+        - r2c2
+        - r4c2
+    - trigger:
+        - r3c2
+      lights:
+        - r3c2
+        - r3c1
+        - r2c2
+        - r3c3
+        - r4c2
+        - r2c1
+        - r2c3
+        - r4c1
+        - r4c3
+    - trigger:
+        - r3c3
+      lights:
+        - r3c3
+        - r3c2
+        - r2c3
+        - r3c4
+        - r4c3
+        - r2c2
+        - r2c4
+        - r4c2
+        - r4c4
+    - trigger:
+        - r3c5
+      lights:
+        - r3c5
+        - r3c4
+        - r2c5
+        - r3c6
+        - r4c5
+        - r2c4
+        - r2c6
+        - r4c4
+        - r4c6
+    - trigger:
+        - r3c6
+      lights:
+        - r3c6
+        - r3c5
+        - r2c6
+        - r3c7
+        - r4c6
+        - r2c5
+        - r2c7
+        - r4c5
+        - r4c7
+    - trigger:
+        - r3c7
+      lights:
+        - r3c7
+        - r3c6
+        - r2c7
+        - r3c8
+        - r4c7
+        - r2c6
+        - r4c6
+    - trigger:
+        - r3c8
+      lights:
+        - r3c8
+        - r3c7
+        - r3c9
+        - r2c7
+        - r2c9
+        - r4c7
+    - trigger:
+        - r3c9
+      lights:
+        - r3c9
+        - r3c8
+        - r2c9
+    - trigger:
+        - r4c1
+      lights:
+        - r4c1
+        - r3c1
+        - r4c2
+        - r5c1
+        - r3c2
+        - r5c2
+    - trigger:
+        - r4c2
+      lights:
+        - r4c2
+        - r4c1
+        - r3c2
+        - r4c3
+        - r5c2
+        - r3c1
+        - r3c3
+        - r5c1
+        - r5c3
+    - trigger:
+        - r4c4
+      lights:
+        - r4c4
+        - r4c3
+        - r3c4
+        - r4c5
+        - r5c4
+        - r3c3
+        - r3c5
+        - r5c3
+        - r5c5
+    - trigger:
+        - r4c5
+      lights:
+        - r4c5
+        - r4c4
+        - r3c5
+        - r4c6
+        - r5c5
+        - r3c4
+        - r3c6
+        - r5c4
+        - r5c6
+    - trigger:
+        - r4c6
+      lights:
+        - r4c6
+        - r4c5
+        - r3c6
+        - r4c7
+        - r5c6
+        - r3c5
+        - r3c7
+        - r5c5
+        - r5c7
+    - trigger:
+        - r4c7
+      lights:
+        - r4c7
+        - r4c6
+        - r3c7
+        - r5c7
+        - r3c6
+        - r3c8
+        - r5c6
+        - r5c8
+    - trigger:
+        - r4c8
+      lights:
+        - r4c7
+        - r3c8
+        - r5c8
+        - r3c7
+        - r3c9
+        - r5c7
+        - r5c9
+    - trigger:
+        - r4c9
+      lights:
+        - r3c9
+        - r5c9
+        - r3c8
+        - r5c8
+    - trigger:
+        - r5c1
+      lights:
+        - r5c1
+        - r4c1
+        - r5c2
+        - r6c1
+        - r4c2
+        - r6c2
+    - trigger:
+        - r5c2
+      lights:
+        - r5c2
+        - r5c1
+        - r4c2
+        - r5c3
+        - r6c2
+        - r4c1
+        - r4c3
+        - r6c1
+        - r6c3
+    - trigger:
+        - r5c3
+      lights:
+        - r5c3
+        - r5c2
+        - r4c3
+        - r5c4
+        - r6c3
+        - r4c2
+        - r4c4
+        - r6c2
+        - r6c4
+    - trigger:
+        - r5c4
+      lights:
+        - r5c4
+        - r5c3
+        - r4c4
+        - r5c5
+        - r6c4
+        - r4c3
+        - r4c5
+        - r6c3
+        - r6c5
+    - trigger:
+        - r5c5
+      lights:
+        - r5c5
+        - r5c4
+        - r4c5
+        - r5c6
+        - r6c5
+        - r4c4
+        - r4c6
+        - r6c4
+        - r6c6
+    - trigger:
+        - r5c6
+      lights:
+        - r5c6
+        - r5c5
+        - r4c6
+        - r5c7
+        - r6c6
+        - r4c5
+        - r4c7
+        - r6c5
+        - r6c7
+    - trigger:
+        - r5c7
+      lights:
+        - r5c7
+        - r5c6
+        - r4c7
+        - r5c8
+        - r6c7
+        - r4c6
+        - r6c6
+        - r6c8
+    - trigger:
+        - r5c8
+      lights:
+        - r5c8
+        - r5c7
+        - r5c9
+        - r6c8
+        - r4c7
+        - r6c7
+        - r6c9
+    - trigger:
+        - r5c9
+      lights:
+        - r5c9
+        - r5c8
+        - r6c9
+        - r6c8
+    - trigger:
+        - r6c1
+      lights:
+        - r6c1
+        - r5c1
+        - r6c2
+        - r7c1
+        - r5c2
+        - r7c2
+    - trigger:
+        - r6c2
+      lights:
+        - r6c2
+        - r6c1
+        - r5c2
+        - r6c3
+        - r7c2
+        - r5c1
+        - r5c3
+        - r7c1
+        - r7c3
+    - trigger:
+        - r6c3
+      lights:
+        - r6c3
+        - r6c2
+        - r5c3
+        - r6c4
+        - r7c3
+        - r5c2
+        - r5c4
+        - r7c2
+        - r7c4
+    - trigger:
+        - r6c4
+      lights:
+        - r6c4
+        - r6c3
+        - r5c4
+        - r6c5
+        - r7c4
+        - r5c3
+        - r5c5
+        - r7c3
+        - r7c5
+    - trigger:
+        - r6c5
+      lights:
+        - r6c5
+        - r6c4
+        - r5c5
+        - r6c6
+        - r7c5
+        - r5c4
+        - r5c6
+        - r7c4
+        - r7c6
+    - trigger:
+        - r6c6
+      lights:
+        - r6c6
+        - r6c5
+        - r5c6
+        - r6c7
+        - r7c6
+        - r5c5
+        - r5c7
+        - r7c5
+        - r7c7
+    - trigger:
+        - r6c7
+      lights:
+        - r6c7
+        - r6c6
+        - r5c7
+        - r6c8
+        - r7c7
+        - r5c6
+        - r5c8
+        - r7c6
+        - r7c8
+    - trigger:
+        - r6c8
+      lights:
+        - r6c8
+        - r6c7
+        - r5c8
+        - r6c9
+        - r7c8
+        - r5c7
+        - r5c9
+        - r7c7
+        - r7c9
+    - trigger:
+        - r6c9
+      lights:
+        - r6c9
+        - r6c8
+        - r5c9
+        - r7c9
+        - r5c8
+        - r7c8
+    - trigger:
+        - r7c1
+      lights:
+        - r7c1
+        - r6c1
+        - r7c2
+        - r8c1
+        - r6c2
+        - r8c2
+    - trigger:
+        - r7c2
+      lights:
+        - r7c2
+        - r7c1
+        - r6c2
+        - r7c3
+        - r8c2
+        - r6c1
+        - r6c3
+        - r8c1
+        - r8c3
+    - trigger:
+        - r7c3
+      lights:
+        - r7c3
+        - r7c2
+        - r6c3
+        - r7c4
+        - r8c3
+        - r6c2
+        - r6c4
+        - r8c2
+        - r8c4
+    - trigger:
+        - r7c4
+      lights:
+        - r7c4
+        - r7c3
+        - r6c4
+        - r7c5
+        - r8c4
+        - r6c3
+        - r6c5
+        - r8c3
+        - r8c5
+    - trigger:
+        - r7c5
+      lights:
+        - r7c5
+        - r7c4
+        - r6c5
+        - r7c6
+        - r8c5
+        - r6c4
+        - r6c6
+        - r8c4
+        - r8c6
+    - trigger:
+        - r7c6
+      lights:
+        - r7c6
+        - r7c5
+        - r6c6
+        - r7c7
+        - r8c6
+        - r6c5
+        - r6c7
+        - r8c5
+        - r8c7
+    - trigger:
+        - r7c7
+      lights:
+        - r7c7
+        - r7c6
+        - r6c7
+        - r7c8
+        - r8c7
+        - r6c6
+        - r6c8
+        - r8c6
+        - r8c8
+    - trigger:
+        - r7c8
+      lights:
+        - r7c8
+        - r7c7
+        - r6c8
+        - r7c9
+        - r8c8
+        - r6c7
+        - r6c9
+        - r8c7
+        - r8c9
+    - trigger:
+        - r7c9
+      lights:
+        - r7c9
+        - r7c8
+        - r6c9
+        - r8c9
+        - r6c8
+        - r8c8
+    - trigger:
+        - r8c1
+      lights:
+        - r8c1
+        - r7c1
+        - r8c2
+        - r9c1
+        - r7c2
+        - r9c2
+    - trigger:
+        - r8c2
+      lights:
+        - r8c2
+        - r8c1
+        - r7c2
+        - r8c3
+        - r9c2
+        - r7c1
+        - r7c3
+        - r9c1
+        - r9c3
+    - trigger:
+        - r8c3
+      lights:
+        - r8c3
+        - r8c2
+        - r7c3
+        - r8c4
+        - r9c3
+        - r7c2
+        - r7c4
+        - r9c2
+        - r9c4
+    - trigger:
+        - r8c4
+      lights:
+        - r8c4
+        - r8c3
+        - r7c4
+        - r8c5
+        - r9c4
+        - r7c3
+        - r7c5
+        - r9c3
+        - r9c5
+    - trigger:
+        - r8c5
+      lights:
+        - r8c5
+        - r8c4
+        - r7c5
+        - r8c6
+        - r9c5
+        - r7c4
+        - r7c6
+        - r9c4
+        - r9c6
+    - trigger:
+        - r8c6
+      lights:
+        - r8c6
+        - r8c5
+        - r7c6
+        - r8c7
+        - r9c6
+        - r7c5
+        - r7c7
+        - r9c5
+        - r9c7
+    - trigger:
+        - r8c7
+      lights:
+        - r8c7
+        - r8c6
+        - r7c7
+        - r8c8
+        - r9c7
+        - r7c6
+        - r7c8
+        - r9c6
+        - r9c8
+    - trigger:
+        - r8c8
+      lights:
+        - r8c8
+        - r8c7
+        - r7c8
+        - r8c9
+        - r9c8
+        - r7c7
+        - r7c9
+        - r9c7
+        - r9c9
+    - trigger:
+        - r8c9
+      lights:
+        - r8c9
+        - r8c8
+        - r7c9
+        - r9c9
+        - r7c8
+        - r9c8
+    - trigger:
+        - r9c1
+      lights:
+        - r9c1
+        - r8c1
+        - r9c2
+        - r8c2
+    - trigger:
+        - r9c2
+      lights:
+        - r9c2
+        - r9c1
+        - r8c2
+        - r9c3
+        - r8c1
+        - r8c3
+    - trigger:
+        - r9c3
+      lights:
+        - r9c3
+        - r9c2
+        - r8c3
+        - r9c4
+        - r8c2
+        - r8c4
+    - trigger:
+        - r9c4
+      lights:
+        - r9c4
+        - r9c3
+        - r8c4
+        - r9c5
+        - r8c3
+        - r8c5
+    - trigger:
+        - r9c5
+      lights:
+        - r9c5
+        - r9c4
+        - r8c5
+        - r9c6
+        - r8c4
+        - r8c6
+    - trigger:
+        - r9c6
+      lights:
+        - r9c6
+        - r9c5
+        - r8c6
+        - r9c7
+        - r8c5
+        - r8c7
+    - trigger:
+        - r9c7
+      lights:
+        - r9c7
+        - r9c6
+        - r8c7
+        - r9c8
+        - r8c6
+        - r8c8
+    - trigger:
+        - r9c8
+      lights:
+        - r9c8
+        - r9c7
+        - r8c8
+        - r9c9
+        - r8c7
+        - r8c9
+    - trigger:
+        - r9c9
+      lights:
+        - r9c9
+        - r9c8
+        - r8c9
+        - r8c8
 format: open-rules
 title: "Cookie Crime Part 2: Connecting Clues"
 setter: Sandra & Nala
@@ -920,6 +920,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 0c3c3a706274c827a8077193f4bc1c42
 ---
 
 ```rules
@@ -953,11 +954,11 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r1c8-r2c8 total 16 connected true
 cage-2: cage r1c4-r1c5 total 13 connected true
 cage-3: cage r7c6-r8c6 total 5 connected true
-kropki-1: kropki r7c8-r7c9 colour "white"
-kropki-2: kropki r7c8-r8c8 colour "white"
-kropki-3: kropki r3c7-r3c8 colour "black"
-kropki-4: kropki r3c8-r3c9 colour "black"
-kropki-5: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r7c8-r7c9 white
+kropki-2: kropki r7c8-r8c8 white
+kropki-3: kropki r3c7-r3c8 black
+kropki-4: kropki r3c8-r3c9 black
+kropki-5: kropki r4c3-r4c4 black
 ```
 
 ```drawing

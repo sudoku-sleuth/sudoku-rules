@@ -6,6 +6,7 @@ source: https://sudokupad.app/im2ux365zf
 case: https://sudoku-sleuth.com/cases/concentric-steering
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8327b500aba88f96f56d930d7c9f90bb
 ---
 
 ```rules

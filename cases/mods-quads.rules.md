@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/mods-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c41088509fd7b23422ba868364304e57
 ---
 
 ```rules

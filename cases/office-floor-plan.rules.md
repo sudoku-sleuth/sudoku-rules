@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/office-floor-plan
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=5 r3c6=5 r6c4=5 r7c7=5
+exported: b43710ce95642b6fa33477a0d7f8cb00
 ---
 
 ```rules

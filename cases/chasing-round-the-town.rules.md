@@ -6,6 +6,7 @@ source: https://sudokupad.app/9g088b930n
 case: https://sudoku-sleuth.com/cases/chasing-round-the-town
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b00dc860f0b83b0485acb8a43a16d8c7
 ---
 
 ```rules

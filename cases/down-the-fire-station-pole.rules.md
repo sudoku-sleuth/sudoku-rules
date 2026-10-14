@@ -6,15 +6,16 @@ source: https://sudokupad.app/c0z15n7j8j
 case: https://sudoku-sleuth.com/cases/down-the-fire-station-pole
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a3af8dbd4091ec306054c2fa2e61e516
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c4-r8c4 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "white"
-kropki-3: kropki r4c7-r5c7 colour "white"
-kropki-4: kropki r3c6-r4c6 colour "white"
-kropki-5: kropki r2c6-r2c7 colour "white"
+kropki-1: kropki r7c4-r8c4 white
+kropki-2: kropki r5c7-r6c7 white
+kropki-3: kropki r4c7-r5c7 white
+kropki-4: kropki r3c6-r4c6 white
+kropki-5: kropki r2c6-r2c7 white
 pair-1: pair r2c8-r3c8 ratio 3
 pair-2: pair r4c6-r5c6 ratio 3
 pair-3: pair r4c4-r4c5 ratio 3

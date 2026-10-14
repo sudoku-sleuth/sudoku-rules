@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 2
-    - 4
-    - 5
-    - 10
-    - 11
+    - r1c3
+    - r1c5
+    - r1c6
+    - r2c2
+    - r2c3
 format: open-rules
 title: Third Advent Sunday
 setter: Sandra & Nala
@@ -109,6 +109,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 5330fd37236f5740d7d0128feb2e8d12
 ---
 
 ```rules
@@ -146,14 +147,14 @@ cage-4: cage r4c8-r5c8 total 9 connected true
 cage-5: cage r6c9-r7c8-r7c9-r8c8 total 16 connected true
 cage-6: cage r8c3-r8c4-r8c5 total 14 connected true
 cage-7: cage r5c2-r6c2-r6c3 connected true
-kropki-1: kropki r2c4-r2c5 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
-kropki-3: kropki r9c7-r9c8 colour "white"
-kropki-4: kropki r7c9-r8c9 colour "white"
-kropki-5: kropki r7c5-r7c6 colour "white"
-kropki-6: kropki r1c3-r1c4 colour "black"
-kropki-7: kropki r6c9-r7c9 colour "black"
-kropki-8: kropki r9c6-r9c7 colour "black"
+kropki-1: kropki r2c4-r2c5 white
+kropki-2: kropki r3c5-r3c6 white
+kropki-3: kropki r9c7-r9c8 white
+kropki-4: kropki r7c9-r8c9 white
+kropki-5: kropki r7c5-r7c6 white
+kropki-6: kropki r1c3-r1c4 black
+kropki-7: kropki r6c9-r7c9 black
+kropki-8: kropki r9c6-r9c7 black
 ```
 
 ```drawing

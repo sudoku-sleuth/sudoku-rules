@@ -6,6 +6,7 @@ source: https://sudokupad.app/nwyulzh4e3
 case: https://sudoku-sleuth.com/cases/give-and-take
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c46cf5a519284a91b0a8104de67581e2
 ---
 
 ```rules

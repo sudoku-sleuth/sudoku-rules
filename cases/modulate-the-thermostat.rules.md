@@ -6,6 +6,7 @@ source: https://sudokupad.app/z455w311pe
 case: https://sudoku-sleuth.com/cases/modulate-the-thermostat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 09d0d05f34b25429c72b33184595521f
 ---
 
 ```rules

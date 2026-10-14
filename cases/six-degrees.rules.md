@@ -6,6 +6,7 @@ source: https://sudokupad.app/g1pzc2fiwk
 case: https://sudoku-sleuth.com/cases/six-degrees
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: abea3670e2c261fd33733e1b6cca7b18
 ---
 
 ```rules

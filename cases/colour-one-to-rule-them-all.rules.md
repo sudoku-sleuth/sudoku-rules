@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/colour-one-to-rule-them-all
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=5 r5c5=6 r6c9=7 r7c7=9 r9c6=3
+exported: 163d325f9a5014ab5f1f9147bab9696d
 ---
 
 ```rules

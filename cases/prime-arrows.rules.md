@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/prime-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c5=2 r8c2=1
+exported: d87abb82b4385034e01f796cad1ea7a2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c3-r4c3 colour "black"
-kropki-2: kropki r3c8-r3c9 colour "black"
-kropki-3: kropki r9c8-r9c9 colour "black"
-kropki-4: kropki r6c3-r7c3 colour "black"
-kropki-5: kropki r8c3-r9c3 colour "black"
+kropki-1: kropki r3c3-r4c3 black
+kropki-2: kropki r3c8-r3c9 black
+kropki-3: kropki r9c8-r9c9 black
+kropki-4: kropki r6c3-r7c3 black
+kropki-5: kropki r8c3-r9c3 black
 arrow-1: arrow r3c1-r4c1 bulb ["r2c1"]
 arrow-2: arrow r6c3-r5c3-r4c3-r4c2-r5c2-r6c2-r6c1-r5c1 bulb ["r7c3","r8c3"]
 arrow-3: arrow r9c3-r9c2-r9c1-r8c1-r7c1-r7c2 bulb ["r9c4","r9c5"]

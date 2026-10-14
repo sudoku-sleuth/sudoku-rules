@@ -22,6 +22,7 @@ board:
     - 7
     - 8
     - 9
+exported: e9a1dfb79b29a832774090290bc6590f
 ---
 
 ```rules
@@ -41,7 +42,7 @@ unique-13: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5
 unique-14: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6
 unique-15: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7
 unique-16: unique r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8
-kropki r3c7-r4c7 colour "black"
+kropki r3c7-r4c7 black
 palindrome r8c5-r8c6-r8c7-r7c7-r6c7
 parity r8c5-r7c5-r6c5-r6c6-r6c7 loop false
 whispers r2c8-r3c8-r4c8-r4c7-r5c7-r5c6-r4c6-r3c6-r3c7-r2c7 loop true gap 5

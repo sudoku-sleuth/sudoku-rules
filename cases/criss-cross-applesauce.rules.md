@@ -6,6 +6,7 @@ source: https://sudokupad.app/w46v2bbthn
 case: https://sudoku-sleuth.com/cases/criss-cross-applesauce
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7c9887328544d1a1bbcc08f90783795a
 ---
 
 ```rules

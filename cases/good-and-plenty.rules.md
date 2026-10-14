@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/good-and-plenty
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 17e9169695ba654a62c2e00e3293fcf0
 ---
 
 ```rules

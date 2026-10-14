@@ -6,26 +6,27 @@ source: https://sudokupad.app/qmmqhtfmse
 case: https://sudoku-sleuth.com/cases/circular-logic-or-ipso-facto
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b5d03f373573d54dc8ce95ed0a2048df
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r1c6-r1c7 total 14 connected true
 cage-2: cage r9c8-r9c9 total 14 connected true
-kropki-1: kropki r1c7-r1c8 colour "white"
-kropki-2: kropki r6c1-r7c1 colour "white"
-kropki-3: kropki r5c7-r6c7 colour "white"
-kropki-4: kropki r6c7-r7c7 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "white"
-kropki-6: kropki r3c3-r3c4 colour "white"
-kropki-7: kropki r4c4-r5c4 colour "white"
-kropki-8: kropki r9c2-r9c3 colour "black"
-kropki-9: kropki r9c4-r9c5 colour "black"
-kropki-10: kropki r9c6-r9c7 colour "black"
-kropki-11: kropki r5c1-r6c1 colour "black"
-kropki-12: kropki r3c1-r4c1 colour "black"
-kropki-13: kropki r7c6-r7c7 colour "black"
-kropki-14: kropki r6c9-r7c9 colour "black"
+kropki-1: kropki r1c7-r1c8 white
+kropki-2: kropki r6c1-r7c1 white
+kropki-3: kropki r5c7-r6c7 white
+kropki-4: kropki r6c7-r7c7 white
+kropki-5: kropki r3c4-r3c5 white
+kropki-6: kropki r3c3-r3c4 white
+kropki-7: kropki r4c4-r5c4 white
+kropki-8: kropki r9c2-r9c3 black
+kropki-9: kropki r9c4-r9c5 black
+kropki-10: kropki r9c6-r9c7 black
+kropki-11: kropki r5c1-r6c1 black
+kropki-12: kropki r3c1-r4c1 black
+kropki-13: kropki r7c6-r7c7 black
+kropki-14: kropki r6c9-r7c9 black
 arrow-1: arrow r8c9-r9c9 bulb ["r7c9"]
 arrow-2: arrow r8c1-r7c1 bulb ["r9c1"]
 arrow-3: arrow r4c3-r3c3 bulb ["r5c3"]

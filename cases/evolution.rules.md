@@ -8,17 +8,18 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r3c8=6 r7c2=9
+exported: 9fc8183e75518aad9c469ff9a88d40f7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c7-r5c7 colour "black"
-kropki-2: kropki r5c3-r6c3 colour "black"
-kropki-3: kropki r2c7-r3c7 colour "black"
-kropki-4: kropki r7c3-r8c3 colour "black"
-kropki-5: kropki r1c6-r1c7 colour "black"
-kropki-6: kropki r9c3-r9c4 colour "black"
-kropki-7: kropki r2c5-r3c5 colour "black"
+kropki-1: kropki r4c7-r5c7 black
+kropki-2: kropki r5c3-r6c3 black
+kropki-3: kropki r2c7-r3c7 black
+kropki-4: kropki r7c3-r8c3 black
+kropki-5: kropki r1c6-r1c7 black
+kropki-6: kropki r9c3-r9c4 black
+kropki-7: kropki r2c5-r3c5 black
 zipper-1: zipper r1c4-r2c4-r3c4
 zipper-2: zipper r7c6-r8c6-r9c6
 zipper-3: zipper r8c7-r7c8-r6c9

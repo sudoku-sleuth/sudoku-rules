@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/9-ladies-dancing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6fd658acb16f60267a1696a938482974
 ---
 
 ```rules
@@ -18,19 +19,19 @@ cage-5: cage r1c4-r2c4 total 10 connected true
 cage-6: cage r2c1-r2c2 total 10 connected true
 cage-7: cage r2c3-r3c3 total 10 connected true
 cage-8: cage r9c1-r9c2 total 10 connected true
-kropki-1: kropki r3c7-r4c7 colour "black"
-kropki-2: kropki r6c4-r6c5 colour "black"
-kropki-3: kropki r7c6-r8c6 colour "black"
-kropki-4: kropki r7c9-r8c9 colour "black"
-kropki-5: kropki r1c8-r1c9 colour "black"
-kropki-6: kropki r8c5-r9c5 colour "black"
-kropki-7: kropki r2c6-r2c7 colour "black"
-kropki-8: kropki r6c8-r7c8 colour "black"
-kropki-9: kropki r5c4-r5c5 colour "black"
-kropki-10: kropki r9c6-r9c7 colour "black"
-kropki-11: kropki r1c7-r2c7 colour "black"
-kropki-12: kropki r4c5-r5c5 colour "black"
-kropki-13: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r3c7-r4c7 black
+kropki-2: kropki r6c4-r6c5 black
+kropki-3: kropki r7c6-r8c6 black
+kropki-4: kropki r7c9-r8c9 black
+kropki-5: kropki r1c8-r1c9 black
+kropki-6: kropki r8c5-r9c5 black
+kropki-7: kropki r2c6-r2c7 black
+kropki-8: kropki r6c8-r7c8 black
+kropki-9: kropki r5c4-r5c5 black
+kropki-10: kropki r9c6-r9c7 black
+kropki-11: kropki r1c7-r2c7 black
+kropki-12: kropki r4c5-r5c5 black
+kropki-13: kropki r7c8-r8c8 black
 whispers-1: whispers r7c6-r7c5-r6c6-r5c7-r6c8-r7c9 gap 4
 whispers-2: whispers r2c6-r3c6-r4c7-r4c8-r5c9 gap 4
 whispers-3: whispers r9c2-r8c2-r7c2-r7c1-r8c1 gap 5

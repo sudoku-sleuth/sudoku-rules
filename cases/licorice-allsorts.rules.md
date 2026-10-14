@@ -6,18 +6,19 @@ source: https://sudokupad.app/blobz/licorice-allsorts
 case: https://sudoku-sleuth.com/cases/licorice-allsorts
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2134eed95a60d84db9f290ab7360c1dd
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c9-r8c9 colour "black"
-kropki-2: kropki r7c4-r7c5 colour "black"
-kropki-3: kropki r4c7-r5c7 colour "black"
-kropki-4: kropki r7c6-r7c7 colour "black"
-kropki-5: kropki r7c5-r7c6 colour "black"
-kropki-6: kropki r6c1-r7c1 colour "black"
-kropki-7: kropki r9c7-r9c8 colour "black"
-kropki-8: kropki r9c1-r9c2 colour "black"
+kropki-1: kropki r7c9-r8c9 black
+kropki-2: kropki r7c4-r7c5 black
+kropki-3: kropki r4c7-r5c7 black
+kropki-4: kropki r7c6-r7c7 black
+kropki-5: kropki r7c5-r7c6 black
+kropki-6: kropki r6c1-r7c1 black
+kropki-7: kropki r9c7-r9c8 black
+kropki-8: kropki r9c1-r9c2 black
 whispers-1: whispers r1c5-r1c6-r2c6 gap 5
 whispers-2: whispers r2c2-r3c2-r3c1 gap 5
 whispers-3: whispers r1c7-r2c7-r2c8 gap 5

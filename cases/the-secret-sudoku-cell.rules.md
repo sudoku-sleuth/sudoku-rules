@@ -56,6 +56,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 71dff05b1a99256234620f6acf7b353c
 ---
 
 ```rules
@@ -77,17 +78,17 @@ unique-15: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
 unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
-kropki-1: kropki r1c5-r1c6 colour "black"
-kropki-2: kropki r1c5-r2c5 colour "black"
-kropki-3: kropki r1c6-r2c6 colour "black"
-kropki-4: kropki r2c5-r2c6 colour "black"
-kropki-5: kropki r5c4-r6c4 colour "black"
-kropki-6: kropki r4c4-r4c5 colour "black"
-kropki-7: kropki r5c2-r6c2 colour "black"
-kropki-8: kropki r5c1-r5c2 colour "black"
-kropki-9: kropki r3c4-r4c4 colour "black"
-kropki-10: kropki r1c4-r2c4 colour "white"
-kropki-11: kropki r2c3-r3c3 colour "white"
+kropki-1: kropki r1c5-r1c6 black
+kropki-2: kropki r1c5-r2c5 black
+kropki-3: kropki r1c6-r2c6 black
+kropki-4: kropki r2c5-r2c6 black
+kropki-5: kropki r5c4-r6c4 black
+kropki-6: kropki r4c4-r4c5 black
+kropki-7: kropki r5c2-r6c2 black
+kropki-8: kropki r5c1-r5c2 black
+kropki-9: kropki r3c4-r4c4 black
+kropki-10: kropki r1c4-r2c4 white
+kropki-11: kropki r2c3-r3c3 white
 region-sum-1: region-sum r5c3-r6c3-r6c4-r6c5-r6c6-r5c6-r5c5 segments [["r5c3","r6c3"],["r6c4","r6c5","r6c6","r5c6","r5c5"]]
 region-sum-2: region-sum r3c1-r2c1-r1c2-r1c3 segments [["r3c1"],["r2c1","r1c2","r1c3"]]
 ```

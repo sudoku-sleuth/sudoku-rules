@@ -6,6 +6,7 @@ source: https://tinyurl.com/romancrosswordsudoku
 case: https://sudoku-sleuth.com/cases/roman-crossword
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c3423619b07d6b7a658c5862f6384ff7
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/21pfathsik
 case: https://sudoku-sleuth.com/cases/absolute-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a6f3cf39c05d4a98a04933d7833d343b
 ---
 
 ```rules

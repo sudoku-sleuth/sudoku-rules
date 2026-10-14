@@ -6,14 +6,15 @@ source: https://sudokupad.app/91y8m339k2
 case: https://sudoku-sleuth.com/cases/n-is-for-naughty-and-nice
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3da9bac832c071007dfb035288b0c236
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c8-r5c8 colour "white"
-kropki-2: kropki r5c2-r6c2 colour "white"
-kropki-3: kropki r3c1-r4c1 colour "white"
-kropki-4: kropki r6c9-r7c9 colour "black"
+kropki-1: kropki r4c8-r5c8 white
+kropki-2: kropki r5c2-r6c2 white
+kropki-3: kropki r3c1-r4c1 white
+kropki-4: kropki r6c9-r7c9 black
 whispers-1: whispers r5c3-r4c3-r4c4-r5c5-r6c6-r6c7-r5c7 gap 5
 whispers-2: whispers r1c9-r2c9 gap 5
 whispers-3: whispers r8c1-r9c1 gap 5

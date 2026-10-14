@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-gross-of-cells
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=1 r3c2=9 r3c7=5 r5c5=1 r6c6=2 r7c3=7 r9c9=8
+exported: 8ad1a1d26ab91cc05faa1761a373158c
 ---
 
 ```rules

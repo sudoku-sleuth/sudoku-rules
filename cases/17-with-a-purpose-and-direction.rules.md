@@ -6,6 +6,7 @@ source: https://sudokupad.app/mwa0bd2tqt
 case: https://sudoku-sleuth.com/cases/17-with-a-purpose-and-direction
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fca15369474ee4cedf44774ddad3dd0e
 ---
 
 ```rules

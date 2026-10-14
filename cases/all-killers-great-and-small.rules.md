@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/all-killers-great-and-small
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=4 r5c1=3 r5c9=1
+exported: bc7955eb21988fdb38085f1e79c28e68
 ---
 
 ```rules

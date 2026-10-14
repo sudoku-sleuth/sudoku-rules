@@ -6,6 +6,7 @@ source: https://tinyurl.com/5yzvk34w
 case: https://sudoku-sleuth.com/cases/humming-and-summing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 423716584d3c902a0b1c582a95003e56
 ---
 
 ```rules

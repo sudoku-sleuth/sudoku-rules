@@ -6,6 +6,7 @@ source: https://sudokupad.app/wvputnot38
 case: https://sudoku-sleuth.com/cases/1-is-not-the-loneliest-number
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cd12876e1e0e2913454ca9bb527354ed
 ---
 
 ```rules

@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/green-woodpecker
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 93fea92fc9f8734a5e5d98751db4fa89
 ---
 
 ```rules
 sudoku 9x9
-kropki r2c6-r3c6 colour "black"
+kropki r2c6-r3c6 black
 whispers-1: whispers r3c9-r3c8-r3c7-r4c6-r5c6-r6c6-r7c5-r7c4-r8c4-r8c5 gap 5
 whispers-2: whispers r2c6-r3c7-r3c6 gap 5
 whispers-3: whispers r8c1-r8c2-r8c3-r7c2 gap 5

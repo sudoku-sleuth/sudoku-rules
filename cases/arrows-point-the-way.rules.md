@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/arrows-point-the-way
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=5 r2c8=2 r5c4=4 r5c6=6 r8c2=3 r8c8=4
+exported: ff0a868add0efea81508f680dc165e94
 ---
 
 ```rules

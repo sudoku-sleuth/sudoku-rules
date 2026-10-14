@@ -6,6 +6,7 @@ source: https://sudokupad.app/tfemz7oacb
 case: https://sudoku-sleuth.com/cases/our-gifts-to-you
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e7e19d5efa48edb916fd1f0f65238c26
 ---
 
 ```rules

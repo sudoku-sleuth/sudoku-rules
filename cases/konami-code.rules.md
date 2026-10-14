@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/konami-code
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=7 r8c2=8 r9c7=3
+exported: 744ac92bb6d7bf5a2a902af234c06677
 ---
 
 ```rules

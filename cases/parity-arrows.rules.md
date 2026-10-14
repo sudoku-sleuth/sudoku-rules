@@ -6,6 +6,7 @@ source: https://sudokupad.app/b3ycwob5hq
 case: https://sudoku-sleuth.com/cases/parity-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bb92129dab2d44eacbbd0eeeb9486326
 ---
 
 ```rules

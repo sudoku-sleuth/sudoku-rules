@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/at-the-eleventh-hour
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 90cdde8cf01c27969c2a484a8c16959d
 ---
 
 ```rules
@@ -20,7 +21,7 @@ cage-7: cage r2c8-r3c8 total 11 connected true
 cage-8: cage r8c3-r9c3 total 11 connected true
 thermo-1: thermo r5c3-r4c3-r3c4-r3c5-r3c6-r4c7-r5c7
 thermo-2: thermo r5c6-r4c6-r4c5-r4c4
-kropki r2c7-r2c8 colour "white"
+kropki r2c7-r2c8 white
 arrow-1: arrow r6c4-r6c5-r6c6 bulb ["r5c4"]
 arrow-2: arrow r7c4-r7c5-r7c6-r6c7 bulb ["r6c3"]
 arrow-3: arrow r3c7-r2c6-r2c5-r2c4-r3c3 bulb ["r4c8"]

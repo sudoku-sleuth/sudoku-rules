@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-birthday-missing
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=2 r1c4=9 r1c6=6 r1c7=1 r4c8=6 r5c2=3 r5c8=1
+exported: f85022030d44354d7cc2c906c9cdc9f8
 ---
 
 ```rules

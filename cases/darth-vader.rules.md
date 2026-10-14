@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/darth-vader
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2dcd3a48d36c87a12fcaea0c17048d70
 ---
 
 ```rules
@@ -21,8 +22,8 @@ cage-7: cage r5c6-r6c6 total 10 connected true
 cage-8: cage r6c7-r6c8 total 10 connected true
 cage-9: cage r6c5-r7c5 total 5 connected true
 cage-10: cage r8c9-r9c9 total 5 connected true
-kropki-1: kropki r8c7-r8c8 colour "white"
-kropki-2: kropki r1c6-r2c6 colour "white"
+kropki-1: kropki r8c7-r8c8 white
+kropki-2: kropki r1c6-r2c6 white
 whispers-1: whispers r5c5-r6c4-r6c3-r5c2-r4c3-r4c4 gap 5
 whispers-2: whispers r4c4-r5c5 gap 5
 whispers-3: whispers r5c5-r6c6-r6c7-r5c8-r4c7-r4c6 gap 5

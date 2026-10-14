@@ -6,6 +6,7 @@ source: https://sudokupad.app/7ql07kcctf
 case: https://sudoku-sleuth.com/cases/extremely-pointed
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cd4f51bdf478378361d9b01ded486ebc
 ---
 
 ```rules

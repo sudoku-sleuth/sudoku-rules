@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/nice-hot-cuppa
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5f58b5cc9f829e91056e729d31b6a6d0
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sunset-in-hawaii
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5dc91fa59f9cd995dbf4d09c43c7794a
 ---
 
 ```rules
@@ -25,17 +26,17 @@ thermo-7: thermo r6c2-r5c2-r4c1
 thermo-8: thermo r6c2-r5c2-r4c3
 thermo-9: thermo r6c2-r5c2-r5c3-r6c4
 thermo-10: thermo r6c2-r5c2-r5c1-r6c1
-kropki-1: kropki r1c7-r2c7 colour "white"
-kropki-2: kropki r1c8-r2c8 colour "white"
-kropki-3: kropki r2c5-r2c6 colour "white"
-kropki-4: kropki r1c5-r2c5 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "white"
-kropki-6: kropki r4c3-r4c4 colour "white"
-kropki-7: kropki r5c8-r5c9 colour "white"
-kropki-8: kropki r2c7-r2c8 colour "white"
-kropki-9: kropki r8c5-r8c6 colour "white"
-kropki-10: kropki r6c6-r6c7 colour "black"
-kropki-11: kropki r6c3-r6c4 colour "black"
+kropki-1: kropki r1c7-r2c7 white
+kropki-2: kropki r1c8-r2c8 white
+kropki-3: kropki r2c5-r2c6 white
+kropki-4: kropki r1c5-r2c5 white
+kropki-5: kropki r3c4-r3c5 white
+kropki-6: kropki r4c3-r4c4 white
+kropki-7: kropki r5c8-r5c9 white
+kropki-8: kropki r2c7-r2c8 white
+kropki-9: kropki r8c5-r8c6 white
+kropki-10: kropki r6c6-r6c7 black
+kropki-11: kropki r6c3-r6c4 black
 renban-1: renban r8c6-r7c6-r6c6-r5c6-r4c6-r9c7-r3c6
 renban-2: renban r9c3-r8c3-r7c2-r6c2
 ```

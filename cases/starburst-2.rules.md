@@ -6,6 +6,7 @@ source: https://sudokupad.app/df89ddueln
 case: https://sudoku-sleuth.com/cases/starburst-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6429468c092a0f9772e7dfa20d64be51
 ---
 
 ```rules
@@ -16,7 +17,7 @@ thermo-3: thermo r5c1-r5c2-r5c3
 thermo-4: thermo r5c9-r5c8-r5c7
 thermo-5: thermo r6c4-r7c3-r8c2-r9c1
 thermo-6: thermo r6c6-r7c7-r8c8
-kropki r2c5-r3c5 colour "white"
+kropki r2c5-r3c5 white
 arrow-1: arrow r4c4-r4c3 bulb ["r4c5"]
 arrow-2: arrow r4c6-r4c7-r4c8 bulb ["r4c5"]
 arrow-3: arrow r5c6-r6c7-r7c8-r8c9 bulb ["r4c5"]

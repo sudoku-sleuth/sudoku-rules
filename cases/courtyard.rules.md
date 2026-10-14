@@ -6,6 +6,7 @@ source: https://sudokupad.app/s4sqvid2bk
 case: https://sudoku-sleuth.com/cases/courtyard
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a00741625c43f10f34cd0d4c1d1d2710
 ---
 
 ```rules

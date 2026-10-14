@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 0867302e538783f284b42217b6855f91
 ---
 
 ```rules
@@ -130,11 +131,11 @@ cage-4: cage r3c8-r3c9 total 8 connected true
 cage-5: cage r9c8-r9c9 total 10 connected true
 cage-6: cage r6c8-r7c8 total 9 connected true
 cage-7: cage r9c4-r9c5 total 8 connected true
-kropki-1: kropki r1c3-r1c4 colour "black"
-kropki-2: kropki r2c5-r3c5 colour "black"
-kropki-3: kropki r6c1-r7c1 colour "black"
-kropki-4: kropki r7c6-r7c7 colour "black"
-kropki-5: kropki r3c6-r3c7 colour "white"
+kropki-1: kropki r1c3-r1c4 black
+kropki-2: kropki r2c5-r3c5 black
+kropki-3: kropki r6c1-r7c1 black
+kropki-4: kropki r7c6-r7c7 black
+kropki-5: kropki r3c6-r3c7 white
 whispers-1: whispers r8c1-r7c2-r6c3 gap 5
 whispers-2: whispers r7c4-r6c5-r5c6 gap 5
 renban-1: renban r6c2-r5c3-r4c4

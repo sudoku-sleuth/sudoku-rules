@@ -6,6 +6,7 @@ source: https://sudokupad.app/r7dpn0esqs
 case: https://sudoku-sleuth.com/cases/torquage
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4cc5a31b931c4f42b5c0a467f0884563
 ---
 
 ```rules

@@ -6,32 +6,33 @@ source: https://sudokupad.app/5vczv3m3ur
 case: https://sudoku-sleuth.com/cases/shoot-to-thrill
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ce50952c251eb2ddca11349e8050190a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c7-r4c8 colour "white"
-kropki-2: kropki r7c3-r8c3 colour "white"
-kropki-3: kropki r2c6-r3c6 colour "white"
-kropki-4: kropki r1c4-r1c5 colour "white"
-kropki-5: kropki r5c8-r5c9 colour "white"
-kropki-6: kropki r5c3-r6c3 colour "white"
-kropki-7: kropki r7c9-r8c9 colour "white"
-kropki-8: kropki r9c8-r9c9 colour "white"
-kropki-9: kropki r9c3-r9c4 colour "white"
-kropki-10: kropki r8c4-r9c4 colour "white"
-kropki-11: kropki r8c1-r8c2 colour "white"
-kropki-12: kropki r2c2-r3c2 colour "white"
-kropki-13: kropki r2c8-r3c8 colour "white"
-kropki-14: kropki r1c8-r1c9 colour "white"
-kropki-15: kropki r3c1-r3c2 colour "black"
-kropki-16: kropki r8c4-r8c5 colour "black"
-kropki-17: kropki r7c8-r7c9 colour "black"
-kropki-18: kropki r6c2-r6c3 colour "black"
-kropki-19: kropki r1c5-r1c6 colour "black"
-kropki-20: kropki r4c9-r5c9 colour "black"
-kropki-21: kropki r1c7-r2c7 colour "black"
-kropki-22: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r4c7-r4c8 white
+kropki-2: kropki r7c3-r8c3 white
+kropki-3: kropki r2c6-r3c6 white
+kropki-4: kropki r1c4-r1c5 white
+kropki-5: kropki r5c8-r5c9 white
+kropki-6: kropki r5c3-r6c3 white
+kropki-7: kropki r7c9-r8c9 white
+kropki-8: kropki r9c8-r9c9 white
+kropki-9: kropki r9c3-r9c4 white
+kropki-10: kropki r8c4-r9c4 white
+kropki-11: kropki r8c1-r8c2 white
+kropki-12: kropki r2c2-r3c2 white
+kropki-13: kropki r2c8-r3c8 white
+kropki-14: kropki r1c8-r1c9 white
+kropki-15: kropki r3c1-r3c2 black
+kropki-16: kropki r8c4-r8c5 black
+kropki-17: kropki r7c8-r7c9 black
+kropki-18: kropki r6c2-r6c3 black
+kropki-19: kropki r1c5-r1c6 black
+kropki-20: kropki r4c9-r5c9 black
+kropki-21: kropki r1c7-r2c7 black
+kropki-22: kropki r7c8-r8c8 black
 arrow-1: arrow r1c3-r1c4-r1c5-r2c5 bulb ["r1c2"]
 arrow-2: arrow r3c9-r4c9-r5c9-r5c8 bulb ["r2c9"]
 arrow-3: arrow r9c7-r9c6-r9c5-r8c5 bulb ["r9c8"]

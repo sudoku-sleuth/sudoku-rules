@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/window-pane
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r1c9=6 r5c5=7 r9c1=3 r9c9=8
+exported: e893c4e96c2d32d6d9ef11b62f2abde4
 ---
 
 ```rules

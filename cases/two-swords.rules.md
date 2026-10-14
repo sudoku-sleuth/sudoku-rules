@@ -6,6 +6,7 @@ source: https://sudokupad.app/05jvnkxqo4
 case: https://sudoku-sleuth.com/cases/two-swords
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0eef989af0eb628a082cee7e369b77f2
 ---
 
 ```rules

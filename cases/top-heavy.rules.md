@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/top-heavy
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c7=1 r4c7=6 r5c3=9 r7c8=4
+exported: 4dedfd5883fcd77dbe85f0ea30a7a708
 ---
 
 ```rules

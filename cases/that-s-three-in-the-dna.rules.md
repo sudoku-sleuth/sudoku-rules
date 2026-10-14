@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/that-s-three-in-the-dna
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=3
+exported: 5e09f011b007bf67e3fb934bd5e7f89a
 ---
 
 ```rules

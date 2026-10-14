@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tree-in-winter
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=9
+exported: 23d13f9d0b1ea507e31f1cb3e7e1545c
 ---
 
 ```rules

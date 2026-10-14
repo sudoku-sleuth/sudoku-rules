@@ -6,6 +6,7 @@ source: https://sudokupad.app/8olpv4fdn1
 case: https://sudoku-sleuth.com/cases/gentle-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b07170388ae51dea0b408ec5ba38a076
 ---
 
 ```rules

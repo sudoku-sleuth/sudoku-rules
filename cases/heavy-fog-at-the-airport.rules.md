@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 32
-    - 48
-    - 50
+    - r4c4
+    - r4c6
+    - r6c4
+    - r6c6
 format: open-rules
 title: Heavy Fog At The Airport
 setter: EPH
@@ -12,6 +12,7 @@ source: https://sudokupad.app/wx1zynk2pj
 case: https://sudoku-sleuth.com/cases/heavy-fog-at-the-airport
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d74543ea5bdd76ff1217fc42574d09a0
 ---
 
 ```rules

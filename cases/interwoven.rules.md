@@ -6,6 +6,7 @@ source: https://sudokupad.app/54lssgrtq6
 case: https://sudoku-sleuth.com/cases/interwoven
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 711fd5e95cafe9f6c9942adbfb0f2d90
 ---
 
 ```rules

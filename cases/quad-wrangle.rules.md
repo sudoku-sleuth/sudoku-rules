@@ -6,6 +6,7 @@ source: https://sudokupad.app/uzf15tiyaw
 case: https://sudoku-sleuth.com/cases/quad-wrangle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b3090eff71f6e30f365b22e3385dde0d
 ---
 
 ```rules

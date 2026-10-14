@@ -6,18 +6,19 @@ source: https://sudokupad.app/onvsd8iqdd
 case: https://sudoku-sleuth.com/cases/m-aidez
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 154b30d0a5c8dbf026722eb7b42982ce
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c3-r7c4 colour "white"
-kropki-2: kropki r3c7-r4c7 colour "white"
-kropki-3: kropki r6c2-r6c3 colour "white"
-kropki-4: kropki r5c1-r6c1 colour "white"
-kropki-5: kropki r7c8-r7c9 colour "white"
-kropki-6: kropki r3c5-r3c6 colour "black"
-kropki-7: kropki r8c1-r8c2 colour "black"
-kropki-8: kropki r4c1-r5c1 colour "black"
+kropki-1: kropki r7c3-r7c4 white
+kropki-2: kropki r3c7-r4c7 white
+kropki-3: kropki r6c2-r6c3 white
+kropki-4: kropki r5c1-r6c1 white
+kropki-5: kropki r7c8-r7c9 white
+kropki-6: kropki r3c5-r3c6 black
+kropki-7: kropki r8c1-r8c2 black
+kropki-8: kropki r4c1-r5c1 black
 whispers-1: whispers r8c1-r7c1-r6c1-r6c2-r7c3-r8c2 gap 5
 whispers-2: whispers r8c4-r7c4-r6c5-r7c6-r8c6 gap 5
 whispers-3: whispers r6c7-r7c8-r6c9 gap 5

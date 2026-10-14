@@ -6,6 +6,7 @@ source: https://sudokupad.app/81443k0mdf
 case: https://sudoku-sleuth.com/cases/subway-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e623f5ebeda2343aaaa8687c64124bb1
 ---
 
 ```rules

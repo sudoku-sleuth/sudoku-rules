@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/same-difference
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 167eeaded20f48a283066ae82e50de94
 ---
 
 ```rules

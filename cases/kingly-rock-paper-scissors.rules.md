@@ -6,6 +6,7 @@ source: https://tinyurl.com/kinglyrockpaperscissors
 case: https://sudoku-sleuth.com/cases/kingly-rock-paper-scissors
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3d09fa6f7cbe0578bc244984eb7da928
 ---
 
 ```rules
@@ -13,8 +14,8 @@ sudoku 9x9
 anti-king
 thermo-1: thermo r9c1-r8c2-r7c3-r6c4-r5c5-r4c6-r3c7
 thermo-2: thermo r9c9-r8c8-r7c7-r6c6-r5c5-r4c4-r3c3
-kropki-1: kropki r7c8-r7c9 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "white"
+kropki-1: kropki r7c8-r7c9 white
+kropki-2: kropki r5c7-r6c7 white
 whispers r3c2-r4c1-r5c1-r6c2-r5c3-r4c3 gap 5
 renban r2c8-r1c8-r1c9-r2c9-r3c9-r4c9-r4c8-r3c8
 pair-1: pair r6c1-r6c2 sum 10

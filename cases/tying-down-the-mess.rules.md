@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/tying-down-the-mess
 case: https://sudoku-sleuth.com/cases/tying-down-the-mess
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 48ab30a186bbefcdf696c73515356ca3
 ---
 
 ```rules

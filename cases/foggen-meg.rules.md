@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Foggen Meg
 setter: Meggen033
@@ -17,6 +17,7 @@ source: https://sudokupad.app/yxb3v4k5r3
 case: https://sudoku-sleuth.com/cases/foggen-meg
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0b16b6159f0a3284c0bc1daf4ec5a040
 ---
 
 ```rules
@@ -26,15 +27,15 @@ thermo-2: thermo r4c6-r5c6-r6c6
 thermo-3: thermo r4c4-r5c4-r6c4
 thermo-4: thermo r8c3-r7c3-r6c3-r5c3
 thermo-5: thermo r8c7-r7c7-r6c7-r5c7-r5c8
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r5c5-r5c6 colour "white"
-kropki-3: kropki r7c6-r8c6 colour "white"
-kropki-4: kropki r3c1-r3c2 colour "white"
-kropki-5: kropki r7c5-r8c5 colour "black"
-kropki-6: kropki r2c5-r3c5 colour "black"
-kropki-7: kropki r6c2-r7c2 colour "black"
-kropki-8: kropki r7c7-r7c8 colour "black"
-kropki-9: kropki r3c8-r3c9 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r5c5-r5c6 white
+kropki-3: kropki r7c6-r8c6 white
+kropki-4: kropki r3c1-r3c2 white
+kropki-5: kropki r7c5-r8c5 black
+kropki-6: kropki r2c5-r3c5 black
+kropki-7: kropki r6c2-r7c2 black
+kropki-8: kropki r7c7-r7c8 black
+kropki-9: kropki r3c8-r3c9 black
 whispers-1: whispers r4c4-r4c5-r4c6 gap 5
 whispers-2: whispers r6c4-r6c5-r6c6 gap 5
 whispers-3: whispers r5c4-r4c3 gap 5

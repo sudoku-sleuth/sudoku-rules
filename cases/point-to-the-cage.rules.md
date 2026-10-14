@@ -6,6 +6,7 @@ source: https://sudokupad.app/9snqmgn7q5
 case: https://sudoku-sleuth.com/cases/point-to-the-cage
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1e2a69a3f04fb9b602a05d72cceed9bd
 ---
 
 ```rules

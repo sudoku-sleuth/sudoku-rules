@@ -9,6 +9,7 @@ status: flagged
 flags:
   - Some of the source rules still need to be included in our reading.
 givens: r9c2=8 r9c8=9
+exported: 7061ca5b151e5c6aaab1f91f43f2da45
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://tinyurl.com/mr2nz3um
 case: https://sudoku-sleuth.com/cases/a-strange-kind-of-limbo
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 739a18bad2e3e1eb8358617bebb83d08
 ---
 
 ```rules

@@ -6,18 +6,19 @@ source: https://sudokupad.app/blobz/a-whisper-of-gas
 case: https://sudoku-sleuth.com/cases/a-whisper-of-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7adbc845ae8150ef7523d0560ee2bbf5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r4c2-r4c3 colour "black"
-kropki-3: kropki r4c3-r4c4 colour "black"
-kropki-4: kropki r2c9-r3c9 colour "black"
-kropki-5: kropki r9c8-r9c9 colour "black"
-kropki-6: kropki r7c7-r7c8 colour "black"
-kropki-7: kropki r7c5-r7c6 colour "black"
-kropki-8: kropki r7c4-r8c4 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r4c2-r4c3 black
+kropki-3: kropki r4c3-r4c4 black
+kropki-4: kropki r2c9-r3c9 black
+kropki-5: kropki r9c8-r9c9 black
+kropki-6: kropki r7c7-r7c8 black
+kropki-7: kropki r7c5-r7c6 black
+kropki-8: kropki r7c4-r8c4 black
 whispers-1: whispers r4c3-r5c3-r6c3-r7c3-r7c4-r7c5 gap 5
 whispers-2: whispers r7c8-r7c9-r8c8-r9c7-r9c8 gap 5
 whispers-3: whispers r4c6-r5c6-r6c6-r7c6-r8c6-r7c7-r6c6 gap 5

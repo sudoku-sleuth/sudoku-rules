@@ -6,6 +6,7 @@ source: https://tinyurl.com/29ff593d
 case: https://sudoku-sleuth.com/cases/a-dozen-possibilities
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ea391fe740e327a4c5d5d92216139155
 ---
 
 ```rules

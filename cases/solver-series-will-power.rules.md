@@ -6,6 +6,7 @@ source: https://sudokupad.app/4b9ork099b
 case: https://sudoku-sleuth.com/cases/solver-series-will-power
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5ef9e14bf1db8b5a5e3e3215cbd5f17e
 ---
 
 ```rules
@@ -21,15 +22,15 @@ thermo-2: thermo r2c3-r3c4-r2c5-r1c5
 thermo-3: thermo r8c3-r8c2-r7c2-r6c2
 thermo-4: thermo r9c8-r9c7-r8c7-r7c7
 thermo-5: thermo r3c8-r2c8-r1c8
-kropki-1: kropki r5c6-r6c6 colour "white"
-kropki-2: kropki r6c2-r7c2 colour "white"
-kropki-3: kropki r8c2-r8c3 colour "white"
-kropki-4: kropki r7c7-r8c7 colour "white"
-kropki-5: kropki r9c7-r9c8 colour "white"
-kropki-6: kropki r3c6-r4c6 colour "white"
-kropki-7: kropki r2c6-r3c6 colour "white"
-kropki-8: kropki r1c1-r2c1 colour "white"
-kropki-9: kropki r3c2-r4c2 colour "white"
+kropki-1: kropki r5c6-r6c6 white
+kropki-2: kropki r6c2-r7c2 white
+kropki-3: kropki r8c2-r8c3 white
+kropki-4: kropki r7c7-r8c7 white
+kropki-5: kropki r9c7-r9c8 white
+kropki-6: kropki r3c6-r4c6 white
+kropki-7: kropki r2c6-r3c6 white
+kropki-8: kropki r1c1-r2c1 white
+kropki-9: kropki r3c2-r4c2 white
 ```
 
 Normal Sudoku Rules Apply

@@ -6,6 +6,7 @@ source: https://sudokupad.app/m106a4v0yr
 case: https://sudoku-sleuth.com/cases/angry-patch
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ede64abbd7d067f3c99d335f7fbd8aba
 ---
 
 ```rules

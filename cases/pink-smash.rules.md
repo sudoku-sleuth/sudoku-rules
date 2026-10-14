@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/pink-smash
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f6aae14dafed9c8ee1acc232d206f790
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c6-r5c6 colour "black"
-kropki-2: kropki r3c2-r4c2 colour "black"
-kropki-3: kropki r9c5-r9c6 colour "black"
+kropki-1: kropki r4c6-r5c6 black
+kropki-2: kropki r3c2-r4c2 black
+kropki-3: kropki r9c5-r9c6 black
 renban-1: renban r1c7-r2c7
 renban-2: renban r1c5-r1c6
 renban-3: renban r3c1-r4c1-r3c2

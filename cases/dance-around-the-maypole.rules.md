@@ -6,6 +6,7 @@ source: https://sudokupad.app/ug9tck5x25
 case: https://sudoku-sleuth.com/cases/dance-around-the-maypole
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7a8744b99bfda2f4ef85c1766cc37dd8
 ---
 
 ```rules

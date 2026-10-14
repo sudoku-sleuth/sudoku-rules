@@ -6,14 +6,15 @@ source: https://tinyurl.com/silentlightningsudoku
 case: https://sudoku-sleuth.com/cases/silent-lightning
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 00ccb7d2ef1e501dd4934136b2a6ab33
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c8-r7c9 colour "white"
-kropki-2: kropki r3c6-r4c6 colour "white"
-kropki-3: kropki r8c3-r8c4 colour "black"
-kropki-4: kropki r8c8-r8c9 colour "black"
+kropki-1: kropki r7c8-r7c9 white
+kropki-2: kropki r3c6-r4c6 white
+kropki-3: kropki r8c3-r8c4 black
+kropki-4: kropki r8c8-r8c9 black
 whispers-1: whispers r1c1-r1c2-r1c3-r2c4-r3c5-r3c4 gap 5
 whispers-2: whispers r3c4-r4c5-r5c6-r6c7-r6c6 gap 5
 whispers-3: whispers r6c6-r7c7-r8c7-r9c7 gap 5

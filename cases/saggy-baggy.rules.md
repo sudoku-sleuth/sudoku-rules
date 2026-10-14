@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/saggy-baggy
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=3 r4c2=1 r4c8=9
+exported: 339c7c87533c610b201fc14d9f20e6be
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tie-collection
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=3 r2c2=3 r3c4=7 r3c7=5 r4c3=8 r6c7=9 r7c3=5 r7c6=4 r8c8=7 r9c1=7
+exported: abb7aa9cc17649b3bf15ae677eadb708
 ---
 
 ```rules

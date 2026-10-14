@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 25
-    - 41
-    - 43
+    - r3c8
+    - r5c6
+    - r5c8
 format: open-rules
 title: One Knight's Revelation
 setter: Meggen033
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: ab7b8721998c214507d71e39a7bfb83f
 ---
 
 ```rules

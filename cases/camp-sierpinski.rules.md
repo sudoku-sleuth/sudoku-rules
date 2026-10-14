@@ -6,16 +6,17 @@ source: https://sudokupad.app/p20wsmy2ow
 case: https://sudoku-sleuth.com/cases/camp-sierpinski
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b1516b7b9b8c6c55048475fede792cc1
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c4-r2c5 colour "black"
-kropki-2: kropki r2c7-r2c8 colour "black"
-kropki-3: kropki r5c7-r6c7 colour "black"
-kropki-4: kropki r9c2-r9c3 colour "black"
-kropki-5: kropki r7c5-r7c6 colour "black"
-kropki-6: kropki r3c6-r3c7 colour "black"
+kropki-1: kropki r2c4-r2c5 black
+kropki-2: kropki r2c7-r2c8 black
+kropki-3: kropki r5c7-r6c7 black
+kropki-4: kropki r9c2-r9c3 black
+kropki-5: kropki r7c5-r7c6 black
+kropki-6: kropki r3c6-r3c7 black
 whispers-1: whispers r1c2-r1c1-r2c1-r2c2-r3c2-r3c1 gap 4
 whispers-2: whispers r1c3-r2c3-r3c3 gap 4
 whispers-3: whispers r1c6-r1c5-r1c4-r2c4-r3c4-r3c5-r3c6 gap 4

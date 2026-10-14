@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bremster-52nd
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c5=5 r7c5=2 r8c1=5 r9c1=2
+exported: 5fe16b729a032af6891099921b7e01da
 ---
 
 ```rules

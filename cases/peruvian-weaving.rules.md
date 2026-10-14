@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/peruvian-weaving
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c4=5 r2c5=2 r4c8=9 r5c2=1 r5c8=7 r6c2=6 r8c5=7 r8c6=1
+exported: a9703a9e9857f1659e083946a8194c3e
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://tinyurl.com/yucncvma
 case: https://sudoku-sleuth.com/cases/jolly-jumper
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dcf420b05435baa0e46f8e153d720766
 ---
 
 ```rules

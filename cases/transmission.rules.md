@@ -6,6 +6,7 @@ source: https://sudokupad.app/ll325igo4l
 case: https://sudoku-sleuth.com/cases/transmission
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8d4a308201ca4b98b77b1a1702f9468c
 ---
 
 ```rules

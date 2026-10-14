@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/sticks-and-stones-3
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c9=1
+exported: 2b24930989c4dd7a6071224c3b60523f
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
 anti-king
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
-kropki-3: kropki r5c4-r5c5 colour "black"
-kropki-4: kropki r5c5-r5c6 colour "black"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c5-r6c5 white
+kropki-3: kropki r5c4-r5c5 black
+kropki-4: kropki r5c5-r5c6 black
 palindrome-1: palindrome r6c6-r7c5-r8c4
 palindrome-2: palindrome r4c4-r3c5-r2c6
 negative relations [{"op":"sum","value":5},{"op":"sum","value":10}] except [["r4c5","r5c5"],["r5c5","r6c5"],["r5c4","r5c5"],["r5c5","r5c6"]]

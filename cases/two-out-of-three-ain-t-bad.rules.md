@@ -6,6 +6,7 @@ source: https://sudokupad.app/1cwnilmrp0
 case: https://sudoku-sleuth.com/cases/two-out-of-three-ain-t-bad
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: daac1ff619bbc985afc178dadf8becac
 ---
 
 ```rules

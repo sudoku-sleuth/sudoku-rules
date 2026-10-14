@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/killer-x
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=6 r5c2=1 r5c8=8 r8c5=5
+exported: c84935705b240ab2518d797200e8f12b
 ---
 
 ```rules
@@ -25,7 +26,7 @@ cage-11: cage r1c4-r1c5-r1c6 total 10 connected true
 cage-12: cage r9c4-r9c5-r9c6 total 15 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki r6c8-r7c8 colour "white"
+kropki r6c8-r7c8 white
 ```
 
 Normal sudoku rules apply.

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/heated-comb
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=3
+exported: 5d6bf9599c828c1a198b70ea688e9f44
 ---
 
 ```rules
@@ -18,9 +19,9 @@ thermo-4: thermo r5c1-r6c2-r7c3-r8c4-r9c5
 thermo-5: thermo r1c5-r2c6-r3c7-r4c8-r5c9
 thermo-6: thermo r7c1-r8c2-r9c3
 thermo-7: thermo r1c7-r2c8-r3c9
-kropki-1: kropki r8c3-r8c4 colour "white"
-kropki-2: kropki r9c7-r9c8 colour "white"
-kropki-3: kropki r6c9-r7c9 colour "white"
+kropki-1: kropki r8c3-r8c4 white
+kropki-2: kropki r9c7-r9c8 white
+kropki-3: kropki r6c9-r7c9 white
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

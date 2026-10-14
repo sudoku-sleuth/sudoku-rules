@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-bigger-squish
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e18457c5ce63faa78296a73c761096c6
 ---
 
 ```rules

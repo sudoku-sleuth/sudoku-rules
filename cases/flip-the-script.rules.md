@@ -6,6 +6,7 @@ source: https://sudokupad.app/q7q6iqv34f
 case: https://sudoku-sleuth.com/cases/flip-the-script
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 433586108c5cbcd5ac62e2e026c48d12
 ---
 
 ```rules

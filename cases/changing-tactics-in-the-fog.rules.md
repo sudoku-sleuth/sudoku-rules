@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 54
-    - 55
-    - 56
-    - 63
-    - 64
-    - 65
-    - 72
-    - 73
-    - 74
+    - r7c1
+    - r7c2
+    - r7c3
+    - r8c1
+    - r8c2
+    - r8c3
+    - r9c1
+    - r9c2
+    - r9c3
 format: open-rules
 title: Changing tactics in the fog
 setter: Chip Sounder
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 04c34f3b9020d5dca444d9e17c70085c
 ---
 
 ```rules
@@ -149,11 +150,11 @@ cage-3: cage r5c5-r6c5-r7c5 total 13 connected true
 cage-4: cage r4c9-r5c8-r5c9 total 16 connected true
 cage-5: cage r1c7-r1c8 total 7 connected true
 cage-6: cage r7c8-r8c8 total 12 connected true
-kropki-1: kropki r8c2-r8c3 colour "white"
-kropki-2: kropki r7c4-r8c4 colour "white"
-kropki-3: kropki r6c5-r7c5 colour "white"
-kropki-4: kropki r5c7-r6c7 colour "white"
-kropki-5: kropki r1c7-r2c7 colour "white"
+kropki-1: kropki r8c2-r8c3 white
+kropki-2: kropki r7c4-r8c4 white
+kropki-3: kropki r6c5-r7c5 white
+kropki-4: kropki r5c7-r6c7 white
+kropki-5: kropki r1c7-r2c7 white
 whispers r9c7-r9c6-r8c5-r9c4-r9c3-r9c2-r9c1-r8c1-r7c1-r7c2-r7c3-r6c3-r7c4-r7c5-r6c4-r5c3-r4c3-r4c4-r4c5-r3c6 gap 5
 renban r4c9-r3c8-r3c9-r2c9
 ```

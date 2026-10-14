@@ -6,6 +6,7 @@ source: https://sudokupad.app/n7uaq31zg8
 case: https://sudoku-sleuth.com/cases/equality-cages-135-locked-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 70db27f3d7629838eb8b7d29f49c83a1
 ---
 
 ```rules
@@ -21,8 +22,8 @@ equality-cage-8: equality-cage r4c7-r4c8
 equality-cage-9: equality-cage r9c7-r9c8
 equality-cage-10: equality-cage r4c2-r4c3
 equality-cage-11: equality-cage r1c4-r2c3-r2c4-r3c4
-kropki-1: kropki r7c1-r7c2 colour "black"
-kropki-2: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r7c1-r7c2 black
+kropki-2: kropki r8c2-r9c2 black
 lockout-1: lockout r2c1-r1c1-r1c2 ends ["r3c1","r1c3"] gap 4
 lockout-2: lockout r6c8-r7c9 ends ["r5c9","r8c8"] gap 4
 lockout-3: lockout r7c2-r8c2 ends ["r7c1","r8c3"] gap 4

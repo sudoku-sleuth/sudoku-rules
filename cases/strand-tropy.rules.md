@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/strand-tropy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0b87b7d9d86103d52d2e83e099535b14
 ---
 
 ```rules

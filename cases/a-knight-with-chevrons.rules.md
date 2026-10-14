@@ -6,6 +6,7 @@ source: https://sudokupad.app/sxwoy7sdf2
 case: https://sudoku-sleuth.com/cases/a-knight-with-chevrons
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 64ee4a8b02f29e2fe0015acd7d7eaa17
 ---
 
 ```rules

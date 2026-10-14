@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/conveyor-belt
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=8 r2c3=7 r3c4=8 r4c4=5 r5c5=9 r6c5=6 r7c6=5 r8c6=7 r9c7=8
+exported: eb29ceb48b952f9db44b454a6cfd436d
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c7-r5c8 colour "white"
+kropki r5c7-r5c8 white
 arrow-1: arrow r2c2-r2c1-r1c1 bulb ["r1c2"]
 arrow-2: arrow r2c4-r2c5-r1c5 bulb ["r1c4"]
 arrow-3: arrow r4c3-r4c2-r3c2 bulb ["r3c3"]

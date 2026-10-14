@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/to-g-or-not-to-g
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: .35.7...81......2....4...5..6...1...8.9...1.2...9......5...6....8....4.92...3.57.
+exported: a2280878af0e7f2c79fa373edb3501bb
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/drwpx0wjpe
 case: https://sudoku-sleuth.com/cases/half-court-set
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0df1a0f8abf8d97d7c2723b5dcd8a2d0
 ---
 
 ```rules
@@ -14,11 +15,11 @@ thermo-1: thermo r3c5-r3c4-r3c3-r4c2-r4c1-r3c1
 thermo-2: thermo r9c1-r8c1-r7c2-r6c2-r6c1
 thermo-3: thermo r9c9-r8c8-r8c9
 thermo-4: thermo r7c9-r6c9-r5c9
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r6c5-r7c5 colour "white"
-kropki-3: kropki r7c7-r7c8 colour "white"
-kropki-4: kropki r9c7-r9c8 colour "white"
-kropki-5: kropki r9c2-r9c3 colour "white"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r6c5-r7c5 white
+kropki-3: kropki r7c7-r7c8 white
+kropki-4: kropki r9c7-r9c8 white
+kropki-5: kropki r9c2-r9c3 white
 whispers-1: whispers r9c3-r8c3-r7c3-r6c3-r5c3-r4c4-r4c5-r4c6-r5c7-r6c7-r7c7-r8c7-r9c7 gap 5
 whispers-2: whispers r6c3-r6c4-r6c5-r6c6-r6c7 gap 5
 pair-1: pair r5c4-r6c4 sum 10

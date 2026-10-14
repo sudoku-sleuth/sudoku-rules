@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/one-doll-in-another
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=6 r5c3=2 r7c2=4 r7c8=9
+exported: aaf773821efbcebbb4ba7bf81414d0b8
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c4-r3c5 colour "white"
-kropki-2: kropki r6c6-r7c6 colour "white"
-kropki-3: kropki r5c6-r6c6 colour "white"
-kropki-4: kropki r3c1-r3c2 colour "white"
-kropki-5: kropki r4c1-r4c2 colour "white"
+kropki-1: kropki r3c4-r3c5 white
+kropki-2: kropki r6c6-r7c6 white
+kropki-3: kropki r5c6-r6c6 white
+kropki-4: kropki r3c1-r3c2 white
+kropki-5: kropki r4c1-r4c2 white
 doll-sum-1: doll-sum r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2 sums [17]
 doll-sum-2: doll-sum r4c9-r4c8-r4c7-r4c6-r4c5-r4c4-r4c3-r4c2-r4c1 sums [3]
 doll-sum-3: doll-sum r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6-r9c6 sums [4,6,8]

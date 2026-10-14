@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/high-rise-window-washer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=8 r4c4=1 r9c2=1 r9c5=2
+exported: af11dcebb5660f7cb5c8329fce27dab9
 ---
 
 ```rules

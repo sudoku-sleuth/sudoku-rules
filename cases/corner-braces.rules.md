@@ -6,6 +6,7 @@ source: https://sudokupad.app/kfowwth2mh
 case: https://sudoku-sleuth.com/cases/corner-braces
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0832a243e324c1c993d5643b7105a916
 ---
 
 ```rules

@@ -6,18 +6,19 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-thinker-by-auguste-rodin
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 825c24e81258b7358dd20958b8116918
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c8-r4c8 colour "black"
-kropki-2: kropki r2c5-r2c6 colour "black"
-kropki-3: kropki r3c5-r4c5 colour "black"
-kropki-4: kropki r8c4-r8c5 colour "black"
-kropki-5: kropki r7c1-r7c2 colour "black"
-kropki-6: kropki r4c4-r4c5 colour "black"
-kropki-7: kropki r6c5-r6c6 colour "black"
-kropki-8: kropki r2c8-r2c9 colour "black"
+kropki-1: kropki r3c8-r4c8 black
+kropki-2: kropki r2c5-r2c6 black
+kropki-3: kropki r3c5-r4c5 black
+kropki-4: kropki r8c4-r8c5 black
+kropki-5: kropki r7c1-r7c2 black
+kropki-6: kropki r4c4-r4c5 black
+kropki-7: kropki r6c5-r6c6 black
+kropki-8: kropki r2c8-r2c9 black
 whispers-1: whispers r4c1-r3c2-r2c3-r2c4 gap 5
 whispers-2: whispers r2c4-r2c5-r1c6-r1c7-r1c8 gap 5
 whispers-3: whispers r1c8-r2c9-r3c9-r4c8 gap 5

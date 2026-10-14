@@ -6,6 +6,7 @@ source: https://tinyurl.com/2dtr6mxc
 case: https://sudoku-sleuth.com/cases/cutting-the-diamond
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 86fa4437d8a7edff77eb6e37fbc9b300
 ---
 
 ```rules

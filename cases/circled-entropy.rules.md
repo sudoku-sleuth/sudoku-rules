@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/circled-entropy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0b7a986bbbc7a63b5f3a4594eb04e6c5
 ---
 
 ```rules

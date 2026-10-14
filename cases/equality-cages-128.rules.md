@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 9d871ba386fe3a6005ef21e92564bc17
 ---
 
 ```rules
@@ -21,9 +22,9 @@ equality-cage-5: equality-cage r6c3-r6c4
 equality-cage-6: equality-cage r4c2-r5c1-r5c2-r6c2
 equality-cage-7: equality-cage r1c2-r2c2
 equality-cage-8: equality-cage r4c9-r5c9
-kropki-1: kropki r7c7-r7c8 colour "black"
-kropki-2: kropki r2c6-r3c6 colour "black"
-kropki-3: kropki r1c9-r2c9 colour "black"
+kropki-1: kropki r7c7-r7c8 black
+kropki-2: kropki r2c6-r3c6 black
+kropki-3: kropki r1c9-r2c9 black
 ```
 
 ```drawing

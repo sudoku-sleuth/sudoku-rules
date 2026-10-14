@@ -6,6 +6,7 @@ source: https://sudokupad.app/7m7iluxxil
 case: https://sudoku-sleuth.com/cases/the-triple-crown
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2e78803f6adabeb023aa5570ea5ea6a3
 ---
 
 ```rules

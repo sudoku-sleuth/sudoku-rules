@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/quarantine
 case: https://sudoku-sleuth.com/cases/quarantine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 60435263e9e41e80194aa58931f78713
 ---
 
 ```rules

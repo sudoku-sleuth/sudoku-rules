@@ -6,15 +6,16 @@ source: https://f-puzzles.com/?id=2kl4skct
 case: https://sudoku-sleuth.com/cases/star-battle-i-ix
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8034b58f40d47221c61a4fda91cf4e71
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r7c2-r8c2 total 13 connected true
 cage-2: cage r1c6-r1c7 total 13 connected true
-kropki-1: kropki r2c3-r3c3 colour "white"
-kropki-2: kropki r6c6-r7c6 colour "white"
-kropki-3: kropki r1c9-r2c9 colour "black"
+kropki-1: kropki r2c3-r3c3 white
+kropki-2: kropki r6c6-r7c6 white
+kropki-3: kropki r1c9-r2c9 black
 arrow-1: arrow r3c3-r4c3 bulb ["r2c4"]
 arrow-2: arrow r7c3-r6c3 bulb ["r8c4"]
 pair-1: pair r2c8-r3c8 sum 10

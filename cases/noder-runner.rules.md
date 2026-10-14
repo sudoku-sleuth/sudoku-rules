@@ -6,21 +6,22 @@ source: ""
 case: https://sudoku-sleuth.com/cases/noder-runner
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1706d60df6f4791f55c10ef33a3656b6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c2-r1c3 colour "white"
-kropki-2: kropki r7c3-r8c3 colour "white"
-kropki-3: kropki r7c7-r8c7 colour "white"
-kropki-4: kropki r7c5-r7c6 colour "white"
-kropki-5: kropki r9c8-r9c9 colour "white"
-kropki-6: kropki r3c7-r3c8 colour "black"
-kropki-7: kropki r3c1-r3c2 colour "black"
-kropki-8: kropki r1c5-r2c5 colour "black"
-kropki-9: kropki r5c5-r6c5 colour "black"
-kropki-10: kropki r7c1-r8c1 colour "black"
-kropki-11: kropki r7c9-r8c9 colour "black"
+kropki-1: kropki r1c2-r1c3 white
+kropki-2: kropki r7c3-r8c3 white
+kropki-3: kropki r7c7-r8c7 white
+kropki-4: kropki r7c5-r7c6 white
+kropki-5: kropki r9c8-r9c9 white
+kropki-6: kropki r3c7-r3c8 black
+kropki-7: kropki r3c1-r3c2 black
+kropki-8: kropki r1c5-r2c5 black
+kropki-9: kropki r5c5-r6c5 black
+kropki-10: kropki r7c1-r8c1 black
+kropki-11: kropki r7c9-r8c9 black
 arrow-1: arrow r3c1-r3c2 bulb ["r4c1"]
 arrow-2: arrow r3c8-r3c7 bulb ["r4c9"]
 arrow-3: arrow r5c5-r6c5 bulb ["r4c5"]

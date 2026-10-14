@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/never-two-apart-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ..8...1...4.....7.3.......2...1...................2...6.......5.9.....3...5...4..
+exported: 5b872c5af9ab5b04269136767c1adb88
 ---
 
 ```rules

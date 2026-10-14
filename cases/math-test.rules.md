@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/math-test
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 357108462f3b0ccf6958b95befe29894
 ---
 
 ```rules
@@ -19,17 +20,17 @@ cage-5: cage r6c1-r6c2 total 11 connected true
 cage-6: cage r7c8-r7c9 total 12 connected true
 cage-7: cage r8c8-r8c9 total 14 connected true
 cage-8: cage r9c7-r9c8-r9c9 total 8 connected true
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r4c3-r4c4 colour "white"
-kropki-3: kropki r7c4-r7c5 colour "white"
-kropki-4: kropki r1c5-r1c6 colour "white"
-kropki-5: kropki r8c4-r8c5 colour "white"
-kropki-6: kropki r6c5-r6c6 colour "white"
-kropki-7: kropki r2c8-r2c9 colour "white"
-kropki-8: kropki r2c6-r2c7 colour "white"
-kropki-9: kropki r2c5-r2c6 colour "white"
-kropki-10: kropki r3c4-r4c4 colour "black"
-kropki-11: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r4c3-r4c4 white
+kropki-3: kropki r7c4-r7c5 white
+kropki-4: kropki r1c5-r1c6 white
+kropki-5: kropki r8c4-r8c5 white
+kropki-6: kropki r6c5-r6c6 white
+kropki-7: kropki r2c8-r2c9 white
+kropki-8: kropki r2c6-r2c7 white
+kropki-9: kropki r2c5-r2c6 white
+kropki-10: kropki r3c4-r4c4 black
+kropki-11: kropki r4c4-r5c4 black
 ```
 
 ```drawing

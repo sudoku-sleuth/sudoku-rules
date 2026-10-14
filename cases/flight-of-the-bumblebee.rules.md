@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/flight-of-the-bumblebee
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ae57793a14c4c015158cdd456d0f91fe
 ---
 
 ```rules

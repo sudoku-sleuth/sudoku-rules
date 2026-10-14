@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 22
-    - 28
-    - 29
-    - 33
+    - r3c5
+    - r4c2
+    - r4c3
+    - r4c7
 format: open-rules
 title: German Knights in the Fog
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: db65fa8167b9e482ab4d7d71458b4322
 ---
 
 ```rules
@@ -140,16 +141,16 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r4c2-r4c3 total 6 connected true
 cage-2: cage r3c5-r4c5 total 7 connected true
 cage-3: cage r4c9-r5c9 total 10 connected true
-kropki-1: kropki r4c7-r4c8 colour "white"
-kropki-2: kropki r6c7-r7c7 colour "white"
-kropki-3: kropki r2c3-r2c4 colour "white"
-kropki-4: kropki r3c8-r3c9 colour "white"
-kropki-5: kropki r1c5-r2c5 colour "white"
-kropki-6: kropki r4c7-r5c7 colour "black"
-kropki-7: kropki r3c7-r4c7 colour "black"
-kropki-8: kropki r2c2-r2c3 colour "black"
-kropki-9: kropki r5c1-r5c2 colour "black"
-kropki-10: kropki r6c2-r7c2 colour "black"
+kropki-1: kropki r4c7-r4c8 white
+kropki-2: kropki r6c7-r7c7 white
+kropki-3: kropki r2c3-r2c4 white
+kropki-4: kropki r3c8-r3c9 white
+kropki-5: kropki r1c5-r2c5 white
+kropki-6: kropki r4c7-r5c7 black
+kropki-7: kropki r3c7-r4c7 black
+kropki-8: kropki r2c2-r2c3 black
+kropki-9: kropki r5c1-r5c2 black
+kropki-10: kropki r6c2-r7c2 black
 whispers-1: whispers r3c4-r4c4 gap 5
 whispers-2: whispers r3c6-r4c6 gap 5
 whispers-3: whispers r6c4-r5c5-r6c6 gap 5

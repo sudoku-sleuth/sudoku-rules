@@ -6,6 +6,7 @@ source: https://sudokupad.app/io5ji4wz7f
 case: https://sudoku-sleuth.com/cases/easy-deaths
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 59c7274a789c7333951bfcd58fb16c97
 ---
 
 ```rules

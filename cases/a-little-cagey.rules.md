@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-little-cagey
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=3 r5c1=5 r9c5=6
+exported: 686a2077353797720f15f8f58d7e037d
 ---
 
 ```rules

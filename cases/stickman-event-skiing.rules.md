@@ -6,12 +6,13 @@ source: ""
 case: https://sudoku-sleuth.com/cases/stickman-event-skiing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c82c471a179c33d597d4e3df9e668c62
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r4c6 colour "white"
-kropki-2: kropki r6c4-r6c5 colour "white"
+kropki-1: kropki r4c5-r4c6 white
+kropki-2: kropki r6c4-r6c5 white
 whispers-1: whispers r5c8-r6c8-r7c8 gap 5
 whispers-2: whispers r4c3-r5c2-r6c1 gap 5
 whispers-3: whispers r7c8-r8c8 gap 5

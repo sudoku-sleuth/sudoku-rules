@@ -6,6 +6,7 @@ source: https://sudokupad.app/dl9tf2l0na
 case: https://sudoku-sleuth.com/cases/towers-and-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 48be006ec76c0a19589153d29d290d24
 ---
 
 ```rules

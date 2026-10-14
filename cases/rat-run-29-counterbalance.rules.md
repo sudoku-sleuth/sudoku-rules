@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-29-counterbalance
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 771929dd28c92eab96afd8f75ecde1b5
 ---
 
 ```rules

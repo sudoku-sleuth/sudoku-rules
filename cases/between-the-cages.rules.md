@@ -6,6 +6,7 @@ source: https://sudokupad.app/oofa0j20vz
 case: https://sudoku-sleuth.com/cases/between-the-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a8b8c45cff1e604f7157e3ad66c84029
 ---
 
 ```rules

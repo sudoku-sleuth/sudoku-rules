@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/how-many-primes-fit-in-a-box
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1248b9a59411c09bd0c209b6a6af60da
 ---
 
 ```rules
@@ -36,10 +37,10 @@ cage-22: cage r4c2-r4c3 connected true
 cage-23: cage r4c5-r4c6 connected true
 cage-24: cage r5c5-r5c6 connected true
 cage-25: cage r6c5-r6c6 connected true
-kropki-1: kropki r1c5-r2c5 colour "black"
-kropki-2: kropki r5c6-r5c7 colour "black"
-kropki-3: kropki r5c7-r5c8 colour "black"
-kropki-4: kropki r8c3-r8c4 colour "black"
+kropki-1: kropki r1c5-r2c5 black
+kropki-2: kropki r5c6-r5c7 black
+kropki-3: kropki r5c7-r5c8 black
+kropki-4: kropki r8c3-r8c4 black
 arrow-1: arrow r6c3-r6c2-r6c1-r5c1-r4c1-r3c1-r2c1-r1c1-r1c2-r2c2-r3c2-r4c2-r5c2-r5c3-r4c3-r3c3-r2c3-r1c3-r1c4-r2c4-r3c4-r3c5-r3c6-r2c6-r2c5-r1c5 bulb ["r4c4","r5c4","r6c4"]
 arrow-2: arrow r4c7-r4c8-r5c9-r4c9-r3c9-r2c9-r1c9-r1c8-r2c8-r3c8-r3c7-r2c7-r1c7-r1c6 bulb ["r4c5","r4c6"]
 arrow-3: arrow r5c7-r5c8-r6c8-r6c9-r7c9-r8c9-r9c9-r9c8-r8c8-r7c8-r7c7-r6c7 bulb ["r5c5","r5c6"]

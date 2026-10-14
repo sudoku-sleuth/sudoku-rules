@@ -6,6 +6,7 @@ source: https://sudokupad.app/q0whysshuw
 case: https://sudoku-sleuth.com/cases/survival-priorities
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7981d6e70acd8af4881e3967e25158c2
 ---
 
 ```rules

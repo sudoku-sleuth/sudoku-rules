@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/super-index-unassisted
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c1=1
+exported: 1604b4d4309c70b5ffcf2605a3c59d6d
 ---
 
 ```rules

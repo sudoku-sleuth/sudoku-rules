@@ -6,31 +6,32 @@ source: https://sudokupad.app/yuc8i8lhch
 case: https://sudoku-sleuth.com/cases/different-kind-of-bent-triples
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 38b30c4de7e046b621f2c6734c7cd8a2
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r5c4-r6c4 colour "white"
-kropki-2: kropki r6c4-r6c5 colour "white"
-kropki-3: kropki r4c6-r4c7 colour "white"
-kropki-4: kropki r3c7-r4c7 colour "white"
-kropki-5: kropki r7c5-r8c5 colour "white"
-kropki-6: kropki r8c5-r8c6 colour "white"
-kropki-7: kropki r2c2-r3c2 colour "white"
-kropki-8: kropki r3c2-r3c3 colour "white"
-kropki-9: kropki r8c8-r9c8 colour "white"
-kropki-10: kropki r9c7-r9c8 colour "white"
-kropki-11: kropki r2c4-r2c5 colour "white"
-kropki-12: kropki r1c5-r2c5 colour "white"
-kropki-13: kropki r5c5-r5c6 colour "white"
-kropki-14: kropki r4c5-r5c5 colour "white"
-kropki-15: kropki r1c3-r2c3 colour "white"
-kropki-16: kropki r1c3-r1c4 colour "white"
-kropki-17: kropki r3c1-r4c1 colour "white"
-kropki-18: kropki r4c1-r4c2 colour "white"
-kropki-19: kropki r5c4-r5c5 colour "black"
-kropki-20: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r5c4-r6c4 white
+kropki-2: kropki r6c4-r6c5 white
+kropki-3: kropki r4c6-r4c7 white
+kropki-4: kropki r3c7-r4c7 white
+kropki-5: kropki r7c5-r8c5 white
+kropki-6: kropki r8c5-r8c6 white
+kropki-7: kropki r2c2-r3c2 white
+kropki-8: kropki r3c2-r3c3 white
+kropki-9: kropki r8c8-r9c8 white
+kropki-10: kropki r9c7-r9c8 white
+kropki-11: kropki r2c4-r2c5 white
+kropki-12: kropki r1c5-r2c5 white
+kropki-13: kropki r5c5-r5c6 white
+kropki-14: kropki r4c5-r5c5 white
+kropki-15: kropki r1c3-r2c3 white
+kropki-16: kropki r1c3-r1c4 white
+kropki-17: kropki r3c1-r4c1 white
+kropki-18: kropki r4c1-r4c2 white
+kropki-19: kropki r5c4-r5c5 black
+kropki-20: kropki r4c4-r5c4 black
 arrow-1: arrow r3c7-r4c6 bulb ["r2c8"]
 arrow-2: arrow r2c2-r3c3-r4c4 bulb ["r1c1"]
 arrow-3: arrow r7c3-r6c4 bulb ["r8c2"]

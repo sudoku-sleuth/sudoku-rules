@@ -6,12 +6,13 @@ source: ""
 case: https://sudoku-sleuth.com/cases/speed-dial
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c450c1bc00943e162681347ff630b9a8
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c9-r5c9 colour "white"
-kropki-2: kropki r1c1-r1c2 colour "white"
+kropki-1: kropki r4c9-r5c9 white
+kropki-2: kropki r1c1-r1c2 white
 pair-1: pair r1c3-r2c3 sum 10
 pair-2: pair r4c3-r5c3 sum 10
 pair-3: pair r7c1-r7c2 sum 10

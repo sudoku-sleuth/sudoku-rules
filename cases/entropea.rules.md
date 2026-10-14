@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: e8de4947a4852f94926842f9104d6592
 ---
 
 ```rules

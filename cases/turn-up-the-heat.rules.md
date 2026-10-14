@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/turn-up-the-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=2 r3c6=7 r4c1=5 r4c4=1 r5c2=4 r5c5=6 r5c8=1 r6c6=2 r6c9=4 r7c4=3 r9c5=8
+exported: 17e6bb9d1f9ce86856f5713233ef4646
 ---
 
 ```rules

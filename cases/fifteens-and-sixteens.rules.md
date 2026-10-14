@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fifteens-and-sixteens
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c4=4 r8c1=3
+exported: b33c595d09cd0ed325d04b11131321ee
 ---
 
 ```rules

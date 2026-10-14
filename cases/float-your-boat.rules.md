@@ -6,6 +6,7 @@ source: https://sudokupad.app/9rb38qftm0
 case: https://sudoku-sleuth.com/cases/float-your-boat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c735e83f8b4fbaf5ca47896f758120b5
 ---
 
 ```rules

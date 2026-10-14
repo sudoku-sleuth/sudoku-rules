@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vextropy
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=7
+exported: f2fb6fe14ae2ce6f4c986c693198e51b
 ---
 
 ```rules

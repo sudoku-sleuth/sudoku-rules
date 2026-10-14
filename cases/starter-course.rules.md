@@ -6,6 +6,7 @@ source: https://sudokupad.app/slicedsudoku/startercourse
 case: https://sudoku-sleuth.com/cases/starter-course
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5a6c696578d9ed1a24379358664d134a
 ---
 
 ```rules

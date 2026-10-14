@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/fire-photon-torpedoes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0ac428f845680bff1bda1300d4e66811
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c1-r9c2 colour "black"
-kropki-2: kropki r1c8-r1c9 colour "black"
-kropki-3: kropki r5c5-r6c5 colour "black"
-kropki-4: kropki r7c9-r8c9 colour "black"
-kropki-5: kropki r1c1-r2c1 colour "black"
-kropki-6: kropki r4c1-r4c2 colour "black"
+kropki-1: kropki r9c1-r9c2 black
+kropki-2: kropki r1c8-r1c9 black
+kropki-3: kropki r5c5-r6c5 black
+kropki-4: kropki r7c9-r8c9 black
+kropki-5: kropki r1c1-r2c1 black
+kropki-6: kropki r4c1-r4c2 black
 renban-1: renban r7c8-r7c9-r6c9
 renban-2: renban r8c8-r9c8-r9c7
 pair-1: pair r5c3-r6c3 sum 5

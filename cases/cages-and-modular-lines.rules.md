@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cages-and-modular-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cb70ea87f5a2c080fbe1e28d61362356
 ---
 
 ```rules

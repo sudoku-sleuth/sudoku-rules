@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/they-re-escaping
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 48d55649c7c9bb133f6078e890c7f445
 ---
 
 ```rules

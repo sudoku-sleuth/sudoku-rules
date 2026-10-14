@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/pivot-on-5
 case: https://sudoku-sleuth.com/cases/pivot-on-5
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7fb4e7870eac6cbeaa331ec9f5f03bcc
 ---
 
 ```rules
@@ -24,11 +25,11 @@ cage-11: cage r2c4-r2c5 total 11 connected true
 cage-12: cage r4c8-r5c8 total 13 connected true
 cage-13: cage r4c4-r4c5-r5c4 total 20 connected true
 cage-14: cage r5c6-r6c5-r6c6 total 9 connected true
-kropki-1: kropki r1c3-r1c4 colour "white"
-kropki-2: kropki r3c9-r4c9 colour "white"
-kropki-3: kropki r9c6-r9c7 colour "white"
-kropki-4: kropki r6c4-r7c4 colour "white"
-kropki-5: kropki r6c1-r7c1 colour "white"
+kropki-1: kropki r1c3-r1c4 white
+kropki-2: kropki r3c9-r4c9 white
+kropki-3: kropki r9c6-r9c7 white
+kropki-4: kropki r6c4-r7c4 white
+kropki-5: kropki r6c1-r7c1 white
 pair-1: pair r7c1-r7c2 sum 5
 pair-2: pair r7c5-r7c6 sum 5
 pair-3: pair r8c7-r9c7 sum 5

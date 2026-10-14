@@ -6,6 +6,7 @@ source: https://sudokupad.app/2vi9edr9m7
 case: https://sudoku-sleuth.com/cases/dualling-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b47323542f61b723bd46b743967d2048
 ---
 
 ```rules

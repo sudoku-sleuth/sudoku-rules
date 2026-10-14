@@ -6,6 +6,7 @@ source: https://sudokupad.app/ru3jo1qq2e
 case: https://sudoku-sleuth.com/cases/windmill
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 560f73524732717913295ff6f320d97a
 ---
 
 ```rules
@@ -30,12 +31,12 @@ cage-17: cage r5c3-r6c3 total 3 connected true
 cage-18: cage r4c7-r5c7 total 15 connected true
 cage-19: cage r3c4-r3c5 total 13 connected true
 cage-20: cage r7c5-r7c6 total 5 connected true
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r6c9-r7c9 colour "white"
-kropki-3: kropki r3c9-r4c9 colour "white"
-kropki-4: kropki r6c1-r7c1 colour "white"
-kropki-5: kropki r8c8-r8c9 colour "white"
-kropki-6: kropki r2c1-r2c2 colour "white"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r6c9-r7c9 white
+kropki-3: kropki r3c9-r4c9 white
+kropki-4: kropki r6c1-r7c1 white
+kropki-5: kropki r8c8-r8c9 white
+kropki-6: kropki r2c1-r2c2 white
 ```
 
 • Normal sudoku rules apply and all clues are standard.

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-flying-dutchman
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6d27acbf39d504a22a3e7d61d2460a62
 ---
 
 ```rules

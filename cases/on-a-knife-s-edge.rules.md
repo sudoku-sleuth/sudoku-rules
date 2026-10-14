@@ -6,6 +6,7 @@ source: https://sudokupad.app/ns0zdryfz0
 case: https://sudoku-sleuth.com/cases/on-a-knife-s-edge
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 05732cb319fb1f6410c218f54065f454
 ---
 
 ```rules

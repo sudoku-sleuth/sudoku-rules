@@ -6,6 +6,7 @@ source: https://sudokupad.app/40d280st7l
 case: https://sudoku-sleuth.com/cases/renban-sandwiches
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 894a564c6d77d9b2aabf244f983d777e
 ---
 
 ```rules

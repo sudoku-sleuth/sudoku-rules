@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/residual-effect
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c1=4
+exported: 7a3611cefecc3ae2c95789ec0ed8e137
 ---
 
 ```rules

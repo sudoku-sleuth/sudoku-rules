@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/crossing-sums-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5d0f2a9a35caf3884a034a198f88ed3f
 ---
 
 ```rules

@@ -8,14 +8,15 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Some source features still need to be checked against our reading.
+exported: 739b8fa782ad3e91cb103c851dc4b369
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c3-r1c4 colour "white"
-kropki-2: kropki r4c3-r4c4 colour "white"
-kropki-3: kropki r8c6-r8c7 colour "white"
-kropki-4: kropki r8c5-r9c5 colour "black"
+kropki-1: kropki r1c3-r1c4 white
+kropki-2: kropki r4c3-r4c4 white
+kropki-3: kropki r8c6-r8c7 white
+kropki-4: kropki r8c5-r9c5 black
 renban-1: renban r1c1-r2c2-r1c3
 renban-2: renban r1c4-r2c5-r1c6
 renban-3: renban r1c7-r2c8-r1c9

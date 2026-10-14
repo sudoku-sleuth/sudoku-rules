@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/go-fly-a-kite
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f380554e2d35f6cb3472b4c35daa895b
 ---
 
 ```rules

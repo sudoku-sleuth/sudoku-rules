@@ -131,6 +131,7 @@ board:
       - r13c11
       - r13c12
       - r13c13
+exported: b77f0d0204cd5bd1b5f1384b597427a1
 ---
 
 ```rules

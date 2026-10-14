@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/beaker-on-a-slow-burner
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7a6bb7b08f411409a51f432b0230eec7
 ---
 
 ```rules

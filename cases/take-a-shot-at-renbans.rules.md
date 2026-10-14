@@ -6,6 +6,7 @@ source: https://sudokupad.app/id3ihkauav
 case: https://sudoku-sleuth.com/cases/take-a-shot-at-renbans
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ecf0c0bdc8a6b5a6409c700d6758c85c
 ---
 
 ```rules

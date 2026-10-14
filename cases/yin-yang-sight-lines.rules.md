@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/yin-yang-sight-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 41c431331a4276d4080032dbe94a4541
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c8-r5c9 colour "white"
-kropki-2: kropki r4c8-r5c8 colour "white"
-kropki-3: kropki r1c8-r1c9 colour "white"
-kropki-4: kropki r1c8-r2c8 colour "white"
-kropki-5: kropki r5c2-r5c3 colour "white"
-kropki-6: kropki r7c5-r8c5 colour "white"
-kropki-7: kropki r7c5-r7c6 colour "white"
-kropki-8: kropki r6c3-r7c3 colour "white"
-kropki-9: kropki r8c7-r9c7 colour "white"
-kropki-10: kropki r8c4-r9c4 colour "white"
-kropki-11: kropki r3c3-r4c3 colour "white"
-kropki-12: kropki r2c6-r2c7 colour "white"
+kropki-1: kropki r5c8-r5c9 white
+kropki-2: kropki r4c8-r5c8 white
+kropki-3: kropki r1c8-r1c9 white
+kropki-4: kropki r1c8-r2c8 white
+kropki-5: kropki r5c2-r5c3 white
+kropki-6: kropki r7c5-r8c5 white
+kropki-7: kropki r7c5-r7c6 white
+kropki-8: kropki r6c3-r7c3 white
+kropki-9: kropki r8c7-r9c7 white
+kropki-10: kropki r8c4-r9c4 white
+kropki-11: kropki r3c3-r4c3 white
+kropki-12: kropki r2c6-r2c7 white
 ```
 
 ```drawing

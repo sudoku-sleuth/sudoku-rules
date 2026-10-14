@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/off-by-ten
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c1=7 r4c2=4 r9c9=9
+exported: bdd419ccad6b514de24659529358c052
 ---
 
 ```rules

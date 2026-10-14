@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-birthday-jp
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=8 r2c2=2 r6c9=4 r7c9=3
+exported: 0b4161638f1dd67866d690bbc3e28c65
 ---
 
 ```rules

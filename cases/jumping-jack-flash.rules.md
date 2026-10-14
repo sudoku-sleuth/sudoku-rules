@@ -6,6 +6,7 @@ source: https://sudokupad.app/dreqh2ztpj
 case: https://sudoku-sleuth.com/cases/jumping-jack-flash
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cd9c426e3634a8aa66068d4fc207e87d
 ---
 
 ```rules

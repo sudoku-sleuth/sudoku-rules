@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=ydoz6dze
 case: https://sudoku-sleuth.com/cases/peaks-and-valleys
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c4ba62f8a05ca4a58ff58445dadbe8a4
 ---
 
 ```rules

@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 5d6acad4c781b497dd00e34628df7b2f
 ---
 
 ```rules
@@ -142,9 +143,9 @@ cage-2: cage r4c5-r4c6-r5c6 repeats false total 16 connected true
 cage-3: cage r1c5-r2c5 repeats false total 6 connected true
 cage-4: cage r1c6-r2c6 repeats false total 8 connected true
 thermo r1c4-r2c4
-kropki-1: kropki r3c6-r4c6 colour "white"
-kropki-2: kropki r1c9-r2c9 colour "white"
-kropki-3: kropki r1c7-r1c8 colour "black"
+kropki-1: kropki r3c6-r4c6 white
+kropki-2: kropki r1c9-r2c9 white
+kropki-3: kropki r1c7-r1c8 black
 arrow-1: arrow r9c5-r8c5-r7c5-r6c5 bulb ["r9c6"]
 arrow-2: arrow r6c6-r7c6 bulb ["r5c5"]
 whispers r1c2-r1c3-r2c2-r2c3-r3c2-r3c3 loop false gap 5

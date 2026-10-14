@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/missing-elements
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=5 r2c8=1 r4c6=3 r5c7=6 r6c4=2 r9c3=4
+exported: 39eada3c57e4f5500f39031aaff43738
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/mub6qc4j1d
 case: https://sudoku-sleuth.com/cases/one-killer-sudoku
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2deafeb4e5a0f659751c8846728af3a6
 ---
 
 ```rules

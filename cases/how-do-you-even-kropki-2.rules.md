@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/how-do-you-even-kropki-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6cc9d61eb69357a3f2c61f392e54d2a9
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c1-r4c2 colour "white"
-kropki-2: kropki r4c1-r5c1 colour "white"
-kropki-3: kropki r6c2-r6c3 colour "white"
-kropki-4: kropki r7c4-r8c4 colour "white"
-kropki-5: kropki r4c2-r5c2 colour "white"
-kropki-6: kropki r9c2-r9c3 colour "black"
-kropki-7: kropki r9c7-r9c8 colour "black"
-kropki-8: kropki r6c7-r6c8 colour "black"
-kropki-9: kropki r5c5-r6c5 colour "black"
-kropki-10: kropki r6c5-r7c5 colour "black"
+kropki-1: kropki r4c1-r4c2 white
+kropki-2: kropki r4c1-r5c1 white
+kropki-3: kropki r6c2-r6c3 white
+kropki-4: kropki r7c4-r8c4 white
+kropki-5: kropki r4c2-r5c2 white
+kropki-6: kropki r9c2-r9c3 black
+kropki-7: kropki r9c7-r9c8 black
+kropki-8: kropki r6c7-r6c8 black
+kropki-9: kropki r5c5-r6c5 black
+kropki-10: kropki r6c5-r7c5 black
 parity-cells-1: parity-cells r1c2-r1c8-r2c9-r8c9-r9c2-r8c1 parity "odd"
 parity-cells-2: parity-cells r3c6-r3c5-r3c4-r4c6-r4c7-r5c7-r7c7-r7c6-r7c4-r7c3-r5c3 parity "even"
 ```

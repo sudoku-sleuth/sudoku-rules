@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/corner-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c7=9
+exported: 7587f0d9e0982366ff4e79f02a2303ca
 ---
 
 ```rules

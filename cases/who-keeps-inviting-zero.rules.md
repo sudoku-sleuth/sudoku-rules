@@ -103,6 +103,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: ef8e8ecb6c43cb86c7c23d923a640404
 ---
 
 ```rules
@@ -135,20 +136,20 @@ unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r9c4-r9c5-r9c6 repeats false total 15 connected true
 cage-2: cage r7c5-r7c6 repeats false total 15 connected true
-kropki-1: kropki r1c5-r1c6 colour "white"
-kropki-2: kropki r2c6-r3c6 colour "white"
-kropki-3: kropki r9c5-r9c6 colour "white"
-kropki-4: kropki r4c7-r5c7 colour "white"
-kropki-5: kropki r2c2-r3c2 colour "white"
-kropki-6: kropki r2c4-r2c5 colour "white"
-kropki-7: kropki r2c5-r3c5 colour "white"
-kropki-8: kropki r4c2-r5c2 colour "white"
-kropki-9: kropki r5c2-r5c3 colour "white"
-kropki-10: kropki r8c2-r8c3 colour "white"
-kropki-11: kropki r2c8-r3c8 colour "white"
-kropki-12: kropki r1c3-r1c4 colour "white"
-kropki-13: kropki r3c6-r4c6 colour "black"
-kropki-14: kropki r8c4-r8c5 colour "black"
+kropki-1: kropki r1c5-r1c6 white
+kropki-2: kropki r2c6-r3c6 white
+kropki-3: kropki r9c5-r9c6 white
+kropki-4: kropki r4c7-r5c7 white
+kropki-5: kropki r2c2-r3c2 white
+kropki-6: kropki r2c4-r2c5 white
+kropki-7: kropki r2c5-r3c5 white
+kropki-8: kropki r4c2-r5c2 white
+kropki-9: kropki r5c2-r5c3 white
+kropki-10: kropki r8c2-r8c3 white
+kropki-11: kropki r2c8-r3c8 white
+kropki-12: kropki r1c3-r1c4 white
+kropki-13: kropki r3c6-r4c6 black
+kropki-14: kropki r8c4-r8c5 black
 region-sum r1c5-r1c6-r2c6-r3c6-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7-r8c6-r8c5-r8c4-r7c4-r7c3-r6c3-r5c3-r5c2-r4c2-r3c2-r2c2-r2c3-r2c4 segments [["r1c5","r1c6","r2c6","r3c6"],["r3c7"],["r4c7","r5c7","r6c7"],["r7c7","r8c7"],["r8c6","r8c5","r8c4","r7c4"],["r7c3"],["r6c3","r5c3","r5c2","r4c2"],["r3c2","r2c2","r2c3"],["r2c4"]]
 parity-cells r6c4-r9c7-r6c2-r1c1-r9c1 parity "odd"
 ```

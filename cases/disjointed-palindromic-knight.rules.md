@@ -6,6 +6,7 @@ source: https://tinyurl.com/dysjointedpalindromicknights
 case: https://sudoku-sleuth.com/cases/disjointed-palindromic-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7f7751ffea83786964db1844bc57b52e
 ---
 
 ```rules
@@ -13,12 +14,12 @@ sudoku 9x9
 cage-1: cage r8c6-r9c6-r9c7-r9c8 total 15 connected true
 cage-2: cage r8c1-r8c2-r8c3-r8c4 total 21 connected true
 anti-knight
-kropki-1: kropki r3c3-r3c4 colour "white"
-kropki-2: kropki r9c6-r9c7 colour "white"
-kropki-3: kropki r8c1-r8c2 colour "black"
-kropki-4: kropki r8c3-r8c4 colour "black"
-kropki-5: kropki r9c7-r9c8 colour "black"
-kropki-6: kropki r8c6-r9c6 colour "black"
+kropki-1: kropki r3c3-r3c4 white
+kropki-2: kropki r9c6-r9c7 white
+kropki-3: kropki r8c1-r8c2 black
+kropki-4: kropki r8c3-r8c4 black
+kropki-5: kropki r9c7-r9c8 black
+kropki-6: kropki r8c6-r9c6 black
 arrow r6c4-r5c4 bulb ["r7c5"]
 palindrome-1: palindrome r5c7-r6c6-r7c5
 palindrome-2: palindrome r2c9-r3c8-r4c7-r5c6-r6c5

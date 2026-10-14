@@ -6,15 +6,16 @@ source: https://sudokupad.app/cvb5h3qg9e
 case: https://sudoku-sleuth.com/cases/sally
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fb339f8232206e4475fb5989cf09bed0
 ---
 
 ```rules
 sudoku 9x9
 thermo r3c9-r4c8-r5c8-r6c9-r7c9-r8c8-r9c7-r9c6
-kropki-1: kropki r4c3-r4c4 colour "black"
-kropki-2: kropki r4c5-r4c6 colour "black"
-kropki-3: kropki r2c8-r2c9 colour "black"
-kropki-4: kropki r1c6-r1c7 colour "black"
+kropki-1: kropki r4c3-r4c4 black
+kropki-2: kropki r4c5-r4c6 black
+kropki-3: kropki r2c8-r2c9 black
+kropki-4: kropki r1c6-r1c7 black
 whispers-1: whispers r9c5-r9c4-r9c3-r8c2-r7c2-r6c3-r5c3-r5c4 gap 5
 whispers-2: whispers r5c3-r4c2-r3c3-r2c4-r3c4-r3c5-r2c6-r3c6-r4c7-r5c6-r6c6-r7c7-r8c7-r9c6 gap 5
 whispers-3: whispers r5c6-r5c5 gap 5

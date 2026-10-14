@@ -1,31 +1,31 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 2
-    - 4
-    - 7
-    - 15
-    - 16
-    - 23
-    - 24
-    - 31
-    - 32
-    - 33
-    - 37
-    - 40
-    - 43
-    - 47
-    - 48
-    - 49
-    - 56
-    - 57
-    - 64
-    - 65
-    - 73
-    - 76
-    - 78
-    - 80
+    - r1c1
+    - r1c3
+    - r1c5
+    - r1c8
+    - r2c7
+    - r2c8
+    - r3c6
+    - r3c7
+    - r4c5
+    - r4c6
+    - r4c7
+    - r5c2
+    - r5c5
+    - r5c8
+    - r6c3
+    - r6c4
+    - r6c5
+    - r7c3
+    - r7c4
+    - r8c2
+    - r8c3
+    - r9c2
+    - r9c5
+    - r9c7
+    - r9c9
 format: open-rules
 title: Restricted Access
 setter: Kennet's Dad
@@ -37,12 +37,13 @@ drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
 givens: r1c3=5 r9c7=5
+exported: 25f251d073875a397d31cede94224c6a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c1-r7c1 colour "black"
-kropki-2: kropki r3c9-r4c9 colour "black"
+kropki-1: kropki r6c1-r7c1 black
+kropki-2: kropki r3c9-r4c9 black
 pair-1: pair r7c7-r8c7 sum 10
 pair-2: pair r8c6-r8c7 sum 10
 pair-3: pair r8c2-r9c2 sum 5

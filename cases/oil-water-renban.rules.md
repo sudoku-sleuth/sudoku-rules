@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oil-water-renban
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8140c3241aba893a1c442018466796dc
 ---
 
 ```rules

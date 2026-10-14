@@ -6,6 +6,7 @@ source: https://sudokupad.app/uzrndnwu5y
 case: https://sudoku-sleuth.com/cases/pi-day-2024
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a5aea8edb60fc3ef5cc0bfd2899c8bc7
 ---
 
 ```rules
@@ -23,9 +24,9 @@ cage-9: cage r7c8 total 6 connected true
 thermo-1: thermo r5c5-r4c5
 thermo-2: thermo r6c6-r6c7
 thermo-3: thermo r6c4-r6c3
-kropki-1: kropki r4c3-r4c4 colour "black"
-kropki-2: kropki r4c6-r4c7 colour "black"
-kropki-3: kropki r3c9-r4c9 colour "black"
+kropki-1: kropki r4c3-r4c4 black
+kropki-2: kropki r4c6-r4c7 black
+kropki-3: kropki r3c9-r4c9 black
 ```
 
 Normal Sudoku Rules Apply.

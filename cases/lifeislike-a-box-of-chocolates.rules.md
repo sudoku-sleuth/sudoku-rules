@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/lifeislike-a-box-of-chocolates
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 41070cfa99546cbc73f3fdf7558cfb8a
 ---
 
 ```rules

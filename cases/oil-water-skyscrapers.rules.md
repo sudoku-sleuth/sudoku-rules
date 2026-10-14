@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oil-water-skyscrapers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=9 r8c2=1
+exported: 95a8b52014a3441dd44f5e76aace2a74
 ---
 
 ```rules

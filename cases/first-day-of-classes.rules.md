@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/first-day-of-classes
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=8 r3c6=2 r4c7=6 r8c5=1 r8c6=9
+exported: ccae5988aedb2f13adc97a8cc89a4cba
 ---
 
 ```rules
 sudoku 9x9
-kropki r6c7-r7c7 colour "white"
+kropki r6c7-r7c7 white
 whispers-1: whispers r5c1-r4c1-r3c1-r2c1-r1c1-r1c2-r1c3 gap 5
 whispers-2: whispers r3c1-r3c2 gap 5
 whispers-3: whispers r3c3-r4c3-r5c3-r6c3-r7c3-r7c4-r6c5-r5c5-r4c5-r3c4 gap 5 loop true

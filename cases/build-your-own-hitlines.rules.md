@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/build-your-own-hitlines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2d3ba35f533e2ff764f985d90cb9ce47
 ---
 
 ```rules

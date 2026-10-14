@@ -6,13 +6,14 @@ source: https://tinyurl.com/solverseriesmarthabsudoku
 case: https://sudoku-sleuth.com/cases/solver-series-marthab
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8e063710a1acc8a4cc6dcfa971a6478c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c2-r9c2 colour "white"
-kropki-2: kropki r2c9-r3c9 colour "white"
-kropki-3: kropki r1c7-r2c7 colour "white"
+kropki-1: kropki r8c2-r9c2 white
+kropki-2: kropki r2c9-r3c9 white
+kropki-3: kropki r1c7-r2c7 white
 whispers-1: whispers r3c1-r2c1-r1c1-r2c2-r1c3-r2c3-r3c3 gap 5
 whispers-2: whispers r3c4-r2c4-r1c5-r2c6-r3c6 gap 5
 whispers-3: whispers r4c4-r4c5-r4c6 gap 5

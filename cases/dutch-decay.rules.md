@@ -6,14 +6,15 @@ source: https://sudokupad.app/sp5io0480u
 case: https://sudoku-sleuth.com/cases/dutch-decay
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 67aca06697d788278c4087d3c541aab5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c7-r6c7 colour "black"
-kropki-2: kropki r5c9-r6c9 colour "black"
-kropki-3: kropki r3c6-r3c7 colour "black"
-kropki-4: kropki r8c4-r8c5 colour "black"
+kropki-1: kropki r5c7-r6c7 black
+kropki-2: kropki r5c9-r6c9 black
+kropki-3: kropki r3c6-r3c7 black
+kropki-4: kropki r8c4-r8c5 black
 entropic-1: entropic r3c1-r2c2-r1c3-r1c4-r1c5-r2c6-r3c7
 whispers-1: whispers r3c1-r2c2-r1c3-r1c4-r1c5-r2c6-r3c7 gap 4
 entropic-2: entropic r3c3-r4c4-r5c5-r5c6-r5c7-r4c8-r3c9

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/no-more-lucky-numbers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ....2..5......1..6...9......8.........7....4.3.......5......3..8...6..9..7...4..2
+exported: a9a15286dac65a66ff3e30e3d15b1b17
 ---
 
 ```rules

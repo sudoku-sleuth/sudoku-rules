@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/outside-at-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=5
+exported: fa45fd666cbd348845ac6a7ac8a87b51
 ---
 
 ```rules

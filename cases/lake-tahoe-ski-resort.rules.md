@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/lake-tahoe-ski-resort
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bcae3642f3f53e319e3bd89b0bf5ea50
 ---
 
 ```rules

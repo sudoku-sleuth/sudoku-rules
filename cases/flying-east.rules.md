@@ -6,6 +6,7 @@ source: https://sudokupad.app/uc1awzpzlj
 case: https://sudoku-sleuth.com/cases/flying-east
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 109efa340bfa6e2f610838828eadeeca
 ---
 
 ```rules

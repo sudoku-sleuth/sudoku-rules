@@ -6,6 +6,7 @@ source: https://sudokupad.app/p8fx8ki1bk
 case: https://sudoku-sleuth.com/cases/an-odd-square-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 409065ec0b71c8dadd237d7b84d406f8
 ---
 
 ```rules

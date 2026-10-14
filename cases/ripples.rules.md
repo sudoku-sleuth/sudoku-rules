@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ripples
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=3
+exported: eab687b05d10eba2691a04a2f165da78
 ---
 
 ```rules

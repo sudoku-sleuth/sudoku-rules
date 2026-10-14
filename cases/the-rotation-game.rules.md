@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-rotation-game
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 01f6cf6117f74c90ca09d7458323fe0d
 ---
 
 ```rules
@@ -17,9 +18,9 @@ cage-4: cage r4c1-r5c1-r6c1 total 24 connected true
 thermo-1: thermo r1c1-r2c2-r3c3
 thermo-2: thermo r9c9-r8c8-r7c7
 thermo-3: thermo r6c5-r5c6-r4c5-r5c4
-kropki-1: kropki r5c3-r5c4 colour "black"
-kropki-2: kropki r5c6-r5c7 colour "black"
-kropki-3: kropki r3c5-r4c5 colour "black"
+kropki-1: kropki r5c3-r5c4 black
+kropki-2: kropki r5c6-r5c7 black
+kropki-3: kropki r3c5-r4c5 black
 arrow-1: arrow r2c8-r3c7 bulb ["r1c9"]
 arrow-2: arrow r8c2-r7c3 bulb ["r9c1"]
 whispers-1: whispers r4c1-r3c2-r2c3-r1c4 gap 5

@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/closer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=2 r1c7=3 r3c1=6 r3c9=5 r7c1=7 r7c9=8 r9c3=1 r9c7=4
+exported: 071baee80d30cf5f0b84a667d212e9e4
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c5-r8c5 colour "white"
-kropki-2: kropki r4c4-r5c4 colour "white"
+kropki-1: kropki r7c5-r8c5 white
+kropki-2: kropki r4c4-r5c4 white
 thermo-1: thermo r4c5-r3c5-r2c5
 close-whispers-1: close-whispers r4c5-r3c5-r2c5 gap 2
 thermo-2: thermo r5c4-r5c3-r5c2-r5c1

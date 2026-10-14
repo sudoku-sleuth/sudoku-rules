@@ -6,6 +6,7 @@ source: https://tinyurl.com/iciclessudoku
 case: https://sudoku-sleuth.com/cases/icicles-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2cc77b23d60c0ca82789efe9160cecff
 ---
 
 ```rules
@@ -18,7 +19,7 @@ thermo-5: thermo r1c5-r2c5-r3c5-r4c5-r5c5
 thermo-6: thermo r2c6-r3c6-r4c6
 thermo-7: thermo r1c7-r2c7-r3c7-r4c7-r5c7
 thermo-8: thermo r2c8-r3c8-r4c8-r5c8-r6c8-r7c8
-kropki r8c4-r9c4 colour "white"
+kropki r8c4-r9c4 white
 arrow-1: arrow r6c3-r5c3 bulb ["r7c3"]
 arrow-2: arrow r8c2-r7c2 bulb ["r9c2"]
 arrow-3: arrow r8c6-r7c6 bulb ["r9c6"]

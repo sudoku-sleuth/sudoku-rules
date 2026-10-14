@@ -6,6 +6,7 @@ source: https://sudokupad.app/4v50a8wnsh
 case: https://sudoku-sleuth.com/cases/disjoint-hegemony
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 02dd73a44676359d332466625e3eeb47
 ---
 
 ```rules
@@ -15,10 +16,10 @@ cage-2: cage r8c5-r9c5 total 5 connected true
 cage-3: cage r5c4-r6c4-r6c5 total 21 connected true
 cage-4: cage r2c6-r2c7 total 15 connected true
 thermo r4c6-r4c5-r5c5
-kropki-1: kropki r2c2-r2c3 colour "black"
-kropki-2: kropki r8c8-r9c8 colour "black"
-kropki-3: kropki r7c8-r8c8 colour "black"
-kropki-4: kropki r2c1-r2c2 colour "black"
+kropki-1: kropki r2c2-r2c3 black
+kropki-2: kropki r8c8-r9c8 black
+kropki-3: kropki r7c8-r8c8 black
+kropki-4: kropki r2c1-r2c2 black
 arrow-1: arrow r8c2-r7c3 bulb ["r9c1"]
 arrow-2: arrow r2c8-r1c9 bulb ["r3c7"]
 arrow-3: arrow r6c2 bulb ["r7c1"]

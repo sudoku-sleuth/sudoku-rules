@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/two-colour-theorem
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1374f9fee660992f5d3d0388c6928f9d
 ---
 
 ```rules

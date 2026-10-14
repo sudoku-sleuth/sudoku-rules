@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/smoke-and-mirrors
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c4=8
+exported: d64b5e9f3e58c0ad5d691268bd550c07
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/f861ou65u7
 case: https://sudoku-sleuth.com/cases/boredom-and-pain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5843d330ff58e4a4462b27c70008c2fe
 ---
 
 ```rules

@@ -7,28 +7,29 @@ case: https://sudoku-sleuth.com/cases/gamma
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=8
+exported: b4ff334b48aa08d786063a04bad56afb
 ---
 
 ```rules
 sudoku 9x9
 cage r4c4-r5c3-r5c4-r5c5-r5c6-r6c3 connected true
-kropki-1: kropki r5c5-r5c6 colour "black"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r4c8-r5c8 colour "white"
-kropki-4: kropki r3c9-r4c9 colour "white"
-kropki-5: kropki r5c7-r6c7 colour "white"
-kropki-6: kropki r5c2-r6c2 colour "white"
-kropki-7: kropki r6c8-r6c9 colour "white"
-kropki-8: kropki r3c7-r4c7 colour "white"
-kropki-9: kropki r8c6-r8c7 colour "white"
-kropki-10: kropki r8c6-r9c6 colour "white"
-kropki-11: kropki r9c6-r9c7 colour "white"
-kropki-12: kropki r8c7-r9c7 colour "white"
-kropki-13: kropki r8c8-r8c9 colour "white"
-kropki-14: kropki r7c8-r8c8 colour "white"
-kropki-15: kropki r4c4-r5c4 colour "white"
-kropki-16: kropki r1c5-r2c5 colour "white"
-kropki-17: kropki r3c8-r3c9 colour "white"
+kropki-1: kropki r5c5-r5c6 black
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r4c8-r5c8 white
+kropki-4: kropki r3c9-r4c9 white
+kropki-5: kropki r5c7-r6c7 white
+kropki-6: kropki r5c2-r6c2 white
+kropki-7: kropki r6c8-r6c9 white
+kropki-8: kropki r3c7-r4c7 white
+kropki-9: kropki r8c6-r8c7 white
+kropki-10: kropki r8c6-r9c6 white
+kropki-11: kropki r9c6-r9c7 white
+kropki-12: kropki r8c7-r9c7 white
+kropki-13: kropki r8c8-r8c9 white
+kropki-14: kropki r7c8-r8c8 white
+kropki-15: kropki r4c4-r5c4 white
+kropki-16: kropki r1c5-r2c5 white
+kropki-17: kropki r3c8-r3c9 white
 slow-thermo-1: slow-thermo r4c6-r3c5-r2c4-r2c3
 slow-thermo-2: slow-thermo r4c5-r3c4-r3c3-r3c2
 slow-thermo-3: slow-thermo r4c3-r4c2-r5c1

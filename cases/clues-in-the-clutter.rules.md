@@ -6,17 +6,18 @@ source: https://sudokupad.app/4bygvaiq47
 case: https://sudoku-sleuth.com/cases/clues-in-the-clutter
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2a352db6796c060418d1a19f92603a59
 ---
 
 ```rules
 sudoku 9x9
 cage r5c1-r5c2-r5c3 total 13 connected true
-kropki-1: kropki r5c8-r6c8 colour "white"
-kropki-2: kropki r6c8-r7c8 colour "white"
-kropki-3: kropki r4c8-r4c9 colour "white"
-kropki-4: kropki r4c7-r4c8 colour "white"
-kropki-5: kropki r4c5-r5c5 colour "black"
-kropki-6: kropki r5c5-r6c5 colour "black"
+kropki-1: kropki r5c8-r6c8 white
+kropki-2: kropki r6c8-r7c8 white
+kropki-3: kropki r4c8-r4c9 white
+kropki-4: kropki r4c7-r4c8 white
+kropki-5: kropki r4c5-r5c5 black
+kropki-6: kropki r5c5-r6c5 black
 arrow-1: arrow r3c7-r2c8 bulb ["r4c6"]
 arrow-2: arrow r1c8-r1c7 bulb ["r1c9"]
 arrow-3: arrow r2c9-r3c9 bulb ["r1c9"]

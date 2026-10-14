@@ -6,6 +6,7 @@ source: https://sudokupad.app/rzgz4g0vvy
 case: https://sudoku-sleuth.com/cases/parity-ship
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: be30e6788a0f556b2ca56b331b2128ed
 ---
 
 ```rules

@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: d05f0179b4ff13b4a900499bd81e4588
 ---
 
 ```rules
@@ -17,10 +18,10 @@ cage-1: cage r9c3-r9c4-r9c5-r9c6 total 20 connected true
 cage-2: cage r1c3-r2c3-r3c3 total 9 connected true
 cage-3: cage r7c7-r8c7 total 14 connected true
 cage-4: cage r4c4-r4c5-r5c5 total 15 connected true
-kropki-1: kropki r6c1-r7c1 colour "black"
-kropki-2: kropki r3c1-r4c1 colour "black"
-kropki-3: kropki r3c4-r4c4 colour "black"
-kropki-4: kropki r6c5-r6c6 colour "black"
+kropki-1: kropki r6c1-r7c1 black
+kropki-2: kropki r3c1-r4c1 black
+kropki-3: kropki r3c4-r4c4 black
+kropki-4: kropki r6c5-r6c6 black
 little-killer-1: little-killer r9c1 sum 2
 little-killer-2: little-killer r9c9 sum 1
 little-killer-3: little-killer r1c9 sum 2

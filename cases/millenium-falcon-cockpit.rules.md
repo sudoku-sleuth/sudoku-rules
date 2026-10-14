@@ -6,16 +6,17 @@ source: ""
 case: https://sudoku-sleuth.com/cases/millenium-falcon-cockpit
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f9db7f672bd944cb27b7816db7bf5b8f
 ---
 
 ```rules
 sudoku 9x9
 cage r5c5-r5c6 total 14 connected true
-kropki-1: kropki r8c1-r8c2 colour "black"
-kropki-2: kropki r8c8-r8c9 colour "black"
-kropki-3: kropki r9c4-r9c5 colour "black"
-kropki-4: kropki r9c8-r9c9 colour "black"
-kropki-5: kropki r9c6-r9c7 colour "black"
+kropki-1: kropki r8c1-r8c2 black
+kropki-2: kropki r8c8-r8c9 black
+kropki-3: kropki r9c4-r9c5 black
+kropki-4: kropki r9c8-r9c9 black
+kropki-5: kropki r9c6-r9c7 black
 palindrome r7c7-r7c6-r7c5-r7c4-r7c3-r6c2-r5c2-r4c2-r3c3-r2c4-r2c5-r2c6-r3c7-r4c8-r5c8-r6c8
 whispers-1: whispers r6c5-r6c4-r5c4-r4c4 gap 5
 whispers-2: whispers r4c5-r4c6-r5c6-r6c6 gap 5

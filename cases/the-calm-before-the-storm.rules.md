@@ -6,6 +6,7 @@ source: https://tinyurl.com/5h986fw5
 case: https://sudoku-sleuth.com/cases/the-calm-before-the-storm
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 85a9b616a63647d0ab70d988a0b492e2
 ---
 
 ```rules

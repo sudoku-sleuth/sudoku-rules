@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/one-way-or-the-other
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cd5dd820be42918a35557588bb509ce3
 ---
 
 ```rules

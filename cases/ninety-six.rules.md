@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ninety-six
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r9c1=9
+exported: 33c0ae55f96a093792584b9ca88c676d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/wv892ia1rl
 case: https://sudoku-sleuth.com/cases/diving-competition
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 11fa10753aac77f9fe871311d042a0b3
 ---
 
 ```rules

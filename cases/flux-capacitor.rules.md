@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flux-capacitor
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: beae0ded0f48e9121bf68df0e4020c3e
 ---
 
 ```rules

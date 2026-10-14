@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/earth-wind-and-fire-speed-run
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 61841690563e18d8cb0e45f591888fd0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c6-r1c7 colour "white"
-kropki-2: kropki r1c7-r1c8 colour "white"
-kropki-3: kropki r8c8-r8c9 colour "white"
-kropki-4: kropki r8c9-r9c9 colour "white"
-kropki-5: kropki r6c2-r7c2 colour "white"
-kropki-6: kropki r3c5-r3c6 colour "white"
+kropki-1: kropki r1c6-r1c7 white
+kropki-2: kropki r1c7-r1c8 white
+kropki-3: kropki r8c8-r8c9 white
+kropki-4: kropki r8c9-r9c9 white
+kropki-5: kropki r6c2-r7c2 white
+kropki-6: kropki r3c5-r3c6 white
 ```
 
 ```drawing

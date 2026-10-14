@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/december-15-cads-and-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 487c75b31aa04d6c4be16d6e3729bb89
 ---
 
 ```rules
@@ -20,16 +21,16 @@ cage-6: cage r3c2-r4c2-r4c3 total 12 connected true
 cage-7: cage r5c8-r5c9-r6c9 total 12 connected true
 cage-8: cage r8c2-r8c3-r8c4 total 12 connected true
 cage-9: cage r4c5-r5c4-r5c5 total 12 connected true
-kropki-1: kropki r2c1-r3c1 colour "black"
-kropki-2: kropki r2c8-r2c9 colour "black"
-kropki-3: kropki r7c9-r8c9 colour "black"
-kropki-4: kropki r8c1-r8c2 colour "black"
-kropki-5: kropki r5c1-r6c1 colour "black"
-kropki-6: kropki r8c4-r9c4 colour "black"
-kropki-7: kropki r9c4-r9c5 colour "black"
-kropki-8: kropki r3c1-r3c2 colour "black"
-kropki-9: kropki r3c2-r3c3 colour "black"
-kropki-10: kropki r7c8-r7c9 colour "black"
+kropki-1: kropki r2c1-r3c1 black
+kropki-2: kropki r2c8-r2c9 black
+kropki-3: kropki r7c9-r8c9 black
+kropki-4: kropki r8c1-r8c2 black
+kropki-5: kropki r5c1-r6c1 black
+kropki-6: kropki r8c4-r9c4 black
+kropki-7: kropki r9c4-r9c5 black
+kropki-8: kropki r3c1-r3c2 black
+kropki-9: kropki r3c2-r3c3 black
+kropki-10: kropki r7c8-r7c9 black
 little-killer-1: little-killer r3c1-r2c2-r1c3 sum 12
 little-killer-2: little-killer r2c1-r1c2 sum 15
 little-killer-3: little-killer r3c9-r2c8-r1c7 sum 15

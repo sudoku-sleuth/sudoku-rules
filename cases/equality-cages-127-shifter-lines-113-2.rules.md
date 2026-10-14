@@ -6,14 +6,15 @@ source: https://sudokupad.app/xaqmjlq5rj
 case: https://sudoku-sleuth.com/cases/equality-cages-127-shifter-lines-113-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d971f3e2f80d5219cad9fb9a9f78d440
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c5-r6c5 colour "black"
-kropki-2: kropki r1c7-r1c8 colour "black"
-kropki-3: kropki r3c1-r3c2 colour "white"
-kropki-4: kropki r2c8-r2c9 colour "white"
+kropki-1: kropki r5c5-r6c5 black
+kropki-2: kropki r1c7-r1c8 black
+kropki-3: kropki r3c1-r3c2 white
+kropki-4: kropki r2c8-r2c9 white
 shifter-line-1: shifter-line r4c2-r5c3-r5c4-r6c5
 shifter-line-2: shifter-line r7c4-r8c3-r8c2
 shifter-line-3: shifter-line r1c8-r1c7-r2c6-r3c6

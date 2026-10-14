@@ -8,9 +8,9 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
 givens: r4c1=8
+exported: b70e694b8b63d94025d9dbddd0edaa3c
 ---
 
 ```rules

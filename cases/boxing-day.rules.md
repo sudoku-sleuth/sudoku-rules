@@ -6,20 +6,21 @@ source: https://sudokupad.app/cunj71qn0a
 case: https://sudoku-sleuth.com/cases/boxing-day
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: eefa92c607ac1ff676d7112fa2e53fe8
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c2-r6c2 colour "black"
-kropki-2: kropki r5c8-r6c8 colour "black"
-kropki-3: kropki r9c7-r9c8 colour "black"
-kropki-4: kropki r2c5-r2c6 colour "black"
-kropki-5: kropki r8c4-r8c5 colour "black"
-kropki-6: kropki r5c5-r5c6 colour "black"
-kropki-7: kropki r3c1-r3c2 colour "black"
-kropki-8: kropki r3c1-r4c1 colour "black"
-kropki-9: kropki r7c2-r7c3 colour "black"
-kropki-10: kropki r4c9-r5c9 colour "black"
+kropki-1: kropki r5c2-r6c2 black
+kropki-2: kropki r5c8-r6c8 black
+kropki-3: kropki r9c7-r9c8 black
+kropki-4: kropki r2c5-r2c6 black
+kropki-5: kropki r8c4-r8c5 black
+kropki-6: kropki r5c5-r5c6 black
+kropki-7: kropki r3c1-r3c2 black
+kropki-8: kropki r3c1-r4c1 black
+kropki-9: kropki r7c2-r7c3 black
+kropki-10: kropki r4c9-r5c9 black
 whispers-1: whispers r3c2-r4c2-r5c2-r5c3-r5c4-r4c4-r3c4-r3c3 gap 5 loop true
 whispers-2: whispers r3c2-r2c3-r2c4-r2c5-r3c5-r4c5-r5c4 gap 5
 whispers-3: whispers r2c5-r3c4 gap 5

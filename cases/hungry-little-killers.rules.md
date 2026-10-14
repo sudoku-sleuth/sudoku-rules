@@ -6,6 +6,7 @@ source: https://tinyurl.com/4d9vdenu
 case: https://sudoku-sleuth.com/cases/hungry-little-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4e64c8e40e2a5b9a4501afa2f04f227f
 ---
 
 ```rules

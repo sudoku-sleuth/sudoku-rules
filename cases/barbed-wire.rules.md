@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/barbed-wire
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c2=2 r5c3=7 r5c7=8 r5c8=3
+exported: af23efbf4dcb5ca5dbb0716052063afe
 ---
 
 ```rules

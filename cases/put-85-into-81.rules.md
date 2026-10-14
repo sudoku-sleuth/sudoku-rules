@@ -6,6 +6,7 @@ source: https://sudokupad.app/m19t3er6ib
 case: https://sudoku-sleuth.com/cases/put-85-into-81
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a3b5d24597c3b7740549073ea95996ae
 ---
 
 ```rules

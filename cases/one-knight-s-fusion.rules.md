@@ -6,6 +6,7 @@ source: https://sudokupad.app/liulsi0jje
 case: https://sudoku-sleuth.com/cases/one-knight-s-fusion
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7de8cf359e9af7ab5b348dd87f4c2e9e
 ---
 
 ```rules
@@ -18,8 +19,8 @@ anti-knight
 thermo-1: thermo r4c7-r4c8-r3c8-r3c7
 thermo-2: thermo r1c7-r1c6
 thermo-3: thermo r8c4-r8c3-r9c3-r9c4
-kropki-1: kropki r3c3-r3c4 colour "white"
-kropki-2: kropki r5c6-r6c6 colour "white"
+kropki-1: kropki r3c3-r3c4 white
+kropki-2: kropki r5c6-r6c6 white
 ```
 
 •	Normal Sudoku rules apply. 

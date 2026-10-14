@@ -1,368 +1,368 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 9
-    - 18
-    - 27
-    - 36
-    - 45
-    - 54
-    - 63
-    - 72
+    - r1c1
+    - r2c1
+    - r3c1
+    - r4c1
+    - r5c1
+    - r6c1
+    - r7c1
+    - r8c1
+    - r9c1
   links:
     - trigger:
-        - 72
-        - 63
-        - 54
-        - 45
-        - 36
-        - 27
-        - 18
-        - 9
-        - 0
+        - r9c1
+        - r8c1
+        - r7c1
+        - r6c1
+        - r5c1
+        - r4c1
+        - r3c1
+        - r2c1
+        - r1c1
       lights:
-        - 55
-        - 56
-        - 64
-        - 65
+        - r7c2
+        - r7c3
+        - r8c2
+        - r8c3
     - trigger:
-        - 30
-        - 47
-        - 55
+        - r4c4
+        - r6c3
+        - r7c2
       lights:
-        - 3
-        - 4
-        - 5
-        - 12
-        - 13
-        - 14
-        - 23
+        - r1c4
+        - r1c5
+        - r1c6
+        - r2c4
+        - r2c5
+        - r2c6
+        - r3c6
     - trigger:
-        - 64
-        - 65
-        - 74
+        - r8c2
+        - r8c3
+        - r9c3
       lights:
-        - 29
-        - 37
-        - 38
-        - 46
-        - 47
+        - r4c3
+        - r5c2
+        - r5c3
+        - r6c2
+        - r6c3
     - trigger:
-        - 39
-        - 13
-        - 4
-        - 5
-        - 14
-        - 23
-        - 42
-        - 33
-        - 34
-        - 67
-        - 58
-        - 59
-        - 50
+        - r5c4
+        - r2c5
+        - r1c5
+        - r1c6
+        - r2c6
+        - r3c6
+        - r5c7
+        - r4c7
+        - r4c8
+        - r8c5
+        - r7c5
+        - r7c6
+        - r6c6
       lights:
-        - 28
-        - 2
-        - 22
+        - r4c2
+        - r1c3
+        - r3c5
     - trigger:
-        - 11
+        - r2c3
       lights:
-        - 1
-        - 10
-        - 11
-        - 19
-        - 20
-        - 21
+        - r1c2
+        - r2c2
+        - r2c3
+        - r3c2
+        - r3c3
+        - r3c4
     - trigger:
-        - 1
+        - r1c2
       lights:
-        - 1
+        - r1c2
     - trigger:
-        - 2
+        - r1c3
       lights:
-        - 2
+        - r1c3
     - trigger:
-        - 3
+        - r1c4
       lights:
-        - 3
+        - r1c4
     - trigger:
-        - 4
+        - r1c5
       lights:
-        - 4
+        - r1c5
     - trigger:
-        - 5
+        - r1c6
       lights:
-        - 5
+        - r1c6
     - trigger:
-        - 6
+        - r1c7
       lights:
-        - 6
+        - r1c7
     - trigger:
-        - 7
+        - r1c8
       lights:
-        - 7
+        - r1c8
     - trigger:
-        - 8
+        - r1c9
       lights:
-        - 8
+        - r1c9
     - trigger:
-        - 10
+        - r2c2
       lights:
-        - 10
+        - r2c2
     - trigger:
-        - 11
+        - r2c3
       lights:
-        - 11
+        - r2c3
     - trigger:
-        - 12
+        - r2c4
       lights:
-        - 12
+        - r2c4
     - trigger:
-        - 13
+        - r2c5
       lights:
-        - 13
+        - r2c5
     - trigger:
-        - 14
+        - r2c6
       lights:
-        - 14
+        - r2c6
     - trigger:
-        - 15
+        - r2c7
       lights:
-        - 15
+        - r2c7
     - trigger:
-        - 16
+        - r2c8
       lights:
-        - 16
+        - r2c8
     - trigger:
-        - 17
+        - r2c9
       lights:
-        - 17
+        - r2c9
     - trigger:
-        - 19
+        - r3c2
       lights:
-        - 19
+        - r3c2
     - trigger:
-        - 20
+        - r3c3
       lights:
-        - 20
+        - r3c3
     - trigger:
-        - 21
+        - r3c4
       lights:
-        - 21
+        - r3c4
     - trigger:
-        - 22
+        - r3c5
       lights:
-        - 22
+        - r3c5
     - trigger:
-        - 23
+        - r3c6
       lights:
-        - 23
+        - r3c6
     - trigger:
-        - 24
+        - r3c7
       lights:
-        - 24
+        - r3c7
     - trigger:
-        - 25
+        - r3c8
       lights:
-        - 25
+        - r3c8
     - trigger:
-        - 26
+        - r3c9
       lights:
-        - 26
+        - r3c9
     - trigger:
-        - 28
+        - r4c2
       lights:
-        - 28
+        - r4c2
     - trigger:
-        - 29
+        - r4c3
       lights:
-        - 29
+        - r4c3
     - trigger:
-        - 30
+        - r4c4
       lights:
-        - 30
+        - r4c4
     - trigger:
-        - 31
+        - r4c5
       lights:
-        - 31
+        - r4c5
     - trigger:
-        - 32
+        - r4c6
       lights:
-        - 32
+        - r4c6
     - trigger:
-        - 33
+        - r4c7
       lights:
-        - 33
+        - r4c7
     - trigger:
-        - 34
+        - r4c8
       lights:
-        - 34
+        - r4c8
     - trigger:
-        - 35
+        - r4c9
       lights:
-        - 35
+        - r4c9
     - trigger:
-        - 37
+        - r5c2
       lights:
-        - 37
+        - r5c2
     - trigger:
-        - 38
+        - r5c3
       lights:
-        - 38
+        - r5c3
     - trigger:
-        - 39
+        - r5c4
       lights:
-        - 39
+        - r5c4
     - trigger:
-        - 40
+        - r5c5
       lights:
-        - 40
+        - r5c5
     - trigger:
-        - 41
+        - r5c6
       lights:
-        - 41
+        - r5c6
     - trigger:
-        - 42
+        - r5c7
       lights:
-        - 42
+        - r5c7
     - trigger:
-        - 43
+        - r5c8
       lights:
-        - 43
+        - r5c8
     - trigger:
-        - 44
+        - r5c9
       lights:
-        - 44
+        - r5c9
     - trigger:
-        - 46
+        - r6c2
       lights:
-        - 46
+        - r6c2
     - trigger:
-        - 47
+        - r6c3
       lights:
-        - 47
+        - r6c3
     - trigger:
-        - 48
+        - r6c4
       lights:
-        - 48
+        - r6c4
     - trigger:
-        - 49
+        - r6c5
       lights:
-        - 49
+        - r6c5
     - trigger:
-        - 50
+        - r6c6
       lights:
-        - 50
+        - r6c6
     - trigger:
-        - 51
+        - r6c7
       lights:
-        - 51
+        - r6c7
     - trigger:
-        - 52
+        - r6c8
       lights:
-        - 52
+        - r6c8
     - trigger:
-        - 53
+        - r6c9
       lights:
-        - 53
+        - r6c9
     - trigger:
-        - 55
+        - r7c2
       lights:
-        - 55
+        - r7c2
     - trigger:
-        - 56
+        - r7c3
       lights:
-        - 56
+        - r7c3
     - trigger:
-        - 57
+        - r7c4
       lights:
-        - 57
+        - r7c4
     - trigger:
-        - 58
+        - r7c5
       lights:
-        - 58
+        - r7c5
     - trigger:
-        - 59
+        - r7c6
       lights:
-        - 59
+        - r7c6
     - trigger:
-        - 60
+        - r7c7
       lights:
-        - 60
+        - r7c7
     - trigger:
-        - 61
+        - r7c8
       lights:
-        - 61
+        - r7c8
     - trigger:
-        - 62
+        - r7c9
       lights:
-        - 62
+        - r7c9
     - trigger:
-        - 64
+        - r8c2
       lights:
-        - 64
+        - r8c2
     - trigger:
-        - 65
+        - r8c3
       lights:
-        - 65
+        - r8c3
     - trigger:
-        - 66
+        - r8c4
       lights:
-        - 66
+        - r8c4
     - trigger:
-        - 67
+        - r8c5
       lights:
-        - 67
+        - r8c5
     - trigger:
-        - 68
+        - r8c6
       lights:
-        - 68
+        - r8c6
     - trigger:
-        - 69
+        - r8c7
       lights:
-        - 69
+        - r8c7
     - trigger:
-        - 70
+        - r8c8
       lights:
-        - 70
+        - r8c8
     - trigger:
-        - 71
+        - r8c9
       lights:
-        - 71
+        - r8c9
     - trigger:
-        - 73
+        - r9c2
       lights:
-        - 73
+        - r9c2
     - trigger:
-        - 74
+        - r9c3
       lights:
-        - 74
+        - r9c3
     - trigger:
-        - 75
+        - r9c4
       lights:
-        - 75
+        - r9c4
     - trigger:
-        - 76
+        - r9c5
       lights:
-        - 76
+        - r9c5
     - trigger:
-        - 77
+        - r9c6
       lights:
-        - 77
+        - r9c6
     - trigger:
-        - 78
+        - r9c7
       lights:
-        - 78
+        - r9c7
     - trigger:
-        - 79
+        - r9c8
       lights:
-        - 79
+        - r9c8
     - trigger:
-        - 80
+        - r9c9
       lights:
-        - 80
+        - r9c9
 format: open-rules
 title: "Dutch Flat Mates: Hitlines"
 setter: Marty Sears
@@ -371,6 +371,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-hitlines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 82516b4e94f76bfcbf3da21b9bf5b236
 ---
 
 ```rules

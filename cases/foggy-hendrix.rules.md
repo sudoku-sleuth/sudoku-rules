@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Foggy Hendrix
 setter: Meggen033
@@ -17,14 +17,15 @@ source: https://sudokupad.app/kp9283x4h8
 case: https://sudoku-sleuth.com/cases/foggy-hendrix
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8ddc815ca201f25f90625612080d39ef
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "black"
-kropki-2: kropki r4c5-r5c5 colour "black"
-kropki-3: kropki r6c7-r7c7 colour "black"
-kropki-4: kropki r7c6-r7c7 colour "black"
+kropki-1: kropki r4c4-r4c5 black
+kropki-2: kropki r4c5-r5c5 black
+kropki-3: kropki r6c7-r7c7 black
+kropki-4: kropki r7c6-r7c7 black
 arrow-1: arrow r5c4-r4c4 bulb ["r6c4"]
 arrow-2: arrow r4c3-r3c3-r3c4-r3c5 bulb ["r5c3"]
 arrow-3: arrow r2c5-r3c6 bulb ["r2c4"]

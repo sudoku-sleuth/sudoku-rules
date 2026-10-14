@@ -21,6 +21,7 @@ board:
     - 8
     - 9
   givens: r3c3=1
+exported: 51ac67501f3e31c71f3b86eaba0289ca
 ---
 
 ```rules

@@ -9,11 +9,12 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 02c0b45897b0e8f3131f11a1764ce534
 ---
 
 ```rules
 sudoku 9x9
-kropki r3c5-r3c6 colour "white"
+kropki r3c5-r3c6 white
 arrow-1: arrow r5c1-r5c2-r6c2-r5c3-r4c3-r4c2-r4c1-r3c1 bulb ["r6c1","r7c1"]
 arrow-2: arrow r7c2-r8c2-r8c1-r9c1-r9c2-r9c3-r9c4-r9c5-r9c6-r9c7 bulb ["r6c1","r7c1"]
 arrow-3: arrow r5c9-r4c9-r3c9-r2c9-r1c9-r1c8-r2c8-r3c8-r4c8-r3c7-r2c7-r1c7-r1c6 bulb ["r6c9","r7c9"]

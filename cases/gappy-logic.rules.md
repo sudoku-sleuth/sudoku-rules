@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/gappy-logic
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=5 r6c1=6 r8c8=2
+exported: 7eed2972e604cad3776fbaec358c5040
 ---
 
 ```rules

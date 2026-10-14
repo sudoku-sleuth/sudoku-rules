@@ -6,13 +6,14 @@ source: https://sudokupad.app/utd5o5vrda
 case: https://sudoku-sleuth.com/cases/staples-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6810dc85a94465032f56cfffde4bed6c
 ---
 
 ```rules
 sudoku 9x9
 thermo r5c4-r6c5-r5c6-r4c5
-kropki-1: kropki r8c2-r9c2 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "black"
+kropki-1: kropki r8c2-r9c2 white
+kropki-2: kropki r3c5-r4c5 black
 whispers-1: whispers r1c3-r2c4-r3c3-r4c2-r3c1 gap 5
 whispers-2: whispers r4c3-r4c4-r5c4-r6c4-r6c3 gap 5
 whispers-3: whispers r7c1-r6c2-r7c3-r8c4-r9c3 gap 5

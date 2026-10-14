@@ -8,11 +8,12 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: .............5.3........4...345.............4.5...4.......3.........5.....5......
+exported: 5179f84b18c9b6d258ade80b6ffdeca1
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c1-r6c1 colour "white"
+kropki r5c1-r6c1 white
 ```
 
 ```drawing

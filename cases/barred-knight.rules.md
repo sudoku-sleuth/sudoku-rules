@@ -6,6 +6,7 @@ source: https://sudokupad.app/596w2orjs8
 case: https://sudoku-sleuth.com/cases/barred-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d9cd1b8ba7e9f388c3f417d375dffea7
 ---
 
 ```rules

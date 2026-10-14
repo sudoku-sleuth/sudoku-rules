@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/alto-stop-sign
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0c0d5a22038e2947cf02ba794aa336b4
 ---
 
 ```rules
@@ -20,18 +21,18 @@ cage-6: cage r5c1-r5c2 total 13 connected true
 cage-7: cage r7c1-r7c2 total 15 connected true
 cage-8: cage r8c4-r9c4 total 13 connected true
 cage-9: cage r3c5-r4c5 total 16 connected true
-kropki-1: kropki r5c2-r6c2 colour "black"
-kropki-2: kropki r5c3-r6c3 colour "black"
-kropki-3: kropki r4c2-r4c3 colour "black"
-kropki-4: kropki r4c7-r4c8 colour "black"
-kropki-5: kropki r5c8-r6c8 colour "black"
-kropki-6: kropki r5c7-r6c7 colour "black"
-kropki-7: kropki r6c7-r6c8 colour "black"
-kropki-8: kropki r4c6-r5c6 colour "black"
-kropki-9: kropki r5c5-r6c5 colour "black"
-kropki-10: kropki r1c7-r1c8 colour "black"
-kropki-11: kropki r6c4-r7c4 colour "black"
-kropki-12: kropki r8c1-r9c1 colour "black"
+kropki-1: kropki r5c2-r6c2 black
+kropki-2: kropki r5c3-r6c3 black
+kropki-3: kropki r4c2-r4c3 black
+kropki-4: kropki r4c7-r4c8 black
+kropki-5: kropki r5c8-r6c8 black
+kropki-6: kropki r5c7-r6c7 black
+kropki-7: kropki r6c7-r6c8 black
+kropki-8: kropki r4c6-r5c6 black
+kropki-9: kropki r5c5-r6c5 black
+kropki-10: kropki r1c7-r1c8 black
+kropki-11: kropki r6c4-r7c4 black
+kropki-12: kropki r8c1-r9c1 black
 extremum r7c1-r6c1-r5c1-r4c1-r3c1-r2c2-r1c3-r1c4-r1c5-r1c6-r1c7-r2c8-r3c9-r4c9-r5c9-r6c9-r7c9-r8c8-r9c7-r9c6-r9c5-r9c4-r9c3-r8c2 type "max" exhaustive false
 ```
 

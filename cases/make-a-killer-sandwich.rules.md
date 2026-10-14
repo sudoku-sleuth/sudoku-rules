@@ -6,6 +6,7 @@ source: https://sudokupad.app/jwq24w12ds
 case: https://sudoku-sleuth.com/cases/make-a-killer-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 241d2c0880b336d014858e4417b3f6f2
 ---
 
 ```rules

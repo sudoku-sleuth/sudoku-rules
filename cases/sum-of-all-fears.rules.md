@@ -6,15 +6,16 @@ source: https://sudokupad.app/v06ceczc8w
 case: https://sudoku-sleuth.com/cases/sum-of-all-fears
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7a0157bad662a255f48c061737bb7e3e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c5-r8c6 colour "white"
-kropki-2: kropki r1c5-r2c5 colour "white"
-kropki-3: kropki r6c6-r7c6 colour "black"
-kropki-4: kropki r2c9-r3c9 colour "black"
-kropki-5: kropki r2c7-r3c7 colour "black"
+kropki-1: kropki r8c5-r8c6 white
+kropki-2: kropki r1c5-r2c5 white
+kropki-3: kropki r6c6-r7c6 black
+kropki-4: kropki r2c9-r3c9 black
+kropki-5: kropki r2c7-r3c7 black
 whispers r3c9-r4c9-r5c8-r6c8 gap 5
 region-sum-1: region-sum r7c3-r6c4-r5c5-r4c6-r3c7 segments [["r7c3"],["r6c4","r5c5","r4c6"],["r3c7"]]
 region-sum-2: region-sum r7c6-r6c7-r7c8-r8c8-r9c8 segments [["r7c6"],["r6c7"],["r7c8","r8c8","r9c8"]]

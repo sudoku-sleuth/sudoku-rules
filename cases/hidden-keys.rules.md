@@ -6,6 +6,7 @@ source: https://tinyurl.com/5aenhz2n
 case: https://sudoku-sleuth.com/cases/hidden-keys
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 54605062dd97e619c216646c1b0d76c4
 ---
 
 ```rules

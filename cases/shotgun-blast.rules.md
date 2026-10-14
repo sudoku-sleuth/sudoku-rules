@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=yzhs69k8
 case: https://sudoku-sleuth.com/cases/shotgun-blast
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 50b88255b603d7557aedbe0de6d0d895
 ---
 
 ```rules

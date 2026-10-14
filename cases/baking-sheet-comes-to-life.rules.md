@@ -6,6 +6,7 @@ source: https://sudokupad.app/p4b39js1g2
 case: https://sudoku-sleuth.com/cases/baking-sheet-comes-to-life
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9ae50f866c5f22bf4c2e9e92ad6bd3a6
 ---
 
 ```rules
@@ -36,25 +37,25 @@ thermo-23: thermo r4c9-r4c8-r3c8
 thermo-24: thermo r4c9-r4c8-r5c8
 thermo-25: thermo r2c8-r1c8-r1c7
 thermo-26: thermo r2c8-r1c8-r1c9
-kropki-1: kropki r6c5-r7c5 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "white"
-kropki-3: kropki r1c5-r2c5 colour "white"
-kropki-4: kropki r3c2-r3c3 colour "white"
-kropki-5: kropki r3c3-r3c4 colour "white"
-kropki-6: kropki r5c5-r6c5 colour "white"
-kropki-7: kropki r7c3-r7c4 colour "white"
-kropki-8: kropki r7c2-r7c3 colour "white"
-kropki-9: kropki r6c8-r7c8 colour "white"
-kropki-10: kropki r7c8-r8c8 colour "white"
-kropki-11: kropki r4c7-r4c8 colour "white"
-kropki-12: kropki r4c8-r4c9 colour "white"
-kropki-13: kropki r5c3-r6c3 colour "white"
-kropki-14: kropki r6c9-r7c9 colour "white"
-kropki-15: kropki r5c9-r6c9 colour "white"
-kropki-16: kropki r4c4-r4c5 colour "white"
-kropki-17: kropki r7c5-r7c6 colour "white"
-kropki-18: kropki r8c5-r9c5 colour "white"
-kropki-19: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r6c5-r7c5 white
+kropki-2: kropki r2c5-r3c5 white
+kropki-3: kropki r1c5-r2c5 white
+kropki-4: kropki r3c2-r3c3 white
+kropki-5: kropki r3c3-r3c4 white
+kropki-6: kropki r5c5-r6c5 white
+kropki-7: kropki r7c3-r7c4 white
+kropki-8: kropki r7c2-r7c3 white
+kropki-9: kropki r6c8-r7c8 white
+kropki-10: kropki r7c8-r8c8 white
+kropki-11: kropki r4c7-r4c8 white
+kropki-12: kropki r4c8-r4c9 white
+kropki-13: kropki r5c3-r6c3 white
+kropki-14: kropki r6c9-r7c9 white
+kropki-15: kropki r5c9-r6c9 white
+kropki-16: kropki r4c4-r4c5 white
+kropki-17: kropki r7c5-r7c6 white
+kropki-18: kropki r8c5-r9c5 white
+kropki-19: kropki r4c4-r5c4 black
 ```
 
 Normal Sudoku rules apply. THERMOMETERS- Numbers on thermometers increase from the bulb end. KROPKI PAIRS- Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a ratio of 2:1. Not all possible dots are shown.

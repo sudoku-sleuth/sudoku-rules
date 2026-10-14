@@ -1,82 +1,82 @@
 ---
 fog:
   initiallyLit:
-    - 6
-    - 7
+    - r2c1
+    - r2c2
   links:
     - trigger:
-        - 1
+        - r1c2
       lights:
-        - 8
-        - 9
-        - 10
+        - r2c3
+        - r2c4
+        - r2c5
     - trigger:
-        - 11
+        - r2c6
       lights:
-        - 12
+        - r3c1
     - trigger:
-        - 12
+        - r3c1
       lights:
-        - 25
-        - 31
+        - r5c2
+        - r6c2
     - trigger:
-        - 31
+        - r6c2
       lights:
-        - 33
+        - r6c4
     - trigger:
-        - 33
+        - r6c4
       lights:
-        - 16
-        - 17
+        - r3c5
+        - r3c6
     - trigger:
-        - 19
+        - r4c2
       lights:
-        - 18
-        - 24
-        - 30
+        - r4c1
+        - r5c1
+        - r6c1
     - trigger:
-        - 0
+        - r1c1
       lights:
-        - 29
+        - r5c6
     - trigger:
-        - 27
+        - r5c4
       lights:
-        - 4
-        - 5
-        - 11
+        - r1c5
+        - r1c6
+        - r2c6
     - trigger:
-        - 3
+        - r1c4
       lights:
-        - 13
-        - 14
-        - 0
-        - 1
-        - 2
-        - 3
-        - 34
-        - 35
-        - 15
-        - 27
+        - r3c2
+        - r3c3
+        - r1c1
+        - r1c2
+        - r1c3
+        - r1c4
+        - r6c5
+        - r6c6
+        - r3c4
+        - r5c4
     - trigger:
-        - 23
+        - r4c6
       lights:
-        - 19
+        - r4c2
     - trigger:
-        - 8
+        - r2c3
       lights:
-        - 21
+        - r4c4
     - trigger:
-        - 26
+        - r5c3
       lights:
-        - 20
-        - 26
-        - 32
+        - r4c3
+        - r5c3
+        - r6c3
     - trigger:
-        - 34
+        - r6c5
       lights:
-        - 22
-        - 23
-        - 28
+        - r4c5
+        - r4c6
+        - r5c5
 format: open-rules
 title: Have a Killer Birthday, BremSter!
 setter: Timotab
@@ -137,6 +137,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: e77ab819655cc2a0e79a555cb46cda8b
 ---
 
 ```rules

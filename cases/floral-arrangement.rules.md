@@ -6,13 +6,14 @@ source: https://sudokupad.app/5nyitnv97u
 case: https://sudoku-sleuth.com/cases/floral-arrangement
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8220dc199dfb7f7e5d84785e135db20c
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r7c6-r8c6-r9c6 total 16 connected true
 cage-2: cage r8c5-r9c5 total 17 connected true
-kropki r7c6-r7c7 colour "white"
+kropki r7c6-r7c7 white
 arrow-1: arrow r4c4-r5c5-r6c6 bulb ["r3c3"]
 arrow-2: arrow r5c3-r6c4-r7c5 bulb ["r4c2"]
 arrow-3: arrow r3c5-r4c6-r5c7 bulb ["r2c4"]

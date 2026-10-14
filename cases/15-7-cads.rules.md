@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/15-7-cads
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c3=7 r5c8=1 r5c9=5
+exported: 6f1eba9fdf83398b9e9203251ee224ff
 ---
 
 ```rules

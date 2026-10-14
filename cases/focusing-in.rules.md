@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/focusing-in
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=6 r2c8=9 r3c4=3 r4c1=8 r6c9=4 r7c6=2 r8c2=1 r9c4=7
+exported: 391954cdd76ec9acdd2db1adb635394b
 ---
 
 ```rules

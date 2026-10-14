@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/professor-x-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 44555c6c1129908cbaafa3f56ce07dce
 ---
 
 ```rules
@@ -15,8 +16,8 @@ cage-1: cage r2c2-r3c2-r3c3 total 9 connected true
 cage-2: cage r2c7-r2c8-r3c7 total 8 connected true
 cage-3: cage r7c3-r8c2-r8c3 total 8 connected true
 cage-4: cage r7c7-r7c8-r8c8 total 9 connected true
-kropki-1: kropki r5c2-r6c2 colour "white"
-kropki-2: kropki r4c2-r4c3 colour "black"
+kropki-1: kropki r5c2-r6c2 white
+kropki-2: kropki r4c2-r4c3 black
 arrow-1: arrow r1c4-r1c5-r1c6 bulb ["r2c3"]
 arrow-2: arrow r4c9-r5c9-r6c9 bulb ["r3c8"]
 arrow-3: arrow r9c6-r9c5-r9c4 bulb ["r8c7"]

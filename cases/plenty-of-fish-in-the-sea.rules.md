@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/plenty-of-fish-in-the-sea
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 09864a48407e20a6727a5b662f104cbc
 ---
 
 ```rules
@@ -15,15 +16,15 @@ cage-2: cage r8c8-r8c9 total 4 connected true
 cage-3: cage r4c2-r4c3 total 14 connected true
 cage-4: cage r6c8-r7c8 total 14 connected true
 cage-5: cage r7c5-r7c6 total 10 connected true
-kropki-1: kropki r4c5-r4c6 colour "white"
-kropki-2: kropki r7c6-r7c7 colour "white"
-kropki-3: kropki r9c1-r9c2 colour "black"
-kropki-4: kropki r3c4-r4c4 colour "black"
-kropki-5: kropki r4c8-r5c8 colour "black"
-kropki-6: kropki r1c8-r2c8 colour "black"
-kropki-7: kropki r5c9-r6c9 colour "black"
-kropki-8: kropki r3c3-r3c4 colour "black"
-kropki-9: kropki r2c6-r2c7 colour "black"
+kropki-1: kropki r4c5-r4c6 white
+kropki-2: kropki r7c6-r7c7 white
+kropki-3: kropki r9c1-r9c2 black
+kropki-4: kropki r3c4-r4c4 black
+kropki-5: kropki r4c8-r5c8 black
+kropki-6: kropki r1c8-r2c8 black
+kropki-7: kropki r5c9-r6c9 black
+kropki-8: kropki r3c3-r3c4 black
+kropki-9: kropki r2c6-r2c7 black
 whispers-1: whispers r5c8-r6c7-r7c6-r8c7-r9c8 gap 5
 whispers-2: whispers r6c7-r7c8-r8c7 gap 5
 whispers-3: whispers r6c9-r7c8-r8c9 gap 5

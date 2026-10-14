@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 54
-    - 65
-    - 72
-    - 73
-    - 74
+    - r7c1
+    - r8c3
+    - r9c1
+    - r9c2
+    - r9c3
 format: open-rules
 title: Slalom mit Ablenkung
 setter: Sandra & Nala
@@ -111,6 +111,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 41df86ceeb535f23fd49c9c76fc1e11b
 ---
 
 ```rules
@@ -143,23 +144,23 @@ unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r1c5-r2c4-r2c5 total 6 connected true
 cage-2: cage r8c9-r9c8-r9c9 total 20 connected true
-kropki-1: kropki r9c1-r9c2 colour "black"
-kropki-2: kropki r9c2-r9c3 colour "black"
-kropki-3: kropki r8c3-r9c3 colour "black"
-kropki-4: kropki r2c1-r2c2 colour "black"
-kropki-5: kropki r1c3-r1c4 colour "black"
-kropki-6: kropki r3c9-r4c9 colour "black"
-kropki-7: kropki r8c2-r8c3 colour "white"
-kropki-8: kropki r7c3-r8c3 colour "white"
-kropki-9: kropki r6c1-r6c2 colour "white"
-kropki-10: kropki r6c1-r7c1 colour "white"
-kropki-11: kropki r6c2-r6c3 colour "white"
-kropki-12: kropki r4c2-r5c2 colour "white"
-kropki-13: kropki r2c3-r3c3 colour "white"
-kropki-14: kropki r1c4-r2c4 colour "white"
-kropki-15: kropki r3c2-r4c2 colour "white"
-kropki-16: kropki r2c6-r3c6 colour "white"
-kropki-17: kropki r6c7-r7c7 colour "white"
+kropki-1: kropki r9c1-r9c2 black
+kropki-2: kropki r9c2-r9c3 black
+kropki-3: kropki r8c3-r9c3 black
+kropki-4: kropki r2c1-r2c2 black
+kropki-5: kropki r1c3-r1c4 black
+kropki-6: kropki r3c9-r4c9 black
+kropki-7: kropki r8c2-r8c3 white
+kropki-8: kropki r7c3-r8c3 white
+kropki-9: kropki r6c1-r6c2 white
+kropki-10: kropki r6c1-r7c1 white
+kropki-11: kropki r6c2-r6c3 white
+kropki-12: kropki r4c2-r5c2 white
+kropki-13: kropki r2c3-r3c3 white
+kropki-14: kropki r1c4-r2c4 white
+kropki-15: kropki r3c2-r4c2 white
+kropki-16: kropki r2c6-r3c6 white
+kropki-17: kropki r6c7-r7c7 white
 slow-thermo-1: slow-thermo r7c1-r6c2
 slow-thermo-2: slow-thermo r3c2-r4c3-r5c3
 slow-thermo-3: slow-thermo r1c3-r2c4

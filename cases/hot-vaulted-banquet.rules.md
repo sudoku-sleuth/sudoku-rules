@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-vaulted-banquet
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c7=2 r7c3=1
+exported: 6b806437683a68a6d24919003930a9b5
 ---
 
 ```rules

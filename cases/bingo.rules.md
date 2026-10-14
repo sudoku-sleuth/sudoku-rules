@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bingo
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4615067dda555ff80bfd4b2748978012
 ---
 
 ```rules

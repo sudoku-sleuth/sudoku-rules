@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/reflection-and-rotation
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d6b5ce34865ae6586166d719f6817c1f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c7-r4c8 colour "black"
-kropki-2: kropki r6c3-r6c4 colour "black"
+kropki-1: kropki r4c7-r4c8 black
+kropki-2: kropki r6c3-r6c4 black
 palindrome-1: palindrome r3c2-r2c3-r1c4-r1c5-r1c6
 palindrome-2: palindrome r2c7-r3c8-r4c9-r5c9-r6c9
 palindrome-3: palindrome r7c8-r8c7-r9c6-r9c5-r9c4

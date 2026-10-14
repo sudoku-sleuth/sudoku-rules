@@ -6,6 +6,7 @@ source: https://sudokupad.app/x25t4j27hq
 case: https://sudoku-sleuth.com/cases/a-square-quiet-sequential-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e68dfc8d67f2331b28589ceb669f1d5a
 ---
 
 ```rules
@@ -18,8 +19,8 @@ cage-5: cage r4c9-r5c9-r6c9 total 18 connected true
 cage-6: cage r4c4-r4c5 total 9 connected true
 cage-7: cage r1c4-r1c5-r2c4 total 12 connected true
 cage-8: cage r2c6-r2c7 total 7 connected true
-kropki-1: kropki r7c6-r7c7 colour "black"
-kropki-2: kropki r3c3-r3c4 colour "black"
+kropki-1: kropki r7c6-r7c7 black
+kropki-2: kropki r3c3-r3c4 black
 whispers-1: whispers r3c3-r4c3-r5c3-r6c3-r7c3-r7c4-r7c5-r7c6 gap 5
 whispers-2: whispers r2c8-r3c7 gap 5
 whispers-3: whispers r4c1-r5c1-r6c1 gap 5

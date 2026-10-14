@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 22
-    - 36
-    - 37
-    - 38
-    - 39
-    - 41
-    - 42
-    - 43
-    - 44
+    - r3c5
+    - r5c1
+    - r5c2
+    - r5c3
+    - r5c4
+    - r5c6
+    - r5c7
+    - r5c8
+    - r5c9
 format: open-rules
 title: Zipping Through the Fog
 setter: Sir Moose
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: bf109a94940d5141834f5a212289b7c6
 ---
 
 ```rules

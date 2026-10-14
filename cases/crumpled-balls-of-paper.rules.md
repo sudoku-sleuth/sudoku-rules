@@ -6,6 +6,7 @@ source: https://sudokupad.app/02wp9crk7b
 case: https://sudoku-sleuth.com/cases/crumpled-balls-of-paper
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9b2e26c50022f769690b6fa7116443b9
 ---
 
 ```rules

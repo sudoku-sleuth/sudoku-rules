@@ -6,6 +6,7 @@ source: https://sudokupad.app/xak4eydbsc
 case: https://sudoku-sleuth.com/cases/quietly-scrolling
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a4e8d0d0bed92f7385f352575d7ab09d
 ---
 
 ```rules

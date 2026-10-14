@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/head-into-the-maelstrom
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4ed08a181259ca21a45031714db8d2ef
 ---
 
 ```rules

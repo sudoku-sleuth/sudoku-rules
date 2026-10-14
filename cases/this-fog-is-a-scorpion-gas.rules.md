@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 21
-    - 23
-    - 24
+    - r3c3
+    - r3c4
+    - r3c6
+    - r3c7
 format: open-rules
 title: This FOG is a Scorpion GAS
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a96824082c77286f3e0a712fe256ec7b
 ---
 
 ```rules
@@ -148,14 +149,14 @@ cage-8: cage r1c4-r1c5 total 5 connected true
 cage-9: cage r8c6-r8c7-r9c7 total 11 connected true
 cage-10: cage r8c8-r8c9-r9c9 total 16 connected true
 cage-11: cage r9c2-r9c3 total 14 connected true
-kropki-1: kropki r3c2-r3c3 colour "black"
-kropki-2: kropki r3c7-r3c8 colour "black"
-kropki-3: kropki r2c5-r3c5 colour "black"
-kropki-4: kropki r3c5-r4c5 colour "black"
-kropki-5: kropki r4c8-r4c9 colour "black"
-kropki-6: kropki r6c6-r7c6 colour "black"
-kropki-7: kropki r5c2-r6c2 colour "black"
-kropki-8: kropki r9c7-r9c8 colour "black"
+kropki-1: kropki r3c2-r3c3 black
+kropki-2: kropki r3c7-r3c8 black
+kropki-3: kropki r2c5-r3c5 black
+kropki-4: kropki r3c5-r4c5 black
+kropki-5: kropki r4c8-r4c9 black
+kropki-6: kropki r6c6-r7c6 black
+kropki-7: kropki r5c2-r6c2 black
+kropki-8: kropki r9c7-r9c8 black
 ```
 
 •	Normal Sudoku rules apply. 

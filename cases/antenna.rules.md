@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/antenna
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c7=5 r4c5=1 r8c5=6
+exported: 5deef3ea1ed4666b73d51c3a0e69e553
 ---
 
 ```rules

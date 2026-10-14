@@ -6,6 +6,7 @@ source: https://sudokupad.app/8brbv8xf8p
 case: https://sudoku-sleuth.com/cases/thermo-dat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9fded40d1dfe10b6f97b69da16eef0b2
 ---
 
 ```rules

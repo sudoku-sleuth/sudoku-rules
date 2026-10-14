@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sending-a-quiet-message
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=7 r7c4=4
+exported: ad0e44db4093e0d4da8179966f6e6544
 ---
 
 ```rules

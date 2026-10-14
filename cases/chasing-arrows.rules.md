@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
+    - r4c4
+    - r4c5
+    - r4c6
 format: open-rules
 title: Chasing Arrows
 setter: Blobz
@@ -11,6 +11,7 @@ source: https://sudokupad.app/blobz/chasing-arrows
 case: https://sudoku-sleuth.com/cases/chasing-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 552e915fb525a452d1a734388bd4e211
 ---
 
 ```rules

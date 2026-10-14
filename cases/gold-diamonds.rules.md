@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/gold-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f79ffa12ec673fe4e112ece6fc072519
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r2c1 colour "white"
-kropki-2: kropki r6c5-r7c5 colour "white"
-kropki-3: kropki r3c3-r3c4 colour "black"
+kropki-1: kropki r1c1-r2c1 white
+kropki-2: kropki r6c5-r7c5 white
+kropki-3: kropki r3c3-r3c4 black
 whispers-1: whispers r2c3-r3c3-r4c3 gap 5
 whispers-2: whispers r3c7-r4c7-r5c7 gap 5
 whispers-3: whispers r6c2-r7c2-r8c2 gap 5

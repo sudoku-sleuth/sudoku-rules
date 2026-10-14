@@ -6,6 +6,7 @@ source: https://sudokupad.app/0qxamrtzbw
 case: https://sudoku-sleuth.com/cases/the-goose-drank-wine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 87908f55324cd93554db7dfa8c233897
 ---
 
 ```rules

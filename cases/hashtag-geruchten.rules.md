@@ -6,6 +6,7 @@ source: https://sudokupad.app/zuddostsfp
 case: https://sudoku-sleuth.com/cases/hashtag-geruchten
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d5463db0d2997562a5f7f41e1e3fdfdf
 ---
 
 ```rules

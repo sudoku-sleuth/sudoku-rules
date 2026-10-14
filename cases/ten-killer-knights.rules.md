@@ -6,6 +6,7 @@ source: https://sudokupad.app/cg3lntc2ze
 case: https://sudoku-sleuth.com/cases/ten-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 95de306603736ded26d4feac188534cc
 ---
 
 ```rules

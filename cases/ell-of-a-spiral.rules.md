@@ -6,6 +6,7 @@ source: https://sudokupad.app/03snkojqy1
 case: https://sudoku-sleuth.com/cases/ell-of-a-spiral
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a8f4c2aa568340efa414d6082d97caa6
 ---
 
 ```rules

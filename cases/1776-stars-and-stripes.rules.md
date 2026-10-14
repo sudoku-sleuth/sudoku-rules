@@ -6,6 +6,7 @@ source: https://tinyurl.com/1776starsandstripessudoku
 case: https://sudoku-sleuth.com/cases/1776-stars-and-stripes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e5a99c7285d254c15b6cbad6e12289a0
 ---
 
 ```rules

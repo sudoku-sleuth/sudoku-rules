@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/gentle-arrows-and-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=4 r5c1=1 r7c7=3
+exported: 9eb7f1944f84ce2bbdf504c5bbfb8b6a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c3-r2c3 colour "black"
-kropki-2: kropki r8c4-r9c4 colour "black"
-kropki-3: kropki r7c8-r7c9 colour "black"
-kropki-4: kropki r6c5-r6c6 colour "black"
-kropki-5: kropki r2c6-r3c6 colour "black"
+kropki-1: kropki r1c3-r2c3 black
+kropki-2: kropki r8c4-r9c4 black
+kropki-3: kropki r7c8-r7c9 black
+kropki-4: kropki r6c5-r6c6 black
+kropki-5: kropki r2c6-r3c6 black
 arrow-1: arrow r2c2-r3c2-r4c2 bulb ["r1c3"]
 arrow-2: arrow r2c4-r3c4-r4c4 bulb ["r1c3"]
 arrow-3: arrow r8c3-r7c3-r6c3 bulb ["r9c4"]

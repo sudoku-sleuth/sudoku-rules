@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/counterpoint
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=3 r9c9=9
+exported: 895b1e2eca1150944a5ad7cfefc3f0c2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r2c1-r3c1 colour "white"
-kropki-3: kropki r7c3-r8c3 colour "black"
-kropki-4: kropki r3c9-r4c9 colour "black"
-kropki-5: kropki r4c2-r5c2 colour "black"
-kropki-6: kropki r8c8-r9c8 colour "black"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r2c1-r3c1 white
+kropki-3: kropki r7c3-r8c3 black
+kropki-4: kropki r3c9-r4c9 black
+kropki-5: kropki r4c2-r5c2 black
+kropki-6: kropki r8c8-r9c8 black
 arrow-1: arrow r2c1-r3c1-r4c1 bulb ["r1c1"]
 arrow-2: arrow r3c2-r4c2-r5c2 bulb ["r2c2"]
 arrow-3: arrow r4c4-r5c4-r6c4 bulb ["r3c4"]

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/quarity-padsums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 273315c396f6f828004e2adb63dcfb0a
 ---
 
 ```rules

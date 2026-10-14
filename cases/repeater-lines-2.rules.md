@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/repeater-lines-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cd1b1a54fe80dd5ce6e1b42b01f716fe
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r9c2-r9c3 colour "black"
-kropki-2: kropki r9c3-r9c4 colour "black"
-kropki-3: kropki r1c6-r1c7 colour "black"
-kropki-4: kropki r5c4-r5c5 colour "black"
+kropki-1: kropki r9c2-r9c3 black
+kropki-2: kropki r9c3-r9c4 black
+kropki-3: kropki r1c6-r1c7 black
+kropki-4: kropki r5c4-r5c5 black
 pair-1: pair r2c7-r2c8 sum 10
 pair-2: pair r1c2-r1c3 sum 10
 pair-3: pair r2c4-r2c5 sum 10

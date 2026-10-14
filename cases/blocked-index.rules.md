@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/blocked-index
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=4 r6c7=7
+exported: 4ee2e5c1d5cc46c25411b2af83960bd6
 ---
 
 ```rules

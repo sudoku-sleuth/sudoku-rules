@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/same-zifference
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 998e34cf2b51760eec89572270b3c783
 ---
 
 ```rules
 sudoku 9x9
-kropki r3c5-r3c6 colour "black"
+kropki r3c5-r3c6 black
 ```
 
 ```drawing

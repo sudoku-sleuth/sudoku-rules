@@ -10,37 +10,38 @@ drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
 givens: r1c5=2
+exported: 3fe03ce30ec2d1b68f1cc5db50720ee5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c5-r2c6 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
-kropki-3: kropki r3c4-r3c5 colour "white"
-kropki-4: kropki r5c6-r5c7 colour "white"
-kropki-5: kropki r5c5-r5c6 colour "white"
-kropki-6: kropki r5c4-r5c5 colour "white"
-kropki-7: kropki r5c3-r5c4 colour "white"
-kropki-8: kropki r6c3-r6c4 colour "white"
-kropki-9: kropki r6c2-r6c3 colour "white"
-kropki-10: kropki r6c7-r6c8 colour "white"
-kropki-11: kropki r7c6-r7c7 colour "white"
-kropki-12: kropki r7c7-r7c8 colour "white"
-kropki-13: kropki r7c8-r7c9 colour "white"
-kropki-14: kropki r6c8-r6c9 colour "white"
-kropki-15: kropki r6c4-r6c5 colour "white"
-kropki-16: kropki r4c4-r4c5 colour "white"
-kropki-17: kropki r9c2-r9c3 colour "white"
-kropki-18: kropki r9c3-r9c4 colour "white"
-kropki-19: kropki r9c8-r9c9 colour "white"
-kropki-20: kropki r8c4-r8c5 colour "white"
-kropki-21: kropki r8c6-r8c7 colour "white"
-kropki-22: kropki r7c4-r7c5 colour "white"
-kropki-23: kropki r7c2-r7c3 colour "white"
-kropki-24: kropki r5c1-r5c2 colour "white"
-kropki-25: kropki r5c8-r5c9 colour "white"
-kropki-26: kropki r2c6-r2c7 colour "white"
-kropki-27: kropki r3c3-r3c4 colour "white"
+kropki-1: kropki r2c5-r2c6 white
+kropki-2: kropki r3c5-r3c6 white
+kropki-3: kropki r3c4-r3c5 white
+kropki-4: kropki r5c6-r5c7 white
+kropki-5: kropki r5c5-r5c6 white
+kropki-6: kropki r5c4-r5c5 white
+kropki-7: kropki r5c3-r5c4 white
+kropki-8: kropki r6c3-r6c4 white
+kropki-9: kropki r6c2-r6c3 white
+kropki-10: kropki r6c7-r6c8 white
+kropki-11: kropki r7c6-r7c7 white
+kropki-12: kropki r7c7-r7c8 white
+kropki-13: kropki r7c8-r7c9 white
+kropki-14: kropki r6c8-r6c9 white
+kropki-15: kropki r6c4-r6c5 white
+kropki-16: kropki r4c4-r4c5 white
+kropki-17: kropki r9c2-r9c3 white
+kropki-18: kropki r9c3-r9c4 white
+kropki-19: kropki r9c8-r9c9 white
+kropki-20: kropki r8c4-r8c5 white
+kropki-21: kropki r8c6-r8c7 white
+kropki-22: kropki r7c4-r7c5 white
+kropki-23: kropki r7c2-r7c3 white
+kropki-24: kropki r5c1-r5c2 white
+kropki-25: kropki r5c8-r5c9 white
+kropki-26: kropki r2c6-r2c7 white
+kropki-27: kropki r3c3-r3c4 white
 between-1: between r9c2-r9c3-r9c4-r9c5-r9c6-r9c7-r9c8 ends ["r9c1","r9c9"]
 between-2: between r8c2-r8c3-r8c4-r8c5-r8c6-r8c7-r8c8 ends ["r8c1","r8c9"]
 between-3: between r7c2-r7c3-r7c4 ends ["r7c1","r7c5"]

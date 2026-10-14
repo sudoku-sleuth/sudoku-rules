@@ -6,6 +6,7 @@ source: https://tinyurl.com/3ddfax5b
 case: https://sudoku-sleuth.com/cases/going-around
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 33450c14df0ce3bd5dd40e676ddb263d
 ---
 
 ```rules

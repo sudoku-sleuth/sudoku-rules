@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/eiffel-tower-and-fireworks
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3f6da6dbae4062a7ad202a981261bb7e
 ---
 
 ```rules

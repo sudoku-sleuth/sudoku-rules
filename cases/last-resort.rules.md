@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/last-resort
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ae06cfe4a9620284ec367c03a22b612f
 ---
 
 ```rules

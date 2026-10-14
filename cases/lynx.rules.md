@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lynx
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c9=8 r3c1=3 r4c5=2 r5c3=8 r5c7=7 r6c5=1 r8c7=1
+exported: fc6f62367e161d5ac329418b89f461b8
 ---
 
 ```rules

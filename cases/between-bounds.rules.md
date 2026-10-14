@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/between-bounds
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=4 r4c5=3 r6c7=6
+exported: 041eb937d7d96d6005039c9a6a34162c
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/9t5zacjwsr
 case: https://sudoku-sleuth.com/cases/overflow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fc0a46c15c3e23535977b3e55b313e1e
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/pnyn7m1944
 case: https://sudoku-sleuth.com/cases/lost-in-the-forest
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aca8548dca5b80efe61bfe5a19893241
 ---
 
 ```rules
@@ -22,7 +23,7 @@ thermo-3: thermo r2c9-r2c8-r2c7-r3c6
 thermo-4: thermo r1c5-r1c4-r2c3-r3c3
 thermo-5: thermo r9c7-r9c8-r8c9-r8c8-r7c9-r6c9-r5c8
 thermo-6: thermo r3c2-r3c1-r2c2-r2c1
-kropki r4c4-r5c4 colour "black"
+kropki r4c4-r5c4 black
 arrow-1: arrow r5c4-r5c3-r5c2 bulb ["r5c5"]
 arrow-2: arrow r9c2-r8c3-r8c4 bulb ["r9c1"]
 arrow-3: arrow r7c6-r8c6-r9c7 bulb ["r6c6"]

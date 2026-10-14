@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/ziffer-spots
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d18d048b09a11066f9955e9bf01a716e
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c6-r5c7 colour "black"
+kropki r5c6-r5c7 black
 ```
 
 ```drawing

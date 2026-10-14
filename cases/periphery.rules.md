@@ -6,6 +6,7 @@ source: https://sudokupad.app/eeylvko5vj
 case: https://sudoku-sleuth.com/cases/periphery
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d25873d8a9aadc8ea20c00890d95b954
 ---
 
 ```rules

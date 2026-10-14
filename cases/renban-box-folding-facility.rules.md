@@ -6,19 +6,20 @@ source: https://sudokupad.app/1uu4vz4o2m
 case: https://sudoku-sleuth.com/cases/renban-box-folding-facility
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c7a1a4a4c2e9bfd0f9ea5211bee3130a
 ---
 
 ```rules
 sudoku 9x9
 cage r8c8-r8c9-r9c8-r9c9 total 12 connected true
-kropki-1: kropki r9c1-r9c2 colour "white"
-kropki-2: kropki r9c2-r9c3 colour "white"
-kropki-3: kropki r9c3-r9c4 colour "white"
-kropki-4: kropki r6c3-r6c4 colour "black"
-kropki-5: kropki r5c3-r5c4 colour "black"
-kropki-6: kropki r3c5-r4c5 colour "black"
-kropki-7: kropki r2c5-r2c6 colour "black"
-kropki-8: kropki r3c6-r3c7 colour "black"
+kropki-1: kropki r9c1-r9c2 white
+kropki-2: kropki r9c2-r9c3 white
+kropki-3: kropki r9c3-r9c4 white
+kropki-4: kropki r6c3-r6c4 black
+kropki-5: kropki r5c3-r5c4 black
+kropki-6: kropki r3c5-r4c5 black
+kropki-7: kropki r2c5-r2c6 black
+kropki-8: kropki r3c6-r3c7 black
 renban-1: renban r1c1-r1c2-r2c2-r2c1
 renban-2: renban r1c3-r1c4-r2c4-r2c3
 renban-3: renban r2c5-r2c6-r3c6-r3c5

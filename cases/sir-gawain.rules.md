@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sir-gawain
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 5...6...............4.5.1...........1.8.9.6.3...........3.7.2...............8...7
+exported: c28ee7d855bb148d3f1e5ac4600e318e
 ---
 
 ```rules

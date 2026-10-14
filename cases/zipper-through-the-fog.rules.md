@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Zipper Through the Fog
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 30c18b96fd6ce4c2b979a8ac5be60373
 ---
 
 ```rules
@@ -150,15 +151,15 @@ cage-4: cage r4c4-r4c5 total 7 connected true
 cage-5: cage r3c7-r4c7 total 11 connected true
 cage-6: cage r4c9-r5c9 total 5 connected true
 cage-7: cage r7c4-r8c4 total 8 connected true
-kropki-1: kropki r1c2-r1c3 colour "white"
-kropki-2: kropki r1c1-r1c2 colour "white"
-kropki-3: kropki r1c3-r2c3 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
-kropki-5: kropki r5c6-r5c7 colour "white"
-kropki-6: kropki r5c6-r6c6 colour "white"
-kropki-7: kropki r5c3-r5c4 colour "white"
-kropki-8: kropki r1c1-r2c1 colour "white"
-kropki-9: kropki r5c2-r6c2 colour "black"
+kropki-1: kropki r1c2-r1c3 white
+kropki-2: kropki r1c1-r1c2 white
+kropki-3: kropki r1c3-r2c3 white
+kropki-4: kropki r2c5-r3c5 white
+kropki-5: kropki r5c6-r5c7 white
+kropki-6: kropki r5c6-r6c6 white
+kropki-7: kropki r5c3-r5c4 white
+kropki-8: kropki r1c1-r2c1 white
+kropki-9: kropki r5c2-r6c2 black
 quadruple r2c3-r2c4-r3c3-r3c4 digits [6,7]
 parity-cells r3c5 parity "even"
 ```

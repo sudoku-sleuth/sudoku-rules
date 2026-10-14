@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/helicopter
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 124bbfb66c84478ef111c453896c3a6a
 ---
 
 ```rules

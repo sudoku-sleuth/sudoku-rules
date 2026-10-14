@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/formulate
 case: https://sudoku-sleuth.com/cases/formulate
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 551050410e95008589b566e84c256409
 ---
 
 ```rules

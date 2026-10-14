@@ -6,6 +6,7 @@ source: https://sudokupad.app/sr509vollt
 case: https://sudoku-sleuth.com/cases/top-right-boi-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d9d4d2aad06d97b4d35cc623d58a9f88
 ---
 
 ```rules

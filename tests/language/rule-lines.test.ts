@@ -80,8 +80,9 @@ test("pair and Kropki page examples pass the declared grammar", () => {
     expect(checkCaseReferences({ file: `${kind}-example.rules.md`, text }, library.registry).diagnostics).toEqual([]);
 });
 
-// This hash was taken before migration, removing only the relation spelling on pair lines.
-// It guards every other byte: wording, metadata, drawings, IDs, coordinates and newlines.
+// This hash guards every byte outside pair relation spellings: wording, metadata, drawings, IDs,
+// coordinates and newlines. It was taken after the case files were rewritten in the current rule-line
+// forms (keyword pairs, Kropki colours, fog cell names, an `exported` stamp); retake it for an intended rewrite.
 test("production migration preserves every byte outside pair relation spellings", async () => {
   const expected = await Bun.file("tests/fixtures/pair-migration.json").json();
   const hash = createHash("sha256"); const counts: Record<string, number> = {};

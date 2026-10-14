@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/unidentified-flying-octagon
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: fb45f515bc517086c9ee076aaab7f32c
 ---
 
 ```rules

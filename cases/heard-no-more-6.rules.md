@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/heard-no-more-6
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=1
+exported: c87da4b6e60149c1b481cea3640c514a
 ---
 
 ```rules

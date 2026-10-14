@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-ten-or-eleven
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6cdd3e4cbc1590d9232c2b468dca7f46
 ---
 
 ```rules

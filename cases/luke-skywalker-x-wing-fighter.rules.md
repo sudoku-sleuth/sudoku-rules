@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/luke-skywalker-x-wing-fighter
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 563cedc4a5926037173851bc5d479257
 ---
 
 ```rules
@@ -17,16 +18,16 @@ cage-3: cage r8c7-r8c8 total 10 connected true
 cage-4: cage r2c7-r3c7 total 14 connected true
 cage-5: cage r5c1-r6c1 total 3 connected true
 cage-6: cage r5c3-r6c3 total 12 connected true
-kropki-1: kropki r2c8-r3c8 colour "white"
-kropki-2: kropki r2c7-r2c8 colour "white"
-kropki-3: kropki r1c7-r2c7 colour "white"
-kropki-4: kropki r1c6-r1c7 colour "white"
-kropki-5: kropki r6c5-r7c5 colour "white"
-kropki-6: kropki r7c5-r8c5 colour "white"
-kropki-7: kropki r8c5-r9c5 colour "white"
-kropki-8: kropki r9c5-r9c6 colour "white"
-kropki-9: kropki r4c7-r5c7 colour "white"
-kropki-10: kropki r5c7-r6c7 colour "white"
+kropki-1: kropki r2c8-r3c8 white
+kropki-2: kropki r2c7-r2c8 white
+kropki-3: kropki r1c7-r2c7 white
+kropki-4: kropki r1c6-r1c7 white
+kropki-5: kropki r6c5-r7c5 white
+kropki-6: kropki r7c5-r8c5 white
+kropki-7: kropki r8c5-r9c5 white
+kropki-8: kropki r9c5-r9c6 white
+kropki-9: kropki r4c7-r5c7 white
+kropki-10: kropki r5c7-r6c7 white
 whispers-1: whispers r8c7-r7c8-r6c9 gap 4
 whispers-2: whispers r1c4-r2c5-r3c6-r3c7-r4c7-r5c8-r6c9 gap 4
 whispers-3: whispers r5c8-r6c7-r7c6 gap 4

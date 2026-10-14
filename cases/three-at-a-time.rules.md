@@ -6,6 +6,7 @@ source: https://tinyurl.com/yckfu6xp
 case: https://sudoku-sleuth.com/cases/three-at-a-time
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a9fd915a655c1c1559fcc09c0e60db2a
 ---
 
 ```rules

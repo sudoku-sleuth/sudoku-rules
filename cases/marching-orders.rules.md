@@ -7,23 +7,24 @@ case: https://sudoku-sleuth.com/cases/marching-orders
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c7=5 r4c5=8 r6c5=4 r7c3=6
+exported: ea7ab83a2450b8e80038fbae8334077a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c4-r1c5 colour "white"
-kropki-2: kropki r9c7-r9c8 colour "white"
-kropki-3: kropki r4c1-r5c1 colour "white"
-kropki-4: kropki r7c9-r8c9 colour "white"
-kropki-5: kropki r9c2-r9c3 colour "white"
-kropki-6: kropki r2c3-r3c3 colour "white"
-kropki-7: kropki r1c2-r1c3 colour "black"
-kropki-8: kropki r9c5-r9c6 colour "black"
-kropki-9: kropki r2c1-r3c1 colour "black"
-kropki-10: kropki r5c9-r6c9 colour "black"
-kropki-11: kropki r1c7-r1c8 colour "black"
-kropki-12: kropki r4c3-r5c3 colour "black"
-kropki-13: kropki r5c7-r6c7 colour "black"
+kropki-1: kropki r1c4-r1c5 white
+kropki-2: kropki r9c7-r9c8 white
+kropki-3: kropki r4c1-r5c1 white
+kropki-4: kropki r7c9-r8c9 white
+kropki-5: kropki r9c2-r9c3 white
+kropki-6: kropki r2c3-r3c3 white
+kropki-7: kropki r1c2-r1c3 black
+kropki-8: kropki r9c5-r9c6 black
+kropki-9: kropki r2c1-r3c1 black
+kropki-10: kropki r5c9-r6c9 black
+kropki-11: kropki r1c7-r1c8 black
+kropki-12: kropki r4c3-r5c3 black
+kropki-13: kropki r5c7-r6c7 black
 pair-1: pair r6c9-r7c9 sum 10
 pair-2: pair r3c1-r4c1 sum 10
 pair-3: pair r1c9-r2c9 sum 10

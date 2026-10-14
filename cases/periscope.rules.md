@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/periscope
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=2 r9c6=5
+exported: 6a3b2c0ccdc4bd2acef8235fb3ddf58e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c2-r5c2 colour "black"
-kropki-2: kropki r1c5-r2c5 colour "black"
-kropki-3: kropki r6c1-r7c1 colour "black"
-kropki-4: kropki r4c5-r4c6 colour "black"
-kropki-5: kropki r1c3-r1c4 colour "black"
-kropki-6: kropki r2c4-r2c5 colour "black"
+kropki-1: kropki r4c2-r5c2 black
+kropki-2: kropki r1c5-r2c5 black
+kropki-3: kropki r6c1-r7c1 black
+kropki-4: kropki r4c5-r4c6 black
+kropki-5: kropki r1c3-r1c4 black
+kropki-6: kropki r2c4-r2c5 black
 renban-1: renban r4c2-r3c2-r2c3-r2c4
 renban-2: renban r2c6-r2c7-r3c8-r4c8
 renban-3: renban r6c8-r7c8-r8c7-r8c6

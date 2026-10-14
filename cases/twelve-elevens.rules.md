@@ -6,6 +6,7 @@ source: https://sudokupad.app/ruy0ra27tb
 case: https://sudoku-sleuth.com/cases/twelve-elevens
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8e58a421ae82a6a365811d356e4f5cd4
 ---
 
 ```rules

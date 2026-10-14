@@ -6,6 +6,7 @@ source: https://sudokupad.app/57vlye4586
 case: https://sudoku-sleuth.com/cases/enclosed-spaces
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 559c05747481bfcc8ee1a8999cefa97b
 ---
 
 ```rules
@@ -21,18 +22,18 @@ thermo-8: thermo r1c9-r2c9-r3c9
 thermo-9: thermo r1c9-r1c8-r1c7-r1c6-r1c5
 thermo-10: thermo r4c5-r4c6-r5c6
 thermo-11: thermo r6c5-r6c4-r5c4
-kropki-1: kropki r5c8-r6c8 colour "white"
-kropki-2: kropki r2c3-r2c4 colour "white"
-kropki-3: kropki r4c8-r5c8 colour "white"
-kropki-4: kropki r8c8-r8c9 colour "white"
-kropki-5: kropki r8c3-r8c4 colour "white"
-kropki-6: kropki r7c4-r7c5 colour "white"
-kropki-7: kropki r6c5-r7c5 colour "white"
-kropki-8: kropki r5c6-r6c6 colour "white"
-kropki-9: kropki r5c4-r5c5 colour "white"
-kropki-10: kropki r3c3-r4c3 colour "white"
-kropki-11: kropki r6c1-r6c2 colour "white"
-kropki-12: kropki r6c1-r7c1 colour "white"
+kropki-1: kropki r5c8-r6c8 white
+kropki-2: kropki r2c3-r2c4 white
+kropki-3: kropki r4c8-r5c8 white
+kropki-4: kropki r8c8-r8c9 white
+kropki-5: kropki r8c3-r8c4 white
+kropki-6: kropki r7c4-r7c5 white
+kropki-7: kropki r6c5-r7c5 white
+kropki-8: kropki r5c6-r6c6 white
+kropki-9: kropki r5c4-r5c5 white
+kropki-10: kropki r3c3-r4c3 white
+kropki-11: kropki r6c1-r6c2 white
+kropki-12: kropki r6c1-r7c1 white
 ```
 
 **Sudoku, Thermometers, Consecutive Pairs**

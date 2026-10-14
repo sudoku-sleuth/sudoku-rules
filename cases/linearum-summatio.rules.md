@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/linearum-summatio
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2c68d73972d14fb2133395d169df3e71
 ---
 
 ```rules
 sudoku 9x9
 cage r4c5-r5c5-r5c6 connected true
-kropki-1: kropki r6c5-r6c6 colour "white"
-kropki-2: kropki r1c8-r1c9 colour "white"
-kropki-3: kropki r1c5-r1c6 colour "white"
-kropki-4: kropki r7c5-r7c6 colour "white"
-kropki-5: kropki r5c1-r6c1 colour "white"
+kropki-1: kropki r6c5-r6c6 white
+kropki-2: kropki r1c8-r1c9 white
+kropki-3: kropki r1c5-r1c6 white
+kropki-4: kropki r7c5-r7c6 white
+kropki-5: kropki r5c1-r6c1 white
 whispers-1: whispers r1c9-r2c9-r3c9-r4c9-r5c9 gap 5
 whispers-2: whispers r2c9-r3c8 gap 5
 region-sum-1: region-sum r5c3-r4c3-r4c2-r4c1-r3c2-r2c2-r2c3 segments [["r5c3","r4c3","r4c2","r4c1"],["r3c2","r2c2","r2c3"]]

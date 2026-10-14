@@ -6,6 +6,7 @@ source: https://sudokupad.app/1tb7wv6pns
 case: https://sudoku-sleuth.com/cases/warp-speed-factor-4
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c349378167706bf13520ce0f49c4663d
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/good-boy-max-braver-junge
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d34f8cb43f8af58659434165294936b6
 ---
 
 ```rules
@@ -17,17 +18,17 @@ cage-3: cage r5c5-r5c6 total 11 connected true
 cage-4: cage r4c5-r4c6 total 10 connected true
 cage-5: cage r6c1-r7c1 total 12 connected true
 cage-6: cage r2c9-r3c9 total 6 connected true
-kropki-1: kropki r6c9-r7c9 colour "white"
-kropki-2: kropki r7c8-r7c9 colour "white"
-kropki-3: kropki r7c8-r8c8 colour "white"
-kropki-4: kropki r8c8-r9c8 colour "white"
-kropki-5: kropki r1c1-r2c1 colour "white"
-kropki-6: kropki r2c1-r2c2 colour "white"
-kropki-7: kropki r3c1-r3c2 colour "white"
-kropki-8: kropki r1c3-r2c3 colour "white"
-kropki-9: kropki r4c9-r5c9 colour "white"
-kropki-10: kropki r8c5-r9c5 colour "white"
-kropki-11: kropki r6c7-r6c8 colour "white"
+kropki-1: kropki r6c9-r7c9 white
+kropki-2: kropki r7c8-r7c9 white
+kropki-3: kropki r7c8-r8c8 white
+kropki-4: kropki r8c8-r9c8 white
+kropki-5: kropki r1c1-r2c1 white
+kropki-6: kropki r2c1-r2c2 white
+kropki-7: kropki r3c1-r3c2 white
+kropki-8: kropki r1c3-r2c3 white
+kropki-9: kropki r4c9-r5c9 white
+kropki-10: kropki r8c5-r9c5 white
+kropki-11: kropki r6c7-r6c8 white
 whispers r9c6-r8c5-r8c4-r8c3-r8c2-r7c1-r6c1-r5c1-r5c2-r5c3-r5c4-r4c4-r3c5-r3c6-r2c7-r1c8-r2c8-r3c8-r4c8-r5c9 gap 5
 ```
 

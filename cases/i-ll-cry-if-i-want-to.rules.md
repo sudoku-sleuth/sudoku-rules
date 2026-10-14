@@ -8,6 +8,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/i-ll-cry-if-i-want-to
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 27b5c78190d5d948b05379d45c7b94e6
 ---
 
 ```rules

@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 13
-    - 31
-    - 58
+    - r2c5
+    - r4c5
+    - r7c5
 format: open-rules
 title: One Knight's Foggy Secret
 setter: Meggen033
@@ -11,18 +11,19 @@ source: https://sudokupad.app/tvls5hsro4
 case: https://sudoku-sleuth.com/cases/one-knight-s-foggy-secret
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cda2214bb2a9be563b61bc74c8fc438e
 ---
 
 ```rules
 sudoku 9x9
 anti-knight stated true
-kropki-1: kropki r6c8-r6c9 colour "white"
-kropki-2: kropki r9c7-r9c8 colour "white"
-kropki-3: kropki r6c5-r7c5 colour "black"
-kropki-4: kropki r5c6-r5c7 colour "black"
-kropki-5: kropki r4c2-r4c3 colour "black"
-kropki-6: kropki r1c3-r1c4 colour "black"
-kropki-7: kropki r8c7-r9c7 colour "black"
+kropki-1: kropki r6c8-r6c9 white
+kropki-2: kropki r9c7-r9c8 white
+kropki-3: kropki r6c5-r7c5 black
+kropki-4: kropki r5c6-r5c7 black
+kropki-5: kropki r4c2-r4c3 black
+kropki-6: kropki r1c3-r1c4 black
+kropki-7: kropki r8c7-r9c7 black
 whispers-1: whispers r2c4-r2c5-r2c6 gap 5
 whispers-2: whispers r1c5-r2c5-r3c5 gap 5
 whispers-3: whispers r4c4-r4c5-r4c6 gap 5

@@ -6,6 +6,7 @@ source: https://sudokupad.app/eaxa9jznzn
 case: https://sudoku-sleuth.com/cases/learning-to-color
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f1321c6a641ddd1d5bdb79a0b44658eb
 ---
 
 ```rules

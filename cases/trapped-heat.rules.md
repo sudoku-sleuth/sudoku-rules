@@ -6,6 +6,7 @@ source: https://sudokupad.app/248w6iceag
 case: https://sudoku-sleuth.com/cases/trapped-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f83b133ea92fcd6d28bcc81c3e79cd70
 ---
 
 ```rules

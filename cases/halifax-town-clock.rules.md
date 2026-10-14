@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/halifax-town-clock
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=4 r2c1=1 r2c3=9 r3c1=7
+exported: e32c213e55a3b029fa266fd92c74667b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c8-r9c8 colour "white"
-kropki-2: kropki r8c5-r9c5 colour "white"
-kropki-3: kropki r8c4-r9c4 colour "white"
-kropki-4: kropki r5c2-r5c3 colour "white"
-kropki-5: kropki r9c5-r9c6 colour "white"
-kropki-6: kropki r8c6-r9c6 colour "black"
-kropki-7: kropki r6c3-r7c3 colour "black"
+kropki-1: kropki r8c8-r9c8 white
+kropki-2: kropki r8c5-r9c5 white
+kropki-3: kropki r8c4-r9c4 white
+kropki-4: kropki r5c2-r5c3 white
+kropki-5: kropki r9c5-r9c6 white
+kropki-6: kropki r8c6-r9c6 black
+kropki-7: kropki r6c3-r7c3 black
 whispers-1: whispers r9c2-r8c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8-r7c9-r8c9-r9c9 gap 5
 whispers-2: whispers r6c8-r5c8 gap 5
 whispers-3: whispers r6c4-r5c4-r5c5-r5c6-r5c7-r5c8-r6c8 gap 5

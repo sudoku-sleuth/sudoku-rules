@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Lighthouse 639
 setter: BremSter, FullDeck and Missing a Few Cards, Virtual
@@ -17,6 +17,7 @@ source: https://sudokupad.app/2wdns1xorg
 case: https://sudoku-sleuth.com/cases/lighthouse-639
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7000a410df2ac511668b7b87b5660bb5
 ---
 
 ```rules

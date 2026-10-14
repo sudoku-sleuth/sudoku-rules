@@ -6,6 +6,7 @@ source: https://sudokupad.app/x8b2tbc5tq
 case: https://sudoku-sleuth.com/cases/amphiteatre
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 015af45e0bdd7a7b5a48b6861a2fdb71
 ---
 
 ```rules

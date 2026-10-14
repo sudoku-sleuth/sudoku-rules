@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 2
-    - 9
-    - 11
-    - 18
-    - 64
+    - r1c3
+    - r2c1
+    - r2c3
+    - r3c1
+    - r8c2
 format: open-rules
 title: Sparrow Bathing Spot
 setter: Sandra & Nala
@@ -14,19 +14,20 @@ case: https://sudoku-sleuth.com/cases/sparrow-bathing-spot
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e83b45eee4c928f859d8f417420d075e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c1-r3c1 colour "black"
-kropki-2: kropki r1c3-r2c3 colour "black"
-kropki-3: kropki r8c1-r8c2 colour "black"
-kropki-4: kropki r8c2-r8c3 colour "black"
-kropki-5: kropki r4c1-r5c1 colour "black"
-kropki-6: kropki r5c7-r5c8 colour "black"
-kropki-7: kropki r2c5-r2c6 colour "white"
-kropki-8: kropki r9c7-r9c8 colour "white"
-kropki-9: kropki r6c2-r7c2 colour "white"
+kropki-1: kropki r2c1-r3c1 black
+kropki-2: kropki r1c3-r2c3 black
+kropki-3: kropki r8c1-r8c2 black
+kropki-4: kropki r8c2-r8c3 black
+kropki-5: kropki r4c1-r5c1 black
+kropki-6: kropki r5c7-r5c8 black
+kropki-7: kropki r2c5-r2c6 white
+kropki-8: kropki r9c7-r9c8 white
+kropki-9: kropki r6c2-r7c2 white
 arrow-1: arrow r3c2-r2c3 bulb ["r3c1"]
 arrow-2: arrow r1c2-r2c1 bulb ["r1c3"]
 arrow-3: arrow r2c7-r1c6-r1c5 bulb ["r3c6"]

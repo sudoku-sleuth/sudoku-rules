@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
+    - r1c1
+    - r1c2
+    - r1c3
 format: open-rules
 title: Dirty Paws
 setter: Sandra & Nala
@@ -59,6 +59,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 033c4eba7b48e88a6cf52a43b8b88900
 ---
 
 ```rules

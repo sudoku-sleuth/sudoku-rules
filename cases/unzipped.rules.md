@@ -9,12 +9,13 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: fbffe358653f547930f2dc354c6292ac
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c3-r5c3 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "black"
+kropki-1: kropki r4c3-r5c3 white
+kropki-2: kropki r5c7-r6c7 black
 ```
 
 ```drawing

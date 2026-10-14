@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 10
-    - 11
-    - 12
-    - 19
-    - 20
-    - 21
-    - 28
-    - 29
-    - 30
+    - r2c2
+    - r2c3
+    - r2c4
+    - r3c2
+    - r3c3
+    - r3c4
+    - r4c2
+    - r4c3
+    - r4c4
 format: open-rules
 title: One Knight's Foggy Arrow
 setter: Meggen033
@@ -17,14 +17,15 @@ source: https://sudokupad.app/t39p1101v7
 case: https://sudoku-sleuth.com/cases/one-knight-s-foggy-arrow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 377d6074145308c4c2ef34f75e5d470e
 ---
 
 ```rules
 sudoku 9x9
 anti-knight stated true
-kropki-1: kropki r2c2-r2c3 colour "white"
-kropki-2: kropki r6c3-r7c3 colour "white"
-kropki-3: kropki r3c6-r3c7 colour "black"
+kropki-1: kropki r2c2-r2c3 white
+kropki-2: kropki r6c3-r7c3 white
+kropki-3: kropki r3c6-r3c7 black
 arrow-1: arrow r3c4-r2c4 bulb ["r4c4"]
 arrow-2: arrow r3c3-r2c2 bulb ["r4c4"]
 arrow-3: arrow r4c3-r4c2 bulb ["r4c4"]

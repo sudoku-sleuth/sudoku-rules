@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Kermit the Fog
 setter: Meggen033
@@ -17,29 +17,30 @@ source: https://sudokupad.app/9visz83clp
 case: https://sudoku-sleuth.com/cases/kermit-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f73561206139c3360258a2fdcfea2676
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r5c5-r5c6 colour "white"
-kropki-3: kropki r3c6-r4c6 colour "white"
-kropki-4: kropki r8c5-r8c6 colour "white"
-kropki-5: kropki r5c7-r5c8 colour "white"
-kropki-6: kropki r7c4-r8c4 colour "white"
-kropki-7: kropki r8c3-r9c3 colour "white"
-kropki-8: kropki r7c2-r8c2 colour "white"
-kropki-9: kropki r5c1-r6c1 colour "white"
-kropki-10: kropki r6c7-r6c8 colour "white"
-kropki-11: kropki r4c1-r4c2 colour "white"
-kropki-12: kropki r3c7-r3c8 colour "white"
-kropki-13: kropki r1c8-r2c8 colour "white"
-kropki-14: kropki r4c4-r5c4 colour "black"
-kropki-15: kropki r5c6-r6c6 colour "black"
-kropki-16: kropki r3c5-r3c6 colour "black"
-kropki-17: kropki r5c2-r5c3 colour "black"
-kropki-18: kropki r8c2-r8c3 colour "black"
-kropki-19: kropki r1c7-r1c8 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r5c5-r5c6 white
+kropki-3: kropki r3c6-r4c6 white
+kropki-4: kropki r8c5-r8c6 white
+kropki-5: kropki r5c7-r5c8 white
+kropki-6: kropki r7c4-r8c4 white
+kropki-7: kropki r8c3-r9c3 white
+kropki-8: kropki r7c2-r8c2 white
+kropki-9: kropki r5c1-r6c1 white
+kropki-10: kropki r6c7-r6c8 white
+kropki-11: kropki r4c1-r4c2 white
+kropki-12: kropki r3c7-r3c8 white
+kropki-13: kropki r1c8-r2c8 white
+kropki-14: kropki r4c4-r5c4 black
+kropki-15: kropki r5c6-r6c6 black
+kropki-16: kropki r3c5-r3c6 black
+kropki-17: kropki r5c2-r5c3 black
+kropki-18: kropki r8c2-r8c3 black
+kropki-19: kropki r1c7-r1c8 black
 whispers-1: whispers r4c5-r5c5-r6c5 gap 5
 whispers-2: whispers r6c6-r7c6 gap 5
 whispers-3: whispers r7c5-r7c6 gap 5

@@ -32,6 +32,7 @@ board:
       - r3c4
       - r4c3
       - r4c4
+exported: 99f41d148b0709f2ced3b8166dff06e7
 ---
 
 ```rules
@@ -47,7 +48,7 @@ unique-9: unique r1c1-r1c2-r2c1-r2c2
 unique-10: unique r1c3-r1c4-r2c3-r2c4
 unique-11: unique r3c1-r3c2-r4c1-r4c2
 unique-12: unique r3c3-r3c4-r4c3-r4c4
-kropki r4c3-r4c4 colour "black"
+kropki r4c3-r4c4 black
 ```
 
 ```drawing

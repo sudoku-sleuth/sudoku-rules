@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/clues-aswirl
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c8=3
+exported: 69af720d397d0a9948ab96d88dee022a
 ---
 
 ```rules

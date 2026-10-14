@@ -6,18 +6,19 @@ source: https://sudokupad.app/blobz/sleet-and-snow
 case: https://sudoku-sleuth.com/cases/sleet-and-snow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1d06ac9e95860ed01f4441a857175786
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r5c1-r6c1 colour "white"
-kropki-3: kropki r7c2-r7c3 colour "white"
-kropki-4: kropki r7c5-r8c5 colour "white"
-kropki-5: kropki r9c8-r9c9 colour "white"
-kropki-6: kropki r5c2-r5c3 colour "white"
-kropki-7: kropki r5c8-r6c8 colour "white"
-kropki-8: kropki r6c7-r7c7 colour "white"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r5c1-r6c1 white
+kropki-3: kropki r7c2-r7c3 white
+kropki-4: kropki r7c5-r8c5 white
+kropki-5: kropki r9c8-r9c9 white
+kropki-6: kropki r5c2-r5c3 white
+kropki-7: kropki r5c8-r6c8 white
+kropki-8: kropki r6c7-r7c7 white
 slow-thermo-1: slow-thermo r1c1-r2c2-r3c3-r4c4-r5c5-r6c6
 slow-thermo-2: slow-thermo r2c1-r3c2-r4c3-r5c4-r6c5
 slow-thermo-3: slow-thermo r1c2-r2c3-r3c4-r4c5-r5c6-r6c7

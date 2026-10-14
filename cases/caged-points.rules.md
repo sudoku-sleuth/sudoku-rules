@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/caged-points
 case: https://sudoku-sleuth.com/cases/caged-points
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b9679357e95c296923de0660f9f17744
 ---
 
 ```rules

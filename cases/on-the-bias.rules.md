@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/on-the-bias
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c2=2 r6c8=4
+exported: cb54af6d5ac5dca4c5adf7b15f0f5e37
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/o5587xf7ix
 case: https://sudoku-sleuth.com/cases/zipping-from-corner-to-corner
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dd23975efe7d5042587ceeb07bdfac91
 ---
 
 ```rules

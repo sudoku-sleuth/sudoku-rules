@@ -6,6 +6,7 @@ source: https://sudokupad.app/s3vq91fv1e
 case: https://sudoku-sleuth.com/cases/three-leaf-clover
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3c7eafb30f9b264e205e73b51054c146
 ---
 
 ```rules

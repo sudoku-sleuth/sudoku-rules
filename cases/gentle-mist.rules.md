@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/gentle-mist
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=6 r2c1=3 r3c1=7 r4c6=6 r6c3=9 r8c7=5
+exported: 15838bbf66eb0c6e2560d33b70d34ec3
 ---
 
 ```rules

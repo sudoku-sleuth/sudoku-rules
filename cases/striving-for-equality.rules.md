@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/striving-for-equality
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9a7e8a6780d20f60dc9c4d913b2f4de5
 ---
 
 ```rules
@@ -18,7 +19,7 @@ cage-4: cage r2c7-r3c7 total 9 connected true
 cage-5: cage r7c2-r7c3 total 13 connected true
 cage-6: cage r8c7-r8c8 total 12 connected true
 cage-7: cage r5c7-r6c7 total 13 connected true
-kropki r5c7-r5c8 colour "black"
+kropki r5c7-r5c8 black
 pair r2c5-r2c6 ratio 3
 ```
 

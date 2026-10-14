@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/turnabout
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=9 r1c9=1 r5c1=6 r5c9=4 r9c1=9 r9c6=1
+exported: 355e6fad8a5ac4881cb8eb0a52d7e5da
 ---
 
 ```rules

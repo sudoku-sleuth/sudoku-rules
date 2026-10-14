@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cryptic-puzzle
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c482d046ee84c3f7cbd84157f3fb6940
 ---
 
 ```rules
@@ -25,7 +26,7 @@ cage-11: cage r4c4-r4c5 total 10 connected true
 cage-12: cage r5c4-r6c4 total 10 connected true
 cage-13: cage r5c5-r6c5 total 10 connected true
 cage-14: cage r5c6-r6c6 total 10 connected true
-kropki r4c1-r5c1 colour "black"
+kropki r4c1-r5c1 black
 ```
 
 ```drawing

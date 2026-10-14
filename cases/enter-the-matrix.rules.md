@@ -6,13 +6,14 @@ source: https://sudokupad.app/40qk3trip0
 case: https://sudoku-sleuth.com/cases/enter-the-matrix
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8cefb7dbfc3ac75933f9158d31adc697
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c2-r7c2 colour "white"
-kropki-2: kropki r1c3-r1c4 colour "white"
-kropki-3: kropki r1c4-r2c4 colour "white"
+kropki-1: kropki r6c2-r7c2 white
+kropki-2: kropki r1c3-r1c4 white
+kropki-3: kropki r1c4-r2c4 white
 whispers-1: whispers r1c1-r2c1-r3c1 gap 5
 whispers-2: whispers r5c1-r6c1 gap 5
 whispers-3: whispers r8c1-r9c1 gap 5

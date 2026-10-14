@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/lots-happening
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7c645084191e14ab7f367d593775470c
 ---
 
 ```rules
 sudoku 9x9
 thermo r1c5-r2c4-r3c3-r4c4-r5c4
-kropki-1: kropki r2c5-r2c6 colour "white"
-kropki-2: kropki r6c6-r7c6 colour "white"
-kropki-3: kropki r7c6-r8c6 colour "white"
-kropki-4: kropki r5c2-r6c2 colour "white"
-kropki-5: kropki r4c7-r4c8 colour "black"
+kropki-1: kropki r2c5-r2c6 white
+kropki-2: kropki r6c6-r7c6 white
+kropki-3: kropki r7c6-r8c6 white
+kropki-4: kropki r5c2-r6c2 white
+kropki-5: kropki r4c7-r4c8 black
 pair-1: pair r1c1-r1c2 sum 10
 pair-2: pair r6c6-r6c7 sum 10
 pair-3: pair r8c6-r8c7 sum 10

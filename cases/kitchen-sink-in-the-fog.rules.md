@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Kitchen Sink in the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: de5244bac4095a92ad17b97c67748afe
 ---
 
 ```rules
@@ -144,8 +145,8 @@ unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage r7c4-r7c5-r7c6 total 9 connected true
 thermo r6c6-r5c5-r4c4
-kropki-1: kropki r3c5-r4c5 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "black"
+kropki-1: kropki r3c5-r4c5 white
+kropki-2: kropki r4c5-r4c6 black
 arrow r6c4-r5c4-r4c4 bulb ["r6c5"]
 whispers r3c5-r3c4-r3c3-r4c3-r5c3 gap 5
 palindrome r8c5-r7c5-r7c6-r6c7-r5c7-r4c7

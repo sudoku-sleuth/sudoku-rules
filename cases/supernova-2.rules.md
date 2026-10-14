@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/supernova-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=4 r3c3=9 r3c4=8 r4c6=5 r4c7=9 r4c8=4 r7c4=3 r7c5=8 r7c6=6
+exported: 84bd3d1ead78896364581fe1e6a209ea
 ---
 
 ```rules

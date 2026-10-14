@@ -6,6 +6,7 @@ source: https://sudokupad.app/yoezwo837g
 case: https://sudoku-sleuth.com/cases/a-walk-with-a-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e597cd34d12c29953cffea0aa4de2175
 ---
 
 ```rules

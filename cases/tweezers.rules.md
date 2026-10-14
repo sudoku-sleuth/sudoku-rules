@@ -6,6 +6,7 @@ source: https://sudokupad.app/6qk73k6waq
 case: https://sudoku-sleuth.com/cases/tweezers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 62f8382da5e8981140dba6c2e87e0e2f
 ---
 
 ```rules

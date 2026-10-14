@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Divinity Through the Fog
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: df0015034611e0ce659bc852255a3511
 ---
 
 ```rules

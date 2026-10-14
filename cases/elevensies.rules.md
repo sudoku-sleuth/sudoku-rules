@@ -6,6 +6,7 @@ source: https://sudokupad.app/wwi9kbckqb
 case: https://sudoku-sleuth.com/cases/elevensies
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7f4808bca862dc03271760d10c2962b9
 ---
 
 ```rules
@@ -29,15 +30,15 @@ cage-16: cage r9c4-r9c5 total 11 connected true
 cage-17: cage r5c8-r5c9 total 11 connected true
 cage-18: cage r3c6-r4c6 total 11 connected true
 cage-19: cage r1c6-r2c6 total 11 connected true
-kropki-1: kropki r4c8-r4c9 colour "black"
-kropki-2: kropki r5c4-r6c4 colour "black"
-kropki-3: kropki r6c5-r6c6 colour "black"
-kropki-4: kropki r6c9-r7c9 colour "black"
-kropki-5: kropki r9c8-r9c9 colour "black"
-kropki-6: kropki r2c6-r2c7 colour "black"
-kropki-7: kropki r2c8-r3c8 colour "black"
-kropki-8: kropki r2c3-r2c4 colour "black"
-kropki-9: kropki r2c1-r3c1 colour "black"
+kropki-1: kropki r4c8-r4c9 black
+kropki-2: kropki r5c4-r6c4 black
+kropki-3: kropki r6c5-r6c6 black
+kropki-4: kropki r6c9-r7c9 black
+kropki-5: kropki r9c8-r9c9 black
+kropki-6: kropki r2c6-r2c7 black
+kropki-7: kropki r2c8-r3c8 black
+kropki-8: kropki r2c3-r2c4 black
+kropki-9: kropki r2c1-r3c1 black
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/runes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 66b845ed58bfdcb4cfea015c1ca792dc
 ---
 
 ```rules
@@ -20,13 +21,13 @@ equality-cage-6: equality-cage r9c3-r9c4
 equality-cage-7: equality-cage r1c1-r1c2
 equality-cage-8: equality-cage r1c8-r1c9
 equality-cage-9: equality-cage r5c4-r5c5
-kropki-1: kropki r3c3-r3c4 colour "black"
-kropki-2: kropki r3c6-r3c7 colour "black"
-kropki-3: kropki r5c7-r6c7 colour "black"
-kropki-4: kropki r6c6-r7c6 colour "black"
-kropki-5: kropki r7c2-r8c2 colour "black"
-kropki-6: kropki r3c9-r4c9 colour "white"
-kropki-7: kropki r6c2-r6c3 colour "white"
+kropki-1: kropki r3c3-r3c4 black
+kropki-2: kropki r3c6-r3c7 black
+kropki-3: kropki r5c7-r6c7 black
+kropki-4: kropki r6c6-r7c6 black
+kropki-5: kropki r7c2-r8c2 black
+kropki-6: kropki r3c9-r4c9 white
+kropki-7: kropki r6c2-r6c3 white
 shifter-line-1: shifter-line r2c3-r3c3-r4c3-r5c3
 shifter-line-2: shifter-line r3c3-r2c4
 shifter-line-3: shifter-line r4c3-r3c4

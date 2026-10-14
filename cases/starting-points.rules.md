@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/starting-points
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r2c8=4 r4c9=6 r5c2=6 r5c7=5 r8c3=1 r9c1=7 r9c5=3
+exported: 4e041de66beb3193fad3ec21be0f2572
 ---
 
 ```rules

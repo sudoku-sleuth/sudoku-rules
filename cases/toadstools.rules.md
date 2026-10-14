@@ -6,6 +6,7 @@ source: https://sudokupad.app/9p0pcoszjo
 case: https://sudoku-sleuth.com/cases/toadstools
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 77d370c28aec3ee3d8c13332781bdc91
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/98oe9v0gsb
 case: https://sudoku-sleuth.com/cases/whirlpool-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 64a4883637d2bbb43d1e85653736d8ff
 ---
 
 ```rules

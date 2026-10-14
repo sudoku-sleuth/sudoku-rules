@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/blue-flame
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=5 r1c9=8 r5c6=6
+exported: e0ca80646d9f67ed4711b42d93fc79b0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c6-r6c7 colour "white"
-kropki-2: kropki r5c1-r6c1 colour "white"
-kropki-3: kropki r5c1-r5c2 colour "black"
-kropki-4: kropki r5c8-r5c9 colour "black"
-kropki-5: kropki r7c8-r8c8 colour "black"
-kropki-6: kropki r1c7-r2c7 colour "black"
-kropki-7: kropki r1c3-r2c3 colour "black"
-kropki-8: kropki r4c3-r5c3 colour "black"
+kropki-1: kropki r6c6-r6c7 white
+kropki-2: kropki r5c1-r6c1 white
+kropki-3: kropki r5c1-r5c2 black
+kropki-4: kropki r5c8-r5c9 black
+kropki-5: kropki r7c8-r8c8 black
+kropki-6: kropki r1c7-r2c7 black
+kropki-7: kropki r1c3-r2c3 black
+kropki-8: kropki r4c3-r5c3 black
 region-sum-1: region-sum r1c3-r2c3-r3c4 segments [["r1c3","r2c3"],["r3c4"]]
 region-sum-2: region-sum r3c6-r2c7-r1c7 segments [["r3c6"],["r2c7","r1c7"]]
 region-sum-3: region-sum r3c1-r3c2-r4c3-r5c3 segments [["r3c1","r3c2"],["r4c3","r5c3"]]

@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 39
+    - r5c4
 format: open-rules
 title: Trim the Tree
 setter: Santa (FullDeck and Missing a Few Cards)
@@ -10,6 +10,7 @@ case: https://sudoku-sleuth.com/cases/trim-the-tree
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d95f0875ef28b5e6a417692eae6fcc35
 ---
 
 ```rules

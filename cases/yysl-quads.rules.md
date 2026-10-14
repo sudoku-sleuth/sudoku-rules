@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 22eaeac27f1e24cffe309f41bda636b0
 ---
 
 ```rules

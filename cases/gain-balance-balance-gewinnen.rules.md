@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/gain-balance-balance-gewinnen
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5dc61f63593cb4dbdff85dd389dfcec6
 ---
 
 ```rules

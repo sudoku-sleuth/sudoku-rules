@@ -6,6 +6,7 @@ source: https://sudokupad.app/wezv577zv6
 case: https://sudoku-sleuth.com/cases/oil-n-water-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 84eaacc84aa8eefca6e5eea6118dc880
 ---
 
 ```rules

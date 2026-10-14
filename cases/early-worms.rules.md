@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/early-worms
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=8 r1c5=4 r1c9=2 r5c1=2 r5c9=8 r9c1=9 r9c5=3 r9c9=7
+exported: 1cb95bcd9ce8aa3eee7121d0e17bb04d
 ---
 
 ```rules

@@ -1,14 +1,14 @@
 ---
 fog:
   initiallyLit:
-    - 1
-    - 10
-    - 11
-    - 31
-    - 39
-    - 40
-    - 41
-    - 49
+    - r1c2
+    - r2c2
+    - r2c3
+    - r4c5
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c5
 format: open-rules
 title: Newgate Fog
 setter: FullDeck and Missing a Few Cards
@@ -111,6 +111,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 8c1dec4c0c9a9b40d7f9d6c6152d95b1
 ---
 
 ```rules
@@ -148,27 +149,27 @@ cage-4: cage r7c2-r8c1-r8c2-r8c3-r9c2 total 35 connected true
 cage-5: cage r1c8-r2c7-r2c8-r2c9-r3c8 total 35 connected true
 cage-6: cage r1c2-r2c2-r2c3 total 7 connected true
 cage-7: cage r8c7-r8c8-r9c8 total 16 connected true
-kropki-1: kropki r5c6-r5c7 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "white"
-kropki-3: kropki r2c8-r3c8 colour "white"
-kropki-4: kropki r2c8-r2c9 colour "white"
-kropki-5: kropki r7c2-r8c2 colour "white"
-kropki-6: kropki r8c1-r8c2 colour "white"
-kropki-7: kropki r2c1-r2c2 colour "white"
-kropki-8: kropki r2c2-r2c3 colour "white"
-kropki-9: kropki r8c8-r9c8 colour "white"
-kropki-10: kropki r9c1-r9c2 colour "white"
-kropki-11: kropki r3c6-r3c7 colour "white"
-kropki-12: kropki r3c7-r4c7 colour "white"
-kropki-13: kropki r4c7-r4c8 colour "white"
-kropki-14: kropki r4c4-r4c5 colour "black"
-kropki-15: kropki r6c5-r6c6 colour "black"
-kropki-16: kropki r5c3-r5c4 colour "black"
-kropki-17: kropki r4c3-r5c3 colour "black"
-kropki-18: kropki r2c7-r3c7 colour "black"
-kropki-19: kropki r7c3-r8c3 colour "black"
-kropki-20: kropki r2c6-r2c7 colour "black"
-kropki-21: kropki r8c3-r8c4 colour "black"
+kropki-1: kropki r5c6-r5c7 white
+kropki-2: kropki r5c7-r6c7 white
+kropki-3: kropki r2c8-r3c8 white
+kropki-4: kropki r2c8-r2c9 white
+kropki-5: kropki r7c2-r8c2 white
+kropki-6: kropki r8c1-r8c2 white
+kropki-7: kropki r2c1-r2c2 white
+kropki-8: kropki r2c2-r2c3 white
+kropki-9: kropki r8c8-r9c8 white
+kropki-10: kropki r9c1-r9c2 white
+kropki-11: kropki r3c6-r3c7 white
+kropki-12: kropki r3c7-r4c7 white
+kropki-13: kropki r4c7-r4c8 white
+kropki-14: kropki r4c4-r4c5 black
+kropki-15: kropki r6c5-r6c6 black
+kropki-16: kropki r5c3-r5c4 black
+kropki-17: kropki r4c3-r5c3 black
+kropki-18: kropki r2c7-r3c7 black
+kropki-19: kropki r7c3-r8c3 black
+kropki-20: kropki r2c6-r2c7 black
+kropki-21: kropki r8c3-r8c4 black
 ```
 
 Normal sudoku rules apply: every row, column, and box must contain a complete set of the digits 1-9.

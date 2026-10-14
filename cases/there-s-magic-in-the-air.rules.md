@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/there-s-magic-in-the-air
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 28c6084ea38aea63cbbaa43339e70298
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c1-r6c1 colour "white"
-kropki-2: kropki r7c6-r8c6 colour "white"
-kropki-3: kropki r6c1-r6c2 colour "black"
-kropki-4: kropki r9c1-r9c2 colour "black"
+kropki-1: kropki r5c1-r6c1 white
+kropki-2: kropki r7c6-r8c6 white
+kropki-3: kropki r6c1-r6c2 black
+kropki-4: kropki r9c1-r9c2 black
 pair r3c3-r4c3 sum 10
 ```
 

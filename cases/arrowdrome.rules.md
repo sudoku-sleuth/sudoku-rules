@@ -6,22 +6,23 @@ source: https://sudokupad.app/cycvasl7o4
 case: https://sudoku-sleuth.com/cases/arrowdrome
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e925e682336dd80f5a81c8c306fbc4e8
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r1c2-r1c3 colour "white"
-kropki-2: kropki r1c3-r1c4 colour "white"
-kropki-3: kropki r1c4-r1c5 colour "white"
-kropki-4: kropki r2c8-r2c9 colour "white"
-kropki-5: kropki r3c9-r4c9 colour "white"
-kropki-6: kropki r3c7-r4c7 colour "white"
-kropki-7: kropki r5c5-r5c6 colour "white"
-kropki-8: kropki r4c8-r5c8 colour "white"
-kropki-9: kropki r8c7-r8c8 colour "white"
-kropki-10: kropki r7c8-r8c8 colour "white"
-kropki-11: kropki r8c9-r9c9 colour "white"
+kropki-1: kropki r1c2-r1c3 white
+kropki-2: kropki r1c3-r1c4 white
+kropki-3: kropki r1c4-r1c5 white
+kropki-4: kropki r2c8-r2c9 white
+kropki-5: kropki r3c9-r4c9 white
+kropki-6: kropki r3c7-r4c7 white
+kropki-7: kropki r5c5-r5c6 white
+kropki-8: kropki r4c8-r5c8 white
+kropki-9: kropki r8c7-r8c8 white
+kropki-10: kropki r7c8-r8c8 white
+kropki-11: kropki r8c9-r9c9 white
 arrow-1: arrow r4c2-r3c3-r2c4 bulb ["r4c1"]
 arrow-2: arrow r3c5-r4c4 bulb ["r4c6"]
 arrow-3: arrow r8c4-r7c3-r6c2 bulb ["r8c5"]

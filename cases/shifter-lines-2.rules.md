@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/shifter-lines-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a80a59b8ce0b2b56ffd001f548999182
 ---
 
 ```rules
@@ -16,10 +17,10 @@ cage-3: cage r2c7-r3c7 total 15 connected true
 cage-4: cage r1c1-r1c2 total 9 connected true
 cage-5: cage r1c8-r2c8 total 9 connected true
 cage-6: cage r1c9-r2c9 total 9 connected true
-kropki-1: kropki r9c1-r9c2 colour "black"
-kropki-2: kropki r1c8-r1c9 colour "black"
-kropki-3: kropki r7c5-r7c6 colour "white"
-kropki-4: kropki r3c9-r4c9 colour "white"
+kropki-1: kropki r9c1-r9c2 black
+kropki-2: kropki r1c8-r1c9 black
+kropki-3: kropki r7c5-r7c6 white
+kropki-4: kropki r3c9-r4c9 white
 shifter-line-1: shifter-line r7c3-r8c3-r8c4-r7c4-r6c3-r6c2-r7c1-r8c1
 shifter-line-2: shifter-line r7c4-r6c4-r5c4-r5c3-r4c3-r3c3
 shifter-line-3: shifter-line r9c2-r9c3

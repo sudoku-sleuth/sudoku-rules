@@ -6,6 +6,7 @@ source: https://sudokupad.app/j1koonuhkx
 case: https://sudoku-sleuth.com/cases/8-behind-the-ball
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1fd118ac746938ec71f2023e7355071a
 ---
 
 ```rules
@@ -18,15 +19,15 @@ cage-5: cage r8c1-r9c1 total 11 connected true
 cage-6: cage r7c5-r8c5 total 13 connected true
 cage-7: cage r3c2-r3c3 total 10 connected true
 cage-8: cage r1c3-r1c4 total 9 connected true
-kropki-1: kropki r1c4-r1c5 colour "black"
-kropki-2: kropki r4c8-r4c9 colour "black"
-kropki-3: kropki r9c4-r9c5 colour "black"
-kropki-4: kropki r2c8-r2c9 colour "black"
-kropki-5: kropki r3c1-r3c2 colour "black"
-kropki-6: kropki r5c3-r6c3 colour "black"
-kropki-7: kropki r7c7-r8c7 colour "black"
-kropki-8: kropki r5c4-r6c4 colour "black"
-kropki-9: kropki r9c7-r9c8 colour "black"
+kropki-1: kropki r1c4-r1c5 black
+kropki-2: kropki r4c8-r4c9 black
+kropki-3: kropki r9c4-r9c5 black
+kropki-4: kropki r2c8-r2c9 black
+kropki-5: kropki r3c1-r3c2 black
+kropki-6: kropki r5c3-r6c3 black
+kropki-7: kropki r7c7-r8c7 black
+kropki-8: kropki r5c4-r6c4 black
+kropki-9: kropki r9c7-r9c8 black
 arrow-1: arrow r1c8-r1c9-r2c9 bulb ["r1c7"]
 arrow-2: arrow r2c1-r1c1-r1c2 bulb ["r2c2"]
 arrow-3: arrow r5c5-r5c4-r5c3 bulb ["r4c6"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/encrypted-message
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 881e03503131b6e41970f531b1c4314c
 ---
 
 ```rules
@@ -25,10 +26,10 @@ cage-11: cage r6c5-r6c6 total 15 connected true
 cage-12: cage r1c4-r1c5 total 5 connected true
 cage-13: cage r3c5-r3c6 total 6 connected true
 cage-14: cage r4c8-r4c9 total 5 connected true
-kropki-1: kropki r4c5-r4c6 colour "white"
-kropki-2: kropki r4c6-r4c7 colour "white"
-kropki-3: kropki r8c3-r8c4 colour "white"
-kropki-4: kropki r6c8-r7c8 colour "white"
+kropki-1: kropki r4c5-r4c6 white
+kropki-2: kropki r4c6-r4c7 white
+kropki-3: kropki r8c3-r8c4 white
+kropki-4: kropki r6c8-r7c8 white
 ```
 
 ```drawing

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/three-little-burgers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 95afcffe4822be7f775bdff53370a85f
 ---
 
 ```rules

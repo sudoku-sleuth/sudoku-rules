@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 63
-    - 64
-    - 65
+    - r8c1
+    - r8c2
+    - r8c3
 format: open-rules
 title: Foggy Index Strips
 setter: Blobz
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 4c7b1fe64f93d6b087bd4ebc3bb69467
 ---
 
 ```rules

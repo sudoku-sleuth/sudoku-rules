@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/jagged-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c3=7
+exported: 6cc6a3bb7472c8de69c76cee98bd4cbf
 ---
 
 ```rules

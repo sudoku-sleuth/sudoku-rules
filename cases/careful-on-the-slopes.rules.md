@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/careful-on-the-slopes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2da9109dcb0d7b5111b96faa4cfa396b
 ---
 
 ```rules

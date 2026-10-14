@@ -6,6 +6,7 @@ source: https://sudokupad.app/nuc8a78ayh
 case: https://sudoku-sleuth.com/cases/no-friends-on-a-hot-day
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7420d7455d573707addaa1d10bd5b6dc
 ---
 
 ```rules

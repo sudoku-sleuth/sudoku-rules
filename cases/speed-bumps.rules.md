@@ -6,6 +6,7 @@ source: https://sudokupad.app/f6fvrnvkar
 case: https://sudoku-sleuth.com/cases/speed-bumps
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4edad4726f43b17bd3aa177de61e33a4
 ---
 
 ```rules

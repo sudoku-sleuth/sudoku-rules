@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/one-foggy-christmas-eve
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 015b0dce7eb68658d42fc5bb951ab67f
 ---
 
 ```rules
@@ -25,7 +26,7 @@ thermo-5: thermo r5c4-r4c4-r3c3-r2c2-r1c1
 thermo-6: thermo r5c4-r4c4-r3c3-r2c2-r1c2
 thermo-7: thermo r5c4-r4c4-r3c3-r3c2-r2c1
 thermo-8: thermo r5c6-r4c6-r3c7-r2c6-r2c5
-kropki r2c3-r3c3 colour "white"
+kropki r2c3-r3c3 white
 whispers-1: whispers r4c2-r4c3-r5c4-r5c3 gap 5
 whispers-2: whispers r5c3-r4c2 gap 5
 whispers-3: whispers r5c6-r4c7-r4c8 gap 5

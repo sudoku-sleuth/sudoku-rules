@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/grist-for-the-gossip-mill
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 656a68119cac66492bf0875b2727ba2c
 ---
 
 ```rules

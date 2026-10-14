@@ -7,24 +7,25 @@ case: https://sudoku-sleuth.com/cases/good-things-come-in-threes
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=5
+exported: 677f9092ae0b272adfad481514cd6aad
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c3-r1c4 colour "white"
-kropki-2: kropki r9c7-r9c8 colour "white"
-kropki-3: kropki r8c7-r8c8 colour "white"
-kropki-4: kropki r7c7-r7c8 colour "white"
-kropki-5: kropki r6c3-r7c3 colour "white"
-kropki-6: kropki r6c1-r6c2 colour "white"
-kropki-7: kropki r3c8-r4c8 colour "white"
-kropki-8: kropki r1c9-r2c9 colour "white"
-kropki-9: kropki r3c1-r4c1 colour "white"
-kropki-10: kropki r3c2-r4c2 colour "white"
-kropki-11: kropki r2c3-r3c3 colour "white"
-kropki-12: kropki r1c8-r2c8 colour "white"
-kropki-13: kropki r6c8-r7c8 colour "white"
-kropki-14: kropki r8c5-r9c5 colour "white"
+kropki-1: kropki r1c3-r1c4 white
+kropki-2: kropki r9c7-r9c8 white
+kropki-3: kropki r8c7-r8c8 white
+kropki-4: kropki r7c7-r7c8 white
+kropki-5: kropki r6c3-r7c3 white
+kropki-6: kropki r6c1-r6c2 white
+kropki-7: kropki r3c8-r4c8 white
+kropki-8: kropki r1c9-r2c9 white
+kropki-9: kropki r3c1-r4c1 white
+kropki-10: kropki r3c2-r4c2 white
+kropki-11: kropki r2c3-r3c3 white
+kropki-12: kropki r1c8-r2c8 white
+kropki-13: kropki r6c8-r7c8 white
+kropki-14: kropki r8c5-r9c5 white
 arrow-1: arrow r2c4-r3c3-r4c3 bulb ["r1c5"]
 arrow-2: arrow r2c3-r3c2-r4c2 bulb ["r1c4"]
 arrow-3: arrow r2c2-r3c1-r4c1 bulb ["r1c3"]

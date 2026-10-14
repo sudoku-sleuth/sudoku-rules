@@ -6,6 +6,7 @@ source: https://sudokupad.app/exm42d7xx0
 case: https://sudoku-sleuth.com/cases/don-t-stand-so-close-to-me
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 17a247da14532a96c19b375acf40d994
 ---
 
 ```rules

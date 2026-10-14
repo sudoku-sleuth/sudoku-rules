@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/stickman-event-ziplining
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0d954f95c22214f3e2fe2a214462b5b8
 ---
 
 ```rules

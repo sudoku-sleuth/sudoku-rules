@@ -6,6 +6,7 @@ source: https://sudokupad.app/8h3ishg1p1
 case: https://sudoku-sleuth.com/cases/thermotab
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6632e20c3099bccbac1eeabd67c69e62
 ---
 
 ```rules

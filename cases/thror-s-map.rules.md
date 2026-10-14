@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/thror-s-map
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a9f7fc8efdcf46e44ed7eed8aa4bcf31
 ---
 
 ```rules

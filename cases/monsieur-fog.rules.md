@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Monsieur Fog
 setter: Meggen033
@@ -17,21 +17,22 @@ source: https://sudokupad.app/i0m0yvit6n
 case: https://sudoku-sleuth.com/cases/monsieur-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: da169829103422812d79cdfdfcfb6609
 ---
 
 ```rules
 sudoku 9x9
 thermo-1: thermo r4c5-r4c6-r5c6-r6c6-r6c5
 thermo-2: thermo r4c8-r5c8-r6c8
-kropki-1: kropki r7c5-r8c5 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "white"
-kropki-3: kropki r7c8-r7c9 colour "white"
-kropki-4: kropki r3c8-r3c9 colour "white"
-kropki-5: kropki r3c5-r3c6 colour "black"
-kropki-6: kropki r7c5-r7c6 colour "black"
-kropki-7: kropki r7c4-r7c5 colour "black"
-kropki-8: kropki r3c4-r3c5 colour "black"
-kropki-9: kropki r5c8-r5c9 colour "black"
+kropki-1: kropki r7c5-r8c5 white
+kropki-2: kropki r2c5-r3c5 white
+kropki-3: kropki r7c8-r7c9 white
+kropki-4: kropki r3c8-r3c9 white
+kropki-5: kropki r3c5-r3c6 black
+kropki-6: kropki r7c5-r7c6 black
+kropki-7: kropki r7c4-r7c5 black
+kropki-8: kropki r3c4-r3c5 black
+kropki-9: kropki r5c8-r5c9 black
 whispers-1: whispers r4c4-r5c4-r6c4-r5c5 gap 5 loop true
 whispers-2: whispers r3c6-r3c7-r4c7-r5c7-r6c7-r7c7-r7c6 gap 5
 whispers-3: whispers r7c9-r8c9 gap 5

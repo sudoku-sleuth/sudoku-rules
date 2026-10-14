@@ -10,6 +10,7 @@ drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
 givens: ..4....2....1..8.........4............6....7....97.........7......6.....6...3....
+exported: 07139d481e1f30abc813f740014c272e
 ---
 
 ```rules

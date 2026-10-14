@@ -6,6 +6,7 @@ source: https://sudokupad.app/p5m25v9dzm
 case: https://sudoku-sleuth.com/cases/convection-oven
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8d513c458f83343ea969a30837348c55
 ---
 
 ```rules

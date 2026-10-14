@@ -7,27 +7,28 @@ case: https://sudoku-sleuth.com/cases/coastal-kropki
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2eed903deefd2ba5a67a9dd98507f0cd
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c6-r1c7 colour "black"
-kropki-2: kropki r5c5-r5c6 colour "black"
-kropki-3: kropki r7c3-r7c4 colour "black"
-kropki-4: kropki r7c7-r7c8 colour "black"
-kropki-5: kropki r6c2-r6c3 colour "black"
-kropki-6: kropki r3c2-r3c3 colour "black"
-kropki-7: kropki r2c1-r2c2 colour "black"
-kropki-8: kropki r5c7-r5c8 colour "black"
-kropki-9: kropki r8c8-r9c8 colour "black"
-kropki-10: kropki r3c5-r4c5 colour "black"
-kropki-11: kropki r7c1-r7c2 colour "white"
-kropki-12: kropki r6c9-r7c9 colour "white"
-kropki-13: kropki r3c8-r3c9 colour "white"
-kropki-14: kropki r9c4-r9c5 colour "white"
-kropki-15: kropki r8c1-r9c1 colour "white"
-kropki-16: kropki r1c3-r1c4 colour "white"
-kropki-17: kropki r1c8-r2c8 colour "white"
+kropki-1: kropki r1c6-r1c7 black
+kropki-2: kropki r5c5-r5c6 black
+kropki-3: kropki r7c3-r7c4 black
+kropki-4: kropki r7c7-r7c8 black
+kropki-5: kropki r6c2-r6c3 black
+kropki-6: kropki r3c2-r3c3 black
+kropki-7: kropki r2c1-r2c2 black
+kropki-8: kropki r5c7-r5c8 black
+kropki-9: kropki r8c8-r9c8 black
+kropki-10: kropki r3c5-r4c5 black
+kropki-11: kropki r7c1-r7c2 white
+kropki-12: kropki r6c9-r7c9 white
+kropki-13: kropki r3c8-r3c9 white
+kropki-14: kropki r9c4-r9c5 white
+kropki-15: kropki r8c1-r9c1 white
+kropki-16: kropki r1c3-r1c4 white
+kropki-17: kropki r1c8-r2c8 white
 ```
 
 ```drawing

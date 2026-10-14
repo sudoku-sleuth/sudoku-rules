@@ -6,6 +6,7 @@ source: https://sudokupad.app/7ekjm91cm5
 case: https://sudoku-sleuth.com/cases/elephant-in-the-room
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c301d4253d84c000166cb928322147bd
 ---
 
 ```rules

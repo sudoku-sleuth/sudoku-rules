@@ -6,6 +6,7 @@ source: https://tinyurl.com/yzrukz6s
 case: https://sudoku-sleuth.com/cases/typique-de-la-region
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cfed6caddbec9baebff011f79778ab30
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/run-it-up-the-flagpole
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d3a78f36d2578c3783d2a0aa3b8a9570
 ---
 
 ```rules

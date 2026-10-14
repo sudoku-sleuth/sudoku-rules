@@ -6,6 +6,7 @@ source: https://sudokupad.app/7iuzjfv1qq
 case: https://sudoku-sleuth.com/cases/happy-birthday-timotab
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6242c3cfa1b1fd9926b5d6c63775f3a2
 ---
 
 ```rules

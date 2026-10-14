@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/primrose-ii
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=6 r2c1=7 r8c9=8 r9c2=9
+exported: 87ab458eac22b3be2a9ea77e9a1f22e0
 ---
 
 ```rules
 sudoku 9x9
-kropki r1c2-r2c2 colour "white"
+kropki r1c2-r2c2 white
 arrow-1: arrow r9c9-r9c8-r8c8 bulb ["r8c9"]
 arrow-2: arrow r9c1-r8c1-r8c2 bulb ["r9c2"]
 arrow-3: arrow r1c1-r1c2-r2c2 bulb ["r2c1"]

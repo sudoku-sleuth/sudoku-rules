@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/knight-in-the-hot-seat
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r2c8=5 r5c5=9 r7c9=4 r8c2=6 r9c7=7
+exported: 4c8f846c62c459c811d85bc532eefb2d
 ---
 
 ```rules

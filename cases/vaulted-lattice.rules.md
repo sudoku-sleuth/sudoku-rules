@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vaulted-lattice
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=1 r5c5=2 r9c3=3
+exported: a166ca4d6f43b233315bec4556b04bd9
 ---
 
 ```rules

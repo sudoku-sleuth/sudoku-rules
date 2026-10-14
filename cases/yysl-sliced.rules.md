@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-sliced
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3b25371382607788db2556dc203e6f94
 ---
 
 ```rules

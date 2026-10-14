@@ -6,12 +6,13 @@ source: ""
 case: https://sudoku-sleuth.com/cases/unknown-origins-11
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 439347f6c7882a71db2ef3eec5342108
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c3-r4c4 colour "black"
-kropki-2: kropki r5c3-r5c4 colour "black"
+kropki-1: kropki r4c3-r4c4 black
+kropki-2: kropki r5c3-r5c4 black
 arrow-1: arrow r3c2-r2c2-r2c1-r1c1-r1c2 bulb ["r4c3","r5c3"]
 arrow-2: arrow r3c3-r2c3-r1c3-r1c4-r2c4 bulb ["r4c3","r5c3"]
 arrow-3: arrow r3c4-r2c5-r1c5-r1c6-r1c7 bulb ["r4c3","r5c3"]

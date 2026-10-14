@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/first-one-out-the-door
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c6=6 r8c3=9
+exported: b706f3cde3e850ebb1518e61f1a4192b
 ---
 
 ```rules

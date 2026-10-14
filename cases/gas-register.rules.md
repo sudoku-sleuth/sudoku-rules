@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/gas-register
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=2 r1c8=3 r5c5=3 r6c9=1 r8c1=6 r9c2=8 r9c8=2
+exported: aaeb9e26451eda5fd5ab6d1a5ca42c98
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/swaho00yx8
 case: https://sudoku-sleuth.com/cases/high-heat-from-the-outset
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 298394c1828691df9e28dfe7f7b84281
 ---
 
 ```rules
@@ -23,8 +24,8 @@ thermo-2: thermo r2c9-r1c9-r1c8-r2c8-r3c8-r4c8
 thermo-3: thermo r6c2-r7c2-r8c2-r9c2
 thermo-4: thermo r6c5-r7c5-r8c5-r9c5
 thermo-5: thermo r6c8-r7c8-r8c8-r9c8
-kropki-1: kropki r2c1-r3c1 colour "black"
-kropki-2: kropki r8c6-r8c7 colour "black"
+kropki-1: kropki r2c1-r3c1 black
+kropki-2: kropki r8c6-r8c7 black
 quadruple r5c6-r5c7-r6c6-r6c7 digits [8]
 ```
 

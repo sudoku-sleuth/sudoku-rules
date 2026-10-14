@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 37
-    - 43
+    - r5c2
+    - r5c8
 format: open-rules
 title: Dominoes in the Dark
 setter: FullDeck and Missing a Few Cards
@@ -105,6 +105,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1857d812a7515c75b8d28f31ca6fef4e
 ---
 
 ```rules
@@ -155,10 +156,10 @@ cage-17: cage r7c1-r7c2 total 9 connected true
 cage-18: cage r8c9-r9c9 total 11 connected true
 cage-19: cage r4c3-r4c4 total 12 connected true
 cage-20: cage r3c1-r4c1 total 9 connected true
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r4c2-r5c2 colour "white"
-kropki-3: kropki r5c3-r6c3 colour "white"
-kropki-4: kropki r4c6-r5c6 colour "white"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r4c2-r5c2 white
+kropki-3: kropki r5c3-r6c3 white
+kropki-4: kropki r4c6-r5c6 white
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

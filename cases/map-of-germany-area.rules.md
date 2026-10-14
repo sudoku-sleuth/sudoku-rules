@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/map-of-germany-area
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9f3706d5096419a2e8f64ced11a590d2
 ---
 
 ```rules

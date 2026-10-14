@@ -6,12 +6,13 @@ source: ""
 case: https://sudoku-sleuth.com/cases/kermit-the-frog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 13b0b58c34d1630c22ec080af85714e7
 ---
 
 ```rules
 sudoku 9x9
 cage r4c2-r4c3-r4c4 total 10 connected true
-kropki r2c4-r3c4 colour "white"
+kropki r2c4-r3c4 white
 whispers-1: whispers r1c6-r2c6-r3c7-r3c8-r4c9-r5c9-r6c8-r7c7 gap 5
 whispers-2: whispers r4c8-r4c7-r4c6-r3c5-r4c4-r4c3-r4c2 gap 5
 whispers-3: whispers r1c5-r1c4-r2c4-r3c3-r3c2-r4c1-r5c1-r6c2-r7c3-r8c4-r8c5 gap 5

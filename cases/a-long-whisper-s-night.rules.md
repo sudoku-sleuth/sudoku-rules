@@ -6,6 +6,7 @@ source: https://sudokupad.app/zsma18vvzp
 case: https://sudoku-sleuth.com/cases/a-long-whisper-s-night
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 80449cc2089c6def25f9574970bb52b6
 ---
 
 ```rules

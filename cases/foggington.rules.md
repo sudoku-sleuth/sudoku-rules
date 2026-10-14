@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Foggington
 setter: Meggen033
@@ -18,26 +18,27 @@ case: https://sudoku-sleuth.com/cases/foggington
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=4
+exported: 92ebe7ef9c084d181a337f47c977ea1e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c4-r4c4 colour "white"
-kropki-2: kropki r3c6-r4c6 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "white"
-kropki-4: kropki r7c3-r7c4 colour "white"
-kropki-5: kropki r6c7-r7c7 colour "white"
-kropki-6: kropki r1c4-r2c4 colour "white"
-kropki-7: kropki r7c7-r8c7 colour "white"
-kropki-8: kropki r4c3-r5c3 colour "white"
-kropki-9: kropki r3c8-r4c8 colour "white"
-kropki-10: kropki r8c3-r8c4 colour "white"
-kropki-11: kropki r5c8-r5c9 colour "white"
-kropki-12: kropki r5c4-r5c5 colour "black"
-kropki-13: kropki r5c5-r5c6 colour "black"
-kropki-14: kropki r3c5-r3c6 colour "black"
-kropki-15: kropki r6c3-r7c3 colour "black"
-kropki-16: kropki r7c6-r7c7 colour "black"
+kropki-1: kropki r3c4-r4c4 white
+kropki-2: kropki r3c6-r4c6 white
+kropki-3: kropki r7c5-r8c5 white
+kropki-4: kropki r7c3-r7c4 white
+kropki-5: kropki r6c7-r7c7 white
+kropki-6: kropki r1c4-r2c4 white
+kropki-7: kropki r7c7-r8c7 white
+kropki-8: kropki r4c3-r5c3 white
+kropki-9: kropki r3c8-r4c8 white
+kropki-10: kropki r8c3-r8c4 white
+kropki-11: kropki r5c8-r5c9 white
+kropki-12: kropki r5c4-r5c5 black
+kropki-13: kropki r5c5-r5c6 black
+kropki-14: kropki r3c5-r3c6 black
+kropki-15: kropki r6c3-r7c3 black
+kropki-16: kropki r7c6-r7c7 black
 pair-1: pair r5c4-r6c4 sum 10
 pair-2: pair r5c6-r6c6 sum 10
 pair-3: pair r3c4-r3c5 sum 10

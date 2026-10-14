@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/three-is-the-loneliest-number
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=3 r2c7=3
+exported: 02ab63b58c0fa0c2b54fd9a8d49cdcc5
 ---
 
 ```rules

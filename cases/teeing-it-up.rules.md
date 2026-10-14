@@ -6,6 +6,7 @@ source: https://sudokupad.app/6z1kgskqrn
 case: https://sudoku-sleuth.com/cases/teeing-it-up
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 77b35ff62babd700fc29ae2e7182f9ea
 ---
 
 ```rules
@@ -20,16 +21,16 @@ cage-7: cage r5c9-r6c8-r6c9-r7c9 total 14 connected true
 cage-8: cage r3c8-r4c8-r4c9-r5c8 total 25 connected true
 cage-9: cage r1c9-r2c8-r2c9-r3c9 total 18 connected true
 cage-10: cage r4c2-r5c2-r5c3-r6c2 total 21 connected true
-kropki-1: kropki r4c3-r4c4 colour "black"
-kropki-2: kropki r6c5-r6c6 colour "black"
-kropki-3: kropki r7c7-r8c7 colour "black"
-kropki-4: kropki r2c2-r3c2 colour "black"
-kropki-5: kropki r5c4-r5c5 colour "black"
-kropki-6: kropki r7c8-r7c9 colour "black"
-kropki-7: kropki r5c8-r5c9 colour "black"
-kropki-8: kropki r4c2-r4c3 colour "black"
-kropki-9: kropki r8c7-r9c7 colour "black"
-kropki-10: kropki r8c3-r9c3 colour "black"
+kropki-1: kropki r4c3-r4c4 black
+kropki-2: kropki r6c5-r6c6 black
+kropki-3: kropki r7c7-r8c7 black
+kropki-4: kropki r2c2-r3c2 black
+kropki-5: kropki r5c4-r5c5 black
+kropki-6: kropki r7c8-r7c9 black
+kropki-7: kropki r5c8-r5c9 black
+kropki-8: kropki r4c2-r4c3 black
+kropki-9: kropki r8c7-r9c7 black
+kropki-10: kropki r8c3-r9c3 black
 ```
 
 - Normal sudoku rules apply: Every row, column, and box must contain a complete set of the digits 1-9.

@@ -6,14 +6,15 @@ source: https://tinyurl.com/poweroftheacknights
 case: https://sudoku-sleuth.com/cases/power-of-the-a-c-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5ba540c1d0f4c7b0398cc998a5b7f773
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r4c1-r5c1 colour "white"
-kropki-2: kropki r4c2-r5c2 colour "black"
-kropki-3: kropki r7c6-r7c7 colour "black"
+kropki-1: kropki r4c1-r5c1 white
+kropki-2: kropki r4c2-r5c2 black
+kropki-3: kropki r7c6-r7c7 black
 whispers-1: whispers r8c1-r8c2 gap 2
 whispers-2: whispers r8c4-r7c4-r6c4 gap 2
 whispers-3: whispers r7c6-r7c7-r6c7-r5c7 gap 2

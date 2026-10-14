@@ -6,6 +6,7 @@ source: https://sudokupad.app/y75wo2rtet
 case: https://sudoku-sleuth.com/cases/variations-on-a-theme
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0c159f1083505fc2f802fc0b79cf5502
 ---
 
 ```rules
@@ -30,10 +31,10 @@ cage-17: cage r6c3-r6c4-r7c4 total 11 connected true
 cage-18: cage r6c6-r6c7-r7c6 total 9 connected true
 cage-19: cage r3c4-r4c3-r4c4 total 20 connected true
 cage-20: cage r3c6-r4c6-r4c7 total 11 connected true
-kropki-1: kropki r9c2-r9c3 colour "black"
-kropki-2: kropki r7c8-r8c8 colour "black"
-kropki-3: kropki r4c5-r5c5 colour "black"
-kropki-4: kropki r2c1-r3c1 colour "black"
+kropki-1: kropki r9c2-r9c3 black
+kropki-2: kropki r7c8-r8c8 black
+kropki-3: kropki r4c5-r5c5 black
+kropki-4: kropki r2c1-r3c1 black
 ```
 
 **Sudoku, Cages, Ratio Dots**

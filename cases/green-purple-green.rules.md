@@ -6,14 +6,15 @@ source: https://sudokupad.app/3w5zw7etb4
 case: https://sudoku-sleuth.com/cases/green-purple-green
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f510c8e73973d0e2f87af0fe9bc8d121
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c1-r9c1 colour "black"
-kropki-2: kropki r7c3-r8c3 colour "black"
-kropki-3: kropki r2c7-r3c7 colour "white"
-kropki-4: kropki r1c9-r2c9 colour "white"
+kropki-1: kropki r8c1-r9c1 black
+kropki-2: kropki r7c3-r8c3 black
+kropki-3: kropki r2c7-r3c7 white
+kropki-4: kropki r1c9-r2c9 white
 whispers-1: whispers r7c1-r7c2-r7c3 gap 5
 whispers-2: whispers r9c1-r9c2-r9c3 gap 5
 whispers-3: whispers r1c1-r2c1-r3c1 gap 5

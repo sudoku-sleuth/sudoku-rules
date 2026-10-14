@@ -6,6 +6,7 @@ source: https://sudokupad.app/wzlt1fc9g8
 case: https://sudoku-sleuth.com/cases/gentle-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 70048a5ad03f5433bd1bf07477665cae
 ---
 
 ```rules

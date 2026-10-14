@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/all-killers-wise-and-wonderful
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=2 r6c3=3 r8c6=3
+exported: 561865c58d7c518fdf9cf94f024980b5
 ---
 
 ```rules

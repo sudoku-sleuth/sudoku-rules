@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vox-moduli
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c5=9
+exported: 45bf14ccf882651ee845ebba4f79bda3
 ---
 
 ```rules

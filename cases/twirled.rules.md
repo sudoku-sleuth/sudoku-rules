@@ -6,6 +6,7 @@ source: https://sudokupad.app/j0zsvkkkf3
 case: https://sudoku-sleuth.com/cases/twirled
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8e3e862c758b4a04094cee2c7e1e2f20
 ---
 
 ```rules

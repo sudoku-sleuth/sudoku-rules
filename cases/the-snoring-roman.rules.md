@@ -6,6 +6,7 @@ source: https://tinyurl.com/thesnoringromansudoku
 case: https://sudoku-sleuth.com/cases/the-snoring-roman
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8d5cf362cba9a1ab1b04c4edab6ce303
 ---
 
 ```rules

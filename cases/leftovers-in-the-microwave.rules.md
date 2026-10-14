@@ -7,23 +7,24 @@ case: https://sudoku-sleuth.com/cases/leftovers-in-the-microwave
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6ddb7e6f8abb68ea11d5b4f04383abe2
 ---
 
 ```rules
 sudoku 9x9
 cage r8c5-r8c6 total 8 connected true
 anti-king
-kropki-1: kropki r1c1-r2c1 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "white"
-kropki-3: kropki r1c3-r2c3 colour "white"
-kropki-4: kropki r8c9-r9c9 colour "white"
-kropki-5: kropki r8c8-r9c8 colour "white"
-kropki-6: kropki r8c7-r9c7 colour "white"
-kropki-7: kropki r6c3-r6c4 colour "white"
-kropki-8: kropki r4c3-r4c4 colour "white"
-kropki-9: kropki r6c6-r6c7 colour "white"
-kropki-10: kropki r5c3-r6c3 colour "white"
-kropki-11: kropki r7c2-r7c3 colour "black"
+kropki-1: kropki r1c1-r2c1 white
+kropki-2: kropki r1c2-r2c2 white
+kropki-3: kropki r1c3-r2c3 white
+kropki-4: kropki r8c9-r9c9 white
+kropki-5: kropki r8c8-r9c8 white
+kropki-6: kropki r8c7-r9c7 white
+kropki-7: kropki r6c3-r6c4 white
+kropki-8: kropki r4c3-r4c4 white
+kropki-9: kropki r6c6-r6c7 white
+kropki-10: kropki r5c3-r6c3 white
+kropki-11: kropki r7c2-r7c3 black
 pair-1: pair r1c9-r2c9 sum 10
 pair-2: pair r1c8-r2c8 sum 10
 pair-3: pair r1c7-r2c7 sum 10

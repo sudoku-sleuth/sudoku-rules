@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oysters
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=9
+exported: bea82e28404efe92dca5b16aa10dbd1f
 ---
 
 ```rules

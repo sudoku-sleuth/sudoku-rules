@@ -6,6 +6,7 @@ source: https://sudokupad.app/28u1exyaow
 case: https://sudoku-sleuth.com/cases/dissident-factions
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6978702a3d7ace1f4aa3aa1a453f3239
 ---
 
 ```rules
@@ -17,7 +18,7 @@ cage-4: cage r1c1-r1c2-r2c1 total 13 connected true
 cage-5: cage r8c5-r8c6 total 14 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki r5c1-r5c2 colour "black"
+kropki r5c1-r5c2 black
 arrow-1: arrow r6c8-r6c9 bulb ["r7c7"]
 arrow-2: arrow r4c8-r4c9 bulb ["r3c7"]
 arrow-3: arrow r4c2-r4c1 bulb ["r3c3"]

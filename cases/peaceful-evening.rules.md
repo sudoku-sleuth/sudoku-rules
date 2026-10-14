@@ -6,6 +6,7 @@ source: https://sudokupad.app/mp95k3o8au
 case: https://sudoku-sleuth.com/cases/peaceful-evening
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 21ac58b3b8ed95b3dbcb665ad5a09031
 ---
 
 ```rules

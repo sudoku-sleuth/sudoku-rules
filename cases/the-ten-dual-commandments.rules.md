@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-ten-dual-commandments
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=1 r2c5=2 r2c7=8 r4c1=3 r4c9=6 r5c4=4 r7c3=7 r9c5=5 r9c9=9
+exported: 8820294ea790bc81b24b569f7684b632
 ---
 
 ```rules

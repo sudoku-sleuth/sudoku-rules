@@ -6,14 +6,15 @@ source: https://sudokupad.app/ifrjpvt1fs
 case: https://sudoku-sleuth.com/cases/the-pill-bottle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 86f0c9828c4b4de095a42bff5162f5c2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c2-r9c3 colour "white"
-kropki-2: kropki r8c2-r9c2 colour "white"
-kropki-3: kropki r7c7-r7c8 colour "white"
-kropki-4: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r9c2-r9c3 white
+kropki-2: kropki r8c2-r9c2 white
+kropki-3: kropki r7c7-r7c8 white
+kropki-4: kropki r8c9-r9c9 black
 whispers-1: whispers r1c4-r1c5-r1c6 gap 5
 whispers-2: whispers r3c3-r3c4-r4c4-r4c5-r4c6-r3c6-r3c7 gap 5
 whispers-3: whispers r6c3-r7c4-r7c5-r7c6-r6c7 gap 5

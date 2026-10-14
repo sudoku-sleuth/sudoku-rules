@@ -6,6 +6,7 @@ source: https://sudokupad.app/7i10ret7j6
 case: https://sudoku-sleuth.com/cases/firing-wildly
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 129e9a53e4c07eb8471f3f91d7a0c65a
 ---
 
 ```rules

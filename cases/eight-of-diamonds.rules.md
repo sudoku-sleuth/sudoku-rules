@@ -6,6 +6,7 @@ source: https://sudokupad.app/2udd7mbpjv
 case: https://sudoku-sleuth.com/cases/eight-of-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ccf2c03ab1f05983d937cdd1b547fe6f
 ---
 
 ```rules

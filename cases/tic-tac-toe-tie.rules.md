@@ -6,6 +6,7 @@ source: https://sudokupad.app/gzp7vqi6ly
 case: https://sudoku-sleuth.com/cases/tic-tac-toe-tie
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6ce56b454f0da502050177bc5a126a75
 ---
 
 ```rules

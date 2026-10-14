@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/roundabout
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=9 r2c8=8 r4c2=6 r6c8=4 r8c2=1 r9c6=2
+exported: c05e232d633fb11132099b3b1fd65d9d
 ---
 
 ```rules

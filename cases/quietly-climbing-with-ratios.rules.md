@@ -6,19 +6,20 @@ source: https://sudokupad.app/te6w5mnygq
 case: https://sudoku-sleuth.com/cases/quietly-climbing-with-ratios
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a10f030779be3512ae5528dd080afe95
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c2-r9c3 colour "black"
-kropki-2: kropki r9c3-r9c4 colour "black"
-kropki-3: kropki r9c4-r9c5 colour "black"
-kropki-4: kropki r8c6-r8c7 colour "black"
-kropki-5: kropki r8c7-r8c8 colour "black"
-kropki-6: kropki r6c6-r7c6 colour "black"
-kropki-7: kropki r6c1-r6c2 colour "black"
-kropki-8: kropki r5c3-r5c4 colour "black"
-kropki-9: kropki r2c4-r3c4 colour "black"
+kropki-1: kropki r9c2-r9c3 black
+kropki-2: kropki r9c3-r9c4 black
+kropki-3: kropki r9c4-r9c5 black
+kropki-4: kropki r8c6-r8c7 black
+kropki-5: kropki r8c7-r8c8 black
+kropki-6: kropki r6c6-r7c6 black
+kropki-7: kropki r6c1-r6c2 black
+kropki-8: kropki r5c3-r5c4 black
+kropki-9: kropki r2c4-r3c4 black
 whispers-1: whispers r9c2-r8c2-r8c3-r8c4-r8c5-r9c5-r8c6-r7c7-r7c8-r8c8-r9c8-r9c7-r9c6 gap 4
 whispers-2: whispers r8c2-r7c3-r6c3-r7c4-r6c5-r5c6 gap 4
 whispers-3: whispers r8c5-r7c5-r7c6-r7c7-r6c7 gap 4

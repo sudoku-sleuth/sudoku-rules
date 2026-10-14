@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/synchronized-swimming-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3748dfef06065aa57a6f11a7d21ed05a
 ---
 
 ```rules
@@ -19,21 +20,21 @@ cage-5: cage r6c6-r7c6-r8c6 total 16 connected true
 cage-6: cage r2c4-r3c4-r4c4 total 17 connected true
 cage-7: cage r1c9-r2c9-r3c9 total 18 connected true
 cage-8: cage r1c3-r2c3 total 14 connected true
-kropki-1: kropki r4c3-r5c3 colour "white"
-kropki-2: kropki r3c8-r4c8 colour "white"
-kropki-3: kropki r8c5-r9c5 colour "white"
-kropki-4: kropki r7c6-r8c6 colour "white"
-kropki-5: kropki r5c1-r5c2 colour "white"
-kropki-6: kropki r8c6-r8c7 colour "white"
-kropki-7: kropki r7c6-r7c7 colour "white"
-kropki-8: kropki r2c5-r2c6 colour "white"
-kropki-9: kropki r5c2-r6c2 colour "black"
-kropki-10: kropki r1c3-r1c4 colour "black"
-kropki-11: kropki r8c1-r9c1 colour "black"
-kropki-12: kropki r4c7-r5c7 colour "black"
-kropki-13: kropki r6c8-r6c9 colour "black"
-kropki-14: kropki r6c7-r6c8 colour "black"
-kropki-15: kropki r6c7-r7c7 colour "black"
+kropki-1: kropki r4c3-r5c3 white
+kropki-2: kropki r3c8-r4c8 white
+kropki-3: kropki r8c5-r9c5 white
+kropki-4: kropki r7c6-r8c6 white
+kropki-5: kropki r5c1-r5c2 white
+kropki-6: kropki r8c6-r8c7 white
+kropki-7: kropki r7c6-r7c7 white
+kropki-8: kropki r2c5-r2c6 white
+kropki-9: kropki r5c2-r6c2 black
+kropki-10: kropki r1c3-r1c4 black
+kropki-11: kropki r8c1-r9c1 black
+kropki-12: kropki r4c7-r5c7 black
+kropki-13: kropki r6c8-r6c9 black
+kropki-14: kropki r6c7-r6c8 black
+kropki-15: kropki r6c7-r7c7 black
 renban-1: renban r1c8-r2c9-r3c9-r4c8-r3c8-r2c8-r2c7-r3c7
 renban-2: renban r8c4-r7c4-r7c5-r8c5-r9c5-r8c6-r7c6-r6c5
 renban-3: renban r2c3-r3c4-r4c4-r5c3-r4c3-r3c3-r3c2-r4c2

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/shhh-i-m-adding
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=5 r3c1=6 r6c2=2 r8c4=4
+exported: b8906844b1e07f3f44589d337b1d5348
 ---
 
 ```rules

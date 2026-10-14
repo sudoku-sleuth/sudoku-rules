@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/star-spangled
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6fe01934be348651cf7413d3f9908993
 ---
 
 ```rules

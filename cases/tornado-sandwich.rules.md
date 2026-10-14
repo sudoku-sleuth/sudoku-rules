@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/tornado-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6e89dae94d1c4abfafd94181b9ddbb5b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c3-r9c4 colour "white"
-kropki-2: kropki r6c2-r6c3 colour "white"
-kropki-3: kropki r4c1-r4c2 colour "white"
-kropki-4: kropki r8c6-r8c7 colour "white"
-kropki-5: kropki r6c8-r7c8 colour "white"
-kropki-6: kropki r3c8-r3c9 colour "white"
+kropki-1: kropki r9c3-r9c4 white
+kropki-2: kropki r6c2-r6c3 white
+kropki-3: kropki r4c1-r4c2 white
+kropki-4: kropki r8c6-r8c7 white
+kropki-5: kropki r6c8-r7c8 white
+kropki-6: kropki r3c8-r3c9 white
 sandwich-1: sandwich r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9 sum 35
 sandwich-2: sandwich r2c1-r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9 sum 22
 sandwich-3: sandwich r3c1-r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9 sum 26

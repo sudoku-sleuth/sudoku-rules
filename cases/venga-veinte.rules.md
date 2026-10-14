@@ -6,6 +6,7 @@ source: https://sudokupad.app/a59cp4ytjt
 case: https://sudoku-sleuth.com/cases/venga-veinte
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1e99701306dcc73a90a7fe1b90a11ee8
 ---
 
 ```rules

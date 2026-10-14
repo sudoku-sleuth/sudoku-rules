@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/slightly-off-balance
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c1=3
+exported: 79dce4f1257328146b924cc5a0257b27
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r6c3 colour "white"
-kropki-2: kropki r4c3-r5c3 colour "black"
-kropki-3: kropki r6c3-r7c3 colour "black"
+kropki-1: kropki r5c3-r6c3 white
+kropki-2: kropki r4c3-r5c3 black
+kropki-3: kropki r6c3-r7c3 black
 arrow-1: arrow r2c3-r3c4-r4c3-r5c2 bulb ["r1c2"]
 arrow-2: arrow r2c7-r3c6-r4c7-r5c8 bulb ["r1c8"]
 arrow-3: arrow r6c7-r7c7-r8c8 bulb ["r5c6"]

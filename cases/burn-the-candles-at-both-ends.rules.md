@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/burn-the-candles-at-both-ends
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5579ec57abf3c3128bccd778636da640
 ---
 
 ```rules

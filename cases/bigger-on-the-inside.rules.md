@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bigger-on-the-inside
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=1 r2c6=2 r3c4=1 r3c6=3 r4c1=1 r4c2=3 r6c7=1 r6c8=5 r7c2=1 r7c3=4
+exported: 3a56d2ffba1ea11806cd1a0b0dcbd769
 ---
 
 ```rules

@@ -6,21 +6,22 @@ source: https://sudokupad.app/lqthyhi3pf
 case: https://sudoku-sleuth.com/cases/diagadots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ab957105686ec03a67b93ed55dbea991
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r3c2 colour "black"
-kropki-2: kropki r1c3-r2c3 colour "black"
-kropki-3: kropki r1c7-r2c7 colour "black"
-kropki-4: kropki r3c8-r3c9 colour "black"
-kropki-5: kropki r8c7-r9c7 colour "black"
-kropki-6: kropki r7c8-r7c9 colour "black"
-kropki-7: kropki r7c1-r7c2 colour "black"
-kropki-8: kropki r8c3-r9c3 colour "black"
-kropki-9: kropki r4c7-r5c7 colour "black"
-kropki-10: kropki r6c2-r6c3 colour "black"
-kropki-11: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r3c1-r3c2 black
+kropki-2: kropki r1c3-r2c3 black
+kropki-3: kropki r1c7-r2c7 black
+kropki-4: kropki r3c8-r3c9 black
+kropki-5: kropki r8c7-r9c7 black
+kropki-6: kropki r7c8-r7c9 black
+kropki-7: kropki r7c1-r7c2 black
+kropki-8: kropki r8c3-r9c3 black
+kropki-9: kropki r4c7-r5c7 black
+kropki-10: kropki r6c2-r6c3 black
+kropki-11: kropki r4c3-r4c4 black
 little-killer-1: little-killer r3c1-r2c2-r1c3 sum 6
 little-killer-2: little-killer r1c7-r2c8-r3c9 sum 8
 little-killer-3: little-killer r9c3-r8c2-r7c1 sum 9

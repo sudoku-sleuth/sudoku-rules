@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/cereal-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f154acecd6570b299c3f4aa47c2f017d
 ---
 
 ```rules

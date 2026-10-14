@@ -6,14 +6,15 @@ source: https://tinyurl.com/chvxu4cc
 case: https://sudoku-sleuth.com/cases/tipi
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 82cc30b8b79b62b06d9a7554564f584d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c4-r3c5 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
-kropki-3: kropki r6c3-r7c3 colour "white"
-kropki-4: kropki r6c7-r7c7 colour "white"
+kropki-1: kropki r3c4-r3c5 white
+kropki-2: kropki r3c5-r3c6 white
+kropki-3: kropki r6c3-r7c3 white
+kropki-4: kropki r6c7-r7c7 white
 arrow-1: arrow r7c2-r7c1-r6c2-r5c3-r4c4-r3c5-r2c6 bulb ["r7c3","r7c4"]
 arrow-2: arrow r7c8-r7c9-r6c8-r5c7-r4c6-r3c5-r2c4 bulb ["r7c6","r7c7"]
 arrow-3: arrow r3c5-r2c5 bulb ["r4c5"]

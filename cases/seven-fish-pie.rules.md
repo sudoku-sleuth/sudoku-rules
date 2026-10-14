@@ -7,26 +7,27 @@ case: https://sudoku-sleuth.com/cases/seven-fish-pie
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 64f1e2f9cc1e9c637c95140095b9f7be
 ---
 
 ```rules
 sudoku 9x9
 thermo r8c5-r7c6-r8c7-r9c8-r8c8-r9c7-r9c6-r9c5
-kropki-1: kropki r4c1-r4c2 colour "white"
-kropki-2: kropki r4c2-r4c3 colour "white"
-kropki-3: kropki r3c2-r3c3 colour "white"
-kropki-4: kropki r3c3-r4c3 colour "white"
-kropki-5: kropki r1c5-r2c5 colour "white"
-kropki-6: kropki r2c6-r3c6 colour "white"
-kropki-7: kropki r7c7-r7c8 colour "white"
-kropki-8: kropki r7c4-r7c5 colour "white"
-kropki-9: kropki r8c4-r9c4 colour "white"
-kropki-10: kropki r5c3-r5c4 colour "black"
-kropki-11: kropki r6c3-r6c4 colour "black"
-kropki-12: kropki r8c2-r8c3 colour "black"
-kropki-13: kropki r3c1-r4c1 colour "black"
-kropki-14: kropki r3c1-r3c2 colour "black"
-kropki-15: kropki r7c9-r8c9 colour "black"
+kropki-1: kropki r4c1-r4c2 white
+kropki-2: kropki r4c2-r4c3 white
+kropki-3: kropki r3c2-r3c3 white
+kropki-4: kropki r3c3-r4c3 white
+kropki-5: kropki r1c5-r2c5 white
+kropki-6: kropki r2c6-r3c6 white
+kropki-7: kropki r7c7-r7c8 white
+kropki-8: kropki r7c4-r7c5 white
+kropki-9: kropki r8c4-r9c4 white
+kropki-10: kropki r5c3-r5c4 black
+kropki-11: kropki r6c3-r6c4 black
+kropki-12: kropki r8c2-r8c3 black
+kropki-13: kropki r3c1-r4c1 black
+kropki-14: kropki r3c1-r3c2 black
+kropki-15: kropki r7c9-r8c9 black
 ```
 
 ```drawing

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/race-to-the-death-star
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cfc435f191025a27c8af53914904b411
 ---
 
 ```rules

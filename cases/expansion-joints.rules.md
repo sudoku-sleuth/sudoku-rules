@@ -6,6 +6,7 @@ source: https://sudokupad.app/rafpicrwac
 case: https://sudoku-sleuth.com/cases/expansion-joints
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b3ab7c74c092640ff3f29becd0f62ef9
 ---
 
 ```rules
@@ -28,12 +29,12 @@ cage-15: cage r8c5-r9c5 total 13 connected true
 cage-16: cage r1c5-r2c5 total 6 connected true
 cage-17: cage r1c8-r1c9 total 9 connected true
 cage-18: cage r8c1-r9c1 total 9 connected true
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r2c2-r3c2 colour "white"
-kropki-5: kropki r7c8-r8c8 colour "white"
-kropki-6: kropki r6c8-r6c9 colour "white"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r2c2-r3c2 white
+kropki-5: kropki r7c8-r8c8 white
+kropki-6: kropki r6c8-r6c9 white
 ```
 
 **Standard Sudoku, Cages, Consecutive Pairs**

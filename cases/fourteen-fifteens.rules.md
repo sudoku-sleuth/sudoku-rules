@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fourteen-fifteens
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=3 r3c7=1 r5c5=1 r7c3=8 r7c7=2
+exported: afb1b51dcbe5c22703a0d4a46700b249
 ---
 
 ```rules

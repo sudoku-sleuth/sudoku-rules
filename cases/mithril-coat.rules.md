@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/mithril-coat
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4b33ac6089bdc1027eca5b316bf9e25a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c5-r8c5 colour "white"
-kropki-2: kropki r6c3-r6c4 colour "white"
-kropki-3: kropki r3c7-r4c7 colour "white"
-kropki-4: kropki r4c6-r5c6 colour "white"
-kropki-5: kropki r5c6-r6c6 colour "white"
-kropki-6: kropki r7c8-r8c8 colour "white"
-kropki-7: kropki r2c9-r3c9 colour "white"
+kropki-1: kropki r7c5-r8c5 white
+kropki-2: kropki r6c3-r6c4 white
+kropki-3: kropki r3c7-r4c7 white
+kropki-4: kropki r4c6-r5c6 white
+kropki-5: kropki r5c6-r6c6 white
+kropki-6: kropki r7c8-r8c8 white
+kropki-7: kropki r2c9-r3c9 white
 whispers-1: whispers r3c3-r4c3-r5c4-r6c4-r7c4 gap 5
 whispers-2: whispers r7c5-r7c6-r6c6 gap 5
 region-sum r6c7-r7c7-r8c7-r8c6-r8c5-r8c4-r8c3-r7c3-r6c3-r5c3-r4c2-r3c2-r2c2-r2c3-r2c4-r3c4-r4c5-r3c6-r2c6-r2c7-r2c8-r3c8-r4c8-r5c7 segments [["r6c7","r4c8","r5c7"],["r7c7","r8c7"],["r8c6","r8c5","r8c4"],["r8c3","r7c3"],["r6c3","r5c3","r4c2"],["r3c2","r2c2","r2c3"],["r2c4","r3c4"],["r4c5"],["r3c6","r2c6"],["r2c7","r2c8","r3c8"]]

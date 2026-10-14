@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 1
-    - 10
-    - 19
-    - 55
-    - 64
+    - r1c2
+    - r2c2
+    - r3c2
+    - r7c2
+    - r8c2
 format: open-rules
 title: Search And Surprise
 setter: Sandra & Nala
@@ -14,6 +14,7 @@ case: https://sudoku-sleuth.com/cases/search-and-surprise
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 978ae814349e041cece5732f940220f9
 ---
 
 ```rules

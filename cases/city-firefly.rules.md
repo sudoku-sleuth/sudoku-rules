@@ -6,6 +6,7 @@ source: https://sudokupad.app/kjo3900vhj
 case: https://sudoku-sleuth.com/cases/city-firefly
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8aed9f244c6a015a2ccf99716d14157a
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/diagon-alley
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9db5d16c76e6a3a88d14db2be41eafe9
 ---
 
 ```rules

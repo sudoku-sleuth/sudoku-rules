@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/agents-of-chaos
 case: https://sudoku-sleuth.com/cases/agents-of-chaos
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b6fe3c01644cbda48f0f9705d3450a7f
 ---
 
 ```rules

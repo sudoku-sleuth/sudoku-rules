@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 18
-    - 19
-    - 20
-    - 21
-    - 27
-    - 28
+    - r3c1
+    - r3c2
+    - r3c3
+    - r3c4
+    - r4c1
+    - r4c2
 format: open-rules
 title: Another Lost Toy!
 setter: Sandra & Nala
@@ -15,6 +15,7 @@ case: https://sudoku-sleuth.com/cases/another-lost-toy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8915d1494cb3165510065db5d312d44f
 ---
 
 ```rules

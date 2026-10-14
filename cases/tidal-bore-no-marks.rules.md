@@ -6,6 +6,7 @@ source: https://sudokupad.app/ec4c85b0h9
 case: https://sudoku-sleuth.com/cases/tidal-bore-no-marks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 305eff1ca34c697b10bb1824bfded3be
 ---
 
 ```rules

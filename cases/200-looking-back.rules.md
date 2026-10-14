@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/200-looking-back
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f31ff739843346eecc89ea90b19cb56d
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c5-r6c5 colour "black"
+kropki r5c5-r6c5 black
 whispers-1: whispers r4c1-r3c2-r3c3-r4c3-r5c2-r6c1-r7c1-r7c2-r6c3 gap 5
 whispers-2: whispers r5c7-r6c7-r7c8-r6c9-r5c9-r4c9-r3c8-r4c7 gap 5 loop true
 whispers-3: whispers r6c4-r7c4-r8c5-r7c6-r6c6-r5c6-r4c5-r5c4 gap 5 loop true

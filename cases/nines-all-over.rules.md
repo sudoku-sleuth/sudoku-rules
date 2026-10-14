@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nines-all-over
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=8 r2c5=2 r2c8=9 r5c2=4 r5c5=6 r5c8=3 r8c2=1 r8c5=5
+exported: 2e4b3a37243e4a3234d7385413211bd7
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/fnvew86pr4
 case: https://sudoku-sleuth.com/cases/oxbridge-quads-or-courts
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 35aaa058b5878e0455426342d1b90476
 ---
 
 ```rules

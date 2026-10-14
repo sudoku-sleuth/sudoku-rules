@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogabwe
 setter: Meggen033
@@ -17,6 +17,7 @@ source: https://sudokupad.app/awrr561ojz
 case: https://sudoku-sleuth.com/cases/fogabwe
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a25b2968984a2e83b290938befeedabe
 ---
 
 ```rules

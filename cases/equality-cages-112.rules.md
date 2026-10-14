@@ -6,6 +6,7 @@ source: https://sudokupad.app/a5d6oe6b0g
 case: https://sudoku-sleuth.com/cases/equality-cages-112
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5eb0078aba24547ab45aa279fa9c0490
 ---
 
 ```rules
@@ -16,9 +17,9 @@ equality-cage-3: equality-cage r7c1-r7c2-r8c1-r8c2
 equality-cage-4: equality-cage r4c2-r5c2-r6c1-r6c2
 equality-cage-5: equality-cage r6c5-r7c4-r7c5-r8c5
 equality-cage-6: equality-cage r2c5-r3c5
-kropki-1: kropki r3c8-r3c9 colour "black"
-kropki-2: kropki r5c2-r6c2 colour "white"
-kropki-3: kropki r1c1-r1c2 colour "white"
+kropki-1: kropki r3c8-r3c9 black
+kropki-2: kropki r5c2-r6c2 white
+kropki-3: kropki r1c1-r1c2 white
 entropic-1: entropic r3c9-r3c8-r3c7
 entropic-2: entropic r8c1-r8c2-r7c3
 entropic-3: entropic r2c3-r2c2-r2c1-r1c2

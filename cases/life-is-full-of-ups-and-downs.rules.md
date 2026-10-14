@@ -6,13 +6,14 @@ source: https://tinyurl.com/2zah4c42
 case: https://sudoku-sleuth.com/cases/life-is-full-of-ups-and-downs
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fd90592d9f9b81ebe897f0cc1b03d6a8
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c9-r7c9 colour "white"
-kropki-2: kropki r3c1-r4c1 colour "black"
-kropki-3: kropki r1c6-r1c7 colour "black"
+kropki-1: kropki r6c9-r7c9 white
+kropki-2: kropki r3c1-r4c1 black
+kropki-3: kropki r1c6-r1c7 black
 arrow-1: arrow r3c5-r4c6 bulb ["r2c4"]
 arrow-2: arrow r7c5-r6c4 bulb ["r8c6"]
 arrow-3: arrow r5c8-r6c8-r7c8 bulb ["r5c7"]

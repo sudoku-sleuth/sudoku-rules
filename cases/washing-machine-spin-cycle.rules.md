@@ -6,20 +6,21 @@ source: https://sudokupad.app/vkc24kzyhd
 case: https://sudoku-sleuth.com/cases/washing-machine-spin-cycle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9fa7d59c3af04317478f51214ad3b3e3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c9-r4c9 colour "white"
-kropki-2: kropki r2c3-r3c3 colour "white"
-kropki-3: kropki r7c7-r8c7 colour "white"
-kropki-4: kropki r6c5-r6c6 colour "white"
-kropki-5: kropki r4c4-r4c5 colour "white"
-kropki-6: kropki r4c7-r5c7 colour "black"
-kropki-7: kropki r4c8-r5c8 colour "black"
-kropki-8: kropki r5c2-r6c2 colour "black"
-kropki-9: kropki r8c8-r9c8 colour "black"
-kropki-10: kropki r5c3-r6c3 colour "black"
+kropki-1: kropki r3c9-r4c9 white
+kropki-2: kropki r2c3-r3c3 white
+kropki-3: kropki r7c7-r8c7 white
+kropki-4: kropki r6c5-r6c6 white
+kropki-5: kropki r4c4-r4c5 white
+kropki-6: kropki r4c7-r5c7 black
+kropki-7: kropki r4c8-r5c8 black
+kropki-8: kropki r5c2-r6c2 black
+kropki-9: kropki r8c8-r9c8 black
+kropki-10: kropki r5c3-r6c3 black
 arrow-1: arrow r4c7-r5c7 bulb ["r3c7"]
 arrow-2: arrow r4c8-r5c8 bulb ["r3c8"]
 arrow-3: arrow r4c9-r5c9 bulb ["r3c9"]

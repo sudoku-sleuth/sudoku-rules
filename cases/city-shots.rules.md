@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/city-shots
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c4=8
+exported: 9e13d1897889a5954cb6c5382041dbfd
 ---
 
 ```rules

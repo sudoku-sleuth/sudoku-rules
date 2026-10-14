@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/three-choices
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 820e3492e9965e88b94ced9c18a015fd
 ---
 
 ```rules

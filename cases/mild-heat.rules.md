@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/mild-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c4=3 r4c5=1 r7c8=9
+exported: 742dd58e11a7b70e305aed325a837cf1
 ---
 
 ```rules

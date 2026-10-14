@@ -6,6 +6,7 @@ source: https://sudokupad.app/j2opqfym16
 case: https://sudoku-sleuth.com/cases/one-quad-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3e728d7edc7bdfd71918665c6942dddf
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/eye-of-the-storm
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=8 r3c4=6 r3c5=9 r4c9=7 r6c1=7 r7c5=6 r7c7=9 r7c8=8
+exported: f3026c315da39fdbe2ff3ea84008c0d6
 ---
 
 ```rules

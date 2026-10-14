@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/dutch-whispers-centers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=9 r3c7=7
+exported: 21b8f3286ff257c0160eb778d4a0d304
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c8-r9c9 colour "white"
-kropki-2: kropki r1c7-r1c8 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "white"
+kropki-1: kropki r9c8-r9c9 white
+kropki-2: kropki r1c7-r1c8 white
+kropki-3: kropki r7c5-r8c5 white
 whispers-1: whispers r2c3-r3c3-r4c3 gap 4
 whispers-2: whispers r3c2-r3c3-r3c4 gap 4
 whispers-3: whispers r3c6-r4c6-r5c6 gap 4

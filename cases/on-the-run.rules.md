@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 9
-    - 10
-    - 18
-    - 19
+    - r1c1
+    - r1c2
+    - r2c1
+    - r2c2
+    - r3c1
+    - r3c2
 format: open-rules
 title: On The “Run“
 setter: Sandra & Nala
@@ -15,6 +15,7 @@ case: https://sudoku-sleuth.com/cases/on-the-run
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6dc1770926616da0762661171439d40d
 ---
 
 ```rules

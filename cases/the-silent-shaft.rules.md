@@ -6,6 +6,7 @@ source: https://sudokupad.app/3iod1hf5ll
 case: https://sudoku-sleuth.com/cases/the-silent-shaft
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7ea70d771cd39252eba8b3f1d89f9d81
 ---
 
 ```rules

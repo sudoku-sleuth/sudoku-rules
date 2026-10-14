@@ -6,6 +6,7 @@ source: https://sudokupad.app/65rsg0w34t
 case: https://sudoku-sleuth.com/cases/dislocated-strands
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 10ec3b3143b706e425a8eb1824ad0624
 ---
 
 ```rules
@@ -16,9 +17,9 @@ cage-3: cage r1c7-r2c7 total 4 connected true
 cage-4: cage r4c9-r5c9 total 14 connected true
 cage-5: cage r8c8-r9c8 total 7 connected true
 cage-6: cage r8c5-r9c5 total 14 connected true
-kropki-1: kropki r7c5-r8c5 colour "white"
-kropki-2: kropki r8c2-r9c2 colour "black"
-kropki-3: kropki r4c4-r4c5 colour "black"
+kropki-1: kropki r7c5-r8c5 white
+kropki-2: kropki r8c2-r9c2 black
+kropki-3: kropki r4c4-r4c5 black
 parity-cells-1: parity-cells r4c6-r5c6-r6c6-r3c7 parity "odd"
 parity-cells-2: parity-cells r1c4-r2c4-r3c4-r6c9-r5c9-r4c4 parity "even"
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7

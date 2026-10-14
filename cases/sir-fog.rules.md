@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Sir Fog
 setter: Meggen033
@@ -17,22 +17,23 @@ source: https://sudokupad.app/3tpm6ypyas
 case: https://sudoku-sleuth.com/cases/sir-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 31f84453bd2422def356367e7abd11a3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r6c4-r6c5 colour "white"
-kropki-3: kropki r5c7-r6c7 colour "white"
-kropki-4: kropki r4c7-r5c7 colour "white"
-kropki-5: kropki r7c6-r7c7 colour "white"
-kropki-6: kropki r3c3-r4c3 colour "white"
-kropki-7: kropki r1c6-r2c6 colour "white"
-kropki-8: kropki r5c7-r5c8 colour "black"
-kropki-9: kropki r7c5-r8c5 colour "black"
-kropki-10: kropki r6c7-r7c7 colour "black"
-kropki-11: kropki r3c3-r3c4 colour "black"
-kropki-12: kropki r2c8-r2c9 colour "black"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r6c4-r6c5 white
+kropki-3: kropki r5c7-r6c7 white
+kropki-4: kropki r4c7-r5c7 white
+kropki-5: kropki r7c6-r7c7 white
+kropki-6: kropki r3c3-r4c3 white
+kropki-7: kropki r1c6-r2c6 white
+kropki-8: kropki r5c7-r5c8 black
+kropki-9: kropki r7c5-r8c5 black
+kropki-10: kropki r6c7-r7c7 black
+kropki-11: kropki r3c3-r3c4 black
+kropki-12: kropki r2c8-r2c9 black
 whispers-1: whispers r4c5-r4c6-r5c6 gap 5
 whispers-2: whispers r7c6-r8c6 gap 5
 whispers-3: whispers r6c3-r5c3-r4c3 gap 5

@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 2ccf531713930d414e79eef5921f05d9
 ---
 
 ```rules
@@ -77,8 +78,8 @@ unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 cage-1: cage r6c2-r6c3 repeats false total 5 connected true
 cage-2: cage r1c4-r1c5 repeats false total 9 connected true
 anti-king
-kropki-1: kropki r1c6-r2c6 colour "black"
-kropki-2: kropki r4c1-r5c1 colour "white"
+kropki-1: kropki r1c6-r2c6 black
+kropki-2: kropki r4c1-r5c1 white
 quadruple-1: quadruple r2c2-r2c3-r3c2-r3c3 digits [1,2]
 quadruple-2: quadruple r2c4-r2c5-r3c4-r3c5 digits [2,5]
 quadruple-3: quadruple r3c3-r3c4-r4c3-r4c4 digits [3,4]

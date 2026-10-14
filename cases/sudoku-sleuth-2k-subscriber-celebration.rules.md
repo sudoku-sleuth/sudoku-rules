@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/sudoku-sleuth-2k-subscriber-celebration
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: af06a2a9fa73672cc063ab787fabb00f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c7-r8c8 colour "black"
-kropki-2: kropki r5c4-r5c5 colour "black"
-kropki-3: kropki r1c7-r2c7 colour "black"
-kropki-4: kropki r7c4-r7c5 colour "white"
-kropki-5: kropki r4c3-r5c3 colour "white"
-kropki-6: kropki r1c2-r1c3 colour "white"
+kropki-1: kropki r8c7-r8c8 black
+kropki-2: kropki r5c4-r5c5 black
+kropki-3: kropki r1c7-r2c7 black
+kropki-4: kropki r7c4-r7c5 white
+kropki-5: kropki r4c3-r5c3 white
+kropki-6: kropki r1c2-r1c3 white
 arrow-1: arrow r4c6-r3c6-r2c6 bulb ["r5c6"]
 arrow-2: arrow r6c7-r7c8-r8c9 bulb ["r5c6"]
 whispers r4c1-r3c1-r2c2-r2c3-r3c4-r4c4-r5c3-r6c2-r7c1-r8c1-r8c2-r8c3-r8c4 gap 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hollandaise-man-o-war
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=5 r3c9=8 r4c4=6 r4c8=5 r5c5=9 r6c1=7 r8c2=2
+exported: 56035df6ee59db143f35fa58b7a48dd6
 ---
 
 ```rules

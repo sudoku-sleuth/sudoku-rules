@@ -6,18 +6,19 @@ source: https://sudokupad.app/b7w7m8z2eg
 case: https://sudoku-sleuth.com/cases/shoot-for-the-throne
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8e66599aa798b21855eeb8a7ee2e96b6
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r3c2-r3c3 colour "black"
-kropki-2: kropki r7c6-r7c7 colour "black"
-kropki-3: kropki r2c1-r3c1 colour "black"
-kropki-4: kropki r3c5-r4c5 colour "black"
-kropki-5: kropki r4c7-r5c7 colour "black"
-kropki-6: kropki r5c6-r6c6 colour "black"
-kropki-7: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r3c2-r3c3 black
+kropki-2: kropki r7c6-r7c7 black
+kropki-3: kropki r2c1-r3c1 black
+kropki-4: kropki r3c5-r4c5 black
+kropki-5: kropki r4c7-r5c7 black
+kropki-6: kropki r5c6-r6c6 black
+kropki-7: kropki r4c4-r5c4 black
 arrow-1: arrow r3c2-r3c3-r3c4-r4c5 bulb ["r3c1"]
 arrow-2: arrow r7c8-r7c7-r7c6-r6c5 bulb ["r7c9"]
 arrow-3: arrow r8c2-r8c3-r9c4-r9c5 bulb ["r7c1"]

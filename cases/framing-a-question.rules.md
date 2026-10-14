@@ -41,6 +41,7 @@ board:
       - r3c3
       - r3c4
       - r4c3
+exported: b476b20190ab168394b311deaaa6f6ba
 ---
 
 ```rules
@@ -59,9 +60,9 @@ unique-12: unique r1c5-r2c5-r3c5-r4c4-r4c5
 unique-13: unique r4c2-r5c2-r5c3-r5c4-r5c5
 unique-14: unique r2c1-r2c2-r3c1-r4c1-r5c1
 unique-15: unique r2c3-r3c2-r3c3-r3c4-r4c3
-kropki-1: kropki r3c3-r3c4 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r2c2-r2c3 colour "black"
+kropki-1: kropki r3c3-r3c4 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r2c2-r2c3 black
 modular-1: modular r3c1-r2c1-r1c1-r1c2 loop false modulus 3
 modular-2: modular r1c3-r1c4-r1c5-r2c5 loop false modulus 3
 modular-3: modular r3c5-r4c5-r5c5-r5c4 loop false modulus 3

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/somewhere-over-the-renban
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 03edfac6b028768c9d441bc128eedab2
 ---
 
 ```rules

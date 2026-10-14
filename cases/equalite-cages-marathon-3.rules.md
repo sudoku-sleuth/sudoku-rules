@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: d85d96a9868ddc2cb476062ea46d7e86
 ---
 
 ```rules
@@ -78,8 +79,8 @@ equality-cage-1: equality-cage r5c4-r5c5
 equality-cage-2: equality-cage r3c6-r4c6
 equality-cage-3: equality-cage r4c3-r5c3
 equality-cage-4: equality-cage r1c4-r1c5
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r3c2-r3c3 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r3c2-r3c3 black
 whispers-1: whispers r5c4-r4c5-r4c4-r3c4 loop false gap 3
 whispers-2: whispers r3c5-r4c6 loop false gap 3
 whispers-3: whispers r4c1-r3c1-r4c2 loop false gap 3

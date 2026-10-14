@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/deadly-in10sity
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=4 r4c4=3 r8c6=7 r9c1=9
+exported: c9ec84dd1196548e72982c4ba5f24742
 ---
 
 ```rules

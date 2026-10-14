@@ -6,6 +6,7 @@ source: https://sudokupad.app/6r3l1axd7m
 case: https://sudoku-sleuth.com/cases/dutch-flat-mates-minmax-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 43b0a7f93a7a166889c539706f947ebd
 ---
 
 ```rules

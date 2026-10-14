@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/sudokucon-day-one-2026
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=3 r2c9=1 r9c1=7
+exported: 20921cb97676ab903e3b90f1395f9041
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r4c8-r5c8 colour "white"
-kropki-3: kropki r3c8-r4c8 colour "white"
-kropki-4: kropki r3c8-r3c9 colour "white"
-kropki-5: kropki r5c1-r5c2 colour "black"
-kropki-6: kropki r2c2-r3c2 colour "black"
-kropki-7: kropki r2c3-r3c3 colour "black"
-kropki-8: kropki r2c6-r2c7 colour "black"
-kropki-9: kropki r6c7-r6c8 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r4c8-r5c8 white
+kropki-3: kropki r3c8-r4c8 white
+kropki-4: kropki r3c8-r3c9 white
+kropki-5: kropki r5c1-r5c2 black
+kropki-6: kropki r2c2-r3c2 black
+kropki-7: kropki r2c3-r3c3 black
+kropki-8: kropki r2c6-r2c7 black
+kropki-9: kropki r6c7-r6c8 black
 whispers-1: whispers r3c1-r2c1-r1c1-r2c2-r1c3-r2c3-r3c3 gap 4
 whispers-2: whispers r5c2-r5c1-r6c1-r6c2 gap 4
 whispers-3: whispers r4c3-r5c3-r6c3 gap 4

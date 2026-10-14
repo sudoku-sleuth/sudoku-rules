@@ -6,6 +6,7 @@ source: https://sudokupad.app/9andbrorpi
 case: https://sudoku-sleuth.com/cases/a-quick-death
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e7eaa20f68b6af28b7883ccd6d598727
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/qkulcg9odu
 case: https://sudoku-sleuth.com/cases/around-we-go
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6eb59bf339e879db16e4e6d3c5ce9e8b
 ---
 
 ```rules

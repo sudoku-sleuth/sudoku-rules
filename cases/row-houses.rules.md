@@ -6,17 +6,18 @@ source: https://sudokupad.app/9ygxrv951n
 case: https://sudoku-sleuth.com/cases/row-houses
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9ce5c53d0a2dcbd33237960d784b6804
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c4-r2c5 colour "white"
-kropki-2: kropki r6c6-r6c7 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r4c7-r5c7 colour "white"
-kropki-5: kropki r4c4-r4c5 colour "white"
-kropki-6: kropki r3c9-r4c9 colour "white"
-kropki-7: kropki r1c6-r1c7 colour "white"
+kropki-1: kropki r2c4-r2c5 white
+kropki-2: kropki r6c6-r6c7 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r4c7-r5c7 white
+kropki-5: kropki r4c4-r4c5 white
+kropki-6: kropki r3c9-r4c9 white
+kropki-7: kropki r1c6-r1c7 white
 skyscraper-1: skyscraper r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9 visible 3
 skyscraper-2: skyscraper r2c1-r2c2-r2c3-r2c4-r2c5-r2c6-r2c7-r2c8-r2c9 visible 5
 skyscraper-3: skyscraper r3c1-r3c2-r3c3-r3c4-r3c5-r3c6-r3c7-r3c8-r3c9 visible 7

@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 40
+    - r5c5
 format: open-rules
 title: Whitechapel
 setter: FullDeck and Missing a Few Cards
@@ -104,6 +104,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a5f1cbbd4f8ee166d9ef0abadfeeeda2
 ---
 
 ```rules

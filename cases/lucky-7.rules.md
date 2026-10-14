@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/lucky-7
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=7
+exported: 121df9b05efb16e4da4d5763ebdd6534
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c4-r7c5 colour "black"
-kropki-2: kropki r9c8-r9c9 colour "black"
-kropki-3: kropki r2c9-r3c9 colour "black"
-kropki-4: kropki r1c8-r2c8 colour "black"
-kropki-5: kropki r4c7-r4c8 colour "black"
-kropki-6: kropki r5c1-r5c2 colour "black"
-kropki-7: kropki r1c1-r1c2 colour "black"
-kropki-8: kropki r2c6-r2c7 colour "black"
-kropki-9: kropki r5c8-r6c8 colour "white"
+kropki-1: kropki r7c4-r7c5 black
+kropki-2: kropki r9c8-r9c9 black
+kropki-3: kropki r2c9-r3c9 black
+kropki-4: kropki r1c8-r2c8 black
+kropki-5: kropki r4c7-r4c8 black
+kropki-6: kropki r5c1-r5c2 black
+kropki-7: kropki r1c1-r1c2 black
+kropki-8: kropki r2c6-r2c7 black
+kropki-9: kropki r5c8-r6c8 white
 arrow-1: arrow r8c1-r7c1 bulb ["r9c1"]
 arrow-2: arrow r9c2-r9c3-r9c4 bulb ["r9c1"]
 arrow-3: arrow r7c3-r7c2 bulb ["r6c3"]

@@ -1,18 +1,18 @@
 ---
 fog:
   initiallyLit:
-    - 6
-    - 8
-    - 18
-    - 19
-    - 44
-    - 50
-    - 63
-    - 64
-    - 67
-    - 72
-    - 73
-    - 80
+    - r1c7
+    - r1c9
+    - r3c1
+    - r3c2
+    - r5c9
+    - r6c6
+    - r8c1
+    - r8c2
+    - r8c5
+    - r9c1
+    - r9c2
+    - r9c9
 format: open-rules
 title: Peekaboo!
 setter: Marty Sears
@@ -116,6 +116,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a53e612087d6cb99f7122978eac9c315
 ---
 
 ```rules

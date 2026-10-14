@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/baker-s-dozen
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=1 r2c4=8 r5c2=6 r7c8=5 r9c5=7
+exported: f772a421469ed068d5243b6d7364bd3a
 ---
 
 ```rules

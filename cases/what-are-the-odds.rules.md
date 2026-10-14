@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/what-are-the-odds
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2028558a56a05a19241343e79da074c2
 ---
 
 ```rules

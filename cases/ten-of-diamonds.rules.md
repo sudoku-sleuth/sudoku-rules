@@ -6,6 +6,7 @@ source: https://sudokupad.app/63wcieu2hl
 case: https://sudoku-sleuth.com/cases/ten-of-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 220dfec4d1d70b923e5c664cefecd866
 ---
 
 ```rules

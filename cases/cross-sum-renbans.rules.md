@@ -6,15 +6,16 @@ source: https://sudokupad.app/1yx3qtiyna
 case: https://sudoku-sleuth.com/cases/cross-sum-renbans
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 20d2edaf32c222c698e19aec09edcc47
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r6c5 colour "white"
-kropki-2: kropki r9c3-r9c4 colour "white"
-kropki-3: kropki r8c3-r8c4 colour "white"
-kropki-4: kropki r4c5-r5c5 colour "black"
-kropki-5: kropki r6c9-r7c9 colour "black"
+kropki-1: kropki r6c4-r6c5 white
+kropki-2: kropki r9c3-r9c4 white
+kropki-3: kropki r8c3-r8c4 white
+kropki-4: kropki r4c5-r5c5 black
+kropki-5: kropki r6c9-r7c9 black
 renban-1: renban r3c2-r3c3-r3c4-r2c5-r1c6
 renban-2: renban r8c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8
 renban-3: renban r8c1-r7c1-r6c1-r5c2

@@ -6,6 +6,7 @@ source: https://sudokupad.app/z4zq64wuv7
 case: https://sudoku-sleuth.com/cases/going-around-again
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8298a45b3526c4fae04d07b12eb4b6fe
 ---
 
 ```rules

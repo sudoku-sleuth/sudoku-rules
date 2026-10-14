@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogsworth
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: bd70dcc9f94ef889293bfa829bb15069
 ---
 
 ```rules
@@ -146,18 +147,18 @@ cage-1: cage r7c5-r8c5 total 8 connected true
 cage-2: cage r6c8-r7c8 total 12 connected true
 cage-3: cage r8c2-r8c3 total 13 connected true
 cage-4: cage r2c3-r3c3-r4c3 total 16 connected true
-kropki-1: kropki r6c4-r6c5 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r1c4-r1c5 colour "white"
-kropki-4: kropki r1c5-r1c6 colour "white"
-kropki-5: kropki r8c4-r9c4 colour "white"
-kropki-6: kropki r8c6-r9c6 colour "white"
-kropki-7: kropki r7c3-r7c4 colour "white"
-kropki-8: kropki r8c1-r8c2 colour "white"
-kropki-9: kropki r6c1-r6c2 colour "white"
-kropki-10: kropki r4c5-r5c5 colour "black"
-kropki-11: kropki r7c6-r7c7 colour "black"
-kropki-12: kropki r6c1-r7c1 colour "black"
+kropki-1: kropki r6c4-r6c5 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r1c4-r1c5 white
+kropki-4: kropki r1c5-r1c6 white
+kropki-5: kropki r8c4-r9c4 white
+kropki-6: kropki r8c6-r9c6 white
+kropki-7: kropki r7c3-r7c4 white
+kropki-8: kropki r8c1-r8c2 white
+kropki-9: kropki r6c1-r6c2 white
+kropki-10: kropki r4c5-r5c5 black
+kropki-11: kropki r7c6-r7c7 black
+kropki-12: kropki r6c1-r7c1 black
 whispers-1: whispers r5c6-r5c5-r5c4 gap 5
 whispers-2: whispers r6c5-r5c5 gap 5
 whispers-3: whispers r3c4-r3c5-r3c6 gap 5

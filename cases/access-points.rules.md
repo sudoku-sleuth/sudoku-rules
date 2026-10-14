@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=y759grw6
 case: https://sudoku-sleuth.com/cases/access-points
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 874c53a3c96cef509bb3cd04b9788bf5
 ---
 
 ```rules
@@ -26,11 +27,11 @@ cage-13: cage r2c2-r2c3 total 11 connected true
 cage-14: cage r2c9-r3c9 total 4 connected true
 cage-15: cage r5c1-r5c2-r5c3 total 20 connected true
 cage-16: cage r5c7-r5c8-r5c9 total 18 connected true
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r1c2-r1c3 colour "white"
-kropki-3: kropki r4c2-r4c3 colour "white"
-kropki-4: kropki r4c9-r5c9 colour "white"
-kropki-5: kropki r2c7-r2c8 colour "white"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r1c2-r1c3 white
+kropki-3: kropki r4c2-r4c3 white
+kropki-4: kropki r4c9-r5c9 white
+kropki-5: kropki r2c7-r2c8 white
 ```
 
 Normal Sudoku rulers apply. Numbers in cages sum to the number in the top left corner of the cage.  Numbers with a white dot between them are consecutive. Not all dots are given.

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/goblin-cave
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 076a74ba4752e0942eefd740afd4646b
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/8lyzgfx8j6
 case: https://sudoku-sleuth.com/cases/king-kong-on-the-tower
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 44786ca222ef36238567d27e19c6ce78
 ---
 
 ```rules
@@ -21,13 +22,13 @@ cage-8: cage r1c2-r2c2 total 11 connected true
 cage-9: cage r4c6-r5c6-r6c6 total 10 connected true
 cage-10: cage r4c9-r5c9-r6c9 total 10 connected true
 cage-11: cage r3c7-r4c7 total 3 connected true
-kropki-1: kropki r4c3-r5c3 colour "white"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r8c2-r9c2 colour "white"
-kropki-4: kropki r7c2-r8c2 colour "white"
-kropki-5: kropki r8c6-r9c6 colour "white"
-kropki-6: kropki r2c7-r2c8 colour "black"
-kropki-7: kropki r2c8-r3c8 colour "black"
+kropki-1: kropki r4c3-r5c3 white
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r8c2-r9c2 white
+kropki-4: kropki r7c2-r8c2 white
+kropki-5: kropki r8c6-r9c6 white
+kropki-6: kropki r2c7-r2c8 black
+kropki-7: kropki r2c8-r3c8 black
 whispers-1: whispers r9c7-r8c8 gap 4
 whispers-2: whispers r4c8-r5c9 gap 4
 whispers-3: whispers r3c6-r3c5-r2c4-r1c3 gap 4

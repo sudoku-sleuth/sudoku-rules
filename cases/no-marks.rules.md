@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/no-marks
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 8.......3..7.1.6...........1.83.45.2.5..9..3.4.35.68.9...........1.4.2..9.......6
+exported: 6ce694a1d80524b4680c91b58ebfbcf0
 ---
 
 ```rules

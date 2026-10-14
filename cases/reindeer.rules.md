@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/reindeer
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ddd3f8f5037f40acefa21ae9334a69b8
 ---
 
 ```rules

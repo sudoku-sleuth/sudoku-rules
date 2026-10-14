@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/twelfth-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 280a445e470be459fdfd7a5741fe83ed
 ---
 
 ```rules

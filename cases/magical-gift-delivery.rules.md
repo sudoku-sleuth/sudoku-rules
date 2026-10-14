@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/magical-gift-delivery
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 28650a088c933e4b8793ba4069c2a9bd
 ---
 
 ```rules
@@ -14,9 +15,9 @@ cage-1: cage r1c6-r2c6-r3c6-r4c6 total 30 connected true
 cage-2: cage r6c1-r6c2 total 15 connected true
 cage-3: cage r7c6-r7c7 total 7 connected true
 cage-4: cage r5c2-r5c3 total 5 connected true
-kropki-1: kropki r1c4-r1c5 colour "white"
-kropki-2: kropki r2c4-r2c5 colour "white"
-kropki-3: kropki r5c1-r5c2 colour "white"
+kropki-1: kropki r1c4-r1c5 white
+kropki-2: kropki r2c4-r2c5 white
+kropki-3: kropki r5c1-r5c2 white
 whispers-1: whispers r5c6-r4c6 gap 5
 whispers-2: whispers r4c6-r4c7-r4c8 gap 5
 whispers-3: whispers r4c8-r5c8 gap 5

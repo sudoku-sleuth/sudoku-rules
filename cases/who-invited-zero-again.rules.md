@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 13a45fd67ef46c6f4eb198c949ab4698
 ---
 
 ```rules
@@ -133,11 +134,11 @@ unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
 unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 anti-knight
-kropki-1: kropki r1c9-r2c9 colour "white"
-kropki-2: kropki r7c6-r8c6 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r2c5-r2c6 colour "black"
-kropki-5: kropki r4c5-r5c5 colour "black"
+kropki-1: kropki r1c9-r2c9 white
+kropki-2: kropki r7c6-r8c6 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r2c5-r2c6 black
+kropki-5: kropki r4c5-r5c5 black
 arrow-1: arrow r4c4-r5c5-r6c6-r7c7 bulb ["r3c3"]
 arrow-2: arrow r4c8-r3c7-r2c6-r1c5 bulb ["r5c9"]
 arrow-3: arrow r1c6 bulb ["r2c7"]

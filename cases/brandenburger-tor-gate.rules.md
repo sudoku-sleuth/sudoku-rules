@@ -6,6 +6,7 @@ source: https://sudokupad.app/wlgrxytiu6
 case: https://sudoku-sleuth.com/cases/brandenburger-tor-gate
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dbdfa7c17ee18d2d32bddef5c7761409
 ---
 
 ```rules
@@ -15,14 +16,14 @@ cage-2: cage r5c6-r5c7-r5c8 total 13 connected true
 cage-3: cage r3c2-r3c3-r3c4 total 14 connected true
 cage-4: cage r3c6-r3c7-r3c8 total 19 connected true
 cage-5: cage r1c1-r1c2-r1c3 total 9 connected true
-kropki-1: kropki r6c5-r7c5 colour "white"
-kropki-2: kropki r3c1-r3c2 colour "white"
-kropki-3: kropki r2c1-r3c1 colour "white"
-kropki-4: kropki r2c1-r2c2 colour "white"
-kropki-5: kropki r2c2-r2c3 colour "white"
-kropki-6: kropki r6c4-r6c5 colour "white"
-kropki-7: kropki r5c3-r6c3 colour "white"
-kropki-8: kropki r6c3-r6c4 colour "white"
+kropki-1: kropki r6c5-r7c5 white
+kropki-2: kropki r3c1-r3c2 white
+kropki-3: kropki r2c1-r3c1 white
+kropki-4: kropki r2c1-r2c2 white
+kropki-5: kropki r2c2-r2c3 white
+kropki-6: kropki r6c4-r6c5 white
+kropki-7: kropki r5c3-r6c3 white
+kropki-8: kropki r6c3-r6c4 white
 whispers-1: whispers r6c2-r7c2-r8c2 gap 4
 whispers-2: whispers r6c3-r7c3 gap 4
 whispers-3: whispers r6c4-r7c4-r8c4 gap 4

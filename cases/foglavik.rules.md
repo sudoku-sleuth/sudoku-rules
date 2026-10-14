@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Foglavik
 setter: Meggen033
@@ -17,20 +17,21 @@ source: https://sudokupad.app/8jc0n3w1lb
 case: https://sudoku-sleuth.com/cases/foglavik
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9039f58879a7d46a4103bb7045b064be
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c6-r5c7 colour "white"
-kropki-3: kropki r2c6-r3c6 colour "white"
-kropki-4: kropki r7c5-r7c6 colour "white"
-kropki-5: kropki r5c2-r6c2 colour "white"
-kropki-6: kropki r9c4-r9c5 colour "white"
-kropki-7: kropki r5c5-r5c6 colour "black"
-kropki-8: kropki r3c5-r4c5 colour "black"
-kropki-9: kropki r7c2-r7c3 colour "black"
-kropki-10: kropki r4c8-r5c8 colour "black"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c6-r5c7 white
+kropki-3: kropki r2c6-r3c6 white
+kropki-4: kropki r7c5-r7c6 white
+kropki-5: kropki r5c2-r6c2 white
+kropki-6: kropki r9c4-r9c5 white
+kropki-7: kropki r5c5-r5c6 black
+kropki-8: kropki r3c5-r4c5 black
+kropki-9: kropki r7c2-r7c3 black
+kropki-10: kropki r4c8-r5c8 black
 whispers-1: whispers r4c4-r5c4-r6c4-r6c5-r6c6 gap 5
 whispers-2: whispers r3c4-r2c4-r2c5 gap 5
 whispers-3: whispers r6c7-r7c7 gap 5

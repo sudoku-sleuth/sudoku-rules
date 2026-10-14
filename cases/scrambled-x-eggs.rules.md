@@ -6,16 +6,17 @@ source: https://f-puzzles.com/?id=ydy25ajs
 case: https://sudoku-sleuth.com/cases/scrambled-x-eggs
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1e438b8949bbf33833371c1f2a3d18cf
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r5c6-r5c7 colour "white"
-kropki-2: kropki r5c5-r5c6 colour "white"
-kropki-3: kropki r2c6-r3c6 colour "white"
-kropki-4: kropki r3c3-r4c3 colour "white"
-kropki-5: kropki r6c7-r7c7 colour "white"
+kropki-1: kropki r5c6-r5c7 white
+kropki-2: kropki r5c5-r5c6 white
+kropki-3: kropki r2c6-r3c6 white
+kropki-4: kropki r3c3-r4c3 white
+kropki-5: kropki r6c7-r7c7 white
 arrow-1: arrow r6c6-r6c7-r7c7 bulb ["r7c6"]
 arrow-2: arrow r4c4-r4c3-r3c3 bulb ["r3c4"]
 arrow-3: arrow r4c6-r4c7-r3c7 bulb ["r3c6"]

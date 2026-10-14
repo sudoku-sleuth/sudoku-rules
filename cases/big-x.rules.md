@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/big-x
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1
+exported: 8a248c9c1a1a0ee4e2e1cee1fcf10286
 ---
 
 ```rules

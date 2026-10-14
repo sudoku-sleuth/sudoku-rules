@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/for-the-love-of-xs-vs-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c1=6 r9c4=7
+exported: df0bd20c0fec5cfb5ff30531a6448bac
 ---
 
 ```rules

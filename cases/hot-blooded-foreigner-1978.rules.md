@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-blooded-foreigner-1978
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 63305bde10a3c9e093105e556459a53c
 ---
 
 ```rules
@@ -18,8 +19,8 @@ cage-4: cage r9c3-r9c4 total 11 connected true
 thermo-1: thermo r7c9-r6c9-r5c9-r4c9-r3c9-r2c9
 thermo-2: thermo r3c2-r2c2-r1c2
 thermo-3: thermo r5c7-r4c7-r3c7-r2c7
-kropki-1: kropki r5c2-r6c2 colour "white"
-kropki-2: kropki r6c2-r7c2 colour "white"
+kropki-1: kropki r5c2-r6c2 white
+kropki-2: kropki r6c2-r7c2 white
 whispers-1: whispers r1c5-r2c6-r3c5-r2c4 gap 5
 whispers-2: whispers r3c3-r4c4-r4c5-r4c6 gap 5
 whispers-3: whispers r2c6-r3c7-r4c6 gap 4

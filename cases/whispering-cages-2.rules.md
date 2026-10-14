@@ -6,6 +6,7 @@ source: https://sudokupad.app/r1lx91snck
 case: https://sudoku-sleuth.com/cases/whispering-cages-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 666fdc4ffced4a3f9091061710d059dd
 ---
 
 ```rules

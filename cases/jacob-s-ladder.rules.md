@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=y74s9jgj
 case: https://sudoku-sleuth.com/cases/jacob-s-ladder
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 97cc76c434f649386054ce72a0d4470d
 ---
 
 ```rules

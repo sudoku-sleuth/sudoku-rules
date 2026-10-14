@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hey-teacher
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=5 r4c6=4 r5c4=3 r5c5=6 r6c4=8 r6c5=7 r6c6=9 r6c9=1 r7c7=2
+exported: 13cfbd5ed6e3a2e3c843920f1501e9e2
 ---
 
 ```rules

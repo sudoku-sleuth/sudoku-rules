@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/st-patrick
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a0f5e7031dc09e8198e7b57b181f3599
 ---
 
 ```rules
@@ -19,10 +20,10 @@ cage-5: cage r8c1-r8c2-r8c3-r8c4 total 10 connected true
 cage-6: cage r9c5-r9c6-r9c7-r9c8 total 11 connected true
 cage-7: cage r6c7-r6c8 total 14 connected true
 cage-8: cage r7c8-r7c9 total 5 connected true
-kropki-1: kropki r3c7-r3c8 colour "white"
-kropki-2: kropki r3c4-r3c5 colour "white"
-kropki-3: kropki r4c1-r4c2 colour "white"
-kropki-4: kropki r1c2-r1c3 colour "white"
+kropki-1: kropki r3c7-r3c8 white
+kropki-2: kropki r3c4-r3c5 white
+kropki-3: kropki r4c1-r4c2 white
+kropki-4: kropki r1c2-r1c3 white
 whispers-1: whispers r3c3-r3c4-r2c4-r1c4-r1c5-r1c6-r2c6-r3c6-r3c7 gap 5
 whispers-2: whispers r6c3-r7c3-r8c3-r9c3 gap 5
 whispers-3: whispers r6c7-r7c7-r8c7-r9c7 gap 5

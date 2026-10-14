@@ -6,6 +6,7 @@ source: https://sudokupad.app/qmyphfrib4
 case: https://sudoku-sleuth.com/cases/zip-down
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 851c9a0003b37497e410a0dc1f751623
 ---
 
 ```rules

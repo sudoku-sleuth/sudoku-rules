@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 5
-    - 12
-    - 13
-    - 14
-    - 21
-    - 22
-    - 23
+    - r1c4
+    - r1c5
+    - r1c6
+    - r2c4
+    - r2c5
+    - r2c6
+    - r3c4
+    - r3c5
+    - r3c6
 format: open-rules
 title: Separated in the Fog
 setter: FullDeck and Missing a Few Cards
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 67de337bc1038ce1dce15e9d45270fc1
 ---
 
 ```rules

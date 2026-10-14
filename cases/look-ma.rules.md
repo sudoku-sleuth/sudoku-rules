@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/look-ma
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=5 r3c5=8 r5c8=3 r6c4=6 r7c7=2 r8c9=4 r9c1=8
+exported: b4c03e76f1c3995422e13899135cd0ad
 ---
 
 ```rules

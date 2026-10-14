@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/all-6-s-and-7-s
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 03f0615395cc8fab7fa940dee172b9d6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c2-r9c2 colour "black"
-kropki-2: kropki r1c5-r1c6 colour "black"
+kropki-1: kropki r8c2-r9c2 black
+kropki-2: kropki r1c5-r1c6 black
 ```
 
 ```drawing

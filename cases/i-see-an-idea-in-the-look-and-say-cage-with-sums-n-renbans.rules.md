@@ -8,11 +8,12 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r9c1=1
+exported: a8177f81017ffc9c6665c4b991766c6d
 ---
 
 ```rules
 sudoku 9x9
-kropki r3c5-r3c6 colour "black"
+kropki r3c5-r3c6 black
 renban-1: renban r2c7-r3c7-r4c7-r5c7-r6c7
 renban-2: renban r6c9-r7c9-r8c9-r9c9
 renban-3: renban r6c4-r6c5-r6c6-r5c6

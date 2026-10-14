@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/shifter-lines-120-masyu
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4e9ad28fe6c5d0b2794e869bfba506b2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c5-r2c6 colour "white"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r4c8-r4c9 colour "white"
-kropki-4: kropki r1c2-r1c3 colour "white"
-kropki-5: kropki r4c6-r5c6 colour "white"
-kropki-6: kropki r2c1-r3c1 colour "white"
-kropki-7: kropki r4c5-r5c5 colour "white"
+kropki-1: kropki r2c5-r2c6 white
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r4c8-r4c9 white
+kropki-4: kropki r1c2-r1c3 white
+kropki-5: kropki r4c6-r5c6 white
+kropki-6: kropki r2c1-r3c1 white
+kropki-7: kropki r4c5-r5c5 white
 pair-1: pair r1c1-r2c1 sum 10
 pair-2: pair r4c2-r5c2 sum 10
 pair-3: pair r7c2-r8c2 sum 10

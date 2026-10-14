@@ -6,6 +6,7 @@ source: https://sudokupad.app/n97ru1nh1v
 case: https://sudoku-sleuth.com/cases/here-we-meet-again
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7e8c2d54ed3343c1c2c79c39a656b9af
 ---
 
 ```rules

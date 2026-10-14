@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/how-low-can-you-go
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: bd2e4ad8e533ae8f9f0e4f1e915b2721
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r7c7-r8c7 colour "white"
-kropki-3: kropki r5c5-r6c5 colour "white"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r7c7-r8c7 white
+kropki-3: kropki r5c5-r6c5 white
 palindrome-1: palindrome r3c8-r2c7-r1c6-r1c5-r1c4-r2c3-r3c2-r4c2-r5c2-r5c3-r4c3-r3c4-r2c5-r3c6-r4c6-r5c5-r6c4-r7c4-r7c5-r6c6-r5c7-r4c8
 palindrome-2: palindrome r4c8-r3c8
 renban-1: renban r6c7-r5c8-r6c9-r7c8

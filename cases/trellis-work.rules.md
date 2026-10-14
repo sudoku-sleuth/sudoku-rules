@@ -6,6 +6,7 @@ source: https://sudokupad.app/bl0k917aaj
 case: https://sudoku-sleuth.com/cases/trellis-work
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d766fad3e8f62d683a27eeb1cff632c4
 ---
 
 ```rules

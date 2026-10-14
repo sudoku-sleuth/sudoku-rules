@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/spooky-halloween
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 156561a1444208dc9e01ecea0b1fc9f3
 ---
 
 ```rules
@@ -25,10 +26,10 @@ cage-12: cage r5c7-r5c8-r5c9 total 6 connected true
 cage-13: cage r1c7-r1c8-r1c9 total 8 connected true
 cage-14: cage r7c5-r8c5 total 6 connected true
 cage-15: cage r8c7-r8c8 total 10 connected true
-kropki-1: kropki r3c3-r3c4 colour "black"
-kropki-2: kropki r4c3-r4c4 colour "black"
-kropki-3: kropki r6c2-r7c2 colour "black"
-kropki-4: kropki r6c3-r7c3 colour "black"
+kropki-1: kropki r3c3-r3c4 black
+kropki-2: kropki r4c3-r4c4 black
+kropki-3: kropki r6c2-r7c2 black
+kropki-4: kropki r6c3-r7c3 black
 renban-1: renban r6c2-r6c3-r6c4-r6c5-r7c5-r7c4-r7c3-r7c2
 renban-2: renban r3c3-r2c3-r2c2-r3c2
 renban-3: renban r2c4-r2c5-r3c5-r3c4

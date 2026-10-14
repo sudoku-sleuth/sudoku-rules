@@ -6,6 +6,7 @@ source: https://sudokupad.app/yqdqwqcfaw
 case: https://sudoku-sleuth.com/cases/under-way
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a1ade87f5c94e7bfe8713151d8dc26a2
 ---
 
 ```rules
@@ -22,11 +23,11 @@ cage-9: cage r9c3-r9c4-r9c5 total 15 connected true
 cage-10: cage r1c5-r1c6-r1c7 total 19 connected true
 cage-11: cage r5c9-r6c9-r7c9 total 20 connected true
 cage-12: cage r3c1-r4c1-r5c1 total 15 connected true
-kropki-1: kropki r6c4-r6c5 colour "white"
-kropki-2: kropki r3c6-r3c7 colour "white"
-kropki-3: kropki r2c1-r3c1 colour "white"
-kropki-4: kropki r5c2-r5c3 colour "white"
-kropki-5: kropki r7c8-r7c9 colour "white"
+kropki-1: kropki r6c4-r6c5 white
+kropki-2: kropki r3c6-r3c7 white
+kropki-3: kropki r2c1-r3c1 white
+kropki-4: kropki r5c2-r5c3 white
+kropki-5: kropki r7c8-r7c9 white
 ```
 
 **Sudoku, Cages, Consecutive Pairs**

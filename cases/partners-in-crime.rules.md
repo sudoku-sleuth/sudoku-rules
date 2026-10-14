@@ -6,6 +6,7 @@ source: https://sudokupad.app/evzbeneii6
 case: https://sudoku-sleuth.com/cases/partners-in-crime
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 40bbd25652da3fcac52936e91b95fe29
 ---
 
 ```rules

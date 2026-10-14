@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/viewfinder
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c1=1
+exported: e4ca316d07470ea0c23744714f0fe3ec
 ---
 
 ```rules

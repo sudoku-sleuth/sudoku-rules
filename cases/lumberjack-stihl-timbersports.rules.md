@@ -6,6 +6,7 @@ source: https://sudokupad.app/ajcgotlqy3
 case: https://sudoku-sleuth.com/cases/lumberjack-stihl-timbersports
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0748e8aaa533dbab1fb870c5f72ccce5
 ---
 
 ```rules
@@ -22,9 +23,9 @@ cage-9: cage r8c5-r8c6 connected true
 cage-10: cage r9c4-r9c5-r9c6 connected true
 cage-11: cage r8c1-r8c2 connected true
 cage-12: cage r5c3-r6c3 connected true
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r8c4-r8c5 colour "white"
-kropki-3: kropki r7c2-r7c3 colour "black"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r8c4-r8c5 white
+kropki-3: kropki r7c2-r7c3 black
 whispers-1: whispers r5c4-r4c5-r3c6-r2c7-r1c7-r1c8-r2c9-r3c9-r4c8-r4c7-r5c7-r5c6 gap 5
 whispers-2: whispers r6c3-r7c2-r8c1-r9c1-r9c2-r8c2-r8c3 gap 5
 whispers-3: whispers r2c7-r3c8-r3c9 gap 5

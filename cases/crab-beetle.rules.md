@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/crab-beetle
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=8 r7c3=8 r7c7=4
+exported: 4df4b5205006ee911ba9d95a3e5fafa0
 ---
 
 ```rules

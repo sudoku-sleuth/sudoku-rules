@@ -6,6 +6,7 @@ source: https://sudokupad.app/puekzw4hyt
 case: https://sudoku-sleuth.com/cases/finale
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 450c78d8d03cccbf01cd6c5ba296c604
 ---
 
 ```rules
@@ -31,12 +32,12 @@ cage-18: cage r3c5-r3c6 total 13 connected true
 cage-19: cage r6c2-r6c3 total 7 connected true
 cage-20: cage r4c7-r4c8 total 13 connected true
 cage-21: cage r5c4-r5c5-r5c6 total 20 connected true
-kropki-1: kropki r9c7-r9c8 colour "black"
-kropki-2: kropki r1c2-r1c3 colour "black"
-kropki-3: kropki r6c1-r6c2 colour "black"
-kropki-4: kropki r2c5-r2c6 colour "black"
-kropki-5: kropki r6c5-r6c6 colour "black"
-kropki-6: kropki r5c3-r5c4 colour "black"
+kropki-1: kropki r9c7-r9c8 black
+kropki-2: kropki r1c2-r1c3 black
+kropki-3: kropki r6c1-r6c2 black
+kropki-4: kropki r2c5-r2c6 black
+kropki-5: kropki r6c5-r6c6 black
+kropki-6: kropki r5c3-r5c4 black
 whispers-1: whispers r7c7-r7c8 gap 5
 whispers-2: whispers r4c6-r4c7 gap 5
 whispers-3: whispers r2c2-r2c3 gap 5

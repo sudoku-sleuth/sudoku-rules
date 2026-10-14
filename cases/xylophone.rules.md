@@ -6,6 +6,7 @@ source: https://sudokupad.app/zn7c6ya4za
 case: https://sudoku-sleuth.com/cases/xylophone
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0bdf944cd6467d62a2ce80d29ef517b0
 ---
 
 ```rules
@@ -17,9 +18,9 @@ thermo-4: thermo r4c2-r3c3-r2c4-r1c5
 thermo-5: thermo r6c8-r7c7-r8c6-r9c5
 thermo-6: thermo r5c7-r6c6-r7c5-r8c4-r9c3
 thermo-7: thermo r6c4-r5c5-r4c6-r3c7-r2c8
-kropki-1: kropki r1c4-r1c5 colour "white"
-kropki-2: kropki r3c8-r3c9 colour "white"
-kropki-3: kropki r7c1-r8c1 colour "white"
+kropki-1: kropki r1c4-r1c5 white
+kropki-2: kropki r3c8-r3c9 white
+kropki-3: kropki r7c1-r8c1 white
 arrow-1: arrow r3c3-r4c4-r5c5 bulb ["r2c2"]
 arrow-2: arrow r7c7-r6c6-r5c5 bulb ["r8c8"]
 arrow-3: arrow r2c4-r3c5 bulb ["r1c3"]

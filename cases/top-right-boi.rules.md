@@ -6,6 +6,7 @@ source: https://sudokupad.app/rhuf7siknh
 case: https://sudoku-sleuth.com/cases/top-right-boi
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: acd9da6d8cba817d06bd85f823f3fcd7
 ---
 
 ```rules
@@ -24,8 +25,8 @@ cage-11: cage r5c7-r5c8-r5c9 connected true
 cage-12: cage r4c7-r4c8-r4c9 connected true
 cage-13: cage r2c8-r3c8 connected true
 cage-14: cage r2c6-r3c5-r3c6 connected true
-kropki-1: kropki r6c7-r6c8 colour "black"
-kropki-2: kropki r7c5-r7c6 colour "black"
+kropki-1: kropki r6c7-r6c8 black
+kropki-2: kropki r7c5-r7c6 black
 whispers-1: whispers r1c1-r1c2-r2c3-r2c4-r3c5-r3c6-r4c7-r4c8-r5c9-r6c8-r6c7-r7c6-r7c5-r8c4-r8c3-r9c2-r9c1 gap 4
 whispers-2: whispers r3c1-r3c2-r4c3-r4c4-r5c5-r6c4-r6c3-r7c2-r7c1 gap 4
 pair-1: pair r6c5-r6c6 sum 10

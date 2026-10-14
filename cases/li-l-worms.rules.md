@@ -6,6 +6,7 @@ source: https://sudokupad.app/eiag0skt50
 case: https://sudoku-sleuth.com/cases/li-l-worms
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8f78c9af215e8a66e6f34d8617913915
 ---
 
 ```rules

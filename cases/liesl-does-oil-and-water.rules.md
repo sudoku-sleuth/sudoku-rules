@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/liesl-does-oil-and-water
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0de5534495e31d820f24e99fe60f3055
 ---
 
 ```rules

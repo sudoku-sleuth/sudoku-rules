@@ -6,6 +6,7 @@ source: https://sudokupad.app/8ryxjwj5zh
 case: https://sudoku-sleuth.com/cases/did-someone-say-fourteen
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1c60a7d8f2f364558838b980e5b107aa
 ---
 
 ```rules

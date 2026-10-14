@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/1000-puzzles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=4 r1c4=1 r1c5=6 r4c8=2 r4c9=6
+exported: fef5a00c633e93a3e621ed1fd61b8fa9
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c8-r8c8 colour "black"
-kropki-2: kropki r3c3-r4c3 colour "black"
-kropki-3: kropki r7c4-r8c4 colour "black"
-kropki-4: kropki r5c5-r6c5 colour "black"
+kropki-1: kropki r7c8-r8c8 black
+kropki-2: kropki r3c3-r4c3 black
+kropki-3: kropki r7c4-r8c4 black
+kropki-4: kropki r5c5-r6c5 black
 whispers-1: whispers r1c1-r2c1-r3c1-r4c1-r5c1-r6c1 gap 4
 whispers-2: whispers r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r7c3-r6c3-r5c3-r4c3-r3c3-r2c3 gap 4 loop true
 whispers-3: whispers r3c4-r4c4-r5c4-r6c4-r7c4-r8c4-r8c5-r7c5-r6c5-r5c5-r4c5-r3c5 gap 4 loop true

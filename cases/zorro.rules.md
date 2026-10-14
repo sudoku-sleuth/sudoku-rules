@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/zorro
 case: https://sudoku-sleuth.com/cases/zorro
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e7c6ca3e2b09f03e1fa540cce24ef736
 ---
 
 ```rules

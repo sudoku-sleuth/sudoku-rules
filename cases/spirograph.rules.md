@@ -9,8 +9,8 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some source features still need to be checked against our reading.
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: 46b021dae6c47e122a27c412edfa3404
 ---
 
 ```rules

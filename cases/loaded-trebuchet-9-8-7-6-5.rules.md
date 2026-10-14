@@ -6,22 +6,23 @@ source: https://sudokupad.app/wlmdohtj2o
 case: https://sudoku-sleuth.com/cases/loaded-trebuchet-9-8-7-6-5
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9dc04f6511e8b65e07a6493f2ce2f9a9
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r8c1-r8c2 total 6 connected true
 cage-2: cage r9c1-r9c2 total 8 connected true
-kropki-1: kropki r5c1-r6c1 colour "white"
-kropki-2: kropki r7c5-r7c6 colour "white"
-kropki-3: kropki r7c6-r7c7 colour "white"
-kropki-4: kropki r6c4-r6c5 colour "white"
-kropki-5: kropki r6c5-r6c6 colour "white"
-kropki-6: kropki r1c6-r1c7 colour "white"
-kropki-7: kropki r1c7-r1c8 colour "white"
-kropki-8: kropki r4c5-r4c6 colour "white"
-kropki-9: kropki r5c5-r5c6 colour "white"
-kropki-10: kropki r5c4-r6c4 colour "white"
+kropki-1: kropki r5c1-r6c1 white
+kropki-2: kropki r7c5-r7c6 white
+kropki-3: kropki r7c6-r7c7 white
+kropki-4: kropki r6c4-r6c5 white
+kropki-5: kropki r6c5-r6c6 white
+kropki-6: kropki r1c6-r1c7 white
+kropki-7: kropki r1c7-r1c8 white
+kropki-8: kropki r4c5-r4c6 white
+kropki-9: kropki r5c5-r5c6 white
+kropki-10: kropki r5c4-r6c4 white
 arrow-1: arrow r3c3-r2c2-r1c1 bulb ["r4c4"]
 arrow-2: arrow r5c5-r6c6-r7c7 bulb ["r4c4"]
 arrow-3: arrow r5c4-r6c5-r7c6 bulb ["r4c3"]

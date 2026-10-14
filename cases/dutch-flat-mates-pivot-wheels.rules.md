@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-flat-mates-pivot-wheels
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 29dd227e800ae0070cf2ecda4a334d67
 ---
 
 ```rules

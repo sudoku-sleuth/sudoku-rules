@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/of-mice-and-ten
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=1 r3c5=1 r9c1=1
+exported: 4926ce432c6e4ccf5e1c0575eae688da
 ---
 
 ```rules
@@ -15,7 +16,7 @@ cage-1: cage r1c1-r1c2-r1c3 total 10 connected true
 cage-2: cage r9c1-r9c2-r9c3 total 10 connected true
 cage-3: cage r1c9-r2c9-r3c9 total 10 connected true
 cage-4: cage r7c9-r8c9-r9c9 total 12 connected true
-kropki r5c6-r6c6 colour "black"
+kropki r5c6-r6c6 black
 whispers-1: whispers r3c5-r2c6-r2c7-r3c8-r4c8-r5c8-r6c8-r7c8-r8c7-r8c6-r7c5-r6c5-r5c5-r4c5 gap 5
 whispers-2: whispers r3c2-r2c3-r3c3-r4c3-r5c3-r6c3-r7c3-r8c3 gap 5
 little-killer-1: little-killer r9c2-r8c1 sum 10

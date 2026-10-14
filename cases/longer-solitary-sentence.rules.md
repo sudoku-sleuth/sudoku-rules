@@ -6,6 +6,7 @@ source: https://sudokupad.app/ys78k7e8ao
 case: https://sudoku-sleuth.com/cases/longer-solitary-sentence
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f5a95e5062d0baff013599d6c91f1eda
 ---
 
 ```rules

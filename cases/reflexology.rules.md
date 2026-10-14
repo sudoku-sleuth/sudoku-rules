@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/reflexology
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d2bf1bf6a77b1174dffaf3db8bf1b9cf
 ---
 
 ```rules
@@ -15,11 +16,11 @@ cage-1: cage r2c2-r2c3-r2c4-r3c2-r3c3-r3c4-r4c2-r4c3-r4c4 total 45 connected tru
 cage-2: cage r2c6-r2c7-r2c8-r3c6-r3c7-r3c8-r4c6-r4c7-r4c8 total 45 connected true
 cage-3: cage r6c6-r6c7-r6c8-r7c6-r7c7-r7c8-r8c6-r8c7-r8c8 total 45 connected true
 cage-4: cage r6c2-r6c3-r6c4-r7c2-r7c3-r7c4-r8c2-r8c3-r8c4 total 45 connected true
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
-kropki-3: kropki r3c3-r3c4 colour "black"
-kropki-4: kropki r2c8-r2c9 colour "black"
-kropki-5: kropki r4c8-r5c8 colour "black"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c5-r6c5 white
+kropki-3: kropki r3c3-r3c4 black
+kropki-4: kropki r2c8-r2c9 black
+kropki-5: kropki r4c8-r5c8 black
 arrow-1: arrow r2c9-r1c9-r1c8 bulb ["r2c8"]
 arrow-2: arrow r5c8-r6c8 bulb ["r6c7"]
 arrow-3: arrow r5c8-r6c9 bulb ["r4c9"]

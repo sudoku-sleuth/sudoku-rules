@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/dual-containment
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a2c05053f9a0c342c0e7834fe5bdc157
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c7-r1c8 colour "white"
-kropki-2: kropki r1c8-r1c9 colour "white"
-kropki-3: kropki r1c9-r2c9 colour "white"
-kropki-4: kropki r2c8-r2c9 colour "white"
-kropki-5: kropki r2c7-r2c8 colour "white"
-kropki-6: kropki r6c4-r7c4 colour "white"
-kropki-7: kropki r3c3-r4c3 colour "white"
+kropki-1: kropki r1c7-r1c8 white
+kropki-2: kropki r1c8-r1c9 white
+kropki-3: kropki r1c9-r2c9 white
+kropki-4: kropki r2c8-r2c9 white
+kropki-5: kropki r2c7-r2c8 white
+kropki-6: kropki r6c4-r7c4 white
+kropki-7: kropki r3c3-r4c3 white
 pair-1: pair r2c2-r3c2 sum 10
 pair-2: pair r4c5-r5c5 sum 10
 pair-3: pair r3c2-r4c2 sum 5

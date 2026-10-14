@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parity-killer-in-some-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9a4c8639d77924852af90ab976fa99fb
 ---
 
 ```rules
@@ -22,13 +23,13 @@ cage-8: cage r8c7-r8c8-r8c9 total 11 connected true
 thermo-1: thermo r6c8-r5c8-r4c8-r4c9
 thermo-2: thermo r1c8-r2c8-r3c8-r3c9
 thermo-3: thermo r4c2-r4c1-r3c1
-kropki-1: kropki r8c4-r9c4 colour "black"
-kropki-2: kropki r7c3-r8c3 colour "black"
-kropki-3: kropki r4c3-r5c3 colour "black"
-kropki-4: kropki r5c7-r6c7 colour "black"
-kropki-5: kropki r1c5-r1c6 colour "black"
-kropki-6: kropki r3c7-r4c7 colour "white"
-kropki-7: kropki r8c6-r9c6 colour "white"
+kropki-1: kropki r8c4-r9c4 black
+kropki-2: kropki r7c3-r8c3 black
+kropki-3: kropki r4c3-r5c3 black
+kropki-4: kropki r5c7-r6c7 black
+kropki-5: kropki r1c5-r1c6 black
+kropki-6: kropki r3c7-r4c7 white
+kropki-7: kropki r8c6-r9c6 white
 ```
 
 ```drawing

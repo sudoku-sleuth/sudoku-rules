@@ -6,11 +6,12 @@ source: https://sudokupad.app/l0i7jle6hc
 case: https://sudoku-sleuth.com/cases/that-s-an-odd-point-to-make
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 302362d27c318fde427709274167ff41
 ---
 
 ```rules
 sudoku 9x9
-kropki r3c2-r4c2 colour "white"
+kropki r3c2-r4c2 white
 arrow-1: arrow r8c5-r8c4-r7c3 bulb ["r8c6"]
 arrow-2: arrow r5c1-r4c2 bulb ["r6c2"]
 arrow-3: arrow r5c9-r6c8 bulb ["r4c8"]

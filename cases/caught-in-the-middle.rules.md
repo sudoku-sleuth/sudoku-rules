@@ -6,6 +6,7 @@ source: https://sudokupad.app/6ofa907w3m
 case: https://sudoku-sleuth.com/cases/caught-in-the-middle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 489c562aa2433740c2832913bf438222
 ---
 
 ```rules

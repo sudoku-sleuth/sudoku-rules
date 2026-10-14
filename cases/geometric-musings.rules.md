@@ -6,6 +6,7 @@ source: https://sudokupad.app/1183aym61j
 case: https://sudoku-sleuth.com/cases/geometric-musings
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e9217be025b14bf8306a150e1dedf93a
 ---
 
 ```rules
@@ -21,14 +22,14 @@ cage-8: cage r7c2-r7c3-r8c2-r8c3-r8c4-r8c5-r9c4-r9c5 total 40 connected true
 cage-9: cage r8c7-r8c8-r8c9 total 15 connected true
 cage-10: cage r3c9-r4c9 total 11 connected true
 cage-11: cage r6c6-r7c6 total 6 connected true
-kropki-1: kropki r4c2-r5c2 colour "white"
-kropki-2: kropki r6c3-r6c4 colour "white"
-kropki-3: kropki r5c5-r6c5 colour "white"
-kropki-4: kropki r8c2-r8c3 colour "white"
-kropki-5: kropki r5c8-r6c8 colour "black"
-kropki-6: kropki r9c6-r9c7 colour "black"
-kropki-7: kropki r2c9-r3c9 colour "black"
-kropki-8: kropki r2c4-r3c4 colour "black"
+kropki-1: kropki r4c2-r5c2 white
+kropki-2: kropki r6c3-r6c4 white
+kropki-3: kropki r5c5-r6c5 white
+kropki-4: kropki r8c2-r8c3 white
+kropki-5: kropki r5c8-r6c8 black
+kropki-6: kropki r9c6-r9c7 black
+kropki-7: kropki r2c9-r3c9 black
+kropki-8: kropki r2c4-r3c4 black
 ```
 
 **Sudoku, Cages, Kropki**

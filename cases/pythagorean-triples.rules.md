@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/pythagorean-triples
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a4df45eb7a74481f4480daf3499a79e2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r5c5-r5c6 colour "black"
-kropki-3: kropki r9c6-r9c7 colour "black"
-kropki-4: kropki r8c3-r9c3 colour "black"
-kropki-5: kropki r4c5-r4c6 colour "black"
-kropki-6: kropki r6c4-r7c4 colour "black"
-kropki-7: kropki r1c8-r1c9 colour "black"
-kropki-8: kropki r2c1-r3c1 colour "black"
-kropki-9: kropki r2c7-r3c7 colour "black"
-kropki-10: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r5c5-r5c6 black
+kropki-3: kropki r9c6-r9c7 black
+kropki-4: kropki r8c3-r9c3 black
+kropki-5: kropki r4c5-r4c6 black
+kropki-6: kropki r6c4-r7c4 black
+kropki-7: kropki r1c8-r1c9 black
+kropki-8: kropki r2c1-r3c1 black
+kropki-9: kropki r2c7-r3c7 black
+kropki-10: kropki r7c8-r8c8 black
 ```
 
 ```drawing

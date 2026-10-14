@@ -6,6 +6,7 @@ source: https://tinyurl.com/2wxtj93m
 case: https://sudoku-sleuth.com/cases/the-third-law-of-arrowdynamics
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e746e6005a07c1fee9b8529cb384b481
 ---
 
 ```rules

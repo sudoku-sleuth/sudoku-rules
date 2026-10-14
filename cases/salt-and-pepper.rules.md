@@ -8,8 +8,8 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: b1fffe16a1e88540614b7e90c9759198
 ---
 
 ```rules
@@ -28,18 +28,18 @@ pair-11: pair r8c5-r9c5 difference 3
 pair-12: pair r8c3-r9c3 difference 4
 pair-13: pair r6c7-r7c7 difference 5
 pair-14: pair r6c2-r6c3 difference 3
-kropki-1: kropki r4c6-r5c6 colour "black"
+kropki-1: kropki r4c6-r5c6 black
 pair-15: pair r4c5-r4c6 ratio 3
 pair-16: pair r6c3-r6c4 ratio 3
-kropki-2: kropki r7c4-r7c5 colour "black"
-kropki-3: kropki r9c5-r9c6 colour "black"
-kropki-4: kropki r8c6-r9c6 colour "black"
-kropki-5: kropki r9c4-r9c5 colour "black"
-kropki-6: kropki r6c4-r6c5 colour "black"
+kropki-2: kropki r7c4-r7c5 black
+kropki-3: kropki r9c5-r9c6 black
+kropki-4: kropki r8c6-r9c6 black
+kropki-5: kropki r9c4-r9c5 black
+kropki-6: kropki r6c4-r6c5 black
 pair-17: pair r8c3-r8c4 ratio 3
-kropki-7: kropki r8c8-r8c9 colour "black"
+kropki-7: kropki r8c8-r8c9 black
 pair-18: pair r7c2-r8c2 ratio 4
-kropki-8: kropki r7c1-r7c2 colour "black"
+kropki-8: kropki r7c1-r7c2 black
 quadruple-1: quadruple r3c6-r3c7-r4c6-r4c7 digits [2,3,4,8]
 quadruple-2: quadruple r3c3-r3c4-r4c3-r4c4 digits [2,3,4,5]
 ```

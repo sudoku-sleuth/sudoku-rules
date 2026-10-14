@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/n-or-m-sans-souci
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2ee9bcb21d85310b108942e03cfdbf45
 ---
 
 ```rules

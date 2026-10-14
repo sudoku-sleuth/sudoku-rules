@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/caged-knights-3
 case: https://sudoku-sleuth.com/cases/caged-knights-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b424d290ee5aaf1af7cdf8121d69dab2
 ---
 
 ```rules

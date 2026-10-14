@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 8
-    - 17
-    - 21
+    - r2c3
+    - r3c6
+    - r4c4
 format: open-rules
 title: Hide and Speak - Grid A
 setter: Marty Sears
@@ -61,6 +61,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: a6b9e62be748633ee2d46dc23cd70e71
 ---
 
 ```rules

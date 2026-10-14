@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/hot-summer-knights
 case: https://sudoku-sleuth.com/cases/hot-summer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1d3df489e3263763f7b2de14c0974ff7
 ---
 
 ```rules

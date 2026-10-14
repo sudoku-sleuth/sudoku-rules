@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/more-crystallization
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 15c379ee0a64105d8c86d5faa24e0753
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c3-r8c3 colour "black"
-kropki-2: kropki r9c2-r9c3 colour "black"
-kropki-3: kropki r3c9-r4c9 colour "black"
-kropki-4: kropki r4c9-r5c9 colour "black"
-kropki-5: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r7c3-r8c3 black
+kropki-2: kropki r9c2-r9c3 black
+kropki-3: kropki r3c9-r4c9 black
+kropki-4: kropki r4c9-r5c9 black
+kropki-5: kropki r5c9-r6c9 black
 arrow r3c8-r2c8-r2c7-r1c7-r1c8-r1c9-r2c9 bulb ["r3c6","r3c7"]
 ```
 

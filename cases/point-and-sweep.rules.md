@@ -6,6 +6,7 @@ source: https://sudokupad.app/l1h0ag4lb9
 case: https://sudoku-sleuth.com/cases/point-and-sweep
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cde0bdb0b7f07d100e836a95a3d85683
 ---
 
 ```rules

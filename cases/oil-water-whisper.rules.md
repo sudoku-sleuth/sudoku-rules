@@ -6,6 +6,7 @@ source: https://sudokupad.app/fchipmhae8
 case: https://sudoku-sleuth.com/cases/oil-water-whisper
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3ee432e4d8473fb85ee8b2823ffda74d
 ---
 
 ```rules

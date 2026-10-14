@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/we-raise-our-cups
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e27bc4ae4e3fdf21f98c550b6c65fb75
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c1-r7c1 colour "black"
-kropki-2: kropki r5c5-r6c5 colour "black"
-kropki-3: kropki r7c9-r8c9 colour "black"
-kropki-4: kropki r9c7-r9c8 colour "black"
-kropki-5: kropki r6c6-r6c7 colour "black"
+kropki-1: kropki r6c1-r7c1 black
+kropki-2: kropki r5c5-r6c5 black
+kropki-3: kropki r7c9-r8c9 black
+kropki-4: kropki r9c7-r9c8 black
+kropki-5: kropki r6c6-r6c7 black
 whispers-1: whispers r3c2-r4c2-r5c2-r5c1 gap 4
 whispers-2: whispers r5c2-r5c3 gap 4
 whispers-3: whispers r5c5-r6c5-r7c5-r7c4 gap 4

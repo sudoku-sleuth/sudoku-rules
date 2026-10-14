@@ -6,6 +6,7 @@ source: https://tinyurl.com/mvxsecyw
 case: https://sudoku-sleuth.com/cases/banned-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bfb024c775fbd12ede9cd1d777f9dc98
 ---
 
 ```rules

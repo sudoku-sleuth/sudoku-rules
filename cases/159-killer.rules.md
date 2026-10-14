@@ -6,6 +6,7 @@ source: https://sudokupad.app/9271gm2xbx
 case: https://sudoku-sleuth.com/cases/159-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 03a335878207bba44cca741b8d850545
 ---
 
 ```rules

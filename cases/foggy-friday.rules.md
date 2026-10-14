@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 10
-    - 16
-    - 64
-    - 70
+    - r2c2
+    - r2c8
+    - r8c2
+    - r8c8
 format: open-rules
 title: Foggy Friday
 setter: FullDeck and Missing a Few Cards
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: e94251f3a2645d67374787c9363a272f
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pagoda
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=6 r5c2=7 r5c5=1 r5c8=4 r8c5=3
+exported: 0a9f2cbcad5197ed2e312823949e07ee
 ---
 
 ```rules
@@ -22,9 +23,9 @@ cage-8: cage r4c1-r5c1-r6c1 total 17 connected true
 cage-9: cage r4c9-r5c9-r6c9 total 18 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r4c1-r5c1 colour "white"
-kropki-2: kropki r5c9-r6c9 colour "white"
-kropki-3: kropki r2c4-r3c4 colour "white"
+kropki-1: kropki r4c1-r5c1 white
+kropki-2: kropki r5c9-r6c9 white
+kropki-3: kropki r2c4-r3c4 white
 ```
 
 Normal sudoku rules apply.

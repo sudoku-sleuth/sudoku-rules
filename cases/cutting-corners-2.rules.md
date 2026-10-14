@@ -6,6 +6,7 @@ source: https://sudokupad.app/e6gb883917
 case: https://sudoku-sleuth.com/cases/cutting-corners-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d60ceeabc04ab126670a72d1f33b76b5
 ---
 
 ```rules

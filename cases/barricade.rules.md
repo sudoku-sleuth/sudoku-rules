@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/barricade
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 90aa57ace8a7fadb58d2425cc286e524
 ---
 
 ```rules

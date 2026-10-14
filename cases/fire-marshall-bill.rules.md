@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fire-marshall-bill
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0d5c58fb3ef8b6d60750bd70896659b3
 ---
 
 ```rules
@@ -19,14 +20,14 @@ thermo-5: thermo r6c6-r7c5-r8c4-r7c3
 thermo-6: thermo r8c6-r7c5-r6c4-r7c3
 thermo-7: thermo r6c6-r5c7-r4c8-r3c7
 thermo-8: thermo r6c8-r5c7-r4c6-r3c7
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r5c8-r6c8 colour "white"
-kropki-3: kropki r6c7-r6c8 colour "white"
-kropki-4: kropki r3c2-r4c2 colour "white"
-kropki-5: kropki r2c1-r3c1 colour "white"
-kropki-6: kropki r8c1-r9c1 colour "white"
-kropki-7: kropki r3c5-r4c5 colour "black"
-kropki-8: kropki r5c6-r5c7 colour "black"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r5c8-r6c8 white
+kropki-3: kropki r6c7-r6c8 white
+kropki-4: kropki r3c2-r4c2 white
+kropki-5: kropki r2c1-r3c1 white
+kropki-6: kropki r8c1-r9c1 white
+kropki-7: kropki r3c5-r4c5 black
+kropki-8: kropki r5c6-r5c7 black
 arrow-1: arrow r2c6-r3c5 bulb ["r3c7"]
 arrow-2: arrow r4c8-r5c7 bulb ["r3c7"]
 arrow-3: arrow r6c2-r5c1 bulb ["r7c3"]

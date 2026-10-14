@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parity-paradox
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0751fcb6f7b0533bd456634095a34a63
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://tinyurl.com/2m5zdsz2
 case: https://sudoku-sleuth.com/cases/locked-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: efacc00ab13d932375a2c7650dd40d28
 ---
 
 ```rules

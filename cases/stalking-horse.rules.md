@@ -6,6 +6,7 @@ source: https://sudokupad.app/q30igqmf81
 case: https://sudoku-sleuth.com/cases/stalking-horse
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ace0a1ffa6113f41b8da08ee56bd6c8f
 ---
 
 ```rules

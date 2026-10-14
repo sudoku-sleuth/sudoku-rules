@@ -10,17 +10,18 @@ drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
 givens: r2c8=3 r3c5=2
+exported: 04d98ca0a7a06218e59d8683701cfeed
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c2-r6c3 colour "black"
-kropki-2: kropki r5c6-r6c6 colour "black"
-kropki-3: kropki r1c9-r2c9 colour "black"
-kropki-4: kropki r1c2-r1c3 colour "black"
-kropki-5: kropki r5c8-r5c9 colour "black"
-kropki-6: kropki r7c3-r7c4 colour "black"
-kropki-7: kropki r3c6-r4c6 colour "black"
+kropki-1: kropki r6c2-r6c3 black
+kropki-2: kropki r5c6-r6c6 black
+kropki-3: kropki r1c9-r2c9 black
+kropki-4: kropki r1c2-r1c3 black
+kropki-5: kropki r5c8-r5c9 black
+kropki-6: kropki r7c3-r7c4 black
+kropki-7: kropki r3c6-r4c6 black
 negative relations [{"op":"difference","value":1}] except [["r6c2","r6c3"],["r5c6","r6c6"],["r1c9","r2c9"],["r1c2","r1c3"],["r5c8","r5c9"],["r7c3","r7c4"],["r3c6","r4c6"]]
 ```
 

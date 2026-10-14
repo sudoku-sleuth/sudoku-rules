@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tenacious-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7c7f5a3572a50f0e3edea10fd293887f
 ---
 
 ```rules

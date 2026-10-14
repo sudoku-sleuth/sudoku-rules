@@ -6,19 +6,20 @@ source: https://sudokupad.app/u5fcuq96wl
 case: https://sudoku-sleuth.com/cases/fellowship-of-the-rings
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5520c53eb6585b50771b6311377c4d95
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c4-r8c5 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r8c6-r8c7 colour "white"
-kropki-4: kropki r7c7-r8c7 colour "white"
-kropki-5: kropki r2c6-r2c7 colour "white"
-kropki-6: kropki r1c4-r1c5 colour "white"
-kropki-7: kropki r8c1-r8c2 colour "white"
-kropki-8: kropki r4c1-r5c1 colour "white"
-kropki-9: kropki r6c2-r7c2 colour "white"
+kropki-1: kropki r8c4-r8c5 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r8c6-r8c7 white
+kropki-4: kropki r7c7-r8c7 white
+kropki-5: kropki r2c6-r2c7 white
+kropki-6: kropki r1c4-r1c5 white
+kropki-7: kropki r8c1-r8c2 white
+kropki-8: kropki r4c1-r5c1 white
+kropki-9: kropki r6c2-r7c2 white
 whispers-1: whispers r6c4-r6c5-r6c6-r5c6-r4c6-r4c5-r4c4-r5c4 gap 5
 whispers-2: whispers r7c3-r6c3-r5c3-r4c3-r3c3-r3c4-r3c5-r3c6-r3c7-r4c7-r5c7-r6c7-r7c7-r7c6-r7c5-r7c4 gap 5
 whispers-3: whispers r7c4-r7c3 gap 5

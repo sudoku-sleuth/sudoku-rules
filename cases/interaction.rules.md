@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/interaction
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=4 r4c9=3 r9c1=1
+exported: 68f116c888ac56b56e884075a1631375
 ---
 
 ```rules

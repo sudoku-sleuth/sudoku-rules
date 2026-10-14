@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/barbossa
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=8 r4c6=4 r8c1=8 r9c5=1
+exported: cd77325235b3aea18bf3ab7096230ae8
 ---
 
 ```rules

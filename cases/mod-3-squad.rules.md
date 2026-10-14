@@ -10,17 +10,18 @@ drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
 givens: r1c9=5
+exported: 2ab60b9aeff1cedccb479186d5bb4ccb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c2-r2c3 colour "white"
-kropki-2: kropki r1c1-r1c2 colour "black"
-kropki-3: kropki r3c9-r4c9 colour "black"
-kropki-4: kropki r3c3-r4c3 colour "black"
-kropki-5: kropki r7c8-r8c8 colour "black"
-kropki-6: kropki r7c5-r8c5 colour "black"
-kropki-7: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r2c2-r2c3 white
+kropki-2: kropki r1c1-r1c2 black
+kropki-3: kropki r3c9-r4c9 black
+kropki-4: kropki r3c3-r4c3 black
+kropki-5: kropki r7c8-r8c8 black
+kropki-6: kropki r7c5-r8c5 black
+kropki-7: kropki r3c8-r4c8 black
 whispers r1c1-r1c2-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9 gap 4
 ```
 

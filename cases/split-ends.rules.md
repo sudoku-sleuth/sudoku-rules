@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/split-ends
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4632219ade995fde86f3e45bdcb3f0d9
 ---
 
 ```rules

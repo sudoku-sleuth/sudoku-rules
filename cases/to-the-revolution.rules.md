@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/to-the-revolution
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c8=1
+exported: 448f1ec736ce1bd34f828e51a05eab18
 ---
 
 ```rules

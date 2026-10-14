@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/light-thru-double-pane-glass
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 51461080580b4b8afc6b6bcddb7714b2
 ---
 
 ```rules

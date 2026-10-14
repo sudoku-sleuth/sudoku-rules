@@ -6,12 +6,13 @@ source: ""
 case: https://sudoku-sleuth.com/cases/caught-in-the-crossfire-ii
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bda07c3422415e9135d077be49414966
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c6-r5c7 colour "black"
-kropki-2: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r5c6-r5c7 black
+kropki-2: kropki r8c2-r9c2 black
 arrow-1: arrow r2c2-r3c2 bulb ["r1c2"]
 arrow-2: arrow r2c2-r2c3 bulb ["r2c1"]
 arrow-3: arrow r2c3-r3c3 bulb ["r1c3"]

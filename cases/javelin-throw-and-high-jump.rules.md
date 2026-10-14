@@ -7,28 +7,29 @@ case: https://sudoku-sleuth.com/cases/javelin-throw-and-high-jump
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3b12264a7f27172c316f98c5d2a3ae7e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c5-r7c5 colour "white"
-kropki-2: kropki r7c5-r8c5 colour "white"
-kropki-3: kropki r5c3-r6c3 colour "white"
-kropki-4: kropki r6c3-r7c3 colour "white"
-kropki-5: kropki r7c3-r8c3 colour "white"
-kropki-6: kropki r8c3-r9c3 colour "white"
-kropki-7: kropki r5c6-r6c6 colour "white"
-kropki-8: kropki r3c2-r4c2 colour "white"
-kropki-9: kropki r2c2-r3c2 colour "white"
-kropki-10: kropki r1c6-r1c7 colour "white"
-kropki-11: kropki r1c3-r1c4 colour "white"
-kropki-12: kropki r2c3-r3c3 colour "black"
-kropki-13: kropki r6c2-r6c3 colour "black"
-kropki-14: kropki r7c7-r8c7 colour "black"
-kropki-15: kropki r3c5-r4c5 colour "black"
-kropki-16: kropki r1c5-r2c5 colour "black"
-kropki-17: kropki r4c6-r5c6 colour "black"
-kropki-18: kropki r6c6-r7c6 colour "black"
+kropki-1: kropki r6c5-r7c5 white
+kropki-2: kropki r7c5-r8c5 white
+kropki-3: kropki r5c3-r6c3 white
+kropki-4: kropki r6c3-r7c3 white
+kropki-5: kropki r7c3-r8c3 white
+kropki-6: kropki r8c3-r9c3 white
+kropki-7: kropki r5c6-r6c6 white
+kropki-8: kropki r3c2-r4c2 white
+kropki-9: kropki r2c2-r3c2 white
+kropki-10: kropki r1c6-r1c7 white
+kropki-11: kropki r1c3-r1c4 white
+kropki-12: kropki r2c3-r3c3 black
+kropki-13: kropki r6c2-r6c3 black
+kropki-14: kropki r7c7-r8c7 black
+kropki-15: kropki r3c5-r4c5 black
+kropki-16: kropki r1c5-r2c5 black
+kropki-17: kropki r4c6-r5c6 black
+kropki-18: kropki r6c6-r7c6 black
 renban-1: renban r2c5-r3c5-r4c5-r5c4-r5c6-r3c4-r2c3-r2c6
 renban-2: renban r7c7-r8c7-r8c8-r7c8-r6c8-r6c9-r6c7-r5c8-r4c9
 renban-3: renban r7c1-r6c2-r6c3-r6c4-r6c5-r9c3-r8c3-r7c3-r6c6

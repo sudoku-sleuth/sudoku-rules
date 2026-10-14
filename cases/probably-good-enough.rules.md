@@ -1,21 +1,21 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 9
-    - 11
-    - 18
-    - 20
-    - 36
-    - 37
-    - 38
-    - 39
-    - 40
-    - 41
-    - 42
-    - 43
-    - 44
+    - r1c1
+    - r1c2
+    - r2c1
+    - r2c3
+    - r3c1
+    - r3c3
+    - r5c1
+    - r5c2
+    - r5c3
+    - r5c4
+    - r5c5
+    - r5c6
+    - r5c7
+    - r5c8
+    - r5c9
 format: open-rules
 title: Probably Good Enough
 setter: Sandra & Nala
@@ -122,6 +122,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 3f607803782eb1050de1959a5633852e
 ---
 
 ```rules
@@ -156,13 +157,13 @@ cage-1: cage r1c1-r2c1-r3c1 total 7 connected true
 cage-2: cage r2c3-r3c3 total 9 connected true
 cage-3: cage r2c5-r2c6 total 13 connected true
 cage-4: cage r6c6-r6c7 total 10 connected true
-kropki-1: kropki r4c9-r5c9 colour "white"
-kropki-2: kropki r3c4-r4c4 colour "black"
-kropki-3: kropki r4c4-r4c5 colour "black"
-kropki-4: kropki r4c3-r4c4 colour "black"
-kropki-5: kropki r2c6-r2c7 colour "black"
-kropki-6: kropki r9c7-r9c8 colour "white"
-kropki-7: kropki r8c4-r8c5 colour "white"
+kropki-1: kropki r4c9-r5c9 white
+kropki-2: kropki r3c4-r4c4 black
+kropki-3: kropki r4c4-r4c5 black
+kropki-4: kropki r4c3-r4c4 black
+kropki-5: kropki r2c6-r2c7 black
+kropki-6: kropki r9c7-r9c8 white
+kropki-7: kropki r8c4-r8c5 white
 arrow-1: arrow r1c3-r1c4-r1c5 bulb ["r2c2"]
 arrow-2: arrow r3c7-r4c8 bulb ["r3c6"]
 whispers-1: whispers r6c8-r7c8-r7c7-r7c6-r8c6 gap 5

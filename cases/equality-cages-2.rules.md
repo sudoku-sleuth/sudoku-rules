@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=4 r3c8=7
+exported: 69c6ac44214f4dd945092e75592ce4f9
 ---
 
 ```rules
@@ -21,17 +22,17 @@ equality-cage-7: equality-cage r7c7-r7c8-r8c7-r8c8
 equality-cage-8: equality-cage r6c9-r7c9
 equality-cage-9: equality-cage r4c4-r4c5-r5c5-r5c6
 equality-cage-10: equality-cage r4c2-r4c3-r5c2-r5c3
-kropki-1: kropki r8c1-r9c1 colour "black"
-kropki-2: kropki r9c2-r9c3 colour "black"
-kropki-3: kropki r7c6-r8c6 colour "black"
-kropki-4: kropki r6c6-r6c7 colour "black"
-kropki-5: kropki r4c1-r4c2 colour "black"
-kropki-6: kropki r8c5-r9c5 colour "black"
-kropki-7: kropki r8c6-r8c7 colour "black"
-kropki-8: kropki r1c8-r1c9 colour "white"
-kropki-9: kropki r1c6-r1c7 colour "white"
-kropki-10: kropki r7c7-r7c8 colour "white"
-kropki-11: kropki r8c1-r8c2 colour "white"
+kropki-1: kropki r8c1-r9c1 black
+kropki-2: kropki r9c2-r9c3 black
+kropki-3: kropki r7c6-r8c6 black
+kropki-4: kropki r6c6-r6c7 black
+kropki-5: kropki r4c1-r4c2 black
+kropki-6: kropki r8c5-r9c5 black
+kropki-7: kropki r8c6-r8c7 black
+kropki-8: kropki r1c8-r1c9 white
+kropki-9: kropki r1c6-r1c7 white
+kropki-10: kropki r7c7-r7c8 white
+kropki-11: kropki r8c1-r8c2 white
 pair-1: pair r6c6-r7c6 sum 10
 pair-2: pair r8c8-r8c9 sum 10
 pair-3: pair r4c4-r4c5 sum 10

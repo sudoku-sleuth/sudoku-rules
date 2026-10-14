@@ -6,6 +6,7 @@ source: https://sudokupad.app/uj5da31kuj
 case: https://sudoku-sleuth.com/cases/felix-the-dog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c01aca2bed1ef529908cae823f7771a8
 ---
 
 ```rules

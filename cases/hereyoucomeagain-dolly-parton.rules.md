@@ -6,22 +6,23 @@ source: https://sudokupad.app/77351mtghh
 case: https://sudoku-sleuth.com/cases/hereyoucomeagain-dolly-parton
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 38d092952ae36b41fd89cf717f135ae1
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r2c7-r2c8-r2c9 total 11 connected true
 cage-2: cage r5c1-r5c2-r5c3 total 10 connected true
-kropki-1: kropki r2c3-r2c4 colour "white"
-kropki-2: kropki r2c4-r2c5 colour "white"
-kropki-3: kropki r5c4-r5c5 colour "white"
-kropki-4: kropki r5c5-r5c6 colour "white"
-kropki-5: kropki r8c6-r8c7 colour "white"
-kropki-6: kropki r8c7-r8c8 colour "white"
-kropki-7: kropki r7c1-r8c1 colour "white"
-kropki-8: kropki r8c1-r9c1 colour "white"
-kropki-9: kropki r6c8-r7c8 colour "white"
-kropki-10: kropki r1c6-r1c7 colour "white"
+kropki-1: kropki r2c3-r2c4 white
+kropki-2: kropki r2c4-r2c5 white
+kropki-3: kropki r5c4-r5c5 white
+kropki-4: kropki r5c5-r5c6 white
+kropki-5: kropki r8c6-r8c7 white
+kropki-6: kropki r8c7-r8c8 white
+kropki-7: kropki r7c1-r8c1 white
+kropki-8: kropki r8c1-r9c1 white
+kropki-9: kropki r6c8-r7c8 white
+kropki-10: kropki r1c6-r1c7 white
 pair-1: pair r8c6-r9c6 sum 10
 pair-2: pair r8c7-r9c7 sum 10
 pair-3: pair r8c8-r9c8 sum 10

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/coordination
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c2=4 r5c7=7 r6c6=5 r7c1=3 r9c4=8
+exported: 60acc2a1d9b0c30ae7a117e2938be857
 ---
 
 ```rules

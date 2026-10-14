@@ -84,6 +84,7 @@ board:
       - r7c8
       - r8c7
       - r8c8
+exported: 3507d9e8256553504fc18f13586485cc
 ---
 
 ```rules

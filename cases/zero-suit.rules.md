@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/zero-suit
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c5=5
+exported: 8978099f3c65e81dfc6f7d3ffdcdf0f4
 ---
 
 ```rules

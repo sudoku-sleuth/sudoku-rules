@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/equality-cages-106
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3378ed173c90a495372e0609ffc23cf8
 ---
 
 ```rules
@@ -24,9 +25,9 @@ thermo-4: thermo r7c8-r8c7-r7c6-r7c5
 thermo-5: thermo r9c2-r8c2-r8c1-r7c1-r7c2
 thermo-6: thermo r1c7-r2c7-r3c7
 thermo-7: thermo r1c7-r2c8
-kropki-1: kropki r8c8-r9c8 colour "black"
-kropki-2: kropki r7c6-r8c6 colour "black"
-kropki-3: kropki r7c5-r8c5 colour "black"
+kropki-1: kropki r8c8-r9c8 black
+kropki-2: kropki r7c6-r8c6 black
+kropki-3: kropki r7c5-r8c5 black
 ```
 
 Normal Sudoku rules apply. Place the digits 1 through 9 in each empty cell. Digits must not repeat within the same row, column, or box.

@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A clue marker still needs to be read before we can confirm the rule for unmarked pairs.
+exported: 1c5a3d0ef7b2927b9e27dea92b7cfb4b
 ---
 
 ```rules
@@ -23,24 +24,24 @@ cage-7: cage r4c1-r4c2 total 5 connected true
 cage-8: cage r5c1-r5c2 total 5 connected true
 cage-9: cage r8c3-r9c3 total 5 connected true
 cage-10: cage r6c6-r6c7 total 5 connected true
-kropki-1: kropki r6c9-r7c9 colour "white"
-kropki-2: kropki r4c7-r4c8 colour "white"
-kropki-3: kropki r3c7-r3c8 colour "white"
-kropki-4: kropki r5c7-r5c8 colour "white"
-kropki-5: kropki r2c5-r2c6 colour "white"
-kropki-6: kropki r3c5-r3c6 colour "white"
-kropki-7: kropki r6c5-r6c6 colour "white"
-kropki-8: kropki r7c6-r7c7 colour "white"
-kropki-9: kropki r6c7-r6c8 colour "white"
-kropki-10: kropki r6c7-r7c7 colour "white"
-kropki-11: kropki r1c5-r1c6 colour "white"
-kropki-12: kropki r1c5-r2c5 colour "white"
-kropki-13: kropki r3c2-r4c2 colour "black"
-kropki-14: kropki r8c3-r8c4 colour "black"
-kropki-15: kropki r4c1-r5c1 colour "black"
-kropki-16: kropki r9c2-r9c3 colour "black"
-kropki-17: kropki r1c2-r1c3 colour "black"
-kropki-18: kropki r2c3-r2c4 colour "black"
+kropki-1: kropki r6c9-r7c9 white
+kropki-2: kropki r4c7-r4c8 white
+kropki-3: kropki r3c7-r3c8 white
+kropki-4: kropki r5c7-r5c8 white
+kropki-5: kropki r2c5-r2c6 white
+kropki-6: kropki r3c5-r3c6 white
+kropki-7: kropki r6c5-r6c6 white
+kropki-8: kropki r7c6-r7c7 white
+kropki-9: kropki r6c7-r6c8 white
+kropki-10: kropki r6c7-r7c7 white
+kropki-11: kropki r1c5-r1c6 white
+kropki-12: kropki r1c5-r2c5 white
+kropki-13: kropki r3c2-r4c2 black
+kropki-14: kropki r8c3-r8c4 black
+kropki-15: kropki r4c1-r5c1 black
+kropki-16: kropki r9c2-r9c3 black
+kropki-17: kropki r1c2-r1c3 black
+kropki-18: kropki r2c3-r2c4 black
 renban-1: renban r3c1-r2c2-r2c3-r3c3-r3c2
 renban-2: renban r4c8-r5c9-r6c9-r7c9
 renban-3: renban r4c4-r4c3-r4c2-r5c1-r6c1-r7c1-r8c1-r9c1-r4c1

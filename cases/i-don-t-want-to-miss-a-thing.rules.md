@@ -6,6 +6,7 @@ source: https://sudokupad.app/4ydla2orwj
 case: https://sudoku-sleuth.com/cases/i-don-t-want-to-miss-a-thing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2cf8c02561396e1ba99f5974fab8a08b
 ---
 
 ```rules

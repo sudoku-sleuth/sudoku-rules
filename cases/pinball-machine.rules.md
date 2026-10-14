@@ -6,6 +6,7 @@ source: https://sudokupad.app/3e1muc9z1v
 case: https://sudoku-sleuth.com/cases/pinball-machine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a0b436c98ec97e680b00d7df4e27c121
 ---
 
 ```rules
@@ -21,8 +22,8 @@ cage-8: cage r5c1-r6c1-r7c1 total 13 connected true
 cage-9: cage r6c6-r6c7 total 14 connected true
 anti-king
 thermo r8c9-r7c9-r6c9-r5c9-r4c9-r3c9-r2c9-r1c8
-kropki-1: kropki r2c4-r3c4 colour "white"
-kropki-2: kropki r2c4-r2c5 colour "white"
+kropki-1: kropki r2c4-r3c4 white
+kropki-2: kropki r2c4-r2c5 white
 whispers-1: whispers r5c8-r6c8-r7c7 gap 5
 whispers-2: whispers r8c2-r9c3 gap 4
 whispers-3: whispers r8c6-r9c5 gap 4

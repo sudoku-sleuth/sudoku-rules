@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/restricted-skylines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2a924caa8ce5dbd1e678b981627c4f43
 ---
 
 ```rules

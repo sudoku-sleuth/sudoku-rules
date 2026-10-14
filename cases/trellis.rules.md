@@ -6,6 +6,7 @@ source: https://sudokupad.app/katie-splendor/trellis
 case: https://sudoku-sleuth.com/cases/trellis
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7adfc2423e77dd87cac74ff6d8c4e93c
 ---
 
 ```rules
@@ -15,10 +16,10 @@ cage-2: cage r1c2-r2c2 total 14 connected true
 cage-3: cage r7c8-r8c8 total 14 connected true
 cage-4: cage r9c2-r9c3 total 8 connected true
 cage-5: cage r3c8-r3c9 total 8 connected true
-kropki-1: kropki r2c7-r2c8 colour "black"
-kropki-2: kropki r7c2-r7c3 colour "black"
-kropki-3: kropki r7c9-r8c9 colour "black"
-kropki-4: kropki r2c5-r3c5 colour "black"
+kropki-1: kropki r2c7-r2c8 black
+kropki-2: kropki r7c2-r7c3 black
+kropki-3: kropki r7c9-r8c9 black
+kropki-4: kropki r2c5-r3c5 black
 whispers-1: whispers r7c7-r8c7-r9c8-r9c9-r8c9-r7c8 gap 5 loop true
 whispers-2: whispers r7c7-r6c6-r6c5-r5c4-r4c4-r4c5-r5c6-r6c6 gap 5
 whispers-3: whispers r4c4-r3c3-r3c2-r2c1-r1c1-r1c2-r2c3-r3c3 gap 5

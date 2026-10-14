@@ -6,18 +6,19 @@ source: https://sudokupad.app/1yk687wlgi
 case: https://sudoku-sleuth.com/cases/zip-down-memory-lane
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 29e90bcf17827c5b26f02adc8c8a91a1
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r5c3-r5c4 colour "white"
-kropki-3: kropki r2c5-r3c5 colour "white"
-kropki-4: kropki r4c2-r4c3 colour "white"
-kropki-5: kropki r9c1-r9c2 colour "white"
-kropki-6: kropki r5c8-r5c9 colour "black"
-kropki-7: kropki r2c4-r3c4 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r5c3-r5c4 white
+kropki-3: kropki r2c5-r3c5 white
+kropki-4: kropki r4c2-r4c3 white
+kropki-5: kropki r9c1-r9c2 white
+kropki-6: kropki r5c8-r5c9 black
+kropki-7: kropki r2c4-r3c4 black
 zipper-1: zipper r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8
 zipper-2: zipper r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5
 zipper-3: zipper r3c3-r4c4-r5c5-r6c6-r7c7

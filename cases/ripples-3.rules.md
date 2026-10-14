@@ -6,6 +6,7 @@ source: https://sudokupad.app/4orr8hq7mz
 case: https://sudoku-sleuth.com/cases/ripples-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3c95ab72e950dac18ea5eaa2967e3b27
 ---
 
 ```rules

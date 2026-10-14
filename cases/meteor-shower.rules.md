@@ -6,6 +6,7 @@ source: https://sudokupad.app/g1hr777pka
 case: https://sudoku-sleuth.com/cases/meteor-shower
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c34649028d6fa9cfbeba20ba42999b7a
 ---
 
 ```rules

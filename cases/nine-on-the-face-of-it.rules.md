@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/nine-on-the-face-of-it
 case: https://sudoku-sleuth.com/cases/nine-on-the-face-of-it
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4e94effa24fb7ab3330f8387ec959623
 ---
 
 ```rules

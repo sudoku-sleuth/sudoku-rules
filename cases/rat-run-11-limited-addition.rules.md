@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-11-limited-addition
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 78334e38b1432589a777794dad307bf4
 ---
 
 ```rules

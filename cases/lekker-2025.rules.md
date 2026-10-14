@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lekker-2025
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r3c5=1 r5c2=2 r6c2=5 r7c6=2 r8c7=5
+exported: 81d1c7489cd2295864e862de0dbe53a2
 ---
 
 ```rules

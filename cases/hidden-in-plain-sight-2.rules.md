@@ -6,6 +6,7 @@ source: https://sudokupad.app/2923xwhx44
 case: https://sudoku-sleuth.com/cases/hidden-in-plain-sight-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0b5e98fbc5f2ac79b89f18c12a55f553
 ---
 
 ```rules
@@ -17,20 +18,20 @@ cage-4: cage r7c4-r8c4-r9c4 total 18 connected true
 cage-5: cage r1c8-r1c9-r2c8-r2c9-r3c8-r3c9-r4c8-r4c9-r5c9 total 45 connected true
 cage-6: cage r8c9-r9c9 total 9 connected true
 anti-knight
-kropki-1: kropki r4c5-r4c6 colour "black"
-kropki-2: kropki r4c6-r5c6 colour "black"
-kropki-3: kropki r7c7-r8c7 colour "black"
-kropki-4: kropki r8c7-r9c7 colour "black"
-kropki-5: kropki r5c1-r6c1 colour "black"
-kropki-6: kropki r2c1-r2c2 colour "black"
-kropki-7: kropki r8c2-r9c2 colour "black"
-kropki-8: kropki r5c5-r6c5 colour "white"
-kropki-9: kropki r6c5-r6c6 colour "white"
-kropki-10: kropki r4c7-r5c7 colour "white"
-kropki-11: kropki r6c3-r7c3 colour "white"
-kropki-12: kropki r4c1-r4c2 colour "white"
-kropki-13: kropki r1c6-r2c6 colour "white"
-kropki-14: kropki r3c1-r3c2 colour "white"
+kropki-1: kropki r4c5-r4c6 black
+kropki-2: kropki r4c6-r5c6 black
+kropki-3: kropki r7c7-r8c7 black
+kropki-4: kropki r8c7-r9c7 black
+kropki-5: kropki r5c1-r6c1 black
+kropki-6: kropki r2c1-r2c2 black
+kropki-7: kropki r8c2-r9c2 black
+kropki-8: kropki r5c5-r6c5 white
+kropki-9: kropki r6c5-r6c6 white
+kropki-10: kropki r4c7-r5c7 white
+kropki-11: kropki r6c3-r7c3 white
+kropki-12: kropki r4c1-r4c2 white
+kropki-13: kropki r1c6-r2c6 white
+kropki-14: kropki r3c1-r3c2 white
 ```
 
 Normal sudoku rules apply. Place the digits 1-9 once each in every row, column and 3x3 box.

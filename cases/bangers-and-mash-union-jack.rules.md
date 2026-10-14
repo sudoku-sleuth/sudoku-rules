@@ -7,21 +7,22 @@ case: https://sudoku-sleuth.com/cases/bangers-and-mash-union-jack
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: db96afc7efd57b0b2609aa978c0b5c77
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c4-r2c4 colour "white"
-kropki-2: kropki r2c4-r3c4 colour "white"
-kropki-3: kropki r8c6-r9c6 colour "white"
-kropki-4: kropki r8c4-r9c4 colour "white"
-kropki-5: kropki r7c4-r8c4 colour "white"
-kropki-6: kropki r4c8-r4c9 colour "black"
-kropki-7: kropki r7c6-r8c6 colour "black"
-kropki-8: kropki r6c2-r6c3 colour "black"
-kropki-9: kropki r5c6-r6c6 colour "black"
-kropki-10: kropki r3c4-r3c5 colour "black"
-kropki-11: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r1c4-r2c4 white
+kropki-2: kropki r2c4-r3c4 white
+kropki-3: kropki r8c6-r9c6 white
+kropki-4: kropki r8c4-r9c4 white
+kropki-5: kropki r7c4-r8c4 white
+kropki-6: kropki r4c8-r4c9 black
+kropki-7: kropki r7c6-r8c6 black
+kropki-8: kropki r6c2-r6c3 black
+kropki-9: kropki r5c6-r6c6 black
+kropki-10: kropki r3c4-r3c5 black
+kropki-11: kropki r8c9-r9c9 black
 parity-cells r5c5 parity "odd"
 ```
 

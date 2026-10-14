@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/jacks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 637a039cc041703ab7f8d03153a1a3e5
 ---
 
 ```rules

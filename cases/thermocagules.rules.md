@@ -6,6 +6,7 @@ source: https://tinyurl.com/wp7utpy7
 case: https://sudoku-sleuth.com/cases/thermocagules
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bbe232e68718ae6ca057185d76b7e32e
 ---
 
 ```rules

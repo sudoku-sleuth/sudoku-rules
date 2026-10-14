@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/stitched
 case: https://sudoku-sleuth.com/cases/stitched
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a100daa9bb450144c7f20f2fe9e5cbfe
 ---
 
 ```rules
@@ -21,12 +22,12 @@ cage-8: cage r3c3-r3c4-r4c3 total 24 connected true
 cage-9: cage r6c3-r6c4-r7c4 total 24 connected true
 cage-10: cage r6c7-r7c6-r7c7 total 6 connected true
 cage-11: cage r3c6-r3c7-r4c7 total 15 connected true
-kropki-1: kropki r5c1-r6c1 colour "black"
-kropki-2: kropki r4c9-r5c9 colour "black"
-kropki-3: kropki r1c4-r1c5 colour "black"
-kropki-4: kropki r9c5-r9c6 colour "black"
-kropki-5: kropki r2c2-r3c2 colour "black"
-kropki-6: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r5c1-r6c1 black
+kropki-2: kropki r4c9-r5c9 black
+kropki-3: kropki r1c4-r1c5 black
+kropki-4: kropki r9c5-r9c6 black
+kropki-5: kropki r2c2-r3c2 black
+kropki-6: kropki r7c8-r8c8 black
 renban-1: renban r1c1-r1c2
 renban-2: renban r1c3-r1c4
 renban-3: renban r1c5-r1c6

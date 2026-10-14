@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/under-pressure
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=2 r1c7=5 r6c2=5 r8c6=6
+exported: f773da9eb90a16d2d61c8ca85ba4787b
 ---
 
 ```rules

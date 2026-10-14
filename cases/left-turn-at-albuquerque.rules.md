@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/left-turn-at-albuquerque
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=9 r5c2=5
+exported: a42c6ce3948b1cc0939833175a86dff5
 ---
 
 ```rules

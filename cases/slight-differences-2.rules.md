@@ -6,6 +6,7 @@ source: https://tinyurl.com/yrmfppj4
 case: https://sudoku-sleuth.com/cases/slight-differences-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: df1d54f9200be1e837dae5398ed7853d
 ---
 
 ```rules

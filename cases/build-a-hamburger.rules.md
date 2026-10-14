@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/build-a-hamburger
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a6c23526eb57715795b46da9fe42a902
 ---
 
 ```rules

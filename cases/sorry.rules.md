@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sorry
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9c3005e1d58ff6b7370a122e4231adff
 ---
 
 ```rules
@@ -20,13 +21,13 @@ thermo-1: thermo r4c2-r3c2-r2c2
 thermo-2: thermo r2c8-r2c7-r2c6
 thermo-3: thermo r8c8-r7c8-r6c8
 thermo-4: thermo r8c2-r8c3-r8c4
-kropki-1: kropki r7c9-r8c9 colour "white"
-kropki-2: kropki r2c9-r3c9 colour "white"
-kropki-3: kropki r3c9-r4c9 colour "white"
-kropki-4: kropki r1c6-r1c7 colour "white"
-kropki-5: kropki r9c7-r9c8 colour "white"
-kropki-6: kropki r9c2-r9c3 colour "white"
-kropki-7: kropki r3c1-r4c1 colour "white"
+kropki-1: kropki r7c9-r8c9 white
+kropki-2: kropki r2c9-r3c9 white
+kropki-3: kropki r3c9-r4c9 white
+kropki-4: kropki r1c6-r1c7 white
+kropki-5: kropki r9c7-r9c8 white
+kropki-6: kropki r9c2-r9c3 white
+kropki-7: kropki r3c1-r4c1 white
 arrow-1: arrow r9c7-r9c6 bulb ["r9c8"]
 arrow-2: arrow r7c1-r6c1 bulb ["r8c1"]
 arrow-3: arrow r1c3-r1c4 bulb ["r1c2"]

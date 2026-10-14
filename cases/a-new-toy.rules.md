@@ -1,19 +1,19 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 11
-    - 18
-    - 20
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r2c1
+    - r2c3
+    - r3c1
+    - r3c3
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: A New Toy
 setter: Sandra & Nala
@@ -23,13 +23,14 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r1c6=9 r2c1=3 r3c3=7 r4c2=2 r6c2=9 r6c7=3 r8c8=1
+exported: 57a1c23492bc38b56d50e031e053b5e3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c3-r2c4 colour "black"
-kropki-2: kropki r5c8-r6c8 colour "black"
-kropki-3: kropki r9c6-r9c7 colour "white"
+kropki-1: kropki r2c3-r2c4 black
+kropki-2: kropki r5c8-r6c8 black
+kropki-3: kropki r9c6-r9c7 white
 ```
 
 ```drawing

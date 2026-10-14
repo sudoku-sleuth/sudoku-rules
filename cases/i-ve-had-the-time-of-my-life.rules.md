@@ -6,6 +6,7 @@ source: https://sudokupad.app/56xugzq301
 case: https://sudoku-sleuth.com/cases/i-ve-had-the-time-of-my-life
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a9bc631dbad2d44f67eb64f033d5f020
 ---
 
 ```rules
@@ -19,12 +20,12 @@ thermo-1: thermo r2c7-r3c6-r3c5-r3c4-r3c3-r3c2
 thermo-2: thermo r2c7-r3c6-r3c5-r3c4-r3c3-r2c2
 thermo-3: thermo r2c7-r3c6
 thermo-4: thermo r2c7-r3c6-r2c6-r1c6
-kropki-1: kropki r9c1-r9c2 colour "white"
-kropki-2: kropki r9c2-r9c3 colour "white"
-kropki-3: kropki r9c5-r9c6 colour "white"
-kropki-4: kropki r9c6-r9c7 colour "white"
-kropki-5: kropki r2c4-r2c5 colour "white"
-kropki-6: kropki r8c3-r9c3 colour "white"
+kropki-1: kropki r9c1-r9c2 white
+kropki-2: kropki r9c2-r9c3 white
+kropki-3: kropki r9c5-r9c6 white
+kropki-4: kropki r9c6-r9c7 white
+kropki-5: kropki r2c4-r2c5 white
+kropki-6: kropki r8c3-r9c3 white
 arrow-1: arrow r5c6-r6c5-r7c6-r8c7-r9c8 bulb ["r4c7"]
 arrow-2: arrow r5c6-r4c6-r3c5 bulb ["r4c7"]
 arrow-3: arrow r5c6-r4c5-r3c4 bulb ["r4c7"]

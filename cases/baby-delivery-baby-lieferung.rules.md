@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/baby-delivery-baby-lieferung
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 26f2cb914de7da17a772948f3fead137
 ---
 
 ```rules

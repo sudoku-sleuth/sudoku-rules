@@ -6,6 +6,7 @@ source: https://sudokupad.app/u4uxhchgyc
 case: https://sudoku-sleuth.com/cases/empty-boxes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 84cea3826c3aeef5ffe52a5785bedba0
 ---
 
 ```rules
@@ -16,11 +17,11 @@ cage-3: cage r2c1-r3c1 total 6 connected true
 cage-4: cage r1c2-r1c3 total 15 connected true
 cage-5: cage r2c9-r3c8-r3c9 total 8 connected true
 cage-6: cage r8c3-r9c2-r9c3 total 22 connected true
-kropki-1: kropki r4c2-r5c2 colour "white"
-kropki-2: kropki r8c3-r9c3 colour "white"
-kropki-3: kropki r1c4-r2c4 colour "white"
-kropki-4: kropki r4c2-r4c3 colour "white"
-kropki-5: kropki r2c4-r2c5 colour "black"
+kropki-1: kropki r4c2-r5c2 white
+kropki-2: kropki r8c3-r9c3 white
+kropki-3: kropki r1c4-r2c4 white
+kropki-4: kropki r4c2-r4c3 white
+kropki-5: kropki r2c4-r2c5 black
 whispers r5c3-r4c4-r3c5 gap 5
 parity-cells r5c3 parity "odd"
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
