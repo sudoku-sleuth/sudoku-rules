@@ -8,25 +8,25 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: dd259133ab8b16b1c8d3facf71948537
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c3-r3c4 colour "black"
-kropki-2: kropki r1c4-r1c5 colour "black"
-kropki-3: kropki r5c7-r6c7 colour "black"
-kropki-4: kropki r7c5-r7c6 colour "black"
-kropki-5: kropki r7c1-r7c2 colour "white"
-kropki-6: kropki r7c2-r7c3 colour "white"
-kropki-7: kropki r7c3-r8c3 colour "white"
-kropki-8: kropki r8c3-r9c3 colour "white"
-kropki-9: kropki r2c1-r2c2 colour "white"
-kropki-10: kropki r1c2-r2c2 colour "white"
-kropki-11: kropki r7c9-r8c9 colour "white"
-kropki-12: kropki r2c5-r3c5 colour "white"
-kropki-13: kropki r4c4-r4c5 colour "white"
+kropki-1: kropki r3c3-r3c4 black
+kropki-2: kropki r1c4-r1c5 black
+kropki-3: kropki r5c7-r6c7 black
+kropki-4: kropki r7c5-r7c6 black
+kropki-5: kropki r7c1-r7c2 white
+kropki-6: kropki r7c2-r7c3 white
+kropki-7: kropki r7c3-r8c3 white
+kropki-8: kropki r8c3-r9c3 white
+kropki-9: kropki r2c1-r2c2 white
+kropki-10: kropki r1c2-r2c2 white
+kropki-11: kropki r7c9-r8c9 white
+kropki-12: kropki r2c5-r3c5 white
+kropki-13: kropki r4c4-r4c5 white
 ```
 
 ```drawing

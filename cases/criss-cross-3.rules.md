@@ -8,8 +8,8 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Some source features still need to be checked against our reading.
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: e20521aa74dc3cb2a1f8a46153dabc2a
 ---
 
 ```rules
@@ -17,9 +17,9 @@ sudoku 9x9
 anti-knight
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r4c9-r5c9 colour "white"
-kropki-2: kropki r6c7-r6c8 colour "white"
-kropki-3: kropki r5c7-r5c8 colour "white"
+kropki-1: kropki r4c9-r5c9 white
+kropki-2: kropki r6c7-r6c8 white
+kropki-3: kropki r5c7-r5c8 white
 region-sum-1: region-sum r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8-r5c9 segments [["r5c1","r5c2","r5c3"],["r5c4","r5c5","r5c6"],["r5c7","r5c8","r5c9"]]
 region-sum-2: region-sum r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5-r9c5 segments [["r1c5","r2c5","r3c5"],["r4c5","r5c5","r6c5"],["r7c5","r8c5","r9c5"]]
 pair-1: pair r5c7-r6c7 sum 10

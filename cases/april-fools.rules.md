@@ -8,8 +8,8 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: b37b049c79ad7e34b0b07179d58d0130
 ---
 
 ```rules
@@ -28,25 +28,25 @@ cage-11: cage r1c1-r1c2-r1c3 total 19 connected true
 cage-12: cage r9c4-r9c5-r9c6 total 20 connected true
 cage-13: cage r9c7-r9c8-r9c9 total 9 connected true
 cage-14: cage r8c2-r9c1-r9c2-r9c3 total 19 connected true
-kropki-1: kropki r8c5-r9c5 colour "white"
-kropki-2: kropki r4c5-r5c5 colour "white"
-kropki-3: kropki r3c5-r4c5 colour "white"
-kropki-4: kropki r1c5-r2c5 colour "white"
-kropki-5: kropki r3c3-r3c4 colour "white"
-kropki-6: kropki r3c5-r3c6 colour "white"
-kropki-7: kropki r8c8-r8c9 colour "white"
-kropki-8: kropki r7c7-r8c7 colour "white"
-kropki-9: kropki r7c6-r8c6 colour "white"
-kropki-10: kropki r7c4-r8c4 colour "white"
-kropki-11: kropki r7c3-r8c3 colour "white"
-kropki-12: kropki r1c2-r2c2 colour "white"
-kropki-13: kropki r6c5-r6c6 colour "black"
-kropki-14: kropki r7c5-r8c5 colour "black"
-kropki-15: kropki r8c5-r8c6 colour "black"
-kropki-16: kropki r2c1-r3c1 colour "black"
-kropki-17: kropki r3c3-r4c3 colour "black"
-kropki-18: kropki r8c6-r9c6 colour "black"
-kropki-19: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r8c5-r9c5 white
+kropki-2: kropki r4c5-r5c5 white
+kropki-3: kropki r3c5-r4c5 white
+kropki-4: kropki r1c5-r2c5 white
+kropki-5: kropki r3c3-r3c4 white
+kropki-6: kropki r3c5-r3c6 white
+kropki-7: kropki r8c8-r8c9 white
+kropki-8: kropki r7c7-r8c7 white
+kropki-9: kropki r7c6-r8c6 white
+kropki-10: kropki r7c4-r8c4 white
+kropki-11: kropki r7c3-r8c3 white
+kropki-12: kropki r1c2-r2c2 white
+kropki-13: kropki r6c5-r6c6 black
+kropki-14: kropki r7c5-r8c5 black
+kropki-15: kropki r8c5-r8c6 black
+kropki-16: kropki r2c1-r3c1 black
+kropki-17: kropki r3c3-r4c3 black
+kropki-18: kropki r8c6-r9c6 black
+kropki-19: kropki r9c8-r9c9 black
 ```
 
 ```drawing

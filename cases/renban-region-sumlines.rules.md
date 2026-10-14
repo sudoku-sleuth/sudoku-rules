@@ -8,17 +8,17 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: c181bd958de02e37956334e1f68c143c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c6-r4c7 colour "white"
-kropki-2: kropki r2c9-r3c9 colour "white"
-kropki-3: kropki r1c6-r2c6 colour "black"
-kropki-4: kropki r6c1-r6c2 colour "black"
-kropki-5: kropki r8c3-r9c3 colour "black"
+kropki-1: kropki r4c6-r4c7 white
+kropki-2: kropki r2c9-r3c9 white
+kropki-3: kropki r1c6-r2c6 black
+kropki-4: kropki r6c1-r6c2 black
+kropki-5: kropki r8c3-r9c3 black
 ```
 
 ```drawing

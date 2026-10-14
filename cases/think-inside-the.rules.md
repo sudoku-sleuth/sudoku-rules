@@ -1,238 +1,238 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 5
-    - 12
-    - 13
-    - 14
-    - 21
-    - 22
-    - 23
-    - 27
-    - 28
-    - 29
-    - 30
-    - 31
-    - 32
-    - 33
-    - 34
-    - 35
-    - 36
-    - 37
-    - 38
-    - 39
-    - 40
-    - 41
-    - 42
-    - 43
-    - 44
-    - 45
-    - 46
-    - 47
-    - 48
-    - 49
-    - 50
-    - 51
-    - 52
-    - 53
-    - 57
-    - 58
-    - 59
-    - 66
-    - 67
-    - 68
-    - 75
-    - 76
-    - 77
+    - r1c4
+    - r1c5
+    - r1c6
+    - r2c4
+    - r2c5
+    - r2c6
+    - r3c4
+    - r3c5
+    - r3c6
+    - r4c1
+    - r4c2
+    - r4c3
+    - r4c4
+    - r4c5
+    - r4c6
+    - r4c7
+    - r4c8
+    - r4c9
+    - r5c1
+    - r5c2
+    - r5c3
+    - r5c4
+    - r5c5
+    - r5c6
+    - r5c7
+    - r5c8
+    - r5c9
+    - r6c1
+    - r6c2
+    - r6c3
+    - r6c4
+    - r6c5
+    - r6c6
+    - r6c7
+    - r6c8
+    - r6c9
+    - r7c4
+    - r7c5
+    - r7c6
+    - r8c4
+    - r8c5
+    - r8c6
+    - r9c4
+    - r9c5
+    - r9c6
   links:
     - trigger:
-        - 57
+        - r7c4
       lights:
-        - 60
-        - 61
-        - 62
-        - 69
-        - 70
-        - 71
-        - 78
-        - 79
-        - 80
-        - 54
-        - 55
-        - 56
-        - 63
-        - 64
-        - 65
-        - 72
-        - 73
-        - 74
+        - r7c7
+        - r7c8
+        - r7c9
+        - r8c7
+        - r8c8
+        - r8c9
+        - r9c7
+        - r9c8
+        - r9c9
+        - r7c1
+        - r7c2
+        - r7c3
+        - r8c1
+        - r8c2
+        - r8c3
+        - r9c1
+        - r9c2
+        - r9c3
     - trigger:
-        - 79
+        - r9c8
       lights:
-        - 6
-        - 7
-        - 8
-        - 15
-        - 16
-        - 17
-        - 24
-        - 25
-        - 26
-        - 0
-        - 1
-        - 2
-        - 9
-        - 10
-        - 11
-        - 18
-        - 19
-        - 20
+        - r1c7
+        - r1c8
+        - r1c9
+        - r2c7
+        - r2c8
+        - r2c9
+        - r3c7
+        - r3c8
+        - r3c9
+        - r1c1
+        - r1c2
+        - r1c3
+        - r2c1
+        - r2c2
+        - r2c3
+        - r3c1
+        - r3c2
+        - r3c3
     - trigger:
-        - 0
+        - r1c1
       lights:
-        - 0
+        - r1c1
     - trigger:
-        - 1
+        - r1c2
       lights:
-        - 1
+        - r1c2
     - trigger:
-        - 2
+        - r1c3
       lights:
-        - 2
+        - r1c3
     - trigger:
-        - 6
+        - r1c7
       lights:
-        - 6
+        - r1c7
     - trigger:
-        - 7
+        - r1c8
       lights:
-        - 7
+        - r1c8
     - trigger:
-        - 8
+        - r1c9
       lights:
-        - 8
+        - r1c9
     - trigger:
-        - 9
+        - r2c1
       lights:
-        - 9
+        - r2c1
     - trigger:
-        - 10
+        - r2c2
       lights:
-        - 10
+        - r2c2
     - trigger:
-        - 11
+        - r2c3
       lights:
-        - 11
+        - r2c3
     - trigger:
-        - 15
+        - r2c7
       lights:
-        - 15
+        - r2c7
     - trigger:
-        - 16
+        - r2c8
       lights:
-        - 16
+        - r2c8
     - trigger:
-        - 17
+        - r2c9
       lights:
-        - 17
+        - r2c9
     - trigger:
-        - 18
+        - r3c1
       lights:
-        - 18
+        - r3c1
     - trigger:
-        - 19
+        - r3c2
       lights:
-        - 19
+        - r3c2
     - trigger:
-        - 20
+        - r3c3
       lights:
-        - 20
+        - r3c3
     - trigger:
-        - 24
+        - r3c7
       lights:
-        - 24
+        - r3c7
     - trigger:
-        - 25
+        - r3c8
       lights:
-        - 25
+        - r3c8
     - trigger:
-        - 26
+        - r3c9
       lights:
-        - 26
+        - r3c9
     - trigger:
-        - 54
+        - r7c1
       lights:
-        - 54
+        - r7c1
     - trigger:
-        - 55
+        - r7c2
       lights:
-        - 55
+        - r7c2
     - trigger:
-        - 56
+        - r7c3
       lights:
-        - 56
+        - r7c3
     - trigger:
-        - 60
+        - r7c7
       lights:
-        - 60
+        - r7c7
     - trigger:
-        - 61
+        - r7c8
       lights:
-        - 61
+        - r7c8
     - trigger:
-        - 62
+        - r7c9
       lights:
-        - 62
+        - r7c9
     - trigger:
-        - 63
+        - r8c1
       lights:
-        - 63
+        - r8c1
     - trigger:
-        - 64
+        - r8c2
       lights:
-        - 64
+        - r8c2
     - trigger:
-        - 65
+        - r8c3
       lights:
-        - 65
+        - r8c3
     - trigger:
-        - 69
+        - r8c7
       lights:
-        - 69
+        - r8c7
     - trigger:
-        - 70
+        - r8c8
       lights:
-        - 70
+        - r8c8
     - trigger:
-        - 71
+        - r8c9
       lights:
-        - 71
+        - r8c9
     - trigger:
-        - 72
+        - r9c1
       lights:
-        - 72
+        - r9c1
     - trigger:
-        - 73
+        - r9c2
       lights:
-        - 73
+        - r9c2
     - trigger:
-        - 74
+        - r9c3
       lights:
-        - 74
+        - r9c3
     - trigger:
-        - 78
+        - r9c7
       lights:
-        - 78
+        - r9c7
     - trigger:
-        - 79
+        - r9c8
       lights:
-        - 79
+        - r9c8
     - trigger:
-        - 80
+        - r9c9
       lights:
-        - 80
+        - r9c9
 format: open-rules
 title: Think inside the...
 setter: Kennet's Dad
@@ -244,8 +244,8 @@ drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
   - Some source features still need to be checked against our reading.
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: f5dbdeffedbb78244d92f272b5d8c2ab
 ---
 
 ```rules

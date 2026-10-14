@@ -8,16 +8,16 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: 1e98d5097e3cd6c9fa0a17eb27762346
 ---
 
 ```rules
 sudoku 9x9
 cage r2c7-r3c7-r4c7 total 6 connected true
 thermo r7c8-r8c9-r9c9
-kropki-1: kropki r2c1-r2c2 colour "white"
-kropki-2: kropki r6c3-r6c4 colour "black"
+kropki-1: kropki r2c1-r2c2 white
+kropki-2: kropki r6c3-r6c4 black
 arrow r8c6-r8c5 bulb ["r7c7"]
 whispers-1: whispers r2c5-r1c6-r1c7 gap 5
 whispers-2: whispers r5c6-r5c7-r6c7 gap 4

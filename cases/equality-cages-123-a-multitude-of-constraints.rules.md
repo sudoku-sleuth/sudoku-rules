@@ -8,8 +8,8 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: 159e6cefcd08707d9b72180239ef3f46
 ---
 
 ```rules
@@ -24,8 +24,8 @@ equality-cage-7: equality-cage r6c8-r6c9
 equality-cage-8: equality-cage r3c5-r4c5
 equality-cage-9: equality-cage r4c8-r4c9
 thermo r2c3-r2c4-r1c5
-kropki-1: kropki r7c9-r8c9 colour "black"
-kropki-2: kropki r7c4-r7c5 colour "white"
+kropki-1: kropki r7c9-r8c9 black
+kropki-2: kropki r7c4-r7c5 white
 parity r6c2-r7c3-r8c2
 whispers-1: whispers r8c4-r9c5-r9c4 gap 4 loop true
 palindrome r5c2-r4c1-r3c1

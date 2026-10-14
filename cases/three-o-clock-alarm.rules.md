@@ -8,8 +8,8 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: da42badf9fb0c93e47987c14045383af
 ---
 
 ```rules
@@ -21,14 +21,14 @@ cage-4: cage r1c2-r2c2 total 10 connected true
 cage-5: cage r1c3-r2c3 total 10 connected true
 cage-6: cage r2c1-r3c1 total 10 connected true
 cage-7: cage r3c2-r3c3 total 10 connected true
-kropki-1: kropki r6c7-r6c8 colour "white"
-kropki-2: kropki r6c8-r6c9 colour "white"
-kropki-3: kropki r1c8-r1c9 colour "white"
-kropki-4: kropki r5c4-r6c4 colour "white"
-kropki-5: kropki r6c4-r7c4 colour "white"
-kropki-6: kropki r8c5-r8c6 colour "white"
-kropki-7: kropki r3c5-r3c6 colour "white"
-kropki-8: kropki r7c9-r8c9 colour "black"
+kropki-1: kropki r6c7-r6c8 white
+kropki-2: kropki r6c8-r6c9 white
+kropki-3: kropki r1c8-r1c9 white
+kropki-4: kropki r5c4-r6c4 white
+kropki-5: kropki r6c4-r7c4 white
+kropki-6: kropki r8c5-r8c6 white
+kropki-7: kropki r3c5-r3c6 white
+kropki-8: kropki r7c9-r8c9 black
 whispers-1: whispers r6c7-r5c7 gap 4
 whispers-2: whispers r6c8-r5c8 gap 4
 whispers-3: whispers r6c9-r5c9 gap 4

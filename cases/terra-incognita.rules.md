@@ -9,7 +9,6 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - We have only read part of the published answer so far.
-  - Our reading does not yet cover all the puzzle's stated conditions.
   - Our reading does not yet cover the rules that change cell values.
 board:
   rows: 9
@@ -106,6 +105,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 5767cb75b9e7a03d5e5eee9e584a747a
 ---
 
 ```rules

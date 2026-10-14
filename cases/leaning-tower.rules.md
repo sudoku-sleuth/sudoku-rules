@@ -8,7 +8,6 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
 board:
   rows: 11
@@ -105,6 +104,7 @@ board:
       - r10c8
       - r10c9
       - r10c10
+exported: d0434297d1e45906ae74348c2dcbfabe
 ---
 
 ```rules
@@ -135,11 +135,11 @@ unique-24: unique r5c8-r5c9-r5c10-r6c8-r6c9-r6c10-r7c8-r7c9-r7c10
 unique-25: unique r8c2-r8c3-r8c4-r9c2-r9c3-r9c4-r10c2-r10c3-r10c4
 unique-26: unique r8c5-r8c6-r8c7-r9c5-r9c6-r9c7-r10c5-r10c6-r10c7
 unique-27: unique r8c8-r8c9-r8c10-r9c8-r9c9-r9c10-r10c8-r10c9-r10c10
-kropki-1: kropki r2c10-r3c10 colour "white"
-kropki-2: kropki r6c5-r7c5 colour "white"
-kropki-3: kropki r8c5-r9c5 colour "white"
-kropki-4: kropki r8c7-r9c7 colour "white"
-kropki-5: kropki r5c6-r5c7 colour "white"
+kropki-1: kropki r2c10-r3c10 white
+kropki-2: kropki r6c5-r7c5 white
+kropki-3: kropki r8c5-r9c5 white
+kropki-4: kropki r8c7-r9c7 white
+kropki-5: kropki r5c6-r5c7 white
 ```
 
 ```drawing

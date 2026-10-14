@@ -10,8 +10,8 @@ drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
   - Some source features still need to be checked against our reading.
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
+exported: 1a4421dd23bc0fc7b4ce144c27ce6317
 ---
 
 ```rules

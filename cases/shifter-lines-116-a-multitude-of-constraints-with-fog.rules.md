@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 15
-    - 33
-    - 34
-    - 60
-    - 61
-    - 67
-    - 68
-    - 71
+    - r2c1
+    - r2c7
+    - r4c7
+    - r4c8
+    - r7c7
+    - r7c8
+    - r8c5
+    - r8c6
+    - r8c9
 format: open-rules
 title: "Shifter Lines 116: A multitude of constraints (with fog)"
 setter: gUBBLOR and Jasura
@@ -19,7 +19,6 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 drawingCoverage: unclaimed-only
 flags:
-  - Some of the source rules still need to be included in our reading.
   - The source describes Renban lines that are not yet included in our reading.
 board:
   rows: 9
@@ -116,6 +115,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 60b97397324426a6d3c96b8e57bd24f4
 ---
 
 ```rules
@@ -148,8 +148,8 @@ unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage r2c7-r3c7-r4c7 total 6 connected true
 thermo r7c8-r8c9-r9c9
-kropki-1: kropki r6c3-r6c4 colour "black"
-kropki-2: kropki r2c1-r2c2 colour "white"
+kropki-1: kropki r6c3-r6c4 black
+kropki-2: kropki r2c1-r2c2 white
 arrow r8c6-r8c5 bulb ["r7c7"]
 parity r4c3-r4c4-r5c4
 whispers-1: whispers r6c7-r5c7-r5c6 gap 4
