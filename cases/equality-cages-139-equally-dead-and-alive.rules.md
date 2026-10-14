@@ -13,6 +13,7 @@ board:
   rows: 9
   cols: 9
   symbols:
+    - 0
     - 1
     - 2
     - 3
@@ -104,6 +105,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 7a4f301f4c5596e166fd82067f8b31f2
 ---
 
 ```rules
