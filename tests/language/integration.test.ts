@@ -45,5 +45,5 @@ test("every production page compiles atomically with its declared public prelude
     expect(result.diagnostics).toEqual([]);
     expect(result.value!.rules.size).toBe(80);
     expect(result.value!.aliases.size).toBe(2);
-    expect(result.value!.documents).toBe(3);
+    expect(result.value!.documents).toBe(4);
 });

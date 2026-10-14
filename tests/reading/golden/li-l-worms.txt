@@ -1,0 +1,10 @@
+Normal sudoku rules. Each row, column and 3×3 box holds 1 to 9 once.
+  Lines: sudoku 9x9
+Thermometers. Six thermometers. On each, the digits strictly increase from the bulb to the tip.
+  Show the 6 thermometers
+    bulb r6c4, tip r9c1 (7 cells) · bulb r4c4, tip r1c1 (7 cells) · bulb r4c6, tip r1c9 (7 cells) · bulb r6c6, tip r7c8 (4 cells) · bulb r9c5, tip r8c6 (4 cells) · bulb r5c8, tip r4c7 (3 cells)
+  Lines: thermo-1: thermo r6c4-r7c4-r7c3-r8c3-r8c2-r9c2-r9c1 … (6 lines)
+Arrows. Two arrows. On each, the digits on the arrow sum to the digit in its bulb.
+  Show the 2 arrows
+    r3c1-r4c2 sum to r3c2 · the digit in r2c3 equals the digit in r1c4 (an arrow of one cell)
+  Lines: arrow-1: arrow r3c1-r4c2 bulb ["r3c2"] | arrow-2: arrow r2c3 bulb ["r1c4"]

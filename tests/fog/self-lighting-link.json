@@ -1,0 +1,33 @@
+{
+  "name": "self-lighting-link",
+  "description": "A link may light its own trigger cell.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r2c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r2c2"
+      ],
+      "lights": [
+        "r2c2"
+      ]
+    }
+  ],
+  "answer": {
+    "r2c2": 5
+  },
+  "steps": [
+    {
+      "entries": {
+        "r2c2": 5
+      },
+      "lit": [
+        "r2c1",
+        "r2c2"
+      ]
+    }
+  ]
+}

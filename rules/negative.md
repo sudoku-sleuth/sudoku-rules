@@ -19,6 +19,38 @@ parameters:
     description: The chosen diagonal or neighbour orientation, as named in the definition.
     default: Absent; no inferred value.
     type: optional<enum{horizontal,vertical}>
+reading:
+  terms: [negative constraint, negative constraints]
+  parts:
+    scope:
+      - when: {within: {length: 1}}
+        text: "Inside the listed group of cells, no "
+      - when: {within: present}
+        text: "Inside each of the {within.length|words} listed groups of cells, no "
+      - text: "no "
+    direction:
+      - when: {direction: horizontal}
+        text: "horizontally "
+      - when: {direction: vertical}
+        text: "vertically "
+      - text: ""
+    except:
+      - when: {except: {length: 0}}
+        text: ""
+      - when: {except: {length: 1}}
+        text: ", except this pair"
+      - text: ", except these {except.length|words} pairs"
+  variants:
+    - when: {within: absent, direction: absent, condition: exceptsAreMarked}
+      join:
+        kinds: [pair, kropki]
+        note: "{names|every} is shown. No other neighbouring pair {relations|one}."
+    - heading: "Negative constraint: pairs that {relations}"
+      noun: pairs
+      list: always
+      item_over: except
+      one: "{part:scope}{part:direction}neighbouring pair {relations|one}{part:except}."
+      rule: "No neighbouring pair {relations|one}, except the marked pairs."
 ---
 
 # Negative

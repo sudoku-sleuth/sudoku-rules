@@ -1,0 +1,22 @@
+{
+  "name": "wrong-digit-lights-nothing",
+  "description": "A digit that is not the answer lights nothing.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "answer": {
+    "r3c3": 4
+  },
+  "steps": [
+    {
+      "entries": {
+        "r3c3": 7
+      },
+      "lit": [
+        "r1c1"
+      ]
+    }
+  ]
+}

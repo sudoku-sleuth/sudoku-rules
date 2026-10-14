@@ -23,6 +23,72 @@ parameters:
     default: Required.
     type: list<cell>
     syntax: {form: cells, count: 2}
+reading:
+  group_by: [relation]
+  variants:
+    - when: {relation: {op: sum, value: 10}}
+      family: X/V pairs
+      heading: X pairs
+      name: X
+      noun: pairs
+      one: "The two digits in {cells} sum to 10."
+      many: "{count|Words} X pairs: in each, the two digits sum to 10."
+      short: "{count|words} X pairs sum to 10"
+      rule: "In each, the two digits sum to 10."
+      terms: ["=X", separated by an X, joined by an X, connected by an X, marked with an X]
+    - when: {relation: {op: sum, value: 5}}
+      family: X/V pairs
+      heading: V pairs
+      name: V
+      noun: pairs
+      one: "The two digits in {cells} sum to 5."
+      many: "{count|Words} V pairs: in each, the two digits sum to 5."
+      short: "{count|words} V pairs sum to 5"
+      rule: "In each, the two digits sum to 5."
+      terms: ["=V", separated by a V, joined by a V, connected by a V, marked with a V]
+    - when: {relation: {op: shift}}
+      heading: Shifter dots
+      noun: dots
+      one: "The two digits in {cells} share either parity (both odd or both even) or polarity (both low, 1 to 4, or both high, 6 to 9), never neither and never both. A shifter dot never has a 5."
+      many: "{count|Words} shifter dots. On each, the two digits share either parity (both odd or both even) or polarity (both low, 1 to 4, or both high, 6 to 9), never neither and never both. A shifter dot never has a 5."
+      rule: "On each, the two digits share either parity (both odd or both even) or polarity (both low, 1 to 4, or both high, 6 to 9), never neither and never both. A shifter dot never has a 5."
+      terms: [shifter dot, shifter dots, "~parity", "~polarity"]
+    - when: {relation: {op: difference}}
+      heading: "Pairs differing by {relation.value}"
+      noun: pairs
+      one: "The two digits in {cells} {relation}."
+      many: "{count|Words} pairs: in each, the two digits {relation}."
+      rule: "In each, the two digits {relation}."
+    - when: {relation: {op: at-least}}
+      heading: "Pairs differing by at least {relation.value}"
+      noun: pairs
+      one: "The two digits in {cells} {relation}."
+      many: "{count|Words} pairs: in each, the two digits {relation}."
+      rule: "In each, the two digits {relation}."
+    - when: {relation: {op: ratio}}
+      heading: "Pairs with ratio {relation.value}:1"
+      noun: pairs
+      one: "The two digits in {cells} {relation}."
+      many: "{count|Words} pairs: in each, the two digits {relation}."
+      rule: "In each, the two digits {relation}."
+    - when: {relation: {op: sum}}
+      heading: "Pairs that sum to {relation.value}"
+      noun: pairs
+      one: "The two digits in {cells} {relation}."
+      many: "{count|Words} pairs: in each, the two digits {relation}."
+      rule: "In each, the two digits {relation}."
+    - when: {relation: {op: less}}
+      heading: Rising pairs
+      noun: pairs
+      one: "The two digits in {cells} {relation}."
+      many: "{count|Words} pairs: in each, the two digits {relation}."
+      rule: "In each, the two digits {relation}."
+    - when: {relation: {op: multiple}}
+      heading: Pairs where one is a multiple of the other
+      noun: pairs
+      one: "The two digits in {cells} {relation}."
+      many: "{count|Words} pairs: in each, the two digits {relation}."
+      rule: "In each, the two digits {relation}."
 ---
 
 # Pair

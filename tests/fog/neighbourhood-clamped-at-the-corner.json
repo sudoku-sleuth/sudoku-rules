@@ -1,0 +1,23 @@
+{
+  "name": "neighbourhood-clamped-at-the-corner",
+  "description": "The neighbourhood is clamped to the grid.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [],
+  "answer": {
+    "r1c5": 2
+  },
+  "steps": [
+    {
+      "entries": {
+        "r1c5": 2
+      },
+      "lit": [
+        "r1c4",
+        "r1c5",
+        "r2c4",
+        "r2c5"
+      ]
+    }
+  ]
+}

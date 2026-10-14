@@ -1,0 +1,23 @@
+{
+  "name": "given-lights-nothing",
+  "description": "A given lights nothing by itself.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "givens": {
+    "r3c3": 5
+  },
+  "answer": {
+    "r3c3": 5
+  },
+  "steps": [
+    {
+      "entries": {},
+      "lit": [
+        "r1c1"
+      ]
+    }
+  ]
+}

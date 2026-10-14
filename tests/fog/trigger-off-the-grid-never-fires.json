@@ -1,0 +1,29 @@
+{
+  "name": "trigger-off-the-grid-never-fires",
+  "description": "A cell off the grid is never an entry, so the link never fires.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r6c1"
+      ],
+      "lights": [
+        "r2c2"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "entries": {
+        "r6c1": 1
+      },
+      "lit": [
+        "r1c1"
+      ]
+    }
+  ]
+}

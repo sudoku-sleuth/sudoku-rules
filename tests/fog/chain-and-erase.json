@@ -1,0 +1,62 @@
+{
+  "name": "chain-and-erase",
+  "description": "Lit cells are worked out from the current entries; erasing a digit fogs again what only it lit.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r1c3"
+      ]
+    },
+    {
+      "trigger": [
+        "r1c3"
+      ],
+      "lights": [
+        "r1c4"
+      ]
+    }
+  ],
+  "answer": {
+    "r1c2": 3,
+    "r1c3": 4
+  },
+  "steps": [
+    {
+      "entries": {
+        "r1c2": 3
+      },
+      "lit": [
+        "r1c1",
+        "r1c3"
+      ]
+    },
+    {
+      "entries": {
+        "r1c2": 3,
+        "r1c3": 4
+      },
+      "lit": [
+        "r1c1",
+        "r1c3",
+        "r1c4"
+      ]
+    },
+    {
+      "entries": {
+        "r1c3": 4
+      },
+      "lit": [
+        "r1c1",
+        "r1c4"
+      ]
+    }
+  ]
+}

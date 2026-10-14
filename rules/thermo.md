@@ -7,6 +7,15 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+reading:
+  terms: [thermo, thermos, thermometer, thermometers]
+  variants:
+    - heading: Thermometers
+      noun: thermometers
+      item: "bulb {line.first}, tip {line.last} ({line.length} cells)"
+      one: "The digits along {line} strictly increase from the bulb to the tip."
+      many: "{count|Words} thermometers. On each, the digits strictly increase from the bulb to the tip."
+      rule: "On each, the digits strictly increase from the bulb to the tip."
 ---
 
 # Thermo
