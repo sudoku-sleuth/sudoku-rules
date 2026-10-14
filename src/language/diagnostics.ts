@@ -1,9 +1,9 @@
 export const languageChecks = [
   "E_FORMULA_SYNTAX", "E_FORMULA_REQUIRED", "E_SIGNATURE_REQUIRED", "E_NAME_UNDEFINED",
   "E_NAME_UNBOUND", "E_CALL_ARITY", "E_TYPE", "E_NAME_SHADOW", "E_RECURSION",
-  "E_OPERATION_UNGUARDED", "E_LOGIC_CLASS", "E_ARITHMETIC", "E_LANGUAGE_LIMIT",
+  "E_OPERATION_UNGUARDED", "E_LOGIC_CLASS", "E_ARITHMETIC", "E_LANGUAGE_LIMIT", "E_PLAY_DOMAIN", "E_PLAY_DEFINITION",
 ] as const;
-export type DiagnosticCode = typeof languageChecks[number] | "E_HEADER_REQUIRED" | "E_HEADER_TYPE" | "E_LIBRARY_URL" | "E_RULES_REQUIRED" | "E_KIND_UNKNOWN" | "E_ALIAS_TARGET" | "E_LINE_DECLARATION" | "E_LINE_KEYWORD" | "E_LINE_VALUE" | "E_LINE_TYPE" | "E_LINE_SYNTAX" | "E_READING_FIELD" | "E_READING_PLACEHOLDER" | "E_READING_PARAMETER" | "E_READING_EXAMPLE";
+export type DiagnosticCode = typeof languageChecks[number] | "E_HEADER_REQUIRED" | "E_HEADER_TYPE" | "E_LIBRARY_URL" | "E_RULES_REQUIRED" | "E_KIND_UNKNOWN" | "E_ALIAS_TARGET" | "E_FEATURE_REQUIRES" | "E_FEATURE_CONFLICT" | "E_LINE_DECLARATION" | "E_LINE_KEYWORD" | "E_LINE_VALUE" | "E_LINE_TYPE" | "E_LINE_SYNTAX";
 export interface Position { offset: number; line: number; column: number }
 export interface Span { file: string; start: Position; end: Position }
 export interface Diagnostic { code: DiagnosticCode; check: DiagnosticCode; message: string; span: Span; detail?: string }

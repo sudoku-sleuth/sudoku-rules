@@ -1,6 +1,6 @@
 {
   "name": "empty-trigger-is-rejected",
-  "description": "A link with no trigger would fire at once. Decoders drop such links, so the format rejects them and a reader shows the fog block as written.",
+  "description": "A link with no trigger would fire at once. Decoders drop such links, so the format rejects them.",
   "rows": 5,
   "cols": 5,
   "initiallyLit": [
@@ -14,6 +14,6 @@
       ]
     }
   ],
-  "rejected": "a link needs a trigger",
+  "rejected": "A link needs a trigger cell",
   "steps": []
 }

@@ -7,14 +7,6 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required. L has no repeated cell.
     type: path<cell>
-reading:
-  terms: [renban, consecutive set, run of consecutive]
-  variants:
-    - heading: Renban lines
-      noun: lines
-      one: "The digits along {line} are different and form a run of consecutive numbers, in any order."
-      many: "{count|Words} lines. On each, the digits are different and form a run of consecutive numbers, in any order."
-      rule: "On each, the digits are different and form a run of consecutive numbers, in any order."
 ---
 
 # Renban

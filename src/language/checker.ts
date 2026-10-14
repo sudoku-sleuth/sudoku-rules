@@ -3,7 +3,7 @@ import { expressionLabel, describeType } from "./wording.js";
 import { arithmetic, exact, floor, printExact } from "./exact.js";
 import { collection, scalar, typeName, type CheckedFormula, type Declaration, type Expr, type LogicClass, type Type, type TypedDeclaration, type TypedExpr } from "./ast.js";
 
-export interface Environment { symbols: Record<string, Type>; terms: Record<string, Declaration>; types?: Record<string, Type>; generics?: string[] }
+export interface Environment { symbols: Record<string, Type>; terms: Record<string, Declaration>; types?: Record<string, Type>; generics?: string[]; /** Names declared with the play prefix: the player's side. */ play?: Set<string> }
 export interface CheckedPrelude { environment: Environment; declarations: TypedDeclaration[] }
 const numeric = (type: Type) => ["number", "digit", "value", "position"].includes(type.name);
 const collections = ["path", "set", "list", "collection"];
@@ -429,8 +429,21 @@ export function logicClass(ast: TypedExpr, env: Environment): LogicClass {
   }
   visit(ast); return classification;
 }
-export function checkFormula(ast: Expr, environment: Environment): Result<CheckedFormula> {
-  return capture(() => { const checked = infer(ast, environment); required(checked, scalar("boolean")); return { ast: checked, logicClass: logicClass(checked, environment) }; });
+/** The first name in `node` that belongs to the play domain, if any. Bound variables are never play names. */
+function playUse(node: Expr, env: Environment, bound: Set<string> = new Set()): Expr | undefined {
+  if (node.kind === "name" && !bound.has(node.value!) && env.play?.has(node.value!)) return node;
+  const local = new Set([...bound, ...(node.binders ?? []).map(b => b.name)]);
+  for (const child of node.children) { const found = playUse(child, env, local); if (found) return found; }
+}
+export type Domain = "solution" | "play";
+/** Checks a Boolean formula. A solution formula, which every rule page is, may not name anything from the play domain. */
+export function checkFormula(ast: Expr, environment: Environment, domain: Domain = "solution"): Result<CheckedFormula> {
+  return capture(() => {
+    if (domain === "solution") {
+      const use = playUse(ast, environment);
+      if (use) fail("E_PLAY_DOMAIN", use.span, `${use.value} depends on what a player has entered, and a rule applies to every solution. Use the answer grid, D or V; the player's entries belong to setup features.`);
+    }
+    const checked = infer(ast, environment); required(checked, scalar("boolean")); return { ast: checked, logicClass: logicClass(checked, environment) }; });
 }
 export function checkExpression(ast: Expr, environment: Environment): Result<TypedExpr> {
   return capture(() => infer(ast, environment));
@@ -438,8 +451,15 @@ export function checkExpression(ast: Expr, environment: Environment): Result<Typ
 export function checkDeclaredType(type: Type, environment: Environment, span: Span): Result<Type> {
   return capture(() => { validateType(type, environment, span); return type; });
 }
-export function checkPrelude(declarations: Declaration[]): Result<CheckedPrelude> {
-  const environment: Environment = { symbols: Object.create(null), terms: Object.create(null), types: Object.create(null) };
+/**
+ * Checks shared declarations. With `base`, the declarations extend an already checked prelude (a setup
+ * feature's own types and terms): they may use its names but not redeclare them.
+ */
+export function checkPrelude(declarations: Declaration[], base?: CheckedPrelude): Result<CheckedPrelude> {
+  const environment: Environment = base
+    ? { ...base.environment, symbols: Object.assign(Object.create(null), base.environment.symbols), terms: Object.assign(Object.create(null), base.environment.terms), types: Object.assign(Object.create(null), base.environment.types), play: new Set(base.environment.play) }
+    : { symbols: Object.create(null), terms: Object.create(null), types: Object.create(null), play: new Set() };
+  environment.play ??= new Set();
   const diagnostics: Diagnostic[] = []; const checked: TypedDeclaration[] = [];
   const unique: Declaration[] = [];
   for (const declaration of declarations) {
@@ -447,6 +467,7 @@ export function checkPrelude(declarations: Declaration[]): Result<CheckedPrelude
       diagnostics.push(diagnostic("E_NAME_SHADOW", declaration.span, `${declaration.name} is already defined; each shared name can be declared only once.`)); continue;
     }
     unique.push(declaration);
+    if (declaration.play) environment.play!.add(declaration.name);
     if (declaration.kind === "type") environment.types![declaration.name] = declaration.result;
     else if (declaration.kind === "input") environment.symbols[declaration.name] = declaration.result;
     else environment.terms[declaration.name] = declaration;
@@ -489,6 +510,10 @@ export function checkPrelude(declarations: Declaration[]): Result<CheckedPrelude
         if (Object.hasOwn(env.symbols, parameter.name) || Object.hasOwn(env.terms, parameter.name)) fail("E_NAME_SHADOW", parameter.span, `The parameter ${parameter.name} reuses a name that is already defined; choose another parameter name.`);
         validateType(parameter.type, env, parameter.span); env.symbols[parameter.name] = parameter.type;
       }
+      if (!declaration.play) for (const part of [declaration.body, declaration.requires]) {
+        const use = part && playUse(part, environment, new Set(declaration.parameters.map(p => p.name)));
+        if (use) fail("E_PLAY_DOMAIN", use.span, `${declaration.name} is shared by every rule, so it cannot use ${use.value}, which depends on what a player has entered. Declare ${declaration.name} with play, or use the answer grid.`);
+      }
       const requires = declaration.requires ? infer(declaration.requires, env) : undefined;
       if (requires) required(requires, scalar("boolean"));
       const body = declaration.body ? infer(declaration.body, env, requires ? factsFrom(requires) : []) : undefined;
@@ -498,5 +523,5 @@ export function checkPrelude(declarations: Declaration[]): Result<CheckedPrelude
     diagnostics.push(...result.diagnostics); if (result.value) checked.push(result.value);
   }
   if (!diagnostics.length) for (const declaration of checked) if (["term", "primitive"].includes(declaration.kind)) environment.terms[declaration.name] = declaration;
-  return diagnostics.length ? { diagnostics } : { value: { environment, declarations: checked }, diagnostics };
+  return diagnostics.length ? { diagnostics } : { value: { environment, declarations: [...(base?.declarations ?? []), ...checked] }, diagnostics };
 }

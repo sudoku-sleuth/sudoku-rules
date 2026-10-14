@@ -26,13 +26,17 @@ Use the approved page order:
 3. `## Maths`, including `Class: **first-order**.` (or the appropriate specification class), notation, and a fenced `text` formula block.
 4. `## Example`, including a fenced case fragment, a satisfying assignment, and a breaking assignment.
 
-Add a `reading` block to the front matter so the rule can be read in plain words: one sentence for one instance, one for many, and any `terms` setters use for it. [spec/readings.md](spec/readings.md) defines the fields and placeholders; the lint rejects an unknown placeholder, an unused parameter and an Example that does not read in full. A page without a reading shows its lines as written. Use setter terms for parameters. Link mathematical notation to `https://rules.sudoku-sleuth.com/predicates.md`. Keep public links public and retain Unicode maths symbols. An optional `shape` string selects the site's index group.
+Use setter terms for parameters. Link mathematical notation to `https://rules.sudoku-sleuth.com/predicates.md`. Keep public links public and retain Unicode maths symbols. An optional `shape` string selects the site's index group.
 
-Shared definition pages have `name`, `url` and `document: prelude`, `document: syntax` or `document: home`, with no `kind`. A setup feature such as fog uses `document: feature` and declares no rule formula. Alias pages declare their own `kind` and `alias_of` (or `aliasOf`), pointing directly to a definition; they declare no parameters or formula. Their filenames determine their raw and HTML routes.
+Shared definition pages have `name`, `url` and `document: prelude`, `document: syntax` or `document: home`, with no `kind`. A setup feature such as fog uses `document: feature`. With `domain: play-state` it names the case-file header key it reads (`header`), the play predicate it defines (`defines`), typed `parameters`, optional `requires` formulas with their messages, an `openrules` block for its own `play` types and terms, and one `text` block that defines the predicate: `∀c∈C: visible(c) ↔ …`, with the predicate absent from the right side. A case may use one feature that defines a given predicate. [spec/play-state.md](spec/play-state.md) defines the domain; the site adds the `Domain:` line from the front matter. Alias pages declare their own `kind` and `alias_of` (or `aliasOf`), pointing directly to a definition; they declare no parameters or formula. Their filenames determine their raw and HTML routes.
 
 ## Cases
 
 Add examples under `cases/<case-name>.rules.md`. Front matter includes `format: open-rules`, `title`, `setter`, `source`, `case`, `library`, and `status`. Keep attribution and source links. Use fenced `rules` blocks for declarations. Custom rules carry their definition in the case file.
+
+## Release notes
+
+Record each change in `CHANGELOG.md` under the next version, and mark a change that breaks an export, a front-matter key or a diagnostic code as Breaking. The release tag must match `package.json`.
 
 ## Check the change
 

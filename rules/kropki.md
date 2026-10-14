@@ -16,32 +16,6 @@ parameters:
     default: Required.
     type: list<cell>
     syntax: {form: cells, count: 2}
-reading:
-  group_by: [colour]
-  terms: [kropki]
-  variants:
-    - when: {colour: white}
-      family: Kropki dots
-      heading: White dots
-      name: white dot
-      noun: dots
-      relation: {op: difference, value: 1}
-      one: "The two digits in {cells} are consecutive."
-      many: "{count|Words} white dots: in each, the two digits are consecutive."
-      short: "{count|words} white dots: the two digits are consecutive"
-      rule: "In each, the two digits are consecutive."
-      terms: [white dot, white dots]
-    - when: {colour: black}
-      family: Kropki dots
-      heading: Black dots
-      name: black dot
-      noun: dots
-      relation: {op: ratio, value: 2}
-      one: "One of the two digits in {cells} is double the other."
-      many: "{count|Words} black dots: in each, one digit is double the other."
-      short: "{count|words} black dots: one digit is double the other"
-      rule: "In each, one digit is double the other."
-      terms: [black dot, black dots]
 ---
 
 # Kropki

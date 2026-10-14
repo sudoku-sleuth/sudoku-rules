@@ -1,0 +1,42 @@
+{
+  "name": "shared-trigger-two-links",
+  "description": "Two links with one trigger both fire when it is correct.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r2c2"
+      ]
+    },
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r3c3"
+      ]
+    }
+  ],
+  "answer": {
+    "r1c2": 3
+  },
+  "steps": [
+    {
+      "entries": {
+        "r1c2": 3
+      },
+      "lit": [
+        "r1c1",
+        "r2c2",
+        "r3c3"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,0 @@
-Normal sudoku rules. Each row, column and 3×3 box holds 1 to 9 once.
-  Lines: sudoku 9x9
-Cages. Twenty cages cover 41 cells. In each, the digits are different and sum to the cage's total. Totals run from 4 to 17.
-  Show the 20 cages
-    r1c1-r1c2 = 4 · r1c9-r2c9 = 5 · r9c8-r9c9 = 4 · r8c8-r8c9 = 6 · r8c1-r9c1-r9c2 = 8 · r1c3-r1c4 = 7 · r2c1-r2c2 = 8 · r1c8-r2c8 = 9 · r7c8-r7c9 = 15 · r8c3-r9c3 = 15 · r4c1-r4c2 = 7 · r2c6-r3c6 = 14 · r6c7-r6c8 = 13 · r7c4-r8c4 = 8 · r6c5-r6c6 = 5 · r5c4-r6c4 = 10 · r4c4-r4c5 = 17 · r4c6-r5c6 = 8 · r6c1-r7c1 = 13 · r8c5-r9c5 = 9
-  Lines: cage-1: cage r1c1-r1c2 total 4 connected true … (20 lines)

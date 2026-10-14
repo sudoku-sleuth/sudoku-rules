@@ -8,11 +8,13 @@ const target = { file: "rules/target.md", text: `---\nname: Target\nkind: target
 const manifest: {
     file: string;
     repair: string;
-    mode: "case" | "library";
+    mode: "case" | "library" | "feature";
     diagnostics: Diagnostic[];
 }[] = await Bun.file("tests/invalid/integration-expected.json").json();
+const features = compilePublicLibrary([shared, target, { file: "rules/fog.md", text: await Bun.file("rules/fog.md").text() }, { file: "tests/fixtures/second-visibility.md", text: await Bun.file("tests/fixtures/second-visibility.md").text() }]);
+const featureRegistry = { ...features.value!.registry, kinds: new Set(["sudoku"]), urls: new Set([root + "sudoku.md"]) };
 for (const entry of manifest) {
-    const check = (text: string) => entry.mode === "case" ? checkCaseReferences({ file: entry.file, text }, registry) : compilePublicLibrary([shared, target, { file: entry.file, text }]);
+    const check = (text: string) => entry.mode === "feature" ? checkCaseReferences({ file: entry.file, text }, featureRegistry) : entry.mode === "case" ? checkCaseReferences({ file: entry.file, text }, registry) : compilePublicLibrary([shared, target, { file: entry.file, text }]);
     test(`integration rejects ${entry.file} with exact setter message and span`, async () => {
         const result = check(await readFile(entry.file, "utf8"));
         expect(result.value).toBeUndefined();

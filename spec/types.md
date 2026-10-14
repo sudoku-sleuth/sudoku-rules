@@ -1,6 +1,6 @@
 # Types and checks
 
-`cell` is a board cell, not a sequence position. `position` is an integer sequence index; bounds need proof. `digit` and `value` are numeric face/effective channels. Both widen to `number`, an exact rational. `boolean` contains true/false. Collections are `path<T>` (ordered occurrences), `list<T>` and `set<T>` (membership). `optional<T>` requires `present` before `unwrap`. `fn(T)->R`, records, enums and named aliases carry explicit signatures. Enums use quoted literals in formulas.
+Every name belongs to the solution domain or, declared with `play`, to the play domain; see [play-state.md](play-state.md). A rule page may use only solution names. `cell` is a board cell, not a sequence position. `position` is an integer sequence index; bounds need proof. `digit` and `value` are numeric face/effective channels. Both widen to `number`, an exact rational. `boolean` contains true/false. Collections are `path<T>` (ordered occurrences), `list<T>` and `set<T>` (membership). `optional<T>` requires `present` before `unwrap`. `fn(T)->R`, records, enums and named aliases carry explicit signatures. Enums use quoted literals in formulas.
 
 The core accepts source strings with a file name and an optional offset into a full Markdown document. Diagnostics use stable codes, UTF-16 byte-independent offsets, and one-based Unicode code-point columns; end positions are exclusive. CRLF and non-BMP symbols retain their original offsets. Limits bound source length, nesting, numeric literals and constant powers.
 

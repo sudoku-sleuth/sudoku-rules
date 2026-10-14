@@ -7,65 +7,6 @@ parameters:
     description: The board dimensions and standard boxes; write 9x9.
     default: Required.
 kind: sudoku
-reading:
-  terms: ["normal sudoku", "standard sudoku", "classic sudoku", "regular sudoku"]
-  variants:
-    - when: {board: {rows: 9, cols: 9}}
-      heading: Normal sudoku rules
-      one: "Each row, column and 3×3 box holds 1 to 9 once."
-  header:
-    board:
-      variants:
-        - when: {condition: standardBoard}
-          silent: true
-        - when: {regions: present}
-          heading: Board
-          one: "The grid is {rows}×{cols} and uses the digits {symbols|range}. It has {regions.length|words} regions."
-        - heading: Board
-          one: "The grid is {rows}×{cols} and uses the digits {symbols|range}."
-    givens:
-      variants:
-        - when: {condition: hiddenGivens, givens: {length: 1}}
-          heading: Givens
-          noun: given digits
-          list: always
-          spoiler: reveals cells under fog
-          one: "One digit is given, and its cell starts hidden under fog."
-          item: "{cell} = {digit}"
-        - when: {condition: hiddenGivens}
-          heading: Givens
-          noun: given digits
-          list: always
-          spoiler: reveals cells under fog
-          one: "{count|Words} digits are given. {hiddenGivens|Words} of them start hidden under fog."
-          item: "{cell} = {digit}"
-        - when: {condition: underFog, givens: {length: 1}}
-          heading: Givens
-          noun: given digits
-          list: always
-          spoiler: reveals cells under fog
-          one: "One digit is given. Fog may hide it until its cell is lit."
-          item: "{cell} = {digit}"
-        - when: {condition: underFog}
-          heading: Givens
-          noun: given digits
-          list: always
-          spoiler: reveals cells under fog
-          one: "{count|Words} digits are given. Fog hides those whose cells are not yet lit."
-          item: "{cell} = {digit}"
-        - when: {givens: {length: {max: 4}}}
-          heading: Givens
-          one: "{items|and}."
-          item: "{digit|a} in {cell}"
-        - when: {givens: {length: {max: 12}}}
-          heading: Givens
-          one: "{count|Words} digits are given: {items}."
-          item: "{cell} = {digit}"
-        - heading: Givens
-          noun: given digits
-          list: always
-          one: "{count} digits are given."
-          item: "{cell} = {digit}"
 ---
 
 # Sudoku
@@ -84,10 +25,10 @@ Class: **with aggregates**.
 [Shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define D and distinct. H ranges over the rows, columns and standard boxes.
 
 ```text
-rows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ distinct_D(house))
+rows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ distinct_D(house)) ∧ (∀c∈C: given(c) → D(c)=givenValue(c))
 ```
 
-Every house contains nine different digits from 1 to 9.
+Every house contains nine different digits from 1 to 9. A given cell holds its given digit.
 
 ## Example
 

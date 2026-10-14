@@ -1,0 +1,41 @@
+{
+  "name": "no-answer-given-needs-its-digit",
+  "description": "With no answer, a given fires a link only when its own digit is typed over it; any other symbol does not.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "givens": {
+    "r1c2": 3
+  },
+  "links": [
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r2c2"
+      ]
+    }
+  ],
+  "steps": [
+    {
+      "entries": {
+        "r1c2": 5
+      },
+      "lit": [
+        "r1c1"
+      ]
+    },
+    {
+      "entries": {
+        "r1c2": 3
+      },
+      "lit": [
+        "r1c1",
+        "r2c2"
+      ]
+    }
+  ]
+}

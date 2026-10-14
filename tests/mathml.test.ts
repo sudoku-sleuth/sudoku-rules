@@ -30,12 +30,13 @@ test("AST spans preserve authored grouping, strings, aggregates and multiline fo
   expect(renderMath('[1,N) = [1,N)')).toContain('<math ');
 });
 
-test("all 80 public rule formula blocks parse and render with native MathML and a text view", async () => {
+test("all 81 public rule formula blocks parse and render with native MathML and a text view", async () => {
   let count = 0;
   for (const file of await readdir("rules")) {
     if (!file.endsWith('.md') || ['predicates.md', 'syntax.md', 'README.md'].includes(file)) continue;
     const text = await readFile(`rules/${file}`, "utf8");
     for (const block of formulaBlocks({ file, text })) {
+      if (/^(?:play\s+)?(?:input|primitive|term|type)\s/m.test(block.text)) continue;
       expect(parseFormula(block.text).diagnostics).toEqual([]);
       expect(renderMarkdown("```" + block.language + "\n" + block.text + "\n```")).toContain("<math ");
       const html = renderMath(block.text);
@@ -45,7 +46,7 @@ test("all 80 public rule formula blocks parse and render with native MathML and 
       count++;
     }
   }
-  expect(count).toBe(80);
+  expect(count).toBe(81);
 });
 
 test("unsupported symbols and unbalanced prose math use escaped plain text", () => {

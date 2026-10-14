@@ -1,0 +1,42 @@
+{
+  "name": "unknown-answer-is-never-correct",
+  "description": "When the answer is known in some cells and not in others, no symbol is correct in a cell whose answer is unknown.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r1c2"
+      ],
+      "lights": [
+        "r2c2"
+      ]
+    },
+    {
+      "trigger": [
+        "r1c3"
+      ],
+      "lights": [
+        "r2c3"
+      ]
+    }
+  ],
+  "answer": {
+    "r1c3": 4
+  },
+  "steps": [
+    {
+      "entries": {
+        "r1c2": 3,
+        "r1c3": 4
+      },
+      "lit": [
+        "r1c1",
+        "r2c3"
+      ]
+    }
+  ]
+}

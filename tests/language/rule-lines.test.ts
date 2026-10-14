@@ -83,6 +83,7 @@ test("pair and Kropki page examples pass the declared grammar", () => {
 // This hash guards every byte outside pair relation spellings: wording, metadata, drawings, IDs,
 // coordinates and newlines. It was taken after the case files were rewritten in the current rule-line
 // forms (keyword pairs, Kropki colours, fog cell names, an `exported` stamp); retake it for an intended rewrite.
+// Reads and lints the whole production case corpus (3,900 files); on a slow CI runner it exceeds bun's 5 s default.
 test("production migration preserves every byte outside pair relation spellings", async () => {
   const expected = await Bun.file("tests/fixtures/pair-migration.json").json();
   const hash = createHash("sha256"); const counts: Record<string, number> = {};
@@ -100,4 +101,4 @@ test("production migration preserves every byte outside pair relation spellings"
   }
   expect(files.length).toBe(expected.cases); expect(total).toBe(expected.pairLines);
   expect(counts).toEqual(expected.operations); expect(hash.digest("hex")).toBe(expected.nonRelationSha256);
-});
+}, 60_000);

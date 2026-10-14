@@ -7,6 +7,7 @@ export * from "./library.js";
 
 export * from "./documents.js";
 
+export * from "./features.js";
+
 export * from "./rule-lines.js";
 
-export * from "./reading/index.js";
