@@ -2,6 +2,12 @@
 
 Each release lists what changed. A change that breaks a published export, front-matter key or diagnostic code is marked Breaking.
 
+## Unreleased (0.3.0)
+
+### Breaking
+
+- Case files moved out of the library; they are kept by Sudoku Sleuth. The `cases/` folder, the generated `/cases/` pages and raw case routes, and the `cases` count in the build result are gone. The checker still reads a case file given to it, and a folder passed to `openrules lint` still checks a `cases/` folder beside `rules/` when one exists.
+
 ## 0.2.0
 
 ### Breaking

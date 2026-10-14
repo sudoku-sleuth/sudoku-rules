@@ -8,7 +8,7 @@ import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
 
-// These tests build the whole library (86 pages, 3,892 cases); allow for slower CI runners.
+// These tests build the whole library (86 pages); allow for slower CI runners.
 setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");
@@ -21,12 +21,11 @@ beforeAll(async () => {
 });
 afterAll(async () => { await rm(temporary, { recursive: true, force: true }); });
 
-test("every raw page and case is byte-identical to its source", async () => {
+test("every raw page is byte-identical to its source", async () => {
   for (const slug of ["thermo", "modular", "renban", "predicates"]) {
     expect(await readFile(join(output, `${slug}.md`))).toEqual(await readFile(join(fixtures, "rules", `${slug}.md`)));
   }
-  const file = "cases/to-the-revolution.rules.md";
-  expect(await readFile(join(output, file))).toEqual(await readFile(join(fixtures, file)));
+  expect(await Bun.file(join(output, "cases")).exists()).toBe(false);
 });
 
 test("each rule and the shared definitions have an HTML page", async () => {
@@ -96,13 +95,6 @@ test("index rule has its own route without overwriting the library homepage", as
   expect(await readFile(join(result.output, "index.md"))).toEqual(await readFile(join(source, "rules/index.md")));
 });
 
-test("case reading view preserves attribution and points to its unchanged raw file", async () => {
-  const html = await readFile(join(output, "cases/to-the-revolution/index.html"), "utf8");
-  expect(html).toContain("John Laurens");
-  expect(html).toContain('href="/cases/to-the-revolution.rules.md"');
-  expect(html).toContain('class="language-rules"');
-});
-
 test("MathML preserves complete cell names and cannot inject source HTML", () => {
   const html = renderMarkdown('```math\n|V(r1c4) − V(r1c5)| ≥ 5\n```');
   expect(html).toContain('mathvariant="italic">r1c4</mi>');
@@ -152,22 +144,18 @@ test("lint and build reject invalid page slugs and metadata consistently", async
   }
 });
 
-test("symlinked rule and case files are skipped by lint and build", async () => {
+test("symlinked rule files are skipped by lint and build", async () => {
   const source = join(temporary, "symlink-source");
   await mkdir(join(source, "rules"), { recursive: true });
-  await mkdir(join(source, "cases"), { recursive: true });
   await writeFile(join(source, "rules/thermo.md"), await readFile(join(fixtures, "rules/thermo.md")));
   await symlink(join(fixtures, "rules/modular.md"), join(source, "rules/modular.md"));
-  await symlink(join(fixtures, "cases/to-the-revolution.rules.md"), join(source, "cases/to-the-revolution.rules.md"));
   await symlink(join(temporary, "missing.md"), join(source, "rules/missing.md"));
   expect(await lintYaml(source)).toBe(1);
   const result = await buildSite(source, join(temporary, "symlink-site"));
   expect(result.pages).toBe(1);
-  expect(result.cases).toBe(0);
   expect(await Bun.file(join(result.output, "thermo.md")).exists()).toBe(true);
   expect(await Bun.file(join(result.output, "modular.md")).exists()).toBe(false);
   expect(await Bun.file(join(result.output, "modular/index.html")).exists()).toBe(false);
-  expect(await Bun.file(join(result.output, "cases/to-the-revolution.rules.md")).exists()).toBe(false);
 });
 
 
@@ -191,9 +179,9 @@ test("index rule and alias routes coexist with the home catalogue", async () => 
   expect(await Bun.file(join(built.output,"index/index.html")).exists()).toBe(true);
 });
 
-test("the full imported library and case collection have byte-identical public routes", async () => {
+test("the full library has byte-identical public routes", async () => {
   const built=await buildSite(".",join(temporary,"production-site"));
-  expect(built.pages).toBe(86);expect(built.cases).toBe(3895);
+  expect(built.pages).toBe(86);
   const home=await readFile(join(built.output,"index.html"),"utf8");
   for(const name of await readdir("rules")) {
     if(!name.endsWith(".md"))continue;
@@ -202,14 +190,10 @@ test("the full imported library and case collection have byte-identical public r
     expect(await Bun.file(join(built.output,slug,"index.html")).exists()).toBe(true);
     expect(home).toContain(`href="/${slug}/"`);
   }
-  const names=await readdir("cases");
-  for(let i=0;i<names.length;i+=32)await Promise.all(names.slice(i,i+32).filter(name=>name.endsWith(".rules.md")).map(async name=>{
-    expect(await readFile(join(built.output,"cases",name))).toEqual(await readFile(join("cases",name)));
-  }));
 });
 
 test("theme bootstrap is hash-authorised before the stylesheet on every reading surface", async () => {
-  for (const route of ["index.html", "thermo/index.html", "cases/to-the-revolution/index.html"]) {
+  for (const route of ["index.html", "thermo/index.html"]) {
     const html = await readFile(join(output, route), "utf8");
     const script = /<script>([\s\S]*?)<\/script>/.exec(html)![1];
     const hash = createHash("sha256").update(script).digest("base64");

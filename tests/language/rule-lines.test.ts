@@ -1,6 +1,5 @@
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
-import { createHash } from "node:crypto";
 import { checkCaseReferences, compilePage, compilePublicLibrary, parseDeclaredRuleLine, ruleLineChecks, type Diagnostic } from "../../src";
 import { fragmentVerdict } from "./finite-fragment";
 import { caseExamples } from "../../scripts/lint-skill";
@@ -79,26 +78,3 @@ test("pair and Kropki page examples pass the declared grammar", () => {
   for (const kind of ["pair", "kropki"]) for (const text of caseExamples(pages.find(p => p.file === `rules/${kind}.md`)!.text))
     expect(checkCaseReferences({ file: `${kind}-example.rules.md`, text }, library.registry).diagnostics).toEqual([]);
 });
-
-// This hash guards every byte outside pair relation spellings: wording, metadata, drawings, IDs,
-// coordinates and newlines. It was taken after the case files were rewritten in the current rule-line
-// forms (keyword pairs, Kropki colours, fog cell names, an `exported` stamp); retake it for an intended rewrite.
-// Reads and lints the whole production case corpus (3,900 files); on a slow CI runner it exceeds bun's 5 s default.
-test("production migration preserves every byte outside pair relation spellings", async () => {
-  const expected = await Bun.file("tests/fixtures/pair-migration.json").json();
-  const hash = createHash("sha256"); const counts: Record<string, number> = {};
-  const files = (await readdir("cases")).filter(n => n.endsWith(".rules.md")).sort();
-  let total = 0;
-  for (const name of files) {
-    const raw = await Bun.file(`cases/${name}`).text();
-    const normalized = raw.replace(/(^[ \t]*(?:[\w-]+:[ \t]+)?(?:not[ \t]+)*pair[ \t]+r\d+c\d+(?:[-,]r\d+c\d+)*[ \t]+)(difference|at-least|ratio|sum|less|multiple|shift)(?:[ \t]+(-?\d+))?/gm, (_, prefix, op, value) => {
-      total++; counts[op] = (counts[op] ?? 0) + 1;
-      expect(["difference", "at-least", "ratio", "sum"].includes(op)).toBe(value !== undefined);
-      return prefix + "<RELATION>";
-    });
-    hash.update(name + "\0").update(normalized).update("\0");
-    expect(checkCaseReferences({ file: `cases/${name}`, text: raw }, library.registry).diagnostics).toEqual([]);
-  }
-  expect(files.length).toBe(expected.cases); expect(total).toBe(expected.pairLines);
-  expect(counts).toEqual(expected.operations); expect(hash.digest("hex")).toBe(expected.nonRelationSha256);
-}, 60_000);

@@ -1,6 +1,6 @@
 # Open Rules
 
-Open Rules is a shared library of Sudoku rule definitions. Each kind has a stable Markdown URL, a mathematical definition, parameters, and a worked example. Case files refer to those kinds through a library root. Published meanings stay fixed; a different meaning gets a new kind.
+Open Rules is a shared library of Sudoku rule definitions. Each kind has a stable Markdown URL, a mathematical definition, parameters, and a worked example. A case file refers to those kinds through a library root. Published meanings stay fixed; a different meaning gets a new kind.
 
 The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). Readers use the HTML pages; tools use the unchanged Markdown files.
 
@@ -9,15 +9,14 @@ The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). 
 - `rules/<kind>.md`: rule pages with YAML front matter.
 - `rules/predicates.md`: shared mathematical definitions, with `document: prelude` and no `kind` field.
 - `rules/fog.md`: the fog setup feature (`document: feature`, `domain: play-state`): its case-file header, parameters and the maths that define which cells are visible. `tests/fog/` holds its conformance fixtures, run against that formula.
-- `cases/*.rules.md`: case files, including their attribution and source links.
 - `scripts/`: static generator and lint entry points.
 - `src/`: portable formula compiler and the `openrules` file-reading CLI.
 - `spec/`: formula grammar, type contract, logical classes, diagnostics and the [play-state](spec/play-state.md) domain. The executable shared definitions live in `rules/predicates.md`.
 - `site/style.css`: local light and dark styles.
 - `plugins/open-rules/skills/open-rules/`: the shared setter skill and references loaded as needed.
-- `tests/fixtures/`: three sample rule pages, shared predicates, and one case. Fixtures are test inputs only.
+- `tests/fixtures/`: three sample rule pages, shared predicates, and one sample case file. Fixtures are test inputs only.
 
-This repository owns the library definitions and the exported cases. The generator reads `rules/` and `cases/` in this repository. Fixtures are not imported automatically. The homepage index is generated from the rule pages.
+This repository holds the library definitions and the format of a case file. It holds no case files: those are kept by Sudoku Sleuth. The generator reads `rules/` in this repository. Fixtures are not imported automatically. The homepage index is generated from the rule pages.
 
 ## Write a case
 
@@ -31,7 +30,7 @@ pair-3: pair r2c2-r3c2 sum 10
 kropki r5c1-r5c2 white
 ```
 
-Pair also supports `at-least n`, `less`, `multiple` and `shift`; [pair.md](rules/pair.md) defines them. Kropki is shorthand for pair: white means `difference 1`, black means `ratio 2`. A dot's painted colour is drawing metadata. State every other relationship with pair keywords, including ratio 3 or grey/brown dots. Pair JSON relations have been migrated to keywords. See [syntax.md](rules/syntax.md) and the skill's [worked cases](plugins/open-rules/skills/open-rules/references/examples.md) for full files.
+Pair also supports `at-least n`, `less`, `multiple` and `shift`; [pair.md](rules/pair.md) defines them. Kropki is shorthand for pair: white means `difference 1`, black means `ratio 2`. A dot's painted colour is drawing metadata. State every other relationship with pair keywords, including ratio 3 or grey/brown dots. See [syntax.md](rules/syntax.md) and the skill's [worked cases](plugins/open-rules/skills/open-rules/references/examples.md) for full files.
 
 ## Local commands
 
@@ -69,7 +68,7 @@ Rejecting Markdown fixtures and their repairs live in `tests/invalid/` and `test
 
 Alias pages declare their own `kind` and `alias_of: <target-kind>` (or `aliasOf`), with no parameters or formula. Targets must be ordinary rule definitions. Both alias routes are served, and their pages link to the target. The catalogue is `/`; its Markdown index is `/README.md`, declared with `document: home`. The `index` kind has `/index.md` and `/index/`. Only `cases` and `style` remain reserved.
 
-Build output goes to `_site/`. Each rule produces `/<kind>.md` and `/<kind>/index.html`; shared definitions use the same layout. Cases retain their raw `/cases/<name>.rules.md` URLs and also have reading views at `/cases/<name>/`. The generator also writes the index, local stylesheet, shape icons, font, search script, `.nojekyll`, and `CNAME`.
+Build output goes to `_site/`. Each rule produces `/<kind>.md` and `/<kind>/index.html`; shared definitions use the same layout. The generator also writes the index, local stylesheet, shape icons, font, search script, `.nojekyll`, and `CNAME`.
 
 For a fixture preview:
 
