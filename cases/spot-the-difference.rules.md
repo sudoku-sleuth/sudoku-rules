@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/spot-the-difference
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 025e455458b421ef896937889ec27a46
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c6-r5c6 colour "black"
-kropki-2: kropki r2c7-r2c8 colour "black"
+kropki-1: kropki r4c6-r5c6 black
+kropki-2: kropki r2c7-r2c8 black
 parity-cells r1c5-r1c5-r2c8-r2c8-r3c9-r3c9-r9c2-r9c2 parity "even"
 ```
 

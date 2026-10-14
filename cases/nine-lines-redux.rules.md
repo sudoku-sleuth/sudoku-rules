@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nine-lines-redux
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2aa828c7e47f9a2d93f669ca332ec61d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/7mhy2vdll5
 case: https://sudoku-sleuth.com/cases/shaking-hands
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5f11d16e296b70c602dfc03e074456ab
 ---
 
 ```rules

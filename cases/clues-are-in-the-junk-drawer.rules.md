@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: e47729d95220a6ea3d76ad406c9e5c77
 ---
 
 ```rules
@@ -20,16 +21,16 @@ cage-4: cage r3c8-r3c9 total 10 connected true
 cage-5: cage r4c3-r5c3-r6c3 total 8 connected true
 cage-6: cage r5c4-r5c5-r5c6 total 12 connected true
 cage-7: cage r5c1-r5c2 total 7 connected true
-kropki-1: kropki r7c8-r8c8 colour "white"
-kropki-2: kropki r8c8-r9c8 colour "white"
-kropki-3: kropki r6c8-r7c8 colour "white"
-kropki-4: kropki r1c1-r2c1 colour "white"
-kropki-5: kropki r7c3-r8c3 colour "white"
-kropki-6: kropki r8c3-r9c3 colour "white"
-kropki-7: kropki r8c1-r8c2 colour "white"
-kropki-8: kropki r3c7-r3c8 colour "black"
-kropki-9: kropki r1c8-r2c8 colour "black"
-kropki-10: kropki r2c6-r2c7 colour "black"
+kropki-1: kropki r7c8-r8c8 white
+kropki-2: kropki r8c8-r9c8 white
+kropki-3: kropki r6c8-r7c8 white
+kropki-4: kropki r1c1-r2c1 white
+kropki-5: kropki r7c3-r8c3 white
+kropki-6: kropki r8c3-r9c3 white
+kropki-7: kropki r8c1-r8c2 white
+kropki-8: kropki r3c7-r3c8 black
+kropki-9: kropki r1c8-r2c8 black
+kropki-10: kropki r2c6-r2c7 black
 between r8c1-r9c1-r9c2-r9c3 ends ["r8c2","r8c3"]
 little-killer-1: little-killer r1c5-r2c6-r3c7-r4c8-r5c9 sum 34
 little-killer-2: little-killer r5c1-r6c2-r7c3-r8c4-r9c5 sum 34

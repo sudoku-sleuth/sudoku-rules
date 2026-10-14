@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/counterclockwise
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=3 r2c5=7 r3c1=1 r5c2=9 r5c8=6 r7c9=2 r8c5=5 r9c3=4
+exported: 2448974a194945b671925b1611460e04
 ---
 
 ```rules

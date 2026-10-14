@@ -6,6 +6,7 @@ source: https://sudokupad.app/90frp7xdgh
 case: https://sudoku-sleuth.com/cases/crossings
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c90dcf2a8170d6ff5316b3f911703e8d
 ---
 
 ```rules

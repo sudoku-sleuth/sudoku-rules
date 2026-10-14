@@ -6,6 +6,7 @@ source: https://sudokupad.app/kit3145gb5
 case: https://sudoku-sleuth.com/cases/thick-as-thieves
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b8c063d8478a90186ff2271e09fe22ab
 ---
 
 ```rules

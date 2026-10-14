@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/weaving-and-bobbing
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=2 r2c4=9 r5c1=9 r5c7=4 r6c5=2 r8c8=5 r9c1=3
+exported: ae8254211b4bec248593e98f4f1d6f7e
 ---
 
 ```rules

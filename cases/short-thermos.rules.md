@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/short-thermos
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=7 r3c7=4 r7c3=2 r7c7=5
+exported: 99a0d82645a59a274313ecb4f1541b31
 ---
 
 ```rules
@@ -31,13 +32,13 @@ thermo-17: thermo r4c1-r5c1-r6c1
 thermo-18: thermo r1c6-r1c5-r1c4
 thermo-19: thermo r6c9-r5c9-r4c9
 thermo-20: thermo r9c4-r9c5-r9c6
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r1c2-r1c3 colour "black"
-kropki-4: kropki r7c1-r8c1 colour "black"
-kropki-5: kropki r7c9-r8c9 colour "black"
-kropki-6: kropki r5c6-r5c7 colour "black"
-kropki-7: kropki r6c5-r7c5 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r1c2-r1c3 black
+kropki-4: kropki r7c1-r8c1 black
+kropki-5: kropki r7c9-r8c9 black
+kropki-6: kropki r5c6-r5c7 black
+kropki-7: kropki r6c5-r7c5 black
 ```
 
 Normal sudoku rules apply: every row, column and box has to contain a complete set of the digits 1-9.

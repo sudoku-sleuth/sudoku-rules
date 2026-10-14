@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/no-logical-steps-found-part-5-my-brain-hur
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1862a17a7e33f50f3b7e4f5134c36492
 ---
 
 ```rules
@@ -18,11 +19,11 @@ cage-4: cage r6c8-r6c9-r7c8-r7c9 total 20 connected true
 cage-5: cage r6c3-r7c3 total 9 connected true
 cage-6: cage r3c6-r3c7 total 9 connected true
 cage-7: cage r3c1-r4c1 total 11 connected true
-kropki-1: kropki r5c1-r5c2 colour "black"
-kropki-2: kropki r8c4-r9c4 colour "black"
-kropki-3: kropki r2c4-r3c4 colour "black"
-kropki-4: kropki r3c3-r3c4 colour "white"
-kropki-5: kropki r7c8-r7c9 colour "white"
+kropki-1: kropki r5c1-r5c2 black
+kropki-2: kropki r8c4-r9c4 black
+kropki-3: kropki r2c4-r3c4 black
+kropki-4: kropki r3c3-r3c4 white
+kropki-5: kropki r7c8-r7c9 white
 whispers-1: whispers r1c5-r2c5 gap 6
 whispers-2: whispers r4c8-r4c9 gap 6
 little-killer-1: little-killer r1c7-r2c6-r3c5-r4c4-r5c3-r6c2-r7c1 sum 36

@@ -6,6 +6,7 @@ source: https://sudokupad.app/79qeosonv7
 case: https://sudoku-sleuth.com/cases/chasing-his-own-tail
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 213173c2e670963d78675a80f43876e2
 ---
 
 ```rules

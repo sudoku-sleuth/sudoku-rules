@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/whispers-sum-to-72
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c4=3
+exported: d453119d9c2770833f16d73a7e3eedda
 ---
 
 ```rules

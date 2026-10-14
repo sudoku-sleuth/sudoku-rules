@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/input-output
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r1c2=2 r1c3=3 r2c1=4
+exported: 248af46f989d3ac3de33db82cf733c18
 ---
 
 ```rules

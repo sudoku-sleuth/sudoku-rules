@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oil-water-circles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c9=1 r4c9=2 r7c1=8 r9c3=3
+exported: 33eedb45283cf54c1d9496f8eca987d8
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://tinyurl.com/yuzwyjn7
 case: https://sudoku-sleuth.com/cases/killer-x-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ba72439b36c8e1e1b4bf40d712f3f099
 ---
 
 ```rules

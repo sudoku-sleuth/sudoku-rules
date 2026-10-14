@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/hot-rod-v6
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 079508737d4ec0d72f817fac1fff25fe
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c3-r4c4 colour "white"
-kropki-2: kropki r6c3-r6c4 colour "white"
-kropki-3: kropki r2c8-r2c9 colour "white"
-kropki-4: kropki r8c8-r8c9 colour "white"
-kropki-5: kropki r1c6-r2c6 colour "white"
-kropki-6: kropki r8c6-r9c6 colour "white"
-kropki-7: kropki r5c1-r5c2 colour "white"
-kropki-8: kropki r5c3-r5c4 colour "white"
-kropki-9: kropki r3c2-r4c2 colour "white"
+kropki-1: kropki r4c3-r4c4 white
+kropki-2: kropki r6c3-r6c4 white
+kropki-3: kropki r2c8-r2c9 white
+kropki-4: kropki r8c8-r8c9 white
+kropki-5: kropki r1c6-r2c6 white
+kropki-6: kropki r8c6-r9c6 white
+kropki-7: kropki r5c1-r5c2 white
+kropki-8: kropki r5c3-r5c4 white
+kropki-9: kropki r3c2-r4c2 white
 whispers-1: whispers r5c4-r5c5-r5c6-r5c7 gap 5
 whispers-2: whispers r3c8-r4c8 gap 5
 whispers-3: whispers r3c9-r4c9 gap 5

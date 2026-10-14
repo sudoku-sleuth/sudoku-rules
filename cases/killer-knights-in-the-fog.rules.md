@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 21
-    - 22
-    - 23
-    - 39
-    - 40
+    - r3c4
+    - r3c5
+    - r3c6
+    - r5c4
+    - r5c5
 format: open-rules
 title: Killer Knights in the Fog
 setter: Meggen033
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 67ed2f1475c9dcd7e0138031573d5c84
 ---
 
 ```rules

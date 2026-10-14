@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/dr-logic
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r4c9=1 r5c4=9 r9c1=4
+exported: be586e720872c73c8e99b96a47a54f21
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "main"
-kropki-1: kropki r3c7-r4c7 colour "black"
-kropki-2: kropki r5c8-r6c8 colour "black"
-kropki-3: kropki r1c8-r2c8 colour "black"
+kropki-1: kropki r3c7-r4c7 black
+kropki-2: kropki r5c8-r6c8 black
+kropki-3: kropki r1c8-r2c8 black
 whispers-1: whispers r5c3-r6c3-r6c4-r5c4 gap 5
 whispers-2: whispers r5c5-r5c4-r5c3 gap 5
 whispers-3: whispers r5c7-r4c7 gap 5

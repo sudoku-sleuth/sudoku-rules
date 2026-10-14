@@ -6,6 +6,7 @@ source: https://sudokupad.app/ul9o968502
 case: https://sudoku-sleuth.com/cases/carrefour
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cfb4d62511d7c307a0b6a327eca2bbed
 ---
 
 ```rules

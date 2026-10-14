@@ -6,20 +6,21 @@ source: https://sudokupad.app/g1zg7yphir
 case: https://sudoku-sleuth.com/cases/taxes-driving-us-dotty
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 24e03ffe04144acb3a3a7fefd22b1d50
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c2-r6c3 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "white"
-kropki-3: kropki r8c8-r9c8 colour "black"
-kropki-4: kropki r3c6-r3c7 colour "black"
-kropki-5: kropki r2c7-r3c7 colour "black"
-kropki-6: kropki r1c9-r2c9 colour "black"
-kropki-7: kropki r4c5-r4c6 colour "black"
-kropki-8: kropki r2c1-r2c2 colour "black"
-kropki-9: kropki r7c2-r8c2 colour "black"
-kropki-10: kropki r5c7-r5c8 colour "black"
+kropki-1: kropki r6c2-r6c3 white
+kropki-2: kropki r2c5-r3c5 white
+kropki-3: kropki r8c8-r9c8 black
+kropki-4: kropki r3c6-r3c7 black
+kropki-5: kropki r2c7-r3c7 black
+kropki-6: kropki r1c9-r2c9 black
+kropki-7: kropki r4c5-r4c6 black
+kropki-8: kropki r2c1-r2c2 black
+kropki-9: kropki r7c2-r8c2 black
+kropki-10: kropki r5c7-r5c8 black
 whispers-1: whispers r1c1-r2c1-r3c1 gap 5
 whispers-2: whispers r3c4-r4c4-r4c5-r5c5 gap 5
 whispers-3: whispers r4c5-r3c5 gap 5

@@ -6,6 +6,7 @@ source: https://sudokupad.app/bqbpsd3jht
 case: https://sudoku-sleuth.com/cases/noah-s-ark
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 829dd0d703685543e24e05546cef126d
 ---
 
 ```rules
@@ -18,10 +19,10 @@ diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 thermo-1: thermo r6c3-r6c2-r6c1
 thermo-2: thermo r3c6-r2c6-r1c6
-kropki-1: kropki r6c5-r6c6 colour "white"
-kropki-2: kropki r5c6-r6c6 colour "white"
-kropki-3: kropki r4c4-r5c4 colour "black"
-kropki-4: kropki r4c4-r4c5 colour "black"
+kropki-1: kropki r6c5-r6c6 white
+kropki-2: kropki r5c6-r6c6 white
+kropki-3: kropki r4c4-r5c4 black
+kropki-4: kropki r4c4-r4c5 black
 arrow-1: arrow r9c2-r9c3-r8c3 bulb ["r9c1"]
 arrow-2: arrow r3c9-r3c8 bulb ["r2c9"]
 whispers-1: whispers r9c6-r8c6-r7c6 gap 5

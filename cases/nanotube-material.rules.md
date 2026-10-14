@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/nanotube-material
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 206526ac0d274903cac0e90964859b51
 ---
 
 ```rules

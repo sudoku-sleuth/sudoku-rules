@@ -6,6 +6,7 @@ source: https://sudokupad.app/uviycfcr7l
 case: https://sudoku-sleuth.com/cases/los-demas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dc681a3ae55e108a66ec81e2ee1b910a
 ---
 
 ```rules

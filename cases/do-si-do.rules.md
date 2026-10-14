@@ -6,6 +6,7 @@ source: https://sudokupad.app/7a0s6r254d
 case: https://sudoku-sleuth.com/cases/do-si-do
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 75491ce480b9062826882dd9004adc04
 ---
 
 ```rules

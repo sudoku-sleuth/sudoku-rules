@@ -6,6 +6,7 @@ source: https://sudokupad.app/ki5v2qql6k
 case: https://sudoku-sleuth.com/cases/city-silence
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 61f45774088e989bc640bff641b1b3ff
 ---
 
 ```rules

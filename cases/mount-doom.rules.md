@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/mount-doom
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e1dc2716f004f8cc37bd0e5b9234aef2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c1-r7c1 colour "black"
-kropki-2: kropki r3c3-r4c3 colour "black"
-kropki-3: kropki r4c4-r4c5 colour "black"
-kropki-4: kropki r1c5-r1c6 colour "black"
-kropki-5: kropki r2c7-r2c8 colour "black"
-kropki-6: kropki r3c6-r3c7 colour "black"
-kropki-7: kropki r5c5-r5c6 colour "black"
-kropki-8: kropki r5c8-r5c9 colour "black"
+kropki-1: kropki r6c1-r7c1 black
+kropki-2: kropki r3c3-r4c3 black
+kropki-3: kropki r4c4-r4c5 black
+kropki-4: kropki r1c5-r1c6 black
+kropki-5: kropki r2c7-r2c8 black
+kropki-6: kropki r3c6-r3c7 black
+kropki-7: kropki r5c5-r5c6 black
+kropki-8: kropki r5c8-r5c9 black
 palindrome-1: palindrome r9c2-r8c3-r7c4
 palindrome-2: palindrome r8c7-r7c6-r6c6
 slow-thermo-1: slow-thermo r8c1-r8c2-r7c3-r6c4-r5c5-r4c5

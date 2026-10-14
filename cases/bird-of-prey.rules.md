@@ -6,6 +6,7 @@ source: https://sudokupad.app/mzhbktb4vo
 case: https://sudoku-sleuth.com/cases/bird-of-prey
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9f56fffe524960656d7c0a0ada249ee7
 ---
 
 ```rules

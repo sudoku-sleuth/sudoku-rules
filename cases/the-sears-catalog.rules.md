@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-sears-catalog
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7bb1173e338f8e1725f8a3f27390c719
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/gprscdgkn0
 case: https://sudoku-sleuth.com/cases/trickle-round
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8c82c3f2003f1eff788ba3344e3c8a8b
 ---
 
 ```rules

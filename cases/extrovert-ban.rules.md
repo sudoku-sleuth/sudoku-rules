@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/extrovert-ban
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=4 r3c4=7 r3c9=4 r4c3=1 r4c5=9 r6c7=9 r7c6=9 r8c1=8 r9c8=2
+exported: 62f4b3e85208d20589da1a9137783a67
 ---
 
 ```rules

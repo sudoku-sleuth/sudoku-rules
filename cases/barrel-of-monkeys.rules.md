@@ -6,23 +6,24 @@ source: https://f-puzzles.com/?id=yb2ohkeu
 case: https://sudoku-sleuth.com/cases/barrel-of-monkeys
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6b6cf83cfbb069016124e38c9f9f8b55
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
-kropki-3: kropki r1c8-r1c9 colour "white"
-kropki-4: kropki r3c8-r3c9 colour "white"
-kropki-5: kropki r2c7-r3c7 colour "white"
-kropki-6: kropki r9c7-r9c8 colour "white"
-kropki-7: kropki r8c1-r8c2 colour "white"
-kropki-8: kropki r6c3-r7c3 colour "white"
-kropki-9: kropki r8c6-r9c6 colour "white"
-kropki-10: kropki r4c6-r5c6 colour "white"
-kropki-11: kropki r4c9-r5c9 colour "white"
-kropki-12: kropki r2c8-r2c9 colour "white"
-kropki-13: kropki r3c1-r4c1 colour "white"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r3c5-r3c6 white
+kropki-3: kropki r1c8-r1c9 white
+kropki-4: kropki r3c8-r3c9 white
+kropki-5: kropki r2c7-r3c7 white
+kropki-6: kropki r9c7-r9c8 white
+kropki-7: kropki r8c1-r8c2 white
+kropki-8: kropki r6c3-r7c3 white
+kropki-9: kropki r8c6-r9c6 white
+kropki-10: kropki r4c6-r5c6 white
+kropki-11: kropki r4c9-r5c9 white
+kropki-12: kropki r2c8-r2c9 white
+kropki-13: kropki r3c1-r4c1 white
 whispers-1: whispers r2c1-r1c2-r2c3-r3c3-r4c2 gap 5
 whispers-2: whispers r3c9-r2c8-r3c7-r4c7-r5c8 gap 5
 whispers-3: whispers r5c9-r5c8-r5c7-r5c6-r6c6-r6c7-r6c8-r6c9 gap 5

@@ -6,6 +6,7 @@ source: https://sudokupad.app/3yzv3hrgy6
 case: https://sudoku-sleuth.com/cases/battle-of-the-tridents
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 60ec71ffaa0a5446cfaa0d61338cf18e
 ---
 
 ```rules

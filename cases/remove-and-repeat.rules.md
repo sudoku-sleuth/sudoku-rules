@@ -21,6 +21,7 @@ board:
     - 6
     - 7
     - 8
+exported: 6502674df4c6afd4d32ae9f5b901fbd5
 ---
 
 ```rules
@@ -42,17 +43,17 @@ unique-15: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7
 unique-16: unique r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8
 cage-1: cage r2c7-r3c7-r4c7-r5c7-r6c7-r7c7 repeats false total 19 connected true
 cage-2: cage r6c6-r7c6 repeats false total 7 connected true
-kropki-1: kropki r2c2-r3c2 colour "black"
-kropki-2: kropki r4c2-r5c2 colour "black"
-kropki-3: kropki r6c2-r7c2 colour "black"
-kropki-4: kropki r6c4-r7c4 colour "black"
-kropki-5: kropki r5c5-r6c5 colour "black"
-kropki-6: kropki r4c6-r4c7 colour "black"
-kropki-7: kropki r5c6-r5c7 colour "white"
-kropki-8: kropki r5c4-r5c5 colour "white"
-kropki-9: kropki r7c3-r7c4 colour "white"
-kropki-10: kropki r3c2-r4c2 colour "white"
-kropki-11: kropki r5c2-r5c3 colour "white"
+kropki-1: kropki r2c2-r3c2 black
+kropki-2: kropki r4c2-r5c2 black
+kropki-3: kropki r6c2-r7c2 black
+kropki-4: kropki r6c4-r7c4 black
+kropki-5: kropki r5c5-r6c5 black
+kropki-6: kropki r4c6-r4c7 black
+kropki-7: kropki r5c6-r5c7 white
+kropki-8: kropki r5c4-r5c5 white
+kropki-9: kropki r7c3-r7c4 white
+kropki-10: kropki r3c2-r4c2 white
+kropki-11: kropki r5c2-r5c3 white
 renban-1: renban r4c3-r4c4-r4c5-r4c6-r4c7
 renban-2: renban r7c2-r7c3-r6c3-r5c3-r4c3-r3c3-r2c3
 renban-3: renban r3c5-r3c6-r3c7

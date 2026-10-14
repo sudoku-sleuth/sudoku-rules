@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/whisper-8
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=8
+exported: 255be4f7f399b30a93ed34af73ce6161
 ---
 
 ```rules

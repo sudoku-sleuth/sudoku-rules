@@ -6,6 +6,7 @@ source: https://sudokupad.app/0bngsczpib
 case: https://sudoku-sleuth.com/cases/jack-of-one-trade
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 920875e56877292b345033b96a25a36b
 ---
 
 ```rules

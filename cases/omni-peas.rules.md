@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/omni-peas
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 129ba283c7ecc6a4dae14d472f1dcf71
 ---
 
 ```rules

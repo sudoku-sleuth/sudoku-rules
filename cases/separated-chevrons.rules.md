@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/separated-chevrons
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=1
+exported: 2a33d4d96c2a894241a97295ab268bf1
 ---
 
 ```rules

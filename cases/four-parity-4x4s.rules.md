@@ -1,22 +1,22 @@
 ---
 fog:
   initiallyLit:
-    - 18
-    - 19
-    - 20
-    - 21
-    - 26
-    - 27
-    - 28
-    - 29
-    - 34
-    - 35
-    - 36
-    - 37
-    - 42
-    - 43
-    - 44
-    - 45
+    - r3c3
+    - r3c4
+    - r3c5
+    - r3c6
+    - r4c3
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c3
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c3
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Four Parity 4x4s
 setter: Sir Moose
@@ -102,6 +102,7 @@ board:
       - r7c8
       - r8c7
       - r8c8
+exported: a385c961dddc1513aa95eca5f9a64c9b
 ---
 
 ```rules
@@ -137,7 +138,7 @@ unique-29: unique r7c1-r7c2-r8c1-r8c2 stated true
 unique-30: unique r7c3-r7c4-r8c3-r8c4 stated true
 unique-31: unique r7c5-r7c6-r8c5-r8c6 stated true
 unique-32: unique r7c7-r7c8-r8c7-r8c8 stated true
-kropki r4c3-r4c4 colour "black"
+kropki r4c3-r4c4 black
 arrow-1: arrow r6c6-r6c5-r5c6 bulb ["r7c7"]
 arrow-2: arrow r8c4-r8c5-r7c5 bulb ["r8c3"]
 arrow-3: arrow r1c5-r1c4-r1c3 bulb ["r1c6"]

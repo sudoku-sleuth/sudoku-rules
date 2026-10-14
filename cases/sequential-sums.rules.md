@@ -6,6 +6,7 @@ source: https://tinyurl.com/yay44jd
 case: https://sudoku-sleuth.com/cases/sequential-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2e5b3918ce4b6646a3dbca7582c8a7fa
 ---
 
 ```rules

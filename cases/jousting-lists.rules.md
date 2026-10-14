@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/jousting-lists
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=6 r4c5=2 r5c4=3 r5c6=7 r6c5=6
+exported: 007fc26e20625d69731686090ed7f6ad
 ---
 
 ```rules

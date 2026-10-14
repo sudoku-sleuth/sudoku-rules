@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/creepy-crawly
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=5 r7c4=9 r8c9=7
+exported: 0443c5569be1c4bf1dfd9456b278fd4a
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/ratio-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 44ee5b744724521708967f6f95b60b8f
 ---
 
 ```rules
@@ -22,17 +23,17 @@ pair-5: pair r7c9-r8c9 difference 2
 pair-6: pair r5c2-r6c2 difference 2
 pair-7: pair r4c5-r4c6 difference 2
 pair-8: pair r5c5-r5c6 difference 2
-kropki-1: kropki r6c7-r7c7 colour "black"
-kropki-2: kropki r7c6-r7c7 colour "black"
-kropki-3: kropki r6c3-r7c3 colour "black"
-kropki-4: kropki r3c3-r4c3 colour "black"
-kropki-5: kropki r3c3-r3c4 colour "black"
-kropki-6: kropki r3c7-r4c7 colour "black"
-kropki-7: kropki r5c7-r6c7 colour "black"
-kropki-8: kropki r4c3-r5c3 colour "black"
-kropki-9: kropki r3c5-r3c6 colour "black"
-kropki-10: kropki r7c4-r7c5 colour "black"
-kropki-11: kropki r8c5-r9c5 colour "black"
+kropki-1: kropki r6c7-r7c7 black
+kropki-2: kropki r7c6-r7c7 black
+kropki-3: kropki r6c3-r7c3 black
+kropki-4: kropki r3c3-r4c3 black
+kropki-5: kropki r3c3-r3c4 black
+kropki-6: kropki r3c7-r4c7 black
+kropki-7: kropki r5c7-r6c7 black
+kropki-8: kropki r4c3-r5c3 black
+kropki-9: kropki r3c5-r3c6 black
+kropki-10: kropki r7c4-r7c5 black
+kropki-11: kropki r8c5-r9c5 black
 arrow-1: arrow r9c2-r9c1 bulb ["r8c2"]
 arrow-2: arrow r2c9-r1c9 bulb ["r2c8"]
 ```

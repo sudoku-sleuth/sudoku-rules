@@ -6,6 +6,7 @@ source: https://sudokupad.app/1xzlfj5xsc
 case: https://sudoku-sleuth.com/cases/disjoint-treasure-hunt
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e07e38f7c0337881f3f9ff4c2b77a77b
 ---
 
 ```rules

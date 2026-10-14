@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/circular-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 76317224e10c7c1511e1209e2531303e
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/9bqrubv190
 case: https://sudoku-sleuth.com/cases/cages-cages-and-more-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 74edf0b702d2ea808437cb5b02492a4e
 ---
 
 ```rules

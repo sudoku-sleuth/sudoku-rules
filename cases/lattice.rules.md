@@ -6,6 +6,7 @@ source: https://sudokupad.app/7psyl3rbe9
 case: https://sudoku-sleuth.com/cases/lattice
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 78ef696b9571832a2e581c8c99415020
 ---
 
 ```rules

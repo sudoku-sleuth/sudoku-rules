@@ -6,16 +6,17 @@ source: https://sudokupad.app/335ktqfho8
 case: https://sudoku-sleuth.com/cases/pickleball
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2cff8b347e2bd33adce7b9a603103343
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c3-r7c3 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "white"
-kropki-3: kropki r3c3-r3c4 colour "black"
-kropki-4: kropki r7c6-r7c7 colour "black"
-kropki-5: kropki r3c7-r4c7 colour "black"
-kropki-6: kropki r1c5-r2c5 colour "black"
+kropki-1: kropki r6c3-r7c3 white
+kropki-2: kropki r4c5-r4c6 white
+kropki-3: kropki r3c3-r3c4 black
+kropki-4: kropki r7c6-r7c7 black
+kropki-5: kropki r3c7-r4c7 black
+kropki-6: kropki r1c5-r2c5 black
 whispers-1: whispers r5c3-r4c3-r3c4-r3c5-r3c6-r4c7-r5c7-r6c7-r7c6-r7c5-r7c4-r6c3 gap 5 loop true
 whispers-2: whispers r5c4-r6c5-r5c6-r4c5 gap 5 loop true
 whispers-3: whispers r5c9-r6c8-r7c7-r8c6-r9c5 gap 5

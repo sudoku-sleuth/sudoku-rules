@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/rising-temperatures
 case: https://sudoku-sleuth.com/cases/rising-temperatures
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bb0ae903bc03993a4c14552864694278
 ---
 
 ```rules

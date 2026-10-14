@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/x-acto-blade
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c3=1
+exported: d58e56803ca81a90377f693ca90aa10c
 ---
 
 ```rules

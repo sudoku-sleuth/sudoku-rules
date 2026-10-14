@@ -6,19 +6,20 @@ source: ""
 case: https://sudoku-sleuth.com/cases/hangover-ich-habe-einen-kater
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1f834ea820b3dd50eb2f77d3e9950b56
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r5c5 colour "black"
-kropki-2: kropki r6c5-r7c5 colour "black"
-kropki-3: kropki r5c6-r6c6 colour "black"
-kropki-4: kropki r4c6-r4c7 colour "black"
-kropki-5: kropki r5c2-r5c3 colour "black"
-kropki-6: kropki r2c6-r3c6 colour "black"
-kropki-7: kropki r2c4-r3c4 colour "black"
-kropki-8: kropki r7c3-r7c4 colour "black"
-kropki-9: kropki r6c8-r6c9 colour "black"
+kropki-1: kropki r4c5-r5c5 black
+kropki-2: kropki r6c5-r7c5 black
+kropki-3: kropki r5c6-r6c6 black
+kropki-4: kropki r4c6-r4c7 black
+kropki-5: kropki r5c2-r5c3 black
+kropki-6: kropki r2c6-r3c6 black
+kropki-7: kropki r2c4-r3c4 black
+kropki-8: kropki r7c3-r7c4 black
+kropki-9: kropki r6c8-r6c9 black
 whispers-1: whispers r9c1-r8c2-r7c3-r6c4-r5c5-r4c6-r3c7-r2c8-r1c9 gap 5
 whispers-2: whispers r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c7-r8c8-r9c9 gap 5
 renban-1: renban r5c6-r5c7-r4c7-r4c8-r3c8-r3c9-r2c9

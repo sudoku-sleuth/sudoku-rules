@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/warp-speed
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ee02c57dd42d354ef5baee4c3a525381
 ---
 
 ```rules

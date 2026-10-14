@@ -6,6 +6,7 @@ source: https://sudokupad.app/x7i7x8a4o3
 case: https://sudoku-sleuth.com/cases/duality-of-a-german-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7a49d515bbe80a1eff6bcee6bd755096
 ---
 
 ```rules

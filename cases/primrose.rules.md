@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=y22ghr9t
 case: https://sudoku-sleuth.com/cases/primrose
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0fdc8c52f27ed61526dbe9d47b21bee7
 ---
 
 ```rules

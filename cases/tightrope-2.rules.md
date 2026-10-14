@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tightrope-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c7=7
+exported: 5c46ddb803b58b489d74fb5454ddb5fc
 ---
 
 ```rules
@@ -20,8 +21,8 @@ thermo-4: thermo r5c4-r5c5-r5c6
 thermo-5: thermo r4c5-r4c6-r4c7
 thermo-6: thermo r3c6-r3c7-r3c8
 thermo-7: thermo r2c7-r2c8-r2c9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r5c5-r5c6 colour "white"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r5c5-r5c6 white
 arrow-1: arrow r2c8-r2c7 bulb ["r2c9"]
 arrow-2: arrow r3c7-r3c6 bulb ["r3c8"]
 arrow-3: arrow r4c6-r4c5 bulb ["r4c7"]

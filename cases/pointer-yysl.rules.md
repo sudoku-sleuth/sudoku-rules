@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pointer-yysl
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 60d9df0442d8e3ce333fea6aa52e7981
 ---
 
 ```rules

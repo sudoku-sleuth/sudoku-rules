@@ -6,6 +6,7 @@ source: https://sudokupad.app/ql7p8elfs5
 case: https://sudoku-sleuth.com/cases/inward-spiral
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1a8d4f87a49509409861b224b7fb4dbb
 ---
 
 ```rules

@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A clue marker still needs to be read before we can confirm the rule for unmarked pairs.
+exported: b53df0862499a79321d4cf3963f0a3bd
 ---
 
 ```rules

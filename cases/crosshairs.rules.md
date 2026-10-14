@@ -6,6 +6,7 @@ source: https://sudokupad.app/spwql1j11w
 case: https://sudoku-sleuth.com/cases/crosshairs
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 36319f2be80711447d4bf28e64687f72
 ---
 
 ```rules

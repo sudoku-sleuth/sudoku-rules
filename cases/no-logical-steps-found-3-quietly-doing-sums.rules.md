@@ -6,6 +6,7 @@ source: https://sudokupad.app/oqe5o52oz9
 case: https://sudoku-sleuth.com/cases/no-logical-steps-found-3-quietly-doing-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d56b3de60adcabfee9d89c1db1f3c2a4
 ---
 
 ```rules
@@ -13,10 +14,10 @@ sudoku 9x9
 cage-1: cage r7c8-r7c9-r8c8-r8c9 total 24 connected true
 cage-2: cage r7c1-r8c1 total 3 connected true
 cage-3: cage r3c8-r3c9 total 9 connected true
-kropki-1: kropki r7c3-r8c3 colour "black"
-kropki-2: kropki r4c1-r5c1 colour "black"
-kropki-3: kropki r2c8-r2c9 colour "black"
-kropki-4: kropki r7c5-r8c5 colour "black"
+kropki-1: kropki r7c3-r8c3 black
+kropki-2: kropki r4c1-r5c1 black
+kropki-3: kropki r2c8-r2c9 black
+kropki-4: kropki r7c5-r8c5 black
 whispers-1: whispers r9c3-r9c4-r9c5-r9c6-r9c7 gap 5
 whispers-2: whispers r1c7-r1c6-r1c5-r1c4-r1c3 gap 5
 palindrome-1: palindrome r5c3-r6c3-r7c2-r8c2

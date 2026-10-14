@@ -6,6 +6,7 @@ source: https://sudokupad.app/xnocqe9cf6
 case: https://sudoku-sleuth.com/cases/the-grass-is-always-greener-in-the-other-corners
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 702f3bb4cb57814a7d0802f209aecb7b
 ---
 
 ```rules

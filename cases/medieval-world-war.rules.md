@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/medieval-world-war
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5ad5b9a842b3517b206ac10de7e1070c
 ---
 
 ```rules

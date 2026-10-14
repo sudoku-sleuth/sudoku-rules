@@ -6,6 +6,7 @@ source: https://sudokupad.app/cpbvn51482
 case: https://sudoku-sleuth.com/cases/wolf-spider
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f4481d443452bc7d89ba0f617cfcc536
 ---
 
 ```rules

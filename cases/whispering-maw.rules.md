@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/whispering-maw
 case: https://sudoku-sleuth.com/cases/whispering-maw
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 31912ddf30c1a5188f865a2461f94cb6
 ---
 
 ```rules

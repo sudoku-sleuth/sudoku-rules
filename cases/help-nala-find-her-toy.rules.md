@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
 format: open-rules
 title: Help Nala find her Toy!
 setter: Sandra & Nala
@@ -15,6 +15,7 @@ case: https://sudoku-sleuth.com/cases/help-nala-find-her-toy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 27c776d31ad6090f3cd76ed89422546f
 ---
 
 ```rules

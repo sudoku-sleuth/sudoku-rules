@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/correctly-labeled-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 18285882815f799ac8ae3b050ed23cbf
 ---
 
 ```rules
@@ -23,14 +24,14 @@ cage-9: cage r8c1-r8c2-r8c3-r9c1-r9c2 connected true
 cage-10: cage r5c1-r5c2-r5c3-r6c1-r6c2-r6c3-r7c1-r7c2-r7c3 connected true
 cage-11: cage r3c1-r3c2-r3c3-r4c1-r4c2-r4c3 connected true
 cage-12: cage r6c4-r6c5-r6c6-r7c4-r7c5-r7c6 connected true
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r9c6-r9c7 colour "white"
-kropki-3: kropki r2c5-r2c6 colour "white"
-kropki-4: kropki r8c2-r8c3 colour "white"
-kropki-5: kropki r4c5-r5c5 colour "white"
-kropki-6: kropki r4c1-r4c2 colour "white"
-kropki-7: kropki r7c7-r7c8 colour "black"
-kropki-8: kropki r8c1-r8c2 colour "black"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r9c6-r9c7 white
+kropki-3: kropki r2c5-r2c6 white
+kropki-4: kropki r8c2-r8c3 white
+kropki-5: kropki r4c5-r5c5 white
+kropki-6: kropki r4c1-r4c2 white
+kropki-7: kropki r7c7-r7c8 black
+kropki-8: kropki r8c1-r8c2 black
 pair r3c5-r4c5 sum 5
 ```
 

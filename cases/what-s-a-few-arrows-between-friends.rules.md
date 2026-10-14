@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/what-s-a-few-arrows-between-friends
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c1=1 r9c2=2
+exported: 1d386122618eef954ee1a5971e1c9d93
 ---
 
 ```rules

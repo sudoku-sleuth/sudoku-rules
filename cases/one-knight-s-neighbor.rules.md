@@ -6,6 +6,7 @@ source: https://sudokupad.app/1za6vj1emm
 case: https://sudoku-sleuth.com/cases/one-knight-s-neighbor
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 29a50c3f782de21e38ad9f07e3f8beab
 ---
 
 ```rules
@@ -18,17 +19,17 @@ cage-5: cage r3c7-r3c8 total 15 connected true
 cage-6: cage r7c2-r7c3 total 5 connected true
 cage-7: cage r2c4-r2c5 total 10 connected true
 cage-8: cage r8c5-r8c6 total 10 connected true
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r5c2-r5c3 colour "white"
-kropki-3: kropki r6c5-r6c6 colour "white"
-kropki-4: kropki r4c4-r4c5 colour "white"
-kropki-5: kropki r1c5-r2c5 colour "white"
-kropki-6: kropki r8c5-r9c5 colour "white"
-kropki-7: kropki r7c4-r8c4 colour "white"
-kropki-8: kropki r7c2-r8c2 colour "white"
-kropki-9: kropki r2c8-r3c8 colour "white"
-kropki-10: kropki r7c8-r8c8 colour "white"
-kropki-11: kropki r2c2-r3c2 colour "white"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r5c2-r5c3 white
+kropki-3: kropki r6c5-r6c6 white
+kropki-4: kropki r4c4-r4c5 white
+kropki-5: kropki r1c5-r2c5 white
+kropki-6: kropki r8c5-r9c5 white
+kropki-7: kropki r7c4-r8c4 white
+kropki-8: kropki r7c2-r8c2 white
+kropki-9: kropki r2c8-r3c8 white
+kropki-10: kropki r7c8-r8c8 white
+kropki-11: kropki r2c2-r3c2 white
 anti-knight
 ```
 

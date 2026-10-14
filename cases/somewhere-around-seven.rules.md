@@ -23,6 +23,7 @@ board:
     - 8
     - 9
   givens: r7c8=7
+exported: 8be5dd57eb31c3f59f310755d46f32d9
 ---
 
 ```rules

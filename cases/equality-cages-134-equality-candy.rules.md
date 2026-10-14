@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-134-equality-candy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2f0751c4ed5669602787ad38d6040203
 ---
 
 ```rules

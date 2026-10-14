@@ -6,6 +6,7 @@ source: https://sudokupad.app/d1gyn40ov4
 case: https://sudoku-sleuth.com/cases/diagosh-5
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dd8ae6fb8ecf3a31fc8dae49c36aa042
 ---
 
 ```rules

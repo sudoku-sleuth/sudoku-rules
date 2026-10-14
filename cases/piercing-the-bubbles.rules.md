@@ -6,6 +6,7 @@ source: https://sudokupad.app/ktjp6xr3l3
 case: https://sudoku-sleuth.com/cases/piercing-the-bubbles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f37f8f05a9552ae5d927d01b9e3e3ff1
 ---
 
 ```rules

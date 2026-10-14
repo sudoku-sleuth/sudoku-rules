@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-17-trapdoors
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b56e10330e8dda2782f290ef1c8b3cc9
 ---
 
 ```rules

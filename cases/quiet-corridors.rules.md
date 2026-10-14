@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quiet-corridors
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=3 r9c1=4 r9c9=1
+exported: c46c598a37dc2b86bc464f5b38f0eed7
 ---
 
 ```rules

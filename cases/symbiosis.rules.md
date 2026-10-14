@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/symbiosis
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5db5074c86a1df5673bcb22733893858
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r3c2 colour "black"
-kropki-2: kropki r1c3-r2c3 colour "black"
-kropki-3: kropki r8c7-r9c7 colour "black"
-kropki-4: kropki r7c8-r7c9 colour "black"
-kropki-5: kropki r7c1-r8c1 colour "black"
-kropki-6: kropki r9c2-r9c3 colour "black"
-kropki-7: kropki r2c5-r2c6 colour "black"
-kropki-8: kropki r4c8-r5c8 colour "black"
+kropki-1: kropki r3c1-r3c2 black
+kropki-2: kropki r1c3-r2c3 black
+kropki-3: kropki r8c7-r9c7 black
+kropki-4: kropki r7c8-r7c9 black
+kropki-5: kropki r7c1-r8c1 black
+kropki-6: kropki r9c2-r9c3 black
+kropki-7: kropki r2c5-r2c6 black
+kropki-8: kropki r4c8-r5c8 black
 ```
 
 ```drawing

@@ -6,6 +6,7 @@ source: https://sudokupad.app/m1ifyrib3g
 case: https://sudoku-sleuth.com/cases/a-square-thermo-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: db806c6c0f30a5d94e83f48d30f4a97e
 ---
 
 ```rules

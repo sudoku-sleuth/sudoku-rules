@@ -6,6 +6,7 @@ source: https://sudokupad.app/kz8de8grt8
 case: https://sudoku-sleuth.com/cases/disjoint-mechanic
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6b45620eb706643ec65c89e77bfe2e37
 ---
 
 ```rules
@@ -19,8 +20,8 @@ cage-6: cage r5c3-r5c4 total 11 connected true
 cage-7: cage r8c4-r9c4 total 12 connected true
 cage-8: cage r8c6-r9c6 total 10 connected true
 cage-9: cage r5c6-r5c7 total 8 connected true
-kropki-1: kropki r3c9-r4c9 colour "white"
-kropki-2: kropki r1c1-r2c1 colour "white"
+kropki-1: kropki r3c9-r4c9 white
+kropki-2: kropki r1c1-r2c1 white
 arrow-1: arrow r2c3-r3c4-r4c5 bulb ["r1c2"]
 arrow-2: arrow r2c7-r3c6-r4c5 bulb ["r1c8"]
 arrow-3: arrow r7c2-r8c2 bulb ["r6c2"]

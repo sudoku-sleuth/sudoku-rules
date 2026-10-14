@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/shhh-it-s-hot
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 03622f5866c820e7ad445ae85ee1d5ec
 ---
 
 ```rules

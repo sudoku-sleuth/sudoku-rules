@@ -7,25 +7,26 @@ case: https://sudoku-sleuth.com/cases/gremlin-dry
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=8 r2c8=9 r7c3=1 r7c7=6
+exported: 98a7812f6f38d673c942e98cd5c920cc
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r9c6-r9c7 colour "white"
-kropki-3: kropki r9c8-r9c9 colour "white"
-kropki-4: kropki r9c1-r9c2 colour "white"
-kropki-5: kropki r7c1-r8c1 colour "white"
-kropki-6: kropki r8c8-r9c8 colour "black"
-kropki-7: kropki r8c2-r9c2 colour "black"
-kropki-8: kropki r4c4-r5c4 colour "black"
-kropki-9: kropki r8c3-r9c3 colour "black"
-kropki-10: kropki r8c7-r9c7 colour "black"
-kropki-11: kropki r1c8-r1c9 colour "black"
-kropki-12: kropki r1c1-r1c2 colour "black"
-kropki-13: kropki r4c6-r5c6 colour "black"
-kropki-14: kropki r5c1-r6c1 colour "black"
-kropki-15: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r9c6-r9c7 white
+kropki-3: kropki r9c8-r9c9 white
+kropki-4: kropki r9c1-r9c2 white
+kropki-5: kropki r7c1-r8c1 white
+kropki-6: kropki r8c8-r9c8 black
+kropki-7: kropki r8c2-r9c2 black
+kropki-8: kropki r4c4-r5c4 black
+kropki-9: kropki r8c3-r9c3 black
+kropki-10: kropki r8c7-r9c7 black
+kropki-11: kropki r1c8-r1c9 black
+kropki-12: kropki r1c1-r1c2 black
+kropki-13: kropki r4c6-r5c6 black
+kropki-14: kropki r5c1-r6c1 black
+kropki-15: kropki r5c9-r6c9 black
 arrow-1: arrow r9c4-r9c3 bulb ["r9c5"]
 arrow-2: arrow r9c6-r9c7 bulb ["r9c5"]
 arrow-3: arrow r6c5-r7c5 bulb ["r5c5"]

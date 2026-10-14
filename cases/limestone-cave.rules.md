@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/limestone-cave
 case: https://sudoku-sleuth.com/cases/limestone-cave
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a52cb0c0fc64936ae0eeaad478917d78
 ---
 
 ```rules

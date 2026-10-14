@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=2 r3c3=1 r3c8=6 r4c6=4 r5c3=3 r5c7=5 r7c3=7 r9c4=8 r9c9=9
+exported: f73fd20bc1ee0df79bfbf6b98e17a59b
 ---
 
 ```rules

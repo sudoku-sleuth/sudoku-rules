@@ -10,13 +10,14 @@ drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
 givens: r3c2=2 r3c5=3 r3c8=4
+exported: b17bdbffead7b66e075c3de9aace1a45
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c5-r8c5 colour "white"
-kropki-2: kropki r8c4-r9c4 colour "white"
-kropki-3: kropki r8c6-r9c6 colour "white"
+kropki-1: kropki r7c5-r8c5 white
+kropki-2: kropki r8c4-r9c4 white
+kropki-3: kropki r8c6-r9c6 white
 slow-thermo-1: slow-thermo r8c2-r7c3-r6c4
 slow-thermo-2: slow-thermo r6c2-r5c3-r4c4
 slow-thermo-3: slow-thermo r5c2-r4c3-r3c4

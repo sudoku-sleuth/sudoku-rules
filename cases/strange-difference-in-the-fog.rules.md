@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 80
-    - 81
-    - 90
-    - 91
+    - r9c1
+    - r9c2
+    - r10c1
+    - r10c2
 format: open-rules
 title: Strange difference in the fog
 setter: Chip Sounder
@@ -128,6 +128,7 @@ board:
       - r10c8
       - r10c9
       - r10c10
+exported: 416425010c2c5e822f3d23be98f88c7f
 ---
 
 ```rules
@@ -164,12 +165,12 @@ unique-30: unique r9c6-r9c7-r9c8-r9c9-r9c10-r10c6-r10c7-r10c8-r10c9-r10c10 state
 thermo-1: thermo r5c2-r6c3-r6c4-r7c5
 thermo-2: thermo r3c4-r4c5-r5c6
 thermo-3: thermo r6c8-r6c7-r7c8-r8c9
-kropki-1: kropki r8c2-r9c2 colour "black"
-kropki-2: kropki r4c1-r5c1 colour "black"
-kropki-3: kropki r7c6-r8c6 colour "black"
-kropki-4: kropki r5c6-r6c6 colour "black"
-kropki-5: kropki r2c9-r2c10 colour "black"
-kropki-6: kropki r6c8-r6c9 colour "black"
+kropki-1: kropki r8c2-r9c2 black
+kropki-2: kropki r4c1-r5c1 black
+kropki-3: kropki r7c6-r8c6 black
+kropki-4: kropki r5c6-r6c6 black
+kropki-5: kropki r2c9-r2c10 black
+kropki-6: kropki r6c8-r6c9 black
 whispers r10c3-r10c2-r9c2-r9c1-r8c1-r7c1-r6c2-r7c3-r8c4-r9c3-r9c4 loop false gap 6
 pair-1: pair r6c1-r7c1 sum 10
 pair-2: pair r5c1-r5c2 sum 10

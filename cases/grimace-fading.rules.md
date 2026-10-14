@@ -6,6 +6,7 @@ source: https://sudokupad.app/se9n4478hz
 case: https://sudoku-sleuth.com/cases/grimace-fading
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bfb7e4a5823a26b90b6a262d3ed28364
 ---
 
 ```rules

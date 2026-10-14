@@ -6,21 +6,22 @@ source: ""
 case: https://sudoku-sleuth.com/cases/shifter-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 36c4b7ead2ec2c4b61f8b4df0dcc04fd
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c8-r8c8 colour "black"
-kropki-2: kropki r9c7-r9c8 colour "black"
-kropki-3: kropki r9c4-r9c5 colour "black"
-kropki-4: kropki r1c8-r2c8 colour "black"
-kropki-5: kropki r5c7-r5c8 colour "black"
-kropki-6: kropki r3c6-r3c7 colour "black"
-kropki-7: kropki r6c2-r7c2 colour "white"
-kropki-8: kropki r1c7-r2c7 colour "white"
-kropki-9: kropki r1c6-r2c6 colour "white"
-kropki-10: kropki r4c1-r4c2 colour "white"
-kropki-11: kropki r4c8-r4c9 colour "white"
+kropki-1: kropki r7c8-r8c8 black
+kropki-2: kropki r9c7-r9c8 black
+kropki-3: kropki r9c4-r9c5 black
+kropki-4: kropki r1c8-r2c8 black
+kropki-5: kropki r5c7-r5c8 black
+kropki-6: kropki r3c6-r3c7 black
+kropki-7: kropki r6c2-r7c2 white
+kropki-8: kropki r1c7-r2c7 white
+kropki-9: kropki r1c6-r2c6 white
+kropki-10: kropki r4c1-r4c2 white
+kropki-11: kropki r4c8-r4c9 white
 pair-1: pair r8c6-r8c7 sum 10
 pair-2: pair r9c6-r9c7 sum 10
 pair-3: pair r2c7-r3c7 sum 10

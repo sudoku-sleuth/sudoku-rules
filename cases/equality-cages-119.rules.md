@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-119
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1801e5004409990b440c8040d867c9ec
 ---
 
 ```rules

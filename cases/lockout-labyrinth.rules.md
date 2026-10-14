@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/lockout-labyrinth
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c3=9 r5c1=1 r5c9=9 r6c7=1
+exported: 59367c718ecfb431bd14c88206813806
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c4-r9c4 colour "white"
-kropki-2: kropki r1c6-r2c6 colour "white"
-kropki-3: kropki r8c9-r9c9 colour "white"
-kropki-4: kropki r1c1-r2c1 colour "white"
-kropki-5: kropki r9c2-r9c3 colour "white"
-kropki-6: kropki r1c7-r1c8 colour "white"
+kropki-1: kropki r8c4-r9c4 white
+kropki-2: kropki r1c6-r2c6 white
+kropki-3: kropki r8c9-r9c9 white
+kropki-4: kropki r1c1-r2c1 white
+kropki-5: kropki r9c2-r9c3 white
+kropki-6: kropki r1c7-r1c8 white
 lockout-1: lockout r4c4-r4c5-r4c6 ends ["r4c3","r4c7"] gap 4
 lockout-2: lockout r6c4-r6c5-r6c6 ends ["r6c3","r6c7"] gap 4
 lockout-3: lockout r5c6-r5c7-r4c8-r3c8-r3c7 ends ["r5c5","r3c6"] gap 4

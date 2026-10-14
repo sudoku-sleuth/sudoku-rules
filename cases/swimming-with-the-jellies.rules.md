@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/swimming-with-the-jellies
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b4c6ad5a65537496e4fcf7ed8b6f9f17
 ---
 
 ```rules

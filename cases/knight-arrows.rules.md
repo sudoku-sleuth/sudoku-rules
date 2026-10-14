@@ -6,6 +6,7 @@ source: https://sudokupad.app/4br24bqi5u
 case: https://sudoku-sleuth.com/cases/knight-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ef046fffa668cbebc7ceb27f9344d6ad
 ---
 
 ```rules

@@ -6,27 +6,28 @@ source: ""
 case: https://sudoku-sleuth.com/cases/3-french-hens
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4ba33174937561bd48add297a4e2683a
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r4c7-r5c7-r6c7-r7c7 total 11 connected true
 cage-2: cage r2c7-r2c8 total 10 connected true
-kropki-1: kropki r2c2-r3c2 colour "white"
-kropki-2: kropki r9c4-r9c5 colour "white"
-kropki-3: kropki r3c5-r3c6 colour "white"
-kropki-4: kropki r1c1-r2c1 colour "white"
-kropki-5: kropki r9c6-r9c7 colour "white"
-kropki-6: kropki r9c8-r9c9 colour "white"
-kropki-7: kropki r1c7-r1c8 colour "black"
-kropki-8: kropki r3c3-r4c3 colour "black"
-kropki-9: kropki r4c3-r4c4 colour "black"
-kropki-10: kropki r3c4-r4c4 colour "black"
-kropki-11: kropki r1c8-r1c9 colour "black"
-kropki-12: kropki r3c8-r4c8 colour "black"
-kropki-13: kropki r9c1-r9c2 colour "black"
-kropki-14: kropki r8c2-r9c2 colour "black"
-kropki-15: kropki r8c2-r8c3 colour "black"
+kropki-1: kropki r2c2-r3c2 white
+kropki-2: kropki r9c4-r9c5 white
+kropki-3: kropki r3c5-r3c6 white
+kropki-4: kropki r1c1-r2c1 white
+kropki-5: kropki r9c6-r9c7 white
+kropki-6: kropki r9c8-r9c9 white
+kropki-7: kropki r1c7-r1c8 black
+kropki-8: kropki r3c3-r4c3 black
+kropki-9: kropki r4c3-r4c4 black
+kropki-10: kropki r3c4-r4c4 black
+kropki-11: kropki r1c8-r1c9 black
+kropki-12: kropki r3c8-r4c8 black
+kropki-13: kropki r9c1-r9c2 black
+kropki-14: kropki r8c2-r9c2 black
+kropki-15: kropki r8c2-r8c3 black
 whispers-1: whispers r2c3-r2c2-r3c1 gap 5
 whispers-2: whispers r3c1-r3c2-r4c3-r5c3 gap 5
 whispers-3: whispers r5c3-r6c3-r7c4-r8c5-r8c6-r7c7-r6c8-r6c9-r5c8-r4c7-r4c6-r4c5 gap 5

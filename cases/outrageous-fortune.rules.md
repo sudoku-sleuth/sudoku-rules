@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/outrageous-fortune
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0231f79dfdceb387c5ed98d148a86606
 ---
 
 ```rules

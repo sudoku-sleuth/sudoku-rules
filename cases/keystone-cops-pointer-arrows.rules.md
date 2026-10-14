@@ -6,6 +6,7 @@ source: https://sudokupad.app/qjv31o90bk
 case: https://sudoku-sleuth.com/cases/keystone-cops-pointer-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2948f70fd589c956f24c9cd41dc97329
 ---
 
 ```rules

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fox in Socks in Bogs in Fogs
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f63593aea9a7d48f92dc7158ec8bf943
 ---
 
 ```rules
@@ -145,13 +146,13 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r3c5-r3c6 total 9 connected true
 cage-2: cage r7c5-r7c6 total 12 connected true
 cage-3: cage r8c5-r9c4-r9c5 total 8 connected true
-kropki-1: kropki r5c5-r5c6 colour "white"
-kropki-2: kropki r3c6-r3c7 colour "white"
-kropki-3: kropki r3c7-r4c7 colour "white"
-kropki-4: kropki r2c7-r2c8 colour "white"
-kropki-5: kropki r7c8-r8c8 colour "white"
-kropki-6: kropki r5c5-r6c5 colour "black"
-kropki-7: kropki r7c6-r7c7 colour "black"
+kropki-1: kropki r5c5-r5c6 white
+kropki-2: kropki r3c6-r3c7 white
+kropki-3: kropki r3c7-r4c7 white
+kropki-4: kropki r2c7-r2c8 white
+kropki-5: kropki r7c8-r8c8 white
+kropki-6: kropki r5c5-r6c5 black
+kropki-7: kropki r7c6-r7c7 black
 whispers-1: whispers r6c4-r6c5 gap 5
 whispers-2: whispers r4c4-r4c5-r5c5-r5c4 gap 5
 whispers-3: whispers r4c8-r5c8-r6c8 gap 5

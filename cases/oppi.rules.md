@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oppi
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=2 r2c7=4 r4c3=6 r7c5=4 r7c8=8 r8c6=5 r8c8=1
+exported: bdfe23109d12b62944e592f163edff87
 ---
 
 ```rules

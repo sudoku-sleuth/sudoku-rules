@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-sum-is-hot-today
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c2=2
+exported: 6cef8f5c1314662dfe7db7cf1c83b39f
 ---
 
 ```rules

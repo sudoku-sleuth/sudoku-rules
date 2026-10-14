@@ -6,6 +6,7 @@ source: https://sudokupad.app/sefw3vvwhu
 case: https://sudoku-sleuth.com/cases/broken-glass
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c5004f9952195579d8381a11ac2cc1bb
 ---
 
 ```rules

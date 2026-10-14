@@ -6,6 +6,7 @@ source: https://sudokupad.app/c6h3nzvdec
 case: https://sudoku-sleuth.com/cases/will-you-walk-into-my-parlour
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5e1632d3363822c7a1bd3e432da4b3e7
 ---
 
 ```rules
@@ -25,17 +26,17 @@ thermo-5: thermo r8c8-r7c7-r6c6
 thermo-6: thermo r5c4-r5c3-r4c2-r3c1
 thermo-7: thermo r5c6-r5c7-r4c8-r3c9
 thermo-8: thermo r6c5-r7c5-r8c5
-kropki-1: kropki r6c4-r6c5 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r6c3-r6c4 colour "white"
-kropki-4: kropki r6c6-r6c7 colour "white"
-kropki-5: kropki r1c3-r1c4 colour "white"
-kropki-6: kropki r1c4-r1c5 colour "white"
-kropki-7: kropki r1c5-r1c6 colour "white"
-kropki-8: kropki r1c6-r1c7 colour "white"
-kropki-9: kropki r6c7-r7c7 colour "black"
-kropki-10: kropki r6c3-r7c3 colour "black"
-kropki-11: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r6c4-r6c5 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r6c3-r6c4 white
+kropki-4: kropki r6c6-r6c7 white
+kropki-5: kropki r1c3-r1c4 white
+kropki-6: kropki r1c4-r1c5 white
+kropki-7: kropki r1c5-r1c6 white
+kropki-8: kropki r1c6-r1c7 white
+kropki-9: kropki r6c7-r7c7 black
+kropki-10: kropki r6c3-r7c3 black
+kropki-11: kropki r9c8-r9c9 black
 ```
 
 said the spider to the fly... Normal Sudoku rules apply. THERMOMETERS- Numbers on thermometers strictly increase from the bulb end. KILLER CAGES- Numbers in cages sum to the number in the top left corner of the cage. KROPKI PAIRS- Numbers with a white dot between them are consecutive. Numbers with a black dot between them are in a rtio of 2:1. Not all possible dots are shown.

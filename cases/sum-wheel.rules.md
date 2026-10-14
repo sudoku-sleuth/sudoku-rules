@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sum-wheel
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=3 r3c8=8 r4c6=1 r5c3=4 r7c5=2 r8c7=5
+exported: 4cf5f7847aca170265b0653aa3e71126
 ---
 
 ```rules

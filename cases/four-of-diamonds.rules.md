@@ -6,6 +6,7 @@ source: https://sudokupad.app/06d78m52ci
 case: https://sudoku-sleuth.com/cases/four-of-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8edcc2fbd950a0647ccdfb11226116cf
 ---
 
 ```rules

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Foggy Balboa
 setter: Meggen033
@@ -17,6 +17,7 @@ source: https://sudokupad.app/68ii1uwpc3
 case: https://sudoku-sleuth.com/cases/foggy-balboa
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b6947f61fc3e4b15543f657e502297bd
 ---
 
 ```rules

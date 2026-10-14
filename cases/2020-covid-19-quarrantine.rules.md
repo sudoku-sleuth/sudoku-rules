@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/2020-covid-19-quarrantine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 09657f28bd0ee4f062fe52e11ad4d258
 ---
 
 ```rules

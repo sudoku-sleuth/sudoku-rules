@@ -6,6 +6,7 @@ source: https://sudokupad.app/22pfixrhp7
 case: https://sudoku-sleuth.com/cases/crossed-paths
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 85e29cd2c1c47bf8cfd94d3251dbaca7
 ---
 
 ```rules

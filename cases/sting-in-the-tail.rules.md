@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sting-in-the-tail
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9185317bf85de185cbf548920565da69
 ---
 
 ```rules

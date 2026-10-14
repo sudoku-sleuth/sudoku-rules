@@ -6,14 +6,15 @@ source: https://sudokupad.app/4d971qho3c
 case: https://sudoku-sleuth.com/cases/flutter-by
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 69226f1bc1a2ae30b77e40e4194b23a0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r4c2 colour "black"
-kropki-2: kropki r3c8-r4c8 colour "black"
-kropki-3: kropki r2c1-r2c2 colour "black"
-kropki-4: kropki r8c9-r9c9 colour "white"
+kropki-1: kropki r3c2-r4c2 black
+kropki-2: kropki r3c8-r4c8 black
+kropki-3: kropki r2c1-r2c2 black
+kropki-4: kropki r8c9-r9c9 white
 whispers-1: whispers r7c1-r8c1 gap 5
 whispers-2: whispers r7c4-r8c5-r7c6 gap 5
 whispers-3: whispers r1c5-r2c4-r3c5-r2c6 gap 5 loop true

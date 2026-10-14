@@ -6,6 +6,7 @@ source: https://sudokupad.app/nekibtlhiy
 case: https://sudoku-sleuth.com/cases/whispers-in-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a6ddde4e35654b7e0c5f76e90e9080b0
 ---
 
 ```rules

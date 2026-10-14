@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/entropic-connections
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0fca6bbb05157f840cb904aae102dda1
 ---
 
 ```rules

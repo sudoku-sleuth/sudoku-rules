@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-crusts-are-just-the-beginning
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2fe5b3e067244d171642a1fc15c6f531
 ---
 
 ```rules

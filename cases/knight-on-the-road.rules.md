@@ -6,6 +6,7 @@ source: https://sudokupad.app/kgp6jzmk37
 case: https://sudoku-sleuth.com/cases/knight-on-the-road
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 134cf3c08e60dfe1c02377dddb76c64b
 ---
 
 ```rules

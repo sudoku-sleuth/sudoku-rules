@@ -6,6 +6,7 @@ source: https://sudokupad.app/g2hglmdzqc
 case: https://sudoku-sleuth.com/cases/x-marks-the-quad
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 32e0c2877de7640ed7b0cf1026085250
 ---
 
 ```rules

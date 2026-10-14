@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/counting-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=9 r2c5=4 r3c3=8 r6c2=6 r7c1=7 r8c8=6 r9c6=8
+exported: 025d7fac2e1d3d6da5f775fdc8061cf6
 ---
 
 ```rules

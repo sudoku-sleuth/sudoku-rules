@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/behind-bars
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c1=8
+exported: 63d55fd1c100274c88cdca9f746dfd38
 ---
 
 ```rules

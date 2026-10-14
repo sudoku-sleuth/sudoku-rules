@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bright-eyes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2f7d16184d5033ca218f893b27ed7290
 ---
 
 ```rules
@@ -16,10 +17,10 @@ cage-2: cage r7c9-r8c9 total 10 connected true
 cage-3: cage r7c8-r8c8 total 10 connected true
 cage-4: cage r6c3-r6c4 total 10 connected true
 cage-5: cage r1c2-r2c2 total 5 connected true
-kropki-1: kropki r4c9-r5c9 colour "black"
-kropki-2: kropki r1c9-r2c9 colour "black"
-kropki-3: kropki r4c1-r5c1 colour "black"
-kropki-4: kropki r7c1-r8c1 colour "black"
+kropki-1: kropki r4c9-r5c9 black
+kropki-2: kropki r1c9-r2c9 black
+kropki-3: kropki r4c1-r5c1 black
+kropki-4: kropki r7c1-r8c1 black
 quadruple-1: quadruple r1c3-r1c4-r2c3-r2c4 digits [2,3,4]
 quadruple-2: quadruple r1c6-r1c7-r2c6-r2c7 digits [2,6,8]
 quadruple-3: quadruple r7c6-r7c7-r8c6-r8c7 digits [2,3,4]

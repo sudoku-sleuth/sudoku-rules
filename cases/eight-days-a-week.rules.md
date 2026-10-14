@@ -6,6 +6,7 @@ source: https://sudokupad.app/ykptq2c6vx
 case: https://sudoku-sleuth.com/cases/eight-days-a-week
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cae0ed0e1a402667d945192f1c86f5e8
 ---
 
 ```rules

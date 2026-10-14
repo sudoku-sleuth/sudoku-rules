@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fixed-parity-thermos
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=7 r3c8=1 r4c7=8 r6c3=4 r7c2=1 r9c7=3
+exported: 015b63ab6d2fe78889b8c237575a7234
 ---
 
 ```rules

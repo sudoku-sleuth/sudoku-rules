@@ -6,6 +6,7 @@ source: https://tinyurl.com/theoreticlesudoku
 case: https://sudoku-sleuth.com/cases/theo-reticle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 61693ff9ab4fea601112df7482bc1518
 ---
 
 ```rules
@@ -17,18 +18,18 @@ cage-4: cage r4c8-r5c8-r6c8 total 16 connected true
 anti-king
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r5c6-r5c7 colour "white"
-kropki-3: kropki r2c5-r2c6 colour "white"
-kropki-4: kropki r2c4-r2c5 colour "white"
-kropki-5: kropki r8c4-r8c5 colour "white"
-kropki-6: kropki r6c8-r6c9 colour "white"
-kropki-7: kropki r2c6-r3c6 colour "black"
-kropki-8: kropki r3c4-r4c4 colour "black"
-kropki-9: kropki r5c2-r5c3 colour "black"
-kropki-10: kropki r6c5-r7c5 colour "black"
-kropki-11: kropki r6c7-r6c8 colour "black"
-kropki-12: kropki r8c5-r9c5 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r5c6-r5c7 white
+kropki-3: kropki r2c5-r2c6 white
+kropki-4: kropki r2c4-r2c5 white
+kropki-5: kropki r8c4-r8c5 white
+kropki-6: kropki r6c8-r6c9 white
+kropki-7: kropki r2c6-r3c6 black
+kropki-8: kropki r3c4-r4c4 black
+kropki-9: kropki r5c2-r5c3 black
+kropki-10: kropki r6c5-r7c5 black
+kropki-11: kropki r6c7-r6c8 black
+kropki-12: kropki r8c5-r9c5 black
 whispers-1: whispers r1c4-r1c5-r1c6-r2c7-r3c8-r4c9-r5c9-r6c9-r7c8-r8c7-r9c6-r9c5-r9c4-r8c3-r7c2-r6c1-r5c1-r4c1-r3c2-r2c3 gap 5
 whispers-2: whispers r1c4-r2c3 gap 5
 renban r4c6-r4c5-r4c4-r5c4-r6c4-r6c5-r6c6-r5c6

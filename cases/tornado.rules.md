@@ -6,15 +6,16 @@ source: https://sudokupad.app/gli3vk0kfz
 case: https://sudoku-sleuth.com/cases/tornado
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3902a65508ccbad84caf57e02d1321d8
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r5c1-r6c1 colour "white"
-kropki-2: kropki r6c1-r6c2 colour "white"
-kropki-3: kropki r1c4-r1c5 colour "white"
-kropki-4: kropki r9c5-r9c6 colour "white"
+kropki-1: kropki r5c1-r6c1 white
+kropki-2: kropki r6c1-r6c2 white
+kropki-3: kropki r1c4-r1c5 white
+kropki-4: kropki r9c5-r9c6 white
 arrow-1: arrow r4c3-r5c2-r6c3 bulb ["r4c4"]
 arrow-2: arrow r3c5 bulb ["r4c4"]
 arrow-3: arrow r3c6-r2c5-r3c4 bulb ["r4c6"]

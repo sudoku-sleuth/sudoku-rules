@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 9
-    - 10
+    - r1c1
+    - r1c2
+    - r2c1
+    - r2c2
 format: open-rules
 title: Pianissimo Van Beethoven through the Fog
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: cbdfdd418e8806072c45b67590f71bf5
 ---
 
 ```rules

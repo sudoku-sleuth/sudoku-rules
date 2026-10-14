@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sliding-scale
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=3 r6c2=2 r9c9=6
+exported: 18c9bec8f5c1cc6b0db239a5986920c5
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/0wlhzwk7ft
 case: https://sudoku-sleuth.com/cases/forcing-the-cages-open
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 577aad7f15d3cb23dca6383f71366345
 ---
 
 ```rules

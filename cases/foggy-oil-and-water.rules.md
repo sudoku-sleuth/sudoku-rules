@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 31
-    - 39
-    - 40
-    - 41
-    - 49
+    - r4c5
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c5
 format: open-rules
 title: Foggy Oil and Water
 setter: Blobz
@@ -109,6 +109,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 3463b7ca752d1a8f36c319c28ccc97d2
 ---
 
 ```rules

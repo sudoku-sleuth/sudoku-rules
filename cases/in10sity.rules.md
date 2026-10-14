@@ -6,14 +6,15 @@ source: https://tinyurl.com/mrymz94a
 case: https://sudoku-sleuth.com/cases/in10sity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e5356afd591a8df8ad606ecb9eaa99b7
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r9c5-r9c6-r9c7-r9c8 total 10 connected true
 cage-2: cage r1c2-r1c3-r1c4-r1c5 total 30 connected true
-kropki-1: kropki r1c7-r2c7 colour "black"
-kropki-2: kropki r5c4-r6c4 colour "black"
+kropki-1: kropki r1c7-r2c7 black
+kropki-2: kropki r5c4-r6c4 black
 little-killer-1: little-killer r2c1-r1c2 sum 10
 little-killer-2: little-killer r3c1-r2c2-r1c3 sum 20
 little-killer-3: little-killer r4c1-r3c2-r2c3-r1c4 sum 30

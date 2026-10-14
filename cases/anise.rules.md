@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anise
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=1 r2c5=2 r2c8=3 r5c2=4 r5c5=5 r5c8=6 r8c2=7 r8c5=8 r8c8=9
+exported: acad90e3210550d7c47508999106781e
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sit-quietly-in-the-corner
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8cf142e371d69fd120fc427e1040e111
 ---
 
 ```rules

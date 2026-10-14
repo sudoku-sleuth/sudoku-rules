@@ -104,6 +104,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 11d33e198a396623226bd55b4963aa28
 ---
 
 ```rules
@@ -140,12 +141,12 @@ cage-3: cage r2c1-r2c2-r3c1 repeats false total 23 connected true
 cage-4: cage r3c2-r3c3 repeats false total 7 connected true
 diagonal direction "anti"
 thermo r7c3-r7c2-r7c1-r8c1-r8c2-r8c3-r9c3-r9c2-r9c1
-kropki-1: kropki r1c7-r2c7 colour "white"
-kropki-2: kropki r2c8-r2c9 colour "white"
-kropki-3: kropki r1c9-r2c9 colour "white"
-kropki-4: kropki r1c8-r1c9 colour "black"
-kropki-5: kropki r2c7-r3c7 colour "black"
-kropki-6: kropki r2c8-r3c8 colour "black"
+kropki-1: kropki r1c7-r2c7 white
+kropki-2: kropki r2c8-r2c9 white
+kropki-3: kropki r1c9-r2c9 white
+kropki-4: kropki r1c8-r1c9 black
+kropki-5: kropki r2c7-r3c7 black
+kropki-6: kropki r2c8-r3c8 black
 arrow-1: arrow r4c6-r5c6-r5c5-r5c4 bulb ["r4c5"]
 arrow-2: arrow r4c4-r5c4 bulb ["r4c5"]
 arrow-3: arrow r6c6-r7c6 bulb ["r6c5"]

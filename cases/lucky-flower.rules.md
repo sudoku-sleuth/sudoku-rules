@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lucky-flower
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=3 r1c8=4 r2c1=1 r2c9=9 r8c1=6 r8c9=4 r9c2=2 r9c5=1
+exported: 88b3329ab80711a52660ea3a3b724264
 ---
 
 ```rules
@@ -23,7 +24,7 @@ cage-9: cage r5c3-r5c4 total 5 connected true
 cage-10: cage r5c6-r5c7 total 5 connected true
 cage-11: cage r3c5-r4c5 total 15 connected true
 cage-12: cage r6c5-r7c5 total 15 connected true
-kropki r3c3-r3c4 colour "white"
+kropki r3c3-r3c4 white
 ```
 
 Normal sudoku rules apply. Place the digits 1-9 once each in every row, column and 3x3 box.

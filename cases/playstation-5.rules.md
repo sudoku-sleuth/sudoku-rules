@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/playstation-5
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b535a3f672007cb0efcd322f2bd11d52
 ---
 
 ```rules

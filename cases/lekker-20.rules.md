@@ -6,6 +6,7 @@ source: https://sudokupad.app/r1q0tx2a12
 case: https://sudoku-sleuth.com/cases/lekker-20
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0fa7b1df00a6d69a9bd7ecf943a9808d
 ---
 
 ```rules

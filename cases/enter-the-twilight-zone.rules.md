@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/enter-the-twilight-zone
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 94e62b133d12328db3644f30004904c3
 ---
 
 ```rules

@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/pea-shooter
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c3f6cda8500af7eb1a1c245943250fc0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "black"
-kropki-2: kropki r3c6-r3c7 colour "black"
-kropki-3: kropki r7c5-r8c5 colour "black"
-kropki-4: kropki r8c2-r9c2 colour "black"
-kropki-5: kropki r2c7-r2c8 colour "black"
-kropki-6: kropki r5c4-r6c4 colour "black"
-kropki-7: kropki r4c2-r4c3 colour "black"
-kropki-8: kropki r3c2-r4c2 colour "black"
-kropki-9: kropki r3c1-r3c2 colour "black"
+kropki-1: kropki r5c3-r5c4 black
+kropki-2: kropki r3c6-r3c7 black
+kropki-3: kropki r7c5-r8c5 black
+kropki-4: kropki r8c2-r9c2 black
+kropki-5: kropki r2c7-r2c8 black
+kropki-6: kropki r5c4-r6c4 black
+kropki-7: kropki r4c2-r4c3 black
+kropki-8: kropki r3c2-r4c2 black
+kropki-9: kropki r3c1-r3c2 black
 pair-1: pair r3c4-r3c5 sum 10
 pair-2: pair r4c3-r5c3 sum 10
 pair-3: pair r8c4-r8c5 sum 10

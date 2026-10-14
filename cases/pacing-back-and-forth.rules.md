@@ -6,6 +6,7 @@ source: https://sudokupad.app/62x3b3tw45
 case: https://sudoku-sleuth.com/cases/pacing-back-and-forth
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9c5ccc531ddea110fcc2fcf5be073d91
 ---
 
 ```rules
@@ -23,9 +24,9 @@ cage-10: cage r3c6-r4c5-r4c6 total 17 connected true
 cage-11: cage r4c3-r5c3-r6c3 total 16 connected true
 cage-12: cage r6c4-r6c5-r7c4 total 18 connected true
 cage-13: cage r5c4-r5c5-r5c6 total 10 connected true
-kropki-1: kropki r8c6-r9c6 colour "black"
-kropki-2: kropki r5c3-r5c4 colour "black"
-kropki-3: kropki r3c4-r3c5 colour "black"
+kropki-1: kropki r8c6-r9c6 black
+kropki-2: kropki r5c3-r5c4 black
+kropki-3: kropki r3c4-r3c5 black
 palindrome-1: palindrome r2c1-r3c2-r4c3-r5c4-r6c5-r7c6-r8c7
 palindrome-2: palindrome r2c3-r3c4-r4c5-r5c6-r6c7-r7c8-r8c9
 palindrome-3: palindrome r4c1-r5c2-r6c3-r7c4-r8c5-r9c6

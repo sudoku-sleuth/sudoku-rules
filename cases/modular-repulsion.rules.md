@@ -6,6 +6,7 @@ source: https://tinyurl.com/bp93rzhd
 case: https://sudoku-sleuth.com/cases/modular-repulsion
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2772be1301bf2ac40da1de9078c97977
 ---
 
 ```rules

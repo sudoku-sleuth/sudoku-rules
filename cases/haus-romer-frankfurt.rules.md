@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/haus-romer-frankfurt
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 76924ad3c334183bc19b1b34bf394c16
 ---
 
 ```rules

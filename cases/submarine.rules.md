@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/submarine
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: bbd0158b6fc7632305902fd24cb0a2c0
 ---
 
 ```rules

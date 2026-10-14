@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/charlie-brown
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c4=4 r3c7=7 r4c2=6 r6c6=6 r7c8=2 r8c5=4 r9c3=3
+exported: 74bbdc8f5f2952b815fdd6587863509b
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/tncrh2298r
 case: https://sudoku-sleuth.com/cases/the-product-of-our-labour
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1a40c1d16c968e805fac46f460eda45e
 ---
 
 ```rules

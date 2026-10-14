@@ -6,6 +6,7 @@ source: https://sudokupad.app/v09c3rl7bf
 case: https://sudoku-sleuth.com/cases/disjoint-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 98dd9790c8cd52e9da3a0faad3cc962d
 ---
 
 ```rules
@@ -23,7 +24,7 @@ cage-10: cage r5c3-r5c4 total 10 connected true
 cage-11: cage r6c5-r7c5 total 10 connected true
 cage-12: cage r5c6-r5c7 total 10 connected true
 anti-knight
-kropki r3c1-r3c2 colour "black"
+kropki r3c1-r3c2 black
 arrow-1: arrow r6c9 bulb ["r7c8"]
 arrow-2: arrow r1c6 bulb ["r2c7"]
 arrow-3: arrow r4c1 bulb ["r3c2"]

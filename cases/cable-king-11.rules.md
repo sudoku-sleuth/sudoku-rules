@@ -6,6 +6,7 @@ source: https://sudokupad.app/ls1nu987fb
 case: https://sudoku-sleuth.com/cases/cable-king-11
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0fcf832084485ddc3f692ef115002a29
 ---
 
 ```rules

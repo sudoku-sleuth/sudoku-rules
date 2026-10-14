@@ -6,24 +6,25 @@ source: https://sudokupad.app/vdeojf0r0l
 case: https://sudoku-sleuth.com/cases/math-1230-last-day-of-class
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 64155f28b78a25abf2c2f7a258c01b04
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c4-r3c4 colour "white"
-kropki-2: kropki r5c4-r6c4 colour "white"
-kropki-3: kropki r5c9-r6c9 colour "white"
-kropki-4: kropki r4c9-r5c9 colour "white"
-kropki-5: kropki r3c2-r4c2 colour "white"
-kropki-6: kropki r2c2-r3c2 colour "black"
-kropki-7: kropki r4c7-r4c8 colour "black"
-kropki-8: kropki r6c2-r7c2 colour "black"
-kropki-9: kropki r6c3-r6c4 colour "black"
-kropki-10: kropki r7c5-r8c5 colour "black"
-kropki-11: kropki r1c5-r1c6 colour "black"
-kropki-12: kropki r2c8-r3c8 colour "black"
-kropki-13: kropki r5c8-r6c8 colour "black"
-kropki-14: kropki r6c1-r6c2 colour "black"
+kropki-1: kropki r2c4-r3c4 white
+kropki-2: kropki r5c4-r6c4 white
+kropki-3: kropki r5c9-r6c9 white
+kropki-4: kropki r4c9-r5c9 white
+kropki-5: kropki r3c2-r4c2 white
+kropki-6: kropki r2c2-r3c2 black
+kropki-7: kropki r4c7-r4c8 black
+kropki-8: kropki r6c2-r7c2 black
+kropki-9: kropki r6c3-r6c4 black
+kropki-10: kropki r7c5-r8c5 black
+kropki-11: kropki r1c5-r1c6 black
+kropki-12: kropki r2c8-r3c8 black
+kropki-13: kropki r5c8-r6c8 black
+kropki-14: kropki r6c1-r6c2 black
 whispers-1: whispers r2c1-r1c2-r2c2-r3c2 gap 4
 whispers-2: whispers r1c3-r1c4-r2c4-r2c3-r3c3-r3c4 gap 4
 whispers-3: whispers r1c5-r1c6-r2c6-r3c6-r3c5 gap 4

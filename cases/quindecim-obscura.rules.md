@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 39
-    - 40
-    - 41
-    - 50
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c6
 format: open-rules
 title: Quindecim Obscura
 setter: Blobz
@@ -12,12 +12,13 @@ source: https://sudokupad.app/blobz/quindecim-obscura
 case: https://sudoku-sleuth.com/cases/quindecim-obscura
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 730822416282c7b1cafaf14ed057d499
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "white"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r4c5-r4c6 white
 pair-1: pair r4c4-r5c4 sum 10
 pair-2: pair r4c5-r5c5 sum 10
 pair-3: pair r5c6-r5c7 sum 10

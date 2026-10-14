@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/nordic-slopes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 481b6660c47d8d948c7793b712bdacfc
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "black"
-kropki-2: kropki r3c6-r3c7 colour "black"
-kropki-3: kropki r2c2-r3c2 colour "black"
-kropki-4: kropki r6c6-r6c7 colour "black"
-kropki-5: kropki r8c8-r9c8 colour "black"
-kropki-6: kropki r8c2-r8c3 colour "black"
-kropki-7: kropki r7c3-r7c4 colour "black"
+kropki-1: kropki r4c4-r4c5 black
+kropki-2: kropki r3c6-r3c7 black
+kropki-3: kropki r2c2-r3c2 black
+kropki-4: kropki r6c6-r6c7 black
+kropki-5: kropki r8c8-r9c8 black
+kropki-6: kropki r8c2-r8c3 black
+kropki-7: kropki r7c3-r7c4 black
 pair-1: pair r7c2-r8c2 sum 10
 pair-2: pair r8c3-r8c4 sum 10
 pair-3: pair r1c6-r2c6 sum 10

@@ -6,13 +6,14 @@ source: https://sudokupad.app/0vddr2kfg5
 case: https://sudoku-sleuth.com/cases/even-doubles-do-the-zip
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 17e8dfdded61f1d9de54c99076647550
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "black"
-kropki-2: kropki r1c3-r1c4 colour "black"
-kropki-3: kropki r5c5-r6c5 colour "black"
+kropki-1: kropki r3c2-r3c3 black
+kropki-2: kropki r1c3-r1c4 black
+kropki-3: kropki r5c5-r6c5 black
 zipper-1: zipper r1c5-r1c4-r2c3-r3c2-r4c2
 zipper-2: zipper r2c5-r2c6-r3c7-r4c8-r5c8
 zipper-3: zipper r3c5-r3c4-r4c3-r5c2-r6c2

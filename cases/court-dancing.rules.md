@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/court-dancing
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=2 r5c2=4 r7c7=2
+exported: acb8881dc7958575e7dacb9e437400d6
 ---
 
 ```rules

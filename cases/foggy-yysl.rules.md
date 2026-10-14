@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 17
-    - 63
-    - 64
-    - 65
+    - r2c9
+    - r8c1
+    - r8c2
+    - r8c3
 format: open-rules
 title: Foggy YYSL
 setter: Blobz
@@ -13,30 +13,31 @@ case: https://sudoku-sleuth.com/cases/foggy-yysl
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 28283937842d979bfe62328f80078e76
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c7-r2c8 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "white"
-kropki-3: kropki r2c3-r3c3 colour "white"
-kropki-4: kropki r1c5-r2c5 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "white"
-kropki-6: kropki r1c8-r2c8 colour "white"
-kropki-7: kropki r2c7-r3c7 colour "white"
-kropki-8: kropki r3c7-r4c7 colour "white"
-kropki-9: kropki r3c8-r4c8 colour "white"
-kropki-10: kropki r6c7-r6c8 colour "white"
-kropki-11: kropki r8c6-r8c7 colour "white"
-kropki-12: kropki r4c5-r4c6 colour "white"
-kropki-13: kropki r7c3-r8c3 colour "white"
-kropki-14: kropki r8c1-r8c2 colour "white"
-kropki-15: kropki r5c2-r5c3 colour "white"
-kropki-16: kropki r8c3-r8c4 colour "white"
-kropki-17: kropki r8c3-r9c3 colour "white"
-kropki-18: kropki r9c4-r9c5 colour "white"
-kropki-19: kropki r2c6-r2c7 colour "black"
-kropki-20: kropki r7c4-r7c5 colour "black"
+kropki-1: kropki r2c7-r2c8 white
+kropki-2: kropki r1c2-r2c2 white
+kropki-3: kropki r2c3-r3c3 white
+kropki-4: kropki r1c5-r2c5 white
+kropki-5: kropki r3c4-r3c5 white
+kropki-6: kropki r1c8-r2c8 white
+kropki-7: kropki r2c7-r3c7 white
+kropki-8: kropki r3c7-r4c7 white
+kropki-9: kropki r3c8-r4c8 white
+kropki-10: kropki r6c7-r6c8 white
+kropki-11: kropki r8c6-r8c7 white
+kropki-12: kropki r4c5-r4c6 white
+kropki-13: kropki r7c3-r8c3 white
+kropki-14: kropki r8c1-r8c2 white
+kropki-15: kropki r5c2-r5c3 white
+kropki-16: kropki r8c3-r8c4 white
+kropki-17: kropki r8c3-r9c3 white
+kropki-18: kropki r9c4-r9c5 white
+kropki-19: kropki r2c6-r2c7 black
+kropki-20: kropki r7c4-r7c5 black
 quadruple-1: quadruple r4c7-r4c8-r5c7-r5c8 digits [1,7,9]
 quadruple-2: quadruple r8c2-r8c3-r9c2-r9c3 digits [6]
 quadruple-3: quadruple r2c4-r2c5-r3c4-r3c5 digits [2]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parity-take-the-wheel
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=1 r5c4=4
+exported: e9a6c6f6154fc5ba56727d522a41618c
 ---
 
 ```rules

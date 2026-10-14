@@ -6,6 +6,7 @@ source: https://sudokupad.app/8byptzz4xt
 case: https://sudoku-sleuth.com/cases/speed-run-slowly-to-win
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fc7b18f2bb668f89b84e8862e7e43884
 ---
 
 ```rules

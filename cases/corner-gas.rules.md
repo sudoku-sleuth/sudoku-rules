@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/corner-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=1 r2c5=9 r3c3=1 r5c2=7 r6c6=2 r7c3=8 r9c5=5 r9c9=3
+exported: d4bd3e514cc2cf5062bb82eb4d738617
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/5fyjgrmhed
 case: https://sudoku-sleuth.com/cases/nocking-point
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f5d69f54491930bad3d2a9af9b031e2c
 ---
 
 ```rules
@@ -15,14 +16,14 @@ thermo-2: thermo r6c5-r5c5-r4c5
 thermo-3: thermo r3c8-r2c8-r1c8
 thermo-4: thermo r6c7-r6c6
 thermo-5: thermo r4c3-r4c4
-kropki-1: kropki r5c2-r6c2 colour "white"
-kropki-2: kropki r8c5-r9c5 colour "white"
-kropki-3: kropki r2c2-r3c2 colour "white"
-kropki-4: kropki r2c6-r2c7 colour "white"
-kropki-5: kropki r8c3-r8c4 colour "white"
-kropki-6: kropki r7c7-r8c7 colour "white"
-kropki-7: kropki r6c3-r6c4 colour "black"
-kropki-8: kropki r4c6-r4c7 colour "black"
+kropki-1: kropki r5c2-r6c2 white
+kropki-2: kropki r8c5-r9c5 white
+kropki-3: kropki r2c2-r3c2 white
+kropki-4: kropki r2c6-r2c7 white
+kropki-5: kropki r8c3-r8c4 white
+kropki-6: kropki r7c7-r8c7 white
+kropki-7: kropki r6c3-r6c4 black
+kropki-8: kropki r4c6-r4c7 black
 arrow-1: arrow r5c2-r6c2 bulb ["r4c2"]
 arrow-2: arrow r5c8-r6c8 bulb ["r4c8"]
 arrow-3: arrow r2c5-r3c5 bulb ["r1c5"]

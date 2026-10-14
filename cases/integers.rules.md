@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/integers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c7=7 r5c1=4
+exported: a0ec47b0eff1069a046d6f545cd14759
 ---
 
 ```rules

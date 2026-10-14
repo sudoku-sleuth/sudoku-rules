@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/birthday-wishes
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=1 r1c7=8 r5c1=1 r8c4=1 r8c6=8
+exported: 70d5654c85d25e71b46987a90bf901ab
 ---
 
 ```rules
@@ -22,7 +23,7 @@ cage-8: cage r5c6-r5c7-r5c8 total 18 connected true
 cage-9: cage r5c4-r6c4-r6c5-r6c6 total 18 connected true
 cage-10: cage r3c2-r3c3-r4c2-r4c3 total 18 connected true
 cage-11: cage r1c6-r1c7-r2c7-r2c8 total 18 connected true
-kropki r8c4-r9c4 colour "black"
+kropki r8c4-r9c4 black
 arrow-1: arrow r8c1-r7c1 bulb ["r9c1"]
 arrow-2: arrow r9c2-r9c3 bulb ["r9c1"]
 palindrome-1: palindrome r4c6-r3c7

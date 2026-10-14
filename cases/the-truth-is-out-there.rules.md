@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/the-truth-is-out-there
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 54d3dabc3a5eba693c6088a80d91dfa8
 ---
 
 ```rules
 sudoku 9x9
 thermo-1: thermo r8c3-r9c3
 thermo-2: thermo r8c7-r9c7
-kropki-1: kropki r8c2-r8c3 colour "white"
-kropki-2: kropki r8c7-r8c8 colour "white"
-kropki-3: kropki r5c2-r5c3 colour "black"
-kropki-4: kropki r4c5-r5c5 colour "black"
-kropki-5: kropki r5c8-r5c9 colour "black"
-kropki-6: kropki r3c7-r4c7 colour "black"
-kropki-7: kropki r3c3-r4c3 colour "black"
-kropki-8: kropki r2c5-r3c5 colour "black"
+kropki-1: kropki r8c2-r8c3 white
+kropki-2: kropki r8c7-r8c8 white
+kropki-3: kropki r5c2-r5c3 black
+kropki-4: kropki r4c5-r5c5 black
+kropki-5: kropki r5c8-r5c9 black
+kropki-6: kropki r3c7-r4c7 black
+kropki-7: kropki r3c3-r4c3 black
+kropki-8: kropki r2c5-r3c5 black
 ```
 
 ```drawing

@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r1c1=1 r9c9=1
+exported: 7fa04213ae4bb2ac36d34c14c4bd3bc8
 ---
 
 ```rules
@@ -18,9 +19,9 @@ pair-3: pair r3c4-r4c4 difference 6
 pair-4: pair r2c7-r3c7 difference 5
 pair-5: pair r2c8-r3c8 difference 6
 pair-6: pair r4c8-r5c8 difference 6
-kropki-1: kropki r6c6-r6c7 colour "white"
+kropki-1: kropki r6c6-r6c7 white
 pair-7: pair r7c8-r7c9 difference 4
-kropki-2: kropki r8c6-r8c7 colour "white"
+kropki-2: kropki r8c6-r8c7 white
 pair-8: pair r7c4-r8c4 difference 6
 pair-9: pair r7c2-r8c2 difference 3
 pair-10: pair r5c3-r5c4 difference 3

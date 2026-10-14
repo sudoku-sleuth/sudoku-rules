@@ -23,6 +23,7 @@ board:
     - 8
     - 9
   givens: r1c4=3 r1c7=6 r2c1=3 r2c3=8 r4c7=5 r8c8=9
+exported: 5c7ab88e062b6b59b0e365340e871261
 ---
 
 ```rules

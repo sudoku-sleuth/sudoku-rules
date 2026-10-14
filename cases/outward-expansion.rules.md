@@ -6,6 +6,7 @@ source: https://sudokupad.app/nrep0m2oi8
 case: https://sudoku-sleuth.com/cases/outward-expansion
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1caf4ae6a13bd713c8081b702fbde271
 ---
 
 ```rules

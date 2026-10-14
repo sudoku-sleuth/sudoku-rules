@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/federation-marines-are-lost
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6a1c106e72df0701018e0d0b5ddf4d53
 ---
 
 ```rules

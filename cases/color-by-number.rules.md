@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/color-by-number
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8cb7f2785e963fb0094f96e41493a73c
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c5-r6c5 colour "black"
+kropki r5c5-r6c5 black
 ```
 
 ```drawing

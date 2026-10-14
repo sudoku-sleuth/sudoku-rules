@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parrowty-chains
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 30ad87cc39acfa3be6cf10d1cd856009
 ---
 
 ```rules

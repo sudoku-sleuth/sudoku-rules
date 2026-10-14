@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/knotted-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=8 r7c4=8
+exported: d304221e3a2ca4f5513ad2f33b6c3df3
 ---
 
 ```rules
@@ -21,17 +22,17 @@ thermo-7: thermo r7c3-r6c3-r5c4-r4c5
 thermo-8: thermo r3c7-r4c7-r5c6-r6c5
 thermo-9: thermo r3c3-r4c2-r5c2
 thermo-10: thermo r5c8-r6c8-r7c7
-kropki-1: kropki r1c5-r2c5 colour "black"
-kropki-2: kropki r8c5-r9c5 colour "black"
-kropki-3: kropki r4c4-r5c4 colour "black"
-kropki-4: kropki r5c6-r6c6 colour "black"
-kropki-5: kropki r2c7-r3c7 colour "black"
-kropki-6: kropki r5c2-r6c2 colour "black"
-kropki-7: kropki r2c2-r2c3 colour "black"
-kropki-8: kropki r7c6-r8c6 colour "black"
-kropki-9: kropki r4c8-r4c9 colour "black"
-kropki-10: kropki r7c2-r7c3 colour "black"
-kropki-11: kropki r7c1-r8c1 colour "black"
+kropki-1: kropki r1c5-r2c5 black
+kropki-2: kropki r8c5-r9c5 black
+kropki-3: kropki r4c4-r5c4 black
+kropki-4: kropki r5c6-r6c6 black
+kropki-5: kropki r2c7-r3c7 black
+kropki-6: kropki r5c2-r6c2 black
+kropki-7: kropki r2c2-r2c3 black
+kropki-8: kropki r7c6-r8c6 black
+kropki-9: kropki r4c8-r4c9 black
+kropki-10: kropki r7c2-r7c3 black
+kropki-11: kropki r7c1-r8c1 black
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

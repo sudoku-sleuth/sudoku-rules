@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 9df6cd803fc4923fd44c275c01b4946f
 ---
 
 ```rules

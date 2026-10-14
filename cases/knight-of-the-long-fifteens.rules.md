@@ -6,6 +6,7 @@ source: https://sudokupad.app/sibxon5xpc
 case: https://sudoku-sleuth.com/cases/knight-of-the-long-fifteens
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 329985587879144b85c92353170e3514
 ---
 
 ```rules
@@ -29,11 +30,11 @@ cage-16: cage r4c2-r5c2-r6c2 total 15 connected true
 cage-17: cage r5c4-r6c4-r6c5 total 15 connected true
 cage-18: cage r4c5-r4c6-r5c6 total 15 connected true
 anti-knight
-kropki-1: kropki r3c7-r4c7 colour "black"
-kropki-2: kropki r5c7-r5c8 colour "black"
-kropki-3: kropki r7c6-r7c7 colour "black"
-kropki-4: kropki r8c1-r9c1 colour "black"
-kropki-5: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r3c7-r4c7 black
+kropki-2: kropki r5c7-r5c8 black
+kropki-3: kropki r7c6-r7c7 black
+kropki-4: kropki r8c1-r9c1 black
+kropki-5: kropki r9c8-r9c9 black
 ```
 
 **Standard Sudoku, Antiknight, Cages, Ratio Pairs**

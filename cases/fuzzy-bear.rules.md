@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fuzzy-bear
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: eb90239dd4f1932e688512e8782d994e
 ---
 
 ```rules

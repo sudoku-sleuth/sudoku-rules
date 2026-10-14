@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/yysl-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f8b75ac122cecb47accb9ca6e6af2225
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c5-r9c5 colour "white"
-kropki-2: kropki r2c2-r3c2 colour "white"
-kropki-3: kropki r2c8-r3c8 colour "white"
-kropki-4: kropki r6c4-r7c4 colour "white"
-kropki-5: kropki r6c6-r7c6 colour "white"
-kropki-6: kropki r4c3-r5c3 colour "white"
-kropki-7: kropki r4c7-r5c7 colour "white"
-kropki-8: kropki r1c2-r2c2 colour "white"
-kropki-9: kropki r1c8-r2c8 colour "white"
-kropki-10: kropki r5c5-r6c5 colour "white"
-kropki-11: kropki r2c5-r3c5 colour "white"
-kropki-12: kropki r6c3-r7c3 colour "white"
+kropki-1: kropki r8c5-r9c5 white
+kropki-2: kropki r2c2-r3c2 white
+kropki-3: kropki r2c8-r3c8 white
+kropki-4: kropki r6c4-r7c4 white
+kropki-5: kropki r6c6-r7c6 white
+kropki-6: kropki r4c3-r5c3 white
+kropki-7: kropki r4c7-r5c7 white
+kropki-8: kropki r1c2-r2c2 white
+kropki-9: kropki r1c8-r2c8 white
+kropki-10: kropki r5c5-r6c5 white
+kropki-11: kropki r2c5-r3c5 white
+kropki-12: kropki r6c3-r7c3 white
 whispers-1: whispers r9c2-r8c2-r8c3 gap 5
 whispers-2: whispers r6c2-r5c2-r4c2-r4c3 gap 5
 whispers-3: whispers r2c8-r1c9 gap 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/alien-artifact
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r9c1=6
+exported: 02ac0e2dd78fecce24217504c418cee4
 ---
 
 ```rules

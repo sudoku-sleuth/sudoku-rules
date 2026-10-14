@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=2mo9gwcr
 case: https://sudoku-sleuth.com/cases/dots-and-dots-of-threes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f2b00490b9e36211b5e339c2a949548d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/u8016evqy9
 case: https://sudoku-sleuth.com/cases/ogp
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 64c7e50bad8ac4bcb270910196fbd9e3
 ---
 
 ```rules

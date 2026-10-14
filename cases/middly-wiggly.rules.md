@@ -6,6 +6,7 @@ source: https://sudokupad.app/wzwuzc80w6
 case: https://sudoku-sleuth.com/cases/middly-wiggly
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1a91f8c4ddd1846e03a7567aeaba0c6e
 ---
 
 ```rules
@@ -19,12 +20,12 @@ cage-6: cage r8c6-r9c6 total 13 connected true
 cage-7: cage r6c8-r6c9 total 7 connected true
 cage-8: cage r6c4-r6c5 total 13 connected true
 cage-9: cage r4c6-r5c6 total 7 connected true
-kropki-1: kropki r6c9-r7c9 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "black"
-kropki-3: kropki r4c1-r5c1 colour "black"
-kropki-4: kropki r1c4-r1c5 colour "black"
-kropki-5: kropki r4c6-r4c7 colour "black"
-kropki-6: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r6c9-r7c9 white
+kropki-2: kropki r1c2-r2c2 black
+kropki-3: kropki r4c1-r5c1 black
+kropki-4: kropki r1c4-r1c5 black
+kropki-5: kropki r4c6-r4c7 black
+kropki-6: kropki r9c8-r9c9 black
 whispers-1: whispers r5c3-r6c3 gap 5
 whispers-2: whispers r3c5-r3c6 gap 5
 whispers-3: whispers r3c7-r3c6 gap 5

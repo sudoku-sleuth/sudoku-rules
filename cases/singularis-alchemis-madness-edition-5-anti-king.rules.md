@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 5
+    - r1c4
+    - r1c5
+    - r1c6
 format: open-rules
 title: Singularis alchemis.. madness edition 5- anti-king
 setter: Chip Sounder
@@ -12,14 +12,15 @@ case: https://sudoku-sleuth.com/cases/singularis-alchemis-madness-edition-5-anti
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0f02ae1bea5e3329775bc4ddee53c683
 ---
 
 ```rules
 sudoku 9x9
 anti-king stated true
 thermo r4c4-r4c3-r4c2-r3c2-r2c2
-kropki-1: kropki r1c6-r2c6 colour "black"
-kropki-2: kropki r1c4-r2c4 colour "white"
+kropki-1: kropki r1c6-r2c6 black
+kropki-2: kropki r1c4-r2c4 white
 arrow r6c8-r6c9-r5c9 bulb ["r7c8"]
 whispers r5c1-r5c2-r5c3-r5c4-r5c5-r5c6 gap 5
 parity r9c2-r9c3-r8c3

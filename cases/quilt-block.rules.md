@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quilt-block
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r1c5=6 r1c9=3 r3c5=8 r5c2=6 r5c5=1 r5c8=7 r7c5=9 r9c1=5 r9c5=2 r9c9=4
+exported: e2287137e1004b31285a9a495620617f
 ---
 
 ```rules

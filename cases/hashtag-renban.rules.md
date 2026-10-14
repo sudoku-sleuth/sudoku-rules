@@ -6,6 +6,7 @@ source: https://sudokupad.app/u3nwwr7onq
 case: https://sudoku-sleuth.com/cases/hashtag-renban
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b5c2ce78e8fceb65bb6cfa2e5279f941
 ---
 
 ```rules

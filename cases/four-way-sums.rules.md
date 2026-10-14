@@ -6,6 +6,7 @@ source: https://sudokupad.app/dbu8ox0jhe
 case: https://sudoku-sleuth.com/cases/four-way-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 78989a7d3620bb5c6c03ea87473f7850
 ---
 
 ```rules

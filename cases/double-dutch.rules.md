@@ -6,6 +6,7 @@ source: https://sudokupad.app/km4o51rv2d
 case: https://sudoku-sleuth.com/cases/double-dutch
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: afb52afbc60ab3c7370474a49a8ebfcd
 ---
 
 ```rules

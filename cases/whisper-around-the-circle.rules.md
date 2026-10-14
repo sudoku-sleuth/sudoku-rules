@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/whisper-around-the-circle
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=4 r1c9=7 r5c3=1 r9c1=6 r9c9=4
+exported: bed283732ac062035880b2d4b670c3c5
 ---
 
 ```rules

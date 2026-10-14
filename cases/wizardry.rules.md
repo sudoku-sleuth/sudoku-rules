@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/wizardry
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=7
+exported: fd674d49254a10989147eb90dec4a098
 ---
 
 ```rules
@@ -29,10 +30,10 @@ cage-15: cage r7c2-r8c2 total 7 connected true
 cage-16: cage r6c2-r6c3 total 11 connected true
 cage-17: cage r4c2-r5c2 total 11 connected true
 cage-18: cage r4c4-r5c4 total 10 connected true
-kropki-1: kropki r1c8-r2c8 colour "white"
-kropki-2: kropki r4c7-r5c7 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "white"
-kropki-4: kropki r3c2-r3c3 colour "white"
+kropki-1: kropki r1c8-r2c8 white
+kropki-2: kropki r4c7-r5c7 white
+kropki-3: kropki r7c5-r8c5 white
+kropki-4: kropki r3c2-r3c3 white
 ```
 
 Normal sudoku rules apply.

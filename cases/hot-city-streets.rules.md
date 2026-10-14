@@ -6,6 +6,7 @@ source: https://sudokupad.app/t4a62zjm8v
 case: https://sudoku-sleuth.com/cases/hot-city-streets
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c1e12d6887c93f8f3c7463e1d12694c9
 ---
 
 ```rules

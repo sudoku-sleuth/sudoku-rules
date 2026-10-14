@@ -6,6 +6,7 @@ source: https://sudokupad.app/6yrt3m6dqg
 case: https://sudoku-sleuth.com/cases/dutch-flat-mates-index-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4dc1b68906b20cdad17cfdf19f3f4c26
 ---
 
 ```rules

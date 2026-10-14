@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/not-too-x-acting
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=7 r2c8=2 r5c5=2 r8c2=6 r8c8=7
+exported: baafe9ea1313141bb289fc75e2e3a32a
 ---
 
 ```rules

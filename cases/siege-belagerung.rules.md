@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/siege-belagerung
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8980936c1e9d410c014adcf60e63fd27
 ---
 
 ```rules
@@ -14,14 +15,14 @@ cage-1: cage r1c5-r1c6-r2c6-r2c7-r3c7-r3c8-r4c8-r4c9-r5c9 total 18 repeats true 
 cage-2: cage r5c1-r6c1-r6c2-r7c2-r7c3-r8c3-r8c4-r9c4 total 63 repeats true connected true
 cage-3: cage r1c4-r2c3-r2c4 total 21 repeats true connected true
 cage-4: cage r3c2-r3c3-r4c1-r4c2 total 15 repeats true connected true
-kropki-1: kropki r8c4-r9c4 colour "white"
-kropki-2: kropki r8c3-r8c4 colour "white"
-kropki-3: kropki r7c2-r7c3 colour "white"
-kropki-4: kropki r6c2-r7c2 colour "white"
-kropki-5: kropki r5c1-r6c1 colour "white"
-kropki-6: kropki r2c3-r2c4 colour "white"
-kropki-7: kropki r3c2-r3c3 colour "white"
-kropki-8: kropki r3c2-r4c2 colour "white"
+kropki-1: kropki r8c4-r9c4 white
+kropki-2: kropki r8c3-r8c4 white
+kropki-3: kropki r7c2-r7c3 white
+kropki-4: kropki r6c2-r7c2 white
+kropki-5: kropki r5c1-r6c1 white
+kropki-6: kropki r2c3-r2c4 white
+kropki-7: kropki r3c2-r3c3 white
+kropki-8: kropki r3c2-r4c2 white
 arrow-1: arrow r4c6-r3c7 bulb ["r5c5"]
 arrow-2: arrow r6c6-r7c7 bulb ["r5c5"]
 arrow-3: arrow r6c4-r7c3 bulb ["r5c5"]

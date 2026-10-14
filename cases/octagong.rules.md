@@ -6,6 +6,7 @@ source: https://sudokupad.app/1imiofqdp5
 case: https://sudoku-sleuth.com/cases/octagong
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fe578e528fecc2d4a40d756e0a53a31f
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://tinyurl.com/5ekf2fsd
 case: https://sudoku-sleuth.com/cases/circumvention
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b4e8d685533c668b6268ca46d722bafb
 ---
 
 ```rules

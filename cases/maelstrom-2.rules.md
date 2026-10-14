@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/maelstrom-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=9 r1c8=7 r9c8=8
+exported: 083b58e572a4e093ef84520068a828bd
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/10b3ejgkmr
 case: https://sudoku-sleuth.com/cases/pride-plus
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 98d3bfbfbd9ad7fb61975ab93ff9bd9f
 ---
 
 ```rules

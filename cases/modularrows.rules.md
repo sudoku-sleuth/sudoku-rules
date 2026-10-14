@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/modularrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=8 r3c6=2
+exported: 167cb7a1694612e98548f800bc682588
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/gw5pnvngce
 case: https://sudoku-sleuth.com/cases/drama-masks-thalia-melpomene
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 72a61304fdb3e4dc68a0cc2f9e1babf8
 ---
 
 ```rules
@@ -18,10 +19,10 @@ thermo-3: thermo r3c7-r4c8-r5c9-r6c9
 thermo-4: thermo r9c5-r8c6-r7c5
 thermo-5: thermo r1c7-r2c7-r2c8-r2c9
 thermo-6: thermo r6c8-r7c8-r8c8-r8c7-r9c7
-kropki-1: kropki r3c3-r4c3 colour "white"
-kropki-2: kropki r6c2-r6c3 colour "white"
-kropki-3: kropki r3c7-r4c7 colour "black"
-kropki-4: kropki r6c8-r7c8 colour "black"
+kropki-1: kropki r3c3-r4c3 white
+kropki-2: kropki r6c2-r6c3 white
+kropki-3: kropki r3c7-r4c7 black
+kropki-4: kropki r6c8-r7c8 black
 arrow-1: arrow r6c4-r7c4-r8c3-r9c3 bulb ["r5c4"]
 arrow-2: arrow r4c5-r5c5-r6c5 bulb ["r3c4"]
 arrow-3: arrow r8c4-r9c5 bulb ["r7c5"]

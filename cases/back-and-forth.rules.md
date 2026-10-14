@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/back-and-forth
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c4=2 r4c7=3 r5c5=3 r6c3=6 r8c6=7
+exported: 598bb4b7e30467c834c9dc8709226978
 ---
 
 ```rules

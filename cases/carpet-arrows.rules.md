@@ -6,12 +6,13 @@ source: https://tinyurl.com/nhestytv
 case: https://sudoku-sleuth.com/cases/carpet-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 657525249b3f1e6bb78fd2d0e07a49e1
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r5c5-r5c6 colour "white"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r5c5-r5c6 white
 arrow-1: arrow r3c7-r2c7-r1c7-r1c8-r1c9-r2c9-r2c8 bulb ["r3c8","r3c9"]
 arrow-2: arrow r7c3-r8c3-r9c3-r9c2-r9c1-r8c1-r8c2 bulb ["r7c1","r7c2"]
 arrow-3: arrow r3c3-r3c2-r3c1-r2c1-r2c2-r1c2-r1c1 bulb ["r1c3","r2c3"]

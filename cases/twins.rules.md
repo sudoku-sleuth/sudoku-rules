@@ -6,6 +6,7 @@ source: https://sudokupad.app/om2xdwos26
 case: https://sudoku-sleuth.com/cases/twins
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 42d5ab677f94bfeacf3332f7bbe10a52
 ---
 
 ```rules

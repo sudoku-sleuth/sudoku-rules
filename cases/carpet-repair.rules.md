@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/carpet-repair
 case: https://sudoku-sleuth.com/cases/carpet-repair
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9841a143b5411307b4732333ecdd706f
 ---
 
 ```rules

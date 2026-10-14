@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/feverish-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=4 r2c9=2 r4c2=6 r4c6=3 r8c3=1 r9c8=5
+exported: 34041989ec58fe0da5ac46979d7e7474
 ---
 
 ```rules

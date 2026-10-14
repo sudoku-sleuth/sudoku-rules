@@ -10,11 +10,12 @@ drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
 givens: r3c9=5
+exported: 855b67b837a99e938741a4fc2296e7e9
 ---
 
 ```rules
 sudoku 9x9
-kropki r3c2-r4c2 colour "black"
+kropki r3c2-r4c2 black
 entropic-1: entropic r3c2-r4c1-r5c1-r5c2-r4c2-r5c3-r6c4-r7c4-r8c4-r9c4-r9c5-r8c5-r7c5-r7c6-r7c7-r8c7-r9c7-r9c8-r8c8-r7c8-r6c8-r5c8-r5c7-r5c6-r5c5-r4c4-r3c3 loop true
 entropic-2: entropic r3c2-r2c3-r1c4-r1c5-r1c6-r2c7
 entropic-3: entropic r5c8-r4c9-r3c9

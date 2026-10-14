@@ -6,6 +6,7 @@ source: https://tinyurl.com/293rdacr
 case: https://sudoku-sleuth.com/cases/pincers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 99fe344668f236b9a811ab746041f1db
 ---
 
 ```rules

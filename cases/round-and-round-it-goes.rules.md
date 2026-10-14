@@ -6,6 +6,7 @@ source: https://tinyurl.com/mr3mrsvc
 case: https://sudoku-sleuth.com/cases/round-and-round-it-goes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 852f204c4f17c610294bb7f759aa71e4
 ---
 
 ```rules

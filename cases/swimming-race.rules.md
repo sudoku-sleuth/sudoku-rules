@@ -6,6 +6,7 @@ source: https://sudokupad.app/tve4dq9bwv
 case: https://sudoku-sleuth.com/cases/swimming-race
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cbcb4ff3c0d6a58c466cdda4cd1b92b5
 ---
 
 ```rules
@@ -18,9 +19,9 @@ thermo-5: thermo r6c9-r5c8-r6c7-r5c6-r6c5
 thermo-6: thermo r2c9-r1c8-r2c7-r1c6-r2c5
 thermo-7: thermo r9c5-r8c4-r9c3-r8c2-r9c1
 thermo-8: thermo r8c9-r7c8-r8c7-r7c6-r8c5
-kropki-1: kropki r6c5-r7c5 colour "black"
-kropki-2: kropki r3c5-r4c5 colour "black"
-kropki-3: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r6c5-r7c5 black
+kropki-2: kropki r3c5-r4c5 black
+kropki-3: kropki r4c4-r5c4 black
 ```
 
 **Sudoku, Thermometers, Kropki pairss**

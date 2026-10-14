@@ -9,28 +9,29 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 95a61a8d1a202c2825fc5448e85a4c0c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c8-r2c9 colour "white"
-kropki-2: kropki r2c4-r2c5 colour "black"
-kropki-3: kropki r4c7-r4c8 colour "black"
-kropki-4: kropki r7c2-r7c3 colour "black"
-kropki-5: kropki r8c5-r8c6 colour "black"
-kropki-6: kropki r9c7-r9c8 colour "black"
-kropki-7: kropki r1c3-r2c3 colour "black"
-kropki-8: kropki r1c8-r2c8 colour "black"
-kropki-9: kropki r3c5-r3c6 colour "black"
-kropki-10: kropki r3c6-r4c6 colour "black"
-kropki-11: kropki r6c7-r7c7 colour "black"
-kropki-12: kropki r7c4-r8c4 colour "black"
-kropki-13: kropki r8c1-r9c1 colour "black"
-kropki-14: kropki r3c7-r4c7 colour "black"
-kropki-15: kropki r2c1-r3c1 colour "black"
-kropki-16: kropki r4c4-r4c5 colour "black"
-kropki-17: kropki r7c9-r8c9 colour "black"
-kropki-18: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r2c8-r2c9 white
+kropki-2: kropki r2c4-r2c5 black
+kropki-3: kropki r4c7-r4c8 black
+kropki-4: kropki r7c2-r7c3 black
+kropki-5: kropki r8c5-r8c6 black
+kropki-6: kropki r9c7-r9c8 black
+kropki-7: kropki r1c3-r2c3 black
+kropki-8: kropki r1c8-r2c8 black
+kropki-9: kropki r3c5-r3c6 black
+kropki-10: kropki r3c6-r4c6 black
+kropki-11: kropki r6c7-r7c7 black
+kropki-12: kropki r7c4-r8c4 black
+kropki-13: kropki r8c1-r9c1 black
+kropki-14: kropki r3c7-r4c7 black
+kropki-15: kropki r2c1-r3c1 black
+kropki-16: kropki r4c4-r4c5 black
+kropki-17: kropki r7c9-r8c9 black
+kropki-18: kropki r8c2-r9c2 black
 ```
 
 ```drawing

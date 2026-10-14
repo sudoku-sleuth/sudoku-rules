@@ -56,6 +56,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 1877b9ab78e50404bae45d0659f0780b
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/boots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6a36229878252bb42c54c4ff9f4bf5bd
 ---
 
 ```rules

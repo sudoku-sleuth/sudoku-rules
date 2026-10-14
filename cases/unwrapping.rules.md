@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 15
-    - 16
-    - 17
-    - 56
-    - 78
+    - r2c1
+    - r2c7
+    - r2c8
+    - r2c9
+    - r7c3
+    - r9c7
 format: open-rules
 title: Unwrapping
 setter: Sandra & Nala
@@ -15,12 +15,13 @@ case: https://sudoku-sleuth.com/cases/unwrapping
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 26355a1f5ba974de51d3c9afe779c1ed
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c8-r7c9 colour "white"
-kropki-2: kropki r2c7-r2c8 colour "black"
+kropki-1: kropki r7c8-r7c9 white
+kropki-2: kropki r2c7-r2c8 black
 ```
 
 ```drawing

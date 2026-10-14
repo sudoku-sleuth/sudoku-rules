@@ -18,6 +18,7 @@ board:
     - 5
     - 6
     - 7
+exported: 3c6a65a2b6eb01d919237e83d8ed5995
 ---
 
 ```rules
@@ -35,14 +36,14 @@ unique-11: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4
 unique-12: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5
 unique-13: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6
 unique-14: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7
-kropki-1: kropki r4c1-r5c1 colour "black"
-kropki-2: kropki r2c7-r3c7 colour "black"
-kropki-3: kropki r2c3-r2c4 colour "black"
-kropki-4: kropki r6c2-r7c2 colour "black"
-kropki-5: kropki r1c5-r2c5 colour "black"
-kropki-6: kropki r4c6-r5c6 colour "black"
-kropki-7: kropki r3c1-r3c2 colour "black"
-kropki-8: kropki r5c3-r6c3 colour "black"
+kropki-1: kropki r4c1-r5c1 black
+kropki-2: kropki r2c7-r3c7 black
+kropki-3: kropki r2c3-r2c4 black
+kropki-4: kropki r6c2-r7c2 black
+kropki-5: kropki r1c5-r2c5 black
+kropki-6: kropki r4c6-r5c6 black
+kropki-7: kropki r3c1-r3c2 black
+kropki-8: kropki r5c3-r6c3 black
 ```
 
 ```drawing

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yin-yang-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c1=1
+exported: 4bfebb77b0ebf9751602e49067043995
 ---
 
 ```rules

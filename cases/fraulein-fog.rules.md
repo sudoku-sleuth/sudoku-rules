@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fräulein Fog
 setter: Meggen033
@@ -17,21 +17,22 @@ source: https://sudokupad.app/54kzqr9j6g
 case: https://sudoku-sleuth.com/cases/fraulein-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 21589a25030f5ef542690c6435fea198
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c4-r8c4 colour "white"
-kropki-2: kropki r6c3-r7c3 colour "white"
-kropki-3: kropki r6c2-r6c3 colour "white"
-kropki-4: kropki r6c7-r6c8 colour "white"
-kropki-5: kropki r7c7-r8c7 colour "white"
-kropki-6: kropki r1c7-r2c7 colour "white"
-kropki-7: kropki r4c7-r4c8 colour "white"
-kropki-8: kropki r9c2-r9c3 colour "white"
-kropki-9: kropki r2c1-r3c1 colour "white"
-kropki-10: kropki r6c5-r7c5 colour "black"
-kropki-11: kropki r7c3-r7c4 colour "black"
+kropki-1: kropki r7c4-r8c4 white
+kropki-2: kropki r6c3-r7c3 white
+kropki-3: kropki r6c2-r6c3 white
+kropki-4: kropki r6c7-r6c8 white
+kropki-5: kropki r7c7-r8c7 white
+kropki-6: kropki r1c7-r2c7 white
+kropki-7: kropki r4c7-r4c8 white
+kropki-8: kropki r9c2-r9c3 white
+kropki-9: kropki r2c1-r3c1 white
+kropki-10: kropki r6c5-r7c5 black
+kropki-11: kropki r7c3-r7c4 black
 whispers-1: whispers r4c4-r5c5-r6c6 gap 5
 whispers-2: whispers r4c5-r5c6 gap 5
 whispers-3: whispers r5c4-r6c5 gap 5

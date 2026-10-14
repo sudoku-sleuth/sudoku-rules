@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/unknown-origin-10
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2e01fcdd64407b6f97c9e7a4c16cd779
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c8-r1c9 colour "black"
-kropki-2: kropki r1c7-r1c8 colour "black"
-kropki-3: kropki r1c6-r1c7 colour "black"
+kropki-1: kropki r1c8-r1c9 black
+kropki-2: kropki r1c7-r1c8 black
+kropki-3: kropki r1c6-r1c7 black
 arrow-1: arrow r4c5-r3c5-r2c5-r2c6-r2c7-r2c8-r2c9-r1c9 bulb ["r5c4","r5c5"]
 arrow-2: arrow r4c6-r3c6-r3c7-r3c8-r3c9-r4c9-r5c9-r6c9 bulb ["r5c4","r5c5"]
 arrow-3: arrow r5c6-r5c7-r4c7-r4c8-r5c8-r6c8-r7c8-r7c9 bulb ["r5c4","r5c5"]

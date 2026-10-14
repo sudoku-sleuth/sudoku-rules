@@ -6,6 +6,7 @@ source: https://sudokupad.app/cjsvz56vlk
 case: https://sudoku-sleuth.com/cases/oil-and-water-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 70df639401a4908d4c8931ad6c789900
 ---
 
 ```rules

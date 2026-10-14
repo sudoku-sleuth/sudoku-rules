@@ -6,6 +6,7 @@ source: https://sudokupad.app/z8mi2mo5am
 case: https://sudoku-sleuth.com/cases/cherry-blossom
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e2407b6e70adc7e9fa192205ab936249
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/basketball-finals-bracket
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a62b84df8c134c77aad120f1410bfd2e
 ---
 
 ```rules

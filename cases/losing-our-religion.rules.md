@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/losing-our-religion
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=3
+exported: c52d29b208b281a1fe8cf70fcf4bee9d
 ---
 
 ```rules

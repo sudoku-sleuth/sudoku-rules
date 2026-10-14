@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/renban-o-fly
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=2 r1c9=6 r2c4=5 r3c7=1 r5c2=7 r5c8=4 r7c3=6 r8c6=8 r9c1=4 r9c6=1
+exported: 7a591ba971df64e2185340c2a30612ab
 ---
 
 ```rules

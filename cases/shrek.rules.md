@@ -6,6 +6,7 @@ source: https://sudokupad.app/olfsb3698s
 case: https://sudoku-sleuth.com/cases/shrek
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 557afbca809f9ed9538ba943ca3b15fd
 ---
 
 ```rules
@@ -16,18 +17,18 @@ cage-3: cage r2c2-r2c3 total 10 connected true
 cage-4: cage r2c7-r2c8 total 16 connected true
 cage-5: cage r6c2-r6c3 total 7 connected true
 cage-6: cage r6c7-r7c7 total 5 connected true
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r4c1-r4c2 colour "white"
-kropki-3: kropki r3c9-r4c9 colour "white"
-kropki-4: kropki r4c8-r4c9 colour "white"
-kropki-5: kropki r4c8-r5c8 colour "white"
-kropki-6: kropki r5c8-r6c8 colour "white"
-kropki-7: kropki r6c7-r6c8 colour "white"
-kropki-8: kropki r7c4-r8c4 colour "white"
-kropki-9: kropki r7c4-r7c5 colour "white"
-kropki-10: kropki r7c5-r7c6 colour "white"
-kropki-11: kropki r7c6-r8c6 colour "white"
-kropki-12: kropki r8c6-r8c7 colour "white"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r4c1-r4c2 white
+kropki-3: kropki r3c9-r4c9 white
+kropki-4: kropki r4c8-r4c9 white
+kropki-5: kropki r4c8-r5c8 white
+kropki-6: kropki r5c8-r6c8 white
+kropki-7: kropki r6c7-r6c8 white
+kropki-8: kropki r7c4-r8c4 white
+kropki-9: kropki r7c4-r7c5 white
+kropki-10: kropki r7c5-r7c6 white
+kropki-11: kropki r7c6-r8c6 white
+kropki-12: kropki r8c6-r8c7 white
 whispers-1: whispers r3c2-r2c3-r1c4-r1c5-r1c6-r2c7-r3c8-r4c8 gap 5
 whispers-2: whispers r8c7-r9c6-r9c5-r9c4-r8c3-r7c2-r6c2 gap 5
 renban-1: renban r3c9-r4c9-r5c8-r4c8

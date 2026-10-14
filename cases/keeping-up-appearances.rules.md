@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/keeping-up-appearances
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9b8580f03893fac7bbfe63b44ef2726c
 ---
 
 ```rules

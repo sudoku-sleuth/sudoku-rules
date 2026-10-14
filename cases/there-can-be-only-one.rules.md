@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/there-can-be-only-one
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8edd5dd672ac75cebadde38b6716406c
 ---
 
 ```rules

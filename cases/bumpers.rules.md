@@ -6,6 +6,7 @@ source: https://sudokupad.app/9adl4u5iz4
 case: https://sudoku-sleuth.com/cases/bumpers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f9064017c32132da509bfcc28096df19
 ---
 
 ```rules

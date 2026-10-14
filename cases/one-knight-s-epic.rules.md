@@ -1,19 +1,19 @@
 ---
 fog:
   initiallyLit:
-    - 7
-    - 12
-    - 18
-    - 25
-    - 31
-    - 35
-    - 38
-    - 42
-    - 44
-    - 45
-    - 58
-    - 70
-    - 76
+    - r1c8
+    - r2c4
+    - r3c1
+    - r3c8
+    - r4c5
+    - r4c9
+    - r5c3
+    - r5c7
+    - r5c9
+    - r6c1
+    - r7c5
+    - r8c8
+    - r9c5
 format: open-rules
 title: One Knight's Epic
 setter: Meggen033
@@ -116,6 +116,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 5572cbc2caeb271abec133152c58d5d9
 ---
 
 ```rules

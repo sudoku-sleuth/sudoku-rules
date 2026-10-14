@@ -6,6 +6,7 @@ source: https://tinyurl.com/3ysdd6j4
 case: https://sudoku-sleuth.com/cases/for-all-the-marbles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4a9b9773c9ca37f37663112df3cc5edc
 ---
 
 ```rules

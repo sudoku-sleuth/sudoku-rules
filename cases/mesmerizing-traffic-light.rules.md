@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/mesmerizing-traffic-light
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 21dfed75f783d6d58f881e099ad4d81c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c9-r7c9 colour "white"
-kropki-2: kropki r7c9-r8c9 colour "white"
-kropki-3: kropki r8c9-r9c9 colour "white"
-kropki-4: kropki r3c9-r4c9 colour "white"
-kropki-5: kropki r4c9-r5c9 colour "white"
-kropki-6: kropki r2c1-r3c1 colour "black"
-kropki-7: kropki r1c1-r2c1 colour "black"
-kropki-8: kropki r1c7-r2c7 colour "black"
-kropki-9: kropki r2c8-r3c8 colour "black"
-kropki-10: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r6c9-r7c9 white
+kropki-2: kropki r7c9-r8c9 white
+kropki-3: kropki r8c9-r9c9 white
+kropki-4: kropki r3c9-r4c9 white
+kropki-5: kropki r4c9-r5c9 white
+kropki-6: kropki r2c1-r3c1 black
+kropki-7: kropki r1c1-r2c1 black
+kropki-8: kropki r1c7-r2c7 black
+kropki-9: kropki r2c8-r3c8 black
+kropki-10: kropki r3c8-r4c8 black
 ```
 
 ```drawing

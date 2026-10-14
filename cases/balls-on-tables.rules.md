@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/balls-on-tables
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5073883868ffb34fc994e47015503ca1
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flower-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5ee42ec595acbce7f328a0f54b921be0
 ---
 
 ```rules

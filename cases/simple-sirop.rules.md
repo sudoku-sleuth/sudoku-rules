@@ -6,6 +6,7 @@ source: https://sudokupad.app/0wezd3gc88
 case: https://sudoku-sleuth.com/cases/simple-sirop
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 254b892a08cfa479e8231736682aa35a
 ---
 
 ```rules

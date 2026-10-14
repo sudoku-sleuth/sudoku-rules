@@ -6,6 +6,7 @@ source: https://sudokupad.app/zo1ssj4dkg
 case: https://sudoku-sleuth.com/cases/i-have-an-extra-lug-nut
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d338dff74c46f51b0b00c40863459328
 ---
 
 ```rules
@@ -20,20 +21,20 @@ thermo-7: thermo r3c1-r2c2-r1c3
 thermo-8: thermo r2c8-r3c9
 thermo-9: thermo r8c8-r9c7
 thermo-10: thermo r8c2-r7c1
-kropki-1: kropki r3c4-r4c4 colour "black"
-kropki-2: kropki r4c6-r4c7 colour "black"
-kropki-3: kropki r6c3-r6c4 colour "black"
-kropki-4: kropki r4c3-r4c4 colour "black"
-kropki-5: kropki r3c6-r4c6 colour "black"
-kropki-6: kropki r6c6-r7c6 colour "black"
-kropki-7: kropki r6c4-r7c4 colour "black"
-kropki-8: kropki r6c6-r6c7 colour "black"
-kropki-9: kropki r7c9-r8c9 colour "black"
-kropki-10: kropki r5c7-r6c7 colour "black"
-kropki-11: kropki r4c7-r5c7 colour "black"
-kropki-12: kropki r3c5-r3c6 colour "black"
-kropki-13: kropki r4c3-r5c3 colour "black"
-kropki-14: kropki r7c4-r7c5 colour "black"
+kropki-1: kropki r3c4-r4c4 black
+kropki-2: kropki r4c6-r4c7 black
+kropki-3: kropki r6c3-r6c4 black
+kropki-4: kropki r4c3-r4c4 black
+kropki-5: kropki r3c6-r4c6 black
+kropki-6: kropki r6c6-r7c6 black
+kropki-7: kropki r6c4-r7c4 black
+kropki-8: kropki r6c6-r6c7 black
+kropki-9: kropki r7c9-r8c9 black
+kropki-10: kropki r5c7-r6c7 black
+kropki-11: kropki r4c7-r5c7 black
+kropki-12: kropki r3c5-r3c6 black
+kropki-13: kropki r4c3-r5c3 black
+kropki-14: kropki r7c4-r7c5 black
 arrow-1: arrow r3c6-r4c7 bulb ["r3c5"]
 arrow-2: arrow r6c7-r7c6 bulb ["r5c7"]
 arrow-3: arrow r7c4-r6c3 bulb ["r7c5"]

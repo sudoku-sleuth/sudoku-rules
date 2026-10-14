@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/allergic-to-10
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8e4f14a17844ee0879bb8f8b88aca5ed
 ---
 
 ```rules

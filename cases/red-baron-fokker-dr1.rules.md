@@ -6,13 +6,14 @@ source: ""
 case: https://sudoku-sleuth.com/cases/red-baron-fokker-dr1
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e4bdd995dd155312b1fe7316a21ce5c6
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r8c8-r8c9-r9c8 total 12 connected true
 cage-2: cage r5c7-r6c7-r6c8 total 10 connected true
-kropki r8c2-r8c3 colour "white"
+kropki r8c2-r8c3 white
 whispers-1: whispers r6c1-r5c2-r4c3-r3c4-r2c5-r1c6 gap 4
 whispers-2: whispers r7c2-r6c3-r5c4-r4c5-r3c6-r2c7 gap 4
 whispers-3: whispers r8c3-r7c4-r6c5-r5c6-r4c7-r3c8 gap 4

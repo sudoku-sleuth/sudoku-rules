@@ -6,19 +6,20 @@ source: ""
 case: https://sudoku-sleuth.com/cases/extreme-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: be7567ce91783e15d0a6657f1cd9dec7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c1-r8c2 colour "white"
-kropki-2: kropki r4c3-r5c3 colour "white"
-kropki-3: kropki r5c6-r6c6 colour "white"
-kropki-4: kropki r6c6-r6c7 colour "white"
-kropki-5: kropki r7c4-r7c5 colour "white"
-kropki-6: kropki r8c8-r9c8 colour "black"
-kropki-7: kropki r3c7-r4c7 colour "black"
-kropki-8: kropki r4c6-r4c7 colour "black"
-kropki-9: kropki r6c3-r7c3 colour "black"
+kropki-1: kropki r8c1-r8c2 white
+kropki-2: kropki r4c3-r5c3 white
+kropki-3: kropki r5c6-r6c6 white
+kropki-4: kropki r6c6-r6c7 white
+kropki-5: kropki r7c4-r7c5 white
+kropki-6: kropki r8c8-r9c8 black
+kropki-7: kropki r3c7-r4c7 black
+kropki-8: kropki r4c6-r4c7 black
+kropki-9: kropki r6c3-r7c3 black
 sandwich-1: sandwich r1c1-r2c1-r3c1-r4c1-r5c1-r6c1-r7c1-r8c1-r9c1 sum 35
 sandwich-2: sandwich r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r7c2-r8c2-r9c2 sum 30
 sandwich-3: sandwich r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4-r8c4-r9c4 sum 14

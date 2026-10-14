@@ -6,6 +6,7 @@ source: https://sudokupad.app/plqgxc3p1w
 case: https://sudoku-sleuth.com/cases/monads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3b2da60b34f5cadcef29db625fdd9034
 ---
 
 ```rules

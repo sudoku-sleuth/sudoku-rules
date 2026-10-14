@@ -6,6 +6,7 @@ source: https://sudokupad.app/yj8yui1clt
 case: https://sudoku-sleuth.com/cases/tuna-melt
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cec8d3c14e8cdb3cfe5d0b7db6556726
 ---
 
 ```rules

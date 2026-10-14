@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/color-by-number-speed-run
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a01f572851adf6d8dd51854b9a653b39
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r8c8-r9c8 colour "white"
-kropki-3: kropki r3c2-r3c3 colour "black"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r8c8-r9c8 white
+kropki-3: kropki r3c2-r3c3 black
 ```
 
 ```drawing

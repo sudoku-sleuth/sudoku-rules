@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/poseidon-s-trident
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 124dc5f970d403d711e202d156e29764
 ---
 
 ```rules
@@ -16,12 +17,12 @@ diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 thermo-1: thermo r4c1-r3c2-r4c2-r4c3
 thermo-2: thermo r4c9-r3c8-r4c8-r4c7
-kropki-1: kropki r1c5-r2c5 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "white"
-kropki-3: kropki r3c5-r4c5 colour "white"
-kropki-4: kropki r4c4-r5c4 colour "black"
-kropki-5: kropki r4c6-r5c6 colour "black"
-kropki-6: kropki r6c5-r7c5 colour "black"
+kropki-1: kropki r1c5-r2c5 white
+kropki-2: kropki r2c5-r3c5 white
+kropki-3: kropki r3c5-r4c5 white
+kropki-4: kropki r4c4-r5c4 black
+kropki-5: kropki r4c6-r5c6 black
+kropki-6: kropki r6c5-r7c5 black
 arrow-1: arrow r6c5-r7c5-r8c5 bulb ["r5c5"]
 arrow-2: arrow r5c4-r6c3-r7c3-r8c3 bulb ["r5c5"]
 arrow-3: arrow r5c6-r6c7-r7c7-r8c7 bulb ["r5c5"]

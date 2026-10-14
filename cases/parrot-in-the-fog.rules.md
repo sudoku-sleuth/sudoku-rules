@@ -1,14 +1,14 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 10
-    - 18
-    - 19
-    - 61
-    - 62
-    - 70
-    - 71
+    - r2c1
+    - r2c2
+    - r3c1
+    - r3c2
+    - r7c8
+    - r7c9
+    - r8c8
+    - r8c9
 format: open-rules
 title: Parrot in the Fog
 setter: Meggen033
@@ -111,6 +111,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 333fad5c18f64ffbd003ca5b4f7c74d8
 ---
 
 ```rules
@@ -145,13 +146,13 @@ cage-1: cage r7c8-r7c9 total 6 connected true
 cage-2: cage r3c1-r3c2 total 5 connected true
 cage-3: cage r2c7-r2c8 total 6 connected true
 cage-4: cage r7c2-r8c2-r9c2 total 15 connected true
-kropki-1: kropki r1c2-r2c2 colour "white"
-kropki-2: kropki r1c1-r1c2 colour "white"
-kropki-3: kropki r1c5-r1c6 colour "white"
-kropki-4: kropki r1c8-r2c8 colour "white"
-kropki-5: kropki r2c2-r3c2 colour "black"
-kropki-6: kropki r7c6-r7c7 colour "black"
-kropki-7: kropki r4c5-r4c6 colour "black"
+kropki-1: kropki r1c2-r2c2 white
+kropki-2: kropki r1c1-r1c2 white
+kropki-3: kropki r1c5-r1c6 white
+kropki-4: kropki r1c8-r2c8 white
+kropki-5: kropki r2c2-r3c2 black
+kropki-6: kropki r7c6-r7c7 black
+kropki-7: kropki r4c5-r4c6 black
 palindrome r2c1-r2c2-r2c3-r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r2c7-r2c6-r2c5-r3c5-r4c5-r3c6-r3c7-r3c8-r3c9-r4c8-r5c7-r6c6-r6c5-r5c4-r5c3-r4c3-r4c2-r5c2-r6c2-r6c1-r7c2-r8c3-r9c3-r8c4-r7c5-r8c6-r7c6-r7c7-r7c8-r8c8-r7c9
 ```
 

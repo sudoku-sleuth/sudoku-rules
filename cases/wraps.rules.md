@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/wraps
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=5 r4c1=1 r6c9=9 r9c4=5
+exported: 3e516ebc1f27906b4e9188113ac15949
 ---
 
 ```rules

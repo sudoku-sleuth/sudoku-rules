@@ -8,28 +8,29 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r1c9=5
+exported: 7e2157c96abf7962fa61497d86e89aee
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c8-r7c8 colour "white"
-kropki-2: kropki r7c7-r7c8 colour "white"
-kropki-3: kropki r7c3-r8c3 colour "white"
-kropki-4: kropki r5c2-r5c3 colour "white"
-kropki-5: kropki r2c3-r3c3 colour "white"
-kropki-6: kropki r3c2-r3c3 colour "white"
-kropki-7: kropki r2c8-r3c8 colour "white"
-kropki-8: kropki r6c8-r6c9 colour "white"
-kropki-9: kropki r1c1-r1c2 colour "white"
-kropki-10: kropki r8c4-r9c4 colour "white"
-kropki-11: kropki r1c4-r1c5 colour "white"
-kropki-12: kropki r2c6-r2c7 colour "white"
-kropki-13: kropki r4c2-r4c3 colour "white"
-kropki-14: kropki r5c9-r6c9 colour "white"
-kropki-15: kropki r3c5-r4c5 colour "white"
-kropki-16: kropki r8c5-r8c6 colour "black"
-kropki-17: kropki r8c1-r8c2 colour "black"
-kropki-18: kropki r2c8-r2c9 colour "black"
+kropki-1: kropki r6c8-r7c8 white
+kropki-2: kropki r7c7-r7c8 white
+kropki-3: kropki r7c3-r8c3 white
+kropki-4: kropki r5c2-r5c3 white
+kropki-5: kropki r2c3-r3c3 white
+kropki-6: kropki r3c2-r3c3 white
+kropki-7: kropki r2c8-r3c8 white
+kropki-8: kropki r6c8-r6c9 white
+kropki-9: kropki r1c1-r1c2 white
+kropki-10: kropki r8c4-r9c4 white
+kropki-11: kropki r1c4-r1c5 white
+kropki-12: kropki r2c6-r2c7 white
+kropki-13: kropki r4c2-r4c3 white
+kropki-14: kropki r5c9-r6c9 white
+kropki-15: kropki r3c5-r4c5 white
+kropki-16: kropki r8c5-r8c6 black
+kropki-17: kropki r8c1-r8c2 black
+kropki-18: kropki r2c8-r2c9 black
 ```
 
 ```drawing

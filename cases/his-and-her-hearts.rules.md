@@ -8,29 +8,30 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: 5......6............4..9...1.......9...2....1........7....6.....28.............7.
+exported: c45c8509601f7f339b5ef6a604aa88e0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c5-r2c5 colour "white"
-kropki-2: kropki r8c7-r9c7 colour "white"
-kropki-3: kropki r7c9-r8c9 colour "white"
-kropki-4: kropki r7c1-r8c1 colour "white"
-kropki-5: kropki r9c2-r9c3 colour "white"
-kropki-6: kropki r7c7-r7c8 colour "white"
-kropki-7: kropki r5c8-r6c8 colour "white"
-kropki-8: kropki r5c7-r6c7 colour "white"
-kropki-9: kropki r2c8-r2c9 colour "white"
-kropki-10: kropki r3c4-r3c5 colour "white"
-kropki-11: kropki r2c5-r3c5 colour "white"
-kropki-12: kropki r1c6-r2c6 colour "white"
-kropki-13: kropki r5c3-r6c3 colour "white"
-kropki-14: kropki r5c1-r5c2 colour "white"
-kropki-15: kropki r2c2-r2c3 colour "white"
-kropki-16: kropki r2c1-r3c1 colour "white"
-kropki-17: kropki r4c6-r5c6 colour "white"
-kropki-18: kropki r4c4-r4c5 colour "white"
-kropki-19: kropki r6c4-r6c5 colour "white"
+kropki-1: kropki r1c5-r2c5 white
+kropki-2: kropki r8c7-r9c7 white
+kropki-3: kropki r7c9-r8c9 white
+kropki-4: kropki r7c1-r8c1 white
+kropki-5: kropki r9c2-r9c3 white
+kropki-6: kropki r7c7-r7c8 white
+kropki-7: kropki r5c8-r6c8 white
+kropki-8: kropki r5c7-r6c7 white
+kropki-9: kropki r2c8-r2c9 white
+kropki-10: kropki r3c4-r3c5 white
+kropki-11: kropki r2c5-r3c5 white
+kropki-12: kropki r1c6-r2c6 white
+kropki-13: kropki r5c3-r6c3 white
+kropki-14: kropki r5c1-r5c2 white
+kropki-15: kropki r2c2-r2c3 white
+kropki-16: kropki r2c1-r3c1 white
+kropki-17: kropki r4c6-r5c6 white
+kropki-18: kropki r4c4-r4c5 white
+kropki-19: kropki r6c4-r6c5 white
 negative relations [{"op":"difference","value":1}] except [["r1c5","r2c5"],["r8c7","r9c7"],["r7c9","r8c9"],["r7c1","r8c1"],["r9c2","r9c3"],["r7c7","r7c8"],["r5c8","r6c8"],["r5c7","r6c7"],["r2c8","r2c9"],["r3c4","r3c5"],["r2c5","r3c5"],["r1c6","r2c6"],["r5c3","r6c3"],["r5c1","r5c2"],["r2c2","r2c3"],["r2c1","r3c1"],["r4c6","r5c6"],["r4c4","r4c5"],["r6c4","r6c5"]]
 ```
 

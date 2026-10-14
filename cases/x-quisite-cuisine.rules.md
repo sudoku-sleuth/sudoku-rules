@@ -6,6 +6,7 @@ source: https://tinyurl.com/49f5m85r
 case: https://sudoku-sleuth.com/cases/x-quisite-cuisine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8f9e9343a16bef79f5131435651218f5
 ---
 
 ```rules

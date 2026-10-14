@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/home-at-last
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 439940b15b477306dc666ef46368581b
 ---
 
 ```rules

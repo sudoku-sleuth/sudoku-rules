@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/arrow-mosaic
 case: https://sudoku-sleuth.com/cases/arrow-mosaic
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c8b2664da8b069e114575291af034b3c
 ---
 
 ```rules

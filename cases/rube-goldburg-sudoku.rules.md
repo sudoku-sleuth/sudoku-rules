@@ -6,6 +6,7 @@ source: https://sudokupad.app/an5rvkj66j
 case: https://sudoku-sleuth.com/cases/rube-goldburg-sudoku
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2f0d5a7c309a7f10d914fbff8fbbb4ce
 ---
 
 ```rules
@@ -24,16 +25,16 @@ cage-11: cage r8c3-r9c3 total 4 connected true
 cage-12: cage r9c7-r9c8-r9c9 total 15 connected true
 cage-13: cage r7c4-r7c5 total 12 connected true
 cage-14: cage r6c1-r7c1 total 10 connected true
-kropki-1: kropki r7c3-r8c3 colour "white"
-kropki-2: kropki r3c8-r3c9 colour "white"
-kropki-3: kropki r2c8-r3c8 colour "white"
-kropki-4: kropki r1c9-r2c9 colour "white"
-kropki-5: kropki r4c1-r4c2 colour "white"
-kropki-6: kropki r2c4-r3c4 colour "black"
-kropki-7: kropki r5c1-r5c2 colour "black"
-kropki-8: kropki r6c6-r7c6 colour "black"
-kropki-9: kropki r7c8-r8c8 colour "black"
-kropki-10: kropki r8c1-r8c2 colour "black"
+kropki-1: kropki r7c3-r8c3 white
+kropki-2: kropki r3c8-r3c9 white
+kropki-3: kropki r2c8-r3c8 white
+kropki-4: kropki r1c9-r2c9 white
+kropki-5: kropki r4c1-r4c2 white
+kropki-6: kropki r2c4-r3c4 black
+kropki-7: kropki r5c1-r5c2 black
+kropki-8: kropki r6c6-r7c6 black
+kropki-9: kropki r7c8-r8c8 black
+kropki-10: kropki r8c1-r8c2 black
 unique-1: unique r2c3-r2c4-r2c5-r3c3-r3c4-r3c5-r4c3-r4c4-r4c5
 unique-2: unique r6c5-r6c6-r6c7-r7c5-r7c6-r7c7-r8c5-r8c6-r8c7
 ```

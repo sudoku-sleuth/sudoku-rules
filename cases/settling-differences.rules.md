@@ -6,6 +6,7 @@ source: https://sudokupad.app/tbn85ql5jj
 case: https://sudoku-sleuth.com/cases/settling-differences
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 66f26baa65c88c3b8525b7a3b04aa31a
 ---
 
 ```rules

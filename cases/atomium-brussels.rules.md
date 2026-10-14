@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/atomium-brussels
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 78051152882d7bb4b821760afa167096
 ---
 
 ```rules
@@ -30,8 +31,8 @@ thermo-13: thermo r8c2-r8c3-r7c3
 thermo-14: thermo r7c2-r7c1-r8c1
 thermo-15: thermo r1c9-r2c9-r2c8
 thermo-16: thermo r1c1-r2c1-r2c2
-kropki-1: kropki r5c9-r6c9 colour "white"
-kropki-2: kropki r1c4-r2c4 colour "white"
+kropki-1: kropki r5c9-r6c9 white
+kropki-2: kropki r1c4-r2c4 white
 arrow-1: arrow r9c7-r9c8-r9c9 bulb ["r9c5","r9c6"]
 arrow-2: arrow r8c9-r7c9 bulb ["r8c8"]
 arrow-3: arrow r7c7-r8c7 bulb ["r7c8"]

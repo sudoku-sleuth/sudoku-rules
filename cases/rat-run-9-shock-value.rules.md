@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/rat-run-9-shock-value
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d303560e0f57a54b375acc58fd9e5559
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c7-r9c8 colour "black"
-kropki-2: kropki r4c9-r5c9 colour "black"
-kropki-3: kropki r1c6-r1c7 colour "black"
-kropki-4: kropki r1c7-r1c8 colour "black"
-kropki-5: kropki r2c3-r3c3 colour "black"
-kropki-6: kropki r7c3-r8c3 colour "black"
-kropki-7: kropki r6c5-r7c5 colour "black"
+kropki-1: kropki r9c7-r9c8 black
+kropki-2: kropki r4c9-r5c9 black
+kropki-3: kropki r1c6-r1c7 black
+kropki-4: kropki r1c7-r1c8 black
+kropki-5: kropki r2c3-r3c3 black
+kropki-6: kropki r7c3-r8c3 black
+kropki-7: kropki r6c5-r7c5 black
 ```
 
 ```drawing

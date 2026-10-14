@@ -6,6 +6,7 @@ source: https://sudokupad.app/msikbo6ibc
 case: https://sudoku-sleuth.com/cases/look-both-ways
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0c62105797a17a4a240ee0acfaa939dd
 ---
 
 ```rules

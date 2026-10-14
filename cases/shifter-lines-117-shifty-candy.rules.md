@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/shifter-lines-117-shifty-candy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e7de8c3eb04a97d76321c3759df13ddd
 ---
 
 ```rules

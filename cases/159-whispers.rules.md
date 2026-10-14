@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/159-whispers
 case: https://sudoku-sleuth.com/cases/159-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f21d8b698b10de20595cf5fecce34f5a
 ---
 
 ```rules

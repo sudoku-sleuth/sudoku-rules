@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/point-of-decay
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c8=5 r3c3=7 r8c2=3 r9c7=1
+exported: 0d47c183688f0aa58ada4e9cc5e293df
 ---
 
 ```rules

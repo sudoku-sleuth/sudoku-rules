@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/many-happy-returns-timotab
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=5 r2c7=3 r4c1=1 r4c2=9 r5c3=7 r5c4=1 r8c4=5 r9c4=3
+exported: ab153f8262d298a935dc831dceb43b9e
 ---
 
 ```rules

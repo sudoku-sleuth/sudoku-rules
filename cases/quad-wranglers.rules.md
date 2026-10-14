@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/quad-wranglers
 case: https://sudoku-sleuth.com/cases/quad-wranglers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 61fd7827fe860e69209dd133dcd29921
 ---
 
 ```rules

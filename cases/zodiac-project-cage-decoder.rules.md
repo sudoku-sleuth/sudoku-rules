@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/zodiac-project-cage-decoder
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3d87afb76c119bdb397974f03a7e5774
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/putting-on-the-knight-moves
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c4=5 r4c8=5 r5c5=4 r6c2=9 r8c6=9
+exported: 6d3b82defb8ee0a98125c24ff2c29987
 ---
 
 ```rules

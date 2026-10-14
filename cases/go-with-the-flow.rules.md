@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/go-with-the-flow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9184a8c0247bc836147dc3f950bccefc
 ---
 
 ```rules
@@ -21,7 +22,7 @@ cage-8: cage r8c3-r9c3 total 5 connected true
 cage-9: cage r1c9-r2c9 total 5 connected true
 cage-10: cage r3c7-r3c8 total 5 connected true
 cage-11: cage r2c6-r2c7 total 12 connected true
-kropki r5c5-r6c5 colour "white"
+kropki r5c5-r6c5 white
 whispers-1: whispers r3c9-r4c8-r5c9-r6c8-r7c9 gap 4
 whispers-2: whispers r6c6-r7c7-r8c8-r9c9 gap 4
 whispers-3: whispers r6c4-r7c3-r8c2-r9c1 gap 4

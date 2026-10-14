@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fraction-party
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4fddef2ef196136c21b3387d90e19b0c
 ---
 
 ```rules

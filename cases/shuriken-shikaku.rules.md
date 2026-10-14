@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/shuriken-shikaku
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 54ce5b3f9b07f8f59fbfc9fa260fba31
 ---
 
 ```rules

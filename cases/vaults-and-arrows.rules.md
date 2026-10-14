@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vaults-and-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=1 r4c6=4 r6c4=3 r6c6=2
+exported: 739b36eb57c44c35e869bae03fff7c42
 ---
 
 ```rules

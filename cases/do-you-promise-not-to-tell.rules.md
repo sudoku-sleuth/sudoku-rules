@@ -6,6 +6,7 @@ source: https://sudokupad.app/r7lj4q0vtr
 case: https://sudoku-sleuth.com/cases/do-you-promise-not-to-tell
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 01e1c8e5342a7e8ca3515b7f0fa6b254
 ---
 
 ```rules

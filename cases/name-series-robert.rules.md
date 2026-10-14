@@ -6,6 +6,7 @@ source: https://tinyurl.com/nameseriesrobertsudoku
 case: https://sudoku-sleuth.com/cases/name-series-robert
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2e11a2a3615058ef0da16df21ad99e5f
 ---
 
 ```rules

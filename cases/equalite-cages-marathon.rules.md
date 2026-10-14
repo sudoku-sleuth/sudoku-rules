@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 4ddacd3fa05edd03cef46e6df813af24
 ---
 
 ```rules
@@ -80,7 +81,7 @@ equality-cage-3: equality-cage r4c4-r4c5-r4c6-r5c5
 equality-cage-4: equality-cage r5c2-r5c3
 equality-cage-5: equality-cage r3c3-r4c3
 equality-cage-6: equality-cage r3c1-r4c1
-kropki r4c1-r4c2 colour "black"
+kropki r4c1-r4c2 black
 zipper-1: zipper r3c1-r3c2-r2c2-r3c3-r4c3
 zipper-2: zipper r2c4-r3c4-r3c5
 zipper-3: zipper r4c5-r5c5-r4c6

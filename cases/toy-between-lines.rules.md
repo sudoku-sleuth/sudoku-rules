@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 46
-    - 47
-    - 55
-    - 56
+    - r6c2
+    - r6c3
+    - r7c2
+    - r7c3
 format: open-rules
 title: Toy Between Lines
 setter: Sandra & Nala
@@ -13,21 +13,22 @@ case: https://sudoku-sleuth.com/cases/toy-between-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e5d0aa0884a0043b31d5b475c2e6b724
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r6c3 colour "white"
-kropki-2: kropki r7c4-r7c5 colour "white"
-kropki-3: kropki r8c1-r8c2 colour "white"
-kropki-4: kropki r8c1-r9c1 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "white"
-kropki-6: kropki r1c2-r2c2 colour "white"
-kropki-7: kropki r2c6-r2c7 colour "white"
-kropki-8: kropki r7c2-r7c3 colour "black"
-kropki-9: kropki r7c1-r7c2 colour "black"
-kropki-10: kropki r8c4-r9c4 colour "black"
-kropki-11: kropki r5c8-r6c8 colour "black"
+kropki-1: kropki r5c3-r6c3 white
+kropki-2: kropki r7c4-r7c5 white
+kropki-3: kropki r8c1-r8c2 white
+kropki-4: kropki r8c1-r9c1 white
+kropki-5: kropki r3c4-r3c5 white
+kropki-6: kropki r1c2-r2c2 white
+kropki-7: kropki r2c6-r2c7 white
+kropki-8: kropki r7c2-r7c3 black
+kropki-9: kropki r7c1-r7c2 black
+kropki-10: kropki r8c4-r9c4 black
+kropki-11: kropki r5c8-r6c8 black
 between-1: between r2c7 ends ["r1c6","r2c8"]
 between-2: between r4c4-r3c3-r3c2-r4c2 ends ["r5c3","r5c1"]
 between-3: between r5c2-r6c3-r6c4 ends ["r4c3","r7c5"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/wingnuts
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=3
+exported: 5c471e0a0c88797c28fa43c510fae670
 ---
 
 ```rules

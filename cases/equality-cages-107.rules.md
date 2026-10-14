@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/equality-cages-107
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3b5a01c2186d9f280029b9956c5f0ff3
 ---
 
 ```rules

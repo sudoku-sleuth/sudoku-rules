@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/reverse-multiplication-table
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 891ccb0ed5c3e1dc87e4addd094bde75
 ---
 
 ```rules
@@ -38,8 +39,8 @@ cage-24: cage r7c6-r8c6-r9c6 connected true
 cage-25: cage r7c7-r7c8-r8c8 connected true
 cage-26: cage r8c7-r9c7-r9c8 connected true
 cage-27: cage r7c9-r8c9-r9c9 connected true
-kropki-1: kropki r3c7-r3c8 colour "white"
-kropki-2: kropki r7c1-r7c2 colour "white"
+kropki-1: kropki r3c7-r3c8 white
+kropki-2: kropki r7c1-r7c2 white
 ```
 
 ```drawing

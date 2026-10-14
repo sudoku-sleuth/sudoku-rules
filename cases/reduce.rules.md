@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/reduce
 case: https://sudoku-sleuth.com/cases/reduce
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: db2c47a957c592e9433f0d449304594f
 ---
 
 ```rules

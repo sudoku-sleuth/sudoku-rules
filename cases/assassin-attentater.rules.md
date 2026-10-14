@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/assassin-attentater
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2bd363947b281406dd374cf182c4ea12
 ---
 
 ```rules

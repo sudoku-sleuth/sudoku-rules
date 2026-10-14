@@ -6,6 +6,7 @@ source: https://sudokupad.app/k411ul6t1b
 case: https://sudoku-sleuth.com/cases/return-to-index
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fe9233d7ad989e5e9fa210d452d27f75
 ---
 
 ```rules

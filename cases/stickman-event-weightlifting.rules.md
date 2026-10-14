@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/stickman-event-weightlifting
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9f1e054e1cc448e91e7dae865d3e7ca3
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-thermo
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 43db7c34b2bd863d1fb425417bd87f29
 ---
 
 ```rules

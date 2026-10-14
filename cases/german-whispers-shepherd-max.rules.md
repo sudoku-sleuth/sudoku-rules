@@ -6,6 +6,7 @@ source: https://sudokupad.app/4j9eqbx1k3
 case: https://sudoku-sleuth.com/cases/german-whispers-shepherd-max
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 389c6d714475dd810d299ac4e045f321
 ---
 
 ```rules
@@ -22,8 +23,8 @@ cage-9: cage r4c7-r4c8 total 11 connected true
 cage-10: cage r7c1-r7c2 total 5 connected true
 cage-11: cage r1c2-r2c2 total 14 connected true
 anti-king
-kropki-1: kropki r6c4-r6c5 colour "black"
-kropki-2: kropki r6c5-r6c6 colour "black"
+kropki-1: kropki r6c4-r6c5 black
+kropki-2: kropki r6c5-r6c6 black
 whispers-1: whispers r9c2-r8c2 gap 5
 whispers-2: whispers r8c3-r7c2 gap 5
 whispers-3: whispers r8c8-r7c8-r6c8-r5c8-r4c7-r3c6-r3c5 gap 5

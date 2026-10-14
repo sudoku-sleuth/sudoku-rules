@@ -6,6 +6,7 @@ source: https://sudokupad.app/6l12354mb8
 case: https://sudoku-sleuth.com/cases/deep-dive-twenty-five
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c495e5871026d4f7d28e610f71a54b44
 ---
 
 ```rules

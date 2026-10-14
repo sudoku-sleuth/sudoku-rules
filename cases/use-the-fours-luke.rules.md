@@ -9,21 +9,22 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: e248412b9ae230e2598e75d17a1d2935
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r2c1 colour "white"
-kropki-2: kropki r1c3-r1c4 colour "white"
-kropki-3: kropki r3c4-r3c5 colour "white"
-kropki-4: kropki r2c9-r3c9 colour "white"
-kropki-5: kropki r6c8-r6c9 colour "white"
-kropki-6: kropki r7c9-r8c9 colour "white"
-kropki-7: kropki r7c7-r7c8 colour "white"
-kropki-8: kropki r5c5-r5c6 colour "white"
-kropki-9: kropki r6c3-r6c4 colour "white"
-kropki-10: kropki r7c5-r8c5 colour "white"
-kropki-11: kropki r9c3-r9c4 colour "white"
+kropki-1: kropki r1c1-r2c1 white
+kropki-2: kropki r1c3-r1c4 white
+kropki-3: kropki r3c4-r3c5 white
+kropki-4: kropki r2c9-r3c9 white
+kropki-5: kropki r6c8-r6c9 white
+kropki-6: kropki r7c9-r8c9 white
+kropki-7: kropki r7c7-r7c8 white
+kropki-8: kropki r5c5-r5c6 white
+kropki-9: kropki r6c3-r6c4 white
+kropki-10: kropki r7c5-r8c5 white
+kropki-11: kropki r9c3-r9c4 white
 whispers-1: whispers r6c1-r6c2 gap 4
 whispers-2: whispers r6c2-r6c3 gap 4
 whispers-3: whispers r6c2-r7c1-r8c1 gap 4

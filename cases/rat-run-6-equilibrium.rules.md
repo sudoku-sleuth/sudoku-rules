@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/rat-run-6-equilibrium
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6900157d48324142c2047a3a3074cadb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c9-r7c9 colour "black"
-kropki-2: kropki r7c1-r7c2 colour "black"
-kropki-3: kropki r5c3-r6c3 colour "black"
-kropki-4: kropki r8c5-r8c6 colour "black"
-kropki-5: kropki r5c5-r6c5 colour "black"
-kropki-6: kropki r4c9-r5c9 colour "black"
-kropki-7: kropki r8c4-r9c4 colour "black"
+kropki-1: kropki r6c9-r7c9 black
+kropki-2: kropki r7c1-r7c2 black
+kropki-3: kropki r5c3-r6c3 black
+kropki-4: kropki r8c5-r8c6 black
+kropki-5: kropki r5c5-r6c5 black
+kropki-6: kropki r4c9-r5c9 black
+kropki-7: kropki r8c4-r9c4 black
 ```
 
 ```drawing

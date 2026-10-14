@@ -6,6 +6,7 @@ source: https://sudokupad.app/zo0zkt27ax
 case: https://sudoku-sleuth.com/cases/bars-in-the-windows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2a5bf0def949743a7289da2d732400d1
 ---
 
 ```rules

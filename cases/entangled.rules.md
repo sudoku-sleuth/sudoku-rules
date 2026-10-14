@@ -6,17 +6,18 @@ source: https://sudokupad.app/1fznf333xr
 case: https://sudoku-sleuth.com/cases/entangled
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d4826b93bd5290db6b98e1b3f22d3013
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c1-r9c1 colour "white"
-kropki-2: kropki r7c9-r8c9 colour "white"
-kropki-3: kropki r7c8-r8c8 colour "white"
-kropki-4: kropki r5c6-r5c7 colour "white"
-kropki-5: kropki r1c2-r2c2 colour "black"
-kropki-6: kropki r2c8-r3c8 colour "black"
-kropki-7: kropki r7c2-r8c2 colour "black"
+kropki-1: kropki r8c1-r9c1 white
+kropki-2: kropki r7c9-r8c9 white
+kropki-3: kropki r7c8-r8c8 white
+kropki-4: kropki r5c6-r5c7 white
+kropki-5: kropki r1c2-r2c2 black
+kropki-6: kropki r2c8-r3c8 black
+kropki-7: kropki r7c2-r8c2 black
 arrow-1: arrow r1c2-r2c2-r3c2 bulb ["r1c1"]
 arrow-2: arrow r1c8-r2c8-r3c8 bulb ["r1c9"]
 arrow-3: arrow r9c1-r8c1-r7c1 bulb ["r9c2"]

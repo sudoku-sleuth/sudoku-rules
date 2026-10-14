@@ -6,6 +6,7 @@ source: https://sudokupad.app/bhkz750g2x
 case: https://sudoku-sleuth.com/cases/love-light-and-truth-4
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1a22d67bb79f99333459bb8fb9008dab
 ---
 
 ```rules
@@ -17,16 +18,16 @@ cage-4: cage r5c8-r6c7-r6c8-r7c7 connected true
 cage-5: cage r1c4-r2c4-r3c4-r4c1-r4c2-r4c3-r4c4 total 31 connected true
 cage-6: cage r5c1-r5c2-r5c3 total 19 connected true
 cage-7: cage r2c1-r3c1 total 10 connected true
-kropki-1: kropki r8c5-r8c6 colour "black"
-kropki-2: kropki r8c6-r9c6 colour "black"
-kropki-3: kropki r7c3-r8c3 colour "black"
-kropki-4: kropki r4c3-r4c4 colour "black"
-kropki-5: kropki r5c8-r5c9 colour "black"
-kropki-6: kropki r2c4-r3c4 colour "black"
-kropki-7: kropki r1c6-r1c7 colour "black"
-kropki-8: kropki r1c8-r1c9 colour "black"
-kropki-9: kropki r9c5-r9c6 colour "black"
-kropki-10: kropki r1c3-r2c3 colour "white"
+kropki-1: kropki r8c5-r8c6 black
+kropki-2: kropki r8c6-r9c6 black
+kropki-3: kropki r7c3-r8c3 black
+kropki-4: kropki r4c3-r4c4 black
+kropki-5: kropki r5c8-r5c9 black
+kropki-6: kropki r2c4-r3c4 black
+kropki-7: kropki r1c6-r1c7 black
+kropki-8: kropki r1c8-r1c9 black
+kropki-9: kropki r9c5-r9c6 black
+kropki-10: kropki r1c3-r2c3 white
 arrow-1: arrow r8c5-r9c6 bulb ["r7c4"]
 arrow-2: arrow r5c6-r4c6-r3c6 bulb ["r6c6"]
 arrow-3: arrow r3c8-r3c9-r2c9 bulb ["r3c7"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-spot
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r1c9=4 r9c1=3 r9c9=6
+exported: 6ca6f3d4ead102425bb465d58b9e79f7
 ---
 
 ```rules

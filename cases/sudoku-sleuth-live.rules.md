@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/sudoku-sleuth-live
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: acb7ffd93cfd835707ec9b74dec38d56
 ---
 
 ```rules
@@ -24,7 +25,7 @@ equality-cage-11: equality-cage r4c8-r5c8
 equality-cage-12: equality-cage r5c5-r5c6
 equality-cage-13: equality-cage r4c4-r4c5
 equality-cage-14: equality-cage r1c9-r2c9
-kropki r3c2-r3c3 colour "black"
+kropki r3c2-r3c3 black
 between-1: between r4c3-r4c2 ends ["r3c3","r3c2"]
 between-2: between r4c1-r5c1-r6c1 ends ["r3c2","r6c2"]
 between-3: between r7c2 ends ["r6c2","r8c2"]

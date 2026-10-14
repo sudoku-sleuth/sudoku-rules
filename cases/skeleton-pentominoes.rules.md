@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/skeleton-pentominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 16174126124a99c6538a116d2af8c443
 ---
 
 ```rules

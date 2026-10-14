@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/macaroni
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=3 r4c9=7 r6c1=1 r9c6=4
+exported: 4dadfaa0162aa483e75c78378a1363a3
 ---
 
 ```rules

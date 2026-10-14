@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oil-water-extenban
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e38a27bf8b16e7350a0d75f5753cae66
 ---
 
 ```rules

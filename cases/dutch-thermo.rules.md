@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dutch-thermo
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 388cff742192e1c3844f2e506c8e59bf
 ---
 
 ```rules

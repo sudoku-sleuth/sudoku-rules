@@ -1,221 +1,221 @@
 ---
 fog:
   initiallyLit:
-    - 64
-    - 65
-    - 74
-    - 81
-    - 82
-    - 83
-    - 84
-    - 85
-    - 86
-    - 87
-    - 88
-    - 89
-    - 90
-    - 91
-    - 92
-    - 93
-    - 94
-    - 95
-    - 96
-    - 97
-    - 98
+    - r8c2
+    - r8c3
+    - r9c3
+    - r10c1
+    - r10c2
+    - r10c3
+    - r10c4
+    - r10c5
+    - r10c6
+    - r10c7
+    - r10c8
+    - r10c9
+    - r11c1
+    - r11c2
+    - r11c3
+    - r11c4
+    - r11c5
+    - r11c6
+    - r11c7
+    - r11c8
+    - r11c9
   links:
     - trigger:
-        - 65
+        - r8c3
       lights:
-        - 33
-        - 35
-        - 42
-        - 43
-        - 44
-        - 51
-        - 53
+        - r4c7
+        - r4c9
+        - r5c7
+        - r5c8
+        - r5c9
+        - r6c7
+        - r6c9
     - trigger:
-        - 43
+        - r5c8
       lights:
-        - 38
-        - 47
-        - 56
+        - r5c3
+        - r6c3
+        - r7c3
     - trigger:
-        - 47
+        - r6c3
       lights:
-        - 19
-        - 27
-        - 28
-        - 29
-        - 36
-        - 45
-        - 46
-        - 54
-        - 55
-        - 63
-        - 72
-        - 73
+        - r3c2
+        - r4c1
+        - r4c2
+        - r4c3
+        - r5c1
+        - r6c1
+        - r6c2
+        - r7c1
+        - r7c2
+        - r8c1
+        - r9c1
+        - r9c2
     - trigger:
-        - 2
+        - r1c3
       lights:
-        - 2
+        - r1c3
     - trigger:
-        - 74
+        - r9c3
       lights:
-        - 32
-        - 40
-        - 41
-        - 48
-        - 49
-        - 57
-        - 59
-        - 66
-        - 67
-        - 68
-        - 75
-        - 76
-        - 77
+        - r4c6
+        - r5c5
+        - r5c6
+        - r6c4
+        - r6c5
+        - r7c4
+        - r7c6
+        - r8c4
+        - r8c5
+        - r8c6
+        - r9c4
+        - r9c5
+        - r9c6
     - trigger:
-        - 57
+        - r7c4
       lights:
-        - 60
-        - 69
+        - r7c7
+        - r8c7
     - trigger:
-        - 77
+        - r9c6
       lights:
-        - 61
-        - 62
-        - 70
-        - 71
-        - 80
+        - r7c8
+        - r7c9
+        - r8c8
+        - r8c9
+        - r9c9
     - trigger:
-        - 63
+        - r8c1
       lights:
-        - 78
-        - 79
+        - r9c7
+        - r9c8
     - trigger:
-        - 54
-        - 55
-        - 56
-        - 59
-        - 60
-        - 61
-        - 62
-        - 64
-        - 66
-        - 67
-        - 68
-        - 69
-        - 70
-        - 71
-        - 72
-        - 73
-        - 75
-        - 76
-        - 78
-        - 79
-        - 80
+        - r7c1
+        - r7c2
+        - r7c3
+        - r7c6
+        - r7c7
+        - r7c8
+        - r7c9
+        - r8c2
+        - r8c4
+        - r8c5
+        - r8c6
+        - r8c7
+        - r8c8
+        - r8c9
+        - r9c1
+        - r9c2
+        - r9c4
+        - r9c5
+        - r9c7
+        - r9c8
+        - r9c9
       lights:
-        - 30
-        - 39
+        - r4c4
+        - r5c4
     - trigger:
-        - 0
-        - 1
-        - 4
-        - 5
-        - 6
-        - 9
-        - 10
-        - 13
-        - 16
-        - 18
-        - 22
-        - 23
-        - 24
-        - 26
-        - 51
-        - 53
+        - r1c1
+        - r1c2
+        - r1c5
+        - r1c6
+        - r1c7
+        - r2c1
+        - r2c2
+        - r2c5
+        - r2c8
+        - r3c1
+        - r3c5
+        - r3c6
+        - r3c7
+        - r3c9
+        - r6c7
+        - r6c9
       lights:
-        - 7
-        - 8
+        - r1c8
+        - r1c9
     - trigger:
-        - 27
-        - 28
-        - 29
-        - 36
-        - 38
-        - 45
-        - 46
+        - r4c1
+        - r4c2
+        - r4c3
+        - r5c1
+        - r5c3
+        - r6c1
+        - r6c2
       lights:
-        - 0
-        - 1
-        - 9
-        - 10
-        - 11
-        - 18
-        - 20
+        - r1c1
+        - r1c2
+        - r2c1
+        - r2c2
+        - r2c3
+        - r3c1
+        - r3c3
     - trigger:
-        - 20
+        - r3c3
       lights:
-        - 16
-        - 17
-        - 26
-        - 6
-        - 24
+        - r2c8
+        - r2c9
+        - r3c9
+        - r1c7
+        - r3c7
     - trigger:
-        - 30
-        - 32
-        - 39
-        - 40
-        - 41
-        - 49
+        - r4c4
+        - r4c6
+        - r5c4
+        - r5c5
+        - r5c6
+        - r6c5
       lights:
-        - 3
-        - 4
-        - 5
-        - 12
-        - 13
-        - 22
-        - 23
+        - r1c4
+        - r1c5
+        - r1c6
+        - r2c4
+        - r2c5
+        - r3c5
+        - r3c6
     - trigger:
-        - 14
+        - r2c6
       lights:
-        - 14
+        - r2c6
     - trigger:
-        - 21
+        - r3c4
       lights:
-        - 21
+        - r3c4
     - trigger:
-        - 31
+        - r4c5
       lights:
-        - 31
+        - r4c5
     - trigger:
-        - 34
+        - r4c8
       lights:
-        - 34
+        - r4c8
     - trigger:
-        - 37
+        - r5c2
       lights:
-        - 37
+        - r5c2
     - trigger:
-        - 50
+        - r6c6
       lights:
-        - 50
+        - r6c6
     - trigger:
-        - 52
+        - r6c8
       lights:
-        - 52
+        - r6c8
     - trigger:
-        - 15
+        - r2c7
       lights:
-        - 15
+        - r2c7
     - trigger:
-        - 25
+        - r3c8
       lights:
-        - 25
+        - r3c8
     - trigger:
-        - 58
+        - r7c5
       lights:
-        - 58
+        - r7c5
 format: open-rules
 title: "RAT RUN 19: Brainwaves"
 setter: Marty Sears
@@ -319,6 +319,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f0d120c1f599df92e3c0b078d11ed946
 ---
 
 ```rules

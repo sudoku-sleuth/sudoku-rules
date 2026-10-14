@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hunting-high-and-low
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5f6cd3337fe030abea82273691f0a5b4
 ---
 
 ```rules

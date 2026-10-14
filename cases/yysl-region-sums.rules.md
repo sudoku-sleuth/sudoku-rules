@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-region-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 89d1fd5c16eb981c173e4501a9832b49
 ---
 
 ```rules

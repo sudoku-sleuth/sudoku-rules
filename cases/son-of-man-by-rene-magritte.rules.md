@@ -6,34 +6,35 @@ source: ""
 case: https://sudoku-sleuth.com/cases/son-of-man-by-rene-magritte
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6c232d5e764be5ff49f47c1bfad0dc0b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c6-r2c7 colour "white"
-kropki-2: kropki r2c7-r2c8 colour "white"
-kropki-3: kropki r4c9-r5c9 colour "white"
-kropki-4: kropki r6c8-r6c9 colour "white"
-kropki-5: kropki r7c8-r8c8 colour "white"
-kropki-6: kropki r8c8-r8c9 colour "white"
-kropki-7: kropki r8c9-r9c9 colour "white"
-kropki-8: kropki r9c7-r9c8 colour "white"
-kropki-9: kropki r7c7-r8c7 colour "white"
-kropki-10: kropki r7c3-r8c3 colour "white"
-kropki-11: kropki r6c3-r7c3 colour "white"
-kropki-12: kropki r6c1-r6c2 colour "white"
-kropki-13: kropki r4c2-r5c2 colour "white"
-kropki-14: kropki r3c2-r4c2 colour "white"
-kropki-15: kropki r3c3-r4c3 colour "white"
-kropki-16: kropki r6c4-r6c5 colour "white"
-kropki-17: kropki r6c5-r6c6 colour "white"
-kropki-18: kropki r4c7-r5c7 colour "white"
-kropki-19: kropki r3c7-r4c7 colour "white"
-kropki-20: kropki r6c7-r7c7 colour "black"
-kropki-21: kropki r8c5-r9c5 colour "black"
-kropki-22: kropki r9c1-r9c2 colour "black"
-kropki-23: kropki r5c2-r6c2 colour "black"
-kropki-24: kropki r1c5-r1c6 colour "black"
+kropki-1: kropki r2c6-r2c7 white
+kropki-2: kropki r2c7-r2c8 white
+kropki-3: kropki r4c9-r5c9 white
+kropki-4: kropki r6c8-r6c9 white
+kropki-5: kropki r7c8-r8c8 white
+kropki-6: kropki r8c8-r8c9 white
+kropki-7: kropki r8c9-r9c9 white
+kropki-8: kropki r9c7-r9c8 white
+kropki-9: kropki r7c7-r8c7 white
+kropki-10: kropki r7c3-r8c3 white
+kropki-11: kropki r6c3-r7c3 white
+kropki-12: kropki r6c1-r6c2 white
+kropki-13: kropki r4c2-r5c2 white
+kropki-14: kropki r3c2-r4c2 white
+kropki-15: kropki r3c3-r4c3 white
+kropki-16: kropki r6c4-r6c5 white
+kropki-17: kropki r6c5-r6c6 white
+kropki-18: kropki r4c7-r5c7 white
+kropki-19: kropki r3c7-r4c7 white
+kropki-20: kropki r6c7-r7c7 black
+kropki-21: kropki r8c5-r9c5 black
+kropki-22: kropki r9c1-r9c2 black
+kropki-23: kropki r5c2-r6c2 black
+kropki-24: kropki r1c5-r1c6 black
 whispers-1: whispers r3c4-r3c5-r3c6 gap 5
 whispers-2: whispers r4c6-r4c5 gap 5
 whispers-3: whispers r4c6-r5c6 gap 5

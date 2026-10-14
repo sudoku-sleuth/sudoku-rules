@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/stairway-to-seven-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c6=7
+exported: 8f70872f696e97d7813cb4f5016a7d72
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-129-checkmate-stalemate
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5d93e2d62854c17ea1a346097e0dcf40
 ---
 
 ```rules
@@ -18,8 +19,8 @@ equality-cage-4: equality-cage r8c7-r8c8-r9c8-r9c9
 equality-cage-5: equality-cage r8c4-r9c4
 equality-cage-6: equality-cage r4c8-r4c9-r5c7-r5c8
 equality-cage-7: equality-cage r6c1-r6c2
-kropki-1: kropki r2c2-r3c2 colour "black"
-kropki-2: kropki r8c7-r8c8 colour "black"
+kropki-1: kropki r2c2-r3c2 black
+kropki-2: kropki r8c7-r8c8 black
 ```
 
 ```drawing

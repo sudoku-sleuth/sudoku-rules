@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/circular-reasoning-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cee102c66f6475577e4cba287a94817e
 ---
 
 ```rules

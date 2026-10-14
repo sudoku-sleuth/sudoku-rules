@@ -6,6 +6,7 @@ source: https://tinyurl.com/bp8yh8n7
 case: https://sudoku-sleuth.com/cases/secret-ingredients
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b0b658dd60fb216bb1262ac35c5d1048
 ---
 
 ```rules

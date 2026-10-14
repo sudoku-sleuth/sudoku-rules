@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/little-double-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c7=5 r6c3=3
+exported: f2dc1051369ebdbc4ef8049b2279a9bd
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r3c2 colour "black"
-kropki-2: kropki r1c2-r1c3 colour "black"
-kropki-3: kropki r1c7-r1c8 colour "black"
-kropki-4: kropki r3c8-r3c9 colour "black"
-kropki-5: kropki r9c8-r9c9 colour "black"
-kropki-6: kropki r8c8-r8c9 colour "black"
-kropki-7: kropki r7c1-r7c2 colour "black"
-kropki-8: kropki r8c1-r8c2 colour "black"
-kropki-9: kropki r4c4-r4c5 colour "black"
-kropki-10: kropki r5c4-r6c4 colour "black"
+kropki-1: kropki r3c1-r3c2 black
+kropki-2: kropki r1c2-r1c3 black
+kropki-3: kropki r1c7-r1c8 black
+kropki-4: kropki r3c8-r3c9 black
+kropki-5: kropki r9c8-r9c9 black
+kropki-6: kropki r8c8-r8c9 black
+kropki-7: kropki r7c1-r7c2 black
+kropki-8: kropki r8c1-r8c2 black
+kropki-9: kropki r4c4-r4c5 black
+kropki-10: kropki r5c4-r6c4 black
 little-killer-1: little-killer r7c9-r8c8-r9c7 sum 10
 little-killer-2: little-killer r8c9-r9c8 sum 10
 little-killer-3: little-killer r3c1-r2c2-r1c3 sum 8

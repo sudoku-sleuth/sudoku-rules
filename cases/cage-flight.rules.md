@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cage-flight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=2 r1c4=4 r1c6=6 r1c8=8 r7c4=8 r7c6=1 r9c3=1 r9c7=8
+exported: a90d32828af5503a4eb63647c3acf733
 ---
 
 ```rules

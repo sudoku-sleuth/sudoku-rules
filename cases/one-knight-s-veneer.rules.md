@@ -6,6 +6,7 @@ source: https://sudokupad.app/znv0823uo7
 case: https://sudoku-sleuth.com/cases/one-knight-s-veneer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d86c1e7719fc1bb5c19af884647f9b34
 ---
 
 ```rules

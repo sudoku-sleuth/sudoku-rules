@@ -6,20 +6,21 @@ source: ""
 case: https://sudoku-sleuth.com/cases/centre-diamond
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 839bd041b355abfdb3dad15acca91aed
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "main"
-kropki-1: kropki r8c3-r9c3 colour "white"
-kropki-2: kropki r7c8-r8c8 colour "white"
-kropki-3: kropki r1c8-r2c8 colour "white"
-kropki-4: kropki r3c7-r3c8 colour "black"
-kropki-5: kropki r3c8-r3c9 colour "black"
-kropki-6: kropki r3c6-r3c7 colour "black"
-kropki-7: kropki r6c3-r7c3 colour "black"
-kropki-8: kropki r7c3-r8c3 colour "black"
-kropki-9: kropki r6c8-r6c9 colour "black"
+kropki-1: kropki r8c3-r9c3 white
+kropki-2: kropki r7c8-r8c8 white
+kropki-3: kropki r1c8-r2c8 white
+kropki-4: kropki r3c7-r3c8 black
+kropki-5: kropki r3c8-r3c9 black
+kropki-6: kropki r3c6-r3c7 black
+kropki-7: kropki r6c3-r7c3 black
+kropki-8: kropki r7c3-r8c3 black
+kropki-9: kropki r6c8-r6c9 black
 whispers-1: whispers r4c5-r5c5-r6c5 gap 5
 whispers-2: whispers r4c3-r4c4-r3c4 gap 5
 whispers-3: whispers r3c4-r2c5 gap 5

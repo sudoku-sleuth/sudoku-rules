@@ -6,19 +6,20 @@ source: https://sudokupad.app/1uv7hh848p
 case: https://sudoku-sleuth.com/cases/abennr
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2d01572e2b280043623b8ac680adea86
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c5-r6c5 colour "black"
-kropki-2: kropki r6c3-r7c3 colour "white"
-kropki-3: kropki r7c6-r7c7 colour "white"
-kropki-4: kropki r1c8-r2c8 colour "white"
-kropki-5: kropki r2c5-r3c5 colour "white"
-kropki-6: kropki r4c4-r4c5 colour "white"
-kropki-7: kropki r1c2-r2c2 colour "white"
-kropki-8: kropki r5c2-r6c2 colour "white"
-kropki-9: kropki r8c2-r9c2 colour "white"
+kropki-1: kropki r5c5-r6c5 black
+kropki-2: kropki r6c3-r7c3 white
+kropki-3: kropki r7c6-r7c7 white
+kropki-4: kropki r1c8-r2c8 white
+kropki-5: kropki r2c5-r3c5 white
+kropki-6: kropki r4c4-r4c5 white
+kropki-7: kropki r1c2-r2c2 white
+kropki-8: kropki r5c2-r6c2 white
+kropki-9: kropki r8c2-r9c2 white
 parity-cells-1: parity-cells r5c2-r5c8-r6c3-r6c7 parity "odd"
 parity-cells-2: parity-cells r2c2-r2c8-r1c9-r3c3-r8c2-r9c1-r7c7-r8c8 parity "even"
 line-choice-1: line-choice r2c1-r1c1-r1c2-r1c3 kinds ["renban","nabner"] min 1 max 2

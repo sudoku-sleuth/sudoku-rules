@@ -6,28 +6,29 @@ source: https://sudokupad.app/i1p05irh8f
 case: https://sudoku-sleuth.com/cases/crystal-ball-speed-run
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7a838436e28f29c9172796784006ac8d
 ---
 
 ```rules
 sudoku 9x9
 cage r8c9-r9c8-r9c9 total 12 connected true
-kropki-1: kropki r6c3-r7c3 colour "white"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r4c3-r5c3 colour "white"
-kropki-4: kropki r3c3-r3c4 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "white"
-kropki-6: kropki r3c5-r3c6 colour "white"
-kropki-7: kropki r3c7-r4c7 colour "white"
-kropki-8: kropki r4c7-r5c7 colour "white"
-kropki-9: kropki r5c7-r6c7 colour "white"
-kropki-10: kropki r7c6-r7c7 colour "white"
-kropki-11: kropki r7c5-r7c6 colour "white"
-kropki-12: kropki r7c4-r7c5 colour "white"
-kropki-13: kropki r9c8-r9c9 colour "white"
-kropki-14: kropki r8c9-r9c9 colour "white"
-kropki-15: kropki r7c6-r8c6 colour "black"
-kropki-16: kropki r6c2-r6c3 colour "black"
-kropki-17: kropki r2c4-r3c4 colour "black"
+kropki-1: kropki r6c3-r7c3 white
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r4c3-r5c3 white
+kropki-4: kropki r3c3-r3c4 white
+kropki-5: kropki r3c4-r3c5 white
+kropki-6: kropki r3c5-r3c6 white
+kropki-7: kropki r3c7-r4c7 white
+kropki-8: kropki r4c7-r5c7 white
+kropki-9: kropki r5c7-r6c7 white
+kropki-10: kropki r7c6-r7c7 white
+kropki-11: kropki r7c5-r7c6 white
+kropki-12: kropki r7c4-r7c5 white
+kropki-13: kropki r9c8-r9c9 white
+kropki-14: kropki r8c9-r9c9 white
+kropki-15: kropki r7c6-r8c6 black
+kropki-16: kropki r6c2-r6c3 black
+kropki-17: kropki r2c4-r3c4 black
 arrow-1: arrow r7c7-r8c6 bulb ["r6c8"]
 arrow-2: arrow r7c3-r6c2 bulb ["r8c4"]
 arrow-3: arrow r3c3-r2c4 bulb ["r4c2"]

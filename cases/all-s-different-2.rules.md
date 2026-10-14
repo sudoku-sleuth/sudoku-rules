@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/all-s-different-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4f1f2e1d134c4825060ddb687055195a
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/e4qeipgtdu
 case: https://sudoku-sleuth.com/cases/just-passing-through
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 46a63292732972d8be820203e7b3c614
 ---
 
 ```rules

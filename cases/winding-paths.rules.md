@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/winding-paths
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=5 r5c2=6 r5c7=8 r8c9=2 r9c8=3
+exported: 02f22fabe24a0bcd34387cbed786076d
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "main"
 pair r1c8-r1c9 ratio 3
-kropki r6c2-r6c3 colour "black"
+kropki r6c2-r6c3 black
 renban-1: renban r3c1-r2c1-r1c1-r1c2-r1c3
 renban-2: renban r6c1-r5c1-r4c1-r3c2-r2c3-r1c4-r1c5-r1c6
 renban-3: renban r6c4-r5c4-r4c4-r4c5-r4c6

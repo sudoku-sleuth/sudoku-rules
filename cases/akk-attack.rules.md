@@ -6,6 +6,7 @@ source: https://sudokupad.app/2cv739x5zh
 case: https://sudoku-sleuth.com/cases/akk-attack
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c67d3739bf8b80f57b0c34dda584fe7c
 ---
 
 ```rules

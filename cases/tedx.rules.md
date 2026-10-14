@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/tedx
 case: https://sudoku-sleuth.com/cases/tedx
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f7491e80db7f0bbf2ac1f12881f3e88c
 ---
 
 ```rules

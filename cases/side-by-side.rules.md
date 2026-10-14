@@ -6,6 +6,7 @@ source: https://sudokupad.app/r5wcack6v2
 case: https://sudoku-sleuth.com/cases/side-by-side
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 406f2ac35752f6aa3ef6444ae28d3fc0
 ---
 
 ```rules

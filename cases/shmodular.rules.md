@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/shmodular
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=5 r2c9=8 r5c8=5 r7c5=8 r8c1=6
+exported: 178a92d8fa7aa340a53dc2bb59d46db0
 ---
 
 ```rules
 sudoku 9x9
-kropki r6c2-r6c3 colour "black"
+kropki r6c2-r6c3 black
 whispers-1: whispers r4c3-r4c2-r3c2-r2c2-r2c3-r2c4-r3c4 gap 4
 whispers-2: whispers r6c3-r6c2-r7c2-r8c2-r8c3-r8c4-r7c4 gap 4
 whispers-3: whispers r3c6-r2c6-r2c7-r2c8-r3c8-r4c8-r4c7 gap 4

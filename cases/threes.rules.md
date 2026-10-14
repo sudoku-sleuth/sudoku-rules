@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/threes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 214317f55dbe8ccfed29c118f9c86a38
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/f8x70l0yjm
 case: https://sudoku-sleuth.com/cases/jenga
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0fe6dac17d008e0a45670a847b021efa
 ---
 
 ```rules

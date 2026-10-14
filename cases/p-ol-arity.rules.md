@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - A feature in the source still needs a drawing definition.
+exported: 7b33065558b13a4ac0c839d0fc689c4a
 ---
 
 ```rules

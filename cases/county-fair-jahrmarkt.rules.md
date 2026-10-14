@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/county-fair-jahrmarkt
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 57f8d184f78bfe09a1cd72280194175a
 ---
 
 ```rules
@@ -17,15 +18,15 @@ cage-3: cage r2c9-r3c9 connected true
 cage-4: cage r1c8-r1c9 connected true
 thermo-1: thermo r3c1-r2c1-r3c2-r2c2-r1c1
 thermo-2: thermo r1c2-r1c3-r2c3-r3c3
-kropki-1: kropki r1c4-r1c5 colour "white"
-kropki-2: kropki r1c5-r1c6 colour "white"
-kropki-3: kropki r1c6-r2c6 colour "white"
-kropki-4: kropki r2c4-r3c4 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "white"
-kropki-6: kropki r2c5-r3c5 colour "white"
-kropki-7: kropki r4c1-r5c1 colour "black"
-kropki-8: kropki r5c2-r5c3 colour "black"
-kropki-9: kropki r6c2-r6c3 colour "black"
+kropki-1: kropki r1c4-r1c5 white
+kropki-2: kropki r1c5-r1c6 white
+kropki-3: kropki r1c6-r2c6 white
+kropki-4: kropki r2c4-r3c4 white
+kropki-5: kropki r3c4-r3c5 white
+kropki-6: kropki r2c5-r3c5 white
+kropki-7: kropki r4c1-r5c1 black
+kropki-8: kropki r5c2-r5c3 black
+kropki-9: kropki r6c2-r6c3 black
 arrow-1: arrow r9c3-r8c3 bulb ["r9c2"]
 arrow-2: arrow r7c2-r7c3 bulb ["r7c1"]
 pair-1: pair r9c7-r9c8 sum 10

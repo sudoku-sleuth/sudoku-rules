@@ -6,6 +6,7 @@ source: https://sudokupad.app/j1e0q70ufc
 case: https://sudoku-sleuth.com/cases/yellow-grid-road
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 28d26f073f5f4ee7d947f42161ebb868
 ---
 
 ```rules

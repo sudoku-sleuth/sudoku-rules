@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - We have only read part of the published answer so far.
+exported: 2454908b4d2990ebf07017310479d401
 ---
 
 ```rules

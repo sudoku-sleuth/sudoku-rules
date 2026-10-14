@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 21
+    - r3c4
 format: open-rules
 title: Casting About in the Dark
 setter: FullDeck and Missing a Few Cards
@@ -9,16 +9,17 @@ source: https://sudokupad.app/hlrk1fho4s
 case: https://sudoku-sleuth.com/cases/casting-about-in-the-dark
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e2b38e5e9a40117a08e42baf9cfafe1d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c3-r4c4 colour "white"
-kropki-2: kropki r4c8-r5c8 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r6c7-r7c7 colour "white"
-kropki-5: kropki r6c1-r7c1 colour "white"
-kropki-6: kropki r8c7-r8c8 colour "white"
+kropki-1: kropki r4c3-r4c4 white
+kropki-2: kropki r4c8-r5c8 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r6c7-r7c7 white
+kropki-5: kropki r6c1-r7c1 white
+kropki-6: kropki r8c7-r8c8 white
 pointing-thermo-1: pointing-thermo r4c5-r3c5-r3c4 ray ["r3c3","r3c2","r3c1"]
 pointing-thermo-2: pointing-thermo r3c1-r2c1-r2c2 ray ["r2c3","r2c4","r2c5","r2c6","r2c7","r2c8","r2c9"]
 pointing-thermo-3: pointing-thermo r3c1-r4c1-r4c2-r5c2-r5c3 ray ["r5c4","r5c5","r5c6","r5c7","r5c8","r5c9"]

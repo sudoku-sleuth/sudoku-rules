@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 4
-    - 7
-    - 11
-    - 21
-    - 24
-    - 28
-    - 79
-    - 80
+    - r1c1
+    - r1c5
+    - r1c8
+    - r2c3
+    - r3c4
+    - r3c7
+    - r4c2
+    - r9c8
+    - r9c9
 format: open-rules
 title: Drunkard's Walk
 setter: FullDeck and Missing a Few Cards
@@ -115,6 +115,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 0b9f6a36dc52766d1c9ba09dc6268855
 ---
 
 ```rules

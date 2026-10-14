@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/ask-the-right-question
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 557d71f01083588b7f8fdbd2a730f884
 ---
 
 ```rules
 sudoku 9x9
 thermo r8c8-r7c8-r6c8-r5c9-r4c9-r3c9-r3c8-r3c7-r4c7
-kropki-1: kropki r9c8-r9c9 colour "white"
-kropki-2: kropki r8c4-r8c5 colour "white"
+kropki-1: kropki r9c8-r9c9 white
+kropki-2: kropki r8c4-r8c5 white
 pair-1: pair r7c8-r7c9 sum 5
 pair-2: pair r9c6-r9c7 sum 5
 pair-3: pair r6c1-r7c1 sum 5

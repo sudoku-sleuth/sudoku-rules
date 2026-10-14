@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pinchers
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 14c4b962e75e59950b46249cc78205b9
 ---
 
 ```rules

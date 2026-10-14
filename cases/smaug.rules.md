@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/smaug
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 53f7595f8bfb85a677fdf92e655bb47a
 ---
 
 ```rules

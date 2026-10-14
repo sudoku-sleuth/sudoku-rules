@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tempest
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ............7........839.....9...6....3...7....6...9.....987........3............
+exported: cb52e2f6513aa0abd5af85b1f289e918
 ---
 
 ```rules

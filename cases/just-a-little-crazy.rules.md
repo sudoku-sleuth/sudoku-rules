@@ -6,6 +6,7 @@ source: https://sudokupad.app/junsuofcqy
 case: https://sudoku-sleuth.com/cases/just-a-little-crazy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fdd0ba78d10e709e1efbde579ad32dfd
 ---
 
 ```rules

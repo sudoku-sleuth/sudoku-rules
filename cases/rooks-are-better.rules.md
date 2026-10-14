@@ -6,6 +6,7 @@ source: https://sudokupad.app/d6u11chlmj
 case: https://sudoku-sleuth.com/cases/rooks-are-better
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0870c55b2f7c3b795994f4232b2b406c
 ---
 
 ```rules

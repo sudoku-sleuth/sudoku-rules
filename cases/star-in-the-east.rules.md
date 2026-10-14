@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/star-in-the-east
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8b5236a6e76bbaa522a6c0e688d98abc
 ---
 
 ```rules

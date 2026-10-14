@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quiet-wiggles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=3 r2c7=4 r7c6=9
+exported: d8b7f1ee77287133ac73db25599382e0
 ---
 
 ```rules

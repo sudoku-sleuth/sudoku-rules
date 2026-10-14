@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anti-knight-singularis-alchemis
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3b85b1e4d22b13a8ab03fbd609fa21ad
 ---
 
 ```rules

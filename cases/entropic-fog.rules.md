@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 27
-    - 28
-    - 34
-    - 35
+    - r4c1
+    - r4c2
+    - r4c8
+    - r4c9
 format: open-rules
 title: Entropic Fog
 setter: Sir Moose
@@ -12,17 +12,18 @@ source: https://sudokupad.app/h1krf2xndf
 case: https://sudoku-sleuth.com/cases/entropic-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9c2c4c041497ca05bb2a7f83f859e962
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c1-r4c2 colour "white"
-kropki-2: kropki r4c8-r4c9 colour "white"
-kropki-3: kropki r9c1-r9c2 colour "white"
-kropki-4: kropki r1c5-r1c6 colour "black"
-kropki-5: kropki r5c2-r6c2 colour "black"
-kropki-6: kropki r5c4-r6c4 colour "black"
-kropki-7: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r4c1-r4c2 white
+kropki-2: kropki r4c8-r4c9 white
+kropki-3: kropki r9c1-r9c2 white
+kropki-4: kropki r1c5-r1c6 black
+kropki-5: kropki r5c2-r6c2 black
+kropki-6: kropki r5c4-r6c4 black
+kropki-7: kropki r5c9-r6c9 black
 arrow-1: arrow r4c7-r3c7 bulb ["r4c6"]
 arrow-2: arrow r3c3-r2c4 bulb ["r4c4"]
 arrow-3: arrow r6c7-r7c6 bulb ["r5c7"]

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/oil-water-arrows
 case: https://sudoku-sleuth.com/cases/oil-water-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6404b620dc1d8269c6e8eb742a34a2cf
 ---
 
 ```rules

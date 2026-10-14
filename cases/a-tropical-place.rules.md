@@ -6,6 +6,7 @@ source: https://sudokupad.app/0fju7lr5zb
 case: https://sudoku-sleuth.com/cases/a-tropical-place
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fd56981707fa4a0fd0a992e568ecb0e4
 ---
 
 ```rules
@@ -19,9 +20,9 @@ cage-6: cage r8c1-r8c2 total 10 connected true
 cage-7: cage r5c1-r6c1 total 7 connected true
 cage-8: cage r5c4-r6c4 total 7 connected true
 cage-9: cage r5c7-r6c7 total 7 connected true
-kropki-1: kropki r6c5-r6c6 colour "white"
-kropki-2: kropki r1c6-r1c7 colour "white"
-kropki-3: kropki r1c8-r2c8 colour "black"
+kropki-1: kropki r6c5-r6c6 white
+kropki-2: kropki r1c6-r1c7 white
+kropki-3: kropki r1c8-r2c8 black
 pair-1: pair r4c2-r5c2 sum 10
 pair-2: pair r4c8-r5c8 sum 10
 pair-3: pair r1c1-r1c2 sum 5

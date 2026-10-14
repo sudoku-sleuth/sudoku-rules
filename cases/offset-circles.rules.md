@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/offset-circles
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5725ab5fd77bd4cc1dceb5fbe30ce1c5
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c5-r1c6 colour "white"
-kropki-2: kropki r4c9-r5c9 colour "white"
-kropki-3: kropki r9c7-r9c8 colour "white"
-kropki-4: kropki r6c1-r7c1 colour "white"
+kropki-1: kropki r1c5-r1c6 white
+kropki-2: kropki r4c9-r5c9 white
+kropki-3: kropki r9c7-r9c8 white
+kropki-4: kropki r6c1-r7c1 white
 quadruple-1: quadruple r2c2-r2c3-r3c2-r3c3 digits [1]
 quadruple-2: quadruple r2c5-r2c6-r3c5-r3c6 digits [2]
 quadruple-3: quadruple r2c8-r2c9-r3c8-r3c9 digits [3]

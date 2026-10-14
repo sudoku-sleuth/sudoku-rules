@@ -6,6 +6,7 @@ source: https://sudokupad.app/pg14bpkw3r
 case: https://sudoku-sleuth.com/cases/purple-flame
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ac90479a6b0e77735427b752e9c6b8f7
 ---
 
 ```rules

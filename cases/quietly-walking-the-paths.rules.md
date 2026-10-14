@@ -6,6 +6,7 @@ source: https://tinyurl.com/3azyvhaz
 case: https://sudoku-sleuth.com/cases/quietly-walking-the-paths
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 686328627abeb1ff9e6cd836557d1dbe
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/q60rv7rvfk
 case: https://sudoku-sleuth.com/cases/dame-quince
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 745dcf4527ba501ab2b62eced95e8b95
 ---
 
 ```rules

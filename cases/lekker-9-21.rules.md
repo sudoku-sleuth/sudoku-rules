@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lekker-9-21
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=1
+exported: 3d7340489f46ec539314ec2c91a88158
 ---
 
 ```rules

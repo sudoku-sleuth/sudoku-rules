@@ -6,6 +6,7 @@ source: https://sudokupad.app/m0ns2pidnh
 case: https://sudoku-sleuth.com/cases/outer-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4b31d82cd4977a9e6b0f7cf27776e806
 ---
 
 ```rules

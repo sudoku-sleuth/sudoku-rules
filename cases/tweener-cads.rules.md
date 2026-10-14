@@ -6,6 +6,7 @@ source: https://sudokupad.app/io0ceke5bu
 case: https://sudoku-sleuth.com/cases/tweener-cads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4105483e5f1a3ae3d3bc7e0d5f914944
 ---
 
 ```rules

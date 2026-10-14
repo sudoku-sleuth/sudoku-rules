@@ -1,16 +1,16 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 12
-    - 31
-    - 33
-    - 38
-    - 49
-    - 52
-    - 56
-    - 60
-    - 63
+    - r2c1
+    - r2c4
+    - r4c5
+    - r4c7
+    - r5c3
+    - r6c5
+    - r6c8
+    - r7c3
+    - r7c7
+    - r8c1
 format: open-rules
 title: One Knight's Odyssy
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f9f635b77e35f361ba04f51ad3627cd8
 ---
 
 ```rules

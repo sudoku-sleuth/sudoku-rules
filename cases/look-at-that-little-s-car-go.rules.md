@@ -6,6 +6,7 @@ source: https://sudokupad.app/bie1bt80rj
 case: https://sudoku-sleuth.com/cases/look-at-that-little-s-car-go
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fc6e87b144d501b13a5b58ad98de9a85
 ---
 
 ```rules
@@ -16,8 +17,8 @@ thermo-3: thermo r6c1-r5c2-r4c3-r5c4-r6c3-r6c2
 thermo-4: thermo r6c4-r5c5-r4c6-r5c7-r6c6-r6c5
 thermo-5: thermo r9c3-r8c4-r7c5-r8c6-r9c5-r9c4
 thermo-6: thermo r9c6-r8c7-r7c8-r8c9-r9c8-r9c7
-kropki-1: kropki r9c5-r9c6 colour "black"
-kropki-2: kropki r1c4-r2c4 colour "black"
+kropki-1: kropki r9c5-r9c6 black
+kropki-2: kropki r1c4-r2c4 black
 ```
 
 **Standard Sudoku, Thermometers, Ratio Dots**

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hbd-puzzle-master
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=1 r2c4=9 r2c5=5 r2c6=2 r6c3=8 r6c7=2 r6c8=6 r9c2=7 r9c3=2
+exported: 9a3014f6c4ea4a1e17a84ea7e7506216
 ---
 
 ```rules

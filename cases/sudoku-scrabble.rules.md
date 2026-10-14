@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sudoku-scrabble
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7bbd139309c94011d5d3ea1eea2b4cac
 ---
 
 ```rules

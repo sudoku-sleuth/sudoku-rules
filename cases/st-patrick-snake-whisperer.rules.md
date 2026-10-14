@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/st-patrick-snake-whisperer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=3 r9c8=1 r9c9=7
+exported: de3ebd43d12c4b674980301d5e81af32
 ---
 
 ```rules

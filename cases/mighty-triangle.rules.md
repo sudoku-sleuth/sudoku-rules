@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/mighty-triangle
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7eeffd87ac376a704649433aba43a9fa
 ---
 
 ```rules

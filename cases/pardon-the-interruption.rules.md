@@ -6,6 +6,7 @@ source: https://sudokupad.app/x8sylgpl92
 case: https://sudoku-sleuth.com/cases/pardon-the-interruption
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bc5ef0fa3e16be2ace54ff0b4802d17a
 ---
 
 ```rules

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: German Summer in the Fog
 setter: Meggen033
@@ -17,6 +17,7 @@ source: https://sudokupad.app/79w02u4lff
 case: https://sudoku-sleuth.com/cases/german-summer-in-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a112c0cf8308716f42a68b3626b245f0
 ---
 
 ```rules
@@ -24,15 +25,15 @@ sudoku 9x9
 thermo-1: thermo r5c4-r6c4-r6c5-r6c6-r5c6
 thermo-2: thermo r4c3-r5c3-r6c3
 thermo-3: thermo r7c3-r7c4-r7c5-r7c6-r7c7
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r6c7-r6c8 colour "white"
-kropki-3: kropki r7c4-r8c4 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
-kropki-5: kropki r7c8-r7c9 colour "white"
-kropki-6: kropki r6c2-r7c2 colour "white"
-kropki-7: kropki r8c1-r9c1 colour "white"
-kropki-8: kropki r5c4-r5c5 colour "black"
-kropki-9: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r6c7-r6c8 white
+kropki-3: kropki r7c4-r8c4 white
+kropki-4: kropki r2c5-r3c5 white
+kropki-5: kropki r7c8-r7c9 white
+kropki-6: kropki r6c2-r7c2 white
+kropki-7: kropki r8c1-r9c1 white
+kropki-8: kropki r5c4-r5c5 black
+kropki-9: kropki r3c8-r4c8 black
 whispers-1: whispers r4c4-r4c5-r4c6 gap 5
 whispers-2: whispers r5c5-r4c5 gap 5
 whispers-3: whispers r3c3-r3c4-r3c5-r3c6-r3c7 gap 5

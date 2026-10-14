@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pink-squiggles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=2 r3c3=3 r3c7=7 r5c1=9 r5c5=4 r5c9=8 r7c3=5 r7c7=2 r9c5=1
+exported: a71cd6660190f27c02fa9111d7782dc1
 ---
 
 ```rules

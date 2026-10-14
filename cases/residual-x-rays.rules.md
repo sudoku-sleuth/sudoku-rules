@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/residual-x-rays
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0c66f3c45f5be21b5f4de4e1614bada9
 ---
 
 ```rules

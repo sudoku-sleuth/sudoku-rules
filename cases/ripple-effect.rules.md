@@ -6,6 +6,7 @@ source: https://sudokupad.app/2sq39vp340
 case: https://sudoku-sleuth.com/cases/ripple-effect
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0c4b35b690fd40379c234b74c72c8896
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/thermodulators
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=3 r5c5=9 r9c1=2
+exported: 3e49af61d6f34000a36ee409e85a0ed5
 ---
 
 ```rules
@@ -19,9 +20,9 @@ thermo-5: thermo r4c6-r4c5-r4c4
 thermo-6: thermo r5c1-r5c2-r5c3-r5c4
 thermo-7: thermo r9c5-r8c4-r7c3-r6c2
 thermo-8: thermo r9c5-r8c6-r7c7-r6c8
-kropki-1: kropki r5c8-r5c9 colour "black"
-kropki-2: kropki r2c4-r2c5 colour "black"
-kropki-3: kropki r5c2-r6c2 colour "black"
+kropki-1: kropki r5c8-r5c9 black
+kropki-2: kropki r2c4-r2c5 black
+kropki-3: kropki r5c2-r6c2 black
 modular-1: modular r3c1-r2c1-r1c1
 modular-2: modular r4c2-r3c3-r2c4-r2c5-r2c6-r3c7-r4c8
 modular-3: modular r4c4-r4c5-r4c6

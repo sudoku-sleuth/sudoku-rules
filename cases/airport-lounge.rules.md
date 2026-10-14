@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/airport-lounge
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=7
+exported: e0c3d696fc34f106995bd0ae6460644b
 ---
 
 ```rules

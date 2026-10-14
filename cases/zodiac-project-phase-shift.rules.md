@@ -6,6 +6,7 @@ source: https://sudokupad.app/p7y65x2mi0
 case: https://sudoku-sleuth.com/cases/zodiac-project-phase-shift
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 225d72a7e96c1b0332ca0c682d0eb983
 ---
 
 ```rules
@@ -13,15 +14,15 @@ sudoku 9x9
 thermo-1: thermo r9c4-r8c4-r7c4
 thermo-2: thermo r2c6-r3c6-r4c6
 thermo-3: thermo r7c9-r6c9-r5c9
-kropki-1: kropki r7c1-r7c2 colour "white"
-kropki-2: kropki r6c7-r6c8 colour "white"
-kropki-3: kropki r5c5-r6c5 colour "white"
-kropki-4: kropki r1c5-r1c6 colour "white"
-kropki-5: kropki r8c6-r9c6 colour "black"
-kropki-6: kropki r5c4-r5c5 colour "black"
-kropki-7: kropki r9c2-r9c3 colour "black"
-kropki-8: kropki r5c1-r5c2 colour "black"
-kropki-9: kropki r6c2-r7c2 colour "black"
+kropki-1: kropki r7c1-r7c2 white
+kropki-2: kropki r6c7-r6c8 white
+kropki-3: kropki r5c5-r6c5 white
+kropki-4: kropki r1c5-r1c6 white
+kropki-5: kropki r8c6-r9c6 black
+kropki-6: kropki r5c4-r5c5 black
+kropki-7: kropki r9c2-r9c3 black
+kropki-8: kropki r5c1-r5c2 black
+kropki-9: kropki r6c2-r7c2 black
 arrow-1: arrow r2c4-r3c4 bulb ["r1c4"]
 arrow-2: arrow r7c6-r6c6 bulb ["r8c6"]
 arrow-3: arrow r4c9-r5c9 bulb ["r3c9"]

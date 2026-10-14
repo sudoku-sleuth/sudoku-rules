@@ -6,19 +6,20 @@ source: https://sudokupad.app/omny2p6zdd
 case: https://sudoku-sleuth.com/cases/bridges
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c10c05ee65042497808843f9d7b4a845
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c2-r6c3 colour "white"
-kropki-2: kropki r9c1-r9c2 colour "white"
-kropki-3: kropki r9c6-r9c7 colour "white"
-kropki-4: kropki r6c6-r6c7 colour "white"
-kropki-5: kropki r8c7-r8c8 colour "black"
-kropki-6: kropki r7c7-r7c8 colour "black"
-kropki-7: kropki r9c2-r9c3 colour "black"
-kropki-8: kropki r1c7-r1c8 colour "black"
-kropki-9: kropki r5c5-r5c6 colour "black"
+kropki-1: kropki r6c2-r6c3 white
+kropki-2: kropki r9c1-r9c2 white
+kropki-3: kropki r9c6-r9c7 white
+kropki-4: kropki r6c6-r6c7 white
+kropki-5: kropki r8c7-r8c8 black
+kropki-6: kropki r7c7-r7c8 black
+kropki-7: kropki r9c2-r9c3 black
+kropki-8: kropki r1c7-r1c8 black
+kropki-9: kropki r5c5-r5c6 black
 whispers-1: whispers r9c1-r8c2-r8c3-r9c4 gap 4
 whispers-2: whispers r2c6-r1c7-r1c8-r2c9 gap 4
 whispers-3: whispers r8c6-r9c6 gap 4

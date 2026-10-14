@@ -9,19 +9,20 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 59a4d7fc11cd7a60d7f322644be2c91b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c8-r9c9 colour "white"
-kropki-2: kropki r9c7-r9c8 colour "white"
-kropki-3: kropki r8c9-r9c9 colour "white"
-kropki-4: kropki r6c8-r6c9 colour "white"
-kropki-5: kropki r1c4-r1c5 colour "white"
-kropki-6: kropki r3c3-r3c4 colour "white"
-kropki-7: kropki r5c5-r5c6 colour "white"
-kropki-8: kropki r6c2-r7c2 colour "white"
-kropki-9: kropki r8c7-r9c7 colour "black"
+kropki-1: kropki r9c8-r9c9 white
+kropki-2: kropki r9c7-r9c8 white
+kropki-3: kropki r8c9-r9c9 white
+kropki-4: kropki r6c8-r6c9 white
+kropki-5: kropki r1c4-r1c5 white
+kropki-6: kropki r3c3-r3c4 white
+kropki-7: kropki r5c5-r5c6 white
+kropki-8: kropki r6c2-r7c2 white
+kropki-9: kropki r8c7-r9c7 black
 ```
 
 ```drawing

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/hall-of-mirrors
 case: https://sudoku-sleuth.com/cases/hall-of-mirrors
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0b752361d5669ce3bb475cf0ef5cef58
 ---
 
 ```rules

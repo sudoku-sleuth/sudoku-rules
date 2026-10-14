@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/containment-breach
 case: https://sudoku-sleuth.com/cases/containment-breach
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4bb4205f88cdd3a7c68776445d7f4c91
 ---
 
 ```rules

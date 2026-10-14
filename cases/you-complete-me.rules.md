@@ -7,24 +7,25 @@ case: https://sudoku-sleuth.com/cases/you-complete-me
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 028153dcaac134daaeb68a6f78b276b7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c2-r3c2 colour "black"
-kropki-2: kropki r3c2-r4c2 colour "black"
-kropki-3: kropki r4c2-r5c2 colour "black"
-kropki-4: kropki r4c5-r5c5 colour "black"
-kropki-5: kropki r5c5-r6c5 colour "black"
-kropki-6: kropki r6c5-r7c5 colour "black"
-kropki-7: kropki r6c8-r7c8 colour "black"
-kropki-8: kropki r7c8-r8c8 colour "black"
-kropki-9: kropki r8c8-r9c8 colour "black"
-kropki-10: kropki r7c1-r8c1 colour "black"
-kropki-11: kropki r4c6-r5c6 colour "black"
-kropki-12: kropki r3c3-r4c3 colour "black"
-kropki-13: kropki r2c4-r3c4 colour "black"
-kropki-14: kropki r8c5-r9c5 colour "black"
+kropki-1: kropki r2c2-r3c2 black
+kropki-2: kropki r3c2-r4c2 black
+kropki-3: kropki r4c2-r5c2 black
+kropki-4: kropki r4c5-r5c5 black
+kropki-5: kropki r5c5-r6c5 black
+kropki-6: kropki r6c5-r7c5 black
+kropki-7: kropki r6c8-r7c8 black
+kropki-8: kropki r7c8-r8c8 black
+kropki-9: kropki r8c8-r9c8 black
+kropki-10: kropki r7c1-r8c1 black
+kropki-11: kropki r4c6-r5c6 black
+kropki-12: kropki r3c3-r4c3 black
+kropki-13: kropki r2c4-r3c4 black
+kropki-14: kropki r8c5-r9c5 black
 ```
 
 ```drawing

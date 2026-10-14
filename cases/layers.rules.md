@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/layers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=9 r2c8=8 r8c1=2
+exported: ce41b0332516ee10b397562caff8db8a
 ---
 
 ```rules

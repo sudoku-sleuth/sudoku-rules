@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/no-laughing-matter
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c4=7 r5c5=8
+exported: a12e527e1ff06f3d4e79825e53e3d464
 ---
 
 ```rules

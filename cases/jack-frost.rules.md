@@ -6,6 +6,7 @@ source: https://sudokupad.app/d9f22pf99w
 case: https://sudoku-sleuth.com/cases/jack-frost
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e7e9512f1103bbeb62949f8fadc75bc7
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-24-between-you-and-me
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 10a8a5ae0d715610754757266d8511b8
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/9u3me83yj9
 case: https://sudoku-sleuth.com/cases/oxford-ramble
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: eaca17cb963819015a3c0ce814e365ce
 ---
 
 ```rules

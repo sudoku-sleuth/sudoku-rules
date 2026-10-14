@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 31
-    - 32
-    - 40
-    - 41
+    - r4c5
+    - r4c6
+    - r5c5
+    - r5c6
 format: open-rules
 title: Disjoint Fog
 setter: Meggen033
@@ -12,15 +12,16 @@ source: https://sudokupad.app/717etgkepi
 case: https://sudoku-sleuth.com/cases/disjoint-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8c6126b2e5a60c1ea56d58747d3faea3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c7-r3c8 colour "white"
-kropki-2: kropki r7c5-r8c5 colour "white"
-kropki-3: kropki r8c2-r8c3 colour "white"
-kropki-4: kropki r2c9-r3c9 colour "white"
-kropki-5: kropki r9c7-r9c8 colour "white"
+kropki-1: kropki r3c7-r3c8 white
+kropki-2: kropki r7c5-r8c5 white
+kropki-3: kropki r8c2-r8c3 white
+kropki-4: kropki r2c9-r3c9 white
+kropki-5: kropki r9c7-r9c8 white
 arrow-1: arrow r4c5-r5c5-r5c6 bulb ["r4c6"]
 arrow-2: arrow r5c8-r6c7 bulb ["r5c7"]
 pair-1: pair r2c8-r2c9 sum 10

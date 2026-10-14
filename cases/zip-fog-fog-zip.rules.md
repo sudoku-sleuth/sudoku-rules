@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Zip-Fog-Fog-Zip
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 7a8afda010f9507fbcbedca074a36682
 ---
 
 ```rules
@@ -149,10 +150,10 @@ cage-3: cage r4c2-r5c2-r6c2 total 12 connected true
 cage-4: cage r9c2-r9c3-r9c4 total 12 connected true
 cage-5: cage r5c7-r5c8-r6c7-r7c7 connected true
 cage-6: cage r2c8-r3c8-r4c8-r4c9 connected true
-kropki-1: kropki r1c3-r1c4 colour "white"
-kropki-2: kropki r6c2-r6c3 colour "white"
-kropki-3: kropki r2c4-r2c5 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
+kropki-1: kropki r1c3-r1c4 white
+kropki-2: kropki r6c2-r6c3 white
+kropki-3: kropki r2c4-r2c5 white
+kropki-4: kropki r2c5-r3c5 white
 ```
 
 ```drawing

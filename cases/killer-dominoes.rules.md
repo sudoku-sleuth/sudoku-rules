@@ -6,6 +6,7 @@ source: https://tinyurl.com/y2xnmu34
 case: https://sudoku-sleuth.com/cases/killer-dominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8fd1b61c72391b91855f259e0d4d71bc
 ---
 
 ```rules

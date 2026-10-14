@@ -6,6 +6,7 @@ source: https://sudokupad.app/0605gxzd2e
 case: https://sudoku-sleuth.com/cases/it-takes-3-to-tango
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aa5858c823f969c4e78d0f9eb5b0a6c4
 ---
 
 ```rules

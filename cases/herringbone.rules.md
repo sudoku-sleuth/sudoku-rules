@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/herringbone
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c9=3 r6c9=9
+exported: fa1f8bd6c20554a0577093c937f2f4b0
 ---
 
 ```rules

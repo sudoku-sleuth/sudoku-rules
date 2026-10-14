@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/berries-in-public-gardens
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r1c2=8 r1c3=3 r1c4=6
+exported: b8cd3cd1f582673f2bb08a87ac875c3b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c2-r9c2 colour "white"
-kropki-2: kropki r2c8-r3c8 colour "white"
-kropki-3: kropki r4c2-r5c2 colour "black"
-kropki-4: kropki r3c4-r4c4 colour "black"
-kropki-5: kropki r2c8-r2c9 colour "black"
-kropki-6: kropki r1c5-r2c5 colour "black"
-kropki-7: kropki r5c6-r5c7 colour "black"
-kropki-8: kropki r4c9-r5c9 colour "black"
-kropki-9: kropki r2c6-r2c7 colour "black"
+kropki-1: kropki r8c2-r9c2 white
+kropki-2: kropki r2c8-r3c8 white
+kropki-3: kropki r4c2-r5c2 black
+kropki-4: kropki r3c4-r4c4 black
+kropki-5: kropki r2c8-r2c9 black
+kropki-6: kropki r1c5-r2c5 black
+kropki-7: kropki r5c6-r5c7 black
+kropki-8: kropki r4c9-r5c9 black
+kropki-9: kropki r2c6-r2c7 black
 whispers-1: whispers r9c3-r8c3-r7c3-r6c2-r6c1 gap 5
 whispers-2: whispers r6c2-r5c1 gap 5
 whispers-3: whispers r6c2-r5c2 gap 5

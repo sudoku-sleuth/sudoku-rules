@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/circumstantial-evidence
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0cc0b611fc4ce1ad45ff641f16006a64
 ---
 
 ```rules

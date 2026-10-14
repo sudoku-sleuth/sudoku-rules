@@ -54,6 +54,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 115ee150a2e325f6037afd6b5a9278a0
 ---
 
 ```rules
@@ -76,11 +77,11 @@ unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 anti-knight
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r6c4-r6c5 colour "white"
-kropki-3: kropki r6c3-r6c4 colour "white"
-kropki-4: kropki r5c5-r6c5 colour "black"
-kropki-5: kropki r5c4-r6c4 colour "black"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r6c4-r6c5 white
+kropki-3: kropki r6c3-r6c4 white
+kropki-4: kropki r5c5-r6c5 black
+kropki-5: kropki r5c4-r6c4 black
 quadruple r1c2-r1c3-r2c2-r2c3 digits [1,2,3,4]
 little-killer r1c3-r2c4-r3c5-r4c6 sum 20
 ```

@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/thermvox
 case: https://sudoku-sleuth.com/cases/thermvox
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 322215e4d1a568b0944f25dbf20b29be
 ---
 
 ```rules

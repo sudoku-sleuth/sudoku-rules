@@ -6,6 +6,7 @@ source: https://sudokupad.app/h063jqwe5x
 case: https://sudoku-sleuth.com/cases/duck-duck-goose
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b8a07e7faddef59970b5d67eed51d36b
 ---
 
 ```rules
@@ -20,12 +21,12 @@ cage-7: cage r2c8-r2c9 total 15 connected true
 cage-8: cage r8c2-r9c2 total 15 connected true
 cage-9: cage r8c9-r9c8-r9c9 total 19 connected true
 cage-10: cage r5c5-r5c6-r6c5 total 10 connected true
-kropki-1: kropki r3c3-r4c3 colour "white"
-kropki-2: kropki r3c3-r3c4 colour "white"
-kropki-3: kropki r7c3-r8c3 colour "black"
-kropki-4: kropki r3c7-r3c8 colour "black"
-kropki-5: kropki r9c3-r9c4 colour "black"
-kropki-6: kropki r3c9-r4c9 colour "black"
+kropki-1: kropki r3c3-r4c3 white
+kropki-2: kropki r3c3-r3c4 white
+kropki-3: kropki r7c3-r8c3 black
+kropki-4: kropki r3c7-r3c8 black
+kropki-5: kropki r9c3-r9c4 black
+kropki-6: kropki r3c9-r4c9 black
 pair-1: pair r4c3-r5c3 sum 10
 pair-2: pair r3c4-r3c5 sum 10
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7

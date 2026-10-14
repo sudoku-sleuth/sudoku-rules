@@ -9,14 +9,15 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 80e8130cc12f57ca973ef7281a576d8d
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r8c4-r8c5 colour "white"
-kropki-2: kropki r1c3-r2c3 colour "white"
-kropki-3: kropki r2c3-r3c3 colour "white"
+kropki-1: kropki r8c4-r8c5 white
+kropki-2: kropki r1c3-r2c3 white
+kropki-3: kropki r2c3-r3c3 white
 ```
 
 ```drawing

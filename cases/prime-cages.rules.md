@@ -83,6 +83,7 @@ board:
       - r8c6
       - r8c7
       - r8c8
+exported: 51f0a947ad57feb3e405f0f7db00d7b9
 ---
 
 ```rules
@@ -122,8 +123,8 @@ cage-9: cage r8c2-r8c3-r8c4 repeats false total 17 connected true
 cage-10: cage r1c5-r1c6-r1c7 repeats false total 17 connected true
 cage-11: cage r4c5-r5c5 repeats false total 13 connected true
 cage-12: cage r4c4-r5c4 repeats false total 13 connected true
-kropki-1: kropki r1c6-r1c7 colour "black"
-kropki-2: kropki r8c2-r8c3 colour "black"
+kropki-1: kropki r1c6-r1c7 black
+kropki-2: kropki r8c2-r8c3 black
 whispers-1: whispers r6c3-r7c2-r8c1 loop false gap 4
 whispers-2: whispers r8c8-r7c7-r6c6 loop false gap 4
 whispers-3: whispers r1c8-r2c7-r3c6 loop false gap 4

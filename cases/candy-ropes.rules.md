@@ -6,15 +6,16 @@ source: https://tinyurl.com/candyropessudoku
 case: https://sudoku-sleuth.com/cases/candy-ropes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b263c84f2c99f83061ea333c7791e706
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r6c5 colour "white"
-kropki-2: kropki r7c7-r7c8 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "black"
-kropki-4: kropki r8c7-r9c7 colour "black"
-kropki-5: kropki r3c2-r4c2 colour "black"
+kropki-1: kropki r6c4-r6c5 white
+kropki-2: kropki r7c7-r7c8 white
+kropki-3: kropki r7c5-r8c5 black
+kropki-4: kropki r8c7-r9c7 black
+kropki-5: kropki r3c2-r4c2 black
 whispers-1: whispers r8c4-r9c4-r8c5-r9c6-r8c6-r9c5 gap 5
 whispers-2: whispers r9c5-r8c4 gap 5
 whispers-3: whispers r7c1-r8c1-r7c2-r8c3-r7c3-r8c2 gap 5

@@ -6,6 +6,7 @@ source: https://sudokupad.app/pq7kgp5wa7
 case: https://sudoku-sleuth.com/cases/europrisms
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e2baec07ad1d09d55d247518a4ce9418
 ---
 
 ```rules

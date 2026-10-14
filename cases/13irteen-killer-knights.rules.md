@@ -6,6 +6,7 @@ source: https://sudokupad.app/pebwp3bbp9
 case: https://sudoku-sleuth.com/cases/13irteen-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 034c17a70ea21a0f7b28783e04a3b880
 ---
 
 ```rules

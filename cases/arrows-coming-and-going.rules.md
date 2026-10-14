@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/arrows-coming-and-going
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=5 r5c2=7
+exported: 7cb8fe24f3365d1bc16d55e15cab0c30
 ---
 
 ```rules

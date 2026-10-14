@@ -6,6 +6,7 @@ source: https://sudokupad.app/m6p0dhav5d
 case: https://sudoku-sleuth.com/cases/swimming-in-dot-water
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9da6cfddcbc71741f509431f7d9967a7
 ---
 
 ```rules
@@ -16,18 +17,18 @@ thermo-3: thermo r7c3-r6c4-r7c5-r6c6-r7c7-r6c8
 thermo-4: thermo r9c8-r8c7-r9c6-r8c5-r9c4-r8c3
 thermo-5: thermo r4c1-r5c2-r6c1-r7c2-r8c1-r9c2
 thermo-6: thermo r1c9-r2c8-r3c9-r4c8-r5c9
-kropki-1: kropki r2c5-r2c6 colour "white"
-kropki-2: kropki r7c8-r7c9 colour "white"
-kropki-3: kropki r6c1-r7c1 colour "white"
-kropki-4: kropki r5c1-r6c1 colour "white"
-kropki-5: kropki r3c6-r4c6 colour "black"
-kropki-6: kropki r3c4-r4c4 colour "black"
-kropki-7: kropki r7c7-r8c7 colour "black"
-kropki-8: kropki r7c5-r8c5 colour "black"
-kropki-9: kropki r1c8-r2c8 colour "black"
-kropki-10: kropki r5c1-r5c2 colour "black"
-kropki-11: kropki r7c1-r7c2 colour "black"
-kropki-12: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r2c5-r2c6 white
+kropki-2: kropki r7c8-r7c9 white
+kropki-3: kropki r6c1-r7c1 white
+kropki-4: kropki r5c1-r6c1 white
+kropki-5: kropki r3c6-r4c6 black
+kropki-6: kropki r3c4-r4c4 black
+kropki-7: kropki r7c7-r8c7 black
+kropki-8: kropki r7c5-r8c5 black
+kropki-9: kropki r1c8-r2c8 black
+kropki-10: kropki r5c1-r5c2 black
+kropki-11: kropki r7c1-r7c2 black
+kropki-12: kropki r5c9-r6c9 black
 ```
 
 **Sudoku, Thermometers, Kropki pairs**

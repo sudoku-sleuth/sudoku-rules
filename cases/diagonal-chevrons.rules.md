@@ -6,6 +6,7 @@ source: https://sudokupad.app/ji3s7qz2n2
 case: https://sudoku-sleuth.com/cases/diagonal-chevrons
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 96536b5c395bf877901a6c5c7f6f1daf
 ---
 
 ```rules

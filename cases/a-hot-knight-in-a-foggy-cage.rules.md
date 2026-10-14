@@ -1,13 +1,13 @@
 ---
 fog:
   initiallyLit:
-    - 29
-    - 31
-    - 33
-    - 38
-    - 40
-    - 42
-    - 49
+    - r4c3
+    - r4c5
+    - r4c7
+    - r5c3
+    - r5c5
+    - r5c7
+    - r6c5
 format: open-rules
 title: A Hot Knight in a Foggy Cage
 setter: Meggen033
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: da344e1d9b5a48dc2dd20503f463fb4b
 ---
 
 ```rules

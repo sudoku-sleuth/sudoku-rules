@@ -6,6 +6,7 @@ source: https://sudokupad.app/t91awpxzxr
 case: https://sudoku-sleuth.com/cases/straw-man
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b12d1e6d5871c8413e28e1adb852d031
 ---
 
 ```rules

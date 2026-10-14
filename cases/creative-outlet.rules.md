@@ -6,6 +6,7 @@ source: https://sudokupad.app/0ejew96avl
 case: https://sudoku-sleuth.com/cases/creative-outlet
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9a91213d0f5cba487ad75203f7095905
 ---
 
 ```rules

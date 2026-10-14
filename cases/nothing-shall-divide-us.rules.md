@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nothing-shall-divide-us
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6d8a5d16f719c7df4f10804546303f0a
 ---
 
 ```rules

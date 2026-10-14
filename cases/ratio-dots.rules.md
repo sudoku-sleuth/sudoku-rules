@@ -54,6 +54,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 5778522d975444e63e68210f12bda1f7
 ---
 
 ```rules
@@ -75,14 +76,14 @@ unique-15: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
 unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r1c2-r1c3 colour "black"
-kropki-3: kropki r2c6-r3c6 colour "black"
-kropki-4: kropki r3c6-r4c6 colour "black"
-kropki-5: kropki r3c4-r4c4 colour "black"
-kropki-6: kropki r4c1-r4c2 colour "black"
-kropki-7: kropki r6c2-r6c3 colour "black"
-kropki-8: kropki r4c1-r5c1 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r1c2-r1c3 black
+kropki-3: kropki r2c6-r3c6 black
+kropki-4: kropki r3c6-r4c6 black
+kropki-5: kropki r3c4-r4c4 black
+kropki-6: kropki r4c1-r4c2 black
+kropki-7: kropki r6c2-r6c3 black
+kropki-8: kropki r4c1-r5c1 black
 ```
 
 Normal 6x6 sudoku rules apply.

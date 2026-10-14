@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/seven-bridges-road-eagles
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0d92557b8588bddc23416bf981527602
 ---
 
 ```rules

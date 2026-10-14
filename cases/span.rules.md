@@ -6,6 +6,7 @@ source: https://sudokupad.app/t17v9txlam
 case: https://sudoku-sleuth.com/cases/span
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e25a01734aa24362a27a06b4f73424c6
 ---
 
 ```rules

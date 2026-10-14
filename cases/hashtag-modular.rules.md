@@ -6,6 +6,7 @@ source: https://sudokupad.app/5ivi91oy0i
 case: https://sudoku-sleuth.com/cases/hashtag-modular
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4dddd68b5a7bc4f51f77418a15890e1b
 ---
 
 ```rules

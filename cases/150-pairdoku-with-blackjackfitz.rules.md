@@ -1,21 +1,21 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 12
-    - 21
-    - 27
-    - 28
-    - 29
-    - 30
-    - 40
-    - 50
-    - 51
-    - 52
-    - 53
-    - 59
-    - 68
-    - 77
+    - r1c4
+    - r2c4
+    - r3c4
+    - r4c1
+    - r4c2
+    - r4c3
+    - r4c4
+    - r5c5
+    - r6c6
+    - r6c7
+    - r6c8
+    - r6c9
+    - r7c6
+    - r8c6
+    - r9c6
 format: open-rules
 title: 150 (Pairdoku with blackjackfitz)
 setter: sujoyku
@@ -25,6 +25,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r5c5=1
+exported: ceae4eb655a51bae4e7ea25532d32e82
 ---
 
 ```rules

@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 21
+    - r3c3
+    - r3c4
 format: open-rules
 title: Spring Breeze
 setter: Sandra & Nala
@@ -11,6 +11,7 @@ case: https://sudoku-sleuth.com/cases/spring-breeze
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5569745f3e6aac5952f6ded452390fd0
 ---
 
 ```rules

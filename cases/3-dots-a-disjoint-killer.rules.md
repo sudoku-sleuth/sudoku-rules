@@ -6,6 +6,7 @@ source: https://sudokupad.app/c0bnc72k83
 case: https://sudoku-sleuth.com/cases/3-dots-a-disjoint-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 532afb00c1bf2a41bed29f0c1100a1f2
 ---
 
 ```rules
@@ -24,9 +25,9 @@ cage-11: cage r3c4-r4c3-r4c4 total 15 connected true
 cage-12: cage r2c9-r3c9 total 5 connected true
 cage-13: cage r9c2-r9c3 total 15 connected true
 cage-14: cage r7c8-r8c7-r8c8 total 17 connected true
-kropki-1: kropki r2c4-r3c4 colour "white"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r3c5-r3c6 colour "white"
+kropki-1: kropki r2c4-r3c4 white
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r3c5-r3c6 white
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

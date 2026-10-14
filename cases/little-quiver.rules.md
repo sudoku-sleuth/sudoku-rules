@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/little-quiver
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3d792ba8235877074ddd020e17e8a017
 ---
 
 ```rules

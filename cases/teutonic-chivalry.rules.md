@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/teutonic-chivalry
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=1 r1c6=3 r2c7=2 r4c6=6 r5c2=7 r5c9=4 r7c3=5 r7c7=9 r8c5=8
+exported: 06096790ce653de8719bcc568309d27a
 ---
 
 ```rules

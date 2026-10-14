@@ -6,6 +6,7 @@ source: https://sudokupad.app/5567fzvvvv
 case: https://sudoku-sleuth.com/cases/couch-potato
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9030e381f01bb096ec136f9c6341eab0
 ---
 
 ```rules

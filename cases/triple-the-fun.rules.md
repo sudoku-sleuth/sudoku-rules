@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=yjfmevs9
 case: https://sudoku-sleuth.com/cases/triple-the-fun
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d155cf35979532eb3508f0cc1c329cb1
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/mnw6pyzgac
 case: https://sudoku-sleuth.com/cases/oddly-summing-regions
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a83c397e88c8b160464d986006f0ede2
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ao3jv6bymg
 case: https://sudoku-sleuth.com/cases/lucky-7s-unlucky-13s
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4c189687496213c9d0fce06b242e41fd
 ---
 
 ```rules

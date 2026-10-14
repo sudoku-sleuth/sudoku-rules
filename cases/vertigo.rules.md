@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: c22fc0064cc046cb7a3f46d238c55f64
 ---
 
 ```rules
@@ -135,8 +136,8 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 thermo-1: thermo r3c3-r4c3-r4c4-r3c4-r2c4-r2c3-r2c2-r3c2-r4c2
 thermo-2: thermo r7c4-r8c4-r8c3-r7c3-r6c3-r6c4-r6c5-r7c5-r8c5
 thermo-3: thermo r4c7-r5c7-r5c8-r4c8-r3c8-r3c7-r3c6-r4c6-r5c6
-kropki-1: kropki r6c8-r7c8 colour "white"
-kropki-2: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r6c8-r7c8 white
+kropki-2: kropki r5c9-r6c9 black
 renban-1: renban r1c2-r1c3-r1c4
 renban-2: renban r6c2-r7c2-r8c2
 renban-3: renban r2c6-r2c7-r2c8

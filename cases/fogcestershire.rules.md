@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogcestershire
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: accad2d4d6a8257928540474f962ce96
 ---
 
 ```rules
@@ -150,13 +151,13 @@ cage-5: cage r1c9-r2c9 total 10 connected true
 cage-6: cage r8c5-r8c6 total 5 connected true
 cage-7: cage r8c3-r8c4 total 8 connected true
 cage-8: cage r5c8-r5c9 total 11 connected true
-kropki-1: kropki r6c6-r6c7 colour "white"
-kropki-2: kropki r5c6-r5c7 colour "white"
-kropki-3: kropki r6c4-r7c4 colour "white"
-kropki-4: kropki r4c3-r4c4 colour "white"
-kropki-5: kropki r6c8-r6c9 colour "white"
-kropki-6: kropki r3c6-r3c7 colour "white"
-kropki-7: kropki r8c5-r9c5 colour "black"
+kropki-1: kropki r6c6-r6c7 white
+kropki-2: kropki r5c6-r5c7 white
+kropki-3: kropki r6c4-r7c4 white
+kropki-4: kropki r4c3-r4c4 white
+kropki-5: kropki r6c8-r6c9 white
+kropki-6: kropki r3c6-r3c7 white
+kropki-7: kropki r8c5-r9c5 black
 whispers-1: whispers r6c5-r6c6-r5c6 gap 5
 whispers-2: whispers r5c8-r6c8-r7c8-r8c8-r8c7-r8c6 gap 5
 whispers-3: whispers r3c5-r2c5-r2c4-r2c3 gap 5

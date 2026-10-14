@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fixing-the-roof-under-the-sun
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1d244db5e5af7ec72a77468e070fb943
 ---
 
 ```rules
@@ -18,10 +19,10 @@ cage-4: cage r8c4-r8c5-r8c6 total 22 connected true
 cage-5: cage r2c6-r3c6 total 3 connected true
 cage-6: cage r1c7-r2c7 total 6 connected true
 cage-7: cage r1c9-r2c8-r2c9 total 21 connected true
-kropki-1: kropki r6c5-r7c5 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r6c6-r7c6 colour "white"
-kropki-4: kropki r7c6-r7c7 colour "white"
+kropki-1: kropki r6c5-r7c5 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r6c6-r7c6 white
+kropki-4: kropki r7c6-r7c7 white
 whispers-1: whispers r6c1-r6c2-r6c3-r7c3-r8c3-r8c2-r8c1-r7c1 gap 5
 whispers-2: whispers r6c1-r7c1 gap 5
 whispers-3: whispers r7c1-r7c2-r7c3 gap 5

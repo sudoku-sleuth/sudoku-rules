@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-phistful-of-circles
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 628be38338077653f093fdf6f7946f1b
 ---
 
 ```rules

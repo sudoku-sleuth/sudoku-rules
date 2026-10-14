@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/why-the-caged-bird-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bdcfb6c3d7566b8e12ca58b8888f1363
 ---
 
 ```rules

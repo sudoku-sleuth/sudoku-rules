@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/xclusive-knights-3
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 68b821bf5fafb95f2c6c7bd883b6e67a
 ---
 
 ```rules

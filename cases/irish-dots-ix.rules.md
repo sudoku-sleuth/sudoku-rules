@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/irish-dots-ix
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 80c05eddc384a7381d978a86fca5c709
 ---
 
 ```rules
@@ -21,13 +22,13 @@ cage-7: cage r1c3-r1c4-r1c5-r1c6-r1c7-r1c8-r1c9-r2c5-r2c9 connected true
 cage-8: cage r3c9-r4c9-r5c8-r5c9-r6c9-r7c9-r8c9-r9c8-r9c9 connected true
 cage-9: cage r8c1-r8c5-r9c1-r9c2-r9c3-r9c4-r9c5-r9c6-r9c7 connected true
 anti-king
-kropki-1: kropki r5c8-r5c9 colour "white"
-kropki-2: kropki r5c4-r5c5 colour "white"
-kropki-3: kropki r5c6-r5c7 colour "white"
-kropki-4: kropki r6c1-r6c2 colour "white"
-kropki-5: kropki r1c5-r1c6 colour "white"
-kropki-6: kropki r7c8-r7c9 colour "white"
-kropki-7: kropki r7c8-r8c8 colour "white"
+kropki-1: kropki r5c8-r5c9 white
+kropki-2: kropki r5c4-r5c5 white
+kropki-3: kropki r5c6-r5c7 white
+kropki-4: kropki r6c1-r6c2 white
+kropki-5: kropki r1c5-r1c6 white
+kropki-6: kropki r7c8-r7c9 white
+kropki-7: kropki r7c8-r8c8 white
 ```
 
 ```drawing

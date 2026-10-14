@@ -11,14 +11,15 @@ flags:
   - A source feature has no drawing in our reading yet.
   - Some source features still need to be checked against our reading.
 givens: r1c9=9 r9c1=1
+exported: 4e7c4df3153dad37aeedd8814bce8c9d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c9-r5c9 colour "white"
-kropki-2: kropki r4c1-r5c1 colour "white"
-kropki-3: kropki r5c8-r6c8 colour "white"
-kropki-4: kropki r3c1-r4c1 colour "black"
+kropki-1: kropki r4c9-r5c9 white
+kropki-2: kropki r4c1-r5c1 white
+kropki-3: kropki r5c8-r6c8 white
+kropki-4: kropki r3c1-r4c1 black
 pair-1: pair r3c9-r4c9 sum 10
 pair-2: pair r8c7-r9c7 sum 10
 pair-3: pair r6c7-r7c7 sum 10

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vamp
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=9 r9c9=4
+exported: 4087205497a66934a98a557650fe1385
 ---
 
 ```rules

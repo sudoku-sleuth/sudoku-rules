@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/4-strings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c8=5
+exported: 47b52a43d4a8e973e96f12cf014ddac4
 ---
 
 ```rules

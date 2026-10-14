@@ -6,6 +6,7 @@ source: https://sudokupad.app/mvh2bkds2g
 case: https://sudoku-sleuth.com/cases/the-maine-problem
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5387631a757e1bed5c23fe32a2fb00ea
 ---
 
 ```rules
@@ -20,10 +21,10 @@ thermo-7: thermo r1c8-r2c7-r3c8-r2c9
 thermo-8: thermo r5c4-r4c3-r5c2-r6c3
 thermo-9: thermo r6c1-r5c1-r6c2
 thermo-10: thermo r4c8-r5c9-r4c9
-kropki-1: kropki r8c1-r8c2 colour "white"
-kropki-2: kropki r7c2-r8c2 colour "white"
-kropki-3: kropki r1c8-r2c8 colour "black"
-kropki-4: kropki r2c8-r2c9 colour "black"
+kropki-1: kropki r8c1-r8c2 white
+kropki-2: kropki r7c2-r8c2 white
+kropki-3: kropki r1c8-r2c8 black
+kropki-4: kropki r2c8-r2c9 black
 ```
 
 - Normal sudoku rules apply.

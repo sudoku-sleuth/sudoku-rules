@@ -6,11 +6,12 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-illusion-of-choice
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8d865d9c934f1a18158a2fca7ab4bf3c
 ---
 
 ```rules
 sudoku 9x9
-kropki r7c7-r8c7 colour "black"
+kropki r7c7-r8c7 black
 arrow-1: arrow r1c5-r1c6 bulb ["r1c4"]
 arrow-2: arrow r2c4-r3c4-r3c5 bulb ["r1c4"]
 arrow-3: arrow r4c2-r4c3-r5c3 bulb ["r4c1"]

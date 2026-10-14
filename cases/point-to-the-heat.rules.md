@@ -6,6 +6,7 @@ source: https://sudokupad.app/cspltvn85q
 case: https://sudoku-sleuth.com/cases/point-to-the-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5497613d9f9b1eec112ed04a6b290942
 ---
 
 ```rules

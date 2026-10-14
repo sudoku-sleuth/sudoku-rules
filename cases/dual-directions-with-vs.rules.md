@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dual-directions-with-vs
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 84c964b267213bcc9005edcf867de577
 ---
 
 ```rules

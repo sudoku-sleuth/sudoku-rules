@@ -7,32 +7,33 @@ case: https://sudoku-sleuth.com/cases/patchwork-pentominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0f9fa538d6404898a11735769dfac179
 ---
 
 ```rules
 sudoku 9x9
 pair-1: pair r1c2-r1c3 difference 8
-kropki-1: kropki r5c2-r6c2 colour "white"
-kropki-2: kropki r3c2-r3c3 colour "white"
+kropki-1: kropki r5c2-r6c2 white
+kropki-2: kropki r3c2-r3c3 white
 pair-2: pair r2c4-r3c4 difference 6
-kropki-3: kropki r2c5-r2c6 colour "white"
+kropki-3: kropki r2c5-r2c6 white
 pair-3: pair r3c5-r3c6 difference 5
 pair-4: pair r2c7-r3c7 difference 7
 pair-5: pair r3c9-r4c9 difference 5
 pair-6: pair r5c7-r5c8 difference 4
-kropki-4: kropki r5c8-r6c8 colour "white"
-kropki-5: kropki r4c4-r4c5 colour "white"
-kropki-6: kropki r6c1-r7c1 colour "white"
+kropki-4: kropki r5c8-r6c8 white
+kropki-5: kropki r4c4-r4c5 white
+kropki-6: kropki r6c1-r7c1 white
 pair-7: pair r8c2-r8c3 difference 6
-kropki-7: kropki r8c5-r8c6 colour "white"
+kropki-7: kropki r8c5-r8c6 white
 pair-8: pair r6c7-r6c8 difference 2
 pair-9: pair r7c5-r8c5 difference 3
 pair-10: pair r5c4-r6c4 difference 2
 pair-11: pair r6c3-r6c4 difference 3
-kropki-8: kropki r5c3-r5c4 colour "white"
+kropki-8: kropki r5c3-r5c4 white
 pair-12: pair r6c6-r7c6 difference 4
 pair-13: pair r5c6-r6c6 difference 7
-kropki-9: kropki r7c7-r8c7 colour "white"
+kropki-9: kropki r7c7-r8c7 white
 pair-14: pair r3c7-r3c8 difference 3
 ```
 

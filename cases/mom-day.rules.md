@@ -9,14 +9,15 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
+exported: b3151029c069c3528c19e393358bc113
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c1-r5c2 colour "black"
-kropki-2: kropki r6c5-r6c6 colour "black"
-kropki-3: kropki r2c1-r3c1 colour "white"
-kropki-4: kropki r6c7-r7c7 colour "white"
+kropki-1: kropki r5c1-r5c2 black
+kropki-2: kropki r6c5-r6c6 black
+kropki-3: kropki r2c1-r3c1 white
+kropki-4: kropki r6c7-r7c7 white
 arrow-1: arrow r2c1-r3c1-r4c1 bulb ["r3c2"]
 arrow-2: arrow r2c3-r3c3-r4c3 bulb ["r3c2"]
 whispers r4c7-r3c7-r2c7-r3c8-r2c9-r3c9-r4c9 gap 5

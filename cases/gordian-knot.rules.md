@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/gordian-knot
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=9 r9c6=7
+exported: a16b4779f82d37adce7aec97f5caffce
 ---
 
 ```rules

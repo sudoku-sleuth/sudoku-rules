@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/one-way-signs
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c8=5 r9c3=5
+exported: 5eccb93932185ce66fdeafe18cae94b5
 ---
 
 ```rules

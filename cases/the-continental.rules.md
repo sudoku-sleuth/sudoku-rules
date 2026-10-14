@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 48
+    - r6c4
 format: open-rules
 title: The Continental
 setter: Blobz
@@ -104,6 +104,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f4dc2572eda034c4c088f39ac7413f83
 ---
 
 ```rules

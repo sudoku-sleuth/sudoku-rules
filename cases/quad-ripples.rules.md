@@ -6,6 +6,7 @@ source: https://sudokupad.app/as252kfkpb
 case: https://sudoku-sleuth.com/cases/quad-ripples
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0de9f884aabe41207f3e0a32aff069b3
 ---
 
 ```rules

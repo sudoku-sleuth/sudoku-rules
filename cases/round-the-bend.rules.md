@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/round-the-bend
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ba45a348627cbaa3763b9fbcdb4c4b3b
 ---
 
 ```rules

@@ -6,14 +6,15 @@ source: ""
 case: https://sudoku-sleuth.com/cases/seaweed
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a7088f2dfe797c5239c7abd1c9047871
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r2c3-r3c3 colour "white"
-kropki-3: kropki r5c1-r5c2 colour "white"
-kropki-4: kropki r1c4-r1c5 colour "white"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r2c3-r3c3 white
+kropki-3: kropki r5c1-r5c2 white
+kropki-4: kropki r1c4-r1c5 white
 whispers-1: whispers r1c3-r1c2-r2c1-r3c1-r4c2-r4c3 gap 5
 whispers-2: whispers r6c6-r6c5-r7c4-r8c4-r9c5-r9c6 gap 5
 whispers-3: whispers r3c9-r3c8-r4c7-r5c7-r6c8-r6c9 gap 5

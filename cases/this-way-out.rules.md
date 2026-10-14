@@ -6,6 +6,7 @@ source: https://sudokupad.app/f6y6zcjye1
 case: https://sudoku-sleuth.com/cases/this-way-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 33d35238ab6b52856a05baeb7f81eaf5
 ---
 
 ```rules

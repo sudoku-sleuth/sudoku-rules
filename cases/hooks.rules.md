@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/hooks
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=9 r8c9=3
+exported: e330a35abd7614776b398fbbe6d381f3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c8-r8c8 colour "white"
-kropki-2: kropki r8c1-r9c1 colour "white"
-kropki-3: kropki r6c2-r7c2 colour "black"
-kropki-4: kropki r5c6-r5c7 colour "black"
-kropki-5: kropki r2c7-r2c8 colour "black"
-kropki-6: kropki r3c4-r4c4 colour "black"
-kropki-7: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r7c8-r8c8 white
+kropki-2: kropki r8c1-r9c1 white
+kropki-3: kropki r6c2-r7c2 black
+kropki-4: kropki r5c6-r5c7 black
+kropki-5: kropki r2c7-r2c8 black
+kropki-6: kropki r3c4-r4c4 black
+kropki-7: kropki r3c7-r4c7 black
 whispers-1: whispers r2c1-r1c1-r1c2-r2c2-r3c2-r4c2-r5c2-r6c2-r6c3-r5c3 gap 5
 whispers-2: whispers r5c7-r6c7-r6c8-r5c8-r4c8-r3c8-r2c8-r1c8-r1c9-r2c9 gap 5
 whispers-3: whispers r8c3-r9c3-r9c4-r8c4-r7c4 gap 5

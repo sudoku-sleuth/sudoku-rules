@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sistinechapel-creation-of-adam
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7a8d3e467f1a24485512664424c208da
 ---
 
 ```rules

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Föggenhausen
 setter: Meggen033
@@ -17,23 +17,24 @@ source: https://sudokupad.app/3h2bxiaqm1
 case: https://sudoku-sleuth.com/cases/foggenhausen
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 36158bbe87acd59e304810be83f0be31
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r7c4 colour "white"
-kropki-2: kropki r3c6-r4c6 colour "white"
-kropki-3: kropki r3c4-r4c4 colour "white"
-kropki-4: kropki r7c6-r8c6 colour "white"
-kropki-5: kropki r6c1-r7c1 colour "white"
-kropki-6: kropki r4c7-r5c7 colour "white"
-kropki-7: kropki r3c9-r4c9 colour "white"
-kropki-8: kropki r5c4-r5c5 colour "black"
-kropki-9: kropki r5c5-r5c6 colour "black"
-kropki-10: kropki r4c3-r5c3 colour "black"
-kropki-11: kropki r7c3-r8c3 colour "black"
-kropki-12: kropki r2c8-r3c8 colour "black"
-kropki-13: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r6c4-r7c4 white
+kropki-2: kropki r3c6-r4c6 white
+kropki-3: kropki r3c4-r4c4 white
+kropki-4: kropki r7c6-r8c6 white
+kropki-5: kropki r6c1-r7c1 white
+kropki-6: kropki r4c7-r5c7 white
+kropki-7: kropki r3c9-r4c9 white
+kropki-8: kropki r5c4-r5c5 black
+kropki-9: kropki r5c5-r5c6 black
+kropki-10: kropki r4c3-r5c3 black
+kropki-11: kropki r7c3-r8c3 black
+kropki-12: kropki r2c8-r3c8 black
+kropki-13: kropki r7c8-r8c8 black
 whispers-1: whispers r4c5-r4c6 gap 5
 whispers-2: whispers r6c5-r6c4 gap 5
 whispers-3: whispers r5c7-r5c8 gap 5

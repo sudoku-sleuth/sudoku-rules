@@ -7,25 +7,26 @@ case: https://sudoku-sleuth.com/cases/broken-chains
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=4 r2c2=8 r9c1=5
+exported: 36f1ac901370f304c533c3b948653a5b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c2-r4c3 colour "white"
-kropki-2: kropki r2c4-r3c4 colour "white"
-kropki-3: kropki r2c7-r3c7 colour "white"
-kropki-4: kropki r3c7-r3c8 colour "white"
-kropki-5: kropki r4c3-r4c4 colour "white"
-kropki-6: kropki r3c4-r4c4 colour "white"
-kropki-7: kropki r6c2-r6c3 colour "white"
-kropki-8: kropki r7c4-r8c4 colour "white"
-kropki-9: kropki r6c4-r7c4 colour "white"
-kropki-10: kropki r6c3-r6c4 colour "white"
-kropki-11: kropki r7c6-r7c7 colour "white"
-kropki-12: kropki r6c7-r7c7 colour "white"
-kropki-13: kropki r8c8-r8c9 colour "white"
-kropki-14: kropki r5c6-r6c6 colour "white"
-kropki-15: kropki r7c5-r8c5 colour "white"
+kropki-1: kropki r4c2-r4c3 white
+kropki-2: kropki r2c4-r3c4 white
+kropki-3: kropki r2c7-r3c7 white
+kropki-4: kropki r3c7-r3c8 white
+kropki-5: kropki r4c3-r4c4 white
+kropki-6: kropki r3c4-r4c4 white
+kropki-7: kropki r6c2-r6c3 white
+kropki-8: kropki r7c4-r8c4 white
+kropki-9: kropki r6c4-r7c4 white
+kropki-10: kropki r6c3-r6c4 white
+kropki-11: kropki r7c6-r7c7 white
+kropki-12: kropki r6c7-r7c7 white
+kropki-13: kropki r8c8-r8c9 white
+kropki-14: kropki r5c6-r6c6 white
+kropki-15: kropki r7c5-r8c5 white
 region-sum-1: region-sum r4c2-r4c1-r3c1-r3c2-r3c3-r2c3-r1c3-r1c4-r2c4 segments [["r4c2","r4c1"],["r3c1","r3c2","r3c3","r2c3","r1c3"],["r1c4","r2c4"]]
 region-sum-2: region-sum r2c6-r1c6-r1c7-r2c7 segments [["r2c6","r1c6"],["r1c7","r2c7"]]
 region-sum-3: region-sum r4c8-r4c9-r3c9-r3c8 segments [["r4c8","r4c9"],["r3c9","r3c8"]]

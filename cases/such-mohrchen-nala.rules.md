@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 15
-    - 17
+    - r2c7
+    - r2c9
 format: open-rules
 title: Such Möhrchen, Nala!
 setter: Sandra & Nala
@@ -11,6 +11,7 @@ case: https://sudoku-sleuth.com/cases/such-mohrchen-nala
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: fe2df927b2f1e3d86fffbd1e4c5d509d
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/irish-dots-x
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e015d3721c6b3c7e6796d01af3e1273c
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nine-grain-bread
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=3 r2c8=7 r3c6=4 r5c2=6 r6c4=2 r6c7=3 r8c7=8
+exported: 44be16b6dc4c7d6ce1f6e8813396ce35
 ---
 
 ```rules

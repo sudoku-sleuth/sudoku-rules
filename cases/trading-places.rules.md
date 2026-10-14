@@ -6,6 +6,7 @@ source: https://sudokupad.app/huq9inpn1t
 case: https://sudoku-sleuth.com/cases/trading-places
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bb8bc6505e146af9b67a929d788cc6cd
 ---
 
 ```rules

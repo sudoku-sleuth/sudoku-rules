@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flow-chart
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=2 r4c9=9 r9c7=1
+exported: 9813b6c234866005906f41fcf446b6e4
 ---
 
 ```rules

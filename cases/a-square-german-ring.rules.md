@@ -6,6 +6,7 @@ source: https://sudokupad.app/vnzcpnqmcw
 case: https://sudoku-sleuth.com/cases/a-square-german-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4578fde259fb65a1a8e2d4d2d11228dd
 ---
 
 ```rules

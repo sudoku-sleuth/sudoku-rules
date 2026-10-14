@@ -6,6 +6,7 @@ source: https://sudokupad.app/ly5q4viuv0
 case: https://sudoku-sleuth.com/cases/swamping-the-drain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 25170b48f0d5532bb716396534e75587
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/48cvh2dgo1
 case: https://sudoku-sleuth.com/cases/around-the-neighbourhood
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 334723751ae7aab351e0176c99fb987b
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/star-of-the-bouquet
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0ee2757aa36ff821a43fc4b6a15a044e
 ---
 
 ```rules

@@ -101,6 +101,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: e373c62ea1c9324b8894814eb99a2916
 ---
 
 ```rules
@@ -131,17 +132,17 @@ equality-cage-6: equality-cage r6c7-r7c7
 equality-cage-7: equality-cage r7c8-r7c9
 equality-cage-8: equality-cage r1c3-r2c3
 equality-cage-9: equality-cage r8c4-r9c4
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r7c4-r7c5 colour "black"
-kropki-3: kropki r1c8-r1c9 colour "white"
-kropki-4: kropki r1c9-r2c9 colour "white"
-kropki-5: kropki r2c2-r2c3 colour "white"
-kropki-6: kropki r4c3-r4c4 colour "white"
-kropki-7: kropki r7c7-r7c8 colour "white"
-kropki-8: kropki r5c1-r5c2 colour "white"
-kropki-9: kropki r3c5-r3c6 colour "white"
-kropki-10: kropki r5c8-r5c9 colour "white"
-kropki-11: kropki r9c7-r9c8 colour "white"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r7c4-r7c5 black
+kropki-3: kropki r1c8-r1c9 white
+kropki-4: kropki r1c9-r2c9 white
+kropki-5: kropki r2c2-r2c3 white
+kropki-6: kropki r4c3-r4c4 white
+kropki-7: kropki r7c7-r7c8 white
+kropki-8: kropki r5c1-r5c2 white
+kropki-9: kropki r3c5-r3c6 white
+kropki-10: kropki r5c8-r5c9 white
+kropki-11: kropki r9c7-r9c8 white
 pair-1: pair r5c2-r6c2 sum 10
 pair-2: pair r2c4-r2c5 sum 10
 pair-3: pair r5c6-r5c7 sum 10

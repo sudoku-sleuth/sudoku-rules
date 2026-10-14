@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/radical-rainbow
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e330db43f99c97c9ed29c1598aef5317
 ---
 
 ```rules

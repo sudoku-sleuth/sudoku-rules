@@ -6,6 +6,7 @@ source: https://sudokupad.app/pcivbiph1r
 case: https://sudoku-sleuth.com/cases/tangles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ec70f224f27e3531669d0c7d5ac4d347
 ---
 
 ```rules
@@ -27,18 +28,18 @@ thermo-14: thermo r2c2-r2c1-r3c1-r3c2
 thermo-15: thermo r3c8-r4c8-r4c9-r3c9
 thermo-16: thermo r2c9-r1c9-r1c8-r2c8
 thermo-17: thermo r8c5-r7c5-r7c4
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r2c2-r2c3 colour "black"
-kropki-3: kropki r3c3-r3c4 colour "black"
-kropki-4: kropki r4c4-r4c5 colour "black"
-kropki-5: kropki r5c5-r5c6 colour "black"
-kropki-6: kropki r6c6-r6c7 colour "black"
-kropki-7: kropki r7c7-r7c8 colour "black"
-kropki-8: kropki r8c8-r8c9 colour "black"
-kropki-9: kropki r8c3-r8c4 colour "black"
-kropki-10: kropki r6c2-r7c2 colour "black"
-kropki-11: kropki r2c7-r3c7 colour "black"
-kropki-12: kropki r9c6-r9c7 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r2c2-r2c3 black
+kropki-3: kropki r3c3-r3c4 black
+kropki-4: kropki r4c4-r4c5 black
+kropki-5: kropki r5c5-r5c6 black
+kropki-6: kropki r6c6-r6c7 black
+kropki-7: kropki r7c7-r7c8 black
+kropki-8: kropki r8c8-r8c9 black
+kropki-9: kropki r8c3-r8c4 black
+kropki-10: kropki r6c2-r7c2 black
+kropki-11: kropki r2c7-r3c7 black
+kropki-12: kropki r9c6-r9c7 black
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

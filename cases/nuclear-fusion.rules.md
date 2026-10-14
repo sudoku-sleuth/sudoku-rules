@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nuclear-fusion
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cfdefec3b138e342b0ec6563399e0931
 ---
 
 ```rules

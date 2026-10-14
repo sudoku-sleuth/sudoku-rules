@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 63
-    - 64
-    - 72
-    - 73
+    - r8c1
+    - r8c2
+    - r9c1
+    - r9c2
 format: open-rules
 title: "RAT RUN 10: Sensored"
 setter: Marty Sears
@@ -13,15 +13,16 @@ case: https://sudoku-sleuth.com/cases/rat-run-10-sensored
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 524c176ac0d52069c679b1d84f9f69db
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r5c4 colour "black"
-kropki-2: kropki r4c5-r5c5 colour "black"
-kropki-3: kropki r7c3-r7c4 colour "black"
-kropki-4: kropki r7c6-r8c6 colour "black"
-kropki-5: kropki r3c6-r4c6 colour "black"
+kropki-1: kropki r4c4-r5c4 black
+kropki-2: kropki r4c5-r5c5 black
+kropki-3: kropki r7c3-r7c4 black
+kropki-4: kropki r7c6-r8c6 black
+kropki-5: kropki r3c6-r4c6 black
 ```
 
 ```drawing

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/high-index
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=6 r4c1=5 r4c8=7
+exported: 63ac75878d35bc054a79d5e3505d79a9
 ---
 
 ```rules

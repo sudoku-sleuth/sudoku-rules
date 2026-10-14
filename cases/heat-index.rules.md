@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/heat-index
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c1=2 r8c2=9
+exported: db99b80b4f9c77ca1087be853f5b5a08
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/mingling-swarms
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0632ba3daeff7482099bbb679126672d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/1g4a34fup1
 case: https://sudoku-sleuth.com/cases/fair-and-square
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 80211945ef52223c492357f40e6b578e
 ---
 
 ```rules

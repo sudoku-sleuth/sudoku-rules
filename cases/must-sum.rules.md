@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/must-sum
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: bbd16e3032d6f0de8a4adb20c3ad0492
 ---
 
 ```rules

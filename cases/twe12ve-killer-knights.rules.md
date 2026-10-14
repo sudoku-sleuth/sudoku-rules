@@ -6,6 +6,7 @@ source: https://sudokupad.app/a544342mhn
 case: https://sudoku-sleuth.com/cases/twe12ve-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 554c4a6f26ff6faa11aae3ee6fff4089
 ---
 
 ```rules

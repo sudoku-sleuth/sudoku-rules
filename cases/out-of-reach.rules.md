@@ -6,6 +6,7 @@ source: https://sudokupad.app/lsgol1u6f7
 case: https://sudoku-sleuth.com/cases/out-of-reach
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c94fe0ac1163a121e98e8c08ca99a431
 ---
 
 ```rules

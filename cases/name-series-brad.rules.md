@@ -6,12 +6,13 @@ source: https://tinyurl.com/nameseriesbradsudoku
 case: https://sudoku-sleuth.com/cases/name-series-brad
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f6f28f96796c50b0f73a1b5b9dd37cb3
 ---
 
 ```rules
 sudoku 9x9
 thermo r3c4-r2c4-r1c4-r1c5-r1c6-r2c6-r2c5-r3c6
-kropki r6c9-r7c9 colour "white"
+kropki r6c9-r7c9 white
 whispers-1: whispers r1c1-r2c1-r3c1-r4c1-r5c1 gap 5
 whispers-2: whispers r1c1-r1c2-r2c3-r3c2-r4c3-r5c2 gap 5
 whispers-3: whispers r6c4-r5c4-r4c5-r5c6-r6c6 gap 5

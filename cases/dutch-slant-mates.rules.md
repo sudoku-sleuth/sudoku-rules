@@ -6,6 +6,7 @@ source: https://sudokupad.app/e73r5f9ww2
 case: https://sudoku-sleuth.com/cases/dutch-slant-mates
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 39ad37bc8803c5812e776c8795048cbb
 ---
 
 ```rules

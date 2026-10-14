@@ -6,6 +6,7 @@ source: https://sudokupad.app/lxgv0nky54
 case: https://sudoku-sleuth.com/cases/a-killer-in-the-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b0ae125263b30360f74168a7f50067f2
 ---
 
 ```rules

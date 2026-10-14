@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
+exported: ed8416a598998171be0c5f011dce8e82
 ---
 
 ```rules
@@ -20,18 +21,18 @@ cage-5: cage r1c5-r1c6-r1c7-r1c8-r1c9 total 27 connected true
 cage-6: cage r2c6-r2c7-r2c8-r2c9 total 18 connected true
 cage-7: cage r4c8-r4c9-r5c9 total 24 connected true
 cage-8: cage r3c7-r3c8-r3c9 total 21 connected true
-kropki-1: kropki r1c5-r1c6 colour "white"
-kropki-2: kropki r5c4-r5c5 colour "white"
-kropki-3: kropki r5c1-r5c2 colour "white"
-kropki-4: kropki r2c2-r2c3 colour "white"
-kropki-5: kropki r9c1-r9c2 colour "white"
-kropki-6: kropki r7c4-r8c4 colour "white"
-kropki-7: kropki r6c7-r7c7 colour "white"
-kropki-8: kropki r1c8-r1c9 colour "white"
-kropki-9: kropki r1c7-r1c8 colour "white"
-kropki-10: kropki r3c7-r3c8 colour "white"
-kropki-11: kropki r2c6-r3c6 colour "white"
-kropki-12: kropki r5c6-r5c7 colour "white"
+kropki-1: kropki r1c5-r1c6 white
+kropki-2: kropki r5c4-r5c5 white
+kropki-3: kropki r5c1-r5c2 white
+kropki-4: kropki r2c2-r2c3 white
+kropki-5: kropki r9c1-r9c2 white
+kropki-6: kropki r7c4-r8c4 white
+kropki-7: kropki r6c7-r7c7 white
+kropki-8: kropki r1c8-r1c9 white
+kropki-9: kropki r1c7-r1c8 white
+kropki-10: kropki r3c7-r3c8 white
+kropki-11: kropki r2c6-r3c6 white
+kropki-12: kropki r5c6-r5c7 white
 renban-1: renban r1c1-r2c1-r3c1-r1c3-r2c2-r3c3
 region-sum-1: region-sum r5c2-r4c2-r3c2-r2c3-r3c4-r4c4-r5c4 segments [["r5c2","r4c2"],["r3c2","r2c3"],["r3c4"],["r4c4","r5c4"]]
 region-sum-2: region-sum r4c2-r4c3-r4c4 segments [["r4c2","r4c3"],["r4c4"]]

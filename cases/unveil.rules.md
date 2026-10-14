@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/unveil
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 2.....1....7..6.5..4...1..9...9..4.2..3.5..7..6..8.....8.2..9....1.....35....7.4.
+exported: e879caf0cfb0f6ece0949b96075d5f26
 ---
 
 ```rules

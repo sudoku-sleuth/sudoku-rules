@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/palindromes-with-quiet-math
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8eda18d262a1f0dc7cfa8eea0eb7c458
 ---
 
 ```rules

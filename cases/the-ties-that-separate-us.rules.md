@@ -6,6 +6,7 @@ source: https://sudokupad.app/je11t0zn1j
 case: https://sudoku-sleuth.com/cases/the-ties-that-separate-us
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 189d4c80c1ab33345caf3cb485788566
 ---
 
 ```rules
@@ -26,7 +27,7 @@ cage-13: cage r3c1-r4c1 total 10 connected true
 cage-14: cage r6c9-r7c9 total 8 connected true
 cage-15: cage r9c6-r9c7 total 10 connected true
 cage-16: cage r1c3-r1c4 total 13 connected true
-kropki r8c9-r9c9 colour "white"
+kropki r8c9-r9c9 white
 nabner-1: nabner r5c3-r4c3-r3c4-r3c5 distinct true
 nabner-2: nabner r4c2-r3c2-r2c3-r2c4 distinct true
 nabner-3: nabner r3c1-r2c1-r1c2-r1c3 distinct true

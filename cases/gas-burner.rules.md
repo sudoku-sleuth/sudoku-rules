@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/gas-burner
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c1=7 r6c6=2 r8c5=8
+exported: a3f8af94ed43ea0cf718b2f784fd27b5
 ---
 
 ```rules

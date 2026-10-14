@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 7
-    - 8
-    - 16
-    - 17
+    - r1c8
+    - r1c9
+    - r2c8
+    - r2c9
 format: open-rules
 title: Merry Woofy Christmas
 setter: Sandra & Nala
@@ -13,6 +13,7 @@ case: https://sudoku-sleuth.com/cases/merry-woofy-christmas
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ec7a84dbe3749d1b2bdcf406128672c2
 ---
 
 ```rules

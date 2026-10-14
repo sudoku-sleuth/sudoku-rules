@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-tardis-hotel
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 84fb4d9982f0fc8934eb672127b4f75b
 ---
 
 ```rules

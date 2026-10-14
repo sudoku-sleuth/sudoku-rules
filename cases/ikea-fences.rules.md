@@ -6,6 +6,7 @@ source: https://sudokupad.app/n3z7l5mfek
 case: https://sudoku-sleuth.com/cases/ikea-fences
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9edf934c376536ea506551760032e989
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/vg8fqm95k7
 case: https://sudoku-sleuth.com/cases/four-times-the-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ccefadf86aacda74ebb9d0551a71a107
 ---
 
 ```rules

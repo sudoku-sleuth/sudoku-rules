@@ -6,6 +6,7 @@ source: https://sudokupad.app/wrlxp4pnd5
 case: https://sudoku-sleuth.com/cases/tarzan-boy-baltimora-1985
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b649a1d447575345ee3045e10759245c
 ---
 
 ```rules

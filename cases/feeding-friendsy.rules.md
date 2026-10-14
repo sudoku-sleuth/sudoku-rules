@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/feeding-friendsy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b8f8d28341ca03a91dbbe8647ce03ae8
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c6-r6c6 colour "black"
+kropki r5c6-r6c6 black
 ```
 
 ```drawing

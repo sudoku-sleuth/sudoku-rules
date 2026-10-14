@@ -6,6 +6,7 @@ source: https://sudokupad.app/00i2hcd12n
 case: https://sudoku-sleuth.com/cases/inward-focus
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5d6b0b8369466a2013b7da0d73bbf650
 ---
 
 ```rules

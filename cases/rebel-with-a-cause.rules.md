@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rebel-with-a-cause
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9fca844ac6f6479b275933acfbf12f91
 ---
 
 ```rules

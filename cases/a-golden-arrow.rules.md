@@ -6,21 +6,22 @@ source: ""
 case: https://sudoku-sleuth.com/cases/a-golden-arrow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9e57021bcf8396b972e8afc4fdcb972f
 ---
 
 ```rules
 sudoku 9x9
 thermo-1: thermo r8c1-r8c2-r8c3-r7c4-r6c5
 thermo-2: thermo r2c1-r2c2-r2c3-r3c4-r4c5-r5c6
-kropki-1: kropki r2c8-r3c8 colour "white"
-kropki-2: kropki r5c1-r6c1 colour "black"
-kropki-3: kropki r1c8-r2c8 colour "black"
-kropki-4: kropki r7c9-r8c9 colour "black"
-kropki-5: kropki r6c9-r7c9 colour "black"
-kropki-6: kropki r7c8-r8c8 colour "black"
-kropki-7: kropki r1c6-r1c7 colour "black"
-kropki-8: kropki r9c3-r9c4 colour "black"
-kropki-9: kropki r3c6-r3c7 colour "black"
+kropki-1: kropki r2c8-r3c8 white
+kropki-2: kropki r5c1-r6c1 black
+kropki-3: kropki r1c8-r2c8 black
+kropki-4: kropki r7c9-r8c9 black
+kropki-5: kropki r6c9-r7c9 black
+kropki-6: kropki r7c8-r8c8 black
+kropki-7: kropki r1c6-r1c7 black
+kropki-8: kropki r9c3-r9c4 black
+kropki-9: kropki r3c6-r3c7 black
 whispers r5c1-r5c2-r5c3-r5c4-r5c5-r5c6-r5c7-r5c8 gap 5
 renban r2c1-r3c1-r4c1-r5c1-r6c1-r7c1-r8c1
 region-sum-1: region-sum r1c2-r1c3-r2c4 segments [["r1c2","r1c3"],["r2c4"]]

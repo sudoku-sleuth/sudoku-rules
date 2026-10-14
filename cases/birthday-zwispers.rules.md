@@ -6,6 +6,7 @@ source: https://sudokupad.app/srhwl12v30
 case: https://sudoku-sleuth.com/cases/birthday-zwispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 53b10e8a27860442195bed7fd0bf7699
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-great-escape
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 94e31d22725318eb98de61e1c913f4e5
 ---
 
 ```rules
@@ -15,8 +16,8 @@ thermo-1: thermo r1c1-r2c1-r3c1-r4c1-r5c1-r6c1
 thermo-2: thermo r9c2-r9c3-r9c4-r9c5-r9c6-r9c7
 thermo-3: thermo r4c7-r3c7-r2c7-r1c7
 thermo-4: thermo r8c9-r7c9-r6c9-r5c9
-kropki-1: kropki r2c7-r2c8 colour "white"
-kropki-2: kropki r4c2-r5c2 colour "white"
+kropki-1: kropki r2c7-r2c8 white
+kropki-2: kropki r4c2-r5c2 white
 ```
 
 ```drawing

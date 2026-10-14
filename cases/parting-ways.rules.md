@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parting-ways
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c8=2
+exported: 0ecfaa13def26e85804bcedad4e9f334
 ---
 
 ```rules

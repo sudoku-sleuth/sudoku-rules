@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/if-at-first-you-don-t-succeed
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c4ba30130f0d33982af23243f89d7716
 ---
 
 ```rules

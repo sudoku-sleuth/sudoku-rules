@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/shared-dependencies
 case: https://sudoku-sleuth.com/cases/shared-dependencies
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 263b563ba6895a35b9e1141e1291be5e
 ---
 
 ```rules

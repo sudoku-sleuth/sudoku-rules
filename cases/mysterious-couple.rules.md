@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/mysterious-couple
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d60a7f78b91f1b7a718af9dc1c4bc8d3
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c9-r6c9 colour "black"
+kropki r5c9-r6c9 black
 pair-1: pair r1c5-r2c5 sum 10
 pair-2: pair r6c5-r7c5 sum 10
 ```

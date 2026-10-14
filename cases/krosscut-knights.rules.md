@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/krosscut-knights
 case: https://sudoku-sleuth.com/cases/krosscut-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bd58276b8c5d0735cf95a7f53e3518c5
 ---
 
 ```rules

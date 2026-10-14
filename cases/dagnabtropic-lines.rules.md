@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dagnabtropic-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=3 r2c7=1 r3c2=6 r5c1=1 r5c5=5 r5c9=4 r7c8=8 r8c3=3 r9c5=2
+exported: 2837f97feacf475cda11ab71265e11e9
 ---
 
 ```rules

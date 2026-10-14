@@ -6,6 +6,7 @@ source: https://tinyurl.com/2m6zv69n
 case: https://sudoku-sleuth.com/cases/reflexive-tug-of-war
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 406cbb619a734959e77876a052a3a39e
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/xdp4gmp8lu
 case: https://sudoku-sleuth.com/cases/hashtag-between-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 691d6706310ce823560543011e2ea331
 ---
 
 ```rules

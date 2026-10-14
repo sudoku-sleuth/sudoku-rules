@@ -6,6 +6,7 @@ source: https://tinyurl.com/4yux43kw
 case: https://sudoku-sleuth.com/cases/elasticity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b67304c87e42bcb9ff833c3fcbe34fb2
 ---
 
 ```rules

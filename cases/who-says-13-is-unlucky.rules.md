@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/who-says-13-is-unlucky
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=1 r4c6=3 r8c7=1 r9c8=3
+exported: f87a84223daaa744c282ac313e530195
 ---
 
 ```rules

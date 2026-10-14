@@ -7,24 +7,25 @@ case: https://sudoku-sleuth.com/cases/black-and-blue-i
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d6a4a67e154f64e54f3294141cde7f84
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r5c2-r6c2 colour "white"
-kropki-2: kropki r6c1-r6c2 colour "black"
-kropki-3: kropki r6c2-r7c2 colour "black"
-kropki-4: kropki r6c1-r7c1 colour "black"
-kropki-5: kropki r7c1-r7c2 colour "black"
-kropki-6: kropki r3c2-r3c3 colour "black"
-kropki-7: kropki r3c3-r4c3 colour "black"
-kropki-8: kropki r3c3-r3c4 colour "black"
-kropki-9: kropki r4c3-r4c4 colour "black"
-kropki-10: kropki r3c4-r4c4 colour "black"
-kropki-11: kropki r2c3-r3c3 colour "black"
-kropki-12: kropki r8c5-r9c5 colour "black"
-kropki-13: kropki r4c8-r5c8 colour "black"
+kropki-1: kropki r5c2-r6c2 white
+kropki-2: kropki r6c1-r6c2 black
+kropki-3: kropki r6c2-r7c2 black
+kropki-4: kropki r6c1-r7c1 black
+kropki-5: kropki r7c1-r7c2 black
+kropki-6: kropki r3c2-r3c3 black
+kropki-7: kropki r3c3-r4c3 black
+kropki-8: kropki r3c3-r3c4 black
+kropki-9: kropki r4c3-r4c4 black
+kropki-10: kropki r3c4-r4c4 black
+kropki-11: kropki r2c3-r3c3 black
+kropki-12: kropki r8c5-r9c5 black
+kropki-13: kropki r4c8-r5c8 black
 ```
 
 ```drawing

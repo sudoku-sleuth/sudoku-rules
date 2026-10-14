@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/santa-clara
 case: https://sudoku-sleuth.com/cases/santa-clara
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 301423eca2d2635392b4a80fbe865d89
 ---
 
 ```rules

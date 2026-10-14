@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/exothermic
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e52f25c90e9009af83c1a6298e3e0e60
 ---
 
 ```rules

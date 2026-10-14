@@ -6,6 +6,7 @@ source: https://sudokupad.app/ixt5v2pb4z
 case: https://sudoku-sleuth.com/cases/how-the-sausage-gets-made
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dea58445a4ae41885f2b3276edafdfc6
 ---
 
 ```rules

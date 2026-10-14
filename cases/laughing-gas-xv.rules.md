@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/laughing-gas-xv
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5c66c0b205eb5564abd3656a911bc640
 ---
 
 ```rules
@@ -19,10 +20,10 @@ cage-6: cage r2c8-r2c9-r3c8 total 10 connected true
 cage-7: cage r5c7-r5c8-r6c7 total 10 connected true
 cage-8: cage r8c8-r8c9-r9c8 total 10 connected true
 cage-9: cage r7c6-r8c6-r8c7 total 10 connected true
-kropki-1: kropki r8c8-r8c9 colour "white"
-kropki-2: kropki r2c1-r2c2 colour "white"
-kropki-3: kropki r4c4-r4c5 colour "white"
-kropki-4: kropki r4c5-r4c6 colour "white"
+kropki-1: kropki r8c8-r8c9 white
+kropki-2: kropki r2c1-r2c2 white
+kropki-3: kropki r4c4-r4c5 white
+kropki-4: kropki r4c5-r4c6 white
 pair-1: pair r2c6-r2c7 sum 10
 pair-2: pair r3c3-r3c4 sum 10
 pair-3: pair r4c8-r4c9 sum 10

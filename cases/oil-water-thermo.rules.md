@@ -6,6 +6,7 @@ source: https://sudokupad.app/f12xlowxkz
 case: https://sudoku-sleuth.com/cases/oil-water-thermo
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 30e9b35c7031802a4fcc93c413186b21
 ---
 
 ```rules

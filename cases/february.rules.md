@@ -6,6 +6,7 @@ source: https://sudokupad.app/x17676cr13
 case: https://sudoku-sleuth.com/cases/february
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b16ff69f789f87cee27465d437f66052
 ---
 
 ```rules

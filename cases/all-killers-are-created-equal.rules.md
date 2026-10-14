@@ -6,6 +6,7 @@ source: https://sudokupad.app/xjn2zuwqms
 case: https://sudoku-sleuth.com/cases/all-killers-are-created-equal
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6f50dbf6e2d0011d4f72026efb5dae60
 ---
 
 ```rules
@@ -29,7 +30,7 @@ cage-16: cage r3c6-r3c7-r4c7-r5c6-r5c7 connected true
 cage-17: cage r2c8-r3c8-r4c8-r5c8 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki r6c6-r7c6 colour "black"
+kropki r6c6-r7c6 black
 pair-1: pair r4c1-r5c1 sum 10
 pair-2: pair r6c2-r6c3 sum 10
 pair-3: pair r3c6-r4c6 sum 10

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/equality-cages-144-equality-islands
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: dba3771234af15636f0345018f96d048
 ---
 
 ```rules

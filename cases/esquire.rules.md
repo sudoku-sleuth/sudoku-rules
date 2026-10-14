@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/esquire
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=1 r4c1=4 r5c4=8 r5c6=4 r6c9=5 r7c5=5
+exported: 59f5b6d912731e4368756942291e3caa
 ---
 
 ```rules

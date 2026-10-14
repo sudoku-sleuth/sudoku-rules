@@ -6,6 +6,7 @@ source: https://sudokupad.app/ig5oto3aw8
 case: https://sudoku-sleuth.com/cases/shifter-lines-118-hot-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 704daf27a2c386755b502c958b860d4f
 ---
 
 ```rules

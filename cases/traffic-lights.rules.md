@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/traffic-lights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0bf8f61e08f0c4b8f1fd53c339f64651
 ---
 
 ```rules

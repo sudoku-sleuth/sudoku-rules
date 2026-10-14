@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=yb3vp35x
 case: https://sudoku-sleuth.com/cases/unknown-origin
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ac884593d4b98cf5db6609b3bd62c37d
 ---
 
 ```rules

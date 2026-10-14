@@ -6,6 +6,7 @@ source: https://sudokupad.app/bfgl8jnyz4
 case: https://sudoku-sleuth.com/cases/a-few-good-turns
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0c37b8b039d9e9013dce2e95195607af
 ---
 
 ```rules

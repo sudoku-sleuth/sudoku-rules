@@ -6,6 +6,7 @@ source: https://sudokupad.app/bs91vihksc
 case: https://sudoku-sleuth.com/cases/one-german-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 25afd34e2d00994a8873abf92689975b
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/break-in-break-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 71e3ea025cf6605f640996e184e18dc7
 ---
 
 ```rules

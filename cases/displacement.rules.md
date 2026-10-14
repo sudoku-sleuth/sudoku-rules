@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/displacement
 case: https://sudoku-sleuth.com/cases/displacement
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ffbe955eab157a7fe9f73583a812786a
 ---
 
 ```rules

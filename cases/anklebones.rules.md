@@ -6,6 +6,7 @@ source: https://sudokupad.app/6zrib0785f
 case: https://sudoku-sleuth.com/cases/anklebones
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5813f1b8a212a5b8ab0e3ab35a04b437
 ---
 
 ```rules

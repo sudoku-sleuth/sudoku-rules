@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fletched-little-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=5 r5c3=8 r6c8=7 r9c5=6
+exported: 345076fff58ca61a5a6a351375a5450c
 ---
 
 ```rules

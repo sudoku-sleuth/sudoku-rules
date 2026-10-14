@@ -6,6 +6,7 @@ source: https://sudokupad.app/x9ol856g46
 case: https://sudoku-sleuth.com/cases/getting-in-on-the-ground-floor
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 50c50f39746ea3b41fa3c18028d5adf7
 ---
 
 ```rules
@@ -16,15 +17,15 @@ cage-3: cage r8c2-r9c2 total 10 connected true
 cage-4: cage r8c3-r9c3 total 10 connected true
 cage-5: cage r1c7-r1c8 total 10 connected true
 cage-6: cage r8c9-r9c9 total 10 connected true
-kropki-1: kropki r2c4-r3c4 colour "white"
-kropki-2: kropki r3c4-r4c4 colour "white"
-kropki-3: kropki r4c4-r5c4 colour "white"
-kropki-4: kropki r1c4-r2c4 colour "white"
-kropki-5: kropki r6c5-r6c6 colour "white"
-kropki-6: kropki r6c6-r6c7 colour "white"
-kropki-7: kropki r6c7-r6c8 colour "white"
-kropki-8: kropki r6c8-r6c9 colour "white"
-kropki-9: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r2c4-r3c4 white
+kropki-2: kropki r3c4-r4c4 white
+kropki-3: kropki r4c4-r5c4 white
+kropki-4: kropki r1c4-r2c4 white
+kropki-5: kropki r6c5-r6c6 white
+kropki-6: kropki r6c6-r6c7 white
+kropki-7: kropki r6c7-r6c8 white
+kropki-8: kropki r6c8-r6c9 white
+kropki-9: kropki r9c8-r9c9 black
 arrow-1: arrow r3c2-r2c3-r1c4 bulb ["r4c1"]
 arrow-2: arrow r2c3-r3c4-r4c5 bulb ["r1c2"]
 arrow-3: arrow r3c4-r4c3-r5c2 bulb ["r2c5"]

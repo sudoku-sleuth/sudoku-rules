@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-32-veracity
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e35731ed626b38bb29f4fb4445de1f7c
 ---
 
 ```rules

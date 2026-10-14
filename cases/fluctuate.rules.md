@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/fluctuate
 case: https://sudoku-sleuth.com/cases/fluctuate
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9648406533d97fbdfa26439ef5c600a0
 ---
 
 ```rules

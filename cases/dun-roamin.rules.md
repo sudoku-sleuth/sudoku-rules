@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dun-roamin
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=8 r5c5=6 r8c8=2
+exported: 162f69f78a2c7e200692e2e7e541459e
 ---
 
 ```rules

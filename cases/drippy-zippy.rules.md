@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/drippy-zippy
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=4 r5c6=3 r8c9=7 r9c2=9
+exported: 98375ced4227f77760dcd4fda4b93a8e
 ---
 
 ```rules

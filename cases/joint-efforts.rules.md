@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/joint-efforts
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3ee87fd1593128a04f127dfffc13c183
 ---
 
 ```rules

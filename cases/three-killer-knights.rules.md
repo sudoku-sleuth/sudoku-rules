@@ -6,6 +6,7 @@ source: https://sudokupad.app/i2awukl9m0
 case: https://sudoku-sleuth.com/cases/three-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4ec01a8a35fd7b09e96ce99db4da63c0
 ---
 
 ```rules

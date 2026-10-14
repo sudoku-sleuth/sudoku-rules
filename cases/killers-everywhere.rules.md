@@ -6,6 +6,7 @@ source: https://sudokupad.app/an8fn1ke9g
 case: https://sudoku-sleuth.com/cases/killers-everywhere
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0f5bc4768764fcbee085ab3a7280cfc0
 ---
 
 ```rules

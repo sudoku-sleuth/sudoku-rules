@@ -6,6 +6,7 @@ source: https://sudokupad.app/4z8ku01djc
 case: https://sudoku-sleuth.com/cases/watch-it-crash
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 929f0a476b1dd3cc5084ed7a79a78557
 ---
 
 ```rules

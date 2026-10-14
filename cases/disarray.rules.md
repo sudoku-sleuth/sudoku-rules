@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/disarray
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7f332f9be2666c854b668de195baff2e
 ---
 
 ```rules
@@ -14,8 +15,8 @@ cage-1: cage r7c1-r7c2 total 13 connected true
 cage-2: cage r1c3-r2c3 total 14 connected true
 cage-3: cage r3c8-r3c9 total 17 connected true
 cage-4: cage r8c7-r9c7 total 16 connected true
-kropki-1: kropki r4c3-r5c3 colour "white"
-kropki-2: kropki r5c7-r6c7 colour "white"
+kropki-1: kropki r4c3-r5c3 white
+kropki-2: kropki r5c7-r6c7 white
 arrow-1: arrow r8c2-r8c1-r9c1 bulb ["r7c3"]
 arrow-2: arrow r8c8-r9c8-r9c9 bulb ["r7c7"]
 arrow-3: arrow r2c8-r2c9-r1c9 bulb ["r3c7"]

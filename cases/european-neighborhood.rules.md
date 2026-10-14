@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/european-neighborhood
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4d08c4ac4bb3c1aaa4408520c764926c
 ---
 
 ```rules

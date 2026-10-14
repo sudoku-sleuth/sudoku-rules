@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/drumroll
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=5
+exported: a51230502114c3d3469fe58ed1ea62e1
 ---
 
 ```rules
@@ -14,8 +15,8 @@ sudoku 9x9
 anti-king
 thermo-1: thermo r4c4-r3c3-r2c2-r1c1
 thermo-2: thermo r5c6-r4c7-r3c8-r2c9
-kropki-1: kropki r7c2-r8c2 colour "white"
-kropki-2: kropki r7c8-r8c8 colour "white"
+kropki-1: kropki r7c2-r8c2 white
+kropki-2: kropki r7c8-r8c8 white
 whispers-1: whispers r6c2-r6c3-r6c4-r6c5-r6c6-r6c7-r6c8 gap 5
 whispers-2: whispers r9c8-r9c7-r9c6-r9c5-r9c4-r9c3-r9c2 gap 5
 region-sum-1: region-sum r6c2-r7c2-r8c2-r9c2 segments [["r6c2"],["r7c2","r8c2","r9c2"]]

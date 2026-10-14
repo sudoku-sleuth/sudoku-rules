@@ -6,6 +6,7 @@ source: https://sudokupad.app/xigs1oroyd
 case: https://sudoku-sleuth.com/cases/top-to-bottom
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5152810f536f6d2ee469e2259e2b8afc
 ---
 
 ```rules

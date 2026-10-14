@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/blossom
 case: https://sudoku-sleuth.com/cases/blossom
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6c11486fb5b1bd06e0c1c771f1e9d1d2
 ---
 
 ```rules

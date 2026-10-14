@@ -6,6 +6,7 @@ source: https://sudokupad.app/7rv0xx0wno
 case: https://sudoku-sleuth.com/cases/little-killer-tango
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dab43bd5af4de5bf5da9aec287df72ee
 ---
 
 ```rules
@@ -14,10 +15,10 @@ cage-1: cage r7c2-r7c3-r8c3 total 12 connected true
 cage-2: cage r2c3-r3c2-r3c3 total 11 connected true
 cage-3: cage r7c7-r7c8-r8c7 total 11 connected true
 cage-4: cage r2c7-r3c7-r3c8 total 10 connected true
-kropki-1: kropki r8c7-r9c7 colour "white"
-kropki-2: kropki r2c8-r3c8 colour "white"
-kropki-3: kropki r7c2-r8c2 colour "white"
-kropki-4: kropki r1c5-r1c6 colour "white"
+kropki-1: kropki r8c7-r9c7 white
+kropki-2: kropki r2c8-r3c8 white
+kropki-3: kropki r7c2-r8c2 white
+kropki-4: kropki r1c5-r1c6 white
 little-killer-1: little-killer r6c1-r7c2-r8c3-r9c4 sum 6
 little-killer-2: little-killer r1c4-r2c3-r3c2-r4c1 sum 7
 little-killer-3: little-killer r4c9-r3c8-r2c7-r1c6 sum 6

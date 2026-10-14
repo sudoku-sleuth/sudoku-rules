@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/by-an-arrow-margin
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 79d2f8ef812b74d419649d50826be2e3
 ---
 
 ```rules

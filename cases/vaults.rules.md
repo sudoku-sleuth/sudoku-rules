@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vaults
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=4
+exported: 1ba1fbae2a2534682712a385c0cec5f6
 ---
 
 ```rules

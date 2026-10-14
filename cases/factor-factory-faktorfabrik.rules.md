@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/factor-factory-faktorfabrik
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3c87c4eaefaaabe3b8552329b1151465
 ---
 
 ```rules

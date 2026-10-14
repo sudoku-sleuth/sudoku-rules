@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/juneteenth
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=1 r1c5=9 r1c7=6 r7c2=1 r7c3=8 r7c8=6 r9c8=5
+exported: 5190917b5f145476b2e3ba9997b41a81
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r4c8-r5c8 colour "black"
-kropki-3: kropki r3c4-r3c5 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r4c8-r5c8 black
+kropki-3: kropki r3c4-r3c5 black
 whispers-1: whispers r1c1-r1c2-r1c3 gap 4
 whispers-2: whispers r2c1-r3c1-r3c2-r2c2-r1c2 gap 4
 whispers-3: whispers r2c3-r3c3-r2c4-r3c4 gap 4

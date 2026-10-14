@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/thermorrow
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c5=3
+exported: e6bcd09fa4637b551601d02430585154
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nuclear-fission-kernspaltung
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 689b5eea40587ed6ab78d1476877a599
 ---
 
 ```rules
@@ -15,8 +16,8 @@ cage-1: cage r3c4-r3c5 total 12 connected true
 cage-2: cage r6c1-r6c2 total 4 connected true
 cage-3: cage r5c4-r6c4 total 5 connected true
 cage-4: cage r2c7-r3c7 total 9 connected true
-kropki-1: kropki r2c4-r2c5 colour "black"
-kropki-2: kropki r1c4-r2c4 colour "black"
+kropki-1: kropki r2c4-r2c5 black
+kropki-2: kropki r1c4-r2c4 black
 whispers-1: whispers r3c6-r4c6-r4c7-r3c7 gap 5
 whispers-2: whispers r3c6-r3c7 gap 5
 whispers-3: whispers r6c3-r7c3-r7c4-r6c4 gap 5

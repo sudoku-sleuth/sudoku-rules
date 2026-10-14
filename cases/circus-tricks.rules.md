@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/circus-tricks
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3e35439c8247857353de7c3ad81b468e
 ---
 
 ```rules
@@ -17,11 +18,11 @@ thermo-1: thermo r2c9-r1c9
 thermo-2: thermo r1c1-r2c1
 thermo-3: thermo r9c2-r9c1
 thermo-4: thermo r9c8-r9c9
-kropki-1: kropki r5c8-r6c8 colour "white"
-kropki-2: kropki r3c1-r4c1 colour "black"
-kropki-3: kropki r3c9-r4c9 colour "black"
-kropki-4: kropki r7c6-r8c6 colour "black"
-kropki-5: kropki r5c6-r6c6 colour "black"
+kropki-1: kropki r5c8-r6c8 white
+kropki-2: kropki r3c1-r4c1 black
+kropki-3: kropki r3c9-r4c9 black
+kropki-4: kropki r7c6-r8c6 black
+kropki-5: kropki r5c6-r6c6 black
 whispers-1: whispers r4c4-r3c3-r2c3-r2c4-r2c5-r2c6-r2c7-r3c7-r4c6 gap 5
 whispers-2: whispers r6c4-r7c3-r8c3-r8c4-r8c5-r8c6-r8c7-r7c7-r6c6 gap 5
 renban r4c5-r5c5-r6c5

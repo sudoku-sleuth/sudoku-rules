@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 8441eea1d80ee5ae0f96dc80b6ced65d
 ---
 
 ```rules
@@ -137,8 +138,8 @@ cage-2: cage r1c7-r2c7-r3c7 total 19 connected true
 cage-3: cage r4c5-r5c6-r4c6 total 14 connected true
 thermo-1: thermo r8c8-r7c7-r6c6-r5c5-r4c4-r3c3
 thermo-2: thermo r2c4-r2c3-r3c2-r4c2
-kropki-1: kropki r7c1-r7c2 colour "black"
-kropki-2: kropki r8c8-r8c9 colour "black"
+kropki-1: kropki r7c1-r7c2 black
+kropki-2: kropki r8c8-r8c9 black
 arrow-1: arrow r6c3-r5c3-r4c3 bulb ["r7c3"]
 arrow-2: arrow r5c8-r6c9 bulb ["r4c7"]
 little-killer-1: little-killer r3c9-r2c8-r1c7 sum 21

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bread-and-butter
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2980013eb038de663cf95ddef6f0efe4
 ---
 
 ```rules

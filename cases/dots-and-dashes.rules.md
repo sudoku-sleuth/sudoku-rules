@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/dots-and-dashes
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c4=6
+exported: a28b01f646020a2a3f9d965753dd1dd7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c2-r2c2 colour "black"
-kropki-2: kropki r4c2-r5c2 colour "black"
-kropki-3: kropki r2c5-r3c5 colour "black"
-kropki-4: kropki r7c5-r8c5 colour "black"
-kropki-5: kropki r5c8-r6c8 colour "black"
-kropki-6: kropki r8c8-r9c8 colour "black"
-kropki-7: kropki r6c2-r7c2 colour "black"
-kropki-8: kropki r3c8-r4c8 colour "black"
-kropki-9: kropki r4c1-r5c1 colour "black"
-kropki-10: kropki r7c7-r8c7 colour "black"
+kropki-1: kropki r1c2-r2c2 black
+kropki-2: kropki r4c2-r5c2 black
+kropki-3: kropki r2c5-r3c5 black
+kropki-4: kropki r7c5-r8c5 black
+kropki-5: kropki r5c8-r6c8 black
+kropki-6: kropki r8c8-r9c8 black
+kropki-7: kropki r6c2-r7c2 black
+kropki-8: kropki r3c8-r4c8 black
+kropki-9: kropki r4c1-r5c1 black
+kropki-10: kropki r7c7-r8c7 black
 renban-1: renban r1c1-r1c2
 renban-2: renban r1c4-r1c5
 renban-3: renban r1c7-r1c8

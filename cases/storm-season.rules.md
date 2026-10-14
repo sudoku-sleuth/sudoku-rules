@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/storm-season
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c9=5
+exported: 9c0f7adfee65131c93c252d98d7ec551
 ---
 
 ```rules

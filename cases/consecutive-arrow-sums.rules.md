@@ -6,6 +6,7 @@ source: https://sudokupad.app/wjdy0gmtm4
 case: https://sudoku-sleuth.com/cases/consecutive-arrow-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1c99c688bddb56f1e80925d308e0cb77
 ---
 
 ```rules
@@ -14,11 +15,11 @@ cage-1: cage r1c9-r2c9 total 10 connected true
 cage-2: cage r7c7-r7c8 total 8 connected true
 cage-3: cage r7c5-r8c5 total 10 connected true
 cage-4: cage r2c2-r2c3 total 11 connected true
-kropki-1: kropki r6c3-r6c4 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "black"
-kropki-3: kropki r8c2-r8c3 colour "black"
-kropki-4: kropki r7c3-r8c3 colour "black"
-kropki-5: kropki r5c7-r5c8 colour "black"
+kropki-1: kropki r6c3-r6c4 white
+kropki-2: kropki r8c1-r8c2 black
+kropki-3: kropki r8c2-r8c3 black
+kropki-4: kropki r7c3-r8c3 black
+kropki-5: kropki r5c7-r5c8 black
 arrow-1: arrow r5c2-r6c2 bulb ["r3c2","r4c2"]
 arrow-2: arrow r6c3-r7c3 bulb ["r4c3","r5c3"]
 arrow-3: arrow r7c4-r8c4 bulb ["r5c4","r6c4"]

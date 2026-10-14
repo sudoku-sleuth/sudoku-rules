@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/no-divisor-sudoku
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=2 r2c4=9 r4c4=1 r4c9=8 r5c1=7 r5c6=5 r7c5=3 r7c9=2 r8c2=8 r8c7=4 r9c3=6
+exported: d39b104ce83d43ec26ae994f9efd978d
 ---
 
 ```rules

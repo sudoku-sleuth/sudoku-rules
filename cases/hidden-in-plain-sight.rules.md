@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: f788544ef8d849258c8b68e2bd4693ba
 ---
 
 ```rules
@@ -79,12 +80,12 @@ cage-2: cage r2c1-r2c2-r3c1-r3c2 repeats false total 14 connected true
 cage-3: cage r4c3-r4c4 repeats false total 7 connected true
 cage-4: cage r2c5-r3c5 repeats false total 7 connected true
 cage-5: cage r2c6-r3c6 repeats false total 10 connected true
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r1c3-r2c3 colour "black"
-kropki-3: kropki r5c5-r6c5 colour "black"
-kropki-4: kropki r5c4-r6c4 colour "white"
-kropki-5: kropki r4c1-r5c1 colour "white"
-kropki-6: kropki r5c1-r5c2 colour "white"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r1c3-r2c3 black
+kropki-3: kropki r5c5-r6c5 black
+kropki-4: kropki r5c4-r6c4 white
+kropki-5: kropki r4c1-r5c1 white
+kropki-6: kropki r5c1-r5c2 white
 ```
 
 Normal 6x6 sudoku rules apply. Place the digits 1-6 once each in every row, column and 2x3 box.

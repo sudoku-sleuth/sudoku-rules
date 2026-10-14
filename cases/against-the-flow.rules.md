@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/against-the-flow
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=3 r3c9=2 r7c1=1 r9c5=8
+exported: 532fbb23e3398657f4f58d1b9793958a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r3c3-r3c4 colour "white"
-kropki-3: kropki r5c6-r6c6 colour "white"
-kropki-4: kropki r7c5-r7c6 colour "white"
-kropki-5: kropki r5c8-r6c8 colour "white"
-kropki-6: kropki r4c3-r4c4 colour "white"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r3c3-r3c4 white
+kropki-3: kropki r5c6-r6c6 white
+kropki-4: kropki r7c5-r7c6 white
+kropki-5: kropki r5c8-r6c8 white
+kropki-6: kropki r4c3-r4c4 white
 whispers-1: whispers r5c3-r4c2-r3c1-r2c2-r1c3 gap 5
 whispers-2: whispers r3c3-r4c4-r5c5-r6c4-r7c3 gap 5
 whispers-3: whispers r5c6-r4c5-r3c4-r2c5-r1c6 gap 5

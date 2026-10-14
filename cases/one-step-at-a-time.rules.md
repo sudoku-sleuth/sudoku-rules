@@ -6,6 +6,7 @@ source: https://sudokupad.app/ul9frm3cng
 case: https://sudoku-sleuth.com/cases/one-step-at-a-time
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7ff9ba9a4dc88bee30551d158ede133c
 ---
 
 ```rules

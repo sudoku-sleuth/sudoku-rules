@@ -1,17 +1,17 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 12
-    - 16
-    - 35
-    - 36
-    - 42
-    - 48
-    - 55
-    - 62
-    - 67
-    - 69
+    - r2c1
+    - r2c4
+    - r2c8
+    - r4c9
+    - r5c1
+    - r5c7
+    - r6c4
+    - r7c2
+    - r7c9
+    - r8c5
+    - r8c7
 format: open-rules
 title: One Disjoint Pilgrimage
 setter: Meggen033
@@ -114,6 +114,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a3e2577a5d72d45b9312cb212241d2a8
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/q8wt20o5y5
 case: https://sudoku-sleuth.com/cases/synchronized-swimming
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: eb9e64cdaa7cc8a1865e430c8cb40965
 ---
 
 ```rules

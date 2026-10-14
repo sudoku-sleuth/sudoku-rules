@@ -6,18 +6,19 @@ source: https://sudokupad.app/6jodv8qh8p
 case: https://sudoku-sleuth.com/cases/clown
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4dbe5ebb3657b1cba900bc9230357bc6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c6-r3c6 colour "white"
-kropki-2: kropki r2c5-r2c6 colour "white"
-kropki-3: kropki r2c4-r2c5 colour "white"
-kropki-4: kropki r6c4-r7c4 colour "white"
-kropki-5: kropki r7c4-r7c5 colour "white"
-kropki-6: kropki r5c3-r5c4 colour "black"
-kropki-7: kropki r5c4-r6c4 colour "black"
-kropki-8: kropki r4c3-r5c3 colour "black"
+kropki-1: kropki r2c6-r3c6 white
+kropki-2: kropki r2c5-r2c6 white
+kropki-3: kropki r2c4-r2c5 white
+kropki-4: kropki r6c4-r7c4 white
+kropki-5: kropki r7c4-r7c5 white
+kropki-6: kropki r5c3-r5c4 black
+kropki-7: kropki r5c4-r6c4 black
+kropki-8: kropki r4c3-r5c3 black
 arrow-1: arrow r5c4-r6c4 bulb ["r4c4"]
 arrow-2: arrow r5c6-r6c6 bulb ["r4c6"]
 arrow-3: arrow r7c4-r7c5-r7c6 bulb ["r6c5"]

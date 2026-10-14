@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/fireworks-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 591df2e75386d2e1ff1f78b7c46348f3
 ---
 
 ```rules

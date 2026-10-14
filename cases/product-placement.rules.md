@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/product-placement
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ebc67c13beb8feba74c4d832d6fa6990
 ---
 
 ```rules

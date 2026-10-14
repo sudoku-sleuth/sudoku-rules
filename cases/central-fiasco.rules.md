@@ -6,19 +6,20 @@ source: https://sudokupad.app/hc0s5dpzfd
 case: https://sudoku-sleuth.com/cases/central-fiasco
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f616211e165e347ad77ded4655057e30
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
 anti-king
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r5c4-r6c4 colour "white"
-kropki-3: kropki r6c4-r7c4 colour "white"
-kropki-4: kropki r6c6-r7c6 colour "white"
-kropki-5: kropki r3c5-r4c5 colour "white"
-kropki-6: kropki r8c5-r9c5 colour "white"
-kropki-7: kropki r1c4-r2c4 colour "white"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r5c4-r6c4 white
+kropki-3: kropki r6c4-r7c4 white
+kropki-4: kropki r6c6-r7c6 white
+kropki-5: kropki r3c5-r4c5 white
+kropki-6: kropki r8c5-r9c5 white
+kropki-7: kropki r1c4-r2c4 white
 pair-1: pair r4c4-r5c4 sum 10
 pair-2: pair r4c5-r4c6 sum 10
 pair-3: pair r5c6-r6c6 sum 10

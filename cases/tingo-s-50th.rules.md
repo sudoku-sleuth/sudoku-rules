@@ -6,13 +6,14 @@ source: https://tinyurl.com/tingos50thsudoku
 case: https://sudoku-sleuth.com/cases/tingo-s-50th
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 52346b6f4487ce3d2ed3f1c1be8e479a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c3-r7c3 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
-kropki-3: kropki r5c6-r5c7 colour "white"
+kropki-1: kropki r6c3-r7c3 white
+kropki-2: kropki r5c5-r6c5 white
+kropki-3: kropki r5c6-r5c7 white
 whispers-1: whispers r1c3-r1c2-r1c1-r2c1-r3c1-r3c2-r3c3-r4c3-r5c3-r5c2-r5c1 gap 5
 whispers-2: whispers r4c6-r4c5-r4c4-r5c4-r6c4-r6c5-r6c6-r7c6-r8c6-r8c5-r8c4 gap 5
 renban-1: renban r1c4-r2c4-r3c4-r3c5-r3c6-r2c6-r1c6-r1c5

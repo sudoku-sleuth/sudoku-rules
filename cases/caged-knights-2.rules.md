@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/caged-knights-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=9 r1c5=5 r3c8=6 r4c8=2 r5c3=3 r5c5=6 r7c2=7 r7c9=5 r8c1=1 r8c5=9 r8c7=8
+exported: 2f3e767992aafb5ccd5392cb7dc90116
 ---
 
 ```rules

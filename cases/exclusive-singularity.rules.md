@@ -6,14 +6,15 @@ source: https://sudokupad.app/cwrahld3we
 case: https://sudoku-sleuth.com/cases/exclusive-singularity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9962686a097ca4f9fd52b847d332009a
 ---
 
 ```rules
 sudoku 9x9
 cage r4c1-r4c2-r4c3 total 9 connected true
 thermo r4c6-r4c5-r5c4-r6c4
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r7c6-r8c6 colour "black"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r7c6-r8c6 black
 arrow r4c9-r4c8 bulb ["r3c9"]
 palindrome r5c5-r6c6-r7c7-r8c7
 between r9c6-r9c7-r9c8-r8c8-r7c9-r6c9 ends ["r9c5","r5c9"]

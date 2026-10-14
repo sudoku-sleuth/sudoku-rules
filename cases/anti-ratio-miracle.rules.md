@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anti-ratio-miracle
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=4 r4c7=2 r6c5=1
+exported: 6a1146d07cac4d2618c3ceca9c029946
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/li0y6992ne
 case: https://sudoku-sleuth.com/cases/the-power-of-three
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 661ab3080699d7691ca40e4c308f57a5
 ---
 
 ```rules

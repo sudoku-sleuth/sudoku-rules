@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/olympic-rings
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4ad8df499c32c6603605744d9056999c
 ---
 
 ```rules

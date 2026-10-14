@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/balance-of-power-iii
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: fc60f5443d44de824ae817e0aba54405
 ---
 
 ```rules
@@ -21,15 +22,15 @@ cage-7: cage r1c3-r1c4-r1c5 total 9 connected true
 cage-8: cage r1c2-r2c2 total 11 connected true
 cage-9: cage r1c7-r2c7-r3c7 total 9 connected true
 cage-10: cage r5c2-r5c3 total 14 connected true
-kropki-1: kropki r5c9-r6c9 colour "white"
-kropki-2: kropki r6c9-r7c9 colour "white"
-kropki-3: kropki r8c9-r9c9 colour "white"
-kropki-4: kropki r4c9-r5c9 colour "black"
-kropki-5: kropki r9c5-r9c6 colour "black"
-kropki-6: kropki r5c7-r6c7 colour "black"
-kropki-7: kropki r4c3-r4c4 colour "black"
-kropki-8: kropki r1c5-r2c5 colour "black"
-kropki-9: kropki r6c8-r6c9 colour "black"
+kropki-1: kropki r5c9-r6c9 white
+kropki-2: kropki r6c9-r7c9 white
+kropki-3: kropki r8c9-r9c9 white
+kropki-4: kropki r4c9-r5c9 black
+kropki-5: kropki r9c5-r9c6 black
+kropki-6: kropki r5c7-r6c7 black
+kropki-7: kropki r4c3-r4c4 black
+kropki-8: kropki r1c5-r2c5 black
+kropki-9: kropki r6c8-r6c9 black
 ```
 
 ```drawing

@@ -6,6 +6,7 @@ source: https://sudokupad.app/cvr9lhonl2
 case: https://sudoku-sleuth.com/cases/the-lesser-of-two-weevils
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f69b3d160da7c8857aa4f09a2e92f76c
 ---
 
 ```rules
@@ -16,13 +17,13 @@ cage-3: cage r6c7-r7c6-r7c7 total 21 connected true
 cage-4: cage r1c7-r2c7 total 13 connected true
 cage-5: cage r7c1-r7c2 total 7 connected true
 cage-6: cage r1c1-r1c2-r2c1 total 19 connected true
-kropki-1: kropki r8c3-r9c3 colour "white"
-kropki-2: kropki r3c8-r3c9 colour "white"
-kropki-3: kropki r5c2-r5c3 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
-kropki-5: kropki r4c8-r4c9 colour "black"
-kropki-6: kropki r8c4-r9c4 colour "black"
-kropki-7: kropki r2c2-r3c2 colour "black"
+kropki-1: kropki r8c3-r9c3 white
+kropki-2: kropki r3c8-r3c9 white
+kropki-3: kropki r5c2-r5c3 white
+kropki-4: kropki r2c5-r3c5 white
+kropki-5: kropki r4c8-r4c9 black
+kropki-6: kropki r8c4-r9c4 black
+kropki-7: kropki r2c2-r3c2 black
 arrow-1: arrow r3c4-r4c4-r4c3 bulb ["r3c3"]
 arrow-2: arrow r6c1-r5c1 bulb ["r6c2"]
 whispers-1: whispers r4c7-r4c6-r4c5 gap 5

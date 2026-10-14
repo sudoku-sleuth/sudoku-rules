@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/crayons
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 611db66ec8cec6ef61c6451a7a950b8b
 ---
 
 ```rules

@@ -6,12 +6,13 @@ source: https://sudokupad.app/s4fwfl7tpw
 case: https://sudoku-sleuth.com/cases/singularis-alchemis
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 94611513cc1e51b8d098d71edfafc08b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "black"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r3c5-r3c6 black
 arrow r2c5-r3c5 bulb ["r1c4"]
 whispers r7c6-r6c7-r5c7-r4c6-r4c5-r4c4-r5c3-r6c3-r7c4 gap 5
 renban r4c1-r3c1-r2c1-r1c2

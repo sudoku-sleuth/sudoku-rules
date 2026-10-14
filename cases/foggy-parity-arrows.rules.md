@@ -1,16 +1,16 @@
 ---
 fog:
   initiallyLit:
-    - 16
-    - 33
-    - 34
-    - 35
-    - 42
-    - 44
-    - 51
-    - 52
-    - 53
-    - 70
+    - r2c8
+    - r4c7
+    - r4c8
+    - r4c9
+    - r5c7
+    - r5c9
+    - r6c7
+    - r6c8
+    - r6c9
+    - r8c8
 format: open-rules
 title: Foggy Parity Arrows
 setter: Sir Moose
@@ -18,6 +18,7 @@ source: https://sudokupad.app/di0fyn770d
 case: https://sudoku-sleuth.com/cases/foggy-parity-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 274787f381a510a860a7f7375334fcf6
 ---
 
 ```rules

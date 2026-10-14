@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/mixed-doubles
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c07bc9814b3492c2dd9dc4fc41605084
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c2-r8c2 colour "black"
-kropki-2: kropki r7c3-r8c3 colour "black"
-kropki-3: kropki r2c2-r2c3 colour "black"
-kropki-4: kropki r2c7-r2c8 colour "black"
-kropki-5: kropki r3c2-r3c3 colour "black"
-kropki-6: kropki r3c7-r3c8 colour "black"
-kropki-7: kropki r7c7-r7c8 colour "black"
-kropki-8: kropki r8c7-r8c8 colour "black"
+kropki-1: kropki r7c2-r8c2 black
+kropki-2: kropki r7c3-r8c3 black
+kropki-3: kropki r2c2-r2c3 black
+kropki-4: kropki r2c7-r2c8 black
+kropki-5: kropki r3c2-r3c3 black
+kropki-6: kropki r3c7-r3c8 black
+kropki-7: kropki r7c7-r7c8 black
+kropki-8: kropki r8c7-r8c8 black
 whispers-1: whispers r1c1-r2c2 gap 5
 whispers-2: whispers r1c4-r1c5-r1c6 gap 5
 whispers-3: whispers r3c6-r3c5-r4c5 gap 5

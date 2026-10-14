@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/tuning-forks
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=8 r8c1=9
+exported: 94b99091d158ee75169c4f32ab3c64a5
 ---
 
 ```rules
 sudoku 9x9
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r7c8-r8c8 colour "white"
-kropki-2: kropki r1c1-r2c1 colour "white"
-kropki-3: kropki r6c4-r6c5 colour "white"
-kropki-4: kropki r6c5-r6c6 colour "white"
-kropki-5: kropki r7c1-r7c2 colour "white"
-kropki-6: kropki r9c1-r9c2 colour "white"
-kropki-7: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r7c8-r8c8 white
+kropki-2: kropki r1c1-r2c1 white
+kropki-3: kropki r6c4-r6c5 white
+kropki-4: kropki r6c5-r6c6 white
+kropki-5: kropki r7c1-r7c2 white
+kropki-6: kropki r9c1-r9c2 white
+kropki-7: kropki r8c2-r9c2 black
 arrow-1: arrow r4c3-r5c4-r6c5 bulb ["r3c3"]
 arrow-2: arrow r3c4-r4c5-r5c6 bulb ["r3c3"]
 arrow-3: arrow r7c4-r8c3-r9c2 bulb ["r6c4"]

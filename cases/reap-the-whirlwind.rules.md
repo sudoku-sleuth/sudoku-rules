@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/reap-the-whirlwind
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ....1......9....1..1............52.1...1.4....61............1.81...6.........1...
+exported: 763e6bf25c194fc1d2f5bba9f9d93fa9
 ---
 
 ```rules

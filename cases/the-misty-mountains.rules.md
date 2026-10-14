@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-misty-mountains
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: .5.....................7..4.2...........1....8......9...2..6....6..2..3..........
+exported: fdda003fb9186b573a155a46d08814fb
 ---
 
 ```rules

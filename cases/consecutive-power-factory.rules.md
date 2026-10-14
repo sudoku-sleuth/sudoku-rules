@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/consecutive-power-factory
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a34d75376d4b79582f7a3909bf8c87bb
 ---
 
 ```rules
@@ -17,7 +18,7 @@ cage-3: cage r6c2-r7c2-r8c2-r9c2 total 22 connected true
 cage-4: cage r7c4-r7c5-r7c6 total 18 connected true
 cage-5: cage r3c5-r4c5 total 12 connected true
 cage-6: cage r8c4-r8c5-r9c3-r9c4 total 22 connected true
-kropki r2c4-r3c4 colour "white"
+kropki r2c4-r3c4 white
 ```
 
 ```drawing

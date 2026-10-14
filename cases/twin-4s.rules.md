@@ -52,6 +52,7 @@ board:
       - r4c4
       - r4c8
       - r4c9
+exported: 68ec36be9cc4e2eee20a181e655d190a
 ---
 
 ```rules

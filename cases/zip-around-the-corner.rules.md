@@ -6,6 +6,7 @@ source: https://sudokupad.app/3lbym54k3v
 case: https://sudoku-sleuth.com/cases/zip-around-the-corner
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c546521334ea4f659e9e77abe0a31437
 ---
 
 ```rules

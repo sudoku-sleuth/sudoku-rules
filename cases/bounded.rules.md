@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bounded
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=5 r3c3=1 r3c7=2 r4c6=7 r4c9=5 r6c1=6 r7c3=2 r7c7=3 r8c2=4 r9c4=4
+exported: d889970f2d2785374589314ce04b8c5f
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/cross-about-dominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7309e3940368f0c7db25e3790b4a0ad9
 ---
 
 ```rules

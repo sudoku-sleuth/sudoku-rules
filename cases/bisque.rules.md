@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bisque
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=2 r7c8=6 r8c1=6 r8c7=2
+exported: 9433ee0c884d5cecce01a7533a406c47
 ---
 
 ```rules
@@ -27,8 +28,8 @@ thermo-9: thermo r5c6-r4c7-r4c8
 thermo-10: thermo r6c5-r7c4-r8c4
 thermo-11: thermo r6c4-r7c3-r8c2-r9c2
 thermo-12: thermo r4c6-r3c7-r3c8-r2c9
-kropki-1: kropki r4c3-r4c4 colour "black"
-kropki-2: kropki r3c4-r4c4 colour "black"
+kropki-1: kropki r4c3-r4c4 black
+kropki-2: kropki r3c4-r4c4 black
 ```
 
 Normal sudoku rules apply.

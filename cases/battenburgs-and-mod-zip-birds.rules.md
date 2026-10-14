@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/battenburgs-and-mod-zip-birds
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e242de845d4c1fb432f5a6f248387ca9
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/clock
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=1 r1c5=2 r5c1=9 r5c9=3 r9c5=6
+exported: 43580d23047ca1c73f4f6caf2b0d132a
 ---
 
 ```rules

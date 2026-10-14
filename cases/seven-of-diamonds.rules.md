@@ -6,6 +6,7 @@ source: https://sudokupad.app/c2fa6axo3m
 case: https://sudoku-sleuth.com/cases/seven-of-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cd80b676c69f2b6cffbaeb231ed3cdbc
 ---
 
 ```rules

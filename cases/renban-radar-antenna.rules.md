@@ -6,6 +6,7 @@ source: https://sudokupad.app/8xkiqdg83w
 case: https://sudoku-sleuth.com/cases/renban-radar-antenna
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 76355f55fa01366c8b301beb81819cca
 ---
 
 ```rules
@@ -19,13 +20,13 @@ cage-6: cage r8c1-r9c1 total 9 connected true
 cage-7: cage r6c1-r7c1 total 14 connected true
 cage-8: cage r5c2-r5c3-r5c4 total 9 connected true
 cage-9: cage r2c3-r3c3 total 13 connected true
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r7c6-r8c6 colour "white"
-kropki-3: kropki r3c5-r4c5 colour "black"
-kropki-4: kropki r4c5-r5c5 colour "black"
-kropki-5: kropki r8c4-r9c4 colour "black"
-kropki-6: kropki r9c5-r9c6 colour "black"
-kropki-7: kropki r7c4-r8c4 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r7c6-r8c6 white
+kropki-3: kropki r3c5-r4c5 black
+kropki-4: kropki r4c5-r5c5 black
+kropki-5: kropki r8c4-r9c4 black
+kropki-6: kropki r9c5-r9c6 black
+kropki-7: kropki r7c4-r8c4 black
 renban-1: renban r9c9-r8c9-r7c9-r6c9
 renban-2: renban r5c5-r6c5-r7c5
 renban-3: renban r6c6-r6c7-r6c8

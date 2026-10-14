@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fireworks-2024
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 292b87d81a5bf4810c2d72ae2443a648
 ---
 
 ```rules

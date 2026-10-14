@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 31
-    - 42
-    - 47
-    - 49
-    - 66
-    - 70
+    - r4c5
+    - r5c7
+    - r6c3
+    - r6c5
+    - r8c4
+    - r8c8
 format: open-rules
 title: One Knight's Progress
 setter: Meggen033
@@ -109,6 +109,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 62f6baab382306d4985b8820c516bee7
 ---
 
 ```rules
@@ -148,11 +149,11 @@ cage-6: cage r8c4-r8c5 total 8 connected true
 anti-knight
 thermo-1: thermo r5c3-r5c4-r6c4
 thermo-2: thermo r4c7-r4c6-r3c6
-kropki-1: kropki r6c2-r6c3 colour "white"
-kropki-2: kropki r4c4-r4c5 colour "white"
-kropki-3: kropki r6c6-r7c6 colour "white"
-kropki-4: kropki r4c8-r5c8 colour "white"
-kropki-5: kropki r8c2-r9c2 colour "white"
+kropki-1: kropki r6c2-r6c3 white
+kropki-2: kropki r4c4-r4c5 white
+kropki-3: kropki r6c6-r7c6 white
+kropki-4: kropki r4c8-r5c8 white
+kropki-5: kropki r8c2-r9c2 white
 ```
 
 •	Normal Sudoku rules apply. 

@@ -6,6 +6,7 @@ source: https://sudokupad.app/98101seep5
 case: https://sudoku-sleuth.com/cases/equality-cages-130-x-shifter-lines-115-crosshair
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f3298c85c8acf652f480a325cf92a8b7
 ---
 
 ```rules
@@ -18,18 +19,18 @@ equality-cage-5: equality-cage r9c2-r9c3
 equality-cage-6: equality-cage r9c7-r9c8
 equality-cage-7: equality-cage r1c7-r1c8
 equality-cage-8: equality-cage r1c2-r1c3
-kropki-1: kropki r6c3-r7c3 colour "black"
-kropki-2: kropki r3c6-r4c6 colour "black"
-kropki-3: kropki r3c3-r3c4 colour "black"
-kropki-4: kropki r6c6-r6c7 colour "black"
-kropki-5: kropki r6c1-r6c2 colour "black"
-kropki-6: kropki r4c8-r4c9 colour "black"
-kropki-7: kropki r5c3-r5c4 colour "white"
-kropki-8: kropki r5c6-r5c7 colour "white"
-kropki-9: kropki r2c5-r3c5 colour "white"
-kropki-10: kropki r7c5-r8c5 colour "white"
-kropki-11: kropki r1c8-r2c8 colour "white"
-kropki-12: kropki r8c2-r9c2 colour "white"
+kropki-1: kropki r6c3-r7c3 black
+kropki-2: kropki r3c6-r4c6 black
+kropki-3: kropki r3c3-r3c4 black
+kropki-4: kropki r6c6-r6c7 black
+kropki-5: kropki r6c1-r6c2 black
+kropki-6: kropki r4c8-r4c9 black
+kropki-7: kropki r5c3-r5c4 white
+kropki-8: kropki r5c6-r5c7 white
+kropki-9: kropki r2c5-r3c5 white
+kropki-10: kropki r7c5-r8c5 white
+kropki-11: kropki r1c8-r2c8 white
+kropki-12: kropki r8c2-r9c2 white
 shifter-line-1: shifter-line r8c6-r7c6-r7c7-r6c7-r6c8
 shifter-line-2: shifter-line r4c2-r4c3-r3c3-r3c4-r2c4
 shifter-line-3: shifter-line r6c2-r6c3-r7c3-r7c4-r8c4

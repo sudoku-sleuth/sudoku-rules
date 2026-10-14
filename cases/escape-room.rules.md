@@ -6,6 +6,7 @@ source: https://sudokupad.app/hu2inqymo8
 case: https://sudoku-sleuth.com/cases/escape-room
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 337a2a2a46197670462b61b5ef411d75
 ---
 
 ```rules

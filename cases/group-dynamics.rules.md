@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/group-dynamics
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a0b3db034026b7054d68404719a968f0
 ---
 
 ```rules
@@ -21,10 +22,10 @@ cage-7: cage r3c8-r3c9-r4c8 total 8 connected true
 cage-8: cage r1c1-r1c2-r2c1 total 20 connected true
 cage-9: cage r1c8-r1c9-r2c8-r2c9 total 30 connected true
 cage-10: cage r8c5-r8c6-r9c5-r9c6 total 13 connected true
-kropki-1: kropki r3c3-r3c4 colour "white"
-kropki-2: kropki r3c4-r3c5 colour "white"
-kropki-3: kropki r3c5-r3c6 colour "white"
-kropki-4: kropki r3c6-r3c7 colour "white"
+kropki-1: kropki r3c3-r3c4 white
+kropki-2: kropki r3c4-r3c5 white
+kropki-3: kropki r3c5-r3c6 white
+kropki-4: kropki r3c6-r3c7 white
 ```
 
 ```drawing

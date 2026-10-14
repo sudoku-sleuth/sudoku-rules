@@ -6,6 +6,7 @@ source: https://sudokupad.app/j8fsk3hfsk
 case: https://sudoku-sleuth.com/cases/heating-coils
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 24bd711f2f426037e87fdba62d90e8c8
 ---
 
 ```rules

@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/high-bars
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 20c73e7ba229713d1eea95ed33401ceb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c8-r9c9 colour "white"
-kropki-2: kropki r1c1-r1c2 colour "white"
+kropki-1: kropki r9c8-r9c9 white
+kropki-2: kropki r1c1-r1c2 white
 ```
 
 ```drawing

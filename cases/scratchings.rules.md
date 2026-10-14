@@ -6,36 +6,37 @@ source: https://sudokupad.app/qlli3g8ffz
 case: https://sudoku-sleuth.com/cases/scratchings
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f799e6383b046de44c4be0cd9614811d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c8-r4c9 colour "white"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r2c6-r3c6 colour "white"
-kropki-4: kropki r7c4-r8c4 colour "white"
-kropki-5: kropki r8c2-r9c2 colour "white"
-kropki-6: kropki r1c8-r2c8 colour "white"
-kropki-7: kropki r4c5-r5c5 colour "white"
-kropki-8: kropki r5c5-r6c5 colour "white"
-kropki-9: kropki r6c1-r6c2 colour "white"
-kropki-10: kropki r5c2-r5c3 colour "white"
-kropki-11: kropki r4c3-r5c3 colour "white"
-kropki-12: kropki r5c7-r6c7 colour "white"
-kropki-13: kropki r1c3-r2c3 colour "black"
-kropki-14: kropki r6c5-r6c6 colour "black"
-kropki-15: kropki r3c1-r3c2 colour "black"
-kropki-16: kropki r2c8-r3c8 colour "black"
-kropki-17: kropki r8c4-r8c5 colour "black"
-kropki-18: kropki r6c9-r7c9 colour "black"
-kropki-19: kropki r1c6-r1c7 colour "black"
-kropki-20: kropki r1c3-r1c4 colour "black"
-kropki-21: kropki r5c3-r6c3 colour "black"
-kropki-22: kropki r5c3-r5c4 colour "black"
-kropki-23: kropki r7c8-r8c8 colour "black"
-kropki-24: kropki r6c5-r7c5 colour "black"
-kropki-25: kropki r7c1-r7c2 colour "black"
-kropki-26: kropki r3c9-r4c9 colour "black"
+kropki-1: kropki r4c8-r4c9 white
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r2c6-r3c6 white
+kropki-4: kropki r7c4-r8c4 white
+kropki-5: kropki r8c2-r9c2 white
+kropki-6: kropki r1c8-r2c8 white
+kropki-7: kropki r4c5-r5c5 white
+kropki-8: kropki r5c5-r6c5 white
+kropki-9: kropki r6c1-r6c2 white
+kropki-10: kropki r5c2-r5c3 white
+kropki-11: kropki r4c3-r5c3 white
+kropki-12: kropki r5c7-r6c7 white
+kropki-13: kropki r1c3-r2c3 black
+kropki-14: kropki r6c5-r6c6 black
+kropki-15: kropki r3c1-r3c2 black
+kropki-16: kropki r2c8-r3c8 black
+kropki-17: kropki r8c4-r8c5 black
+kropki-18: kropki r6c9-r7c9 black
+kropki-19: kropki r1c6-r1c7 black
+kropki-20: kropki r1c3-r1c4 black
+kropki-21: kropki r5c3-r6c3 black
+kropki-22: kropki r5c3-r5c4 black
+kropki-23: kropki r7c8-r8c8 black
+kropki-24: kropki r6c5-r7c5 black
+kropki-25: kropki r7c1-r7c2 black
+kropki-26: kropki r3c9-r4c9 black
 whispers-1: whispers r2c3-r2c4-r2c5 gap 5
 whispers-2: whispers r3c2-r3c3-r3c4 gap 5
 whispers-3: whispers r3c8-r4c8-r5c8 gap 5

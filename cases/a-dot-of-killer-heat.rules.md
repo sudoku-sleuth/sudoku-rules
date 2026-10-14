@@ -83,6 +83,7 @@ board:
       - r8c6
       - r8c7
       - r8c8
+exported: 49aeaf830c89fc040ca3bdae64b4f86e
 ---
 
 ```rules
@@ -122,8 +123,8 @@ thermo-7: thermo r8c1-r8c2-r8c3-r8c4
 thermo-8: thermo r8c8-r7c8-r6c8-r5c8
 thermo-9: thermo r8c8-r8c7-r8c6-r8c5
 thermo-10: thermo r3c7-r4c7-r5c6-r6c5-r7c4
-kropki-1: kropki r8c6-r8c7 colour "white"
-kropki-2: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r8c6-r8c7 white
+kropki-2: kropki r3c7-r4c7 black
 ```
 
 Place each of the digits 1-8 in every row, column and 2x4 box without repetition. Digits along a thermometer increase from the bulb end. Digits cannot repeat in a cage. If a number is shown, that is the sum of the cage.  Digits separated by a black dot have a ratio of 1:2. Digits separated by a white dot are consecutive.

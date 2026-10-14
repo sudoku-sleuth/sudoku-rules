@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/x-cornered
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=4
+exported: 6b935f4b3a082baeb3cb63f020967020
 ---
 
 ```rules

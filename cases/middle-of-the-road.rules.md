@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/middle-of-the-road
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b6002b723a534715a4a5fd9a98f650e6
 ---
 
 ```rules

@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 11
-    - 13
-    - 24
-    - 30
-    - 36
-    - 41
-    - 46
-    - 61
-    - 67
+    - r2c3
+    - r2c5
+    - r3c7
+    - r4c4
+    - r5c1
+    - r5c6
+    - r6c2
+    - r7c8
+    - r8c5
 format: open-rules
 title: One Knight's Pilgrimage
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: e325ac1856a0a865c66d5bfda8cdc2b9
 ---
 
 ```rules

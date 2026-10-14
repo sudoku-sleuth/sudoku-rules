@@ -6,6 +6,7 @@ source: https://sudokupad.app/19cd65a2th
 case: https://sudoku-sleuth.com/cases/market-square
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b879de747be82da33b5bd5d84dd7afb6
 ---
 
 ```rules

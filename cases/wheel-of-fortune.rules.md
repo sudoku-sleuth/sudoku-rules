@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/wheel-of-fortune
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r1c9=7 r3c3=1 r3c7=2 r7c3=4 r7c7=3 r9c1=9 r9c9=8
+exported: 7e75b8d0567111f6b179946ec3e3339b
 ---
 
 ```rules

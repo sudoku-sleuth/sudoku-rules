@@ -83,6 +83,7 @@ board:
       - r6c6
       - r7c5
       - r8c5
+exported: afaaa252f3c0ac453b2f53ef94008bb5
 ---
 
 ```rules
@@ -117,8 +118,8 @@ cage-4: cage r7c1-r7c2-r8c1-r8c2 repeats false total 14 connected true
 cage-5: cage r4c4-r4c5-r5c4-r5c5 repeats false total 10 connected true
 thermo-1: thermo r4c6-r3c5-r3c4-r4c3-r5c3-r6c4-r6c5
 thermo-2: thermo r5c7-r6c6-r6c7-r5c6
-kropki-1: kropki r4c1-r5c1 colour "black"
-kropki-2: kropki r8c4-r8c5 colour "black"
+kropki-1: kropki r4c1-r5c1 black
+kropki-2: kropki r8c4-r8c5 black
 parity-cells-1: parity-cells r3c7-r8c3 parity "odd"
 parity-cells-2: parity-cells r1c8-r2c7-r8c1 parity "even"
 ```

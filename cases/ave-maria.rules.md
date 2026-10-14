@@ -6,6 +6,7 @@ source: https://tinyurl.com/avemariasudoku
 case: https://sudoku-sleuth.com/cases/ave-maria
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ca21c50ceb9f1ed9f377ef09e842b809
 ---
 
 ```rules

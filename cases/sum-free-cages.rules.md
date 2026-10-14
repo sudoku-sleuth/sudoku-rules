@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sum-free-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c3=3 r6c4=2 r6c5=9
+exported: fc176138033200144b6fea4fd0ccc9c4
 ---
 
 ```rules

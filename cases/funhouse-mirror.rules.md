@@ -6,6 +6,7 @@ source: https://sudokupad.app/m9zt1xamn7
 case: https://sudoku-sleuth.com/cases/funhouse-mirror
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b570ac6c05a2ab4ddc58cceaf6d1e9c2
 ---
 
 ```rules

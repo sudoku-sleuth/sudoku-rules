@@ -6,6 +6,7 @@ source: https://sudokupad.app/kg0g3i32xb
 case: https://sudoku-sleuth.com/cases/hello-twenty-nine
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ca354367006eef1e8561c368bd3211e8
 ---
 
 ```rules

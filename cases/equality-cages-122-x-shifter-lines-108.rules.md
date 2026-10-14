@@ -6,6 +6,7 @@ source: https://sudokupad.app/1q5mfy7jrf
 case: https://sudoku-sleuth.com/cases/equality-cages-122-x-shifter-lines-108
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0d95ef0466ff88dc11e24edc3ed6f877
 ---
 
 ```rules
@@ -21,13 +22,13 @@ equality-cage-8: equality-cage r1c6-r1c7
 equality-cage-9: equality-cage r7c2-r7c3
 equality-cage-10: equality-cage r9c7-r9c8
 equality-cage-11: equality-cage r9c4-r9c5
-kropki-1: kropki r4c5-r5c5 colour "black"
-kropki-2: kropki r6c5-r6c6 colour "black"
-kropki-3: kropki r8c3-r8c4 colour "black"
-kropki-4: kropki r2c9-r3c9 colour "black"
-kropki-5: kropki r5c8-r6c8 colour "white"
-kropki-6: kropki r4c2-r5c2 colour "white"
-kropki-7: kropki r5c1-r6c1 colour "white"
+kropki-1: kropki r4c5-r5c5 black
+kropki-2: kropki r6c5-r6c6 black
+kropki-3: kropki r8c3-r8c4 black
+kropki-4: kropki r2c9-r3c9 black
+kropki-5: kropki r5c8-r6c8 white
+kropki-6: kropki r4c2-r5c2 white
+kropki-7: kropki r5c1-r6c1 white
 shifter-line-1: shifter-line r5c5-r6c6-r7c6-r8c7
 shifter-line-2: shifter-line r6c5-r6c4-r5c3-r5c2
 shifter-line-3: shifter-line r4c5-r4c6-r5c7-r5c8

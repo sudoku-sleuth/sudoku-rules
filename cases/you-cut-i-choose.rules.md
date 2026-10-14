@@ -6,6 +6,7 @@ source: https://sudokupad.app/vd4ydwspli
 case: https://sudoku-sleuth.com/cases/you-cut-i-choose
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 676348577fde4ca71d2861e829339b13
 ---
 
 ```rules

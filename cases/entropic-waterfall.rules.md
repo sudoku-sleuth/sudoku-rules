@@ -6,6 +6,7 @@ source: https://sudokupad.app/jyy04kk9bt
 case: https://sudoku-sleuth.com/cases/entropic-waterfall
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4bd93909e4133464128a0689368bdf6e
 ---
 
 ```rules

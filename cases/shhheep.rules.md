@@ -6,6 +6,7 @@ source: https://sudokupad.app/0rv2vvfqji
 case: https://sudoku-sleuth.com/cases/shhheep
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cfda3808bab62a0c99ea04c6b21f46f8
 ---
 
 ```rules

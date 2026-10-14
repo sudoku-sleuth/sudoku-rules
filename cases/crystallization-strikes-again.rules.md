@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/crystallization-strikes-again
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0a9f9c5e923db5eda5d6a656d6564094
 ---
 
 ```rules
 sudoku 9x9
 cage r3c9-r4c9 total 4 connected true
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "white"
-kropki-3: kropki r2c1-r2c2 colour "white"
-kropki-4: kropki r4c2-r5c2 colour "white"
-kropki-5: kropki r4c1-r4c2 colour "white"
-kropki-6: kropki r8c2-r8c3 colour "black"
-kropki-7: kropki r7c2-r7c3 colour "black"
-kropki-8: kropki r6c4-r6c5 colour "black"
-kropki-9: kropki r4c5-r4c6 colour "black"
-kropki-10: kropki r8c7-r8c8 colour "black"
-kropki-11: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r1c2-r2c2 white
+kropki-3: kropki r2c1-r2c2 white
+kropki-4: kropki r4c2-r5c2 white
+kropki-5: kropki r4c1-r4c2 white
+kropki-6: kropki r8c2-r8c3 black
+kropki-7: kropki r7c2-r7c3 black
+kropki-8: kropki r6c4-r6c5 black
+kropki-9: kropki r4c5-r4c6 black
+kropki-10: kropki r8c7-r8c8 black
+kropki-11: kropki r8c9-r9c9 black
 ```
 
 ```drawing

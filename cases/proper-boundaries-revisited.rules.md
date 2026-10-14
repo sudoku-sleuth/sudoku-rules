@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/proper-boundaries-revisited
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d606ccf23061c87336758d2a9ea78d6b
 ---
 
 ```rules
@@ -19,7 +20,7 @@ cage-5: cage r8c5-r8c6-r8c7 total 12 connected true
 cage-6: cage r9c6-r9c7 total 13 connected true
 cage-7: cage r2c2-r2c3-r2c4 total 12 connected true
 cage-8: cage r1c4-r1c5 total 5 connected true
-kropki r6c4-r6c5 colour "black"
+kropki r6c4-r6c5 black
 ```
 
 ```drawing

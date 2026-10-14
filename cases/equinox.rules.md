@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/equinox
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=3 r2c3=1 r3c2=9 r9c2=7
+exported: 8fecbbee3d58144a4928290c92f8f164
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c3-r8c4 colour "black"
-kropki-2: kropki r3c8-r4c8 colour "white"
+kropki-1: kropki r8c3-r8c4 black
+kropki-2: kropki r3c8-r4c8 white
 whispers-1: whispers r1c3-r1c4-r1c5 gap 4
 whispers-2: whispers r4c6-r3c6-r2c6 gap 4
 whispers-3: whispers r6c7-r5c8-r4c8 gap 4

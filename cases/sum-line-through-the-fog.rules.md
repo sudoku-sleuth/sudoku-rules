@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Sum Line through the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: e8389d24ba4d88ec9ee79d5ac427c620
 ---
 
 ```rules
@@ -146,14 +147,14 @@ cage-1: cage r1c1-r2c1 total 12 connected true
 cage-2: cage r5c2-r5c3-r6c3 total 9 connected true
 cage-3: cage r5c6-r5c7-r6c7 total 7 connected true
 cage-4: cage r7c3-r7c4-r7c5 total 15 connected true
-kropki-1: kropki r2c6-r2c7 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r4c4-r4c5 colour "white"
-kropki-4: kropki r4c3-r4c4 colour "white"
-kropki-5: kropki r6c2-r7c2 colour "white"
-kropki-6: kropki r6c8-r6c9 colour "white"
-kropki-7: kropki r2c3-r3c3 colour "black"
-kropki-8: kropki r2c4-r2c5 colour "black"
+kropki-1: kropki r2c6-r2c7 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r4c4-r4c5 white
+kropki-4: kropki r4c3-r4c4 white
+kropki-5: kropki r6c2-r7c2 white
+kropki-6: kropki r6c8-r6c9 white
+kropki-7: kropki r2c3-r3c3 black
+kropki-8: kropki r2c4-r2c5 black
 region-sum r1c1-r2c1-r3c1-r3c2-r4c2-r1c2-r1c3-r1c4-r1c5-r2c5-r2c6-r3c8-r2c8-r1c8-r2c7-r5c3-r4c3-r6c3-r6c7-r5c7-r4c7-r4c8-r9c3-r8c2-r7c3-r7c8-r8c8-r9c7-r8c6-r7c6-r7c5-r6c6-r5c6-r6c5-r7c4-r8c5-r9c4 segments [["r1c1","r2c1","r3c1","r3c2"],["r4c2","r5c3","r4c3","r6c3"],["r1c2","r1c3"],["r1c4","r1c5","r2c5","r2c6"],["r3c8","r2c8","r1c8","r2c7"],["r6c7","r5c7","r4c7","r4c8"],["r9c3","r8c2","r7c3"],["r7c8","r8c8","r9c7"],["r8c6","r7c6","r7c5"],["r6c6","r5c6","r6c5"],["r7c4","r8c5","r9c4"]]
 pair-1: pair r2c4-r3c4 sum 10
 pair-2: pair r4c1-r5c1 sum 10

@@ -6,6 +6,7 @@ source: https://sudokupad.app/e79tk18ec0
 case: https://sudoku-sleuth.com/cases/ferris-wheel
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6f69b26e0e702d3c1cb7dab707a39af8
 ---
 
 ```rules
@@ -18,11 +19,11 @@ thermo-5: thermo r7c7-r6c7
 thermo-6: thermo r5c8-r4c8
 thermo-7: thermo r8c5-r7c5
 thermo-8: thermo r5c2-r4c2
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r4c6-r5c6 colour "white"
-kropki-3: kropki r5c4-r5c5 colour "white"
-kropki-4: kropki r5c5-r5c6 colour "white"
-kropki-5: kropki r7c9-r8c9 colour "white"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r4c6-r5c6 white
+kropki-3: kropki r5c4-r5c5 white
+kropki-4: kropki r5c5-r5c6 white
+kropki-5: kropki r7c9-r8c9 white
 between-1: between r5c4-r6c3-r7c2 ends ["r4c5","r8c1"]
 between-2: between r7c8-r6c7-r5c6 ends ["r8c9","r4c5"]
 renban-1: renban r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5

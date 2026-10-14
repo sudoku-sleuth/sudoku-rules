@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/spring-has-sprung
 case: https://sudoku-sleuth.com/cases/spring-has-sprung
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: db27599439d349bc02b36b2fbdd34dcc
 ---
 
 ```rules

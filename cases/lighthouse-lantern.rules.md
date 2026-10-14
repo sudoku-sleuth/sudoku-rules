@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lighthouse-lantern
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=2 r4c4=8 r4c6=7 r6c4=9 r6c6=6 r9c7=2
+exported: fb784f18d2801ad5a807c2f27b9587b2
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/crazy-bats-fledermause
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 723df76bd4bb1bb8eaf1f16e39fb5c4d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/41k6re8o1q
 case: https://sudoku-sleuth.com/cases/ring-around-the-rosie
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aa74f62c4a2a8b819bff35aea9e8fda4
 ---
 
 ```rules

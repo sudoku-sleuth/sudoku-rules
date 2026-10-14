@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/roman-baths
 case: https://sudoku-sleuth.com/cases/roman-baths
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6778450b82af70e3423c7406bec03ba7
 ---
 
 ```rules

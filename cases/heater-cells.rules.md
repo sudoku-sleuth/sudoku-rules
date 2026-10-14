@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/heater-cells
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=1 r4c5=2 r7c7=4
+exported: b44665d773d41a014090ece1896c0483
 ---
 
 ```rules

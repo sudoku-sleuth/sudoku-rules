@@ -6,21 +6,22 @@ source: https://tinyurl.com/26s8f58d
 case: https://sudoku-sleuth.com/cases/the-arrows-are-a-bit-dotty
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bc9d1f4ec6143345c4453b677a959d75
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c1-r3c1 colour "white"
-kropki-2: kropki r5c1-r6c1 colour "white"
-kropki-3: kropki r6c2-r7c2 colour "white"
-kropki-4: kropki r5c5-r5c6 colour "white"
-kropki-5: kropki r2c4-r2c5 colour "white"
-kropki-6: kropki r1c6-r2c6 colour "white"
-kropki-7: kropki r1c1-r2c1 colour "black"
-kropki-8: kropki r4c3-r5c3 colour "black"
-kropki-9: kropki r5c2-r5c3 colour "black"
-kropki-10: kropki r8c4-r8c5 colour "black"
-kropki-11: kropki r6c4-r7c4 colour "black"
+kropki-1: kropki r2c1-r3c1 white
+kropki-2: kropki r5c1-r6c1 white
+kropki-3: kropki r6c2-r7c2 white
+kropki-4: kropki r5c5-r5c6 white
+kropki-5: kropki r2c4-r2c5 white
+kropki-6: kropki r1c6-r2c6 white
+kropki-7: kropki r1c1-r2c1 black
+kropki-8: kropki r4c3-r5c3 black
+kropki-9: kropki r5c2-r5c3 black
+kropki-10: kropki r8c4-r8c5 black
+kropki-11: kropki r6c4-r7c4 black
 arrow-1: arrow r2c8-r1c8 bulb ["r3c9"]
 arrow-2: arrow r5c8-r6c8 bulb ["r4c9"]
 arrow-3: arrow r8c9-r7c9 bulb ["r9c9"]

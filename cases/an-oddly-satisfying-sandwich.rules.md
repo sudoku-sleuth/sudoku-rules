@@ -6,12 +6,13 @@ source: https://sudokupad.app/o6k8dzrr4m
 case: https://sudoku-sleuth.com/cases/an-oddly-satisfying-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7c45ab284d5f479bfaa04999046c317e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c3-r3c4 colour "black"
-kropki-2: kropki r5c4-r6c4 colour "black"
+kropki-1: kropki r3c3-r3c4 black
+kropki-2: kropki r5c4-r6c4 black
 parity-1: parity r2c1-r2c2-r2c3-r2c4
 parity-2: parity r2c9-r2c8-r2c7-r2c6
 parity-3: parity r8c1-r8c2-r8c3-r8c4

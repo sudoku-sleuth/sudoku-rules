@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/valentine-s-kisses
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=6
+exported: 60d4edeef51317a77fac457f5c3fba8a
 ---
 
 ```rules

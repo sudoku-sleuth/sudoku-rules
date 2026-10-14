@@ -6,6 +6,7 @@ source: https://sudokupad.app/55g0taabsx
 case: https://sudoku-sleuth.com/cases/merry-xvmas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6eee6b38c5b0d0cee2ef8d29e3fef5ee
 ---
 
 ```rules

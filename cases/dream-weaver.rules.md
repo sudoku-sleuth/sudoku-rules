@@ -6,6 +6,7 @@ source: https://sudokupad.app/ya4q21mo1c
 case: https://sudoku-sleuth.com/cases/dream-weaver
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3066e992d76154c8271efbaf7de6a3c1
 ---
 
 ```rules

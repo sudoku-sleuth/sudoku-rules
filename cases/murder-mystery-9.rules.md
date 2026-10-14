@@ -103,6 +103,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: c2a902c7f728ecf7c122dd24d0224612
 ---
 
 ```rules
@@ -139,12 +140,12 @@ cage-3: cage r7c9-r8c9-r9c9 repeats false total 11 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
 thermo r4c5-r5c6-r5c5-r4c4-r5c4-r6c5
-kropki-1: kropki r1c7-r1c8 colour "white"
-kropki-2: kropki r1c8-r1c9 colour "white"
-kropki-3: kropki r2c8-r2c9 colour "white"
-kropki-4: kropki r2c7-r2c8 colour "white"
-kropki-5: kropki r3c7-r3c8 colour "white"
-kropki-6: kropki r3c8-r3c9 colour "white"
+kropki-1: kropki r1c7-r1c8 white
+kropki-2: kropki r1c8-r1c9 white
+kropki-3: kropki r2c8-r2c9 white
+kropki-4: kropki r2c7-r2c8 white
+kropki-5: kropki r3c7-r3c8 white
+kropki-6: kropki r3c8-r3c9 white
 whispers-1: whispers r9c1-r8c1-r7c1-r7c2-r7c3-r8c3-r9c3-r9c2 loop false gap 5
 whispers-2: whispers r8c1-r9c1-r9c2-r9c3-r8c3-r7c3-r7c2-r7c1 loop false gap 5
 quadruple-1: quadruple r1c4-r1c5-r2c4-r2c5 digits [2]

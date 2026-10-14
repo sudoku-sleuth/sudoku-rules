@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nauvis
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3fb9c2b604013e9490cecd5128d7647f
 ---
 
 ```rules

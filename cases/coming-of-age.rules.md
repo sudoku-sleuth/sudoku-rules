@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/coming-of-age
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c3=1 r7c7=2 r8c4=1 r8c8=5 r9c6=8
+exported: 9031790542bf00fa8ba49d92edf1bf2c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r6c2-r7c2 colour "white"
-kropki-3: kropki r6c5-r6c6 colour "white"
-kropki-4: kropki r4c9-r5c9 colour "white"
-kropki-5: kropki r5c9-r6c9 colour "white"
-kropki-6: kropki r6c8-r7c8 colour "black"
-kropki-7: kropki r7c8-r7c9 colour "black"
-kropki-8: kropki r3c2-r4c2 colour "black"
-kropki-9: kropki r1c7-r2c7 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r6c2-r7c2 white
+kropki-3: kropki r6c5-r6c6 white
+kropki-4: kropki r4c9-r5c9 white
+kropki-5: kropki r5c9-r6c9 white
+kropki-6: kropki r6c8-r7c8 black
+kropki-7: kropki r7c8-r7c9 black
+kropki-8: kropki r3c2-r4c2 black
+kropki-9: kropki r1c7-r2c7 black
 whispers-1: whispers r1c1-r1c2-r2c2-r2c1-r3c1-r3c2 gap 5
 whispers-2: whispers r1c4-r2c4-r3c4 gap 5
 whispers-3: whispers r2c5-r3c5-r3c6-r2c6 gap 5

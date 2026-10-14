@@ -6,6 +6,7 @@ source: https://sudokupad.app/8njpxee23o
 case: https://sudoku-sleuth.com/cases/even-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1097758e9d3f1e4b81082901ca55d33e
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quavers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c3=3
+exported: acf700f4beb92beaefcea50451178693
 ---
 
 ```rules

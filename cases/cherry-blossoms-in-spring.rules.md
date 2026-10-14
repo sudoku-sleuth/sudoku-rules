@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cherry-blossoms-in-spring
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d754464ea1bc2bd246edc242c1ffcf4a
 ---
 
 ```rules

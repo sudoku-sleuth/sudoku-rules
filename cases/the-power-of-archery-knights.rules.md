@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-power-of-archery-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9645a14198cb04e8b7a565e1cf937fb9
 ---
 
 ```rules

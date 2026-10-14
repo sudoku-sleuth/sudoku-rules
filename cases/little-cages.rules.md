@@ -6,6 +6,7 @@ source: https://tinyurl.com/5jkefnxh
 case: https://sudoku-sleuth.com/cases/little-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9852ab62c9295458ed374a4aded08427
 ---
 
 ```rules

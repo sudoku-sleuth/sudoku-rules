@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/looking-for-clues-in-all-the-wrong-places
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f8b24ad48d013133477560025db76696
 ---
 
 ```rules

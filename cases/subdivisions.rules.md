@@ -6,6 +6,7 @@ source: https://sudokupad.app/labdz50epy
 case: https://sudoku-sleuth.com/cases/subdivisions
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7caf91d939fe33306b6c868b7750c05e
 ---
 
 ```rules

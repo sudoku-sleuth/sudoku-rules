@@ -7,24 +7,25 @@ case: https://sudoku-sleuth.com/cases/connectors
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: bc38985730a776c9a41eb902bef86191
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r1c2-r1c3 colour "white"
-kropki-3: kropki r2c7-r2c8 colour "white"
-kropki-4: kropki r2c8-r2c9 colour "white"
-kropki-5: kropki r1c6-r2c6 colour "white"
-kropki-6: kropki r2c6-r3c6 colour "white"
-kropki-7: kropki r4c1-r4c2 colour "white"
-kropki-8: kropki r4c2-r4c3 colour "white"
-kropki-9: kropki r9c1-r9c2 colour "white"
-kropki-10: kropki r9c2-r9c3 colour "white"
-kropki-11: kropki r7c6-r8c6 colour "white"
-kropki-12: kropki r8c6-r9c6 colour "white"
-kropki-13: kropki r5c6-r5c7 colour "white"
-kropki-14: kropki r5c7-r5c8 colour "white"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r1c2-r1c3 white
+kropki-3: kropki r2c7-r2c8 white
+kropki-4: kropki r2c8-r2c9 white
+kropki-5: kropki r1c6-r2c6 white
+kropki-6: kropki r2c6-r3c6 white
+kropki-7: kropki r4c1-r4c2 white
+kropki-8: kropki r4c2-r4c3 white
+kropki-9: kropki r9c1-r9c2 white
+kropki-10: kropki r9c2-r9c3 white
+kropki-11: kropki r7c6-r8c6 white
+kropki-12: kropki r8c6-r9c6 white
+kropki-13: kropki r5c6-r5c7 white
+kropki-14: kropki r5c7-r5c8 white
 ```
 
 ```drawing

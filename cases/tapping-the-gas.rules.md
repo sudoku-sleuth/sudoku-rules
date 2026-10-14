@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tapping-the-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=6 r4c8=1 r7c4=2 r8c2=5
+exported: e63cbdfad29ab9ef67e6e0132d329b50
 ---
 
 ```rules

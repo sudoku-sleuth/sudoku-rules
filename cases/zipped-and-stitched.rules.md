@@ -6,6 +6,7 @@ source: https://sudokupad.app/8v1iu8cpnc
 case: https://sudoku-sleuth.com/cases/zipped-and-stitched
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dd68658c7c07556a7df574344d035521
 ---
 
 ```rules

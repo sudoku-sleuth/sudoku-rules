@@ -6,12 +6,13 @@ source: https://sudokupad.app/eijb2nu5cj
 case: https://sudoku-sleuth.com/cases/magical-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c5bf866d4c7409d972fdbbcebe640e60
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "anti"
-kropki r5c9-r6c9 colour "black"
+kropki r5c9-r6c9 black
 arrow-1: arrow r5c8-r4c7 bulb ["r5c7"]
 arrow-2: arrow r6c7-r6c8 bulb ["r5c7"]
 arrow-3: arrow r2c5-r3c4 bulb ["r2c4"]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/caged-hourglass
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=5
+exported: eb0f85d0e5eae38215ae29d9b3632530
 ---
 
 ```rules

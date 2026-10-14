@@ -6,17 +6,18 @@ source: https://sudokupad.app/rl5hw33ukz
 case: https://sudoku-sleuth.com/cases/giant-s-deep
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b117179e1b8a6c879c87c30236f01429
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c6-r4c6 colour "black"
-kropki-2: kropki r5c7-r6c7 colour "black"
-kropki-3: kropki r8c5-r9c5 colour "black"
-kropki-4: kropki r6c4-r6c5 colour "black"
-kropki-5: kropki r5c3-r5c4 colour "black"
-kropki-6: kropki r1c1-r1c2 colour "black"
-kropki-7: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r3c6-r4c6 black
+kropki-2: kropki r5c7-r6c7 black
+kropki-3: kropki r8c5-r9c5 black
+kropki-4: kropki r6c4-r6c5 black
+kropki-5: kropki r5c3-r5c4 black
+kropki-6: kropki r1c1-r1c2 black
+kropki-7: kropki r9c8-r9c9 black
 whispers-1: whispers r6c4-r5c5-r4c5 gap 4
 whispers-2: whispers r6c5-r6c6-r6c7 gap 4
 whispers-3: whispers r6c6-r5c7-r6c8 gap 4

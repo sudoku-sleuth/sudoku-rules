@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/24th-wedding-anniversary
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c1=1 r6c2=9 r7c3=9 r8c4=8
+exported: b3d866279128fdcc65a09c53dfd400f6
 ---
 
 ```rules

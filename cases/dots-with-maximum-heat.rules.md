@@ -6,6 +6,7 @@ source: https://sudokupad.app/295tlqkh9z
 case: https://sudoku-sleuth.com/cases/dots-with-maximum-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f8005df52234a55e18f4b28496f8adb8
 ---
 
 ```rules
@@ -22,10 +23,10 @@ thermo-9: thermo r5c2-r6c3-r7c4-r8c5-r8c6
 thermo-10: thermo r6c4-r5c3-r4c3-r3c3-r2c3
 thermo-11: thermo r6c4-r5c5-r4c6-r3c7-r2c8
 thermo-12: thermo r4c8-r5c8-r6c8-r7c8-r8c8
-kropki-1: kropki r9c1-r9c2 colour "black"
-kropki-2: kropki r8c8-r8c9 colour "black"
-kropki-3: kropki r1c8-r1c9 colour "black"
-kropki-4: kropki r4c3-r5c3 colour "black"
+kropki-1: kropki r9c1-r9c2 black
+kropki-2: kropki r8c8-r8c9 black
+kropki-3: kropki r1c8-r1c9 black
+kropki-4: kropki r4c3-r5c3 black
 ```
 
 • Normal Sudoku rules apply. Place the digits 1-9 in each row, column and box without repetition.

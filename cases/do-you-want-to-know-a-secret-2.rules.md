@@ -6,6 +6,7 @@ source: https://sudokupad.app/dlsbir3zel
 case: https://sudoku-sleuth.com/cases/do-you-want-to-know-a-secret-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6daf1f1ee86cd3238957785d0aed0c9a
 ---
 
 ```rules

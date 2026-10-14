@@ -6,12 +6,13 @@ source: https://sudokupad.app/cjdlm65r1i
 case: https://sudoku-sleuth.com/cases/the-unnecessary-theorem
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7c9205b78a1330a4c81483da1ebdf704
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c7-r2c8 colour "white"
-kropki-2: kropki r4c1-r5c1 colour "black"
+kropki-1: kropki r2c7-r2c8 white
+kropki-2: kropki r4c1-r5c1 black
 arrow-1: arrow r2c8-r2c9-r1c9 bulb ["r3c7"]
 arrow-2: arrow r4c7-r5c7-r6c7 bulb ["r4c8"]
 arrow-3: arrow r3c4-r3c5-r3c6 bulb ["r2c4"]

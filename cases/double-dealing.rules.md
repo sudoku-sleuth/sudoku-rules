@@ -6,6 +6,7 @@ source: https://sudokupad.app/8h7sbscdds
 case: https://sudoku-sleuth.com/cases/double-dealing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9806ef7eb65ad8f51b4975d9020f664c
 ---
 
 ```rules

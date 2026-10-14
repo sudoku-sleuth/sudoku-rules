@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/between-friends
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 76013833fa10c685746ae378631cf6d6
 ---
 
 ```rules

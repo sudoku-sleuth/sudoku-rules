@@ -6,6 +6,7 @@ source: https://sudokupad.app/bsh0v44ly5
 case: https://sudoku-sleuth.com/cases/roped-into-it
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fab1a6bf84c25f15ee84cf38b059cef7
 ---
 
 ```rules

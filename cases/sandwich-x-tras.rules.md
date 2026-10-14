@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/sandwich-x-tras
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: df02c5bce8f41d917711f716a780827f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c3-r8c4 colour "white"
-kropki-2: kropki r2c6-r2c7 colour "white"
+kropki-1: kropki r8c3-r8c4 white
+kropki-2: kropki r2c6-r2c7 white
 ```
 
 ```drawing

@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 4
-    - 9
-    - 14
-    - 24
-    - 34
-    - 44
+    - r1c5
+    - r2c1
+    - r2c6
+    - r3c7
+    - r4c8
+    - r5c9
 format: open-rules
 title: The Fourth Killer
 setter: Marty Sears
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 6077db723c216c4c304e75b87cfed608
 ---
 
 ```rules
@@ -144,8 +145,8 @@ cage-1: cage r2c5-r3c3-r3c5-r4c3-r4c4-r4c5-r5c2-r5c3-r5c4 total 29 repeats true 
 cage-2: cage r1c7-r2c6-r2c7 total 5 repeats true connected true
 cage-3: cage r3c1-r4c1-r4c6-r4c7-r5c1-r5c7-r6c1-r6c2-r6c5-r6c6-r6c7-r6c8-r7c1-r7c2-r7c3-r7c4-r7c5-r8c3-r8c5-r8c6-r8c8-r9c6-r9c7-r9c8-r9c9 total 131 repeats true connected true
 cage-4: cage r4c9 total 1 connected true
-kropki-1: kropki r3c4-r4c4 colour "white"
-kropki-2: kropki r9c8-r9c9 colour "white"
+kropki-1: kropki r3c4-r4c4 white
+kropki-2: kropki r9c8-r9c9 white
 ```
 
 ```drawing

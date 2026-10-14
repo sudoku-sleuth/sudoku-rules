@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anti-quads-4
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 84bba469c9c244918db8c2419361480c
 ---
 
 ```rules

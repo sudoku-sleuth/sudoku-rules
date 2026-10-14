@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bubble-and-squeak
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=8 r4c5=4
+exported: a973ba2a346d05138e874b8e39f0da88
 ---
 
 ```rules

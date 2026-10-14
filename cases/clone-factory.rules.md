@@ -7,18 +7,19 @@ case: https://sudoku-sleuth.com/cases/clone-factory
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b8f0596120fbf86e4a4a3d6b8f511bb3
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r5c1-r6c1 total 5 connected true
 cage-2: cage r4c2-r5c2-r5c3-r6c3 total 16 connected true
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r4c4-r4c5 colour "white"
-kropki-3: kropki r5c7-r5c8 colour "white"
-kropki-4: kropki r2c1-r3c1 colour "black"
-kropki-5: kropki r3c4-r4c4 colour "black"
-kropki-6: kropki r4c7-r5c7 colour "black"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r4c4-r4c5 white
+kropki-3: kropki r5c7-r5c8 white
+kropki-4: kropki r2c1-r3c1 black
+kropki-5: kropki r3c4-r4c4 black
+kropki-6: kropki r4c7-r5c7 black
 arrow-1: arrow r2c2-r3c3 bulb ["r1c1"]
 arrow-2: arrow r1c3-r2c3 bulb ["r1c2"]
 arrow-3: arrow r3c5-r4c6 bulb ["r2c4"]

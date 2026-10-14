@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/sudoku-pinball-machine
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d248a6d9229202d1acbd05eebcb05eef
 ---
 
 ```rules
 sudoku 9x9
 thermo r9c8-r9c7-r8c8-r9c9-r8c9-r7c9
-kropki-1: kropki r7c1-r8c1 colour "white"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r5c8-r5c9 colour "white"
-kropki-4: kropki r4c5-r5c5 colour "white"
+kropki-1: kropki r7c1-r8c1 white
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r5c8-r5c9 white
+kropki-4: kropki r4c5-r5c5 white
 whispers-1: whispers r4c1-r4c2-r4c3-r5c3-r6c3-r6c2-r6c1-r5c1 gap 5
 whispers-2: whispers r7c6-r8c6-r9c6 gap 5
 whispers-3: whispers r2c7-r3c7-r3c8-r2c8 gap 5

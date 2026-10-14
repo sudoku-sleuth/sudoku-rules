@@ -6,6 +6,7 @@ source: https://sudokupad.app/iyyf5goc7g
 case: https://sudoku-sleuth.com/cases/crazy-nines-and-others
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 86987bad5c79cb2d74cc9e0e017d350b
 ---
 
 ```rules

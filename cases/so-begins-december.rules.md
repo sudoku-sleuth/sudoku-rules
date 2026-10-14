@@ -6,6 +6,7 @@ source: https://sudokupad.app/o262jr9prk
 case: https://sudoku-sleuth.com/cases/so-begins-december
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8fff6f5338a6f70cdd352bbfd1b8e185
 ---
 
 ```rules
@@ -22,18 +23,18 @@ cage-9: cage r3c4-r4c3-r4c4 total 22 connected true
 cage-10: cage r6c6-r6c7-r7c6 total 22 connected true
 cage-11: cage r6c3-r6c4-r7c4 total 19 connected true
 cage-12: cage r3c6-r4c6-r4c7 total 24 connected true
-kropki-1: kropki r1c8-r2c8 colour "white"
-kropki-2: kropki r8c4-r8c5 colour "white"
-kropki-3: kropki r1c8-r1c9 colour "white"
-kropki-4: kropki r8c1-r9c1 colour "white"
-kropki-5: kropki r3c4-r3c5 colour "black"
-kropki-6: kropki r1c3-r2c3 colour "black"
-kropki-7: kropki r1c6-r1c7 colour "black"
-kropki-8: kropki r7c2-r8c2 colour "black"
-kropki-9: kropki r8c7-r9c7 colour "black"
-kropki-10: kropki r2c8-r3c8 colour "black"
-kropki-11: kropki r9c5-r9c6 colour "black"
-kropki-12: kropki r4c1-r5c1 colour "black"
+kropki-1: kropki r1c8-r2c8 white
+kropki-2: kropki r8c4-r8c5 white
+kropki-3: kropki r1c8-r1c9 white
+kropki-4: kropki r8c1-r9c1 white
+kropki-5: kropki r3c4-r3c5 black
+kropki-6: kropki r1c3-r2c3 black
+kropki-7: kropki r1c6-r1c7 black
+kropki-8: kropki r7c2-r8c2 black
+kropki-9: kropki r8c7-r9c7 black
+kropki-10: kropki r2c8-r3c8 black
+kropki-11: kropki r9c5-r9c6 black
+kropki-12: kropki r4c1-r5c1 black
 ```
 
 **Sudoku, Cages, Kropki Pairs**

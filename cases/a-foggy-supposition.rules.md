@@ -8,18 +8,19 @@ source: https://sudokupad.app/0m4z1odmqf
 case: https://sudoku-sleuth.com/cases/a-foggy-supposition
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9c87e515b818521ce837c52d8fc26f94
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r4c6 colour "black"
-kropki-2: kropki r6c4-r6c5 colour "black"
-kropki-3: kropki r5c3-r5c4 colour "black"
-kropki-4: kropki r4c2-r4c3 colour "black"
-kropki-5: kropki r3c8-r4c8 colour "black"
-kropki-6: kropki r2c7-r3c7 colour "black"
-kropki-7: kropki r3c3-r3c4 colour "black"
-kropki-8: kropki r8c8-r8c9 colour "black"
+kropki-1: kropki r4c5-r4c6 black
+kropki-2: kropki r6c4-r6c5 black
+kropki-3: kropki r5c3-r5c4 black
+kropki-4: kropki r4c2-r4c3 black
+kropki-5: kropki r3c8-r4c8 black
+kropki-6: kropki r2c7-r3c7 black
+kropki-7: kropki r3c3-r3c4 black
+kropki-8: kropki r8c8-r8c9 black
 whispers-1: whispers r6c5-r6c6 gap 5
 whispers-2: whispers r4c5-r4c4 gap 5
 whispers-3: whispers r6c4-r6c3 gap 5

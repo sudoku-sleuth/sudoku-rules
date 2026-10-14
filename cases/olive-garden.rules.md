@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/olive-garden
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2894f760c0d2048dc86d0092e313bbf7
 ---
 
 ```rules
 sudoku 9x9
-kropki r5c3-r5c4 colour "black"
+kropki r5c3-r5c4 black
 ```
 
 ```drawing

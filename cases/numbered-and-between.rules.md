@@ -6,6 +6,7 @@ source: https://sudokupad.app/teanmmj4ss
 case: https://sudoku-sleuth.com/cases/numbered-and-between
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d84ad774cda3fa38680e118724dbfaa5
 ---
 
 ```rules

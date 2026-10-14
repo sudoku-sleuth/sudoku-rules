@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/equality-cages-4
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fdc0086d97584d7a9db4211101cc7bbe
 ---
 
 ```rules
@@ -16,10 +17,10 @@ equality-cage-3: equality-cage r8c1-r8c2-r8c3-r9c3
 equality-cage-4: equality-cage r2c1-r2c2-r2c3-r2c4
 equality-cage-5: equality-cage r4c5-r4c6
 equality-cage-6: equality-cage r2c9-r3c9-r4c9-r5c9
-kropki-1: kropki r9c7-r9c8 colour "black"
-kropki-2: kropki r4c1-r5c1 colour "black"
-kropki-3: kropki r1c3-r1c4 colour "black"
-kropki-4: kropki r3c4-r4c4 colour "white"
+kropki-1: kropki r9c7-r9c8 black
+kropki-2: kropki r4c1-r5c1 black
+kropki-3: kropki r1c3-r1c4 black
+kropki-4: kropki r3c4-r4c4 white
 whispers-1: whispers r9c7-r8c7-r7c7-r8c8-r7c8-r8c9-r7c9 gap 5
 whispers-2: whispers r9c1-r8c2-r7c2-r7c3-r7c4-r8c4-r9c3-r9c4-r8c3 gap 5
 whispers-3: whispers r3c1-r4c2-r3c3-r3c4-r2c3-r1c4 gap 5

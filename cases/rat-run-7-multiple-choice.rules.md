@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-7-multiple-choice
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b170e2d29dc2e9b214eb41ce6d4f946d
 ---
 
 ```rules

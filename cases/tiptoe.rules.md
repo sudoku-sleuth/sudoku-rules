@@ -6,6 +6,7 @@ source: https://sudokupad.app/4nvztnv3zz
 case: https://sudoku-sleuth.com/cases/tiptoe
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 39ff8eff6bc78296f28d8843e8c991cd
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/isei41s6b1
 case: https://sudoku-sleuth.com/cases/noodle-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8207bacdf438e668b54237c6ccde96a7
 ---
 
 ```rules

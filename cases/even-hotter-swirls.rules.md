@@ -6,6 +6,7 @@ source: https://sudokupad.app/u6q2jrug10
 case: https://sudoku-sleuth.com/cases/even-hotter-swirls
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a53cf6891de3ce5b371d74735804aa7c
 ---
 
 ```rules

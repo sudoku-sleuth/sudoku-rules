@@ -6,6 +6,7 @@ source: https://sudokupad.app/3wrvh8evlb
 case: https://sudoku-sleuth.com/cases/alignment
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ab1da04047264bcecc33b094f1f4f326
 ---
 
 ```rules

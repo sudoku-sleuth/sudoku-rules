@@ -1,23 +1,23 @@
 ---
 fog:
   initiallyLit:
-    - 4
-    - 19
-    - 22
-    - 30
-    - 31
-    - 32
-    - 38
-    - 39
-    - 40
-    - 41
-    - 42
-    - 48
-    - 49
-    - 50
-    - 58
-    - 61
-    - 76
+    - r1c5
+    - r3c2
+    - r3c5
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c3
+    - r5c4
+    - r5c5
+    - r5c6
+    - r5c7
+    - r6c4
+    - r6c5
+    - r6c6
+    - r7c5
+    - r7c8
+    - r9c5
 format: open-rules
 title: Expansion
 setter: sujoyku
@@ -27,13 +27,14 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - A feature in the source still needs a drawing definition.
+exported: ca55addbf9f5943f075aecf4114695d3
 ---
 
 ```rules
 sudoku 9x9
 anti-knight stated true
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "black"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r6c5-r6c6 black
 arrow-1: arrow r7c7-r7c8-r7c9 bulb ["r7c6"]
 arrow-2: arrow r3c3-r3c2-r3c1 bulb ["r3c4"]
 arrow-3: arrow r1c5-r1c6 bulb ["r1c4"]

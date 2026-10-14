@@ -6,6 +6,7 @@ source: https://sudokupad.app/4grkg77971
 case: https://sudoku-sleuth.com/cases/perfect-in-our-imperfection
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f1c77ed020a92dbd7827fff0bf3e5303
 ---
 
 ```rules

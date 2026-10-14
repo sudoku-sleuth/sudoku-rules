@@ -6,6 +6,7 @@ source: https://sudokupad.app/omy8want1m
 case: https://sudoku-sleuth.com/cases/longhorns
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7ffa2f1a7ac71f6463377a96a79a538e
 ---
 
 ```rules

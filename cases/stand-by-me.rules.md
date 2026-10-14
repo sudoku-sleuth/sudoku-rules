@@ -6,6 +6,7 @@ source: https://sudokupad.app/iymomvmnf0
 case: https://sudoku-sleuth.com/cases/stand-by-me
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9e7244313800c0103b13810be2012a18
 ---
 
 ```rules

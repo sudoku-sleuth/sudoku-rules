@@ -6,22 +6,23 @@ source: https://sudokupad.app/i1gpn4716p
 case: https://sudoku-sleuth.com/cases/stickman-bowling-12-x-strikes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b9edf578cec4bd9f0f888c28d3f51097
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r3c4-r3c5 colour "white"
-kropki-3: kropki r3c5-r3c6 colour "white"
-kropki-4: kropki r3c6-r3c7 colour "white"
-kropki-5: kropki r8c8-r9c8 colour "white"
-kropki-6: kropki r6c8-r7c8 colour "white"
-kropki-7: kropki r5c5-r6c5 colour "white"
-kropki-8: kropki r1c6-r1c7 colour "black"
-kropki-9: kropki r1c4-r1c5 colour "black"
-kropki-10: kropki r1c2-r1c3 colour "black"
-kropki-11: kropki r7c4-r7c5 colour "black"
-kropki-12: kropki r4c2-r4c3 colour "black"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r3c4-r3c5 white
+kropki-3: kropki r3c5-r3c6 white
+kropki-4: kropki r3c6-r3c7 white
+kropki-5: kropki r8c8-r9c8 white
+kropki-6: kropki r6c8-r7c8 white
+kropki-7: kropki r5c5-r6c5 white
+kropki-8: kropki r1c6-r1c7 black
+kropki-9: kropki r1c4-r1c5 black
+kropki-10: kropki r1c2-r1c3 black
+kropki-11: kropki r7c4-r7c5 black
+kropki-12: kropki r4c2-r4c3 black
 renban-1: renban r6c8-r7c8-r7c7-r6c7-r4c6-r5c6
 renban-2: renban r4c3-r3c4-r3c5-r3c6-r4c5-r2c6-r2c7-r3c7
 renban-3: renban r5c4-r6c5-r7c5-r8c5-r8c6-r6c4-r6c3-r6c2-r7c2

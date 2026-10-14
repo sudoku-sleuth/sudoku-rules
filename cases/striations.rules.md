@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/striations
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=1 r8c7=9
+exported: 183d7615cd494e3430a34f5f6f756b60
 ---
 
 ```rules

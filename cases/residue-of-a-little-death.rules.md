@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/residue-of-a-little-death
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b47e3cf80d669a4bb733198135ee7b2f
 ---
 
 ```rules

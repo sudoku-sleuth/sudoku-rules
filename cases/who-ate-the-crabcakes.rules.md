@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/who-ate-the-crabcakes
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 660ac17c1832ae60b74d691992596f26
 ---
 
 ```rules

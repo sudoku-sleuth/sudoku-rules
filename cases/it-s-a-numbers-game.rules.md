@@ -6,17 +6,18 @@ source: https://sudokupad.app/5kdb0fat77
 case: https://sudoku-sleuth.com/cases/it-s-a-numbers-game
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8e82ce63b674288b49c55f9df3460e5a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r4c2 colour "white"
-kropki-2: kropki r2c2-r3c2 colour "white"
-kropki-3: kropki r4c2-r4c3 colour "white"
-kropki-4: kropki r4c3-r4c4 colour "white"
-kropki-5: kropki r6c7-r6c8 colour "black"
-kropki-6: kropki r8c7-r8c8 colour "black"
-kropki-7: kropki r5c8-r6c8 colour "black"
+kropki-1: kropki r3c2-r4c2 white
+kropki-2: kropki r2c2-r3c2 white
+kropki-3: kropki r4c2-r4c3 white
+kropki-4: kropki r4c3-r4c4 white
+kropki-5: kropki r6c7-r6c8 black
+kropki-6: kropki r8c7-r8c8 black
+kropki-7: kropki r5c8-r6c8 black
 arrow-1: arrow r3c2-r2c2-r2c3 bulb ["r3c3"]
 arrow-2: arrow r3c4-r2c4-r2c3 bulb ["r3c3"]
 arrow-3: arrow r3c4-r4c4-r4c3 bulb ["r3c3"]

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ijn1wz672n
 case: https://sudoku-sleuth.com/cases/oil-water-kropki
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 85ca2adacdb6fc50d9e397d0be387cbf
 ---
 
 ```rules
@@ -34,16 +35,16 @@ layered-cage-9: layered-cage r4c9-r5c9-r6c9 upper [2,4,6,8]
 layered-cage-10: layered-cage r2c8-r3c8-r4c8 upper [2,4,6,8]
 layered-cage-11: layered-cage r1c1-r1c2-r2c1 upper [2,4,6,8]
 layered-cage-12: layered-cage r9c5-r9c6 upper [2,4,6,8]
-kropki-1: kropki r5c1-r5c2 colour "black"
-kropki-2: kropki r4c3-r4c4 colour "black"
-kropki-3: kropki r8c3-r8c4 colour "black"
-kropki-4: kropki r7c7-r7c8 colour "black"
-kropki-5: kropki r7c9-r8c9 colour "black"
-kropki-6: kropki r6c5-r7c5 colour "black"
-kropki-7: kropki r6c6-r6c7 colour "black"
-kropki-8: kropki r3c7-r4c7 colour "black"
-kropki-9: kropki r1c5-r2c5 colour "black"
-kropki-10: kropki r1c3-r1c4 colour "black"
+kropki-1: kropki r5c1-r5c2 black
+kropki-2: kropki r4c3-r4c4 black
+kropki-3: kropki r8c3-r8c4 black
+kropki-4: kropki r7c7-r7c8 black
+kropki-5: kropki r7c9-r8c9 black
+kropki-6: kropki r6c5-r7c5 black
+kropki-7: kropki r6c6-r6c7 black
+kropki-8: kropki r3c7-r4c7 black
+kropki-9: kropki r1c5-r2c5 black
+kropki-10: kropki r1c3-r1c4 black
 ```
 
 Normal sudoku rules apply.

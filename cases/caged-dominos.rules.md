@@ -6,6 +6,7 @@ source: https://sudokupad.app/u2bn76qqmd
 case: https://sudoku-sleuth.com/cases/caged-dominos
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3ddf249fac7bebb16abf2e5a2789580c
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/doppelgangers
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4d2d6c3d0d563302fee2ef1019e40f89
 ---
 
 ```rules
@@ -17,18 +18,18 @@ cage-3: cage r5c1-r6c1 total 15 connected true
 cage-4: cage r9c7-r9c8 total 15 connected true
 cage-5: cage r8c9-r9c9 total 13 connected true
 cage-6: cage r5c2-r6c2-r7c2-r8c2-r9c2 total 16 connected true
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r3c4-r3c5 colour "white"
-kropki-3: kropki r6c7-r6c8 colour "white"
-kropki-4: kropki r9c4-r9c5 colour "white"
-kropki-5: kropki r4c1-r5c1 colour "white"
-kropki-6: kropki r4c4-r5c4 colour "white"
-kropki-7: kropki r4c4-r4c5 colour "white"
-kropki-8: kropki r4c5-r4c6 colour "white"
-kropki-9: kropki r2c1-r3c1 colour "black"
-kropki-10: kropki r2c4-r3c4 colour "black"
-kropki-11: kropki r5c7-r6c7 colour "black"
-kropki-12: kropki r8c4-r9c4 colour "black"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r3c4-r3c5 white
+kropki-3: kropki r6c7-r6c8 white
+kropki-4: kropki r9c4-r9c5 white
+kropki-5: kropki r4c1-r5c1 white
+kropki-6: kropki r4c4-r5c4 white
+kropki-7: kropki r4c4-r4c5 white
+kropki-8: kropki r4c5-r4c6 white
+kropki-9: kropki r2c1-r3c1 black
+kropki-10: kropki r2c4-r3c4 black
+kropki-11: kropki r5c7-r6c7 black
+kropki-12: kropki r8c4-r9c4 black
 arrow-1: arrow r2c2-r3c3 bulb ["r1c1"]
 arrow-2: arrow r1c3-r2c3 bulb ["r1c2"]
 arrow-3: arrow r2c5-r3c6 bulb ["r1c4"]

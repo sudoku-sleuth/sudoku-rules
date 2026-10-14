@@ -6,6 +6,7 @@ source: https://sudokupad.app/f0issvvm7w
 case: https://sudoku-sleuth.com/cases/game-set-and-match
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 33acaa99526ea877b0cf843f7b2c5912
 ---
 
 ```rules
@@ -19,7 +20,7 @@ cage-6: cage r8c2-r8c3 total 12 connected true
 cage-7: cage r4c5-r5c5 total 13 connected true
 cage-8: cage r1c1-r2c1-r3c1 total 15 connected true
 cage-9: cage r6c2-r7c1-r7c2 total 12 connected true
-kropki r5c8-r6c8 colour "white"
+kropki r5c8-r6c8 white
 whispers-1: whispers r2c5-r2c6-r3c6-r3c5 gap 5
 whispers-2: whispers r2c5-r3c5 gap 5
 whispers-3: whispers r3c8-r4c7-r4c6-r5c6-r6c6-r6c5-r5c5 gap 5

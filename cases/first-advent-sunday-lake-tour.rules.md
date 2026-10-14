@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 46
-    - 58
-    - 65
-    - 67
-    - 68
-    - 74
+    - r6c2
+    - r7c5
+    - r8c3
+    - r8c5
+    - r8c6
+    - r9c3
 format: open-rules
 title: First Advent Sunday Lake Tour
 setter: Sandra & Nala
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 9847b03e86ef74e900e44601db41c69a
 ---
 
 ```rules
@@ -148,11 +149,11 @@ cage-5: cage r2c3-r2c4-r3c3-r4c3 total 10 connected true
 cage-6: cage r1c4-r1c5 total 10 connected true
 cage-7: cage r2c7-r3c7 total 13 connected true
 cage-8: cage r5c9-r6c9 total 14 connected true
-kropki-1: kropki r3c5-r3c6 colour "white"
-kropki-2: kropki r3c1-r4c1 colour "white"
-kropki-3: kropki r2c1-r3c1 colour "white"
-kropki-4: kropki r5c3-r6c3 colour "black"
-kropki-5: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r3c5-r3c6 white
+kropki-2: kropki r3c1-r4c1 white
+kropki-3: kropki r2c1-r3c1 white
+kropki-4: kropki r5c3-r6c3 black
+kropki-5: kropki r3c7-r4c7 black
 ```
 
 ```drawing

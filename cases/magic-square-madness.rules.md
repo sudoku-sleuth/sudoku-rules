@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/magic-square-madness
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8c1895396026d2fdc04e5fb85da1d67b
 ---
 
 ```rules

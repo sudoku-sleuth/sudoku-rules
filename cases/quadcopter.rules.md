@@ -6,6 +6,7 @@ source: https://sudokupad.app/fgdqijumwu
 case: https://sudoku-sleuth.com/cases/quadcopter
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fb90b3dfe6645e8b964c82af9717fa8c
 ---
 
 ```rules

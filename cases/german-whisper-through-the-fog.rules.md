@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: German Whisper through the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 903c436c49e39afdd7572a6639ce35a9
 ---
 
 ```rules
@@ -143,13 +144,13 @@ unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
 unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage r1c1-r1c2-r2c1 total 20 connected true
-kropki-1: kropki r3c5-r4c5 colour "white"
-kropki-2: kropki r4c4-r5c4 colour "white"
-kropki-3: kropki r3c6-r4c6 colour "white"
-kropki-4: kropki r7c2-r8c2 colour "white"
-kropki-5: kropki r7c6-r7c7 colour "white"
-kropki-6: kropki r1c2-r2c2 colour "black"
-kropki-7: kropki r3c3-r3c4 colour "black"
+kropki-1: kropki r3c5-r4c5 white
+kropki-2: kropki r4c4-r5c4 white
+kropki-3: kropki r3c6-r4c6 white
+kropki-4: kropki r7c2-r8c2 white
+kropki-5: kropki r7c6-r7c7 white
+kropki-6: kropki r1c2-r2c2 black
+kropki-7: kropki r3c3-r3c4 black
 whispers-1: whispers r2c1-r3c1-r3c2-r4c2 gap 5
 whispers-2: whispers r1c2-r1c3-r2c3-r2c4 gap 5
 whispers-3: whispers r1c5-r2c4 gap 5

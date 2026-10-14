@@ -6,20 +6,21 @@ source: https://sudokupad.app/pplds55x58
 case: https://sudoku-sleuth.com/cases/shoot-for-the-loon
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 99a5062512b4329f226615d5e4293e6e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c6-r1c7 colour "black"
-kropki-2: kropki r7c9-r8c9 colour "black"
-kropki-3: kropki r9c8-r9c9 colour "black"
-kropki-4: kropki r1c1-r1c2 colour "black"
-kropki-5: kropki r3c2-r3c3 colour "white"
-kropki-6: kropki r1c4-r2c4 colour "white"
-kropki-7: kropki r4c5-r5c5 colour "white"
-kropki-8: kropki r5c5-r6c5 colour "white"
-kropki-9: kropki r7c7-r8c7 colour "white"
-kropki-10: kropki r6c6-r6c7 colour "white"
+kropki-1: kropki r1c6-r1c7 black
+kropki-2: kropki r7c9-r8c9 black
+kropki-3: kropki r9c8-r9c9 black
+kropki-4: kropki r1c1-r1c2 black
+kropki-5: kropki r3c2-r3c3 white
+kropki-6: kropki r1c4-r2c4 white
+kropki-7: kropki r4c5-r5c5 white
+kropki-8: kropki r5c5-r6c5 white
+kropki-9: kropki r7c7-r8c7 white
+kropki-10: kropki r6c6-r6c7 white
 arrow-1: arrow r3c2-r2c3 bulb ["r4c1"]
 arrow-2: arrow r3c8-r2c7 bulb ["r4c9"]
 arrow-3: arrow r7c8-r8c7 bulb ["r6c9"]

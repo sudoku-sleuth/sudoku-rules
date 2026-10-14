@@ -54,6 +54,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: feebf31ea4c108344c5959c1583872f4
 ---
 
 ```rules
@@ -78,7 +79,7 @@ unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 cage-1: cage r3c2-r3c3 repeats false total 6 connected true
 cage-2: cage r5c3-r5c4 repeats false total 6 connected true
 anti-knight
-kropki r2c5-r2c6 colour "black"
+kropki r2c5-r2c6 black
 little-killer-1: little-killer r1c4-r2c5-r3c6 sum 9
 little-killer-2: little-killer r3c6-r4c5-r5c4-r6c3 sum 10
 ```

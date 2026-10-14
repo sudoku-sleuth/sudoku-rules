@@ -6,6 +6,7 @@ source: https://sudokupad.app/00nsemj9l2
 case: https://sudoku-sleuth.com/cases/zippularity
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 91768859a453dbfad7e6adf0093b0b22
 ---
 
 ```rules

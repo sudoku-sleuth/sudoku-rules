@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/blast-off
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=3 r1c9=7 r2c5=5 r7c1=6 r7c9=4 r8c5=8
+exported: ae9e3cac1067699a9f2ac0e60708693d
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/confetti
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=4 r5c7=4
+exported: 37a47d18df0fc901e6aed433657ed3b2
 ---
 
 ```rules

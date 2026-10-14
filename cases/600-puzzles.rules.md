@@ -6,6 +6,7 @@ source: https://sudokupad.app/8k51c180kh
 case: https://sudoku-sleuth.com/cases/600-puzzles
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5778149493d480a980958674b5605461
 ---
 
 ```rules

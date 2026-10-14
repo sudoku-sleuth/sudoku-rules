@@ -6,6 +6,7 @@ source: https://sudokupad.app/wvfhybyntz
 case: https://sudoku-sleuth.com/cases/you-are-safe-now
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b26cdca51ef1b43def558818424773b6
 ---
 
 ```rules

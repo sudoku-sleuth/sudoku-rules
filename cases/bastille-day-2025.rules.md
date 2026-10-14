@@ -6,6 +6,7 @@ source: https://sudokupad.app/krli47nkho
 case: https://sudoku-sleuth.com/cases/bastille-day-2025
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 89c452be126cec7e1978d7291f7999cd
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cada-oveja-con-su-pareja
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3e037babdf2377b4e4534bff3de0ada3
 ---
 
 ```rules

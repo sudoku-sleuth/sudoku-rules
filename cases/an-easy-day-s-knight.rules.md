@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/an-easy-day-s-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 16..2...3........8..9.6.7...........4.2.5.8.6...........3.4.1..2........7...8..49
+exported: dab6af0a0110f654f729b6e14bb6d765
 ---
 
 ```rules

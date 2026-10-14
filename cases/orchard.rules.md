@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/orchard
 case: https://sudoku-sleuth.com/cases/orchard
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dce0273362b5f8edd3eefc27eaca7827
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/tim39apg38
 case: https://sudoku-sleuth.com/cases/bugging-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6fc7595d55c8782b6626415a8e15696f
 ---
 
 ```rules

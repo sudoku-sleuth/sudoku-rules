@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/build-a-super-indexed-puzzle
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f5c33cdba867dd832503eae15f553836
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c3-r2c3 colour "black"
-kropki-2: kropki r2c3-r3c3 colour "black"
-kropki-3: kropki r2c1-r3c1 colour "black"
-kropki-4: kropki r1c5-r1c6 colour "black"
-kropki-5: kropki r5c5-r6c5 colour "black"
-kropki-6: kropki r7c8-r8c8 colour "black"
-kropki-7: kropki r7c9-r8c9 colour "black"
+kropki-1: kropki r1c3-r2c3 black
+kropki-2: kropki r2c3-r3c3 black
+kropki-3: kropki r2c1-r3c1 black
+kropki-4: kropki r1c5-r1c6 black
+kropki-5: kropki r5c5-r6c5 black
+kropki-6: kropki r7c8-r8c8 black
+kropki-7: kropki r7c9-r8c9 black
 ```
 
 ```drawing

@@ -6,6 +6,7 @@ source: https://sudokupad.app/6d09i2dkhy
 case: https://sudoku-sleuth.com/cases/goalpost
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ee75d4f5a3ccbb8684bcd81bb3a94a39
 ---
 
 ```rules

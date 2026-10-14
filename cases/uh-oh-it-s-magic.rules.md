@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/uh-oh-it-s-magic
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 245c7510806626f5ca3065acb5cdbbed
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/nfc51y0umq
 case: https://sudoku-sleuth.com/cases/quiet-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 94dd4da52018732ed09f7637336c95cc
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/oil-water-zipper
 case: https://sudoku-sleuth.com/cases/oil-water-zipper
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 329914dffd79bc2740da47fa07e52179
 ---
 
 ```rules

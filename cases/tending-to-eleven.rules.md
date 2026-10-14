@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tending-to-eleven
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c3=1 r7c4=1
+exported: 7701865f4b19f4956a3d85395cf20aa0
 ---
 
 ```rules

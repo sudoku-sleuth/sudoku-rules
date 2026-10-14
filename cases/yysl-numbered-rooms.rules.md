@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-numbered-rooms
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 44a4533dcd6701dc1dfc2669bba37930
 ---
 
 ```rules

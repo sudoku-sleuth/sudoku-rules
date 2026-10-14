@@ -6,6 +6,7 @@ source: https://sudokupad.app/ouu6f7l39g
 case: https://sudoku-sleuth.com/cases/orbital-maneuvers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 05d4c635bdb98c859abb689168b50c91
 ---
 
 ```rules

@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/name-series-abbey
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b611c2794ddbcf9951a0d96ab8edcee2
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c7-r2c8 colour "white"
-kropki-2: kropki r6c9-r7c9 colour "white"
-kropki-3: kropki r8c1-r9c1 colour "white"
+kropki-1: kropki r2c7-r2c8 white
+kropki-2: kropki r6c9-r7c9 white
+kropki-3: kropki r8c1-r9c1 white
 whispers-1: whispers r3c1-r2c1-r1c2-r2c3-r3c3 gap 5
 whispers-2: whispers r2c2-r2c3 gap 5
 whispers-3: whispers r1c4-r1c5-r2c6-r3c5-r4c6-r5c5-r5c4-r4c4-r3c4-r2c4 gap 5

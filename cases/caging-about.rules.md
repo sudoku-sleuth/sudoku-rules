@@ -6,6 +6,7 @@ source: https://sudokupad.app/aqaglk27t8
 case: https://sudoku-sleuth.com/cases/caging-about
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a08aa94c640e439ae1f66ab7db6f6c75
 ---
 
 ```rules

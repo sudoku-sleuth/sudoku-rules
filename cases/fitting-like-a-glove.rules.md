@@ -6,6 +6,7 @@ source: https://tinyurl.com/2x52ac6m
 case: https://sudoku-sleuth.com/cases/fitting-like-a-glove
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 65d433d42d86d40a6ac72ecb240a7daa
 ---
 
 ```rules

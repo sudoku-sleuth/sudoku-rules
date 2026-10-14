@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tadpoles-apart
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=7 r2c6=2 r3c1=3 r4c7=1 r5c3=9 r6c5=8 r7c8=4 r8c2=6 r9c4=5
+exported: 1b185b13444f88b3aeebedc8a157d61e
 ---
 
 ```rules

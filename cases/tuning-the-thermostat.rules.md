@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tuning-the-thermostat
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c6=1
+exported: ad282d6f31ee1d9845221e2822db956f
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/counterweights
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=5 r3c4=1 r5c8=5 r6c6=7 r8c2=6 r9c9=3
+exported: df51945a78f87ce538d4702772b2dffa
 ---
 
 ```rules

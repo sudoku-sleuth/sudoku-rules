@@ -6,6 +6,7 @@ source: https://sudokupad.app/60ow3k645m
 case: https://sudoku-sleuth.com/cases/fifteens-coming-out-yo-ears
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 69c32a25886826b62452af34e07ef0d4
 ---
 
 ```rules

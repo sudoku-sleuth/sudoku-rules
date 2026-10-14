@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=2nxnyvxg
 case: https://sudoku-sleuth.com/cases/friendly-fire
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f8cf5d719c32c682f365e9f923cde534
 ---
 
 ```rules

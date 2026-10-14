@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 30
+    - r6c1
 format: open-rules
 title: "EquaLite Cages 105: Fog of War"
 setter: gUBBLOR
@@ -56,6 +56,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 33973f0f580f0e74da15e1dc864115f4
 ---
 
 ```rules
@@ -85,11 +86,11 @@ equality-cage-5: equality-cage r6c5-r6c6
 equality-cage-6: equality-cage r2c3-r2c4
 equality-cage-7: equality-cage r3c3-r3c4
 equality-cage-8: equality-cage r5c4-r5c5
-kropki-1: kropki r5c1-r6c1 colour "black"
-kropki-2: kropki r6c1-r6c2 colour "black"
-kropki-3: kropki r4c2-r4c3 colour "black"
-kropki-4: kropki r1c1-r2c1 colour "white"
-kropki-5: kropki r3c2-r3c3 colour "white"
+kropki-1: kropki r5c1-r6c1 black
+kropki-2: kropki r6c1-r6c2 black
+kropki-3: kropki r4c2-r4c3 black
+kropki-4: kropki r1c1-r2c1 white
+kropki-5: kropki r3c2-r3c3 white
 ```
 
 Normal 6x6 sudoku rules apply. Place the digits 1 through 6 in each empty cell. Digits must not repeat within the same row, column, or box.

@@ -1,16 +1,16 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 8
-    - 17
-    - 63
-    - 64
-    - 65
-    - 71
-    - 72
-    - 80
+    - r1c1
+    - r1c2
+    - r1c9
+    - r2c9
+    - r8c1
+    - r8c2
+    - r8c3
+    - r8c9
+    - r9c1
+    - r9c9
 format: open-rules
 title: Chase the Fog Away
 setter: FullDeck and Missing a Few Cards
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d6ce3b48d0a411c461200495e0f18363
 ---
 
 ```rules

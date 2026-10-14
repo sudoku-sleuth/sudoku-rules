@@ -10,6 +10,7 @@ drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
 givens: r1c1=2 r1c2=9 r1c9=3 r6c3=6 r6c7=1
+exported: e9c07e27b919084c807df64acbd87353
 ---
 
 ```rules
@@ -21,18 +22,18 @@ cage-4: cage r6c4-r6c5-r6c6 total 13 connected true
 cage-5: cage r7c3-r7c4-r7c5-r7c6-r7c7 total 19 connected true
 cage-6: cage r8c3-r8c4-r8c5-r8c6-r8c7 total 29 connected true
 pair-1: pair r3c3-r4c3 difference 6
-kropki-1: kropki r3c4-r4c4 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
+kropki-1: kropki r3c4-r4c4 white
+kropki-2: kropki r3c5-r4c5 white
 pair-2: pair r3c6-r4c6 difference 6
-kropki-3: kropki r3c7-r4c7 colour "white"
-kropki-4: kropki r6c5-r6c6 colour "white"
-kropki-5: kropki r7c6-r8c6 colour "white"
-kropki-6: kropki r8c5-r8c6 colour "white"
-kropki-7: kropki r7c5-r8c5 colour "white"
-kropki-8: kropki r6c3-r7c3 colour "white"
-kropki-9: kropki r1c9-r2c9 colour "white"
-kropki-10: kropki r5c1-r6c1 colour "white"
-kropki-11: kropki r7c7-r7c8 colour "white"
+kropki-3: kropki r3c7-r4c7 white
+kropki-4: kropki r6c5-r6c6 white
+kropki-5: kropki r7c6-r8c6 white
+kropki-6: kropki r8c5-r8c6 white
+kropki-7: kropki r7c5-r8c5 white
+kropki-8: kropki r6c3-r7c3 white
+kropki-9: kropki r1c9-r2c9 white
+kropki-10: kropki r5c1-r6c1 white
+kropki-11: kropki r7c7-r7c8 white
 whispers-1: whispers r5c3-r4c3 gap 5
 whispers-2: whispers r5c5-r4c5 gap 5
 whispers-3: whispers r5c7-r4c7 gap 5

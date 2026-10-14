@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 33
-    - 40
-    - 51
+    - r4c7
+    - r5c5
+    - r6c7
 format: open-rules
 title: Foggy Killer Knights
 setter: Meggen033
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 545a29f1f8b5246d3f19c99826b62818
 ---
 
 ```rules

@@ -54,6 +54,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: f32b606a6f22724bb070f4db092b706d
 ---
 
 ```rules
@@ -75,7 +76,7 @@ unique-15: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
 unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
-kropki r3c3-r3c4 colour "black"
+kropki r3c3-r3c4 black
 pair-1: pair r2c5-r2c6 sum 5
 pair-2: pair r6c4-r6c5 sum 5
 unique-19: unique r3c3-r3c4

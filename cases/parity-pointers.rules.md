@@ -6,6 +6,7 @@ source: https://sudokupad.app/7fwqymp4bt
 case: https://sudoku-sleuth.com/cases/parity-pointers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 699a6fc22790ab5171de8c4201f841a4
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/out-of-the-frying-pan
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6b445eaa73959b7928b0301804d1679f
 ---
 
 ```rules

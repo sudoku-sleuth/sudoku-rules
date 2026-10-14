@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 1
-    - 10
-    - 11
+    - r1c2
+    - r2c2
+    - r2c3
 format: open-rules
 title: Nori Nori Christmas
 setter: Sandra & Nala
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 7ca2808e31461ec43eff942a86fe3685
 ---
 
 ```rules
@@ -151,7 +152,7 @@ cage-12: cage r7c5-r8c4-r8c5-r8c6-r9c5-r9c6-r9c7 connected true
 cage-13: cage r5c4-r5c5-r5c6-r6c4-r6c5-r7c4 connected true
 cage-14: cage r5c7-r5c8-r6c6-r6c7-r6c8-r7c6-r7c7 connected true
 cage-15: cage r5c9-r6c9-r7c8-r7c9-r8c7-r8c8-r8c9-r9c8-r9c9 connected true
-kropki r4c6-r5c6 colour "white"
+kropki r4c6-r5c6 white
 ```
 
 Christmastime is coming soon and it’s probably not too early to do some baking! Nala is eager to help out with anything, but she may not be the best fit when it comes to cutting out the cookies and placing them on the tray so they don’t touch each other when they go into the oven. She might need some help with that. Would you mind?

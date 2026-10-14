@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/penne
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=8 r2c5=3 r3c2=2 r5c3=3 r6c8=2 r7c4=2 r8c1=2 r9c9=3
+exported: e6a1e598ffea7cbf53193f78ea685268
 ---
 
 ```rules

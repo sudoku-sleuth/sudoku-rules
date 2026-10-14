@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/foothills
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=3
+exported: da48502abd56c2978ba9a23225093351
 ---
 
 ```rules

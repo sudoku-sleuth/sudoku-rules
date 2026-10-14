@@ -6,6 +6,7 @@ source: https://tinyurl.com/newyearsfireworksudoku
 case: https://sudoku-sleuth.com/cases/new-years-firework
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b5c2cf10367910ca2b6b4433d7832d0f
 ---
 
 ```rules

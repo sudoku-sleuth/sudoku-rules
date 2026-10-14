@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Serial Killer in the Fog
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 333c1ec60ae5c8b24c89996e5ee82682
 ---
 
 ```rules
@@ -148,20 +149,20 @@ cage-3: cage r4c2-r4c3 total 12 connected true
 cage-4: cage r3c1-r4c1-r5c1-r6c1-r7c1 total 22 connected true
 cage-5: cage r7c5-r8c5 total 10 connected true
 cage-6: cage r6c8-r6c9-r7c8 total 15 connected true
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r7c1-r7c2 colour "white"
-kropki-4: kropki r6c2-r7c2 colour "white"
-kropki-5: kropki r7c3-r7c4 colour "white"
-kropki-6: kropki r7c6-r8c6 colour "white"
-kropki-7: kropki r3c5-r3c6 colour "white"
-kropki-8: kropki r8c2-r9c2 colour "white"
-kropki-9: kropki r1c2-r2c2 colour "white"
-kropki-10: kropki r5c6-r5c7 colour "black"
-kropki-11: kropki r5c3-r5c4 colour "black"
-kropki-12: kropki r7c2-r7c3 colour "black"
-kropki-13: kropki r3c6-r4c6 colour "black"
-kropki-14: kropki r1c8-r1c9 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r7c1-r7c2 white
+kropki-4: kropki r6c2-r7c2 white
+kropki-5: kropki r7c3-r7c4 white
+kropki-6: kropki r7c6-r8c6 white
+kropki-7: kropki r3c5-r3c6 white
+kropki-8: kropki r8c2-r9c2 white
+kropki-9: kropki r1c2-r2c2 white
+kropki-10: kropki r5c6-r5c7 black
+kropki-11: kropki r5c3-r5c4 black
+kropki-12: kropki r7c2-r7c3 black
+kropki-13: kropki r3c6-r4c6 black
+kropki-14: kropki r1c8-r1c9 black
 renban-1: renban r4c6-r4c5-r4c4-r5c4-r6c4
 renban-2: renban r7c7-r7c6-r7c5
 renban-3: renban r2c5-r2c6-r2c7-r3c7-r4c7-r5c7

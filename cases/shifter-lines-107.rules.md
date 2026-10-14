@@ -6,12 +6,13 @@ source: https://sudokupad.app/0e9ir10fb3
 case: https://sudoku-sleuth.com/cases/shifter-lines-107
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 38a951ef27764e0b5eee159853aa961d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c4-r9c4 colour "black"
-kropki-2: kropki r1c7-r1c8 colour "black"
+kropki-1: kropki r8c4-r9c4 black
+kropki-2: kropki r1c7-r1c8 black
 arrow-1: arrow r8c3-r8c2 bulb ["r9c4"]
 arrow-2: arrow r8c5-r7c4 bulb ["r8c6"]
 arrow-3: arrow r3c6-r4c7 bulb ["r4c5"]

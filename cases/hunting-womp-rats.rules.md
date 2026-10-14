@@ -6,6 +6,7 @@ source: https://sudokupad.app/a43ul24ekj
 case: https://sudoku-sleuth.com/cases/hunting-womp-rats
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d17a1f5476328b5ffbe8717a6b5e55b6
 ---
 
 ```rules
@@ -19,8 +20,8 @@ cage-6: cage r4c6-r5c6-r6c6 total 9 connected true
 cage-7: cage r1c2-r1c3 total 10 connected true
 cage-8: cage r4c3-r5c3-r6c3 total 7 connected true
 cage-9: cage r3c8-r3c9 total 6 connected true
-kropki-1: kropki r8c6-r8c7 colour "white"
-kropki-2: kropki r5c9-r6c9 colour "white"
+kropki-1: kropki r8c6-r8c7 white
+kropki-2: kropki r5c9-r6c9 white
 whispers-1: whispers r1c1-r2c2-r3c3-r4c4-r5c5-r6c6-r7c7-r8c8-r9c9 gap 5
 whispers-2: whispers r1c9-r2c8-r3c7-r4c6-r5c5-r6c4-r7c3-r8c2-r9c1 gap 5
 whispers-3: whispers r2c9-r3c8-r4c7-r5c6-r6c7-r7c8-r8c9 gap 4

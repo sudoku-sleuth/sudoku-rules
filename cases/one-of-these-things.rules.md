@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/one-of-these-things
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=1
+exported: 829296f011e36d8e8fa86764367703a1
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c7-r2c8 colour "white"
-kropki-2: kropki r2c3-r3c3 colour "white"
-kropki-3: kropki r5c1-r5c2 colour "white"
-kropki-4: kropki r1c1-r2c1 colour "white"
-kropki-5: kropki r2c8-r3c8 colour "white"
-kropki-6: kropki r1c5-r2c5 colour "black"
-kropki-7: kropki r5c8-r5c9 colour "black"
-kropki-8: kropki r8c4-r9c4 colour "black"
-kropki-9: kropki r1c2-r1c3 colour "black"
-kropki-10: kropki r7c1-r8c1 colour "black"
-kropki-11: kropki r9c7-r9c8 colour "black"
-kropki-12: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r2c7-r2c8 white
+kropki-2: kropki r2c3-r3c3 white
+kropki-3: kropki r5c1-r5c2 white
+kropki-4: kropki r1c1-r2c1 white
+kropki-5: kropki r2c8-r3c8 white
+kropki-6: kropki r1c5-r2c5 black
+kropki-7: kropki r5c8-r5c9 black
+kropki-8: kropki r8c4-r9c4 black
+kropki-9: kropki r1c2-r1c3 black
+kropki-10: kropki r7c1-r8c1 black
+kropki-11: kropki r9c7-r9c8 black
+kropki-12: kropki r3c8-r4c8 black
 renban-1: renban r5c1-r5c2-r5c3-r5c4-r4c4
 renban-2: renban r1c5-r2c5-r3c5-r4c5-r4c6
 renban-3: renban r5c9-r5c8-r5c7-r5c6-r6c6

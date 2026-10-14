@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/conga-line-dance
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 91ba6c9a6a9bec5d3b16c6653f3eee9b
 ---
 
 ```rules

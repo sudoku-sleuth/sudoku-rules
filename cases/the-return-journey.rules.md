@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-return-journey
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ba511f3b21e27838e7d93e2e04de54bc
 ---
 
 ```rules

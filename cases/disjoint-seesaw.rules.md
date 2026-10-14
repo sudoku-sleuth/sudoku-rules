@@ -6,6 +6,7 @@ source: https://sudokupad.app/72l76fj8bg
 case: https://sudoku-sleuth.com/cases/disjoint-seesaw
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 063cfda7dcd233be643d3c98a9b6a5d4
 ---
 
 ```rules

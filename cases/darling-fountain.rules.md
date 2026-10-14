@@ -6,6 +6,7 @@ source: https://sudokupad.app/sn83d9a6vq
 case: https://sudoku-sleuth.com/cases/darling-fountain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1bd2f27a4965cf38dca10fcef7771472
 ---
 
 ```rules

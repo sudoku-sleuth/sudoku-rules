@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/stairway-to-heaven-ledzeppelin
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 11010dcc39dae95a0ac61303a8cc52d6
 ---
 
 ```rules
@@ -30,8 +31,8 @@ cage-16: cage r3c2-r4c2 total 7 connected true
 cage-17: cage r2c3-r3c3 total 8 connected true
 cage-18: cage r1c4-r2c4 total 9 connected true
 cage-19: cage r4c9-r5c9 total 4 connected true
-kropki-1: kropki r3c4-r3c5 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
+kropki-1: kropki r3c4-r3c5 white
+kropki-2: kropki r3c5-r3c6 white
 ```
 
 ```drawing

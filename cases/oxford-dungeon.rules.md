@@ -6,6 +6,7 @@ source: https://sudokupad.app/p6irrhbk65
 case: https://sudoku-sleuth.com/cases/oxford-dungeon
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 027ce7f1720966e55d375ba471a93a9f
 ---
 
 ```rules

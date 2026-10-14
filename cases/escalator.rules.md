@@ -6,6 +6,7 @@ source: https://sudokupad.app/lxesp8mcxg
 case: https://sudoku-sleuth.com/cases/escalator
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bf56ea7d0fcdc4810964097fafb971ed
 ---
 
 ```rules

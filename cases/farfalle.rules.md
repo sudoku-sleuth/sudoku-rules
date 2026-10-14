@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/farfalle
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=6 r2c9=3 r3c2=5 r4c5=5 r5c3=4 r5c7=6 r6c5=7 r7c8=8 r8c1=4 r9c6=2
+exported: 6cbf0577ac0b2deabb4f7be0811f4f0c
 ---
 
 ```rules

@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/irish-dots-ii
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3a6532cd5648490f7d749e1e87642e47
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r5c6-r5c7 colour "white"
-kropki-3: kropki r4c3-r5c3 colour "white"
-kropki-4: kropki r5c8-r6c8 colour "white"
-kropki-5: kropki r6c7-r6c8 colour "white"
-kropki-6: kropki r6c4-r7c4 colour "white"
-kropki-7: kropki r1c3-r2c3 colour "white"
-kropki-8: kropki r1c3-r1c4 colour "white"
-kropki-9: kropki r8c4-r9c4 colour "white"
-kropki-10: kropki r2c5-r2c6 colour "white"
-kropki-11: kropki r2c8-r3c8 colour "white"
-kropki-12: kropki r9c2-r9c3 colour "white"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r5c6-r5c7 white
+kropki-3: kropki r4c3-r5c3 white
+kropki-4: kropki r5c8-r6c8 white
+kropki-5: kropki r6c7-r6c8 white
+kropki-6: kropki r6c4-r7c4 white
+kropki-7: kropki r1c3-r2c3 white
+kropki-8: kropki r1c3-r1c4 white
+kropki-9: kropki r8c4-r9c4 white
+kropki-10: kropki r2c5-r2c6 white
+kropki-11: kropki r2c8-r3c8 white
+kropki-12: kropki r9c2-r9c3 white
 ```
 
 ```drawing

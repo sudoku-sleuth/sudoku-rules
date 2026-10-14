@@ -6,6 +6,7 @@ source: https://sudokupad.app/z30s400ypk
 case: https://sudoku-sleuth.com/cases/quadromodular
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f101c1faae1f2361469c3d56c102a17a
 ---
 
 ```rules

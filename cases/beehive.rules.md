@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/beehive
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=2 r1c9=9 r2c2=8 r2c5=3 r3c4=8 r5c2=7 r5c5=6 r5c9=5 r7c2=6 r9c4=4 r9c8=7
+exported: 832356d0e5f1f7b64f59b03ab687530b
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/knights-and-kings-lunch
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c1=1
+exported: 95eb68e82e49f3d6ecc2e294f585478d
 ---
 
 ```rules
@@ -14,8 +15,8 @@ sudoku 9x9
 cage r5c1-r6c1 total 8 connected true
 anti-knight
 anti-king
-kropki-1: kropki r8c9-r9c9 colour "black"
-kropki-2: kropki r2c8-r3c8 colour "black"
+kropki-1: kropki r8c9-r9c9 black
+kropki-2: kropki r2c8-r3c8 black
 pair-1: pair r7c4-r8c4 sum 5
 pair-2: pair r1c6-r2c6 sum 5
 pair-3: pair r6c8-r6c9 sum 5

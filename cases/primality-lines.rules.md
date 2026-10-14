@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/primality-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=2
+exported: e3141b19a3960858e07d10ee3a72b2e8
 ---
 
 ```rules

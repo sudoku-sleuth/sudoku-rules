@@ -6,16 +6,17 @@ source: https://tinyurl.com/yasvk7yj
 case: https://sudoku-sleuth.com/cases/tic-tac-toe-three-in-a-row
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2b377f179b77dc09d1e8790bef0d64e4
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "main"
 thermo r9c1-r9c2-r9c3-r8c3-r7c3-r7c2-r7c1-r8c1
-kropki-1: kropki r6c2-r7c2 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r8c7-r9c7 colour "white"
-kropki-4: kropki r3c7-r4c7 colour "white"
+kropki-1: kropki r6c2-r7c2 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r8c7-r9c7 white
+kropki-4: kropki r3c7-r4c7 white
 between r7c6-r7c5-r7c4-r8c4-r9c4-r9c5 ends ["r8c6","r9c6"]
 whispers-1: whispers r1c3-r2c2-r3c1 gap 5
 whispers-2: whispers r4c6-r5c5-r6c4 gap 5

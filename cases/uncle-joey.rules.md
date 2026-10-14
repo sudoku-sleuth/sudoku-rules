@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/uncle-joey
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 3336e2c3a315e55601988fe5479a6f8a
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://tinyurl.com/bdfp8399
 case: https://sudoku-sleuth.com/cases/diagonal-indexing-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5ebbf145970ed047d7d5b3bd4b203cd3
 ---
 
 ```rules

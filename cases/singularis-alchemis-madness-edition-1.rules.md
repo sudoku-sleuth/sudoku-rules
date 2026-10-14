@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 22
-    - 23
-    - 28
-    - 29
+    - r4c5
+    - r4c6
+    - r5c5
+    - r5c6
 format: open-rules
 title: Singularis alchemis- madness edition 1
 setter: Chip Sounder
@@ -60,6 +60,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: af4679d7a869736f6699109115c63c2c
 ---
 
 ```rules
@@ -83,8 +84,8 @@ unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3 stated true
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6 stated true
 anti-king stated true
 thermo r2c3-r1c3
-kropki-1: kropki r5c5-r5c6 colour "black"
-kropki-2: kropki r4c5-r5c5 colour "white"
+kropki-1: kropki r5c5-r5c6 black
+kropki-2: kropki r4c5-r5c5 white
 whispers r4c5-r5c6 loop false gap 3
 parity r6c4-r6c5-r6c6 loop false
 renban r3c5-r4c4

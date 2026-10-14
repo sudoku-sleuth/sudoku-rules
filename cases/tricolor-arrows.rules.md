@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tricolor-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 33fc2a2f2c05dabd9fcecc5138d68d3a
 ---
 
 ```rules

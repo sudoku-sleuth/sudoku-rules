@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/vicious-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=4
+exported: 07e6248b31f5510c6c5e4af8497b4ab1
 ---
 
 ```rules

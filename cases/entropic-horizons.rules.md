@@ -6,6 +6,7 @@ source: https://sudokupad.app/ahcx5ec5c6
 case: https://sudoku-sleuth.com/cases/entropic-horizons
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6fa04adafd03c2fe01c2c715208c72b9
 ---
 
 ```rules

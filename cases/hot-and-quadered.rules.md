@@ -6,6 +6,7 @@ source: https://sudokupad.app/kwak8dfg68
 case: https://sudoku-sleuth.com/cases/hot-and-quadered
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e03dc4ddaa6057b54a7405afe40ada34
 ---
 
 ```rules

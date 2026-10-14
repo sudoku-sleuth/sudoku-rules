@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/silent-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bf982ce0c0a04b7ab1508fe5e7e5d563
 ---
 
 ```rules

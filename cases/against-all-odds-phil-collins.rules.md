@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/against-all-odds-phil-collins
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 347c54587edb44d00027ce67aa67395a
 ---
 
 ```rules

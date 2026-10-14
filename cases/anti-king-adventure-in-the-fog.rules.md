@@ -1,32 +1,32 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 5
-    - 6
-    - 7
-    - 19
-    - 20
-    - 23
-    - 24
-    - 25
-    - 36
-    - 37
-    - 38
-    - 39
-    - 41
-    - 42
-    - 43
-    - 63
-    - 64
-    - 65
-    - 67
-    - 68
-    - 69
-    - 70
-    - 71
+    - r1c1
+    - r1c2
+    - r1c3
+    - r1c6
+    - r1c7
+    - r1c8
+    - r3c2
+    - r3c3
+    - r3c6
+    - r3c7
+    - r3c8
+    - r5c1
+    - r5c2
+    - r5c3
+    - r5c4
+    - r5c6
+    - r5c7
+    - r5c8
+    - r8c1
+    - r8c2
+    - r8c3
+    - r8c5
+    - r8c6
+    - r8c7
+    - r8c8
+    - r8c9
 format: open-rules
 title: Anti king adventure in the fog
 setter: Chip Sounder
@@ -130,6 +130,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: bb542ca267a14e6def95e80908e99e9c
 ---
 
 ```rules
@@ -169,15 +170,15 @@ cage-6: cage r4c6-r4c7-r5c6-r5c7-r5c8 total 26 connected true
 cage-7: cage r5c1-r5c2-r5c3-r5c4 total 20 connected true
 cage-8: cage r8c5-r8c6-r8c7-r8c8-r8c9 total 19 connected true
 anti-king
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r1c7-r1c8 colour "white"
-kropki-3: kropki r3c7-r3c8 colour "white"
-kropki-4: kropki r3c6-r3c7 colour "white"
-kropki-5: kropki r5c2-r5c3 colour "white"
-kropki-6: kropki r5c6-r5c7 colour "white"
-kropki-7: kropki r5c7-r5c8 colour "white"
-kropki-8: kropki r8c2-r8c3 colour "white"
-kropki-9: kropki r8c8-r8c9 colour "white"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r1c7-r1c8 white
+kropki-3: kropki r3c7-r3c8 white
+kropki-4: kropki r3c6-r3c7 white
+kropki-5: kropki r5c2-r5c3 white
+kropki-6: kropki r5c6-r5c7 white
+kropki-7: kropki r5c7-r5c8 white
+kropki-8: kropki r8c2-r8c3 white
+kropki-9: kropki r8c8-r8c9 white
 little-killer-1: little-killer r1c5-r2c6-r3c7-r4c8-r5c9 sum 26
 little-killer-2: little-killer r1c9-r2c8-r3c7-r4c6-r5c5-r6c4-r7c3-r8c2-r9c1 sum 48
 ```

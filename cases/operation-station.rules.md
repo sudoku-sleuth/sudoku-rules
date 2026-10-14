@@ -6,20 +6,21 @@ source: ""
 case: https://sudoku-sleuth.com/cases/operation-station
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6c85ac4ce041a6daadf711c86d378bdb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c3-r6c4 colour "white"
-kropki-2: kropki r6c4-r7c4 colour "white"
-kropki-3: kropki r6c6-r7c6 colour "white"
-kropki-4: kropki r6c6-r6c7 colour "white"
-kropki-5: kropki r5c3-r5c4 colour "black"
-kropki-6: kropki r5c6-r5c7 colour "black"
-kropki-7: kropki r4c6-r4c7 colour "black"
-kropki-8: kropki r3c6-r4c6 colour "black"
-kropki-9: kropki r3c4-r4c4 colour "black"
-kropki-10: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r6c3-r6c4 white
+kropki-2: kropki r6c4-r7c4 white
+kropki-3: kropki r6c6-r7c6 white
+kropki-4: kropki r6c6-r6c7 white
+kropki-5: kropki r5c3-r5c4 black
+kropki-6: kropki r5c6-r5c7 black
+kropki-7: kropki r4c6-r4c7 black
+kropki-8: kropki r3c6-r4c6 black
+kropki-9: kropki r3c4-r4c4 black
+kropki-10: kropki r4c3-r4c4 black
 whispers-1: whispers r1c1-r2c2-r3c3 gap 5
 whispers-2: whispers r3c7-r2c8-r1c9 gap 5
 whispers-3: whispers r7c7-r8c8-r9c9 gap 5

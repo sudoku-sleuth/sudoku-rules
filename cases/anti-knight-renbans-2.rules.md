@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anti-knight-renbans-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b218298e984407d18791e9570f90d833
 ---
 
 ```rules

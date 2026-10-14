@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/trickle-down-arrownomics
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=9 r2c8=3 r4c3=7 r4c6=5 r5c9=6 r7c5=4 r8c2=2 r8c8=1
+exported: 1807d40ebdac54b3308a8b92773ef7c3
 ---
 
 ```rules

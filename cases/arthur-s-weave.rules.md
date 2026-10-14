@@ -6,6 +6,7 @@ source: https://sudokupad.app/pb2ltesayv
 case: https://sudoku-sleuth.com/cases/arthur-s-weave
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d124fd1c3aad0e35ba67773cf6f92b91
 ---
 
 ```rules

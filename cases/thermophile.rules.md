@@ -6,6 +6,7 @@ source: https://sudokupad.app/hivucmey55
 case: https://sudoku-sleuth.com/cases/thermophile
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 92003b0b42f51aca3eaa48138ad6c17a
 ---
 
 ```rules

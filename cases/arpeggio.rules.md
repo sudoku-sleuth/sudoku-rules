@@ -6,6 +6,7 @@ source: https://sudokupad.app/j96by6nx8s
 case: https://sudoku-sleuth.com/cases/arpeggio
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4567c96c180e2cdd5c3790a96bc75430
 ---
 
 ```rules

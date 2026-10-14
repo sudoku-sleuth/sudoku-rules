@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/fabricate
 case: https://sudoku-sleuth.com/cases/fabricate
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0574d7dd7bb970dd1cb4d46b24d00b8a
 ---
 
 ```rules

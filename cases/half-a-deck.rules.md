@@ -6,6 +6,7 @@ source: https://sudokupad.app/903be63ej2
 case: https://sudoku-sleuth.com/cases/half-a-deck
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 68e3e85547adc40cefd5f4557c662e42
 ---
 
 ```rules

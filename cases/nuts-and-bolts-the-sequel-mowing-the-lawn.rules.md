@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/nuts-and-bolts-the-sequel-mowing-the-lawn
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ae8cd28a04164b2365d6f0bf3cadd6a0
 ---
 
 ```rules

@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 45
-    - 72
-    - 74
+    - r6c1
+    - r9c1
+    - r9c3
 format: open-rules
 title: Pheasant Fitnesstrainer
 setter: Sandra & Nala
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 915199f5daf1a82a433101450cc68907
 ---
 
 ```rules

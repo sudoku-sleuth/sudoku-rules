@@ -6,20 +6,21 @@ source: https://sudokupad.app/mdp/orion
 case: https://sudoku-sleuth.com/cases/orion
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5af7e55211dd5c6ec76ab940838ae5db
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r4c5-r5c5 colour "white"
-kropki-3: kropki r8c7-r9c7 colour "white"
-kropki-4: kropki r9c6-r9c7 colour "white"
-kropki-5: kropki r6c9-r7c9 colour "white"
-kropki-6: kropki r2c5-r3c5 colour "white"
-kropki-7: kropki r3c1-r4c1 colour "white"
-kropki-8: kropki r4c1-r4c2 colour "white"
-kropki-9: kropki r5c2-r5c3 colour "white"
-kropki-10: kropki r4c2-r5c2 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r4c5-r5c5 white
+kropki-3: kropki r8c7-r9c7 white
+kropki-4: kropki r9c6-r9c7 white
+kropki-5: kropki r6c9-r7c9 white
+kropki-6: kropki r2c5-r3c5 white
+kropki-7: kropki r3c1-r4c1 white
+kropki-8: kropki r4c1-r4c2 white
+kropki-9: kropki r5c2-r5c3 white
+kropki-10: kropki r4c2-r5c2 black
 arrow-1: arrow r3c2-r3c1-r4c1 bulb ["r3c3"]
 arrow-2: arrow r2c3-r1c3-r1c4 bulb ["r3c3"]
 arrow-3: arrow r4c3-r5c3-r5c2 bulb ["r3c3"]

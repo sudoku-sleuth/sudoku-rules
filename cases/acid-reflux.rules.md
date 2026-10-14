@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/acid-reflux
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=9 r5c5=5
+exported: 62490435f4fcc4833168ac6fbd6722b3
 ---
 
 ```rules

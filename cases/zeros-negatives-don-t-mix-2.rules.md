@@ -105,6 +105,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d414b323790699c09fd57e4e1b4036a0
 ---
 
 ```rules

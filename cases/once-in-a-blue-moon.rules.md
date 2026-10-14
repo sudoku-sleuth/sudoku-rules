@@ -6,6 +6,7 @@ source: https://sudokupad.app/za41d6jj2b
 case: https://sudoku-sleuth.com/cases/once-in-a-blue-moon
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1e8b3adc15d3d5f88161e1c9ca2853e6
 ---
 
 ```rules

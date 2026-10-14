@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
 format: open-rules
 title: Searching for Secrets
 setter: Sandra & Nala
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 63f1991cf01e48cd4873d417cbb714cf
 ---
 
 ```rules

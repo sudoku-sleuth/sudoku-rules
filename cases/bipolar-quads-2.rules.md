@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bipolar-quads-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8c2f407094f90247012417b274227f46
 ---
 
 ```rules

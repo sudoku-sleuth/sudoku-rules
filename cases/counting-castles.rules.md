@@ -20,6 +20,7 @@ board:
     - 7
     - 8
     - 9
+exported: 5a41394fba58d63f2d7114d8797073ba
 ---
 
 ```rules

@@ -6,18 +6,19 @@ source: https://f-puzzles.com/?id=yd6fe3l6
 case: https://sudoku-sleuth.com/cases/jiggery-pokery
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 28b4c2b81785cf9f61fa5b60c60ea34c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c3-r4c3 colour "white"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r3c8-r4c8 colour "white"
-kropki-4: kropki r7c8-r8c8 colour "white"
-kropki-5: kropki r1c1-r1c2 colour "white"
-kropki-6: kropki r6c2-r7c2 colour "white"
-kropki-7: kropki r7c5-r7c6 colour "white"
-kropki-8: kropki r4c3-r5c3 colour "black"
+kropki-1: kropki r3c3-r4c3 white
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r3c8-r4c8 white
+kropki-4: kropki r7c8-r8c8 white
+kropki-5: kropki r1c1-r1c2 white
+kropki-6: kropki r6c2-r7c2 white
+kropki-7: kropki r7c5-r7c6 white
+kropki-8: kropki r4c3-r5c3 black
 arrow-1: arrow r4c6-r4c7-r4c8 bulb ["r3c5"]
 arrow-2: arrow r6c4-r6c3-r6c2 bulb ["r7c5"]
 arrow-3: arrow r4c2-r3c3-r2c4 bulb ["r5c1"]

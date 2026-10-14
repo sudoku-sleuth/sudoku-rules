@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bullion
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 215ecae6e1d36861bfe203df3347ab03
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/1x05zagpv1
 case: https://sudoku-sleuth.com/cases/solitary-confinement
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0f69d876f4aa752fc6facf219a94171d
 ---
 
 ```rules

@@ -1,42 +1,42 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 6
-    - 7
-    - 8
-    - 9
-    - 10
-    - 11
-    - 15
-    - 16
-    - 17
-    - 18
-    - 19
-    - 20
-    - 24
-    - 25
-    - 26
-    - 54
-    - 55
-    - 56
-    - 60
-    - 61
-    - 62
-    - 63
-    - 64
-    - 65
-    - 69
-    - 70
-    - 71
-    - 72
-    - 73
-    - 74
-    - 78
-    - 79
-    - 80
+    - r1c1
+    - r1c2
+    - r1c3
+    - r1c7
+    - r1c8
+    - r1c9
+    - r2c1
+    - r2c2
+    - r2c3
+    - r2c7
+    - r2c8
+    - r2c9
+    - r3c1
+    - r3c2
+    - r3c3
+    - r3c7
+    - r3c8
+    - r3c9
+    - r7c1
+    - r7c2
+    - r7c3
+    - r7c7
+    - r7c8
+    - r7c9
+    - r8c1
+    - r8c2
+    - r8c3
+    - r8c7
+    - r8c8
+    - r8c9
+    - r9c1
+    - r9c2
+    - r9c3
+    - r9c7
+    - r9c8
+    - r9c9
 format: open-rules
 title: Four Corners
 setter: Sir Moose
@@ -139,6 +139,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d7a19476670bb09f58ad69fb4738a299
 ---
 
 ```rules

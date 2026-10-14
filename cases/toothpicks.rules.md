@@ -6,6 +6,7 @@ source: https://sudokupad.app/h6j5ab8tvy
 case: https://sudoku-sleuth.com/cases/toothpicks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8b8c42da8cb00f478f667a8f1dba16e6
 ---
 
 ```rules

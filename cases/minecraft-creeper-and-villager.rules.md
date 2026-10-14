@@ -6,6 +6,7 @@ source: https://sudokupad.app/g1autubqxz
 case: https://sudoku-sleuth.com/cases/minecraft-creeper-and-villager
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7fd28934dd63a4a1ce0b2a53ef0b8b15
 ---
 
 ```rules

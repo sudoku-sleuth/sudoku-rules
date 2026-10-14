@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tmnt-leo-donnie-raph-mikey
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 431948d49072120e4c7360386bda7bf2
 ---
 
 ```rules

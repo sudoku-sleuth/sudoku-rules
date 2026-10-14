@@ -6,6 +6,7 @@ source: https://sudokupad.app/cff83p45y1
 case: https://sudoku-sleuth.com/cases/heartbeat-don-johnson-1986
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b7ea108370456cbe6053ac96f896ac78
 ---
 
 ```rules

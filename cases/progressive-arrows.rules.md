@@ -6,6 +6,7 @@ source: https://sudokupad.app/gmdqoqwbe9
 case: https://sudoku-sleuth.com/cases/progressive-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 431d5f31ade5e022f135403beab2abfc
 ---
 
 ```rules
@@ -19,7 +20,7 @@ cage-6: cage r8c8-r8c9 total 5 connected true
 cage-7: cage r4c8-r5c8 total 5 connected true
 cage-8: cage r1c1-r2c1 total 5 connected true
 cage-9: cage r2c2-r3c2 total 5 connected true
-kropki r2c6-r3c6 colour "white"
+kropki r2c6-r3c6 white
 arrow-1: arrow r9c3-r9c4-r9c5-r9c6-r9c7-r9c8-r9c9 bulb ["r9c1","r9c2"]
 arrow-2: arrow r8c7-r8c6-r8c5-r8c4-r8c3-r8c2 bulb ["r8c8","r8c9"]
 arrow-3: arrow r7c3-r7c4-r7c5-r7c6-r7c7-r7c8 bulb ["r7c1","r7c2"]

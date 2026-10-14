@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/balance-of-power
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 42962f5c0576692dda288575e9d364e3
 ---
 
 ```rules

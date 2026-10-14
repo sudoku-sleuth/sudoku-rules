@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/stacking-the-deck
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c5=4
+exported: 8668527daf004b217c7c91edf8265957
 ---
 
 ```rules

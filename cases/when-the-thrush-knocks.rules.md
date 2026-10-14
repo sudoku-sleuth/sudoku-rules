@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/when-the-thrush-knocks
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 14d8f38d0c8fbc97eb61f9e6ee34ec77
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c7-r1c8 colour "black"
-kropki-2: kropki r1c9-r2c9 colour "black"
-kropki-3: kropki r2c2-r3c2 colour "black"
-kropki-4: kropki r5c2-r6c2 colour "black"
-kropki-5: kropki r9c6-r9c7 colour "black"
-kropki-6: kropki r7c6-r8c6 colour "black"
-kropki-7: kropki r4c7-r5c7 colour "black"
+kropki-1: kropki r1c7-r1c8 black
+kropki-2: kropki r1c9-r2c9 black
+kropki-3: kropki r2c2-r3c2 black
+kropki-4: kropki r5c2-r6c2 black
+kropki-5: kropki r9c6-r9c7 black
+kropki-6: kropki r7c6-r8c6 black
+kropki-7: kropki r4c7-r5c7 black
 pair-1: pair r1c4-r2c4 sum 10
 pair-2: pair r2c5-r3c5 sum 10
 pair-3: pair r3c3-r4c3 sum 10

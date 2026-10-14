@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/wormherds
 case: https://sudoku-sleuth.com/cases/wormherds
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2919c33c4fcf467c7d6790e0ee9571b9
 ---
 
 ```rules

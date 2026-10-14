@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/shelob-s-lair
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 23324c900e9d790548e1c717acdf33d3
 ---
 
 ```rules

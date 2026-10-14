@@ -8,18 +8,19 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - A feature in the source still needs a drawing definition.
+exported: 2b8d059715c7cf660bc706daed6676d7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c1-r3c1 colour "black"
-kropki-2: kropki r3c1-r3c2 colour "black"
-kropki-3: kropki r7c8-r7c9 colour "black"
-kropki-4: kropki r7c9-r8c9 colour "black"
-kropki-5: kropki r4c5-r4c6 colour "black"
-kropki-6: kropki r5c3-r5c4 colour "black"
-kropki-7: kropki r6c5-r7c5 colour "black"
-kropki-8: kropki r6c1-r7c1 colour "black"
+kropki-1: kropki r2c1-r3c1 black
+kropki-2: kropki r3c1-r3c2 black
+kropki-3: kropki r7c8-r7c9 black
+kropki-4: kropki r7c9-r8c9 black
+kropki-5: kropki r4c5-r4c6 black
+kropki-6: kropki r5c3-r5c4 black
+kropki-7: kropki r6c5-r7c5 black
+kropki-8: kropki r6c1-r7c1 black
 pair-1: pair r7c4-r7c5 sum 10
 pair-2: pair r4c7-r4c8 sum 10
 pair-3: pair r7c1-r8c1 sum 10

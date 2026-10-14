@@ -6,6 +6,7 @@ source: https://sudokupad.app/qvwnr1p695
 case: https://sudoku-sleuth.com/cases/subtraction-game
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 984fd5b38272b6540d7c6a01d3ef96cf
 ---
 
 ```rules

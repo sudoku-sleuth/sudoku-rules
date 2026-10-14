@@ -6,6 +6,7 @@ source: https://sudokupad.app/pf0vi43jko
 case: https://sudoku-sleuth.com/cases/chivalry
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dce2b3a8469d7d676a1743db91a6de13
 ---
 
 ```rules

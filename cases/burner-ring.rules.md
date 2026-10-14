@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/burner-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=3 r3c1=7 r8c8=5
+exported: edd846d512c1c9181262eefc241238db
 ---
 
 ```rules

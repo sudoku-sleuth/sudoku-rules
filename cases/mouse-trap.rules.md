@@ -6,6 +6,7 @@ source: https://sudokupad.app/fsgbrms89p
 case: https://sudoku-sleuth.com/cases/mouse-trap
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6f2443d20e902c45d749148b8d4558b1
 ---
 
 ```rules

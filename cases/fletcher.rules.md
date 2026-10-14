@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fletcher
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 588fedf4e79a0c40978a7a0791e64623
 ---
 
 ```rules

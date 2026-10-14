@@ -6,6 +6,7 @@ source: https://sudokupad.app/lq6ujk0wia
 case: https://sudoku-sleuth.com/cases/22-v-la-les-flics
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 184c6a67ab7d0727ee38643c86827724
 ---
 
 ```rules

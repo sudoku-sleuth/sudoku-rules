@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/squeeze
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 98571405c65dc54dd859a7a6da646dc8
 ---
 
 ```rules

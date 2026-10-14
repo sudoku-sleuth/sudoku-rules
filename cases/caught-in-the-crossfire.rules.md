@@ -6,19 +6,20 @@ source: https://f-puzzles.com/?id=y2d72nla
 case: https://sudoku-sleuth.com/cases/caught-in-the-crossfire
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 341406ed420ddbee3026b0414a92d98a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c3-r4c3 colour "white"
-kropki-2: kropki r4c3-r4c4 colour "white"
-kropki-3: kropki r3c4-r4c4 colour "white"
-kropki-4: kropki r2c8-r3c8 colour "white"
-kropki-5: kropki r6c7-r7c7 colour "white"
-kropki-6: kropki r7c6-r7c7 colour "white"
-kropki-7: kropki r6c6-r7c6 colour "white"
-kropki-8: kropki r6c6-r6c7 colour "white"
-kropki-9: kropki r6c2-r7c2 colour "white"
+kropki-1: kropki r3c3-r4c3 white
+kropki-2: kropki r4c3-r4c4 white
+kropki-3: kropki r3c4-r4c4 white
+kropki-4: kropki r2c8-r3c8 white
+kropki-5: kropki r6c7-r7c7 white
+kropki-6: kropki r7c6-r7c7 white
+kropki-7: kropki r6c6-r7c6 white
+kropki-8: kropki r6c6-r6c7 white
+kropki-9: kropki r6c2-r7c2 white
 arrow-1: arrow r3c3-r4c3-r5c3 bulb ["r2c3"]
 arrow-2: arrow r3c4-r4c4-r5c4 bulb ["r2c4"]
 arrow-3: arrow r3c3-r3c4-r3c5 bulb ["r3c2"]

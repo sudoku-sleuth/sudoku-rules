@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/incoming
 case: https://sudoku-sleuth.com/cases/incoming
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: da90bd1f2a0064fb66afa7c678ca2e1d
 ---
 
 ```rules

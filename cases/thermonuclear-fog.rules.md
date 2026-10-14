@@ -1,17 +1,17 @@
 ---
 fog:
   initiallyLit:
-    - 6
-    - 15
-    - 24
-    - 31
-    - 40
-    - 41
-    - 42
-    - 51
-    - 58
-    - 67
-    - 76
+    - r1c7
+    - r2c7
+    - r3c7
+    - r4c5
+    - r5c5
+    - r5c6
+    - r5c7
+    - r6c7
+    - r7c5
+    - r8c5
+    - r9c5
 format: open-rules
 title: Thermonuclear Fog
 setter: Meggen033
@@ -114,6 +114,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a46f8d5f04ff7774e44be1aaa30ea624
 ---
 
 ```rules

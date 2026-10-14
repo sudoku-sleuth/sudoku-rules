@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/oil-water-mirror
 case: https://sudoku-sleuth.com/cases/oil-water-mirror
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9aa85d65217374540f2c2950c58105fe
 ---
 
 ```rules

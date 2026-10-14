@@ -6,16 +6,17 @@ source: ""
 case: https://sudoku-sleuth.com/cases/bad-wiring-diagram
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3d9d9db25948c0a714c7b99de3375956
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c1-r9c1 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "white"
-kropki-3: kropki r2c1-r2c2 colour "white"
-kropki-4: kropki r1c2-r2c2 colour "white"
-kropki-5: kropki r1c1-r1c2 colour "white"
-kropki-6: kropki r7c5-r8c5 colour "white"
+kropki-1: kropki r8c1-r9c1 white
+kropki-2: kropki r8c1-r8c2 white
+kropki-3: kropki r2c1-r2c2 white
+kropki-4: kropki r1c2-r2c2 white
+kropki-5: kropki r1c1-r1c2 white
+kropki-6: kropki r7c5-r8c5 white
 palindrome-1: palindrome r3c5-r4c4
 palindrome-2: palindrome r3c6-r4c5
 palindrome-3: palindrome r6c6-r7c5

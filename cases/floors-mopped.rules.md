@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/floors-mopped
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e32838f526cb50246ea2b8439b909dfc
 ---
 
 ```rules
@@ -21,16 +22,16 @@ cage-7: cage r8c6-r8c7-r9c6 connected true
 cage-8: cage r4c2-r5c2 connected true
 cage-9: cage r6c8-r6c9 connected true
 cage-10: cage r7c4-r8c4 connected true
-kropki-1: kropki r2c9-r3c9 colour "black"
-kropki-2: kropki r2c7-r2c8 colour "black"
-kropki-3: kropki r1c5-r2c5 colour "black"
-kropki-4: kropki r2c2-r2c3 colour "black"
-kropki-5: kropki r5c2-r6c2 colour "black"
-kropki-6: kropki r4c7-r4c8 colour "white"
-kropki-7: kropki r7c6-r7c7 colour "white"
-kropki-8: kropki r3c3-r3c4 colour "white"
-kropki-9: kropki r7c3-r7c4 colour "white"
-kropki-10: kropki r3c6-r4c6 colour "white"
+kropki-1: kropki r2c9-r3c9 black
+kropki-2: kropki r2c7-r2c8 black
+kropki-3: kropki r1c5-r2c5 black
+kropki-4: kropki r2c2-r2c3 black
+kropki-5: kropki r5c2-r6c2 black
+kropki-6: kropki r4c7-r4c8 white
+kropki-7: kropki r7c6-r7c7 white
+kropki-8: kropki r3c3-r3c4 white
+kropki-9: kropki r7c3-r7c4 white
+kropki-10: kropki r3c6-r4c6 white
 ```
 
 ```drawing

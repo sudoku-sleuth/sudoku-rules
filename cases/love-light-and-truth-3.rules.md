@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/love-light-and-truth-3
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8f449e2ce3edf97aa74032eb5d6caeab
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c5-r7c6 colour "black"
-kropki-2: kropki r7c5-r8c5 colour "black"
-kropki-3: kropki r3c2-r3c3 colour "black"
-kropki-4: kropki r8c2-r8c3 colour "black"
+kropki-1: kropki r7c5-r7c6 black
+kropki-2: kropki r7c5-r8c5 black
+kropki-3: kropki r3c2-r3c3 black
+kropki-4: kropki r8c2-r8c3 black
 arrow-1: arrow r9c5-r8c5-r7c5-r6c4 bulb ["r9c4"]
 arrow-2: arrow r5c2-r6c2-r7c1 bulb ["r5c3"]
 arrow-3: arrow r4c4 bulb ["r5c3"]

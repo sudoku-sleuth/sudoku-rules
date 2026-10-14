@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/equal-sumbans
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cc50defb5cfd7db72d166f8be47276eb
 ---
 
 ```rules

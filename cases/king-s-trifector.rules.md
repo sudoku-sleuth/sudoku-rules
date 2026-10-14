@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 245851108b5a0afc94d6fcbda1f03276
 ---
 
 ```rules
@@ -80,8 +81,8 @@ thermo-2: thermo r3c1-r3c2
 thermo-3: thermo r3c3-r4c3-r5c3
 thermo-4: thermo r3c5-r4c5
 thermo-5: thermo r3c5-r3c4
-kropki-1: kropki r3c3-r3c4 colour "black"
-kropki-2: kropki r6c4-r6c5 colour "white"
+kropki-1: kropki r3c3-r3c4 black
+kropki-2: kropki r6c4-r6c5 white
 sandwich r4c1-r4c2-r4c3-r4c4-r4c5-r4c6 crusts [1,6] sum 3
 ```
 

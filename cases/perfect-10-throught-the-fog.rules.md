@@ -1,16 +1,16 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
-    - 28
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
+    - r4c2
 format: open-rules
 title: Perfect 10 Throught the Fog
 setter: Meggen033
@@ -114,6 +114,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: f1b5d66dfe10006da306fc337f8232f8
 ---
 
 ```rules
@@ -149,18 +150,18 @@ cage-2: cage r5c4-r5c5 total 15 connected true
 cage-3: cage r8c4-r9c4 total 5 connected true
 cage-4: cage r1c2-r2c2 total 5 connected true
 cage-5: cage r3c4-r3c5 total 15 connected true
-kropki-1: kropki r3c3-r4c3 colour "white"
-kropki-2: kropki r5c3-r6c3 colour "white"
-kropki-3: kropki r3c4-r4c4 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
-kropki-5: kropki r7c1-r7c2 colour "white"
-kropki-6: kropki r8c4-r8c5 colour "white"
-kropki-7: kropki r5c6-r6c6 colour "white"
-kropki-8: kropki r1c1-r1c2 colour "black"
-kropki-9: kropki r3c6-r3c7 colour "black"
-kropki-10: kropki r1c7-r2c7 colour "black"
-kropki-11: kropki r4c9-r5c9 colour "black"
-kropki-12: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r3c3-r4c3 white
+kropki-2: kropki r5c3-r6c3 white
+kropki-3: kropki r3c4-r4c4 white
+kropki-4: kropki r2c5-r3c5 white
+kropki-5: kropki r7c1-r7c2 white
+kropki-6: kropki r8c4-r8c5 white
+kropki-7: kropki r5c6-r6c6 white
+kropki-8: kropki r1c1-r1c2 black
+kropki-9: kropki r3c6-r3c7 black
+kropki-10: kropki r1c7-r2c7 black
+kropki-11: kropki r4c9-r5c9 black
+kropki-12: kropki r3c7-r4c7 black
 ```
 
 ```drawing

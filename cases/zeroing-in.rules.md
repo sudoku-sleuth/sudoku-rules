@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/zeroing-in
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 97c50cfeff91e93c8a36e0d81a6fe6e2
 ---
 
 ```rules

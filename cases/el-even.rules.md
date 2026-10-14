@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r1c9=1 r2c5=3 r5c5=5 r8c5=7 r9c1=1
+exported: 67f633be1ab32358e66508d0956b32d1
 ---
 
 ```rules
@@ -17,10 +18,10 @@ cage-2: cage r7c1-r8c1-r9c1 total 11 connected true
 cage-3: cage r1c4-r1c5-r1c6 total 11 connected true
 thermo-1: thermo r3c4-r4c4-r5c4-r6c4
 thermo-2: thermo r3c7-r4c7-r5c7-r6c7
-kropki-1: kropki r6c6-r7c6 colour "black"
-kropki-2: kropki r6c8-r7c8 colour "black"
-kropki-3: kropki r6c7-r7c7 colour "black"
-kropki-4: kropki r6c5-r7c5 colour "black"
+kropki-1: kropki r6c6-r7c6 black
+kropki-2: kropki r6c8-r7c8 black
+kropki-3: kropki r6c7-r7c7 black
+kropki-4: kropki r6c5-r7c5 black
 arrow-1: arrow r2c1-r3c2 bulb ["r1c1"]
 arrow-2: arrow r8c8-r7c7 bulb ["r9c9"]
 parity-cells r7c3-r7c4-r7c5 parity "even"

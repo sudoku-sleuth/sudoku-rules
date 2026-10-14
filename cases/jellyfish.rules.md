@@ -6,19 +6,20 @@ source: https://tinyurl.com/3d7a5jew
 case: https://sudoku-sleuth.com/cases/jellyfish
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b0f3ce721ff71b2541c4957de110696d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c4-r7c4 colour "white"
-kropki-2: kropki r6c6-r7c6 colour "white"
-kropki-3: kropki r8c7-r9c7 colour "white"
-kropki-4: kropki r8c3-r9c3 colour "white"
-kropki-5: kropki r1c8-r1c9 colour "white"
-kropki-6: kropki r6c3-r6c4 colour "white"
-kropki-7: kropki r6c6-r6c7 colour "white"
-kropki-8: kropki r1c3-r2c3 colour "black"
-kropki-9: kropki r1c7-r2c7 colour "black"
+kropki-1: kropki r6c4-r7c4 white
+kropki-2: kropki r6c6-r7c6 white
+kropki-3: kropki r8c7-r9c7 white
+kropki-4: kropki r8c3-r9c3 white
+kropki-5: kropki r1c8-r1c9 white
+kropki-6: kropki r6c3-r6c4 white
+kropki-7: kropki r6c6-r6c7 white
+kropki-8: kropki r1c3-r2c3 black
+kropki-9: kropki r1c7-r2c7 black
 parity-1: parity r9c3-r8c3-r7c3-r6c4-r5c4-r4c4
 parity-2: parity r9c7-r8c7-r7c7-r6c6-r5c6-r4c6
 region-sum-1: region-sum r4c2-r5c3-r6c3-r7c2-r8c2-r9c2 segments [["r4c2","r5c3","r6c3"],["r7c2","r8c2","r9c2"]]

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/yysl-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e038cd99dd9038d6d232c2ad0d121b00
 ---
 
 ```rules

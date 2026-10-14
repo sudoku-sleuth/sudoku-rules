@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ten-or-eleven
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 11d22cec2b5a0dbeb4bfce60d418aa0b
 ---
 
 ```rules

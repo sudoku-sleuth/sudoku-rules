@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/159-glyphs
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b0fc621567e1247de0151391c1500e3e
 ---
 
 ```rules

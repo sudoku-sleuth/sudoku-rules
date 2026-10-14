@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bastille-day
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=1 r1c6=4 r1c9=7 r6c1=5 r9c4=1 r9c5=7 r9c6=8 r9c7=9
+exported: 439bbd8f78dc4e05991def84164b47da
 ---
 
 ```rules

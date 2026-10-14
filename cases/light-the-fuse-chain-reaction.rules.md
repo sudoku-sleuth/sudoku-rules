@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/light-the-fuse-chain-reaction
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cffa37f9e2dbecb7dc92f10458dcbce5
 ---
 
 ```rules
@@ -15,11 +16,11 @@ cage-1: cage r6c7-r6c8 total 7 connected true
 cage-2: cage r4c3-r5c3 total 6 connected true
 cage-3: cage r6c5-r7c5 total 8 connected true
 cage-4: cage r2c9-r3c9 total 12 connected true
-kropki-1: kropki r3c1-r3c2 colour "white"
-kropki-2: kropki r2c1-r3c1 colour "white"
-kropki-3: kropki r2c7-r2c8 colour "white"
-kropki-4: kropki r5c1-r6c1 colour "white"
-kropki-5: kropki r4c1-r5c1 colour "white"
+kropki-1: kropki r3c1-r3c2 white
+kropki-2: kropki r2c1-r3c1 white
+kropki-3: kropki r2c7-r2c8 white
+kropki-4: kropki r5c1-r6c1 white
+kropki-5: kropki r4c1-r5c1 white
 whispers-1: whispers r4c2-r5c3-r6c4-r7c5-r8c6-r7c7-r6c8-r5c7-r4c6-r3c5-r2c4-r3c3 gap 4
 whispers-2: whispers r3c3-r4c2 gap 4
 whispers-3: whispers r4c3-r3c4-r4c5-r5c6-r6c7-r7c6-r6c5-r5c4 gap 5

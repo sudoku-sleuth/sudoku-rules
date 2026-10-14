@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Zapped through the Fog
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 26941cf6725100ad0f13a544569521fc
 ---
 
 ```rules
@@ -147,9 +148,9 @@ cage-1: cage r1c2-r2c1-r2c2 total 10 connected true
 cage-2: cage r2c3-r2c4 total 10 connected true
 cage-3: cage r1c5-r2c5-r3c5 total 11 connected true
 cage-4: cage r8c4-r9c3-r9c4 total 18 connected true
-kropki-1: kropki r1c2-r2c2 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
-kropki-3: kropki r3c9-r4c9 colour "white"
+kropki-1: kropki r1c2-r2c2 white
+kropki-2: kropki r3c5-r3c6 white
+kropki-3: kropki r3c9-r4c9 white
 pair-1: pair r2c1-r3c1 sum 10
 pair-2: pair r2c3-r3c3 sum 10
 pair-3: pair r7c7-r7c8 sum 10

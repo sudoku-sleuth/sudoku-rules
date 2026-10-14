@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tardigrades
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=5 r2c2=6 r4c1=9 r8c8=4
+exported: 4cfed5d4ebff48e58db15702f275852c
 ---
 
 ```rules

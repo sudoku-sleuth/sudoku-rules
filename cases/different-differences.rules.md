@@ -7,13 +7,14 @@ case: https://sudoku-sleuth.com/cases/different-differences
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 37567596fd35592644c17ff7e732cff3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c5-r2c6 colour "black"
-kropki-2: kropki r4c2-r4c3 colour "black"
-kropki-3: kropki r9c3-r9c4 colour "black"
+kropki-1: kropki r2c5-r2c6 black
+kropki-2: kropki r4c2-r4c3 black
+kropki-3: kropki r9c3-r9c4 black
 counting-circles r6c2
 ```
 

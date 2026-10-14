@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-diamonds
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f24189c786036199a04efbfa0cf1a988
 ---
 
 ```rules

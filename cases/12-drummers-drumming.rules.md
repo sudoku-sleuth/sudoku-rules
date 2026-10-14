@@ -8,22 +8,23 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 1d8278dcba3d694d1a41e3b2090eb613
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r6c6-r7c6 total 9 connected true
 cage-2: cage r5c9-r6c9 total 8 connected true
-kropki-1: kropki r7c3-r8c3 colour "white"
-kropki-2: kropki r3c4-r3c5 colour "black"
-kropki-3: kropki r2c4-r2c5 colour "black"
-kropki-4: kropki r2c3-r3c3 colour "black"
-kropki-5: kropki r2c1-r3c1 colour "black"
-kropki-6: kropki r1c8-r1c9 colour "black"
-kropki-7: kropki r5c1-r6c1 colour "black"
-kropki-8: kropki r7c5-r7c6 colour "black"
-kropki-9: kropki r8c5-r8c6 colour "black"
-kropki-10: kropki r1c5-r2c5 colour "black"
+kropki-1: kropki r7c3-r8c3 white
+kropki-2: kropki r3c4-r3c5 black
+kropki-3: kropki r2c4-r2c5 black
+kropki-4: kropki r2c3-r3c3 black
+kropki-5: kropki r2c1-r3c1 black
+kropki-6: kropki r1c8-r1c9 black
+kropki-7: kropki r5c1-r6c1 black
+kropki-8: kropki r7c5-r7c6 black
+kropki-9: kropki r8c5-r8c6 black
+kropki-10: kropki r1c5-r2c5 black
 whispers-1: whispers r6c2-r7c3-r7c4-r7c5-r7c6-r7c7-r6c8 gap 4
 whispers-2: whispers r6c2-r5c3-r5c4-r5c5-r5c6-r5c7-r6c8 gap 4
 whispers-3: whispers r7c2-r8c2-r9c3-r9c4-r9c5-r9c6-r9c7-r8c8-r7c8 gap 4

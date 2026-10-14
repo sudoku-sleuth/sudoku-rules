@@ -6,15 +6,16 @@ source: https://sudokupad.app/ngue0w3cg9
 case: https://sudoku-sleuth.com/cases/spaetzle-gnocchi-dumpling
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 470dcee8f53efd22d033dbf61f6418eb
 ---
 
 ```rules
 sudoku 9x9
 thermo r6c9-r5c8-r4c7-r3c6-r2c5-r1c4
-kropki-1: kropki r8c7-r9c7 colour "black"
-kropki-2: kropki r8c7-r8c8 colour "black"
-kropki-3: kropki r2c2-r2c3 colour "black"
-kropki-4: kropki r2c3-r3c3 colour "black"
+kropki-1: kropki r8c7-r9c7 black
+kropki-2: kropki r8c7-r8c8 black
+kropki-3: kropki r2c2-r2c3 black
+kropki-4: kropki r2c3-r3c3 black
 arrow-1: arrow r4c3-r3c4-r2c5 bulb ["r5c2"]
 arrow-2: arrow r5c4-r4c5-r3c6 bulb ["r6c3"]
 arrow-3: arrow r6c5-r5c6-r4c7 bulb ["r7c4"]

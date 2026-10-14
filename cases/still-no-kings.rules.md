@@ -7,21 +7,22 @@ case: https://sudoku-sleuth.com/cases/still-no-kings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=7 r2c5=4 r8c5=7 r9c6=6
+exported: 0fab5ff66d909885fbb5fa17e43fdc4b
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r3c6-r4c6 colour "white"
-kropki-2: kropki r8c9-r9c9 colour "white"
-kropki-3: kropki r1c1-r2c1 colour "white"
-kropki-4: kropki r1c1-r1c2 colour "black"
-kropki-5: kropki r5c2-r6c2 colour "black"
-kropki-6: kropki r8c2-r9c2 colour "black"
-kropki-7: kropki r7c9-r8c9 colour "black"
-kropki-8: kropki r7c4-r8c4 colour "black"
-kropki-9: kropki r8c3-r9c3 colour "black"
-kropki-10: kropki r8c1-r9c1 colour "black"
+kropki-1: kropki r3c6-r4c6 white
+kropki-2: kropki r8c9-r9c9 white
+kropki-3: kropki r1c1-r2c1 white
+kropki-4: kropki r1c1-r1c2 black
+kropki-5: kropki r5c2-r6c2 black
+kropki-6: kropki r8c2-r9c2 black
+kropki-7: kropki r7c9-r8c9 black
+kropki-8: kropki r7c4-r8c4 black
+kropki-9: kropki r8c3-r9c3 black
+kropki-10: kropki r8c1-r9c1 black
 arrow-1: arrow r8c7-r7c6-r6c5 bulb ["r8c8"]
 arrow-2: arrow r7c8-r6c7-r5c6 bulb ["r8c8"]
 arrow-3: arrow r2c3-r3c4-r4c5 bulb ["r2c2"]

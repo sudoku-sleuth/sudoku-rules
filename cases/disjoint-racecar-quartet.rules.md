@@ -6,6 +6,7 @@ source: https://sudokupad.app/wsn69wop1l
 case: https://sudoku-sleuth.com/cases/disjoint-racecar-quartet
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: af8a6887600e0417cf8086b216aca5a5
 ---
 
 ```rules

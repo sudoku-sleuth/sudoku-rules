@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/tic-tac-toe-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d138f61b7e27075f0698c8b6db410b32
 ---
 
 ```rules
@@ -18,10 +19,10 @@ cage-5: cage r1c5-r1c6 total 5 connected true
 cage-6: cage r5c1-r6c1 total 9 connected true
 cage-7: cage r4c9-r5c9 total 12 connected true
 cage-8: cage r9c4-r9c5 total 11 connected true
-kropki-1: kropki r5c7-r5c8 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "white"
-kropki-3: kropki r6c2-r6c3 colour "white"
-kropki-4: kropki r7c4-r8c4 colour "white"
+kropki-1: kropki r5c7-r5c8 white
+kropki-2: kropki r2c5-r3c5 white
+kropki-3: kropki r6c2-r6c3 white
+kropki-4: kropki r7c4-r8c4 white
 whispers-1: whispers r3c1-r2c2-r1c3-r1c4 gap 5
 whispers-2: whispers r3c3-r2c2-r1c1 gap 5
 whispers-3: whispers r3c7-r2c8-r1c9 gap 5

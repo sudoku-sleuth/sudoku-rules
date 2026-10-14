@@ -6,6 +6,7 @@ source: https://tinyurl.com/bdxsvry6
 case: https://sudoku-sleuth.com/cases/pride-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3977bae1e1782a2bb287baf1b5156795
 ---
 
 ```rules

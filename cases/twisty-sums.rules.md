@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/twisty-sums
 case: https://sudoku-sleuth.com/cases/twisty-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5a99f9ce472df69af408e1eb4f748c37
 ---
 
 ```rules

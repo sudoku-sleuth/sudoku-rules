@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 73bfdf445476ca248f0f4b3fba9726a7
 ---
 
 ```rules
@@ -133,17 +134,17 @@ unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
 unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 anti-knight
-kropki-1: kropki r7c2-r8c2 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r9c6-r9c7 colour "white"
-kropki-4: kropki r8c8-r8c9 colour "white"
-kropki-5: kropki r1c4-r2c4 colour "white"
-kropki-6: kropki r5c8-r6c8 colour "white"
-kropki-7: kropki r8c6-r9c6 colour "white"
-kropki-8: kropki r1c1-r1c2 colour "white"
-kropki-9: kropki r4c9-r5c9 colour "black"
-kropki-10: kropki r8c2-r8c3 colour "black"
-kropki-11: kropki r5c1-r6c1 colour "black"
+kropki-1: kropki r7c2-r8c2 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r9c6-r9c7 white
+kropki-4: kropki r8c8-r8c9 white
+kropki-5: kropki r1c4-r2c4 white
+kropki-6: kropki r5c8-r6c8 white
+kropki-7: kropki r8c6-r9c6 white
+kropki-8: kropki r1c1-r1c2 white
+kropki-9: kropki r4c9-r5c9 black
+kropki-10: kropki r8c2-r8c3 black
+kropki-11: kropki r5c1-r6c1 black
 arrow-1: arrow r6c5-r5c5 bulb ["r7c5"]
 arrow-2: arrow r8c6-r9c5-r8c4-r7c4 bulb ["r7c6"]
 arrow-3: arrow r9c9-r8c9 bulb ["r9c8"]

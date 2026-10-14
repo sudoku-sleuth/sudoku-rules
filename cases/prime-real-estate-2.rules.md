@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/prime-real-estate-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d43f1e154e2e34d6faeb9735f7813c2d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/2-pi-r
 case: https://sudoku-sleuth.com/cases/2-pi-r
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a9722fb262dcba831acb857cfd44341a
 ---
 
 ```rules

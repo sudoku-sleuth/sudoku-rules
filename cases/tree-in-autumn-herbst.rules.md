@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tree-in-autumn-herbst
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 099511a11ce69da44d8f790af921df86
 ---
 
 ```rules
@@ -19,12 +20,12 @@ cage-5: cage r4c8-r5c8 total 13 connected true
 cage-6: cage r4c2-r5c2 total 9 connected true
 cage-7: cage r2c4-r3c4 total 16 connected true
 cage-8: cage r4c5-r5c5-r6c5 total 22 connected true
-kropki-1: kropki r1c7-r1c8 colour "black"
-kropki-2: kropki r2c8-r2c9 colour "black"
-kropki-3: kropki r3c7-r3c8 colour "black"
-kropki-4: kropki r4c3-r4c4 colour "black"
-kropki-5: kropki r3c5-r3c6 colour "black"
-kropki-6: kropki r3c1-r3c2 colour "black"
+kropki-1: kropki r1c7-r1c8 black
+kropki-2: kropki r2c8-r2c9 black
+kropki-3: kropki r3c7-r3c8 black
+kropki-4: kropki r4c3-r4c4 black
+kropki-5: kropki r3c5-r3c6 black
+kropki-6: kropki r3c1-r3c2 black
 entropic-1: entropic r6c6-r6c7-r5c8-r4c8-r3c7-r2c7
 entropic-2: entropic r6c4-r6c3-r5c2-r4c2-r3c3-r3c4
 renban-1: renban r9c5-r8c5-r7c5-r6c5-r5c5-r4c5-r5c4-r5c6-r5c7

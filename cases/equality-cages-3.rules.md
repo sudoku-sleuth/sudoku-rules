@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/equality-cages-3
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1652a672f8f2647472875466cc41387e
 ---
 
 ```rules
@@ -16,14 +17,14 @@ equality-cage-3: equality-cage r4c7-r4c8
 equality-cage-4: equality-cage r7c7-r7c8-r8c7-r8c8-r8c9-r9c7
 equality-cage-5: equality-cage r5c3-r6c2-r6c3-r7c2
 equality-cage-6: equality-cage r1c3-r2c3-r2c4-r2c5
-kropki-1: kropki r3c8-r3c9 colour "black"
-kropki-2: kropki r3c9-r4c9 colour "black"
-kropki-3: kropki r3c1-r4c1 colour "black"
-kropki-4: kropki r7c9-r8c9 colour "black"
-kropki-5: kropki r7c1-r7c2 colour "black"
-kropki-6: kropki r7c7-r7c8 colour "black"
-kropki-7: kropki r8c1-r8c2 colour "black"
-kropki-8: kropki r1c9-r2c9 colour "white"
+kropki-1: kropki r3c8-r3c9 black
+kropki-2: kropki r3c9-r4c9 black
+kropki-3: kropki r3c1-r4c1 black
+kropki-4: kropki r7c9-r8c9 black
+kropki-5: kropki r7c1-r7c2 black
+kropki-6: kropki r7c7-r7c8 black
+kropki-7: kropki r8c1-r8c2 black
+kropki-8: kropki r1c9-r2c9 white
 renban-1: renban r3c3-r3c2-r3c1
 renban-2: renban r4c1-r4c2-r4c3
 renban-3: renban r3c9-r4c9-r5c9-r6c9

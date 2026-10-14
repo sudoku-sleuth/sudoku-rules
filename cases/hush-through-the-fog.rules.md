@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 2
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c3
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Hush Through the Fog
 setter: Meggen033
@@ -13,18 +13,19 @@ source: https://sudokupad.app/5ob5w1qpg3
 case: https://sudoku-sleuth.com/cases/hush-through-the-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6835b7a2a67d9f85b5c0dba2ac2c35d0
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r2c3-r3c3 colour "white"
-kropki-3: kropki r2c1-r3c1 colour "white"
-kropki-4: kropki r4c6-r4c7 colour "white"
-kropki-5: kropki r7c6-r7c7 colour "white"
-kropki-6: kropki r2c2-r3c2 colour "black"
-kropki-7: kropki r2c6-r3c6 colour "black"
-kropki-8: kropki r1c4-r2c4 colour "black"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r2c3-r3c3 white
+kropki-3: kropki r2c1-r3c1 white
+kropki-4: kropki r4c6-r4c7 white
+kropki-5: kropki r7c6-r7c7 white
+kropki-6: kropki r2c2-r3c2 black
+kropki-7: kropki r2c6-r3c6 black
+kropki-8: kropki r1c4-r2c4 black
 whispers r2c1-r3c2-r4c2-r5c2-r6c3-r7c3-r8c2-r9c2-r9c3-r8c4-r7c5-r6c5-r7c6-r8c7-r9c8-r8c9-r7c8-r6c7-r5c6-r4c7-r3c8-r3c7-r2c7-r1c8-r1c7-r2c6-r2c5-r2c4-r3c4-r2c3-r2c2 gap 5
 pair-1: pair r3c1-r3c2 sum 10
 pair-2: pair r1c3-r2c3 sum 10

@@ -6,20 +6,21 @@ source: https://sudokupad.app/uf186r11nf
 case: https://sudoku-sleuth.com/cases/being-for-the-benefit-of-mr-kite
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cf0a292948f2f19bcb4fd486e0aed815
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c1-r8c2 colour "white"
-kropki-2: kropki r8c8-r8c9 colour "white"
-kropki-3: kropki r4c1-r4c2 colour "white"
-kropki-4: kropki r3c5-r3c6 colour "white"
-kropki-5: kropki r3c8-r3c9 colour "black"
-kropki-6: kropki r3c6-r3c7 colour "black"
-kropki-7: kropki r3c4-r3c5 colour "black"
-kropki-8: kropki r8c9-r9c9 colour "black"
-kropki-9: kropki r8c5-r9c5 colour "black"
-kropki-10: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r8c1-r8c2 white
+kropki-2: kropki r8c8-r8c9 white
+kropki-3: kropki r4c1-r4c2 white
+kropki-4: kropki r3c5-r3c6 white
+kropki-5: kropki r3c8-r3c9 black
+kropki-6: kropki r3c6-r3c7 black
+kropki-7: kropki r3c4-r3c5 black
+kropki-8: kropki r8c9-r9c9 black
+kropki-9: kropki r8c5-r9c5 black
+kropki-10: kropki r8c2-r9c2 black
 whispers-1: whispers r3c6-r2c6-r1c6-r1c7-r1c8-r2c7-r3c8 gap 5
 whispers-2: whispers r5c1-r6c1-r7c1 gap 5
 whispers-3: whispers r5c2-r6c1-r7c2 gap 5

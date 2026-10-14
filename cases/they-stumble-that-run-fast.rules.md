@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/they-stumble-that-run-fast
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9c85edd47978a63ced8f6cb560cf871d
 ---
 
 ```rules

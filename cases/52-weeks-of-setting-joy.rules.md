@@ -6,6 +6,7 @@ source: https://sudokupad.app/e1hq833xuz
 case: https://sudoku-sleuth.com/cases/52-weeks-of-setting-joy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 63c4cf42c7892f514303015013931dd0
 ---
 
 ```rules
@@ -18,10 +19,10 @@ thermo-1: thermo r2c2-r2c3-r2c4-r2c5-r2c6-r2c7
 thermo-2: thermo r7c1-r6c1-r6c2-r5c2
 thermo-3: thermo r7c3-r6c4-r5c4-r5c5-r5c6
 thermo-4: thermo r8c8-r7c9-r6c9-r5c9-r4c8
-kropki-1: kropki r5c9-r6c9 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "black"
-kropki-3: kropki r8c4-r9c4 colour "black"
-kropki-4: kropki r6c7-r6c8 colour "black"
+kropki-1: kropki r5c9-r6c9 white
+kropki-2: kropki r8c1-r8c2 black
+kropki-3: kropki r8c4-r9c4 black
+kropki-4: kropki r6c7-r6c8 black
 quadruple-1: quadruple r2c7-r2c8-r3c7-r3c8 digits [1,2,3]
 quadruple-2: quadruple r6c1-r6c2-r7c1-r7c2 digits [4,7]
 little-killer r1c8-r2c7-r3c6-r4c5-r5c4-r6c3-r7c2-r8c1 sum 52

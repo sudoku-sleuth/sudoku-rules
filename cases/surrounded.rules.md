@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/surrounded
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=6 r2c8=1 r4c4=2 r8c1=5 r9c9=2
+exported: 2b1765f1ae4226f46690b641a9be8143
 ---
 
 ```rules

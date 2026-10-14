@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/residual-death-spiral
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=7 r4c2=5 r5c5=9 r6c8=4 r8c4=3
+exported: 642dd76f9bf82d41df65686a532318a3
 ---
 
 ```rules

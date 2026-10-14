@@ -6,6 +6,7 @@ source: https://sudokupad.app/9cg5mpjixc
 case: https://sudoku-sleuth.com/cases/locked-in-place
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e2e9ade6c6e6640a0064f79cee260dec
 ---
 
 ```rules

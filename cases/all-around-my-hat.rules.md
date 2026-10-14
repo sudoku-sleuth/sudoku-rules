@@ -6,6 +6,7 @@ source: https://sudokupad.app/90rrvn1ygk
 case: https://sudoku-sleuth.com/cases/all-around-my-hat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d2c014cb44aae734f1e74656fa6f0920
 ---
 
 ```rules

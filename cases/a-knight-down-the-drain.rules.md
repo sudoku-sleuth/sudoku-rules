@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-knight-down-the-drain
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=2 r2c2=7 r3c5=6 r4c3=9 r6c7=6 r7c9=7 r8c4=7 r9c1=2
+exported: 1c5ffc27a4893703a2df2cd7b1b3904c
 ---
 
 ```rules

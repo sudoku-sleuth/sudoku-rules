@@ -1,18 +1,18 @@
 ---
 fog:
   initiallyLit:
-    - 5
-    - 14
-    - 40
-    - 41
-    - 45
-    - 46
-    - 49
-    - 50
-    - 52
-    - 53
-    - 68
-    - 77
+    - r1c6
+    - r2c6
+    - r5c5
+    - r5c6
+    - r6c1
+    - r6c2
+    - r6c5
+    - r6c6
+    - r6c8
+    - r6c9
+    - r8c6
+    - r9c6
 format: open-rules
 title: Protostar Nubula
 setter: Meggen033
@@ -115,6 +115,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 5b3798694b0fdc36b66191540afa9404
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/wave-generator
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 69239c4af73d736dbc22850a1274ab2a
 ---
 
 ```rules

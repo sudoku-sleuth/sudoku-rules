@@ -6,6 +6,7 @@ source: https://sudokupad.app/njkkqsvgy1
 case: https://sudoku-sleuth.com/cases/knight-caged
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d0afe97eab80563b8bc1aae1224533dd
 ---
 
 ```rules

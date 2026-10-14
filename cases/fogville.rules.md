@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogville
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 984588eec9eaf3a55db20aba46d956e3
 ---
 
 ```rules
@@ -154,12 +155,12 @@ cage-9: cage r3c9-r4c9-r5c9 total 17 connected true
 thermo-1: thermo r6c4-r5c4-r4c4-r4c5-r4c6
 thermo-2: thermo r7c4-r7c5-r7c6
 thermo-3: thermo r2c7-r2c6-r2c5-r2c4-r2c3
-kropki-1: kropki r5c5-r5c6 colour "white"
-kropki-2: kropki r4c2-r4c3 colour "white"
-kropki-3: kropki r9c3-r9c4 colour "white"
-kropki-4: kropki r1c5-r2c5 colour "white"
-kropki-5: kropki r7c5-r8c5 colour "black"
-kropki-6: kropki r3c3-r3c4 colour "black"
+kropki-1: kropki r5c5-r5c6 white
+kropki-2: kropki r4c2-r4c3 white
+kropki-3: kropki r9c3-r9c4 white
+kropki-4: kropki r1c5-r2c5 white
+kropki-5: kropki r7c5-r8c5 black
+kropki-6: kropki r3c3-r3c4 black
 arrow r5c5-r5c6 bulb ["r6c5"]
 whispers-1: whispers r4c4-r5c5-r6c6 gap 5
 whispers-2: whispers r4c7-r5c7-r6c7 gap 5

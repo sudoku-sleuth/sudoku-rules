@@ -6,6 +6,7 @@ source: https://sudokupad.app/1iktti60u5
 case: https://sudoku-sleuth.com/cases/a-square-green-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5be40503a728cff4e3a570f54a3f06a0
 ---
 
 ```rules

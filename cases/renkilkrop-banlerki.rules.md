@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/renkilkrop-banlerki
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=1 r3c7=2 r7c3=2 r7c7=1
+exported: e83044e42dd339e4292f59908d03c030
 ---
 
 ```rules
@@ -25,8 +26,8 @@ cage-11: cage r5c8-r5c9 total 9 connected true
 cage-12: cage r8c7-r9c7 total 9 connected true
 cage-13: cage r2c3-r2c4 total 9 connected true
 cage-14: cage r8c6-r9c6 total 9 connected true
-kropki-1: kropki r3c9-r4c9 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
+kropki-1: kropki r3c9-r4c9 white
+kropki-2: kropki r5c5-r6c5 white
 renban-1: renban r3c1-r4c1-r5c1-r6c1-r7c1
 renban-2: renban r9c3-r9c4-r9c5-r9c6-r9c7
 renban-3: renban r3c9-r4c9-r5c9-r6c9-r7c9

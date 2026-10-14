@@ -6,6 +6,7 @@ source: https://sudokupad.app/zjaodaglg8
 case: https://sudoku-sleuth.com/cases/pieces-of-seven
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dc2e1053430f7c94559e53af1893a124
 ---
 
 ```rules

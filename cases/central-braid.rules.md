@@ -6,6 +6,7 @@ source: https://sudokupad.app/ihc71v7riu
 case: https://sudoku-sleuth.com/cases/central-braid
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dca9153a97b76af122bdbfa4178a4b1a
 ---
 
 ```rules

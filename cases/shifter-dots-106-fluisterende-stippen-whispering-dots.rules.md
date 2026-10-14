@@ -6,13 +6,14 @@ source: https://sudokupad.app/pwlwzunc0d
 case: https://sudoku-sleuth.com/cases/shifter-dots-106-fluisterende-stippen-whispering-dots
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3b1be320b55c5baa975fb923e6f180c7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r3c2 colour "black"
-kropki-2: kropki r6c8-r7c8 colour "black"
-kropki-3: kropki r7c3-r7c4 colour "black"
+kropki-1: kropki r3c1-r3c2 black
+kropki-2: kropki r6c8-r7c8 black
+kropki-3: kropki r7c3-r7c4 black
 whispers-1: whispers r3c7-r3c8 gap 4
 whispers-2: whispers r3c1-r4c1-r5c2-r4c2-r3c2 gap 4
 whispers-3: whispers r4c5-r5c5 gap 4

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/you-hurt-my-fillings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c8=4
+exported: 57fbd38e15354176e91d3466c86a9721
 ---
 
 ```rules

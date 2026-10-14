@@ -7,11 +7,12 @@ case: https://sudoku-sleuth.com/cases/roman-baths-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: f75fb919f0a76c1f5ea1789ab4d03d36
 ---
 
 ```rules
 sudoku 9x9
-kropki r1c5-r2c5 colour "white"
+kropki r1c5-r2c5 white
 pair-1: pair r6c1-r6c2 sum 10
 pair-2: pair r8c2-r9c2 sum 10
 pair-3: pair r4c2-r5c2 sum 10

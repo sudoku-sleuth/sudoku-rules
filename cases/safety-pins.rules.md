@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/safety-pins
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c9=3
+exported: 78c9c329726e4db48234f9c4f0803350
 ---
 
 ```rules

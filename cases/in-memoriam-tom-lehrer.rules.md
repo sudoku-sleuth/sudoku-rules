@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/in-memoriam-tom-lehrer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=2 r1c8=8 r2c1=4 r2c3=9 r5c3=7 r7c8=2 r7c9=5 r8c4=2 r9c4=6
+exported: 5785ac2664d5107f853179237c07bc4d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c5-r6c6 colour "white"
-kropki-2: kropki r3c7-r4c7 colour "white"
-kropki-3: kropki r2c8-r2c9 colour "white"
-kropki-4: kropki r2c7-r2c8 colour "white"
+kropki-1: kropki r6c5-r6c6 white
+kropki-2: kropki r3c7-r4c7 white
+kropki-3: kropki r2c8-r2c9 white
+kropki-4: kropki r2c7-r2c8 white
 whispers-1: whispers r1c1-r1c2-r1c3 gap 4
 whispers-2: whispers r1c2-r2c2-r3c2 gap 4
 whispers-3: whispers r2c4-r3c4-r3c5-r2c5 gap 4 loop true

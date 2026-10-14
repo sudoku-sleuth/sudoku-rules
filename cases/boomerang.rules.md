@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/boomerang
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 266f81dd5f40cd7cb83b5ecbf6af97e7
 ---
 
 ```rules
@@ -26,13 +27,13 @@ thermo-5: thermo r5c7-r5c6
 thermo-6: thermo r4c5-r3c5
 thermo-7: thermo r3c2-r3c1
 thermo-8: thermo r2c9-r2c8
-kropki-1: kropki r5c6-r6c6 colour "white"
-kropki-2: kropki r4c4-r4c5 colour "white"
-kropki-3: kropki r1c7-r2c7 colour "white"
-kropki-4: kropki r3c9-r4c9 colour "white"
-kropki-5: kropki r7c4-r8c4 colour "black"
-kropki-6: kropki r5c5-r5c6 colour "black"
-kropki-7: kropki r5c3-r5c4 colour "black"
+kropki-1: kropki r5c6-r6c6 white
+kropki-2: kropki r4c4-r4c5 white
+kropki-3: kropki r1c7-r2c7 white
+kropki-4: kropki r3c9-r4c9 white
+kropki-5: kropki r7c4-r8c4 black
+kropki-6: kropki r5c5-r5c6 black
+kropki-7: kropki r5c3-r5c4 black
 little-killer r3c1-r4c2-r5c3-r6c4-r7c5-r8c6-r9c7 sum 36
 ```
 

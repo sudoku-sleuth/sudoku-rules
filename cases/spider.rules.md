@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/spider
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a5b08a655ca2b11ce9b510dd6f59ab6b
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c1-r3c1 colour "black"
-kropki-2: kropki r2c7-r2c8 colour "black"
-kropki-3: kropki r8c2-r8c3 colour "black"
-kropki-4: kropki r9c7-r9c8 colour "black"
+kropki-1: kropki r2c1-r3c1 black
+kropki-2: kropki r2c7-r2c8 black
+kropki-3: kropki r8c2-r8c3 black
+kropki-4: kropki r9c7-r9c8 black
 whispers r5c6-r6c6-r6c5-r6c4-r5c4-r4c4-r4c5-r4c6 gap 4
 ```
 

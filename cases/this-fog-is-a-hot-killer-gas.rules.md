@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 21
-    - 23
-    - 24
+    - r3c3
+    - r3c4
+    - r3c6
+    - r3c7
 format: open-rules
 title: This FOG is a Hot Killer GAS
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d59bce7fba8c1d059fc238256e01bc00
 ---
 
 ```rules
@@ -151,17 +152,17 @@ thermo-8: thermo r7c8-r6c8-r5c8
 thermo-9: thermo r4c9-r3c9
 thermo-10: thermo r2c9-r1c9
 thermo-11: thermo r8c1-r9c1
-kropki-1: kropki r3c4-r3c5 colour "white"
-kropki-2: kropki r3c5-r3c6 colour "white"
-kropki-3: kropki r4c4-r5c4 colour "white"
-kropki-4: kropki r6c5-r7c5 colour "white"
-kropki-5: kropki r6c6-r6c7 colour "white"
-kropki-6: kropki r4c8-r5c8 colour "white"
-kropki-7: kropki r1c9-r2c9 colour "white"
-kropki-8: kropki r7c9-r8c9 colour "white"
-kropki-9: kropki r9c3-r9c4 colour "white"
-kropki-10: kropki r1c2-r2c2 colour "white"
-kropki-11: kropki r9c1-r9c2 colour "white"
+kropki-1: kropki r3c4-r3c5 white
+kropki-2: kropki r3c5-r3c6 white
+kropki-3: kropki r4c4-r5c4 white
+kropki-4: kropki r6c5-r7c5 white
+kropki-5: kropki r6c6-r6c7 white
+kropki-6: kropki r4c8-r5c8 white
+kropki-7: kropki r1c9-r2c9 white
+kropki-8: kropki r7c9-r8c9 white
+kropki-9: kropki r9c3-r9c4 white
+kropki-10: kropki r1c2-r2c2 white
+kropki-11: kropki r9c1-r9c2 white
 ```
 
 •	Normal Sudoku rules apply. 

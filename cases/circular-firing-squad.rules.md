@@ -6,21 +6,22 @@ source: https://sudokupad.app/wz8gov6fnu
 case: https://sudoku-sleuth.com/cases/circular-firing-squad
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 00ac070bb05c0e3a52b998945cc33fe4
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c4-r1c5 colour "black"
-kropki-2: kropki r9c5-r9c6 colour "black"
-kropki-3: kropki r5c2-r6c2 colour "black"
-kropki-4: kropki r4c8-r5c8 colour "black"
-kropki-5: kropki r2c3-r2c4 colour "black"
-kropki-6: kropki r8c6-r8c7 colour "black"
-kropki-7: kropki r4c5-r4c6 colour "black"
-kropki-8: kropki r7c3-r7c4 colour "black"
-kropki-9: kropki r9c8-r9c9 colour "black"
-kropki-10: kropki r3c7-r3c8 colour "black"
-kropki-11: kropki r8c6-r9c6 colour "black"
+kropki-1: kropki r1c4-r1c5 black
+kropki-2: kropki r9c5-r9c6 black
+kropki-3: kropki r5c2-r6c2 black
+kropki-4: kropki r4c8-r5c8 black
+kropki-5: kropki r2c3-r2c4 black
+kropki-6: kropki r8c6-r8c7 black
+kropki-7: kropki r4c5-r4c6 black
+kropki-8: kropki r7c3-r7c4 black
+kropki-9: kropki r9c8-r9c9 black
+kropki-10: kropki r3c7-r3c8 black
+kropki-11: kropki r8c6-r9c6 black
 arrow-1: arrow r2c3-r1c4-r1c5-r1c6-r2c7 bulb ["r3c2"]
 arrow-2: arrow r8c7-r9c6-r9c5-r9c4-r8c3 bulb ["r7c8"]
 arrow-3: arrow r6c2-r5c2-r4c2 bulb ["r7c2"]

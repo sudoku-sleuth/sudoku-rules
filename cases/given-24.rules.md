@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/given-24
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=2 r1c8=4
+exported: f5a71b43a7707a8cbdde9ca396c680ab
 ---
 
 ```rules

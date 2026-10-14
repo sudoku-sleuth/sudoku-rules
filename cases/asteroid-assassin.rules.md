@@ -6,6 +6,7 @@ source: https://sudokupad.app/s44jp62jbw
 case: https://sudoku-sleuth.com/cases/asteroid-assassin
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b7d5ce2e6ba42e46098aff52dc73387d
 ---
 
 ```rules
@@ -19,13 +20,13 @@ cage-6: cage r4c5-r5c4-r5c5 total 9 connected true
 cage-7: cage r4c7-r4c8-r5c7 total 10 connected true
 cage-8: cage r5c6-r6c5-r6c6 total 15 connected true
 cage-9: cage r8c4-r8c5-r9c5 total 15 connected true
-kropki-1: kropki r2c2-r3c2 colour "white"
-kropki-2: kropki r1c2-r2c2 colour "white"
-kropki-3: kropki r2c9-r3c9 colour "white"
-kropki-4: kropki r2c2-r2c3 colour "black"
-kropki-5: kropki r8c2-r8c3 colour "black"
-kropki-6: kropki r8c7-r8c8 colour "black"
-kropki-7: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r2c2-r3c2 white
+kropki-2: kropki r1c2-r2c2 white
+kropki-3: kropki r2c9-r3c9 white
+kropki-4: kropki r2c2-r2c3 black
+kropki-5: kropki r8c2-r8c3 black
+kropki-6: kropki r8c7-r8c8 black
+kropki-7: kropki r7c8-r8c8 black
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

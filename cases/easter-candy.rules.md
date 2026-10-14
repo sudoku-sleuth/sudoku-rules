@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/easter-candy
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=2 r3c8=5 r4c1=4 r5c9=2 r9c6=4
+exported: 297e37a0c6af47c691b9dc074d73c94f
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dragonfly
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: eae1ce243e55d7b4aabb82f582e0342a
 ---
 
 ```rules

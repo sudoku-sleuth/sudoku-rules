@@ -6,6 +6,7 @@ source: https://sudokupad.app/tdahmrns7i
 case: https://sudoku-sleuth.com/cases/the-quiet-summing-miracles-hidden-in-the-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: eefc2c26c6dd7db88c6d527d9cb79b2d
 ---
 
 ```rules
@@ -14,20 +15,20 @@ thermo-1: thermo r9c3-r8c4-r7c5-r6c6-r5c7
 thermo-2: thermo r6c4-r5c4-r4c3-r3c2
 thermo-3: thermo r5c3-r6c2-r7c1-r6c1
 thermo-4: thermo r2c5-r3c5-r4c4
-kropki-1: kropki r5c3-r5c4 colour "black"
-kropki-2: kropki r5c8-r5c9 colour "black"
-kropki-3: kropki r9c5-r9c6 colour "black"
-kropki-4: kropki r9c6-r9c7 colour "black"
-kropki-5: kropki r9c7-r9c8 colour "black"
-kropki-6: kropki r3c1-r3c2 colour "white"
-kropki-7: kropki r3c5-r3c6 colour "white"
-kropki-8: kropki r3c6-r3c7 colour "white"
-kropki-9: kropki r7c1-r7c2 colour "white"
-kropki-10: kropki r7c5-r7c6 colour "white"
-kropki-11: kropki r7c7-r7c8 colour "white"
-kropki-12: kropki r9c1-r9c2 colour "white"
-kropki-13: kropki r1c5-r1c6 colour "white"
-kropki-14: kropki r1c7-r1c8 colour "white"
+kropki-1: kropki r5c3-r5c4 black
+kropki-2: kropki r5c8-r5c9 black
+kropki-3: kropki r9c5-r9c6 black
+kropki-4: kropki r9c6-r9c7 black
+kropki-5: kropki r9c7-r9c8 black
+kropki-6: kropki r3c1-r3c2 white
+kropki-7: kropki r3c5-r3c6 white
+kropki-8: kropki r3c6-r3c7 white
+kropki-9: kropki r7c1-r7c2 white
+kropki-10: kropki r7c5-r7c6 white
+kropki-11: kropki r7c7-r7c8 white
+kropki-12: kropki r9c1-r9c2 white
+kropki-13: kropki r1c5-r1c6 white
+kropki-14: kropki r1c7-r1c8 white
 whispers-1: whispers r6c1-r6c2-r7c3 gap 5
 whispers-2: whispers r6c4-r7c5 gap 5
 whispers-3: whispers r6c8-r5c7-r4c8 gap 5

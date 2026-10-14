@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/circulatory-system
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=6 r2c8=2 r5c5=9 r8c2=2 r8c8=6
+exported: 2f53d6d2b4fbf3057976239a2ddb2562
 ---
 
 ```rules

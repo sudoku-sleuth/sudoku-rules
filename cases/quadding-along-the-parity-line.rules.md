@@ -6,6 +6,7 @@ source: https://sudokupad.app/squdx5k1a5
 case: https://sudoku-sleuth.com/cases/quadding-along-the-parity-line
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 272a91e9c10719aaf38a67fe4ba9e1ba
 ---
 
 ```rules

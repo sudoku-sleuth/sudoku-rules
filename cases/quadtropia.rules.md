@@ -6,6 +6,7 @@ source: https://sudokupad.app/dfoz9kdjow
 case: https://sudoku-sleuth.com/cases/quadtropia
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 230966647a62d4e22736bbf242aed304
 ---
 
 ```rules

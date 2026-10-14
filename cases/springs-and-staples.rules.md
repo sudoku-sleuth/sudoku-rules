@@ -6,6 +6,7 @@ source: https://sudokupad.app/3b01vb2b1r
 case: https://sudoku-sleuth.com/cases/springs-and-staples
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 69d3a72c18967a72302b8e2ac41e384a
 ---
 
 ```rules

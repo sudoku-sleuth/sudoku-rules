@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/crystallization-of-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e071a0139ef4cdd0e84fbcea47985b93
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c8-r9c8 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
-kropki-3: kropki r6c1-r7c1 colour "white"
-kropki-4: kropki r5c1-r6c1 colour "white"
-kropki-5: kropki r4c9-r5c9 colour "white"
-kropki-6: kropki r5c9-r6c9 colour "white"
-kropki-7: kropki r3c4-r3c5 colour "white"
-kropki-8: kropki r6c2-r6c3 colour "white"
-kropki-9: kropki r2c2-r3c2 colour "black"
+kropki-1: kropki r8c8-r9c8 white
+kropki-2: kropki r5c5-r6c5 white
+kropki-3: kropki r6c1-r7c1 white
+kropki-4: kropki r5c1-r6c1 white
+kropki-5: kropki r4c9-r5c9 white
+kropki-6: kropki r5c9-r6c9 white
+kropki-7: kropki r3c4-r3c5 white
+kropki-8: kropki r6c2-r6c3 white
+kropki-9: kropki r2c2-r3c2 black
 arrow-1: arrow r9c9-r8c9 bulb ["r9c8"]
 arrow-2: arrow r7c8-r7c9-r6c9 bulb ["r8c7","r8c8"]
 arrow-3: arrow r6c7-r6c8-r5c8-r5c9 bulb ["r7c6","r7c7"]

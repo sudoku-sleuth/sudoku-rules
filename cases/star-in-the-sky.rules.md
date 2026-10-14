@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/star-in-the-sky
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6ac52dd9dbd59337af4303020147c57f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c8-r9c8 colour "white"
-kropki-2: kropki r1c6-r2c6 colour "white"
-kropki-3: kropki r3c2-r4c2 colour "black"
-kropki-4: kropki r1c1-r2c1 colour "black"
-kropki-5: kropki r2c6-r2c7 colour "black"
-kropki-6: kropki r1c8-r1c9 colour "black"
-kropki-7: kropki r8c4-r9c4 colour "black"
-kropki-8: kropki r9c2-r9c3 colour "black"
-kropki-9: kropki r3c8-r4c8 colour "black"
-kropki-10: kropki r5c4-r5c5 colour "black"
+kropki-1: kropki r8c8-r9c8 white
+kropki-2: kropki r1c6-r2c6 white
+kropki-3: kropki r3c2-r4c2 black
+kropki-4: kropki r1c1-r2c1 black
+kropki-5: kropki r2c6-r2c7 black
+kropki-6: kropki r1c8-r1c9 black
+kropki-7: kropki r8c4-r9c4 black
+kropki-8: kropki r9c2-r9c3 black
+kropki-9: kropki r3c8-r4c8 black
+kropki-10: kropki r5c4-r5c5 black
 ```
 
 ```drawing

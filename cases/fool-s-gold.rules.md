@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fool-s-gold
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c1=5 r3c2=2 r7c6=5 r7c7=2
+exported: 77fe1fada54c49221f491a3003b80cf6
 ---
 
 ```rules

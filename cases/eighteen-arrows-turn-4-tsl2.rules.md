@@ -6,6 +6,7 @@ source: https://sudokupad.app/y8hrwtj060
 case: https://sudoku-sleuth.com/cases/eighteen-arrows-turn-4-tsl2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 41cc5c79c6c4ef6e98d087c783e9e4b5
 ---
 
 ```rules

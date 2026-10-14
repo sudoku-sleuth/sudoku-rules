@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-57th
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=1 r1c6=9 r1c7=6 r1c8=5
+exported: cae030be187aea88cd8e52984e6b6be6
 ---
 
 ```rules

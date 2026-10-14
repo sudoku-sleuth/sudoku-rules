@@ -6,6 +6,7 @@ source: https://sudokupad.app/ltv998pktm
 case: https://sudoku-sleuth.com/cases/bushi
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cfbd7ac6580f5c1ac70e673d95b1d580
 ---
 
 ```rules

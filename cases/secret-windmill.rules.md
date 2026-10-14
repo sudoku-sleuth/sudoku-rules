@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/secret-windmill
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5e316489dea3213c5218b53ef8e3a152
 ---
 
 ```rules

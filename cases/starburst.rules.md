@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/starburst
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ddf0a4d4261ab6e0b06e5f63abeba85c
 ---
 
 ```rules

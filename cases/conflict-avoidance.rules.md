@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/conflict-avoidance
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c1=3 r6c9=8 r8c5=4
+exported: e325df980d0c2a3bdd736c28291f2b31
 ---
 
 ```rules

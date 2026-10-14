@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-horse-with-no-name-america
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c1=5
+exported: bc46f7a362827eb6c2dcddf91f034f51
 ---
 
 ```rules
@@ -25,8 +26,8 @@ cage-11: cage r9c8-r9c9 connected true
 cage-12: cage r1c6-r2c6 connected true
 cage-13: cage r1c9-r2c9-r3c8-r3c9 connected true
 cage-14: cage r7c7-r8c7 connected true
-kropki-1: kropki r5c5-r6c5 colour "black"
-kropki-2: kropki r2c6-r2c7 colour "black"
+kropki-1: kropki r5c5-r6c5 black
+kropki-2: kropki r2c6-r2c7 black
 whispers-1: whispers r9c6-r8c6-r7c6-r6c6-r7c7-r8c8-r9c8-r9c9-r8c9-r7c9-r6c8-r5c7-r4c6-r4c5 gap 4
 whispers-2: whispers r6c1-r7c2-r8c2-r9c3 gap 4
 whispers-3: whispers r9c5-r8c5-r7c5-r6c5-r6c4-r7c3-r8c3 gap 4

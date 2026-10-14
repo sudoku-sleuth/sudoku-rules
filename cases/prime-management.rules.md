@@ -102,6 +102,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: c389c3ff97bce38c390fe726f5acbd49
 ---
 
 ```rules
@@ -133,8 +134,8 @@ unique-25: unique r7c1-r7c2-r7c3-r8c1-r8c2-r8c3-r9c1-r9c2-r9c3
 unique-26: unique r7c4-r7c5-r7c6-r8c4-r8c5-r8c6-r9c4-r9c5-r9c6
 unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 anti-knight
-kropki-1: kropki r2c9-r3c9 colour "white"
-kropki-2: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r2c9-r3c9 white
+kropki-2: kropki r7c8-r8c8 black
 ```
 
 ```drawing

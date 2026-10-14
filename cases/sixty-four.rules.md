@@ -83,6 +83,7 @@ board:
       - r7c8
       - r8c7
       - r8c8
+exported: 99c98f91544394272b5657e697fc13a7
 ---
 
 ```rules
@@ -113,8 +114,8 @@ unique-24: unique r5c7-r5c8-r6c7-r6c8-r7c7-r7c8-r8c7-r8c8
 cage-1: cage r1c1-r1c2 repeats false total 8 connected true
 cage-2: cage r1c3-r1c4-r1c5 repeats false total 18 connected true
 cage-3: cage r2c4-r2c5-r2c6-r3c4-r3c6 repeats false total 25 connected true
-kropki-1: kropki r7c3-r7c4 colour "black"
-kropki-2: kropki r7c7-r7c8 colour "black"
+kropki-1: kropki r7c3-r7c4 black
+kropki-2: kropki r7c7-r7c8 black
 slow-thermo-1: slow-thermo r2c3-r3c2-r4c2-r5c2-r6c2-r7c3-r6c4-r5c4-r4c3
 slow-thermo-2: slow-thermo r3c7-r4c6-r5c5-r5c6-r5c7-r6c7-r7c7
 ```

@@ -6,6 +6,7 @@ source: https://sudokupad.app/vey6kjarpu
 case: https://sudoku-sleuth.com/cases/hashtag-entropic
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bc902e14ccd8f7c49bbb7078921db44e
 ---
 
 ```rules

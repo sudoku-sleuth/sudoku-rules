@@ -6,6 +6,7 @@ source: https://sudokupad.app/mful6lluje
 case: https://sudoku-sleuth.com/cases/modular-portal
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 845a3259fb34327ff6768536088b7102
 ---
 
 ```rules

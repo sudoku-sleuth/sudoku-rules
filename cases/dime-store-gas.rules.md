@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dime-store-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c4=2 r9c6=1
+exported: 28df9dcc88673b7458c50ada27347a48
 ---
 
 ```rules

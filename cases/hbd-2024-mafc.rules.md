@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hbd-2024-mafc
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r1c4=6 r1c5=3 r2c2=9 r3c7=3 r6c3=1 r7c4=9 r8c5=6 r9c6=1
+exported: d822adc4d8f319bb6d075fc1f4958bd5
 ---
 
 ```rules

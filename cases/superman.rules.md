@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/superman
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 77fc76ad8ab102ddbac28a0324bf6379
 ---
 
 ```rules

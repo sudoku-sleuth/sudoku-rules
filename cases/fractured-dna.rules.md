@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/fractured-dna
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7def43a44fa31098a0464a3de58dc8a3
 ---
 
 ```rules

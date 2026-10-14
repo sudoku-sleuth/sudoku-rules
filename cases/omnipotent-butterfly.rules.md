@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/omnipotent-butterfly
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 4d8247f2bdf66ba6f79bf6cd29229859
 ---
 
 ```rules

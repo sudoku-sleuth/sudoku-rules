@@ -9,11 +9,12 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A clue marker still needs to be read before we can confirm the rule for unmarked pairs.
+exported: 6a0390e038b21877b7c2f386c70a74a0
 ---
 
 ```rules
 sudoku 9x9
-kropki r2c5-r3c5 colour "black"
+kropki r2c5-r3c5 black
 whispers r6c7-r7c8-r8c9-r9c9-r9c8-r8c7-r7c6-r6c5-r5c4-r4c3-r3c2-r2c1-r1c1-r1c2-r2c3-r3c4 gap 5
 renban-1: renban r3c4-r3c5-r3c6-r4c7-r5c7-r6c7-r4c5-r5c6-r4c6
 renban-2: renban r4c3-r5c3-r6c3-r7c4-r7c5-r7c6-r6c4

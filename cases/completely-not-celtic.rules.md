@@ -6,6 +6,7 @@ source: https://sudokupad.app/faorvb2su7
 case: https://sudoku-sleuth.com/cases/completely-not-celtic
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bd2e6732f2c1ce3f2e9a68b3365a952c
 ---
 
 ```rules

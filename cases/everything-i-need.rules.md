@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/everything-i-need
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 37dd5a2e02864e0dc1181527c3dbb991
 ---
 
 ```rules

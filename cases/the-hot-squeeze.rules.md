@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/the-hot-squeeze
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 26d41085687852df40359b6345bf04a6
 ---
 
 ```rules
@@ -20,7 +21,7 @@ thermo-7: thermo r5c7-r6c6-r7c5
 thermo-8: thermo r9c6-r8c5
 thermo-9: thermo r9c8-r8c8
 thermo-10: thermo r5c9-r4c9
-kropki r2c1-r2c2 colour "black"
+kropki r2c1-r2c2 black
 arrow-1: arrow r2c1-r1c1 bulb ["r3c2"]
 arrow-2: arrow r8c1-r9c1 bulb ["r7c2"]
 arrow-3: arrow r9c3-r8c2 bulb ["r9c4"]

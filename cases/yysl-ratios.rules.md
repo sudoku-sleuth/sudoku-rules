@@ -7,21 +7,22 @@ case: https://sudoku-sleuth.com/cases/yysl-ratios
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e1ebf0266e4bd637485822c033cf5a1c
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c6-r4c6 colour "black"
-kropki-2: kropki r4c6-r5c6 colour "black"
-kropki-3: kropki r3c3-r4c3 colour "black"
-kropki-4: kropki r2c5-r2c6 colour "black"
-kropki-5: kropki r1c4-r2c4 colour "black"
-kropki-6: kropki r7c3-r8c3 colour "black"
-kropki-7: kropki r8c2-r9c2 colour "black"
-kropki-8: kropki r8c4-r9c4 colour "black"
-kropki-9: kropki r3c1-r3c2 colour "black"
-kropki-10: kropki r6c3-r7c3 colour "black"
-kropki-11: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r3c6-r4c6 black
+kropki-2: kropki r4c6-r5c6 black
+kropki-3: kropki r3c3-r4c3 black
+kropki-4: kropki r2c5-r2c6 black
+kropki-5: kropki r1c4-r2c4 black
+kropki-6: kropki r7c3-r8c3 black
+kropki-7: kropki r8c2-r9c2 black
+kropki-8: kropki r8c4-r9c4 black
+kropki-9: kropki r3c1-r3c2 black
+kropki-10: kropki r6c3-r7c3 black
+kropki-11: kropki r7c8-r8c8 black
 ```
 
 ```drawing

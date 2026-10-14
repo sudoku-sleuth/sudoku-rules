@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/twisted-frame
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r3c5=2 r7c5=8
+exported: a3a208802400a7f90405191a3e64954e
 ---
 
 ```rules

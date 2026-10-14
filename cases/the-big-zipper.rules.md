@@ -6,6 +6,7 @@ source: https://sudokupad.app/5tw5gusn3p
 case: https://sudoku-sleuth.com/cases/the-big-zipper
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4acb04c58c8c3a2ecaf98dfe27dc5d63
 ---
 
 ```rules

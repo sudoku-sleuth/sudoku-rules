@@ -6,6 +6,7 @@ source: https://sudokupad.app/cko6w5eofl
 case: https://sudoku-sleuth.com/cases/x-beliebiges-gefluster
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1f229f4157b65c3eed6bcea9c50e43a6
 ---
 
 ```rules

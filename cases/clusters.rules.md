@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/clusters
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c9=3
+exported: 81c39fd8259ec53f3c454d1bc35c0faf
 ---
 
 ```rules

@@ -6,14 +6,15 @@ source: ""
 case: https://sudoku-sleuth.com/cases/two-paths
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 57c2f846dc8fc7d2726f47112c4003e1
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c6-r3c7 colour "black"
-kropki-2: kropki r8c5-r8c6 colour "black"
-kropki-3: kropki r5c3-r6c3 colour "black"
-kropki-4: kropki r5c4-r6c4 colour "black"
+kropki-1: kropki r3c6-r3c7 black
+kropki-2: kropki r8c5-r8c6 black
+kropki-3: kropki r5c3-r6c3 black
+kropki-4: kropki r5c4-r6c4 black
 pair-1: pair r7c7-r7c8 sum 10
 pair-2: pair r8c7-r8c8 sum 10
 pair-3: pair r6c6-r6c7 sum 10

@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/whirlwind
 case: https://sudoku-sleuth.com/cases/whirlwind
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3f406eb4aac1d8bc4176a7a8fc3ab562
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tadpoles-in-hot-water
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c8=6 r3c4=9 r6c1=9 r7c9=3 r9c2=4
+exported: a5376429bb9593e62164c5293f54fee0
 ---
 
 ```rules

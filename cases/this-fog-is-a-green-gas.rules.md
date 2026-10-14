@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 19
-    - 20
-    - 24
-    - 25
+    - r3c2
+    - r3c3
+    - r3c7
+    - r3c8
 format: open-rules
 title: This FOG is a Green GAS
 setter: Meggen033
@@ -12,19 +12,20 @@ source: https://sudokupad.app/ubmph730zj
 case: https://sudoku-sleuth.com/cases/this-fog-is-a-green-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 644b698bfa54a7178968c838365f90b3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c5-r3c5 colour "white"
-kropki-2: kropki r3c5-r4c5 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "white"
-kropki-4: kropki r6c6-r6c7 colour "white"
-kropki-5: kropki r4c2-r4c3 colour "white"
-kropki-6: kropki r1c4-r2c4 colour "black"
-kropki-7: kropki r2c6-r3c6 colour "black"
-kropki-8: kropki r5c4-r6c4 colour "black"
-kropki-9: kropki r4c7-r4c8 colour "black"
+kropki-1: kropki r2c5-r3c5 white
+kropki-2: kropki r3c5-r4c5 white
+kropki-3: kropki r7c5-r8c5 white
+kropki-4: kropki r6c6-r6c7 white
+kropki-5: kropki r4c2-r4c3 white
+kropki-6: kropki r1c4-r2c4 black
+kropki-7: kropki r2c6-r3c6 black
+kropki-8: kropki r5c4-r6c4 black
+kropki-9: kropki r4c7-r4c8 black
 whispers-1: whispers r3c1-r3c2-r3c3-r3c4 gap 5
 whispers-2: whispers r3c6-r3c7-r3c8-r3c9 gap 5
 whispers-3: whispers r4c5-r5c5-r6c5-r7c5 gap 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/patchwork-pumpkin
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cfb3d07d5b5aefd884a697e9ce9ee95d
 ---
 
 ```rules

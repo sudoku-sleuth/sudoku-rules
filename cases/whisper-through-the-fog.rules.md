@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 1
-    - 2
-    - 9
-    - 18
+    - r1c2
+    - r1c3
+    - r2c1
+    - r3c1
 format: open-rules
 title: Whisper Through the Fog
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 58def464d0b63eb67fad765cb36fb7e4
 ---
 
 ```rules
@@ -142,11 +143,11 @@ cage-2: cage r2c1-r3c1 total 5 connected true
 cage-3: cage r4c2-r5c2 total 12 connected true
 cage-4: cage r8c1-r8c2-r8c3 total 19 connected true
 cage-5: cage r8c4-r8c5-r8c6 total 19 connected true
-kropki-1: kropki r3c3-r3c4 colour "white"
-kropki-2: kropki r8c6-r9c6 colour "white"
-kropki-3: kropki r2c4-r2c5 colour "white"
-kropki-4: kropki r1c2-r2c2 colour "black"
-kropki-5: kropki r6c6-r7c6 colour "black"
+kropki-1: kropki r3c3-r3c4 white
+kropki-2: kropki r8c6-r9c6 white
+kropki-3: kropki r2c4-r2c5 white
+kropki-4: kropki r1c2-r2c2 black
+kropki-5: kropki r6c6-r7c6 black
 whispers r1c2-r1c3-r1c4-r2c4-r3c4-r4c4-r4c5-r4c6-r3c6-r3c7-r4c7-r4c8-r5c7-r6c8-r7c9-r8c9-r9c8-r8c7-r9c6-r9c5-r8c4-r7c4-r7c3-r7c2-r7c1-r6c2-r6c1-r5c1-r4c1-r3c1-r3c2-r2c2 gap 5
 ```
 

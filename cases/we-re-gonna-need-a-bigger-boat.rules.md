@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/we-re-gonna-need-a-bigger-boat
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e1417dc0fee053f79d5c53d643b9f159
 ---
 
 ```rules
@@ -15,18 +16,18 @@ cage-1: cage r4c8-r4c9 total 7 connected true
 cage-2: cage r4c1-r4c2 total 11 connected true
 cage-3: cage r3c5-r3c6 total 11 connected true
 cage-4: cage r7c5-r8c5 total 12 connected true
-kropki-1: kropki r2c3-r2c4 colour "white"
-kropki-2: kropki r5c4-r5c5 colour "black"
-kropki-3: kropki r5c5-r5c6 colour "black"
-kropki-4: kropki r2c2-r2c3 colour "black"
-kropki-5: kropki r2c4-r2c5 colour "black"
-kropki-6: kropki r1c1-r1c2 colour "black"
-kropki-7: kropki r1c7-r1c8 colour "black"
-kropki-8: kropki r1c4-r1c5 colour "black"
-kropki-9: kropki r3c7-r3c8 colour "black"
-kropki-10: kropki r7c2-r8c2 colour "black"
-kropki-11: kropki r8c2-r8c3 colour "black"
-kropki-12: kropki r8c7-r8c8 colour "black"
+kropki-1: kropki r2c3-r2c4 white
+kropki-2: kropki r5c4-r5c5 black
+kropki-3: kropki r5c5-r5c6 black
+kropki-4: kropki r2c2-r2c3 black
+kropki-5: kropki r2c4-r2c5 black
+kropki-6: kropki r1c1-r1c2 black
+kropki-7: kropki r1c7-r1c8 black
+kropki-8: kropki r1c4-r1c5 black
+kropki-9: kropki r3c7-r3c8 black
+kropki-10: kropki r7c2-r8c2 black
+kropki-11: kropki r8c2-r8c3 black
+kropki-12: kropki r8c7-r8c8 black
 entropic r9c2-r9c3-r8c2-r8c3-r7c2-r7c3-r6c4-r7c4-r6c5-r7c6-r6c6-r7c7-r7c8-r8c7-r8c8-r9c7-r9c8
 renban-1: renban r2c7-r2c8-r3c8-r3c7-r2c6-r1c7-r1c8-r3c5-r3c6
 renban-2: renban r1c1-r2c2-r2c3-r2c4-r2c5-r2c1-r3c2

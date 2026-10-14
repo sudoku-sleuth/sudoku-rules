@@ -6,13 +6,14 @@ source: https://sudokupad.app/za959ncw9d
 case: https://sudoku-sleuth.com/cases/thoracic-park
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0b0b29ae73d8f1b0963212cee14b1fd4
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c5-r4c6 colour "black"
-kropki-2: kropki r6c8-r6c9 colour "black"
-kropki-3: kropki r6c1-r6c2 colour "black"
+kropki-1: kropki r4c5-r4c6 black
+kropki-2: kropki r6c8-r6c9 black
+kropki-3: kropki r6c1-r6c2 black
 renban-1: renban r4c1-r4c2-r3c2-r2c3-r2c4-r1c4
 renban-2: renban r1c6-r2c6-r2c7-r3c8-r4c8-r4c9
 renban-3: renban r9c4-r8c4-r8c3-r7c2-r6c2-r6c1

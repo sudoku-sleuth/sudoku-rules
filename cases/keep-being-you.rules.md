@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 1b01544b2222089488c1855058574b41
 ---
 
 ```rules
@@ -74,7 +75,7 @@ unique-15: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
 unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
-kropki r3c6-r4c6 colour "black"
+kropki r3c6-r4c6 black
 arrow r2c6-r1c6 bulb ["r3c6"]
 whispers-1: whispers r1c2-r1c1-r2c1-r3c1-r3c2 loop false gap 3
 whispers-2: whispers r4c4-r5c5-r6c5 loop false gap 3

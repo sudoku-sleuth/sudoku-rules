@@ -6,6 +6,7 @@ source: https://sudokupad.app/fa1pfahst4
 case: https://sudoku-sleuth.com/cases/middling
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6507fca443c9e9d3d4d4d7a540304661
 ---
 
 ```rules

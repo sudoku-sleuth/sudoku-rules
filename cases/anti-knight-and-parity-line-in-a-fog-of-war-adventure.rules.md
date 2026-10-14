@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 49
-    - 50
-    - 60
-    - 70
-    - 79
-    - 80
+    - r6c5
+    - r6c6
+    - r7c7
+    - r8c8
+    - r9c8
+    - r9c9
 format: open-rules
 title: Anti-knight and parity line in a fog of war adventure
 setter: Chip Sounder
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 01ffdee795f50b85416d5d558df04406
 ---
 
 ```rules
@@ -149,10 +150,10 @@ cage-6: cage r3c4-r4c4 total 10 connected true
 cage-7: cage r2c8-r3c8-r3c9 total 14 connected true
 cage-8: cage r2c1-r3c1 total 10 connected true
 anti-knight
-kropki-1: kropki r8c9-r9c9 colour "black"
-kropki-2: kropki r6c5-r6c6 colour "black"
-kropki-3: kropki r8c3-r9c3 colour "black"
-kropki-4: kropki r2c4-r3c4 colour "black"
+kropki-1: kropki r8c9-r9c9 black
+kropki-2: kropki r6c5-r6c6 black
+kropki-3: kropki r8c3-r9c3 black
+kropki-4: kropki r2c4-r3c4 black
 ```
 
 ```drawing

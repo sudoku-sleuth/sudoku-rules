@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 29
-    - 51
+    - r4c3
+    - r6c7
 format: open-rules
 title: Riddles in the Dark
 setter: Blobz
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 89ac05c70f19fb8be74c1f45f9913a40
 ---
 
 ```rules

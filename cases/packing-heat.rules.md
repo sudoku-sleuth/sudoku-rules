@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/packing-heat
 case: https://sudoku-sleuth.com/cases/packing-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 54ad8fdb085f7c912717647e0f3db0dd
 ---
 
 ```rules

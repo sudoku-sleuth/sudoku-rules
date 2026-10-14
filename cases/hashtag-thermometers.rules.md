@@ -6,6 +6,7 @@ source: https://sudokupad.app/bh4f01dzrn
 case: https://sudoku-sleuth.com/cases/hashtag-thermometers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 89cc4037b32d3c1a9a12b637a637eaa7
 ---
 
 ```rules

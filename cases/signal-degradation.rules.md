@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/signal-degradation
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 9.......3....8................1.7....9..5..7....6.9................2....5.......9
+exported: 55aaef7748ea6f5892b83ec35a84446d
 ---
 
 ```rules

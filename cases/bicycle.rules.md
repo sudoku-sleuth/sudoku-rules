@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/bicycle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a45b8d06a3e63a00f67873cd1bd23f24
 ---
 
 ```rules

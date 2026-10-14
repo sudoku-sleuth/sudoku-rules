@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 13
-    - 18
-    - 19
+    - r1c4
+    - r1c5
+    - r2c5
+    - r3c1
+    - r3c2
 format: open-rules
 title: Symmetry through the Fog
 setter: Meggen033
@@ -108,6 +108,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 8342ece2a3770cc3a329d463293ad811
 ---
 
 ```rules
@@ -143,14 +144,14 @@ cage-2: cage r4c2-r4c3 total 13 connected true
 cage-3: cage r4c7-r5c7 total 9 connected true
 cage-4: cage r6c8-r7c7-r7c8 total 8 connected true
 cage-5: cage r7c6-r8c6 total 8 connected true
-kropki-1: kropki r2c5-r3c5 colour "white"
-kropki-2: kropki r3c2-r3c3 colour "white"
-kropki-3: kropki r4c3-r5c3 colour "white"
-kropki-4: kropki r3c8-r4c8 colour "white"
-kropki-5: kropki r6c7-r6c8 colour "white"
-kropki-6: kropki r8c1-r9c1 colour "white"
-kropki-7: kropki r2c1-r3c1 colour "black"
-kropki-8: kropki r1c4-r2c4 colour "black"
+kropki-1: kropki r2c5-r3c5 white
+kropki-2: kropki r3c2-r3c3 white
+kropki-3: kropki r4c3-r5c3 white
+kropki-4: kropki r3c8-r4c8 white
+kropki-5: kropki r6c7-r6c8 white
+kropki-6: kropki r8c1-r9c1 white
+kropki-7: kropki r2c1-r3c1 black
+kropki-8: kropki r1c4-r2c4 black
 palindrome r3c1-r3c2-r4c2-r5c3-r6c3-r6c4-r6c5-r7c5-r8c5-r8c4-r9c3-r9c4-r9c5-r9c6-r8c7-r8c8-r7c7-r7c8-r6c7-r5c7-r5c6-r4c7-r4c8-r3c8-r2c7-r1c6-r2c5-r1c4
 ```
 

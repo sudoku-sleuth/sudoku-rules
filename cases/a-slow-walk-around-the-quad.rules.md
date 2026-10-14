@@ -6,6 +6,7 @@ source: https://sudokupad.app/q5spa9ydxu
 case: https://sudoku-sleuth.com/cases/a-slow-walk-around-the-quad
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d348bd21424dccb0f50d64ca00e7a311
 ---
 
 ```rules

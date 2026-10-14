@@ -6,6 +6,7 @@ source: https://sudokupad.app/ek2cvdxj8h
 case: https://sudoku-sleuth.com/cases/cage-practice
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dba68bf0cdff0ae5ca823fc29c980f86
 ---
 
 ```rules

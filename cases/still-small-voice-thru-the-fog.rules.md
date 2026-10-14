@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 2
-    - 11
-    - 18
-    - 19
+    - r1c3
+    - r2c3
+    - r3c1
+    - r3c2
 format: open-rules
 title: Still Small Voice thru the Fog
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: e9732a154873c6083e681d2bfafa01e6
 ---
 
 ```rules
@@ -144,10 +145,10 @@ cage-4: cage r3c4-r4c3-r4c4 total 14 connected true
 cage-5: cage r4c5-r5c5 total 8 connected true
 cage-6: cage r9c4-r9c5-r9c6 total 21 connected true
 cage-7: cage r6c8-r6c9-r7c9 total 13 connected true
-kropki-1: kropki r2c4-r2c5 colour "white"
-kropki-2: kropki r5c1-r5c2 colour "white"
-kropki-3: kropki r2c4-r3c4 colour "black"
-kropki-4: kropki r6c3-r6c4 colour "black"
+kropki-1: kropki r2c4-r2c5 white
+kropki-2: kropki r5c1-r5c2 white
+kropki-3: kropki r2c4-r3c4 black
+kropki-4: kropki r6c3-r6c4 black
 whispers-1: whispers r2c2-r2c1-r3c1-r4c1-r5c1 gap 5
 whispers-2: whispers r5c1-r6c2-r7c3-r8c2-r8c3 gap 5
 whispers-3: whispers r8c3-r7c4-r8c5-r8c6-r8c7-r7c8-r7c7 gap 5

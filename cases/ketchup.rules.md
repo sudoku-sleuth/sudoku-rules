@@ -9,6 +9,7 @@ status: flagged
 flags:
   - A feature in the source still needs a drawing definition.
 givens: r1c7=5 r1c8=7
+exported: 3fb1ce48c555de5fde3f8b4116951d4d
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/gxqx3xr00g
 case: https://sudoku-sleuth.com/cases/some-kill-with-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1e90e8c42e98326c03dd59a602fced81
 ---
 
 ```rules

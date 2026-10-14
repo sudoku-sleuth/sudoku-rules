@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: 3......8...............6.3..7.....................2.5..8.....6............3..8..5
+exported: a793e00d283ab0fcef9331813417dde5
 ---
 
 ```rules

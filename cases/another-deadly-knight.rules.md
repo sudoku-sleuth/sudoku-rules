@@ -6,6 +6,7 @@ source: https://sudokupad.app/dgprcz5nz3
 case: https://sudoku-sleuth.com/cases/another-deadly-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: db0c9177c28349060faf95e5a302d806
 ---
 
 ```rules

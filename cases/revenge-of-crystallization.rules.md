@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/revenge-of-crystallization
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0ec5242147e4b9d6f785eba2e7158484
 ---
 
 ```rules

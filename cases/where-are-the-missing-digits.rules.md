@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/where-are-the-missing-digits
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 42055fb5e86fca43eee553470356685a
 ---
 
 ```rules

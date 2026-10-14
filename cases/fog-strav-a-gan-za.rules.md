@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Fog-strav-a-gan-za
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 4002dd3154e48fab6b20970de99cd3b0
 ---
 
 ```rules
@@ -150,14 +151,14 @@ cage-5: cage r5c6-r5c7 total 6 connected true
 cage-6: cage r4c8-r5c8 total 11 connected true
 cage-7: cage r9c5-r9c6 total 10 connected true
 cage-8: cage r6c7-r6c8-r7c8-r7c9 total 18 connected true
-kropki-1: kropki r1c2-r1c3 colour "white"
-kropki-2: kropki r2c3-r2c4 colour "white"
-kropki-3: kropki r5c3-r6c3 colour "white"
-kropki-4: kropki r6c5-r7c5 colour "white"
-kropki-5: kropki r9c3-r9c4 colour "white"
-kropki-6: kropki r9c7-r9c8 colour "white"
-kropki-7: kropki r2c1-r3c1 colour "black"
-kropki-8: kropki r1c4-r2c4 colour "black"
+kropki-1: kropki r1c2-r1c3 white
+kropki-2: kropki r2c3-r2c4 white
+kropki-3: kropki r5c3-r6c3 white
+kropki-4: kropki r6c5-r7c5 white
+kropki-5: kropki r9c3-r9c4 white
+kropki-6: kropki r9c7-r9c8 white
+kropki-7: kropki r2c1-r3c1 black
+kropki-8: kropki r1c4-r2c4 black
 arrow-1: arrow r1c3-r1c2 bulb ["r2c3"]
 arrow-2: arrow r4c5-r5c5 bulb ["r4c6"]
 arrow-3: arrow r3c7-r2c7-r1c7 bulb ["r4c6"]

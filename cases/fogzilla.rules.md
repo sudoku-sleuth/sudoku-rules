@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogzilla
 setter: Meggen033
@@ -17,18 +17,19 @@ source: https://sudokupad.app/ozuflaxedl
 case: https://sudoku-sleuth.com/cases/fogzilla
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 326808c86745dea25c3c844afcbc37db
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c7-r5c7 colour "white"
-kropki-2: kropki r3c6-r3c7 colour "white"
-kropki-3: kropki r3c3-r4c3 colour "white"
-kropki-4: kropki r1c2-r1c3 colour "white"
-kropki-5: kropki r5c5-r5c6 colour "black"
-kropki-6: kropki r5c7-r6c7 colour "black"
-kropki-7: kropki r6c3-r7c3 colour "black"
-kropki-8: kropki r9c5-r9c6 colour "black"
+kropki-1: kropki r4c7-r5c7 white
+kropki-2: kropki r3c6-r3c7 white
+kropki-3: kropki r3c3-r4c3 white
+kropki-4: kropki r1c2-r1c3 white
+kropki-5: kropki r5c5-r5c6 black
+kropki-6: kropki r5c7-r6c7 black
+kropki-7: kropki r6c3-r7c3 black
+kropki-8: kropki r9c5-r9c6 black
 whispers-1: whispers r6c4-r6c5-r6c6 gap 5
 whispers-2: whispers r3c6-r3c5-r3c4 gap 5
 whispers-3: whispers r6c2-r7c2-r8c2-r8c3-r8c4 gap 5

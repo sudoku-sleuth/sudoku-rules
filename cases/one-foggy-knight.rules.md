@@ -1,16 +1,16 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 12
-    - 21
-    - 27
-    - 28
-    - 29
-    - 31
-    - 32
-    - 39
-    - 48
+    - r1c4
+    - r2c4
+    - r3c4
+    - r4c1
+    - r4c2
+    - r4c3
+    - r4c5
+    - r4c6
+    - r5c4
+    - r6c4
 format: open-rules
 title: One Foggy Knight
 setter: Meggen033
@@ -113,6 +113,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 3bca91dd5f18d5bfe5e872930de3e8b9
 ---
 
 ```rules
@@ -152,9 +153,9 @@ cage-6: cage r7c2-r7c3 total 7 connected true
 cage-7: cage r2c7-r3c7 total 9 connected true
 cage-8: cage r9c4-r9c5-r9c6 total 15 connected true
 anti-knight
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r4c5-r5c5 colour "black"
-kropki-3: kropki r5c6-r5c7 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r4c5-r5c5 black
+kropki-3: kropki r5c6-r5c7 black
 renban r4c4-r3c3
 ```
 

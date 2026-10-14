@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/octagon-grudge-match
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 699d0e0e3ac38bc70a1a22e06128ec06
 ---
 
 ```rules

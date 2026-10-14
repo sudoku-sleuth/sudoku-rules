@@ -6,6 +6,7 @@ source: https://sudokupad.app/d73jhz41tv
 case: https://sudoku-sleuth.com/cases/round-them-up
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 834a45b7db8f73b9604eb34f8d976425
 ---
 
 ```rules

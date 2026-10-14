@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/factory-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 60f44bb5d7161471aac87a101b4f1577
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c1-r6c1 colour "white"
-kropki-2: kropki r5c2-r6c2 colour "white"
+kropki-1: kropki r5c1-r6c1 white
+kropki-2: kropki r5c2-r6c2 white
 ```
 
 ```drawing

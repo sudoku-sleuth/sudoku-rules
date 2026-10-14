@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 9
-    - 18
-    - 19
-    - 20
+    - r2c1
+    - r3c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: Tolling
 setter: Sandra & Nala
@@ -15,12 +15,13 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: c98252a4d01eb27d0f0846a9a84f572d
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r6c6-r7c6 colour "white"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r6c6-r7c6 white
 arrow-1: arrow r3c1-r3c2-r4c2-r3c3 bulb ["r2c1"]
 arrow-2: arrow r1c4-r1c5-r2c6 bulb ["r1c3"]
 arrow-3: arrow r3c8-r4c7 bulb ["r2c8"]

@@ -6,6 +6,7 @@ source: https://sudokupad.app/0sl8lhlj7u
 case: https://sudoku-sleuth.com/cases/wandering-entropy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 00330a5c60c9eaa41362a92e51662f56
 ---
 
 ```rules

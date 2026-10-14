@@ -6,17 +6,18 @@ source: ""
 case: https://sudoku-sleuth.com/cases/unknown-origin-9
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 11d245dc5a0d95b61d44dc05e48dd9e4
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c6-r8c7 colour "white"
-kropki-2: kropki r4c4-r5c4 colour "white"
-kropki-3: kropki r4c8-r4c9 colour "white"
-kropki-4: kropki r4c9-r5c9 colour "white"
-kropki-5: kropki r1c1-r1c2 colour "white"
-kropki-6: kropki r6c7-r6c8 colour "white"
-kropki-7: kropki r2c5-r2c6 colour "white"
+kropki-1: kropki r8c6-r8c7 white
+kropki-2: kropki r4c4-r5c4 white
+kropki-3: kropki r4c8-r4c9 white
+kropki-4: kropki r4c9-r5c9 white
+kropki-5: kropki r1c1-r1c2 white
+kropki-6: kropki r6c7-r6c8 white
+kropki-7: kropki r2c5-r2c6 white
 arrow-1: arrow r6c7-r7c7-r7c8-r7c9-r8c9-r9c9-r9c8-r8c8 bulb ["r6c5","r6c6"]
 arrow-2: arrow r7c6-r8c6-r8c7-r9c7-r9c6-r9c5-r9c4-r9c3-r9c2 bulb ["r6c5","r6c6"]
 arrow-3: arrow r5c7-r5c8-r6c8-r6c9-r5c9-r4c9-r4c8-r4c7 bulb ["r6c5","r6c6"]

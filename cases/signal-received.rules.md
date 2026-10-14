@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/signal-received
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 1......6..2......4..3.........4.8.......5.......2.6.........7..7......8..3......9
+exported: a4e89879a891eb4b0cda8fae100e30fb
 ---
 
 ```rules

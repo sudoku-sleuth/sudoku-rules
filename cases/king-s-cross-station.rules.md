@@ -6,6 +6,7 @@ source: https://tinyurl.com/kingscrossstationsudoku
 case: https://sudoku-sleuth.com/cases/king-s-cross-station
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ae8e520f71be77fa3516ad9089082272
 ---
 
 ```rules

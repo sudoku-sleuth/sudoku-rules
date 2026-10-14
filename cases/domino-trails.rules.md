@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/domino-trails
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5f8feafe6080ae9128a866e5e6eacdd5
 ---
 
 ```rules

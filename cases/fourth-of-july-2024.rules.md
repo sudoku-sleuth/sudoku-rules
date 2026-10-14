@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/fourth-of-july-2024
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=7 r2c6=1 r3c4=4 r3c7=7 r4c8=7 r5c9=6 r6c1=7 r7c2=4 r8c7=2 r9c8=4
+exported: 33e4e74ee0e43e6ee0606d6b32532293
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/excalibur-super-indexed
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 920def343785dd5caf3daba45775d7c6
 ---
 
 ```rules

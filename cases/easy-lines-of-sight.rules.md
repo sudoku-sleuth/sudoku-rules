@@ -6,6 +6,7 @@ source: https://sudokupad.app/zw4qqqpqzd
 case: https://sudoku-sleuth.com/cases/easy-lines-of-sight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4707334826c0703ee756fb1fe954174b
 ---
 
 ```rules

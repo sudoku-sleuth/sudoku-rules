@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/iris
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=3 r3c6=4 r5c7=5 r8c7=7
+exported: c67e54669a67636e62f1f2d705cc03b0
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ttomf1ci1v
 case: https://sudoku-sleuth.com/cases/wind-up-wind-down
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0c4d3baf67dbc370fef7f0947d6f368e
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ltiyqjzh4z
 case: https://sudoku-sleuth.com/cases/passing-lane
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 27d3164870387a136323d09097dd4cbf
 ---
 
 ```rules

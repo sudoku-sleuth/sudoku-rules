@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cooking-cabbage
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c4=9 r4c7=8 r5c2=7 r7c8=1 r8c4=3
+exported: 2f882f08916e080197ff112a9da56710
 ---
 
 ```rules

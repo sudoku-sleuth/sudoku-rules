@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/snowflake
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c4=1 r3c6=2 r5c3=2 r5c7=5 r7c4=3 r7c6=1
+exported: 79466cd36bce225ef2a6572293c33e60
 ---
 
 ```rules

@@ -6,14 +6,15 @@ source: ""
 case: https://sudoku-sleuth.com/cases/candy-cane
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f2ac97a3af321d989bf4c3a2c9c771ff
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c5-r5c6 colour "white"
-kropki-2: kropki r4c4-r5c4 colour "white"
-kropki-3: kropki r4c5-r4c6 colour "white"
-kropki-4: kropki r6c6-r7c6 colour "white"
+kropki-1: kropki r5c5-r5c6 white
+kropki-2: kropki r4c4-r5c4 white
+kropki-3: kropki r4c5-r4c6 white
+kropki-4: kropki r6c6-r7c6 white
 whispers-1: whispers r1c4-r2c5-r3c5 gap 5
 whispers-2: whispers r2c8-r3c8-r4c7 gap 5
 whispers-3: whispers r6c7-r5c8-r4c9 gap 5

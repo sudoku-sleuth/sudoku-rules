@@ -6,6 +6,7 @@ source: https://sudokupad.app/tl1lphowzx
 case: https://sudoku-sleuth.com/cases/look-into-my-eye
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a6002e1b4e77eb5eee3e13f57529f87d
 ---
 
 ```rules

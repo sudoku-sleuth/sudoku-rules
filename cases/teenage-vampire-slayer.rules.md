@@ -10,6 +10,7 @@ drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
 givens: r4c1=1 r4c2=6 r6c8=1 r6c9=7
+exported: eb9687f68344147bc69acc2afea8c7e8
 ---
 
 ```rules

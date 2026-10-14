@@ -6,6 +6,7 @@ source: https://sudokupad.app/aualpb4fki
 case: https://sudoku-sleuth.com/cases/cornering-a-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 87d72f9e61bf15af69024c1028d64e36
 ---
 
 ```rules

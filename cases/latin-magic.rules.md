@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/latin-magic
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 1.47..2.8.........6.......73.......9...........5.....18.....9.2.........2.39.56..
+exported: d87ad82f462a594c4b36a49d163b1bd0
 ---
 
 ```rules

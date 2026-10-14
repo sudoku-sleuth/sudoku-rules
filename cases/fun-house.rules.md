@@ -6,6 +6,7 @@ source: https://sudokupad.app/1afvkdgafd
 case: https://sudoku-sleuth.com/cases/fun-house
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a5f9698a33a4c480071c12e9bdcb5193
 ---
 
 ```rules
@@ -13,8 +14,8 @@ sudoku 9x9
 cage-1: cage r1c1-r1c2-r1c3 total 9 connected true
 cage-2: cage r3c3-r4c3-r5c3-r6c3-r7c3-r7c4-r7c5-r7c6-r7c7 connected true
 thermo r1c8-r1c9-r2c9-r3c9
-kropki-1: kropki r5c4-r5c5 colour "white"
-kropki-2: kropki r9c1-r9c2 colour "black"
+kropki-1: kropki r5c4-r5c5 white
+kropki-2: kropki r9c1-r9c2 black
 arrow-1: arrow r7c9-r8c9-r9c9 bulb ["r6c9"]
 arrow-2: arrow r9c7-r9c8 bulb ["r9c6"]
 palindrome r9c6-r8c7-r7c6-r6c7-r6c8-r6c9

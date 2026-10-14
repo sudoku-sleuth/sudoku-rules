@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/transmission-2
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: c3b3704766bca57454db0be7751ce151
 ---
 
 ```rules

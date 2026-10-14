@@ -6,6 +6,7 @@ source: https://sudokupad.app/x61xs42k0c
 case: https://sudoku-sleuth.com/cases/evasive-operation
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d2251a0c19106545e328423aab03a1a5
 ---
 
 ```rules

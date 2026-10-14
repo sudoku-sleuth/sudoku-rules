@@ -1,11 +1,11 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 2
-    - 9
-    - 19
-    - 20
+    - r1c1
+    - r1c3
+    - r2c1
+    - r3c2
+    - r3c3
 format: open-rules
 title: "Cookie Crime Part 3: On The Scent"
 setter: Sandra & Nala
@@ -16,23 +16,24 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 58ee0e4489d5332a135af9411afb383f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c4-r2c4 colour "black"
-kropki-2: kropki r1c4-r1c5 colour "black"
-kropki-3: kropki r3c8-r4c8 colour "black"
-kropki-4: kropki r4c8-r5c8 colour "black"
-kropki-5: kropki r6c6-r7c6 colour "black"
-kropki-6: kropki r6c4-r6c5 colour "white"
-kropki-7: kropki r4c7-r5c7 colour "white"
-kropki-8: kropki r5c7-r6c7 colour "white"
-kropki-9: kropki r8c9-r9c9 colour "white"
-kropki-10: kropki r6c1-r7c1 colour "white"
-kropki-11: kropki r7c8-r7c9 colour "white"
-kropki-12: kropki r6c4-r7c4 colour "white"
-kropki-13: kropki r7c1-r7c2 colour "white"
+kropki-1: kropki r1c4-r2c4 black
+kropki-2: kropki r1c4-r1c5 black
+kropki-3: kropki r3c8-r4c8 black
+kropki-4: kropki r4c8-r5c8 black
+kropki-5: kropki r6c6-r7c6 black
+kropki-6: kropki r6c4-r6c5 white
+kropki-7: kropki r4c7-r5c7 white
+kropki-8: kropki r5c7-r6c7 white
+kropki-9: kropki r8c9-r9c9 white
+kropki-10: kropki r6c1-r7c1 white
+kropki-11: kropki r7c8-r7c9 white
+kropki-12: kropki r6c4-r7c4 white
+kropki-13: kropki r7c1-r7c2 white
 ```
 
 ```drawing

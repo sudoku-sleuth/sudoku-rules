@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/christmas-lights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1571431577cd94e2a3fb041a84efd714
 ---
 
 ```rules

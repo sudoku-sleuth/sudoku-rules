@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hmcs-sackville-1941
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=1 r2c2=9 r3c8=4 r3c9=1
+exported: 2b04fef4d0af83c5fada9cfd0bf12c47
 ---
 
 ```rules

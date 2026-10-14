@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tell-me-fives-tell-me-sweet-little-fives
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c5=5
+exported: 4e184a483c092c598e3fe613736cdcde
 ---
 
 ```rules

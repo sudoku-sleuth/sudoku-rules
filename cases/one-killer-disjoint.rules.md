@@ -6,6 +6,7 @@ source: https://sudokupad.app/1ogjl13p61
 case: https://sudoku-sleuth.com/cases/one-killer-disjoint
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5bf1500c81dd1899f43fd4690d927251
 ---
 
 ```rules

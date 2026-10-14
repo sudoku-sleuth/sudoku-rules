@@ -6,22 +6,23 @@ source: ""
 case: https://sudoku-sleuth.com/cases/mingling-at-the-dinner-party
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9af4daba7cd3462d61ce7985522361fc
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c6-r4c7 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "white"
-kropki-3: kropki r4c4-r4c5 colour "white"
-kropki-4: kropki r4c3-r4c4 colour "white"
-kropki-5: kropki r7c1-r8c1 colour "white"
-kropki-6: kropki r8c1-r9c1 colour "white"
-kropki-7: kropki r7c2-r8c2 colour "white"
-kropki-8: kropki r8c2-r8c3 colour "white"
-kropki-9: kropki r9c1-r9c2 colour "white"
-kropki-10: kropki r9c2-r9c3 colour "white"
-kropki-11: kropki r8c8-r9c8 colour "black"
-kropki-12: kropki r9c8-r9c9 colour "black"
+kropki-1: kropki r4c6-r4c7 white
+kropki-2: kropki r4c5-r4c6 white
+kropki-3: kropki r4c4-r4c5 white
+kropki-4: kropki r4c3-r4c4 white
+kropki-5: kropki r7c1-r8c1 white
+kropki-6: kropki r8c1-r9c1 white
+kropki-7: kropki r7c2-r8c2 white
+kropki-8: kropki r8c2-r8c3 white
+kropki-9: kropki r9c1-r9c2 white
+kropki-10: kropki r9c2-r9c3 white
+kropki-11: kropki r8c8-r9c8 black
+kropki-12: kropki r9c8-r9c9 black
 pair-1: pair r4c7-r5c7 sum 10
 pair-2: pair r6c7-r7c7 sum 10
 pair-3: pair r7c5-r7c6 sum 10

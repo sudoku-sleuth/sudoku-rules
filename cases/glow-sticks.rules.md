@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/glow-sticks
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2d9674b1e2d7d03f7a4a8b2590bb7a1b
 ---
 
 ```rules

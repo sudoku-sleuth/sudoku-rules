@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/fibonacci-sequence
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5a9a341bfa444bb3f558e0a625a2b7c7
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c8-r3c8 colour "black"
-kropki-2: kropki r5c5-r5c6 colour "black"
+kropki-1: kropki r2c8-r3c8 black
+kropki-2: kropki r5c5-r5c6 black
 pair-1: pair r8c7-r8c8 sum 10
 pair-2: pair r9c7-r9c8 sum 10
 pair-3: pair r4c1-r5c1 sum 10

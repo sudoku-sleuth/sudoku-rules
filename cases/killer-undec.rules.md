@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/killer-undec
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c4=2 r2c8=6 r4c2=2 r5c5=4 r6c8=3 r8c2=6 r8c6=3
+exported: 35aeabdea655e71ef69065dc4b8522c1
 ---
 
 ```rules

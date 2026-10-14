@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/twizzlers
 case: https://sudoku-sleuth.com/cases/twizzlers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4ce8032801840f186101757bc5e6e570
 ---
 
 ```rules

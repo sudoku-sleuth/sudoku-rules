@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/shifting
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=3 r6c6=8 r8c2=9 r8c8=5
+exported: 6a474ba684d6e1efb5bc4d9d87865f02
 ---
 
 ```rules

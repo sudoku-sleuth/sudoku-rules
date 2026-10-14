@@ -6,6 +6,7 @@ source: https://tinyurl.com/mr2um2hu
 case: https://sudoku-sleuth.com/cases/caught-between-the-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: db0c6b4775f421ef6237d41386a25579
 ---
 
 ```rules

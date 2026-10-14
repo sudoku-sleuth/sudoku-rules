@@ -6,6 +6,7 @@ source: https://sudokupad.app/w0k9wxhvpu
 case: https://sudoku-sleuth.com/cases/seven-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8a54825edd4d367361f15f336aa69277
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/crab
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 71ee7df09f4f607cf9d1c26a94f62500
 ---
 
 ```rules
@@ -16,10 +17,10 @@ thermo-2: thermo r5c5-r5c4-r5c3-r4c2-r4c3-r3c4
 thermo-3: thermo r5c5-r5c6-r5c7-r4c8-r3c8-r2c7-r2c6
 thermo-4: thermo r5c5-r5c6-r5c7-r4c8-r4c7-r3c6
 thermo-5: thermo r5c5-r5c4
-kropki-1: kropki r8c4-r8c5 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r2c5-r3c5 colour "white"
-kropki-4: kropki r1c9-r2c9 colour "black"
+kropki-1: kropki r8c4-r8c5 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r2c5-r3c5 white
+kropki-4: kropki r1c9-r2c9 black
 palindrome-1: palindrome r6c3-r6c2-r7c1
 palindrome-2: palindrome r6c7-r6c8-r7c9
 palindrome-3: palindrome r7c4-r7c3-r8c2

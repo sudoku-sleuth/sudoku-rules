@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rainbow-quadauq
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8f5ab66567f93452952b718a935a27c8
 ---
 
 ```rules

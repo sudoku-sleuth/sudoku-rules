@@ -54,6 +54,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: c7be46b8a61a468def95b6131e0993db
 ---
 
 ```rules
@@ -76,8 +77,8 @@ unique-16: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
 unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 anti-knight
-kropki-1: kropki r6c3-r6c4 colour "black"
-kropki-2: kropki r3c3-r3c4 colour "black"
+kropki-1: kropki r6c3-r6c4 black
+kropki-2: kropki r3c3-r3c4 black
 ```
 
 ```drawing

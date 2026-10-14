@@ -6,6 +6,7 @@ source: https://sudokupad.app/zi7q1yubs1
 case: https://sudoku-sleuth.com/cases/turning-22
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 60afce7299496a516f25e0b2884d6b29
 ---
 
 ```rules

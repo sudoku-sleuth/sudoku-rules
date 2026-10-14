@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/roast-mutton
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 53e38c7b30481155596f7f398f93431d
 ---
 
 ```rules

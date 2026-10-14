@@ -6,16 +6,17 @@ source: https://sudokupad.app/0sna0ijxpx
 case: https://sudoku-sleuth.com/cases/shifter-lines-106
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 854d507956261a89b20c6cee68a729e6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c6-r9c6 colour "black"
-kropki-2: kropki r7c2-r8c2 colour "black"
-kropki-3: kropki r8c3-r9c3 colour "black"
-kropki-4: kropki r4c3-r4c4 colour "black"
-kropki-5: kropki r3c6-r3c7 colour "black"
-kropki-6: kropki r5c4-r6c4 colour "white"
+kropki-1: kropki r8c6-r9c6 black
+kropki-2: kropki r7c2-r8c2 black
+kropki-3: kropki r8c3-r9c3 black
+kropki-4: kropki r4c3-r4c4 black
+kropki-5: kropki r3c6-r3c7 black
+kropki-6: kropki r5c4-r6c4 white
 shifter-line-1: shifter-line r5c6-r6c6-r7c7-r8c7-r9c6-r8c5
 shifter-line-2: shifter-line r7c7-r6c8-r7c9
 shifter-line-3: shifter-line r6c8-r5c8

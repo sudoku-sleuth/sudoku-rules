@@ -6,6 +6,7 @@ source: https://sudokupad.app/vmkzv6n26i
 case: https://sudoku-sleuth.com/cases/chains-and-keys
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0503cefd7bb6fa35f76e86f0323cdd13
 ---
 
 ```rules

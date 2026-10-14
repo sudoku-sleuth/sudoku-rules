@@ -6,6 +6,7 @@ source: https://sudokupad.app/47v3hhy55c
 case: https://sudoku-sleuth.com/cases/159-buttons
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 42c3264eb77d123d4438df4a14d9afa6
 ---
 
 ```rules

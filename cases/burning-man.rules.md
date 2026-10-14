@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/burning-man
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a1f8bd197a9dab22966611945bbc5e51
 ---
 
 ```rules

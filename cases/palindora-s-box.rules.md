@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/palindora-s-box
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 89d47cb6b087278c4ac812f4b577643b
 ---
 
 ```rules

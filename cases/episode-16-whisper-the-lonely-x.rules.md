@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/episode-16-whisper-the-lonely-x
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c4=6 r2c7=2 r5c2=2 r9c6=2
+exported: 272f65312f2503e39165dc546c5b1950
 ---
 
 ```rules

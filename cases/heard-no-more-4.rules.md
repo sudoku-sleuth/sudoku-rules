@@ -6,6 +6,7 @@ source: https://sudokupad.app/guszc4iajg
 case: https://sudoku-sleuth.com/cases/heard-no-more-4
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 42be73b8ea9d0927d2f33c6890aa02db
 ---
 
 ```rules

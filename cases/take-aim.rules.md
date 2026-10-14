@@ -6,6 +6,7 @@ source: https://sudokupad.app/4mvwvguztb
 case: https://sudoku-sleuth.com/cases/take-aim
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3b6496fbd95677ffb643701a031096e2
 ---
 
 ```rules

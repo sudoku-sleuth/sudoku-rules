@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/room-for-one
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=4 r4c9=3 r8c4=3
+exported: e7fd0923cea11fe418813682091f0397
 ---
 
 ```rules

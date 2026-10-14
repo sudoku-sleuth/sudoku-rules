@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/exes-vees-and-dots-oh-my
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ..9...2.6.8..6..............2...6...........2....2.6........7.3...........2......
+exported: 4213dc5ddb13edd14d7e19cca4572eb9
 ---
 
 ```rules

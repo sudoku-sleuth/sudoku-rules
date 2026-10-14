@@ -6,11 +6,12 @@ source: https://sudokupad.app/7s7lrupysb
 case: https://sudoku-sleuth.com/cases/heard-no-more-9
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 67ad4e34f21c4e9e8568257452f891e7
 ---
 
 ```rules
 sudoku 9x9
-kropki r8c5-r9c5 colour "black"
+kropki r8c5-r9c5 black
 whispers-1: whispers r1c1-r2c1-r2c2-r3c2 gap 5
 whispers-2: whispers r1c2-r1c3 gap 5
 whispers-3: whispers r2c3-r2c4-r2c5-r2c6-r1c6-r1c7-r1c8 gap 5

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tight-turns
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c1=9 r5c3=5
+exported: e68ea19a74bbcaff378547d333d2261c
 ---
 
 ```rules

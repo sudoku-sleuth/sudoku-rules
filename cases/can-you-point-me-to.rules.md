@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/can-you-point-me-to
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=2 r3c3=1 r4c4=6 r6c8=2 r7c2=4 r8c9=1
+exported: d03590cb4c13ca1df32bfefa365c88da
 ---
 
 ```rules

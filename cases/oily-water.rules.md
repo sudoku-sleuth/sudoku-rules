@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oily-water
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 62bae125072b8540f0edd80d052c7c55
 ---
 
 ```rules

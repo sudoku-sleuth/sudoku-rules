@@ -8,19 +8,20 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r1c9=6 r5c3=1 r8c5=2
+exported: 80901605f468d60cbe7b3d0b8b291f6d
 ---
 
 ```rules
 sudoku 9x9
 anti-king
 pair-1: pair r7c8-r8c8 ratio 3
-kropki-1: kropki r3c7-r4c7 colour "black"
+kropki-1: kropki r3c7-r4c7 black
 pair-2: pair r7c7-r7c8 ratio 4
-kropki-2: kropki r7c4-r7c5 colour "black"
+kropki-2: kropki r7c4-r7c5 black
 pair-3: pair r1c1-r2c1 ratio 4
-kropki-3: kropki r5c1-r6c1 colour "black"
-kropki-4: kropki r1c4-r1c5 colour "black"
-kropki-5: kropki r2c1-r3c1 colour "black"
+kropki-3: kropki r5c1-r6c1 black
+kropki-4: kropki r1c4-r1c5 black
+kropki-5: kropki r2c1-r3c1 black
 pair-4: pair r3c1-r3c2 ratio 3
 ```
 

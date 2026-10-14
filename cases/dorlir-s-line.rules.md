@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dorlir-s-line
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b568b56f0b3538a5eff7052f1883cf14
 ---
 
 ```rules

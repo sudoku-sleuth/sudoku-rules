@@ -6,6 +6,7 @@ source: https://sudokupad.app/71qie8k0p4
 case: https://sudoku-sleuth.com/cases/tigger-uncaged
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d5ec87c4b4223861ffb6c7b9d9c0f624
 ---
 
 ```rules

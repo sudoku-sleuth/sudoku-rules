@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/isobars
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=4 r2c2=2 r5c5=3 r6c1=8 r9c7=6
+exported: 134e9b4cad60a8858a832f12775849b3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c7-r4c8 colour "white"
-kropki-2: kropki r4c1-r4c2 colour "white"
-kropki-3: kropki r7c6-r7c7 colour "white"
-kropki-4: kropki r6c4-r6c5 colour "white"
-kropki-5: kropki r7c3-r7c4 colour "white"
-kropki-6: kropki r2c5-r2c6 colour "white"
-kropki-7: kropki r1c3-r1c4 colour "white"
+kropki-1: kropki r4c7-r4c8 white
+kropki-2: kropki r4c1-r4c2 white
+kropki-3: kropki r7c6-r7c7 white
+kropki-4: kropki r6c4-r6c5 white
+kropki-5: kropki r7c3-r7c4 white
+kropki-6: kropki r2c5-r2c6 white
+kropki-7: kropki r1c3-r1c4 white
 same-class-1: same-class r8c2-r9c3-r9c4 classes "entropy"
 same-class-2: same-class r2c3-r1c4-r1c5 classes "entropy"
 same-class-3: same-class r1c7-r1c8-r2c9 classes "entropy"

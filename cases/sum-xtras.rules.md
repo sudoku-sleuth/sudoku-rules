@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sum-xtras
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=4 r6c7=6
+exported: 77dd6e80d77b993bc351cda059304b33
 ---
 
 ```rules

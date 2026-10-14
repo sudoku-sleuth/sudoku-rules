@@ -6,6 +6,7 @@ source: https://sudokupad.app/80s692hjk1
 case: https://sudoku-sleuth.com/cases/toothless
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: fec20b5f5935d3fa4dd17acc4685ca1f
 ---
 
 ```rules

@@ -1,7 +1,7 @@
 ---
 fog:
   initiallyLit:
-    - 10
+    - r2c2
 format: open-rules
 title: Oxford Fog
 setter: FullDeck and Missing a Few Cards
@@ -9,6 +9,7 @@ source: https://sudokupad.app/3m8l0xadnd
 case: https://sudoku-sleuth.com/cases/oxford-fog
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 65c82c75164a1d1364c5bdbb22ffd8f3
 ---
 
 ```rules

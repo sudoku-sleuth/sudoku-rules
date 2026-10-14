@@ -6,6 +6,7 @@ source: https://sudokupad.app/wi1580n360
 case: https://sudoku-sleuth.com/cases/mini-cyclone
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 38bc22f0cd4e2e1372b9fa4fbb030805
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/twenty-three
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c3=2 r9c4=3
+exported: c9d58883cf5b29a2039789e6a3102518
 ---
 
 ```rules

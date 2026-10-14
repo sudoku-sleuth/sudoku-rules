@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sandwiches-to-die-for
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8e0d94ad027899e7c498964c30bb8514
 ---
 
 ```rules

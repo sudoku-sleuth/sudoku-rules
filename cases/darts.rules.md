@@ -6,6 +6,7 @@ source: https://tinyurl.com/yurxcna2
 case: https://sudoku-sleuth.com/cases/darts
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3ade7a2427351b45cb45c17670aeb25a
 ---
 
 ```rules

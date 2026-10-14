@@ -6,6 +6,7 @@ source: https://sudokupad.app/s1g4s6gy3l
 case: https://sudoku-sleuth.com/cases/taking-the-temperature
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f27cc4a3a4c931d51151131a4ad21362
 ---
 
 ```rules
@@ -21,13 +22,13 @@ thermo-8: thermo r7c3-r8c3-r9c3
 thermo-9: thermo r7c7-r8c7-r9c7
 thermo-10: thermo r9c1-r8c1-r7c1
 thermo-11: thermo r7c9-r8c9-r9c9
-kropki-1: kropki r5c5-r6c5 colour "white"
-kropki-2: kropki r6c8-r6c9 colour "white"
-kropki-3: kropki r6c1-r6c2 colour "white"
-kropki-4: kropki r2c3-r3c3 colour "white"
-kropki-5: kropki r5c6-r6c6 colour "white"
-kropki-6: kropki r4c3-r5c3 colour "white"
-kropki-7: kropki r7c2-r8c2 colour "white"
+kropki-1: kropki r5c5-r6c5 white
+kropki-2: kropki r6c8-r6c9 white
+kropki-3: kropki r6c1-r6c2 white
+kropki-4: kropki r2c3-r3c3 white
+kropki-5: kropki r5c6-r6c6 white
+kropki-6: kropki r4c3-r5c3 white
+kropki-7: kropki r7c2-r8c2 white
 ```
 
 **Sudoku, Thermometers, Consecutive Pairs**

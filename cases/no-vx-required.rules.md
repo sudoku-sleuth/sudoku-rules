@@ -6,6 +6,7 @@ source: https://tinyurl.com/2p93nw5k
 case: https://sudoku-sleuth.com/cases/no-vx-required
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7ae0645df3a45ab18a9299841563e4bd
 ---
 
 ```rules

@@ -103,6 +103,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 454dc8bba43003ce4e335c8e3f5f02c0
 ---
 
 ```rules
@@ -136,10 +137,10 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage r8c9-r9c9 repeats false total 13 connected true
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r2c2-r2c3 colour "white"
-kropki-2: kropki r2c1-r2c2 colour "black"
-kropki-3: kropki r1c1-r1c2 colour "black"
-kropki-4: kropki r2c3-r3c3 colour "black"
+kropki-1: kropki r2c2-r2c3 white
+kropki-2: kropki r2c1-r2c2 black
+kropki-3: kropki r1c1-r1c2 black
+kropki-4: kropki r2c3-r3c3 black
 arrow-1: arrow r5c6-r6c6-r6c5-r6c4 bulb ["r5c5"]
 arrow-2: arrow r4c5-r4c6 bulb ["r5c4"]
 whispers-1: whispers r1c7-r2c8-r3c9-r2c9-r1c9 loop false gap 5

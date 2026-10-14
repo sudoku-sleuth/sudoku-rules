@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hugs-bring-smiles
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6
+exported: 16949fa648328faec53b2bce6659ccc2
 ---
 
 ```rules

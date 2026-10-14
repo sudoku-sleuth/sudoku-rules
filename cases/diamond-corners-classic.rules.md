@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/diamond-corners-classic
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: .59...61.8...9...36.......4...3.6....3.....8....2.8...2.......74...1...2.96...53.
+exported: 06ccc34221157ab3c33678e5ef91f38c
 ---
 
 ```rules

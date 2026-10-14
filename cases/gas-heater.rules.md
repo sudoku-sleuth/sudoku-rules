@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/gas-heater
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r1c9=9 r9c1=8 r9c9=1
+exported: f7c7cd0a778cee4db7c62eab38a690a8
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/6o1vx3g4sq
 case: https://sudoku-sleuth.com/cases/garden-party
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 30d80366846a8618f36d14870958af8c
 ---
 
 ```rules

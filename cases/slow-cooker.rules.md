@@ -6,6 +6,7 @@ source: https://sudokupad.app/3llb2jcz74
 case: https://sudoku-sleuth.com/cases/slow-cooker
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 21c0fde4bc0636160cc8b2d3ef16f8b4
 ---
 
 ```rules

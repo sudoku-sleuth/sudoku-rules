@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/multilingual-speed-run
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8650a20c908aef151ccad1e2d5b44357
 ---
 
 ```rules

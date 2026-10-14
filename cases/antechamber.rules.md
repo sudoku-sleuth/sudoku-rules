@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/antechamber
 case: https://sudoku-sleuth.com/cases/antechamber
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9913bb9e67b9e714a611ba8fdd1cd7ed
 ---
 
 ```rules

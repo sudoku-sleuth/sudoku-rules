@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/anti-kropki-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b41da17c3805b93b14c2e271454548f6
 ---
 
 ```rules

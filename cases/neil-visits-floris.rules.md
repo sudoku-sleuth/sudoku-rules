@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/neil-visits-floris
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=5 r7c3=6 r7c7=7
+exported: 7d521057d1c2d8365aebb7084fc3f90f
 ---
 
 ```rules

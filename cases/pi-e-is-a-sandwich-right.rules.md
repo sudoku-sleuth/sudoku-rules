@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pi-e-is-a-sandwich-right
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=8 r1c7=6 r3c5=4 r4c1=3 r4c4=6 r6c9=2 r7c3=2 r7c6=3 r9c9=9
+exported: df2aa7c3d5b7f8b8b2369414e6d40de0
 ---
 
 ```rules

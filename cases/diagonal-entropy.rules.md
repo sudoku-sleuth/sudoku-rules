@@ -7,12 +7,13 @@ case: https://sudoku-sleuth.com/cases/diagonal-entropy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d11ad1bfa603c3eb4b32d79cb24dd1b2
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "anti"
-kropki r2c6-r2c7 colour "black"
+kropki r2c6-r2c7 black
 ```
 
 ```drawing

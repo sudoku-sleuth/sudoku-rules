@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 16
-    - 45
+    - r2c8
+    - r6c1
 format: open-rules
 title: "Equality Cages 108: What cages? All I see is fog!"
 setter: gUBBLOR
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d5fe8dc9a5c049eb2438d0746526cdd9
 ---
 
 ```rules
@@ -149,17 +150,17 @@ equality-cage-10: equality-cage r5c6-r5c7
 equality-cage-11: equality-cage r4c9-r5c9
 equality-cage-12: equality-cage r6c8-r7c8
 equality-cage-13: equality-cage r7c5-r8c5
-kropki-1: kropki r6c1-r6c2 colour "black"
-kropki-2: kropki r6c2-r6c3 colour "black"
-kropki-3: kropki r5c3-r6c3 colour "black"
-kropki-4: kropki r2c3-r3c3 colour "black"
-kropki-5: kropki r8c1-r8c2 colour "black"
-kropki-6: kropki r2c7-r2c8 colour "black"
-kropki-7: kropki r2c8-r2c9 colour "black"
-kropki-8: kropki r4c7-r5c7 colour "black"
-kropki-9: kropki r5c9-r6c9 colour "black"
-kropki-10: kropki r1c6-r1c7 colour "white"
-kropki-11: kropki r4c7-r4c8 colour "white"
+kropki-1: kropki r6c1-r6c2 black
+kropki-2: kropki r6c2-r6c3 black
+kropki-3: kropki r5c3-r6c3 black
+kropki-4: kropki r2c3-r3c3 black
+kropki-5: kropki r8c1-r8c2 black
+kropki-6: kropki r2c7-r2c8 black
+kropki-7: kropki r2c8-r2c9 black
+kropki-8: kropki r4c7-r5c7 black
+kropki-9: kropki r5c9-r6c9 black
+kropki-10: kropki r1c6-r1c7 white
+kropki-11: kropki r4c7-r4c8 white
 pair-1: pair r1c1-r1c2 sum 10
 pair-2: pair r3c6-r4c6 sum 10
 pair-3: pair r9c6-r9c7 sum 10

@@ -7,32 +7,33 @@ case: https://sudoku-sleuth.com/cases/change-your-perspective
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 24b400e2ab82808d398265477fe08c73
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r3c2 colour "black"
-kropki-2: kropki r1c7-r2c7 colour "black"
-kropki-3: kropki r1c6-r1c7 colour "black"
-kropki-4: kropki r3c5-r3c6 colour "black"
-kropki-5: kropki r1c8-r1c9 colour "black"
-kropki-6: kropki r2c7-r2c8 colour "black"
-kropki-7: kropki r2c4-r2c5 colour "black"
-kropki-8: kropki r3c9-r4c9 colour "black"
-kropki-9: kropki r5c9-r6c9 colour "black"
-kropki-10: kropki r6c7-r7c7 colour "black"
-kropki-11: kropki r7c5-r7c6 colour "black"
-kropki-12: kropki r8c1-r8c2 colour "black"
-kropki-13: kropki r7c2-r8c2 colour "black"
-kropki-14: kropki r4c3-r5c3 colour "black"
-kropki-15: kropki r8c4-r9c4 colour "black"
-kropki-16: kropki r6c3-r7c3 colour "black"
-kropki-17: kropki r2c1-r2c2 colour "black"
-kropki-18: kropki r5c3-r5c4 colour "black"
-kropki-19: kropki r5c4-r6c4 colour "black"
-kropki-20: kropki r9c7-r9c8 colour "black"
-kropki-21: kropki r9c5-r9c6 colour "black"
-kropki-22: kropki r3c6-r4c6 colour "black"
+kropki-1: kropki r3c1-r3c2 black
+kropki-2: kropki r1c7-r2c7 black
+kropki-3: kropki r1c6-r1c7 black
+kropki-4: kropki r3c5-r3c6 black
+kropki-5: kropki r1c8-r1c9 black
+kropki-6: kropki r2c7-r2c8 black
+kropki-7: kropki r2c4-r2c5 black
+kropki-8: kropki r3c9-r4c9 black
+kropki-9: kropki r5c9-r6c9 black
+kropki-10: kropki r6c7-r7c7 black
+kropki-11: kropki r7c5-r7c6 black
+kropki-12: kropki r8c1-r8c2 black
+kropki-13: kropki r7c2-r8c2 black
+kropki-14: kropki r4c3-r5c3 black
+kropki-15: kropki r8c4-r9c4 black
+kropki-16: kropki r6c3-r7c3 black
+kropki-17: kropki r2c1-r2c2 black
+kropki-18: kropki r5c3-r5c4 black
+kropki-19: kropki r5c4-r6c4 black
+kropki-20: kropki r9c7-r9c8 black
+kropki-21: kropki r9c5-r9c6 black
+kropki-22: kropki r3c6-r4c6 black
 ```
 
 ```drawing

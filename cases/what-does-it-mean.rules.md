@@ -6,6 +6,7 @@ source: https://sudokupad.app/ure2uvy821
 case: https://sudoku-sleuth.com/cases/what-does-it-mean
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1a6e26f279399a1e3624a724e8b0986a
 ---
 
 ```rules

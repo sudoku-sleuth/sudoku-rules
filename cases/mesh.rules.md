@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/mesh
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c5=8
+exported: 366415c1dd1ffcec0d83ec26182f9326
 ---
 
 ```rules

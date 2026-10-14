@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/target-locked
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2afb32149a8e3b5d7432c1db4e3ffac6
 ---
 
 ```rules

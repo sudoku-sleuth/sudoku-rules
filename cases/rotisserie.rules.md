@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rotisserie
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=6 r7c7=1 r8c8=8 r9c1=4
+exported: e7f8e9efaada089d1ffd0cd644bcab1d
 ---
 
 ```rules
@@ -21,11 +22,11 @@ thermo-7: thermo r4c3-r3c4-r3c5
 thermo-8: thermo r6c7-r7c6-r7c5
 thermo-9: thermo r6c5-r5c6-r4c6
 thermo-10: thermo r4c5-r5c4-r6c4
-kropki-1: kropki r9c4-r9c5 colour "white"
-kropki-2: kropki r4c1-r5c1 colour "white"
-kropki-3: kropki r1c5-r1c6 colour "white"
-kropki-4: kropki r8c3-r8c4 colour "white"
-kropki-5: kropki r6c9-r7c9 colour "white"
+kropki-1: kropki r9c4-r9c5 white
+kropki-2: kropki r4c1-r5c1 white
+kropki-3: kropki r1c5-r1c6 white
+kropki-4: kropki r8c3-r8c4 white
+kropki-5: kropki r6c9-r7c9 white
 ```
 
 **Standard Sudoku, Thermometers, Consecutive Pairs**

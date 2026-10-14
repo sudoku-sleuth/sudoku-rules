@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/4-corners
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=4
+exported: 6b618b94847bc8ae0fcc484d0d6b6436
 ---
 
 ```rules

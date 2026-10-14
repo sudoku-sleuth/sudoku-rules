@@ -6,6 +6,7 @@ source: https://sudokupad.app/jp0kj27ei1
 case: https://sudoku-sleuth.com/cases/knightly-exclusive-dominoes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e4bfddd43b8265081c2cb82974a33360
 ---
 
 ```rules
@@ -13,10 +14,10 @@ sudoku 9x9
 cage-1: cage r4c7-r4c8 total 6 connected true
 cage-2: cage r7c4-r7c5 total 6 connected true
 anti-knight
-kropki-1: kropki r5c5-r6c5 colour "black"
-kropki-2: kropki r5c4-r5c5 colour "black"
-kropki-3: kropki r5c4-r6c4 colour "black"
-kropki-4: kropki r5c2-r5c3 colour "black"
+kropki-1: kropki r5c5-r6c5 black
+kropki-2: kropki r5c4-r5c5 black
+kropki-3: kropki r5c4-r6c4 black
+kropki-4: kropki r5c2-r5c3 black
 palindrome-1: palindrome r8c4-r7c3
 palindrome-2: palindrome r8c6-r7c7
 palindrome-3: palindrome r7c6-r6c7

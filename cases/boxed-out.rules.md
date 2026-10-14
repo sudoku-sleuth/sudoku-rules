@@ -6,6 +6,7 @@ source: https://sudokupad.app/oq5uzj4s67
 case: https://sudoku-sleuth.com/cases/boxed-out
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3d1478fd31f892124ea49efb2ccf0891
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flora-on-sand-by-paul-klee
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8c295b06019ae6ddf549c45406d73e18
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/canvas
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b12d3494fd2f14bc8104adb92faeb8d6
 ---
 
 ```rules

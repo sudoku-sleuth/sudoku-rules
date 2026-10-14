@@ -6,6 +6,7 @@ source: https://sudokupad.app/vg901kue24
 case: https://sudoku-sleuth.com/cases/broken-two
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 67aa430a32eaf976b57278fbe6099fc8
 ---
 
 ```rules

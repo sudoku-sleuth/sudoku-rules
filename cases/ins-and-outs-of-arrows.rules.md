@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ins-and-outs-of-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=9 r3c3=1 r4c9=9 r5c1=9 r5c4=3 r7c7=1 r9c2=2
+exported: 3744ca3ee885ae909b4c3deebdb67365
 ---
 
 ```rules

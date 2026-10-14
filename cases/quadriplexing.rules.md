@@ -6,6 +6,7 @@ source: https://sudokupad.app/qd8sics5tx
 case: https://sudoku-sleuth.com/cases/quadriplexing
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0f8d2421f79a25a8180773216bb86c24
 ---
 
 ```rules

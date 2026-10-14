@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/leftovers-can-be-deadly
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c1dae749466fadd6c59109c3c9fb2674
 ---
 
 ```rules

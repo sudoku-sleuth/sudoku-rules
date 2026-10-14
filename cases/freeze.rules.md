@@ -6,6 +6,7 @@ source: https://sudokupad.app/wen680tguv
 case: https://sudoku-sleuth.com/cases/freeze
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a14436aa2b25407c775a981896e82f9d
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/every-which-way-but-gas
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: dd146212833d087b50ac8b4aa897cd56
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/wfcmu7r6vg
 case: https://sudoku-sleuth.com/cases/working-8-to-10
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dbf6fa9fbe93fcff03a97af5b09f041d
 ---
 
 ```rules
@@ -28,15 +29,15 @@ cage-15: cage r7c2-r8c2 total 10 connected true
 cage-16: cage r5c1-r5c2 total 10 connected true
 cage-17: cage r1c4-r1c5 total 10 connected true
 cage-18: cage r9c6-r9c7 total 10 connected true
-kropki-1: kropki r2c4-r2c5 colour "white"
-kropki-2: kropki r8c6-r8c7 colour "white"
-kropki-3: kropki r5c2-r6c2 colour "white"
-kropki-4: kropki r5c8-r6c8 colour "white"
-kropki-5: kropki r9c7-r9c8 colour "white"
-kropki-6: kropki r2c2-r2c3 colour "black"
-kropki-7: kropki r2c8-r2c9 colour "black"
-kropki-8: kropki r8c7-r9c7 colour "black"
-kropki-9: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r2c4-r2c5 white
+kropki-2: kropki r8c6-r8c7 white
+kropki-3: kropki r5c2-r6c2 white
+kropki-4: kropki r5c8-r6c8 white
+kropki-5: kropki r9c7-r9c8 white
+kropki-6: kropki r2c2-r2c3 black
+kropki-7: kropki r2c8-r2c9 black
+kropki-8: kropki r8c7-r9c7 black
+kropki-9: kropki r8c2-r9c2 black
 ```
 
 **Standard Sudoku, Cages, Kropki Pairs**

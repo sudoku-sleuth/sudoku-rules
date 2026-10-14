@@ -9,6 +9,7 @@ status: flagged
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
 givens: "279293136516624787433829529747181653695752841183456972364928715851367294927514368"
+exported: 311b6f69a856374828e0f05e545c4602
 ---
 
 ```rules

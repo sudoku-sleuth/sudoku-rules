@@ -1,13 +1,13 @@
 ---
 fog:
   initiallyLit:
-    - 25
-    - 34
-    - 35
-    - 50
-    - 51
-    - 53
-    - 60
+    - r3c8
+    - r4c8
+    - r4c9
+    - r6c6
+    - r6c7
+    - r6c9
+    - r7c7
 format: open-rules
 title: Serpentine Streamers
 setter: Sandra & Nala
@@ -111,6 +111,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 73a0cb92398d4e8ff80d608a38b3fe40
 ---
 
 ```rules

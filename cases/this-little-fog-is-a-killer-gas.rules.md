@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 22
-    - 24
+    - r3c3
+    - r3c5
+    - r3c7
 format: open-rules
 title: This little FOG is a killer GAS
 setter: Meggen033
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 20c51d7f5dd04f05751043756b5a931f
 ---
 
 ```rules
@@ -140,15 +141,15 @@ cage-1: cage r1c5-r1c6 total 12 connected true
 cage-2: cage r4c2-r4c3 total 5 connected true
 cage-3: cage r6c1-r6c2 total 5 connected true
 cage-4: cage r7c5-r8c5-r9c5 total 12 connected true
-kropki-1: kropki r6c8-r7c8 colour "white"
-kropki-2: kropki r7c2-r7c3 colour "white"
-kropki-3: kropki r3c6-r3c7 colour "black"
-kropki-4: kropki r3c2-r3c3 colour "black"
-kropki-5: kropki r4c7-r4c8 colour "black"
-kropki-6: kropki r4c8-r5c8 colour "black"
-kropki-7: kropki r2c5-r3c5 colour "black"
-kropki-8: kropki r9c5-r9c6 colour "black"
-kropki-9: kropki r5c6-r6c6 colour "black"
+kropki-1: kropki r6c8-r7c8 white
+kropki-2: kropki r7c2-r7c3 white
+kropki-3: kropki r3c6-r3c7 black
+kropki-4: kropki r3c2-r3c3 black
+kropki-5: kropki r4c7-r4c8 black
+kropki-6: kropki r4c8-r5c8 black
+kropki-7: kropki r2c5-r3c5 black
+kropki-8: kropki r9c5-r9c6 black
+kropki-9: kropki r5c6-r6c6 black
 little-killer-1: little-killer r1c3-r2c2-r3c1 sum 23
 little-killer-2: little-killer r3c9-r2c8-r1c7 sum 7
 little-killer-3: little-killer r9c7-r8c8-r7c9 sum 23

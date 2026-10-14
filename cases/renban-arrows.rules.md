@@ -6,6 +6,7 @@ source: https://sudokupad.app/ncq5e3x4im
 case: https://sudoku-sleuth.com/cases/renban-arrows
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6f7cb8f489f7610c815967a7483f023c
 ---
 
 ```rules

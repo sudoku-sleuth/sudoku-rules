@@ -6,6 +6,7 @@ source: https://tinyurl.com/42htvjat
 case: https://sudoku-sleuth.com/cases/looking-for-phisto
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cadb794775c16984315330e1b45c6a78
 ---
 
 ```rules

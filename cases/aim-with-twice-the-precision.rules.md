@@ -6,28 +6,29 @@ source: https://sudokupad.app/o97d08evq3
 case: https://sudoku-sleuth.com/cases/aim-with-twice-the-precision
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 188499d221b1dd9aa88e78aa75a15f4a
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c8-r3c8 colour "white"
-kropki-2: kropki r7c5-r8c5 colour "white"
-kropki-3: kropki r8c6-r9c6 colour "white"
-kropki-4: kropki r8c2-r9c2 colour "white"
-kropki-5: kropki r4c5-r5c5 colour "white"
-kropki-6: kropki r6c8-r6c9 colour "white"
-kropki-7: kropki r2c1-r2c2 colour "white"
-kropki-8: kropki r3c4-r3c5 colour "white"
-kropki-9: kropki r7c5-r7c6 colour "black"
-kropki-10: kropki r7c7-r7c8 colour "black"
-kropki-11: kropki r9c1-r9c2 colour "black"
-kropki-12: kropki r9c2-r9c3 colour "black"
-kropki-13: kropki r1c7-r1c8 colour "black"
-kropki-14: kropki r4c7-r4c8 colour "black"
-kropki-15: kropki r4c4-r4c5 colour "black"
-kropki-16: kropki r2c5-r2c6 colour "black"
-kropki-17: kropki r2c3-r3c3 colour "black"
-kropki-18: kropki r6c1-r6c2 colour "black"
+kropki-1: kropki r2c8-r3c8 white
+kropki-2: kropki r7c5-r8c5 white
+kropki-3: kropki r8c6-r9c6 white
+kropki-4: kropki r8c2-r9c2 white
+kropki-5: kropki r4c5-r5c5 white
+kropki-6: kropki r6c8-r6c9 white
+kropki-7: kropki r2c1-r2c2 white
+kropki-8: kropki r3c4-r3c5 white
+kropki-9: kropki r7c5-r7c6 black
+kropki-10: kropki r7c7-r7c8 black
+kropki-11: kropki r9c1-r9c2 black
+kropki-12: kropki r9c2-r9c3 black
+kropki-13: kropki r1c7-r1c8 black
+kropki-14: kropki r4c7-r4c8 black
+kropki-15: kropki r4c4-r4c5 black
+kropki-16: kropki r2c5-r2c6 black
+kropki-17: kropki r2c3-r3c3 black
+kropki-18: kropki r6c1-r6c2 black
 arrow-1: arrow r7c9-r8c9-r8c8-r8c7-r9c7-r9c8-r9c9 bulb ["r7c7","r7c8"]
 arrow-2: arrow r7c4-r7c3-r8c3-r8c4-r8c5-r8c6-r9c6-r9c5-r9c4-r9c3 bulb ["r7c5","r7c6"]
 arrow-3: arrow r8c2-r8c1-r7c1-r7c2 bulb ["r9c1","r9c2"]

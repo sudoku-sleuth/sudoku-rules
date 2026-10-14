@@ -6,6 +6,7 @@ source: https://sudokupad.app/btul0ict50
 case: https://sudoku-sleuth.com/cases/rooms-on-the-quad
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0214dff9da5b7f6ac83c6637f4d25902
 ---
 
 ```rules

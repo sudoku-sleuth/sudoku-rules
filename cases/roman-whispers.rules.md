@@ -6,6 +6,7 @@ source: https://tinyurl.com/romanwhisperssudoku
 case: https://sudoku-sleuth.com/cases/roman-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d28043f0d38990477f9d6425175451d9
 ---
 
 ```rules

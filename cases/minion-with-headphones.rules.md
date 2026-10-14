@@ -6,26 +6,27 @@ source: ""
 case: https://sudoku-sleuth.com/cases/minion-with-headphones
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 988c65e446276bd9e5d42ca0e3980d66
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c2-r3c2 colour "white"
-kropki-2: kropki r4c2-r4c3 colour "white"
-kropki-3: kropki r8c4-r8c5 colour "white"
-kropki-4: kropki r6c9-r7c9 colour "white"
-kropki-5: kropki r4c5-r5c5 colour "white"
-kropki-6: kropki r4c6-r5c6 colour "white"
-kropki-7: kropki r7c9-r8c9 colour "white"
-kropki-8: kropki r3c7-r3c8 colour "black"
-kropki-9: kropki r1c8-r2c8 colour "black"
-kropki-10: kropki r8c1-r8c2 colour "black"
-kropki-11: kropki r8c5-r9c5 colour "black"
-kropki-12: kropki r6c6-r7c6 colour "black"
-kropki-13: kropki r5c5-r6c5 colour "black"
-kropki-14: kropki r9c6-r9c7 colour "black"
-kropki-15: kropki r4c8-r5c8 colour "black"
-kropki-16: kropki r3c3-r4c3 colour "black"
+kropki-1: kropki r2c2-r3c2 white
+kropki-2: kropki r4c2-r4c3 white
+kropki-3: kropki r8c4-r8c5 white
+kropki-4: kropki r6c9-r7c9 white
+kropki-5: kropki r4c5-r5c5 white
+kropki-6: kropki r4c6-r5c6 white
+kropki-7: kropki r7c9-r8c9 white
+kropki-8: kropki r3c7-r3c8 black
+kropki-9: kropki r1c8-r2c8 black
+kropki-10: kropki r8c1-r8c2 black
+kropki-11: kropki r8c5-r9c5 black
+kropki-12: kropki r6c6-r7c6 black
+kropki-13: kropki r5c5-r6c5 black
+kropki-14: kropki r9c6-r9c7 black
+kropki-15: kropki r4c8-r5c8 black
+kropki-16: kropki r3c3-r4c3 black
 whispers-1: whispers r1c5-r2c5-r3c5 gap 5
 whispers-2: whispers r1c6-r2c6-r3c6 gap 5
 whispers-3: whispers r3c4-r3c5-r3c6-r3c7-r4c7-r5c7-r6c7-r6c6-r6c5-r6c4 gap 5

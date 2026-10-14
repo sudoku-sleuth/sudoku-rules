@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 067430d1a87a4b395347f0ee27be7d6d
 ---
 
 ```rules
@@ -76,8 +77,8 @@ unique-17: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
 unique-18: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 cage r4c4-r5c4 repeats false total 7 connected true
 thermo r1c5-r1c4-r2c4
-kropki-1: kropki r5c5-r6c5 colour "black"
-kropki-2: kropki r4c5-r5c5 colour "white"
+kropki-1: kropki r5c5-r6c5 black
+kropki-2: kropki r4c5-r5c5 white
 arrow r6c3-r5c3 bulb ["r6c4"]
 whispers r3c6-r2c6-r1c6 loop false gap 3
 parity r1c3-r1c2-r1c1 loop false

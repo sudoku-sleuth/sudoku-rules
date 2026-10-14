@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/transfer-portal
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c4=2 r6c6=1
+exported: 3a67319bd9241f45661d558c07d69726
 ---
 
 ```rules

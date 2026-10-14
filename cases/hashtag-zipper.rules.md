@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hashtag-zipper
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 68aef5a8188987d197e9d95bd8c4ec85
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/d1kmembe32
 case: https://sudoku-sleuth.com/cases/disjoint-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: aa1c589fd4e300be3432e3b21166c93c
 ---
 
 ```rules
@@ -24,9 +25,9 @@ cage-11: cage r9c1-r9c2 total 8 connected true
 cage-12: cage r1c6-r2c6 total 7 connected true
 cage-13: cage r6c5-r7c5 total 10 connected true
 cage-14: cage r1c2-r2c2 total 10 connected true
-kropki-1: kropki r4c1-r4c2 colour "black"
-kropki-2: kropki r4c2-r4c3 colour "black"
-kropki-3: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r4c1-r4c2 black
+kropki-2: kropki r4c2-r4c3 black
+kropki-3: kropki r4c3-r4c4 black
 renban-1: renban r7c8-r8c9-r9c8
 renban-2: renban r1c5-r1c6-r1c7-r2c7-r2c6
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7

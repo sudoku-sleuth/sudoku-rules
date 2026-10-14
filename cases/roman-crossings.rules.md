@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/roman-crossings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=3 r2c8=9 r8c2=6 r8c8=2
+exported: 060fedcff789029b18579e877c7c41e0
 ---
 
 ```rules

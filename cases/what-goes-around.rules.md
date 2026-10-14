@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/what-goes-around
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ee0923bb87e9aa8dbfdc7845ed9f18e4
 ---
 
 ```rules
@@ -20,10 +21,10 @@ cage-6: cage r2c4-r3c4 total 6 connected true
 cage-7: cage r1c3-r2c3 total 12 connected true
 cage-8: cage r7c8-r7c9 total 14 connected true
 cage-9: cage r2c7-r2c8-r3c8 total 12 connected true
-kropki-1: kropki r8c9-r9c9 colour "black"
-kropki-2: kropki r1c1-r1c2 colour "black"
-kropki-3: kropki r1c7-r1c8 colour "black"
-kropki-4: kropki r2c9-r3c9 colour "black"
+kropki-1: kropki r8c9-r9c9 black
+kropki-2: kropki r1c1-r1c2 black
+kropki-3: kropki r1c7-r1c8 black
+kropki-4: kropki r2c9-r3c9 black
 entropic-1: entropic r2c2-r3c3-r4c3-r5c2-r6c1-r7c1-r8c2-r9c3-r9c4-r8c5-r7c6-r7c7-r8c8
 entropic-2: entropic r6c9-r5c8-r5c7-r6c6-r6c5-r5c4-r4c4-r3c5-r2c5-r1c4
 entropic-3: entropic r4c9-r4c8-r3c7-r2c6-r1c6

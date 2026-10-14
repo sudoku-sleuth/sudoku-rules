@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/symphonic-pink
 case: https://sudoku-sleuth.com/cases/symphonic-pink
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cce43a4e4c1e1153adbf0dd8eb6071d0
 ---
 
 ```rules

@@ -8,18 +8,19 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r6c1=2 r9c6=3
+exported: 8f956ae29113ef3a07d681ff062b03b8
 ---
 
 ```rules
 sudoku 9x9
 diagonal-1: diagonal direction "main"
 diagonal-2: diagonal direction "anti"
-kropki-1: kropki r5c2-r5c3 colour "white"
-kropki-2: kropki r5c7-r5c8 colour "white"
-kropki-3: kropki r4c3-r5c3 colour "white"
-kropki-4: kropki r4c7-r5c7 colour "white"
-kropki-5: kropki r7c8-r7c9 colour "white"
-kropki-6: kropki r2c3-r2c4 colour "white"
+kropki-1: kropki r5c2-r5c3 white
+kropki-2: kropki r5c7-r5c8 white
+kropki-3: kropki r4c3-r5c3 white
+kropki-4: kropki r4c7-r5c7 white
+kropki-5: kropki r7c8-r7c9 white
+kropki-6: kropki r2c3-r2c4 white
 ```
 
 ```drawing

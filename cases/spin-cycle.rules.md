@@ -6,6 +6,7 @@ source: https://sudokupad.app/bxfwykobdz
 case: https://sudoku-sleuth.com/cases/spin-cycle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 32bfaa3808b12e28deca3ba7a44eb26d
 ---
 
 ```rules

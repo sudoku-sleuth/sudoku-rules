@@ -1,9 +1,9 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 24
-    - 25
+    - r3c3
+    - r3c7
+    - r3c8
 format: open-rules
 title: This FOG is a cagey GAS
 setter: Meggen033
@@ -106,6 +106,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: d39116fedcd0fd02b5f550959271b5f4
 ---
 
 ```rules
@@ -143,26 +144,26 @@ cage-4: cage r5c4-r5c5-r6c4 total 8 connected true
 cage-5: cage r9c4-r9c5 total 9 connected true
 cage-6: cage r8c7-r9c7 total 6 connected true
 cage-7: cage r7c8-r8c8 total 12 connected true
-kropki-1: kropki r2c2-r3c2 colour "white"
-kropki-2: kropki r3c2-r4c2 colour "white"
-kropki-3: kropki r4c2-r5c2 colour "white"
-kropki-4: kropki r3c4-r4c4 colour "white"
-kropki-5: kropki r7c4-r7c5 colour "white"
-kropki-6: kropki r8c3-r8c4 colour "white"
-kropki-7: kropki r8c4-r8c5 colour "white"
-kropki-8: kropki r8c5-r8c6 colour "white"
-kropki-9: kropki r6c7-r6c8 colour "white"
-kropki-10: kropki r6c8-r6c9 colour "white"
-kropki-11: kropki r4c7-r4c8 colour "white"
-kropki-12: kropki r4c8-r4c9 colour "white"
-kropki-13: kropki r2c7-r2c8 colour "white"
-kropki-14: kropki r3c2-r3c3 colour "black"
-kropki-15: kropki r3c3-r3c4 colour "black"
-kropki-16: kropki r4c3-r5c3 colour "black"
-kropki-17: kropki r6c3-r6c4 colour "black"
-kropki-18: kropki r7c3-r7c4 colour "black"
-kropki-19: kropki r7c5-r7c6 colour "black"
-kropki-20: kropki r1c8-r2c8 colour "black"
+kropki-1: kropki r2c2-r3c2 white
+kropki-2: kropki r3c2-r4c2 white
+kropki-3: kropki r4c2-r5c2 white
+kropki-4: kropki r3c4-r4c4 white
+kropki-5: kropki r7c4-r7c5 white
+kropki-6: kropki r8c3-r8c4 white
+kropki-7: kropki r8c4-r8c5 white
+kropki-8: kropki r8c5-r8c6 white
+kropki-9: kropki r6c7-r6c8 white
+kropki-10: kropki r6c8-r6c9 white
+kropki-11: kropki r4c7-r4c8 white
+kropki-12: kropki r4c8-r4c9 white
+kropki-13: kropki r2c7-r2c8 white
+kropki-14: kropki r3c2-r3c3 black
+kropki-15: kropki r3c3-r3c4 black
+kropki-16: kropki r4c3-r5c3 black
+kropki-17: kropki r6c3-r6c4 black
+kropki-18: kropki r7c3-r7c4 black
+kropki-19: kropki r7c5-r7c6 black
+kropki-20: kropki r1c8-r2c8 black
 ```
 
 •	Normal Sudoku rules apply. 

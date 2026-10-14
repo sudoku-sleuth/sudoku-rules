@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/even-odds
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=2 r3c7=1 r5c2=5 r5c8=3 r7c5=6 r8c1=3 r8c9=9
+exported: 01aefbb3b67cdeec04d1242ef131bc74
 ---
 
 ```rules

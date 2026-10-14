@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/twenty-eight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=8 r2c2=2 r4c7=8 r6c3=2 r8c8=8 r9c5=2
+exported: b478dabd88cfac38a46772eeb356d8bf
 ---
 
 ```rules

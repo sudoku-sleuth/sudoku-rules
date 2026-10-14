@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/colour-coordinated-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 74054a6225a4d7edddd2274aa3345fcb
 ---
 
 ```rules

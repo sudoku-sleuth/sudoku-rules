@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cake-and-candles
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 510de6c0ad7219edc00f5a9adb2f7c6c
 ---
 
 ```rules

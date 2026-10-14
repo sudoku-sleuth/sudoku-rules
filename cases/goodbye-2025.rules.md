@@ -7,16 +7,17 @@ case: https://sudoku-sleuth.com/cases/goodbye-2025
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c1=2 r2c2=5 r8c8=2 r8c9=6
+exported: e7cef4395a5f6959bbb3c8d293103885
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r6c5-r7c5 colour "white"
-kropki-3: kropki r2c3-r3c3 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
-kropki-5: kropki r4c6-r4c7 colour "black"
-kropki-6: kropki r4c4-r5c4 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r6c5-r7c5 white
+kropki-3: kropki r2c3-r3c3 white
+kropki-4: kropki r2c5-r3c5 white
+kropki-5: kropki r4c6-r4c7 black
+kropki-6: kropki r4c4-r5c4 black
 arrow r4c4-r5c5-r6c6-r7c7 bulb ["r3c3"]
 region-sum-1: region-sum r3c2-r4c3-r5c4-r6c5-r7c6-r8c7 segments [["r3c2"],["r4c3"],["r5c4","r6c5"],["r7c6"],["r8c7"]]
 region-sum-2: region-sum r3c1-r4c2-r5c3 segments [["r3c1"],["r4c2","r5c3"]]

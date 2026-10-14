@@ -6,6 +6,7 @@ source: https://sudokupad.app/1g1ronnkv7
 case: https://sudoku-sleuth.com/cases/combining-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 58aa0b03e3cbd03c330d1ca300f4c41d
 ---
 
 ```rules

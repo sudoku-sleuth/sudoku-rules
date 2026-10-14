@@ -6,18 +6,19 @@ source: https://sudokupad.app/mdp/pointing-through-the-window
 case: https://sudoku-sleuth.com/cases/pointing-through-the-window
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8ab291bd1183bb24280cfe6977879d04
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r7c9-r8c9 colour "white"
-kropki-3: kropki r7c3-r7c4 colour "white"
-kropki-4: kropki r3c4-r4c4 colour "white"
-kropki-5: kropki r3c7-r3c8 colour "black"
-kropki-6: kropki r3c3-r3c4 colour "black"
-kropki-7: kropki r2c8-r2c9 colour "black"
-kropki-8: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r7c9-r8c9 white
+kropki-3: kropki r7c3-r7c4 white
+kropki-4: kropki r3c4-r4c4 white
+kropki-5: kropki r3c7-r3c8 black
+kropki-6: kropki r3c3-r3c4 black
+kropki-7: kropki r2c8-r2c9 black
+kropki-8: kropki r8c2-r9c2 black
 arrow-1: arrow r7c3-r7c4-r6c4 bulb ["r8c2"]
 arrow-2: arrow r7c2-r6c2 bulb ["r8c2"]
 arrow-3: arrow r3c3-r3c4-r4c4 bulb ["r2c2"]

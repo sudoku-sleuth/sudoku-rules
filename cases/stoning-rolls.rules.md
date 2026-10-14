@@ -6,6 +6,7 @@ source: https://sudokupad.app/1dx1x4fscl
 case: https://sudoku-sleuth.com/cases/stoning-rolls
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: abe35466fae73845cfc2e0c9dca35a8d
 ---
 
 ```rules

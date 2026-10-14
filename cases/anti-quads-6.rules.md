@@ -6,15 +6,16 @@ source: https://sudokupad.app/957yp7l53q
 case: https://sudoku-sleuth.com/cases/anti-quads-6
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 956872025a6cd003e476e0819097a521
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r8c3-r8c4 colour "black"
-kropki-4: kropki r3c6-r3c7 colour "black"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r8c3-r8c4 black
+kropki-4: kropki r3c6-r3c7 black
 quadruple-1: quadruple r1c8-r1c9-r2c8-r2c9 digits [3,5,6,8]
 quadruple-2: quadruple r3c1-r3c2-r4c1-r4c2 digits [1,2]
 quadruple-3: quadruple r5c6-r5c7-r6c6-r6c7 digits [1,1,2,2]

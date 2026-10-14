@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/this-sums-to-11
 case: https://sudoku-sleuth.com/cases/this-sums-to-11
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7bc66d8d5839dbc31ef321208180510e
 ---
 
 ```rules

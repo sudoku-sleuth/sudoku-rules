@@ -9,12 +9,13 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Some of the source rules still need to be included in our reading.
+exported: 30bc221353fb53637c14a793b230ad83
 ---
 
 ```rules
 sudoku 9x9
 cage r6c8-r6c9 total 9 connected true
-kropki r8c6-r9c6 colour "white"
+kropki r8c6-r9c6 white
 ```
 
 ```drawing

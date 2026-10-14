@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/flag
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r6c4=1
+exported: c21b88f334517ceb9c6680b746d19421
 ---
 
 ```rules

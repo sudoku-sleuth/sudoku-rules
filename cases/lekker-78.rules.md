@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/lekker-78
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=8
+exported: 8c41f2f22f6cd0761fd29e6608937377
 ---
 
 ```rules

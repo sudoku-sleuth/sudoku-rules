@@ -6,6 +6,7 @@ source: https://sudokupad.app/jhi6t6ce5r
 case: https://sudoku-sleuth.com/cases/all-bricked-in
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0e72cc4cafa4485fb31f289d3d486682
 ---
 
 ```rules

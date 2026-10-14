@@ -6,6 +6,7 @@ source: https://tinyurl.com/jxwpm222
 case: https://sudoku-sleuth.com/cases/cartwheel
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1a3a91e409621c7739eaca778a1cdaf3
 ---
 
 ```rules

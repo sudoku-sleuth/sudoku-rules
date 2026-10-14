@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/battle-of-five-armies
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0190fc733f9bc3f94acd8f67515ae6ce
 ---
 
 ```rules
@@ -20,7 +21,7 @@ pair-1: pair r5c3-r6c3 difference 8
 pair-2: pair r7c4-r7c5 difference 3
 pair-3: pair r2c4-r2c5 difference 2
 pair-4: pair r1c6-r2c6 difference 4
-kropki r4c5-r4c6 colour "white"
+kropki r4c5-r4c6 white
 ```
 
 ```drawing

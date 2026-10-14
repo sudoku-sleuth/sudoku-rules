@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/valentine-equality-cages-125
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 78cd553f84a8ccf7568231d758bdc005
 ---
 
 ```rules
@@ -19,10 +20,10 @@ equality-cage-5: equality-cage r9c1-r9c2
 equality-cage-6: equality-cage r1c6-r1c7
 equality-cage-7: equality-cage r5c1-r6c1
 equality-cage-8: equality-cage r6c5-r6c6
-kropki-1: kropki r8c4-r8c5 colour "black"
-kropki-2: kropki r4c8-r5c8 colour "black"
-kropki-3: kropki r6c7-r7c7 colour "black"
-kropki-4: kropki r3c2-r4c2 colour "black"
+kropki-1: kropki r8c4-r8c5 black
+kropki-2: kropki r4c8-r5c8 black
+kropki-3: kropki r6c7-r7c7 black
+kropki-4: kropki r3c2-r4c2 black
 pair-1: pair r4c5-r5c5 sum 10
 pair-2: pair r1c7-r2c7 sum 10
 pair-3: pair r9c7-r9c8 sum 10

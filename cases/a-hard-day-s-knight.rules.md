@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-hard-day-s-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ....6...............4.5.1...........1.8.9.6.3...........3.7.2...............8....
+exported: 7cb36a9df22bf37d8af8b4481f9c4b4d
 ---
 
 ```rules

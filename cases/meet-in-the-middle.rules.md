@@ -6,6 +6,7 @@ source: https://f-puzzles.com/?id=2ggv9cku
 case: https://sudoku-sleuth.com/cases/meet-in-the-middle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 51fbc7ffa9fbe32b82a3c23ba0c6f0b6
 ---
 
 ```rules

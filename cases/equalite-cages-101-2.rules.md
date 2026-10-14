@@ -53,6 +53,7 @@ board:
       - r6c4
       - r6c5
       - r6c6
+exported: 7efacedc66add8f5bfe96de4327d4f5b
 ---
 
 ```rules
@@ -84,10 +85,10 @@ equality-cage-7: equality-cage r4c5-r4c6
 equality-cage-8: equality-cage r4c4-r5c4
 equality-cage-9: equality-cage r6c5-r6c6
 equality-cage-10: equality-cage r2c4-r3c4
-kropki-1: kropki r1c3-r1c4 colour "black"
-kropki-2: kropki r1c6-r2c6 colour "black"
-kropki-3: kropki r1c1-r2c1 colour "white"
-kropki-4: kropki r5c3-r6c3 colour "white"
+kropki-1: kropki r1c3-r1c4 black
+kropki-2: kropki r1c6-r2c6 black
+kropki-3: kropki r1c1-r2c1 white
+kropki-4: kropki r5c3-r6c3 white
 ```
 
 Normal 6x6 sudoku rules apply. Place the digits 1 through 6 in each empty cell. Digits must not repeat within the same row, column, or box.

@@ -6,12 +6,13 @@ source: https://sudokupad.app/063ypj26m8
 case: https://sudoku-sleuth.com/cases/shifter-dots-102
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 689055754ae02c483eccc14989ab7299
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r2c1 colour "black"
-kropki-2: kropki r2c1-r3c1 colour "black"
+kropki-1: kropki r1c1-r2c1 black
+kropki-2: kropki r2c1-r3c1 black
 whispers-1: whispers r1c1-r1c2-r2c1-r2c2-r3c1 gap 5
 whispers-2: whispers r7c2-r7c1-r8c1-r9c1 gap 5
 whispers-3: whispers r2c9-r3c9-r2c8-r3c7-r2c7 gap 5

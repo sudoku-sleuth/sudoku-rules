@@ -6,6 +6,7 @@ source: https://sudokupad.app/1fbogisas3
 case: https://sudoku-sleuth.com/cases/vicky
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 92e937ae62a9f0710bc5d0d9d112edfe
 ---
 
 ```rules
@@ -23,11 +24,11 @@ thermo-6: thermo r7c3-r6c4
 thermo-7: thermo r7c3-r8c4
 thermo-8: thermo r7c3-r6c3
 thermo-9: thermo r7c3-r8c3
-kropki-1: kropki r8c3-r9c3 colour "white"
-kropki-2: kropki r7c3-r8c3 colour "white"
-kropki-3: kropki r8c3-r8c4 colour "white"
-kropki-4: kropki r6c7-r6c8 colour "white"
-kropki-5: kropki r5c5-r6c5 colour "white"
+kropki-1: kropki r8c3-r9c3 white
+kropki-2: kropki r7c3-r8c3 white
+kropki-3: kropki r8c3-r8c4 white
+kropki-4: kropki r6c7-r6c8 white
+kropki-5: kropki r5c5-r6c5 white
 renban-1: renban r8c1-r9c1-r9c2
 renban-2: renban r9c4-r9c5-r9c6
 renban-3: renban r9c8-r9c9-r8c9

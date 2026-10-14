@@ -6,6 +6,7 @@ source: https://sudokupad.app/ta16kgbg7v
 case: https://sudoku-sleuth.com/cases/extreme-roping-speed-run
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 10de711c03d99899343aacf07d11ae59
 ---
 
 ```rules

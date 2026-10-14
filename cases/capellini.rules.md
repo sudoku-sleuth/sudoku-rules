@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/capellini
 case: https://sudoku-sleuth.com/cases/capellini
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e29eba46e78f677bcf92f2e56b373789
 ---
 
 ```rules

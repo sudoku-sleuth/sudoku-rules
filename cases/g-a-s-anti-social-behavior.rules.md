@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/g-a-s-anti-social-behavior
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e61f9fbc4714d752ccbbc6e5259152c7
 ---
 
 ```rules

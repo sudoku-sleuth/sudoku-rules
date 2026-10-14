@@ -6,6 +6,7 @@ source: https://sudokupad.app/5borf5b0wj
 case: https://sudoku-sleuth.com/cases/1-5-9-o-clock-rock
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 573eda40fe0e15d404e4d7ca6e6d6114
 ---
 
 ```rules
@@ -19,7 +20,7 @@ cage-6: cage r5c9-r6c9 total 9 connected true
 cage-7: cage r8c1-r9c1 total 11 connected true
 cage-8: cage r8c5-r9c5 total 11 connected true
 cage-9: cage r8c9-r9c9 total 9 connected true
-kropki r7c7-r7c8 colour "black"
+kropki r7c7-r7c8 black
 pair-1: pair r1c5-r1c6 sum 10
 pair-2: pair r7c4-r7c5 sum 10
 pair-3: pair r8c2-r8c3 sum 5

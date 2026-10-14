@@ -6,6 +6,7 @@ source: https://sudokupad.app/1be427kdga
 case: https://sudoku-sleuth.com/cases/wind-chimes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: cb60162202665d91654ce9d4cdf4d5ed
 ---
 
 ```rules

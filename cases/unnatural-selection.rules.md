@@ -9,21 +9,22 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
+exported: ea462df3983f9e7784229ced2ec1354c
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r1c6-r2c6-r3c4-r3c5-r3c6 total 42 connected true
 cage-2: cage r1c4-r1c5-r2c4-r2c5 total 21 connected true
-kropki-1: kropki r7c6-r8c6 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r4c3-r5c3 colour "white"
-kropki-4: kropki r5c1-r5c2 colour "white"
-kropki-5: kropki r6c2-r6c3 colour "white"
-kropki-6: kropki r8c4-r9c4 colour "white"
-kropki-7: kropki r5c9-r6c9 colour "black"
-kropki-8: kropki r6c8-r6c9 colour "black"
-kropki-9: kropki r4c7-r4c8 colour "black"
+kropki-1: kropki r7c6-r8c6 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r4c3-r5c3 white
+kropki-4: kropki r5c1-r5c2 white
+kropki-5: kropki r6c2-r6c3 white
+kropki-6: kropki r8c4-r9c4 white
+kropki-7: kropki r5c9-r6c9 black
+kropki-8: kropki r6c8-r6c9 black
+kropki-9: kropki r4c7-r4c8 black
 arrow-1: arrow r8c8-r9c9 bulb ["r7c7"]
 arrow-2: arrow r8c9-r9c8-r8c7 bulb ["r7c8"]
 arrow-3: arrow r3c2-r2c2-r1c2 bulb ["r3c3"]

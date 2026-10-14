@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/ikea-skylines
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c9=8 r5c5=3 r6c2=4
+exported: 4ae922c2d552c651e48ec90b05fab89b
 ---
 
 ```rules

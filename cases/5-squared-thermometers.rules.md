@@ -6,6 +6,7 @@ source: https://sudokupad.app/9zz2m9uq3r
 case: https://sudoku-sleuth.com/cases/5-squared-thermometers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 167d2ac89fc7fed97c51276c608ce0a5
 ---
 
 ```rules

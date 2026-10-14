@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/magistratum
 case: https://sudoku-sleuth.com/cases/magistratum
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2133e87a988f51e5cc8077d4caa19a34
 ---
 
 ```rules

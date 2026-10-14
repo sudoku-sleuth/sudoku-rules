@@ -6,6 +6,7 @@ source: https://sudokupad.app/qi6fqb0h0z
 case: https://sudoku-sleuth.com/cases/rat-a-tat-tat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 657715d61a9ba81aa76dc3fde9143d95
 ---
 
 ```rules

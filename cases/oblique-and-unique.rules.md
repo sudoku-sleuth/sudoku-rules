@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oblique-and-unique
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9c10db188a3eac351c351e85b4788787
 ---
 
 ```rules

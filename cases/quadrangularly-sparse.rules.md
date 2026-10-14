@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/quadrangularly-sparse
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e8a0a1551b3e355338ab3b5c1e5048ca
 ---
 
 ```rules
@@ -21,8 +22,8 @@ cage-7: cage r1c1-r1c2-r2c1-r2c2 total 18 connected true
 cage-8: cage r8c6-r9c6 total 11 connected true
 cage-9: cage r1c6-r2c6 total 8 connected true
 cage-10: cage r8c4-r9c4 total 9 connected true
-kropki-1: kropki r1c2-r1c3 colour "white"
-kropki-2: kropki r9c2-r9c3 colour "white"
+kropki-1: kropki r1c2-r1c3 white
+kropki-2: kropki r9c2-r9c3 white
 arrow-1: arrow r4c4-r4c5 bulb ["r5c3"]
 arrow-2: arrow r6c4-r6c5 bulb ["r5c3"]
 arrow-3: arrow r4c2-r4c1 bulb ["r5c3"]

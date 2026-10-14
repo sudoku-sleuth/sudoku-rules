@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/surrounded-bunker
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c62c0d9b7761c0db39605f854b5a4d82
 ---
 
 ```rules

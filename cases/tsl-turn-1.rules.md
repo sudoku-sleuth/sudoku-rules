@@ -6,6 +6,7 @@ source: https://sudokupad.app/b90lxd39ek
 case: https://sudoku-sleuth.com/cases/tsl-turn-1
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 50797b3bebc6a1cda654a508ca343772
 ---
 
 ```rules

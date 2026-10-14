@@ -6,6 +6,7 @@ source: https://sudokupad.app/atp3vge8x6
 case: https://sudoku-sleuth.com/cases/going-down-the-drain
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b1207ad2380447237d8f174bd708e6fb
 ---
 
 ```rules

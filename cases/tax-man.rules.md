@@ -6,19 +6,20 @@ source: https://sudokupad.app/1tw8irygvv
 case: https://sudoku-sleuth.com/cases/tax-man
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c0612594f39ca0804f8873b0db26f02e
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c6-r7c7 colour "white"
-kropki-2: kropki r8c4-r9c4 colour "white"
-kropki-3: kropki r8c5-r9c5 colour "white"
-kropki-4: kropki r9c4-r9c5 colour "white"
-kropki-5: kropki r3c6-r3c7 colour "black"
-kropki-6: kropki r7c3-r7c4 colour "black"
-kropki-7: kropki r3c9-r4c9 colour "black"
-kropki-8: kropki r8c4-r8c5 colour "black"
-kropki-9: kropki r2c1-r2c2 colour "black"
+kropki-1: kropki r7c6-r7c7 white
+kropki-2: kropki r8c4-r9c4 white
+kropki-3: kropki r8c5-r9c5 white
+kropki-4: kropki r9c4-r9c5 white
+kropki-5: kropki r3c6-r3c7 black
+kropki-6: kropki r7c3-r7c4 black
+kropki-7: kropki r3c9-r4c9 black
+kropki-8: kropki r8c4-r8c5 black
+kropki-9: kropki r2c1-r2c2 black
 whispers-1: whispers r3c2-r2c2-r1c2 gap 5
 whispers-2: whispers r1c1-r1c2-r1c3 gap 5
 whispers-3: whispers r3c7-r2c8-r1c9 gap 5

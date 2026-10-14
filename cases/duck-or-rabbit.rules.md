@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/duck-or-rabbit
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9f74f3cb22d6904c4d82ee72d03de9b5
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/3er87co261
 case: https://sudoku-sleuth.com/cases/equality-cages-109
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d7a74da62d44500da3c067ebf9215bd7
 ---
 
 ```rules
@@ -18,10 +19,10 @@ equality-cage-5: equality-cage r5c7-r5c8
 equality-cage-6: equality-cage r3c8-r3c9
 equality-cage-7: equality-cage r4c2-r5c2-r5c3-r6c2
 equality-cage-8: equality-cage r7c2-r8c2
-kropki-1: kropki r5c8-r6c8 colour "white"
-kropki-2: kropki r3c9-r4c9 colour "black"
-kropki-3: kropki r9c3-r9c4 colour "black"
-kropki-4: kropki r8c4-r8c5 colour "black"
+kropki-1: kropki r5c8-r6c8 white
+kropki-2: kropki r3c9-r4c9 black
+kropki-3: kropki r9c3-r9c4 black
+kropki-4: kropki r8c4-r8c5 black
 zipper-1: zipper r6c6-r6c5-r6c4-r5c3-r5c4-r5c5-r5c6
 zipper-2: zipper r7c4-r8c3-r8c4
 zipper-3: zipper r4c6-r4c5-r4c4

@@ -6,6 +6,7 @@ source: https://sudokupad.app/3hsop4hsly
 case: https://sudoku-sleuth.com/cases/a-positive-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f254f2d61f27e196cd23f456e4b1b6ab
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/glyph
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c6=4 r4c1=2 r6c9=8 r9c4=6
+exported: be974cebebb7c23309fedc6aa7f39a4e
 ---
 
 ```rules

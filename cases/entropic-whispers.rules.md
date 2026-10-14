@@ -1,79 +1,79 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 9
-    - 10
-    - 11
-    - 12
-    - 13
-    - 14
-    - 18
-    - 19
-    - 20
-    - 21
-    - 22
-    - 23
-    - 24
-    - 27
-    - 28
-    - 29
-    - 30
-    - 31
-    - 32
-    - 33
-    - 34
-    - 35
-    - 36
-    - 37
-    - 38
-    - 39
-    - 40
-    - 41
-    - 42
-    - 43
-    - 44
-    - 45
-    - 46
-    - 47
-    - 48
-    - 49
-    - 50
-    - 51
-    - 52
-    - 53
-    - 54
-    - 55
-    - 56
-    - 57
-    - 58
-    - 59
-    - 60
-    - 61
-    - 62
-    - 63
-    - 64
-    - 65
-    - 66
-    - 67
-    - 68
-    - 69
-    - 70
-    - 71
-    - 72
-    - 73
-    - 74
-    - 75
-    - 76
-    - 77
-    - 78
-    - 79
-    - 80
+    - r1c1
+    - r1c2
+    - r1c3
+    - r1c4
+    - r1c5
+    - r1c6
+    - r2c1
+    - r2c2
+    - r2c3
+    - r2c4
+    - r2c5
+    - r2c6
+    - r3c1
+    - r3c2
+    - r3c3
+    - r3c4
+    - r3c5
+    - r3c6
+    - r3c7
+    - r4c1
+    - r4c2
+    - r4c3
+    - r4c4
+    - r4c5
+    - r4c6
+    - r4c7
+    - r4c8
+    - r4c9
+    - r5c1
+    - r5c2
+    - r5c3
+    - r5c4
+    - r5c5
+    - r5c6
+    - r5c7
+    - r5c8
+    - r5c9
+    - r6c1
+    - r6c2
+    - r6c3
+    - r6c4
+    - r6c5
+    - r6c6
+    - r6c7
+    - r6c8
+    - r6c9
+    - r7c1
+    - r7c2
+    - r7c3
+    - r7c4
+    - r7c5
+    - r7c6
+    - r7c7
+    - r7c8
+    - r7c9
+    - r8c1
+    - r8c2
+    - r8c3
+    - r8c4
+    - r8c5
+    - r8c6
+    - r8c7
+    - r8c8
+    - r8c9
+    - r9c1
+    - r9c2
+    - r9c3
+    - r9c4
+    - r9c5
+    - r9c6
+    - r9c7
+    - r9c8
+    - r9c9
 format: open-rules
 title: Entropic Whispers
 setter: Sir Moose
@@ -81,11 +81,12 @@ source: https://sudokupad.app/r4lnzsxtei
 case: https://sudoku-sleuth.com/cases/entropic-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f88f43ab7ad0a4d561a917d6d1e79d9b
 ---
 
 ```rules
 sudoku 9x9
-kropki r2c8-r3c8 colour "black"
+kropki r2c8-r3c8 black
 whispers-1: whispers r2c2-r3c2-r4c2 gap 5
 whispers-2: whispers r2c3-r2c4-r3c3 gap 5
 whispers-3: whispers r5c2-r6c1 gap 5

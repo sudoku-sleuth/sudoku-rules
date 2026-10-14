@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/slow-enthermopy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9ec7df8461a3176afe0047cf7df939d8
 ---
 
 ```rules

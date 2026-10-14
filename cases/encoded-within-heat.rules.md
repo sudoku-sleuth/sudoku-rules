@@ -6,6 +6,7 @@ source: https://sudokupad.app/rpxc394vp1
 case: https://sudoku-sleuth.com/cases/encoded-within-heat
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 745fa8bae3503971727c8d26d56716f6
 ---
 
 ```rules
@@ -15,15 +16,15 @@ thermo-2: thermo r6c2-r7c2-r8c2
 thermo-3: thermo r8c5-r9c4-r8c3
 thermo-4: thermo r3c8-r2c7-r1c6
 thermo-5: thermo r9c9-r9c8-r9c7
-kropki-1: kropki r2c2-r2c3 colour "white"
-kropki-2: kropki r2c6-r2c7 colour "white"
-kropki-3: kropki r2c8-r2c9 colour "white"
-kropki-4: kropki r3c4-r3c5 colour "white"
-kropki-5: kropki r3c6-r3c7 colour "white"
-kropki-6: kropki r6c5-r6c6 colour "white"
-kropki-7: kropki r5c4-r5c5 colour "white"
-kropki-8: kropki r7c2-r7c3 colour "white"
-kropki-9: kropki r9c5-r9c6 colour "white"
+kropki-1: kropki r2c2-r2c3 white
+kropki-2: kropki r2c6-r2c7 white
+kropki-3: kropki r2c8-r2c9 white
+kropki-4: kropki r3c4-r3c5 white
+kropki-5: kropki r3c6-r3c7 white
+kropki-6: kropki r6c5-r6c6 white
+kropki-7: kropki r5c4-r5c5 white
+kropki-8: kropki r7c2-r7c3 white
+kropki-9: kropki r9c5-r9c6 white
 whispers-1: whispers r1c2-r1c3 gap 5
 whispers-2: whispers r1c4-r1c5 gap 5
 whispers-3: whispers r1c6-r1c7 gap 5

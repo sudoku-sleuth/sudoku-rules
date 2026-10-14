@@ -6,6 +6,7 @@ source: https://sudokupad.app/0spknnnji2
 case: https://sudoku-sleuth.com/cases/getting-warm-with-diagonal-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 313d6d1b15ac69ca615b234360ade7d7
 ---
 
 ```rules

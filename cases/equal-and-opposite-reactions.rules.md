@@ -6,18 +6,19 @@ source: https://sudokupad.app/uuzqskf10q
 case: https://sudoku-sleuth.com/cases/equal-and-opposite-reactions
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2a940ab7df576e84e0c1477eae1d0501
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "white"
-kropki-3: kropki r4c3-r4c4 colour "white"
-kropki-4: kropki r8c9-r9c9 colour "white"
-kropki-5: kropki r7c9-r8c9 colour "white"
-kropki-6: kropki r3c8-r4c8 colour "white"
-kropki-7: kropki r2c8-r3c8 colour "white"
-kropki-8: kropki r2c8-r2c9 colour "white"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r4c5-r4c6 white
+kropki-3: kropki r4c3-r4c4 white
+kropki-4: kropki r8c9-r9c9 white
+kropki-5: kropki r7c9-r8c9 white
+kropki-6: kropki r3c8-r4c8 white
+kropki-7: kropki r2c8-r3c8 white
+kropki-8: kropki r2c8-r2c9 white
 arrow-1: arrow r3c3-r4c4-r5c5 bulb ["r2c2"]
 arrow-2: arrow r4c2-r5c3-r6c4 bulb ["r3c1"]
 arrow-3: arrow r7c7-r6c6-r5c5 bulb ["r8c8"]

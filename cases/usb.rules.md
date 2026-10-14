@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/usb
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5eb80fa498ebec924551bde4061adfb9
 ---
 
 ```rules
@@ -18,8 +19,8 @@ thermo-3: thermo r8c5-r7c5-r6c5-r5c5-r4c5-r3c5-r2c5
 thermo-4: thermo r8c5-r7c5-r6c5-r5c5-r4c6-r3c6
 thermo-5: thermo r7c2-r6c2-r5c2-r4c2-r3c2-r2c2-r1c2
 thermo-6: thermo r7c2-r6c2-r5c2-r4c2-r3c3-r2c3
-kropki-1: kropki r1c1-r2c1 colour "black"
-kropki-2: kropki r8c9-r9c9 colour "black"
+kropki-1: kropki r1c1-r2c1 black
+kropki-2: kropki r8c9-r9c9 black
 parity-cells-1: parity-cells r4c1-r5c4-r6c7 parity "odd"
 parity-cells-2: parity-cells r4c9-r3c6-r2c3 parity "even"
 ```

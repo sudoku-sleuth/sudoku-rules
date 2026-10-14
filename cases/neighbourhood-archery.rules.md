@@ -6,6 +6,7 @@ source: https://sudokupad.app/ztl1n4602p
 case: https://sudoku-sleuth.com/cases/neighbourhood-archery
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 9602ea7327dfe950842340e58fdfe31e
 ---
 
 ```rules

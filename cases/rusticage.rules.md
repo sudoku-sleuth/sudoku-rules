@@ -6,6 +6,7 @@ source: https://sudokupad.app/7b8tzrkopf
 case: https://sudoku-sleuth.com/cases/rusticage
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5ac7c59263bed6646b09895f956e1a07
 ---
 
 ```rules

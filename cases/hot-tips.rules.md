@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/hot-tips
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 2cdd20e3d9ca6273bdc8bf9dd6ffc344
 ---
 
 ```rules

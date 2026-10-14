@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/stepping-stones
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=7 r5c5=1
+exported: 51ca6a31cdab921e33f850ad1ff6bda1
 ---
 
 ```rules

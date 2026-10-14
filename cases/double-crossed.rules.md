@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/double-crossed
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c3=1 r3c7=2 r7c3=3 r7c7=4
+exported: c17bcab2b9d23f9c1c5f4c9df52159c6
 ---
 
 ```rules

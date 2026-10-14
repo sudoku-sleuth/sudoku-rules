@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/happy-23rd
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=1 r2c6=9 r3c7=9 r4c8=9
+exported: 58e64e498311e6e7210c332df25c8fe8
 ---
 
 ```rules

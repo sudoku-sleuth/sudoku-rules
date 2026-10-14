@@ -6,6 +6,7 @@ source: https://sudokupad.app/45j9szqi3k
 case: https://sudoku-sleuth.com/cases/modelisks
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 05722ac598c0a6200971c46f8ce5c854
 ---
 
 ```rules

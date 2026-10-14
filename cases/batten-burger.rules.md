@@ -10,6 +10,7 @@ drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
   - A source line layer still needs to be included in our reading.
+exported: 3097bf2e6a56e08c58c76db398095a99
 ---
 
 ```rules

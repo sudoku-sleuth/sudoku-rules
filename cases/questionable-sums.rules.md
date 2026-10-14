@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/questionable-sums
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 45936706997a3d362a108dba7aa1005f
 ---
 
 ```rules

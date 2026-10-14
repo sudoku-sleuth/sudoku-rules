@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/mean-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c7=8 r2c5=4 r3c9=9 r5c2=6 r6c7=1 r7c1=5 r7c6=2 r8c8=3 r9c3=7
+exported: 2edb2ce640bef9cdf6cde3f1c866902b
 ---
 
 ```rules

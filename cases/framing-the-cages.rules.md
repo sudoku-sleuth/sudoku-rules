@@ -6,6 +6,7 @@ source: https://sudokupad.app/spjpd3v0v2
 case: https://sudoku-sleuth.com/cases/framing-the-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4bc28d0695c6bfa6070e93e479bc0d52
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/dance-with-a-little-killer
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c6=6 r4c3=6 r6c7=8 r7c1=3 r7c4=7 r8c3=4
+exported: 36247360d21cbdf75bcb5062e26337fb
 ---
 
 ```rules

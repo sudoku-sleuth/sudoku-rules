@@ -1,8 +1,8 @@
 ---
 fog:
   initiallyLit:
-    - 21
-    - 29
+    - r3c4
+    - r4c3
 format: open-rules
 title: Chuy the “Frisbee Detective“
 setter: Sandra & Nala
@@ -11,17 +11,18 @@ case: https://sudoku-sleuth.com/cases/chuy-the-frisbee-detective
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 08c08f3ef465ea08aa89b5f3b952c7ee
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r5c9-r6c9 colour "white"
-kropki-3: kropki r7c3-r7c4 colour "white"
-kropki-4: kropki r1c1-r2c1 colour "black"
-kropki-5: kropki r2c1-r2c2 colour "black"
-kropki-6: kropki r3c7-r4c7 colour "black"
-kropki-7: kropki r8c7-r9c7 colour "black"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r5c9-r6c9 white
+kropki-3: kropki r7c3-r7c4 white
+kropki-4: kropki r1c1-r2c1 black
+kropki-5: kropki r2c1-r2c2 black
+kropki-6: kropki r3c7-r4c7 black
+kropki-7: kropki r8c7-r9c7 black
 palindrome-1: palindrome r3c1-r2c2-r3c3-r2c3-r2c4-r3c5-r4c4-r5c4-r5c3
 palindrome-2: palindrome r6c7-r6c8-r7c7-r8c7-r9c8
 ```

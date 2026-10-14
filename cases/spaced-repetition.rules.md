@@ -6,6 +6,7 @@ source: https://tinyurl.com/5zj2j99k
 case: https://sudoku-sleuth.com/cases/spaced-repetition
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 89c3001db63a5ea5c4a7f48c89caf4b0
 ---
 
 ```rules

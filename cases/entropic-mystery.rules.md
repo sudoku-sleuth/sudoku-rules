@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/entropic-mystery
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 91e3fbb51710b610b9e4da876e632cc8
 ---
 
 ```rules

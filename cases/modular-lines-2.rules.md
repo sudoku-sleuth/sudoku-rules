@@ -6,6 +6,7 @@ source: https://sudokupad.app/4pmy4fip6p
 case: https://sudoku-sleuth.com/cases/modular-lines-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a6b0c681edd7a3d26bbaa3fcf739692f
 ---
 
 ```rules

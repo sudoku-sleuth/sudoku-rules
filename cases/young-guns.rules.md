@@ -6,6 +6,7 @@ source: https://sudokupad.app/5h2ts721l4
 case: https://sudoku-sleuth.com/cases/young-guns
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7bc64b71806eb7dfbe1d8293fa7d8e7c
 ---
 
 ```rules

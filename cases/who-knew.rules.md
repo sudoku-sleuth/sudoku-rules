@@ -6,6 +6,7 @@ source: https://sudokupad.app/bkl8xd9iu6
 case: https://sudoku-sleuth.com/cases/who-knew
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b1d98e822e6986fa83a59f26f7ee5dd5
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/radar
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: ..3...8...5.....3.6.......1...........................9.......2.4.....5...7...4..
+exported: 5ec95c0abaf6fd556a1558362283f839
 ---
 
 ```rules

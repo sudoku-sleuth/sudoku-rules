@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/five-knot
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=2 r2c4=2 r2c8=1 r3c2=5 r4c3=9 r5c5=5 r6c7=1 r7c8=5 r8c2=9 r8c6=8 r9c9=8
+exported: d34b0678b8ec1bcc46d4d77e9d58c263
 ---
 
 ```rules

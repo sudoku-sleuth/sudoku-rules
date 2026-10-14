@@ -1,42 +1,42 @@
 ---
 fog:
   initiallyLit:
-    - 3
-    - 4
-    - 5
-    - 12
-    - 13
-    - 14
-    - 21
-    - 22
-    - 23
-    - 27
-    - 28
-    - 29
-    - 33
-    - 34
-    - 35
-    - 36
-    - 37
-    - 38
-    - 42
-    - 43
-    - 44
-    - 45
-    - 46
-    - 47
-    - 51
-    - 52
-    - 53
-    - 57
-    - 58
-    - 59
-    - 66
-    - 67
-    - 68
-    - 75
-    - 76
-    - 77
+    - r1c4
+    - r1c5
+    - r1c6
+    - r2c4
+    - r2c5
+    - r2c6
+    - r3c4
+    - r3c5
+    - r3c6
+    - r4c1
+    - r4c2
+    - r4c3
+    - r4c7
+    - r4c8
+    - r4c9
+    - r5c1
+    - r5c2
+    - r5c3
+    - r5c7
+    - r5c8
+    - r5c9
+    - r6c1
+    - r6c2
+    - r6c3
+    - r6c7
+    - r6c8
+    - r6c9
+    - r7c4
+    - r7c5
+    - r7c6
+    - r8c4
+    - r8c5
+    - r8c6
+    - r9c4
+    - r9c5
+    - r9c6
 format: open-rules
 title: Three by Three in the Fog
 setter: Sir Moose
@@ -139,6 +139,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: dceac162d2310c40344c5a44cf8cd83f
 ---
 
 ```rules

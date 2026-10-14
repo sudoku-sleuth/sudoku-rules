@@ -6,6 +6,7 @@ source: https://sudokupad.app/k0u827xg6h
 case: https://sudoku-sleuth.com/cases/el-trece
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ea794c0592404665b5dbfac1c717712d
 ---
 
 ```rules

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-christmas-star
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1aafd968f4e40a2aeb24586a090d5ea1
 ---
 
 ```rules
@@ -16,11 +17,11 @@ thermo-1: thermo r4c5-r3c4-r2c3
 thermo-2: thermo r4c5-r5c6-r6c7
 thermo-3: thermo r4c5-r3c6-r2c7
 thermo-4: thermo r4c5-r5c4-r6c3
-kropki-1: kropki r9c2-r9c3 colour "black"
-kropki-2: kropki r1c3-r2c3 colour "black"
-kropki-3: kropki r2c6-r3c6 colour "black"
-kropki-4: kropki r2c8-r3c8 colour "black"
-kropki-5: kropki r5c8-r6c8 colour "black"
+kropki-1: kropki r9c2-r9c3 black
+kropki-2: kropki r1c3-r2c3 black
+kropki-3: kropki r2c6-r3c6 black
+kropki-4: kropki r2c8-r3c8 black
+kropki-5: kropki r5c8-r6c8 black
 whispers r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5-r8c5 gap 5
 renban r4c2-r4c3-r4c4-r4c5-r4c6-r4c7-r4c8
 ```

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/monkeys-attack-emerald-city
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 59d60d0683f32239b96d02d8bcb7e990
 ---
 
 ```rules
@@ -19,20 +20,20 @@ cage-6: cage r1c5-r1c6-r2c5-r2c6 total 30 connected true
 cage-7: cage r3c5-r4c5-r5c5-r6c5 total 10 connected true
 cage-8: cage r3c4-r4c4-r5c4-r6c4 total 20 connected true
 cage-9: cage r1c1-r2c1-r3c1-r4c1-r5c1 total 20 connected true
-kropki-1: kropki r2c4-r3c4 colour "black"
-kropki-2: kropki r3c5-r4c5 colour "black"
-kropki-3: kropki r5c4-r5c5 colour "black"
-kropki-4: kropki r3c1-r4c1 colour "black"
-kropki-5: kropki r5c8-r6c8 colour "black"
-kropki-6: kropki r6c2-r7c2 colour "black"
-kropki-7: kropki r4c3-r4c4 colour "black"
-kropki-8: kropki r8c4-r8c5 colour "black"
-kropki-9: kropki r3c8-r4c8 colour "black"
-kropki-10: kropki r8c6-r8c7 colour "black"
-kropki-11: kropki r8c7-r9c7 colour "black"
-kropki-12: kropki r8c2-r8c3 colour "black"
-kropki-13: kropki r9c1-r9c2 colour "black"
-kropki-14: kropki r7c7-r7c8 colour "black"
+kropki-1: kropki r2c4-r3c4 black
+kropki-2: kropki r3c5-r4c5 black
+kropki-3: kropki r5c4-r5c5 black
+kropki-4: kropki r3c1-r4c1 black
+kropki-5: kropki r5c8-r6c8 black
+kropki-6: kropki r6c2-r7c2 black
+kropki-7: kropki r4c3-r4c4 black
+kropki-8: kropki r8c4-r8c5 black
+kropki-9: kropki r3c8-r4c8 black
+kropki-10: kropki r8c6-r8c7 black
+kropki-11: kropki r8c7-r9c7 black
+kropki-12: kropki r8c2-r8c3 black
+kropki-13: kropki r9c1-r9c2 black
+kropki-14: kropki r7c7-r7c8 black
 pair-1: pair r6c6-r7c6 sum 5
 pair-2: pair r6c5-r6c6 sum 5
 pair-3: pair r5c8-r5c9 sum 5

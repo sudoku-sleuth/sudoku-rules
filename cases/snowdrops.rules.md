@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/snowdrops
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5b5d82dd0fc042ff212ddd4954694ef9
 ---
 
 ```rules
@@ -17,10 +18,10 @@ thermo-3: thermo r9c6-r8c6-r7c6-r6c6
 thermo-4: thermo r9c9-r8c9
 thermo-5: thermo r9c3-r8c3-r7c3-r6c3-r5c3-r4c3
 thermo-6: thermo r9c7-r8c7-r7c7
-kropki-1: kropki r5c6-r6c6 colour "white"
-kropki-2: kropki r2c5-r3c5 colour "white"
-kropki-3: kropki r3c6-r4c6 colour "white"
-kropki-4: kropki r5c8-r6c8 colour "white"
+kropki-1: kropki r5c6-r6c6 white
+kropki-2: kropki r2c5-r3c5 white
+kropki-3: kropki r3c6-r4c6 white
+kropki-4: kropki r5c8-r6c8 white
 arrow-1: arrow r2c8-r3c7 bulb ["r1c9"]
 arrow-2: arrow r1c8-r1c7 bulb ["r1c9"]
 arrow-3: arrow r2c9-r3c9 bulb ["r1c9"]

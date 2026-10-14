@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/oscilloscope-wave-interference
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 827aa0d4fd68b067ff9f75d807e41fac
 ---
 
 ```rules

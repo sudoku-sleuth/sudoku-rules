@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/bicycle-station
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5a067fa075606a851999b8d4f0e4c0a1
 ---
 
 ```rules

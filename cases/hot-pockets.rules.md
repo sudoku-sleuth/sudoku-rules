@@ -6,6 +6,7 @@ source: https://sudokupad.app/kfi00bb135
 case: https://sudoku-sleuth.com/cases/hot-pockets
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 749fcc4368dd250edc83d70fcfb8d071
 ---
 
 ```rules

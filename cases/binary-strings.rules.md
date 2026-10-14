@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/binary-strings
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=4
+exported: 70f51ebc5f1666b44b1de87280689516
 ---
 
 ```rules

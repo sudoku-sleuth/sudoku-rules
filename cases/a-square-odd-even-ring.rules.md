@@ -6,6 +6,7 @@ source: https://sudokupad.app/m5cxtn0406
 case: https://sudoku-sleuth.com/cases/a-square-odd-even-ring
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 800f40001465552678d1ed758e3e7bda
 ---
 
 ```rules
@@ -18,17 +19,17 @@ cage-5: cage r2c4-r2c5 total 12 connected true
 cage-6: cage r8c5-r8c6 total 12 connected true
 cage-7: cage r6c6-r6c7-r7c6 connected true
 cage-8: cage r3c4-r4c3-r4c4-r5c4 connected true
-kropki-1: kropki r8c9-r9c9 colour "white"
-kropki-2: kropki r1c1-r2c1 colour "white"
-kropki-3: kropki r8c4-r8c5 colour "white"
-kropki-4: kropki r2c5-r2c6 colour "white"
-kropki-5: kropki r4c1-r5c1 colour "white"
-kropki-6: kropki r5c9-r6c9 colour "white"
-kropki-7: kropki r4c5-r5c5 colour "white"
-kropki-8: kropki r5c6-r6c6 colour "white"
-kropki-9: kropki r7c3-r7c4 colour "black"
-kropki-10: kropki r3c6-r3c7 colour "black"
-kropki-11: kropki r5c5-r6c5 colour "black"
+kropki-1: kropki r8c9-r9c9 white
+kropki-2: kropki r1c1-r2c1 white
+kropki-3: kropki r8c4-r8c5 white
+kropki-4: kropki r2c5-r2c6 white
+kropki-5: kropki r4c1-r5c1 white
+kropki-6: kropki r5c9-r6c9 white
+kropki-7: kropki r4c5-r5c5 white
+kropki-8: kropki r5c6-r6c6 white
+kropki-9: kropki r7c3-r7c4 black
+kropki-10: kropki r3c6-r3c7 black
+kropki-11: kropki r5c5-r6c5 black
 pair-1: pair r8c1-r8c2 sum 10
 pair-2: pair r9c1-r9c2 sum 10
 pair-3: pair r2c8-r2c9 sum 10

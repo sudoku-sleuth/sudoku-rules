@@ -6,6 +6,7 @@ source: https://tinyurl.com/y539ya9e
 case: https://sudoku-sleuth.com/cases/nabbed-killers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d24364f92ab2befa9c1e4ad6786e1da2
 ---
 
 ```rules

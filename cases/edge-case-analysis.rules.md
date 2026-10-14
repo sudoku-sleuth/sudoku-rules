@@ -6,6 +6,7 @@ source: https://sudokupad.app/bjisxnm9ch
 case: https://sudoku-sleuth.com/cases/edge-case-analysis
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 100ba4e5e1b39f805312e4093df7e8da
 ---
 
 ```rules

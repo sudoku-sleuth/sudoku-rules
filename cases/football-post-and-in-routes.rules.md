@@ -6,14 +6,15 @@ source: https://sudokupad.app/khvgw85nsk
 case: https://sudoku-sleuth.com/cases/football-post-and-in-routes
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: a85704b687e1edb47f08747c47d4b989
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c1-r4c1 colour "white"
-kropki-2: kropki r5c8-r5c9 colour "white"
-kropki-3: kropki r7c3-r7c4 colour "white"
-kropki-4: kropki r7c5-r7c6 colour "black"
+kropki-1: kropki r3c1-r4c1 white
+kropki-2: kropki r5c8-r5c9 white
+kropki-3: kropki r7c3-r7c4 white
+kropki-4: kropki r7c5-r7c6 black
 arrow-1: arrow r6c3 bulb ["r7c4"]
 arrow-2: arrow r6c4 bulb ["r7c3"]
 arrow-3: arrow r6c5-r5c6 bulb ["r7c5"]

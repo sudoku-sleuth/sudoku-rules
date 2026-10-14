@@ -6,6 +6,7 @@ source: https://sudokupad.app/t9gvc3nxq6
 case: https://sudoku-sleuth.com/cases/distorted-reflections
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 56d384c51c70ad8931f1b3b049985331
 ---
 
 ```rules
@@ -15,16 +16,16 @@ cage-2: cage r1c7-r1c8-r1c9 total 22 connected true
 cage-3: cage r2c8-r3c8 total 7 connected true
 cage-4: cage r8c2-r8c3 total 9 connected true
 diagonal direction "main"
-kropki-1: kropki r8c6-r9c6 colour "white"
-kropki-2: kropki r6c8-r6c9 colour "white"
-kropki-3: kropki r5c4-r5c5 colour "white"
-kropki-4: kropki r8c2-r9c2 colour "white"
-kropki-5: kropki r3c8-r3c9 colour "white"
-kropki-6: kropki r4c8-r4c9 colour "white"
-kropki-7: kropki r4c1-r4c2 colour "black"
-kropki-8: kropki r1c4-r2c4 colour "black"
-kropki-9: kropki r4c5-r5c5 colour "black"
-kropki-10: kropki r8c6-r8c7 colour "black"
+kropki-1: kropki r8c6-r9c6 white
+kropki-2: kropki r6c8-r6c9 white
+kropki-3: kropki r5c4-r5c5 white
+kropki-4: kropki r8c2-r9c2 white
+kropki-5: kropki r3c8-r3c9 white
+kropki-6: kropki r4c8-r4c9 white
+kropki-7: kropki r4c1-r4c2 black
+kropki-8: kropki r1c4-r2c4 black
+kropki-9: kropki r4c5-r5c5 black
+kropki-10: kropki r8c6-r8c7 black
 arrow-1: arrow r4c2-r4c1 bulb ["r4c3"]
 arrow-2: arrow r2c4-r1c4 bulb ["r3c4"]
 arrow-3: arrow r8c6-r9c6 bulb ["r7c6"]

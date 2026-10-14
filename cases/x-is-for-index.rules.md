@@ -6,6 +6,7 @@ source: https://sudokupad.app/yeg059p01j
 case: https://sudoku-sleuth.com/cases/x-is-for-index
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 00954c8bc8cd131fe045400d2a843f9a
 ---
 
 ```rules

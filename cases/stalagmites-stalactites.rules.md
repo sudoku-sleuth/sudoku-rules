@@ -6,6 +6,7 @@ source: https://tinyurl.com/yjnn2xns
 case: https://sudoku-sleuth.com/cases/stalagmites-stalactites
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 89adb9d2384b4a3786ce4caaf10711b6
 ---
 
 ```rules

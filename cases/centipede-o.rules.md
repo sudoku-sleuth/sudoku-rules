@@ -6,21 +6,22 @@ source: https://sudokupad.app/xfi254ra10
 case: https://sudoku-sleuth.com/cases/centipede-o
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ce391c4d1cdee5584d1842c99e412f3e
 ---
 
 ```rules
 sudoku 9x9
 cage r8c5-r8c6-r8c7-r8c8-r8c9 total 30 connected true
-kropki-1: kropki r5c1-r6c1 colour "black"
-kropki-2: kropki r1c1-r2c1 colour "black"
-kropki-3: kropki r1c9-r2c9 colour "black"
-kropki-4: kropki r2c9-r3c9 colour "black"
-kropki-5: kropki r1c5-r1c6 colour "black"
-kropki-6: kropki r5c3-r6c3 colour "black"
-kropki-7: kropki r7c3-r8c3 colour "black"
-kropki-8: kropki r3c5-r4c5 colour "black"
-kropki-9: kropki r3c4-r4c4 colour "black"
-kropki-10: kropki r6c7-r7c7 colour "black"
+kropki-1: kropki r5c1-r6c1 black
+kropki-2: kropki r1c1-r2c1 black
+kropki-3: kropki r1c9-r2c9 black
+kropki-4: kropki r2c9-r3c9 black
+kropki-5: kropki r1c5-r1c6 black
+kropki-6: kropki r5c3-r6c3 black
+kropki-7: kropki r7c3-r8c3 black
+kropki-8: kropki r3c5-r4c5 black
+kropki-9: kropki r3c4-r4c4 black
+kropki-10: kropki r6c7-r7c7 black
 arrow-1: arrow r8c1-r7c1 bulb ["r9c1"]
 arrow-2: arrow r9c2-r9c3 bulb ["r9c1"]
 arrow-3: arrow r7c2-r6c2 bulb ["r8c2"]

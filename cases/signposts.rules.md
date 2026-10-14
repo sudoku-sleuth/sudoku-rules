@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/signposts
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 60cdaefd750e0a160794aa032a0dfe60
 ---
 
 ```rules

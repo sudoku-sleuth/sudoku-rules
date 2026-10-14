@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/renban-accumulation
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c5=7
+exported: af8fe377881e49f557b924b11f0607b1
 ---
 
 ```rules

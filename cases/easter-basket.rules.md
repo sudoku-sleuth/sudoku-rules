@@ -6,6 +6,7 @@ source: https://sudokupad.app/cn2iamxlj7
 case: https://sudoku-sleuth.com/cases/easter-basket
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ce086477e4040fe0349df0c96dc0b12c
 ---
 
 ```rules
@@ -20,11 +21,11 @@ cage-7: cage r7c3-r8c3 total 11 connected true
 cage-8: cage r4c8-r5c8 total 5 connected true
 cage-9: cage r1c3-r1c4 total 4 connected true
 cage-10: cage r1c9-r2c9 total 11 connected true
-kropki-1: kropki r4c4-r4c5 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r8c6-r8c7 colour "white"
-kropki-4: kropki r3c8-r4c8 colour "white"
-kropki-5: kropki r7c5-r7c6 colour "white"
+kropki-1: kropki r4c4-r4c5 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r8c6-r8c7 white
+kropki-4: kropki r3c8-r4c8 white
+kropki-5: kropki r7c5-r7c6 white
 whispers-1: whispers r9c3-r8c3-r7c3-r6c4-r6c5-r7c6-r8c6-r9c6 gap 5
 whispers-2: whispers r7c6-r6c7-r6c8-r7c9-r8c9-r9c9 gap 4
 whispers-3: whispers r6c7-r5c7-r4c8-r4c9 gap 5

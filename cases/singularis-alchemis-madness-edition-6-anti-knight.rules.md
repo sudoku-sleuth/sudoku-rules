@@ -1,12 +1,12 @@
 ---
 fog:
   initiallyLit:
-    - 18
-    - 27
-    - 36
-    - 37
-    - 46
-    - 55
+    - r3c1
+    - r4c1
+    - r5c1
+    - r5c2
+    - r6c2
+    - r7c2
 format: open-rules
 title: Singularis alchemis.. madness edition 6- anti-knight
 setter: Chip Sounder
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1dc6ef12832a6f4168d4d0b48f34a137
 ---
 
 ```rules
@@ -143,8 +144,8 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage r4c3-r5c3-r6c3 total 18 connected true
 anti-knight
 thermo r9c3-r8c3-r7c3
-kropki-1: kropki r7c1-r7c2 colour "black"
-kropki-2: kropki r4c3-r5c3 colour "white"
+kropki-1: kropki r7c1-r7c2 black
+kropki-2: kropki r4c3-r5c3 white
 arrow r3c6-r2c5 bulb ["r4c6"]
 whispers-1: whispers r5c2-r6c2-r7c2 gap 4
 whispers-2: whispers r9c4-r8c4-r7c4-r6c4-r5c4 gap 5

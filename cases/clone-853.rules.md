@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/clone-853
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c2=4 r5c7=8 r5c8=5 r5c9=3 r8c5=6
+exported: cbdbe89498681f408e30acb213f91323
 ---
 
 ```rules

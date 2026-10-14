@@ -6,6 +6,7 @@ source: https://sudokupad.app/wt2a0v595d
 case: https://sudoku-sleuth.com/cases/give-a-little-bit
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 861d2917286382ccfba0b39a4db96552
 ---
 
 ```rules

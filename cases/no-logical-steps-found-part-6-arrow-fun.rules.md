@@ -7,17 +7,18 @@ case: https://sudoku-sleuth.com/cases/no-logical-steps-found-part-6-arrow-fun
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 77431f7f949457df1f378250d44b0058
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c4-r9c4 colour "black"
-kropki-2: kropki r5c1-r5c2 colour "black"
-kropki-3: kropki r6c7-r6c8 colour "black"
-kropki-4: kropki r4c6-r4c7 colour "black"
-kropki-5: kropki r7c2-r7c3 colour "black"
-kropki-6: kropki r7c1-r8c1 colour "white"
-kropki-7: kropki r9c5-r9c6 colour "white"
+kropki-1: kropki r8c4-r9c4 black
+kropki-2: kropki r5c1-r5c2 black
+kropki-3: kropki r6c7-r6c8 black
+kropki-4: kropki r4c6-r4c7 black
+kropki-5: kropki r7c2-r7c3 black
+kropki-6: kropki r7c1-r8c1 white
+kropki-7: kropki r9c5-r9c6 white
 arrow-1: arrow r2c2-r2c3 bulb ["r1c1"]
 arrow-2: arrow r4c1-r5c1 bulb ["r3c2"]
 arrow-3: arrow r2c4-r3c4-r3c3 bulb ["r1c5"]

@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/kropki-vs-anti-kropki
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: bc81f4a75b0ce090dd927fa5f8590dc2
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r5c7-r6c7 colour "white"
-kropki-2: kropki r5c8-r6c8 colour "white"
-kropki-3: kropki r5c9-r6c9 colour "white"
-kropki-4: kropki r6c5-r7c5 colour "white"
-kropki-5: kropki r7c1-r8c1 colour "black"
-kropki-6: kropki r7c2-r8c2 colour "black"
-kropki-7: kropki r7c3-r8c3 colour "black"
-kropki-8: kropki r6c7-r7c7 colour "black"
-kropki-9: kropki r6c8-r7c8 colour "black"
-kropki-10: kropki r6c9-r7c9 colour "black"
-kropki-11: kropki r8c4-r8c5 colour "black"
+kropki-1: kropki r5c7-r6c7 white
+kropki-2: kropki r5c8-r6c8 white
+kropki-3: kropki r5c9-r6c9 white
+kropki-4: kropki r6c5-r7c5 white
+kropki-5: kropki r7c1-r8c1 black
+kropki-6: kropki r7c2-r8c2 black
+kropki-7: kropki r7c3-r8c3 black
+kropki-8: kropki r6c7-r7c7 black
+kropki-9: kropki r6c8-r7c8 black
+kropki-10: kropki r6c9-r7c9 black
+kropki-11: kropki r8c4-r8c5 black
 ```
 
 ```drawing

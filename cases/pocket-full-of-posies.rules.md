@@ -6,6 +6,7 @@ source: https://sudokupad.app/q1ohh6dos9
 case: https://sudoku-sleuth.com/cases/pocket-full-of-posies
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 00f805d91874bb2dba8735c25dcd9a3d
 ---
 
 ```rules

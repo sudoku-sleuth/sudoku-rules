@@ -6,6 +6,7 @@ source: https://sudokupad.app/blobz/pinwheel
 case: https://sudoku-sleuth.com/cases/pinwheel-2
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 2928f01c7cc214d15dd435439090fa39
 ---
 
 ```rules

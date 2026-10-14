@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sixty-nine
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c9=2 r7c1=2
+exported: fbc27ad884f2dff71086aab96581e388
 ---
 
 ```rules

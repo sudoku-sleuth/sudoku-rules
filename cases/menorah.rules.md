@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/menorah
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r7c9=6
+exported: 429e8b7d60d03c396a68664a580a031d
 ---
 
 ```rules

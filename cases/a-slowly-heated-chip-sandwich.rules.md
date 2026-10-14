@@ -6,20 +6,21 @@ source: https://sudokupad.app/88d5vco19l
 case: https://sudoku-sleuth.com/cases/a-slowly-heated-chip-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 46d6b5691a089580ece111ad7037e249
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c4-r1c5 colour "white"
-kropki-2: kropki r1c6-r1c7 colour "white"
-kropki-3: kropki r3c3-r3c4 colour "white"
-kropki-4: kropki r3c4-r3c5 colour "white"
-kropki-5: kropki r3c5-r3c6 colour "white"
-kropki-6: kropki r3c6-r3c7 colour "white"
-kropki-7: kropki r5c4-r5c5 colour "black"
-kropki-8: kropki r5c5-r5c6 colour "black"
-kropki-9: kropki r7c2-r7c3 colour "black"
-kropki-10: kropki r7c6-r7c7 colour "black"
+kropki-1: kropki r1c4-r1c5 white
+kropki-2: kropki r1c6-r1c7 white
+kropki-3: kropki r3c3-r3c4 white
+kropki-4: kropki r3c4-r3c5 white
+kropki-5: kropki r3c5-r3c6 white
+kropki-6: kropki r3c6-r3c7 white
+kropki-7: kropki r5c4-r5c5 black
+kropki-8: kropki r5c5-r5c6 black
+kropki-9: kropki r7c2-r7c3 black
+kropki-10: kropki r7c6-r7c7 black
 whispers-1: whispers r1c3-r1c4 gap 5
 whispers-2: whispers r1c5-r1c6 gap 5
 whispers-3: whispers r7c3-r7c4 gap 5

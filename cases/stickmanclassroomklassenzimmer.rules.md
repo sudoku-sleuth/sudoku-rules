@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/stickmanclassroomklassenzimmer
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d2f955828601d410bb14ee81ca10c03d
 ---
 
 ```rules
@@ -17,9 +18,9 @@ cage-4: cage r4c5-r4c6 total 10 connected true
 cage-5: cage r5c2-r6c2 total 10 connected true
 cage-6: cage r7c4-r7c5 total 10 connected true
 cage-7: cage r9c1-r9c2 total 10 connected true
-kropki-1: kropki r1c7-r1c8 colour "white"
-kropki-2: kropki r1c8-r2c8 colour "white"
-kropki-3: kropki r2c2-r3c2 colour "black"
+kropki-1: kropki r1c7-r1c8 white
+kropki-2: kropki r1c8-r2c8 white
+kropki-3: kropki r2c2-r3c2 black
 whispers-1: whispers r7c1-r7c2-r7c3-r8c3-r9c3 gap 5
 whispers-2: whispers r6c6-r6c7-r6c8-r7c8-r8c8 gap 5
 whispers-3: whispers r5c1-r6c1-r7c1-r8c1-r9c1 gap 5

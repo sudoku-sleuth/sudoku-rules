@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/oddly-placed
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=9 r1c9=7 r9c1=3 r9c9=5
+exported: 6359a6d1121b672217c58af8dd26bb37
 ---
 
 ```rules

@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/inner-reasons
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c5=5 r4c7=2 r5c1=7
+exported: 7864a9c66da84050168d8abd52e070bb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c1-r1c2 colour "black"
-kropki-2: kropki r8c8-r8c9 colour "black"
-kropki-3: kropki r1c9-r2c9 colour "black"
-kropki-4: kropki r7c1-r7c2 colour "black"
-kropki-5: kropki r5c3-r5c4 colour "black"
-kropki-6: kropki r5c6-r5c7 colour "black"
-kropki-7: kropki r3c5-r4c5 colour "black"
-kropki-8: kropki r8c5-r9c5 colour "black"
-kropki-9: kropki r6c6-r7c6 colour "black"
+kropki-1: kropki r1c1-r1c2 black
+kropki-2: kropki r8c8-r8c9 black
+kropki-3: kropki r1c9-r2c9 black
+kropki-4: kropki r7c1-r7c2 black
+kropki-5: kropki r5c3-r5c4 black
+kropki-6: kropki r5c6-r5c7 black
+kropki-7: kropki r3c5-r4c5 black
+kropki-8: kropki r8c5-r9c5 black
+kropki-9: kropki r6c6-r7c6 black
 little-killer-1: little-killer r2c1-r1c2 sum 4
 little-killer-2: little-killer r1c8-r2c9 sum 6
 little-killer-3: little-killer r8c9-r9c8 sum 3

@@ -6,17 +6,18 @@ source: https://tinyurl.com/allthekingsarchers
 case: https://sudoku-sleuth.com/cases/all-the-king-s-archers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4e421e2db90b1dc093e9199a362aeeeb
 ---
 
 ```rules
 sudoku 9x9
 anti-king
-kropki-1: kropki r5c6-r5c7 colour "white"
-kropki-2: kropki r5c5-r6c5 colour "white"
-kropki-3: kropki r1c1-r1c2 colour "white"
-kropki-4: kropki r7c1-r7c2 colour "black"
-kropki-5: kropki r5c3-r5c4 colour "black"
-kropki-6: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r5c6-r5c7 white
+kropki-2: kropki r5c5-r6c5 white
+kropki-3: kropki r1c1-r1c2 white
+kropki-4: kropki r7c1-r7c2 black
+kropki-5: kropki r5c3-r5c4 black
+kropki-6: kropki r7c8-r8c8 black
 arrow-1: arrow r2c2-r1c1 bulb ["r3c3"]
 arrow-2: arrow r8c2-r9c1 bulb ["r7c3"]
 arrow-3: arrow r8c8-r9c9 bulb ["r7c7"]

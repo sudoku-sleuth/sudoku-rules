@@ -6,6 +6,7 @@ source: https://sudokupad.app/ie9trpnn25
 case: https://sudoku-sleuth.com/cases/chico-whispers
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 83d7d86b529e5ea3dbd4628a94c84713
 ---
 
 ```rules

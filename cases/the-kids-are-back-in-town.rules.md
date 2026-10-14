@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-kids-are-back-in-town
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c2=8 r5c8=5 r8c1=4 r9c5=6
+exported: 8dc808368f13eb18d972a584b4255dbf
 ---
 
 ```rules

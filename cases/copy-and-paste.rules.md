@@ -6,6 +6,7 @@ source: https://tinyurl.com/8yhe4355
 case: https://sudoku-sleuth.com/cases/copy-and-paste
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 68f461990b578135cc3f1c98e94e78e1
 ---
 
 ```rules

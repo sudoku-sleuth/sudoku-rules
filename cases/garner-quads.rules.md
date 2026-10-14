@@ -6,6 +6,7 @@ source: https://sudokupad.app/c9bktqlqdm
 case: https://sudoku-sleuth.com/cases/garner-quads
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4a32d694fb9e1afa645d54da3b6c3336
 ---
 
 ```rules

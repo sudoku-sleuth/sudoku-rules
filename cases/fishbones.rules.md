@@ -6,20 +6,21 @@ source: https://sudokupad.app/rkljeojz5y
 case: https://sudoku-sleuth.com/cases/fishbones
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d98101f05ed8558f5a764b7573ab6cdc
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c5-r9c6 colour "white"
-kropki-2: kropki r5c1-r6c1 colour "white"
-kropki-3: kropki r2c9-r3c9 colour "white"
-kropki-4: kropki r1c7-r1c8 colour "white"
-kropki-5: kropki r3c5-r4c5 colour "white"
-kropki-6: kropki r8c8-r9c8 colour "black"
-kropki-7: kropki r5c9-r6c9 colour "black"
-kropki-8: kropki r1c4-r1c5 colour "black"
-kropki-9: kropki r5c2-r5c3 colour "black"
-kropki-10: kropki r7c1-r7c2 colour "black"
+kropki-1: kropki r9c5-r9c6 white
+kropki-2: kropki r5c1-r6c1 white
+kropki-3: kropki r2c9-r3c9 white
+kropki-4: kropki r1c7-r1c8 white
+kropki-5: kropki r3c5-r4c5 white
+kropki-6: kropki r8c8-r9c8 black
+kropki-7: kropki r5c9-r6c9 black
+kropki-8: kropki r1c4-r1c5 black
+kropki-9: kropki r5c2-r5c3 black
+kropki-10: kropki r7c1-r7c2 black
 slow-thermo-1: slow-thermo r9c1-r8c2-r7c3-r6c4-r5c5-r4c6-r3c7-r2c8-r1c9
 slow-thermo-2: slow-thermo r9c1-r8c2-r7c3-r6c4-r5c5-r4c6-r3c7-r2c6-r1c5
 slow-thermo-3: slow-thermo r9c1-r8c2-r7c3-r6c4-r5c5-r4c6-r3c7-r4c8-r5c9

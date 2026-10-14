@@ -6,6 +6,7 @@ source: https://sudokupad.app/4vzca8z7lj
 case: https://sudoku-sleuth.com/cases/hugged-by-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0d604061678e8fe9733467b6f2e7c0bc
 ---
 
 ```rules

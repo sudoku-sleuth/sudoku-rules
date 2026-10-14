@@ -9,14 +9,15 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - Our reading of these rules doesn't match the published answer yet; we're checking it.
+exported: 01ad2d7340cad503c42e31cc273b6309
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c1-r4c2 colour "white"
-kropki-2: kropki r6c8-r6c9 colour "white"
-kropki-3: kropki r8c2-r9c2 colour "white"
-kropki-4: kropki r1c8-r2c8 colour "white"
+kropki-1: kropki r4c1-r4c2 white
+kropki-2: kropki r6c8-r6c9 white
+kropki-3: kropki r8c2-r9c2 white
+kropki-4: kropki r1c8-r2c8 white
 pair-1: pair r5c4-r6c4 sum 10
 pair-2: pair r3c6-r4c6 sum 10
 pair-3: pair r2c8-r2c9 sum 10

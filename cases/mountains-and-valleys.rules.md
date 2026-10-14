@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/mountains-and-valleys
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c9=4 r4c1=8
+exported: ca1dfd9e8a34303517c82ac644b066d3
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r3c8-r3c9 colour "white"
-kropki-2: kropki r2c8-r3c8 colour "white"
-kropki-3: kropki r6c5-r6c6 colour "white"
-kropki-4: kropki r5c6-r6c6 colour "white"
+kropki-1: kropki r3c8-r3c9 white
+kropki-2: kropki r2c8-r3c8 white
+kropki-3: kropki r6c5-r6c6 white
+kropki-4: kropki r5c6-r6c6 white
 whispers-1: whispers r6c6-r7c7-r6c8-r5c9 gap 5
 whispers-2: whispers r5c1-r6c2-r7c3-r6c4-r5c5-r6c6 gap 5
 whispers-3: whispers r3c1-r4c2-r5c3-r4c4-r3c5-r4c6-r5c7-r4c8-r3c9 gap 5

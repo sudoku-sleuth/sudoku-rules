@@ -6,6 +6,7 @@ source: https://sudokupad.app/e95akwypjk
 case: https://sudoku-sleuth.com/cases/pushing-the-envelope
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8feb13775c1e2c8c691ac96a27a5e5d9
 ---
 
 ```rules

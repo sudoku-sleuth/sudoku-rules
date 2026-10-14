@@ -6,6 +6,7 @@ source: https://sudokupad.app/zwkadx7qft
 case: https://sudoku-sleuth.com/cases/it-s-getting-hot-in-here
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 4be09c17d05296abf4720a402e0d83ee
 ---
 
 ```rules

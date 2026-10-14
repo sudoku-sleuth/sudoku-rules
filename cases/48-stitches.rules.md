@@ -8,14 +8,15 @@ library: https://rules.sudoku-sleuth.com/
 status: flagged
 flags:
   - Some source features still need to be checked against our reading.
+exported: 03d70e59a552ec817f26e5d328261566
 ---
 
 ```rules
 sudoku 9x9
 diagonal direction "anti"
-kropki-1: kropki r2c1-r3c1 colour "white"
-kropki-2: kropki r7c2-r8c2 colour "white"
-kropki-3: kropki r7c7-r7c8 colour "white"
+kropki-1: kropki r2c1-r3c1 white
+kropki-2: kropki r7c2-r8c2 white
+kropki-3: kropki r7c7-r7c8 white
 palindrome-1: palindrome r3c1-r4c2
 palindrome-2: palindrome r3c2-r4c1
 palindrome-3: palindrome r6c1-r7c2

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/x-trapolation
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7ef38a3da4afd106b87cfde0495c8dd9
 ---
 
 ```rules

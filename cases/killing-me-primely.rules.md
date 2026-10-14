@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/killing-me-primely
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c5=4
+exported: 03ecbd82eb08116328cdb80553476e4e
 ---
 
 ```rules

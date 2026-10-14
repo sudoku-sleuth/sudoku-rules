@@ -6,6 +6,7 @@ source: https://sudokupad.app/mvdb4aycs2
 case: https://sudoku-sleuth.com/cases/el-doce
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f341f507fe021f169a9ddc9561298c44
 ---
 
 ```rules

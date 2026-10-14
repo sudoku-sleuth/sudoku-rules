@@ -6,6 +6,7 @@ source: https://tinyurl.com/4fxyyy7n
 case: https://sudoku-sleuth.com/cases/that-s-sum-puzzle
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c41c9310737b8adc1f1359ff2447dc5f
 ---
 
 ```rules

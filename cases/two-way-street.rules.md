@@ -6,6 +6,7 @@ source: https://sudokupad.app/jvrher210s
 case: https://sudoku-sleuth.com/cases/two-way-street
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f161463ceae4b39e37166cdb5ac18884
 ---
 
 ```rules

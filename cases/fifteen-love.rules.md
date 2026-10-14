@@ -6,6 +6,7 @@ source: https://tinyurl.com/53dds8s5
 case: https://sudoku-sleuth.com/cases/fifteen-love
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b9e8d500d7a984927275a87644fa0469
 ---
 
 ```rules

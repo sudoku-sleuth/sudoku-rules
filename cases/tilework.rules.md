@@ -7,19 +7,20 @@ case: https://sudoku-sleuth.com/cases/tilework
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=5 r2c8=5 r3c6=9 r4c3=1 r6c7=8 r7c4=2 r8c2=4 r9c9=9
+exported: 70889e3a8a5c4bd560f100860b5717aa
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r1c5-r1c6 colour "white"
-kropki-2: kropki r5c9-r6c9 colour "white"
-kropki-3: kropki r9c4-r9c5 colour "white"
-kropki-4: kropki r9c3-r9c4 colour "white"
-kropki-5: kropki r6c9-r7c9 colour "white"
-kropki-6: kropki r5c1-r6c1 colour "black"
-kropki-7: kropki r4c9-r5c9 colour "black"
-kropki-8: kropki r9c5-r9c6 colour "black"
-kropki-9: kropki r1c4-r1c5 colour "black"
+kropki-1: kropki r1c5-r1c6 white
+kropki-2: kropki r5c9-r6c9 white
+kropki-3: kropki r9c4-r9c5 white
+kropki-4: kropki r9c3-r9c4 white
+kropki-5: kropki r6c9-r7c9 white
+kropki-6: kropki r5c1-r6c1 black
+kropki-7: kropki r4c9-r5c9 black
+kropki-8: kropki r9c5-r9c6 black
+kropki-9: kropki r1c4-r1c5 black
 renban-1: renban r3c1-r2c1-r1c2-r1c3
 renban-2: renban r1c7-r1c8-r2c9-r3c9
 renban-3: renban r7c9-r8c9-r9c8-r9c7

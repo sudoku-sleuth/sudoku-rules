@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sunday-brunch
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c7=7 r5c2=4 r5c9=5 r7c5=1
+exported: 82b20427705d7a1acaac69bd0e3b887f
 ---
 
 ```rules

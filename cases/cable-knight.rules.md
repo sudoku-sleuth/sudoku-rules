@@ -6,6 +6,7 @@ source: https://sudokupad.app/ozk5eges4t
 case: https://sudoku-sleuth.com/cases/cable-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: af0880bacbafc34e9a3b639121abadf4
 ---
 
 ```rules

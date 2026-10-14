@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/killer-birthday
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: 52.............52............52...................52............52.............52
+exported: 298863abee499d462131ba47a9e14d83
 ---
 
 ```rules

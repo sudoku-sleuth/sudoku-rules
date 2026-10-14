@@ -1,22 +1,22 @@
 ---
 fog:
   initiallyLit:
-    - 20
-    - 21
-    - 22
-    - 23
-    - 24
-    - 29
-    - 33
-    - 38
-    - 42
-    - 47
-    - 51
-    - 56
-    - 57
-    - 58
-    - 59
-    - 60
+    - r3c3
+    - r3c4
+    - r3c5
+    - r3c6
+    - r3c7
+    - r4c3
+    - r4c7
+    - r5c3
+    - r5c7
+    - r6c3
+    - r6c7
+    - r7c3
+    - r7c4
+    - r7c5
+    - r7c6
+    - r7c7
 format: open-rules
 title: Phisto Fortress
 setter: Blobz
@@ -25,6 +25,7 @@ case: https://sudoku-sleuth.com/cases/phisto-fortress
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 357ec4d2bab80596372ad97a5d168714
 ---
 
 ```rules

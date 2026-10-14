@@ -6,6 +6,7 @@ source: https://sudokupad.app/gv27dpvucw
 case: https://sudoku-sleuth.com/cases/a-dot-to-a-kill
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bdf96d93ea3c243cd253bf074918cdac
 ---
 
 ```rules
@@ -24,7 +25,7 @@ cage-11: cage r1c8-r2c8-r3c8 total 22 connected true
 cage-12: cage r8c2-r9c1-r9c2 total 13 connected true
 cage-13: cage r5c3-r5c4 total 13 connected true
 cage-14: cage r4c7-r5c7 total 15 connected true
-kropki r3c5-r4c5 colour "black"
+kropki r3c5-r4c5 black
 ```
 
 - Standard sudoku rules apply: The digits 1 through 9 appear in every row, column, and box.

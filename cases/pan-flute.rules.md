@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/pan-flute
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 92a0a3826432f153ee77fcb999fceee8
 ---
 
 ```rules

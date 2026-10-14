@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/abbey-road-the-beatles-1969
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c4=7 r7c7=5 r8c5=5
+exported: 6c671ad47b0ef429e2ad1f4e2ee0c326
 ---
 
 ```rules
@@ -16,13 +17,13 @@ cage-2: cage r8c8-r9c8 total 13 connected true
 cage-3: cage r3c9-r4c9 total 6 connected true
 cage-4: cage r3c5-r4c5 total 9 connected true
 cage-5: cage r3c1-r4c1 total 9 connected true
-kropki-1: kropki r1c7-r1c8 colour "black"
-kropki-2: kropki r1c2-r1c3 colour "black"
-kropki-3: kropki r7c1-r8c1 colour "black"
-kropki-4: kropki r8c9-r9c9 colour "black"
-kropki-5: kropki r3c6-r4c6 colour "black"
-kropki-6: kropki r8c4-r9c4 colour "black"
-kropki-7: kropki r2c8-r2c9 colour "black"
+kropki-1: kropki r1c7-r1c8 black
+kropki-2: kropki r1c2-r1c3 black
+kropki-3: kropki r7c1-r8c1 black
+kropki-4: kropki r8c9-r9c9 black
+kropki-5: kropki r3c6-r4c6 black
+kropki-6: kropki r8c4-r9c4 black
+kropki-7: kropki r2c8-r2c9 black
 whispers-1: whispers r3c8-r3c9-r4c9-r4c8 gap 4
 whispers-2: whispers r3c8-r4c8 gap 4
 whispers-3: whispers r5c8-r6c8-r7c8-r8c8-r9c7 gap 4

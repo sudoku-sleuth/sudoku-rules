@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cucumber-sandwiches
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c3=4 r3c4=5 r4c7=1
+exported: 67908214f361de2d7f811cf4a088c866
 ---
 
 ```rules

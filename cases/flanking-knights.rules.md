@@ -6,6 +6,7 @@ source: https://sudokupad.app/q3dtxz220c
 case: https://sudoku-sleuth.com/cases/flanking-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 85dabf81246daae0f2d706f6cdd5e417
 ---
 
 ```rules
@@ -16,8 +17,8 @@ cage-3: cage r1c7-r2c7 total 8 connected true
 cage-4: cage r1c3-r2c3 total 12 connected true
 cage-5: cage r9c2-r9c3 total 9 connected true
 cage-6: cage r9c7-r9c8 total 9 connected true
-kropki-1: kropki r5c3-r5c4 colour "black"
-kropki-2: kropki r5c6-r5c7 colour "black"
+kropki-1: kropki r5c3-r5c4 black
+kropki-2: kropki r5c6-r5c7 black
 arrow-1: arrow r3c7-r3c8 bulb ["r4c6"]
 arrow-2: arrow r5c7-r5c8 bulb ["r6c6"]
 arrow-3: arrow r5c3-r5c2 bulb ["r6c4"]

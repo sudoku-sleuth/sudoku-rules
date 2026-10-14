@@ -6,6 +6,7 @@ source: https://sudokupad.app/u7i760zfcz
 case: https://sudoku-sleuth.com/cases/broken-propeller
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 797b0ed3edf4d95aef5f5e8ee72f51ca
 ---
 
 ```rules

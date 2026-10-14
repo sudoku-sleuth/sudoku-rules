@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/colour-coordinated-differences
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 8aa77370cdbf4ca2a4bde78b633c5d18
 ---
 
 ```rules

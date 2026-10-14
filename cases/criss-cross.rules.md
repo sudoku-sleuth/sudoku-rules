@@ -7,22 +7,23 @@ case: https://sudoku-sleuth.com/cases/criss-cross
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r9c1=5
+exported: 8df671eb6860457f0a619bb872a741cb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c3-r9c3 colour "white"
-kropki-2: kropki r8c1-r8c2 colour "white"
-kropki-3: kropki r4c9-r5c9 colour "white"
-kropki-4: kropki r5c4-r5c5 colour "white"
-kropki-5: kropki r5c5-r5c6 colour "white"
-kropki-6: kropki r2c2-r2c3 colour "white"
-kropki-7: kropki r7c3-r8c3 colour "black"
-kropki-8: kropki r2c7-r3c7 colour "black"
-kropki-9: kropki r3c9-r4c9 colour "black"
-kropki-10: kropki r3c2-r4c2 colour "black"
-kropki-11: kropki r4c1-r5c1 colour "black"
-kropki-12: kropki r5c9-r6c9 colour "black"
+kropki-1: kropki r8c3-r9c3 white
+kropki-2: kropki r8c1-r8c2 white
+kropki-3: kropki r4c9-r5c9 white
+kropki-4: kropki r5c4-r5c5 white
+kropki-5: kropki r5c5-r5c6 white
+kropki-6: kropki r2c2-r2c3 white
+kropki-7: kropki r7c3-r8c3 black
+kropki-8: kropki r2c7-r3c7 black
+kropki-9: kropki r3c9-r4c9 black
+kropki-10: kropki r3c2-r4c2 black
+kropki-11: kropki r4c1-r5c1 black
+kropki-12: kropki r5c9-r6c9 black
 modular-1: modular r9c8-r8c8-r8c9
 modular-2: modular r7c1-r8c1-r9c2-r9c3
 modular-3: modular r5c1-r5c2-r6c2-r7c2-r8c2-r8c3-r7c3

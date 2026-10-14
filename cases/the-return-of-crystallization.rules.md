@@ -7,15 +7,16 @@ case: https://sudoku-sleuth.com/cases/the-return-of-crystallization
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 7cf232d58bcee99d9a28e216b6bab938
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r9c8-r9c9 colour "black"
-kropki-2: kropki r9c6-r9c7 colour "black"
-kropki-3: kropki r4c2-r4c3 colour "black"
-kropki-4: kropki r4c4-r4c5 colour "black"
-kropki-5: kropki r4c6-r4c7 colour "black"
+kropki-1: kropki r9c8-r9c9 black
+kropki-2: kropki r9c6-r9c7 black
+kropki-3: kropki r4c2-r4c3 black
+kropki-4: kropki r4c4-r4c5 black
+kropki-5: kropki r4c6-r4c7 black
 pair-1: pair r8c6-r8c7 sum 10
 pair-2: pair r4c5-r4c6 sum 10
 pair-3: pair r3c6-r3c7 sum 10

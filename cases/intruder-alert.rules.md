@@ -9,6 +9,7 @@ status: flagged
 drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
+exported: 2607b30d63462d983f5b7e3cfa90e203
 ---
 
 ```rules

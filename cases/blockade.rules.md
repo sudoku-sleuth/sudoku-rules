@@ -6,6 +6,7 @@ source: https://sudokupad.app/87oq33p70s
 case: https://sudoku-sleuth.com/cases/blockade
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 5462309693cfacaf0a1d8be939c002df
 ---
 
 ```rules

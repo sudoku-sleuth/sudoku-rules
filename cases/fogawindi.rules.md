@@ -1,15 +1,15 @@
 ---
 fog:
   initiallyLit:
-    - 30
-    - 31
-    - 32
-    - 39
-    - 40
-    - 41
-    - 48
-    - 49
-    - 50
+    - r4c4
+    - r4c5
+    - r4c6
+    - r5c4
+    - r5c5
+    - r5c6
+    - r6c4
+    - r6c5
+    - r6c6
 format: open-rules
 title: Fogawindi
 setter: Meggen033
@@ -112,6 +112,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 05448ead0ab8ee1882a0b08161743565
 ---
 
 ```rules
@@ -147,15 +148,15 @@ cage-2: cage r3c4-r3c5 total 6 connected true
 cage-3: cage r6c3-r7c3-r7c4 total 11 connected true
 cage-4: cage r2c7-r2c8-r3c8 total 21 connected true
 cage-5: cage r2c1-r2c2 total 9 connected true
-kropki-1: kropki r5c3-r5c4 colour "white"
-kropki-2: kropki r3c2-r3c3 colour "white"
-kropki-3: kropki r8c7-r8c8 colour "white"
-kropki-4: kropki r3c6-r3c7 colour "white"
-kropki-5: kropki r6c3-r7c3 colour "white"
-kropki-6: kropki r4c3-r5c3 colour "black"
-kropki-7: kropki r3c3-r3c4 colour "black"
-kropki-8: kropki r1c3-r2c3 colour "black"
-kropki-9: kropki r6c6-r7c6 colour "black"
+kropki-1: kropki r5c3-r5c4 white
+kropki-2: kropki r3c2-r3c3 white
+kropki-3: kropki r8c7-r8c8 white
+kropki-4: kropki r3c6-r3c7 white
+kropki-5: kropki r6c3-r7c3 white
+kropki-6: kropki r4c3-r5c3 black
+kropki-7: kropki r3c3-r3c4 black
+kropki-8: kropki r1c3-r2c3 black
+kropki-9: kropki r6c6-r7c6 black
 arrow-1: arrow r6c4-r5c4-r4c4 bulb ["r6c5"]
 arrow-2: arrow r7c7-r6c7 bulb ["r8c7"]
 arrow-3: arrow r4c2-r5c2 bulb ["r3c2"]

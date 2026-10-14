@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/needlepoint-252
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: db3f70858b4663db161abaec35bd7b84
 ---
 
 ```rules

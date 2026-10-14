@@ -6,6 +6,7 @@ source: https://sudokupad.app/tkg3f60o0r
 case: https://sudoku-sleuth.com/cases/hallways
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 69bc0cf6f739993db2ab5ea9f4ba5496
 ---
 
 ```rules

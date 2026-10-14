@@ -20,6 +20,7 @@ board:
     - 7
     - 8
     - 9
+exported: b6a9a636c2b9988791a81dd1450cf6ff
 ---
 
 ```rules
@@ -37,7 +38,7 @@ unique-11: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4-r7c4
 unique-12: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5-r7c5
 unique-13: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6
 unique-14: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7
-kropki r3c4-r4c4 colour "black"
+kropki r3c4-r4c4 black
 whispers-1: whispers r7c2-r7c3-r6c4-r5c3-r4c4-r3c5-r2c4-r1c5-r1c6 loop false gap 5
 whispers-2: whispers r4c2-r3c1-r2c2-r3c3 loop false gap 5
 whispers-3: whispers r5c5-r6c6-r5c7-r4c6 loop false gap 5

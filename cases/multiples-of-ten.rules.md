@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/multiples-of-ten
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c7=1
+exported: 99783118c56d325887c3cb83d4b4bd3f
 ---
 
 ```rules

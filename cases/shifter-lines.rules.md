@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/shifter-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r8c8=1
+exported: 331de7471c8a05711c369c0c0a73acfb
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r7c7-r7c8 colour "black"
-kropki-2: kropki r2c3-r3c3 colour "black"
-kropki-3: kropki r4c5-r4c6 colour "black"
-kropki-4: kropki r4c6-r5c6 colour "black"
-kropki-5: kropki r4c2-r5c2 colour "black"
-kropki-6: kropki r1c5-r2c5 colour "black"
-kropki-7: kropki r7c8-r8c8 colour "white"
-kropki-8: kropki r6c6-r6c7 colour "white"
-kropki-9: kropki r6c7-r6c8 colour "white"
-kropki-10: kropki r7c5-r8c5 colour "white"
+kropki-1: kropki r7c7-r7c8 black
+kropki-2: kropki r2c3-r3c3 black
+kropki-3: kropki r4c5-r4c6 black
+kropki-4: kropki r4c6-r5c6 black
+kropki-5: kropki r4c2-r5c2 black
+kropki-6: kropki r1c5-r2c5 black
+kropki-7: kropki r7c8-r8c8 white
+kropki-8: kropki r6c6-r6c7 white
+kropki-9: kropki r6c7-r6c8 white
+kropki-10: kropki r7c5-r8c5 white
 shifter-line-1: shifter-line r6c6-r5c6-r5c7-r6c7-r7c6-r8c6-r7c7-r7c8-r6c8-r5c8
 shifter-line-2: shifter-line r2c5-r3c5-r4c5-r4c6-r4c7-r4c8-r3c8
 shifter-line-3: shifter-line r8c8-r7c9-r6c9-r5c9

@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/critical-nature-of-4-s-and-3-s
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c3=4 r2c7=9 r3c2=9 r3c8=2 r7c2=5 r7c8=9 r8c3=9 r8c7=8
+exported: 21cc2c92d8a1ed91c87aef2ecc5caba0
 ---
 
 ```rules

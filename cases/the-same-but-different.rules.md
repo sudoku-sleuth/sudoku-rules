@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/the-same-but-different
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c9=5 r3c3=6
+exported: e8049b3bae7f1bb59acf0a1c56296017
 ---
 
 ```rules

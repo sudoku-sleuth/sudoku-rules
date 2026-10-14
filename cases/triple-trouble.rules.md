@@ -20,6 +20,7 @@ board:
     - 7
     - 8
     - 9
+exported: da8a9f3e52bff7191606b705e4ea1e09
 ---
 
 ```rules
@@ -41,8 +42,8 @@ unique-15: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6-r7c6-r8c6-r9c6
 unique-16: unique r1c7-r2c7-r3c7-r4c7-r5c7-r6c7-r7c7-r8c7-r9c7
 unique-17: unique r1c8-r2c8-r3c8-r4c8-r5c8-r6c8-r7c8-r8c8-r9c8
 unique-18: unique r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9-r8c9-r9c9
-kropki-1: kropki r8c3-r8c4 colour "black"
-kropki-2: kropki r2c8-r3c8 colour "black"
+kropki-1: kropki r8c3-r8c4 black
+kropki-2: kropki r2c8-r3c8 black
 arrow-1: arrow r3c7-r2c8-r1c9 bulb ["r4c6"]
 arrow-2: arrow r2c3-r1c2-r2c1-r3c2 bulb ["r3c3"]
 arrow-3: arrow r9c7-r9c8-r8c9 bulb ["r8c8"]

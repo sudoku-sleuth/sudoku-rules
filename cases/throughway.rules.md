@@ -6,6 +6,7 @@ source: https://sudokupad.app/je6qmn8ar0
 case: https://sudoku-sleuth.com/cases/throughway
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 792b56e686fa0ae1c1d63f3dac8339b2
 ---
 
 ```rules

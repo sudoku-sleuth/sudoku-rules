@@ -6,6 +6,7 @@ source: https://sudokupad.app/puulvhwkn0
 case: https://sudoku-sleuth.com/cases/roman-hallway
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 98ee4e3d9bb9fb071bd6b5e4314e0f7a
 ---
 
 ```rules

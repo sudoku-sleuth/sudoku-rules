@@ -6,6 +6,7 @@ source: https://sudokupad.app/4908gmmy6a
 case: https://sudoku-sleuth.com/cases/easy-breezy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 6ede3afcf0a5c8e2f2c7ad1bb5b05b65
 ---
 
 ```rules

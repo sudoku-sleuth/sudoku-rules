@@ -1,145 +1,145 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
+    - r1c1
+    - r1c2
   links:
     - trigger:
-        - 8
+        - r1c9
       lights:
-        - 10
-        - 11
-        - 19
-        - 20
+        - r2c2
+        - r2c3
+        - r3c2
+        - r3c3
     - trigger:
-        - 2
+        - r1c3
       lights:
-        - 2
-        - 3
-        - 4
-        - 5
-        - 6
-        - 7
-        - 15
-        - 16
+        - r1c3
+        - r1c4
+        - r1c5
+        - r1c6
+        - r1c7
+        - r1c8
+        - r2c7
+        - r2c8
     - trigger:
-        - 9
+        - r2c1
       lights:
-        - 60
-        - 61
-        - 69
-        - 70
-        - 79
-        - 80
+        - r7c7
+        - r7c8
+        - r8c7
+        - r8c8
+        - r9c8
+        - r9c9
     - trigger:
-        - 78
+        - r9c7
       lights:
-        - 76
-        - 77
+        - r9c5
+        - r9c6
     - trigger:
-        - 76
+        - r9c5
       lights:
-        - 64
-        - 73
+        - r8c2
+        - r9c2
     - trigger:
-        - 62
+        - r7c9
       lights:
-        - 30
-        - 31
-        - 39
-        - 40
+        - r4c4
+        - r4c5
+        - r5c4
+        - r5c5
     - trigger:
-        - 14
+        - r2c6
       lights:
-        - 49
-        - 50
+        - r6c5
+        - r6c6
     - trigger:
-        - 22
+        - r3c5
       lights:
-        - 33
-        - 42
-        - 51
-        - 52
+        - r4c7
+        - r5c7
+        - r6c7
+        - r6c8
     - trigger:
-        - 52
+        - r6c8
       lights:
-        - 13
-        - 22
+        - r2c5
+        - r3c5
     - trigger:
-        - 13
+        - r2c5
       lights:
-        - 38
-        - 47
-        - 56
-        - 57
-        - 58
+        - r5c3
+        - r6c3
+        - r7c3
+        - r7c4
+        - r7c5
     - trigger:
-        - 38
+        - r5c3
       lights:
-        - 8
-        - 17
-        - 24
-        - 25
-        - 26
+        - r1c9
+        - r2c9
+        - r3c7
+        - r3c8
+        - r3c9
     - trigger:
-        - 47
+        - r6c3
       lights:
-        - 34
-        - 35
-        - 43
-        - 44
-        - 53
+        - r4c8
+        - r4c9
+        - r5c8
+        - r5c9
+        - r6c9
     - trigger:
-        - 56
+        - r7c3
       lights:
-        - 62
-        - 71
-        - 78
+        - r7c9
+        - r8c9
+        - r9c7
     - trigger:
-        - 57
+        - r7c4
       lights:
-        - 59
-        - 66
-        - 67
-        - 68
-        - 75
+        - r7c6
+        - r8c4
+        - r8c5
+        - r8c6
+        - r9c4
     - trigger:
-        - 58
+        - r7c5
       lights:
-        - 65
-        - 74
-        - 54
-        - 55
-        - 63
-        - 72
+        - r8c3
+        - r9c3
+        - r7c1
+        - r7c2
+        - r8c1
+        - r9c1
     - trigger:
-        - 41
+        - r5c6
       lights:
-        - 32
-        - 41
-        - 48
+        - r4c6
+        - r5c6
+        - r6c4
     - trigger:
-        - 32
+        - r4c6
       lights:
-        - 14
-        - 23
-        - 12
-        - 21
+        - r2c6
+        - r3c6
+        - r2c4
+        - r3c4
     - trigger:
-        - 36
+        - r5c1
       lights:
-        - 27
-        - 28
-        - 29
-        - 36
-        - 37
-        - 45
-        - 46
+        - r4c1
+        - r4c2
+        - r4c3
+        - r5c1
+        - r5c2
+        - r6c1
+        - r6c2
     - trigger:
-        - 45
+        - r6c1
       lights:
-        - 9
-        - 18
+        - r2c1
+        - r3c1
 format: open-rules
 title: Foggy birthday, James!
 setter: Timotab
@@ -244,6 +244,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 1d1dfe7994e495d5263b4117132bcba7
 ---
 
 ```rules
@@ -285,15 +286,15 @@ cage-8: cage r4c4-r4c5-r5c4-r5c5 total 11 connected true
 cage-9: cage r6c5-r6c6 total 11 connected true
 cage-10: cage r4c7-r5c7-r6c7-r6c8 total 11 connected true
 cage-11: cage r5c3-r6c3-r7c3-r7c4-r7c5 total 26 connected true
-kropki-1: kropki r1c1-r1c2 colour "white"
-kropki-2: kropki r3c1-r3c2 colour "white"
-kropki-3: kropki r9c4-r9c5 colour "white"
-kropki-4: kropki r2c5-r3c5 colour "white"
-kropki-5: kropki r7c4-r7c5 colour "white"
-kropki-6: kropki r1c2-r1c3 colour "black"
-kropki-7: kropki r9c6-r9c7 colour "black"
-kropki-8: kropki r9c5-r9c6 colour "black"
-kropki-9: kropki r8c2-r9c2 colour "black"
+kropki-1: kropki r1c1-r1c2 white
+kropki-2: kropki r3c1-r3c2 white
+kropki-3: kropki r9c4-r9c5 white
+kropki-4: kropki r2c5-r3c5 white
+kropki-5: kropki r7c4-r7c5 white
+kropki-6: kropki r1c2-r1c3 black
+kropki-7: kropki r9c6-r9c7 black
+kropki-8: kropki r9c5-r9c6 black
+kropki-9: kropki r8c2-r9c2 black
 ```
 
 • Normal Sudoku rules apply.

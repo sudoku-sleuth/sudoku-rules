@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/on-equal-footing
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: d5c4096a3ce5188e6d54c7de241ab41b
 ---
 
 ```rules

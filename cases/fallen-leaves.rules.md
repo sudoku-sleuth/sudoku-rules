@@ -6,6 +6,7 @@ source: https://sudokupad.app/tm15xf7ano
 case: https://sudoku-sleuth.com/cases/fallen-leaves
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: f8204b7593610bf82a28fcddfb819251
 ---
 
 ```rules

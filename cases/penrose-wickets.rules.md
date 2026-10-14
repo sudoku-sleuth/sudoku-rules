@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/penrose-wickets
 case: https://sudoku-sleuth.com/cases/penrose-wickets
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bc23c8d388e1754b6c1a7acb73f130c5
 ---
 
 ```rules

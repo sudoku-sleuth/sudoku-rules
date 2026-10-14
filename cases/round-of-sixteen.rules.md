@@ -6,6 +6,7 @@ source: https://sudokupad.app/8mlp26z3f8
 case: https://sudoku-sleuth.com/cases/round-of-sixteen
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 01e0322a5df9e827b6195f07f2ed2d6e
 ---
 
 ```rules

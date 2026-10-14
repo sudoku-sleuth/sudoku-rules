@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/compass
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c7=7 r6c9=1 r8c2=3
+exported: 9dfbad91a9f030c69a7b1b09ed06a8ca
 ---
 
 ```rules

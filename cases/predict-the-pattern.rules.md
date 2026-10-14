@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/predict-the-pattern
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bed7b173fe64498620a641ab7c233dd3
 ---
 
 ```rules

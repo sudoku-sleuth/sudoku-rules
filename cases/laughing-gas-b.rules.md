@@ -6,6 +6,7 @@ source: https://sudokupad.app/8287ulxzd8
 case: https://sudoku-sleuth.com/cases/laughing-gas-b
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 839dc84f17f07e057d6d10a2d8ef0c38
 ---
 
 ```rules

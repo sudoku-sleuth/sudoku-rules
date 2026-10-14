@@ -6,6 +6,7 @@ source: https://sudokupad.app/5zm21d3n6h
 case: https://sudoku-sleuth.com/cases/welcome-to-your-fourth-decade
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b6be37cde410b550e7338f1cfcf68cb3
 ---
 
 ```rules
@@ -21,10 +22,10 @@ cage-8: cage r4c8-r5c8 total 14 connected true
 cage-9: cage r6c6-r7c6 total 14 connected true
 cage-10: cage r9c3-r9c4 total 14 connected true
 cage-11: cage r8c7-r8c8 total 14 connected true
-kropki-1: kropki r3c5-r3c6 colour "white"
-kropki-2: kropki r8c9-r9c9 colour "white"
-kropki-3: kropki r1c3-r1c4 colour "white"
-kropki-4: kropki r4c6-r4c7 colour "black"
+kropki-1: kropki r3c5-r3c6 white
+kropki-2: kropki r8c9-r9c9 white
+kropki-3: kropki r1c3-r1c4 white
+kropki-4: kropki r4c6-r4c7 black
 quadruple-1: quadruple r1c7-r1c8-r2c7-r2c8 digits [1,3,4]
 quadruple-2: quadruple r1c2-r1c3-r2c2-r2c3 digits [1,3,4]
 quadruple-3: quadruple r5c2-r5c3-r6c2-r6c3 digits [1,3,4]

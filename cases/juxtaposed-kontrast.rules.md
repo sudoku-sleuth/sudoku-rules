@@ -7,14 +7,15 @@ case: https://sudoku-sleuth.com/cases/juxtaposed-kontrast
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=4 r2c8=3 r8c2=7 r8c8=6
+exported: 892de46bc284ad137efb98e7c68ac365
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r4c4-r5c4 colour "white"
-kropki-2: kropki r5c6-r6c6 colour "white"
-kropki-3: kropki r1c3-r2c3 colour "black"
-kropki-4: kropki r8c6-r9c6 colour "black"
+kropki-1: kropki r4c4-r5c4 white
+kropki-2: kropki r5c6-r6c6 white
+kropki-3: kropki r1c3-r2c3 black
+kropki-4: kropki r8c6-r9c6 black
 whispers-1: whispers r7c9-r7c8-r7c7 gap 5
 whispers-2: whispers r9c9-r9c8-r9c7 gap 5
 whispers-3: whispers r9c1-r8c1-r7c1 gap 5

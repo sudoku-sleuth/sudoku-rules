@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/repeater-lines-3
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 423313151dd83d2659c7eb1d14dbd3e2
 ---
 
 ```rules

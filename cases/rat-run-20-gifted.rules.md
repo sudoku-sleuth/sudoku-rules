@@ -1,174 +1,174 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 2
-    - 9
-    - 10
-    - 11
-    - 18
-    - 19
-    - 20
+    - r1c1
+    - r1c2
+    - r1c3
+    - r2c1
+    - r2c2
+    - r2c3
+    - r3c1
+    - r3c2
+    - r3c3
   links:
     - trigger:
-        - 13
+        - r2c5
       lights:
-        - 3
-        - 4
-        - 12
-        - 13
+        - r1c4
+        - r1c5
+        - r2c4
+        - r2c5
     - trigger:
-        - 14
+        - r2c6
       lights:
-        - 5
-        - 14
-        - 23
+        - r1c6
+        - r2c6
+        - r3c6
     - trigger:
-        - 59
+        - r7c6
       lights:
-        - 59
-        - 60
-        - 61
+        - r7c6
+        - r7c7
+        - r7c8
     - trigger:
-        - 72
+        - r9c1
       lights:
-        - 24
-        - 25
-        - 26
-        - 33
-        - 34
-        - 35
+        - r3c7
+        - r3c8
+        - r3c9
+        - r4c7
+        - r4c8
+        - r4c9
     - trigger:
-        - 0
-        - 4
-        - 18
-        - 31
-        - 41
-        - 42
-        - 48
-        - 49
-        - 51
-        - 57
-        - 58
-        - 70
+        - r1c1
+        - r1c5
+        - r3c1
+        - r4c5
+        - r5c6
+        - r5c7
+        - r6c4
+        - r6c5
+        - r6c7
+        - r7c4
+        - r7c5
+        - r8c8
       lights:
-        - 6
-        - 7
+        - r1c7
+        - r1c8
     - trigger:
-        - 71
+        - r8c9
       lights:
-        - 71
+        - r8c9
     - trigger:
-        - 8
+        - r1c9
       lights:
-        - 8
+        - r1c9
     - trigger:
-        - 17
+        - r2c9
       lights:
-        - 17
+        - r2c9
     - trigger:
-        - 44
+        - r5c9
       lights:
-        - 44
+        - r5c9
     - trigger:
-        - 62
+        - r7c9
       lights:
-        - 62
+        - r7c9
     - trigger:
-        - 53
+        - r6c9
       lights:
-        - 53
+        - r6c9
     - trigger:
-        - 61
+        - r7c8
       lights:
-        - 42
-        - 43
-        - 51
-        - 52
+        - r5c7
+        - r5c8
+        - r6c7
+        - r6c8
     - trigger:
-        - 9
-        - 10
-        - 11
-        - 19
-        - 21
-        - 29
-        - 30
-        - 39
+        - r2c1
+        - r2c2
+        - r2c3
+        - r3c2
+        - r3c4
+        - r4c3
+        - r4c4
+        - r5c4
       lights:
-        - 66
-        - 67
-        - 68
-        - 69
-        - 70
-        - 75
-        - 76
-        - 77
-        - 78
-        - 79
-        - 80
+        - r8c4
+        - r8c5
+        - r8c6
+        - r8c7
+        - r8c8
+        - r9c4
+        - r9c5
+        - r9c6
+        - r9c7
+        - r9c8
+        - r9c9
     - trigger:
-        - 68
-        - 69
-        - 77
-        - 78
+        - r8c6
+        - r8c7
+        - r9c6
+        - r9c7
       lights:
-        - 63
-        - 64
-        - 65
-        - 72
-        - 73
-        - 74
+        - r8c1
+        - r8c2
+        - r8c3
+        - r9c1
+        - r9c2
+        - r9c3
     - trigger:
-        - 66
-        - 73
-        - 74
-        - 75
+        - r8c4
+        - r9c2
+        - r9c3
+        - r9c4
       lights:
-        - 56
-        - 57
-        - 58
+        - r7c3
+        - r7c4
+        - r7c5
     - trigger:
-        - 1
+        - r1c2
       lights:
-        - 21
-        - 22
-        - 27
-        - 28
-        - 29
-        - 30
-        - 31
-        - 32
-        - 38
-        - 39
-        - 40
-        - 41
-        - 48
-        - 49
-        - 50
+        - r3c4
+        - r3c5
+        - r4c1
+        - r4c2
+        - r4c3
+        - r4c4
+        - r4c5
+        - r4c6
+        - r5c3
+        - r5c4
+        - r5c5
+        - r5c6
+        - r6c4
+        - r6c5
+        - r6c6
     - trigger:
-        - 54
-        - 55
-        - 56
+        - r7c1
+        - r7c2
+        - r7c3
       lights:
-        - 36
-        - 37
-        - 45
-        - 46
-        - 47
+        - r5c1
+        - r5c2
+        - r6c1
+        - r6c2
+        - r6c3
     - trigger:
-        - 33
-        - 64
-        - 67
-        - 76
+        - r4c7
+        - r8c2
+        - r8c5
+        - r9c5
       lights:
-        - 54
-        - 55
+        - r7c1
+        - r7c2
     - trigger:
-        - 15
+        - r2c7
       lights:
-        - 15
-        - 16
+        - r2c7
+        - r2c8
 format: open-rules
 title: "RAT RUN 20: Gifted"
 setter: Marty Sears
@@ -177,14 +177,15 @@ case: https://sudoku-sleuth.com/cases/rat-run-20-gifted
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 1bbf59d8f86184b91645970a843eaa4f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r2c2-r2c3 colour "black"
-kropki-2: kropki r2c2-r3c2 colour "black"
-kropki-3: kropki r8c4-r9c4 colour "black"
-kropki-4: kropki r9c2-r9c3 colour "black"
+kropki-1: kropki r2c2-r2c3 black
+kropki-2: kropki r2c2-r3c2 black
+kropki-3: kropki r8c4-r9c4 black
+kropki-4: kropki r9c2-r9c3 black
 ```
 
 ```drawing

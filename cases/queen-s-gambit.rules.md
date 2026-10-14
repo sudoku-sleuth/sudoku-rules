@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/queen-s-gambit
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=2 r2c8=3 r4c4=8 r4c6=9 r6c4=7 r6c6=6 r8c2=1 r8c8=4
+exported: b666bb28dc215383d8361b82cc4063f3
 ---
 
 ```rules

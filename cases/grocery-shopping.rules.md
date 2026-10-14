@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/grocery-shopping
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 251a0187bb8f58ab66cfe96cac5c3c82
 ---
 
 ```rules
@@ -20,16 +21,16 @@ cage-7: cage r9c8-r9c9 total 10 connected true
 cage-8: cage r3c5-r3c6 total 10 connected true
 cage-9: cage r1c4-r1c5 total 10 connected true
 cage-10: cage r7c4-r7c5 total 10 connected true
-kropki-1: kropki r3c6-r4c6 colour "white"
-kropki-2: kropki r4c5-r4c6 colour "white"
-kropki-3: kropki r3c3-r3c4 colour "white"
-kropki-4: kropki r2c4-r3c4 colour "white"
-kropki-5: kropki r6c5-r6c6 colour "black"
-kropki-6: kropki r2c9-r3c9 colour "black"
-kropki-7: kropki r3c9-r4c9 colour "black"
-kropki-8: kropki r5c8-r5c9 colour "black"
-kropki-9: kropki r3c2-r3c3 colour "black"
-kropki-10: kropki r6c3-r6c4 colour "black"
+kropki-1: kropki r3c6-r4c6 white
+kropki-2: kropki r4c5-r4c6 white
+kropki-3: kropki r3c3-r3c4 white
+kropki-4: kropki r2c4-r3c4 white
+kropki-5: kropki r6c5-r6c6 black
+kropki-6: kropki r2c9-r3c9 black
+kropki-7: kropki r3c9-r4c9 black
+kropki-8: kropki r5c8-r5c9 black
+kropki-9: kropki r3c2-r3c3 black
+kropki-10: kropki r6c3-r6c4 black
 whispers-1: whispers r8c2-r9c2-r9c1-r8c1 gap 4
 whispers-2: whispers r8c1-r8c2 gap 4
 whispers-3: whispers r8c2-r8c3-r8c4-r8c5-r8c6-r8c7 gap 4

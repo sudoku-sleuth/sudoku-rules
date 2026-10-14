@@ -6,6 +6,7 @@ source: https://sudokupad.app/17z080c0wc
 case: https://sudoku-sleuth.com/cases/the-quartering
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: dc0191d8016d278c24adaa45fd3d48cd
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/hashtag-ii
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: d26224ad6c9150f85d0aae6b439e6f9e
 ---
 
 ```rules
@@ -20,16 +21,16 @@ cage-7: cage r4c4-r5c4 total 13 connected true
 cage-8: cage r8c5-r9c5 total 9 connected true
 cage-9: cage r6c8-r6c9 total 13 connected true
 cage-10: cage r8c4-r9c4 total 14 connected true
-kropki-1: kropki r3c2-r3c3 colour "white"
-kropki-2: kropki r1c4-r1c5 colour "white"
-kropki-3: kropki r2c7-r3c7 colour "white"
-kropki-4: kropki r7c7-r7c8 colour "white"
-kropki-5: kropki r7c6-r7c7 colour "white"
-kropki-6: kropki r7c3-r8c3 colour "white"
-kropki-7: kropki r2c2-r2c3 colour "white"
-kropki-8: kropki r2c1-r2c2 colour "white"
-kropki-9: kropki r6c8-r7c8 colour "white"
-kropki-10: kropki r2c8-r3c8 colour "white"
+kropki-1: kropki r3c2-r3c3 white
+kropki-2: kropki r1c4-r1c5 white
+kropki-3: kropki r2c7-r3c7 white
+kropki-4: kropki r7c7-r7c8 white
+kropki-5: kropki r7c6-r7c7 white
+kropki-6: kropki r7c3-r8c3 white
+kropki-7: kropki r2c2-r2c3 white
+kropki-8: kropki r2c1-r2c2 white
+kropki-9: kropki r6c8-r7c8 white
+kropki-10: kropki r2c8-r3c8 white
 whispers-1: whispers r3c1-r3c2 gap 5
 whispers-2: whispers r3c4-r3c5-r3c6 gap 5
 whispers-3: whispers r3c8-r3c9 gap 5

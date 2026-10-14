@@ -6,6 +6,7 @@ source: https://sudokupad.app/kn8ltdupld
 case: https://sudoku-sleuth.com/cases/restrictions
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1b64033d9bf16d96c62566e5e26ac1b8
 ---
 
 ```rules

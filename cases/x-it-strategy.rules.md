@@ -6,6 +6,7 @@ source: https://sudokupad.app/j1dlhp8alk
 case: https://sudoku-sleuth.com/cases/x-it-strategy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 3f14e81997a4e83aa690600e7da3a6f0
 ---
 
 ```rules

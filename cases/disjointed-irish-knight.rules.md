@@ -7,20 +7,21 @@ case: https://sudoku-sleuth.com/cases/disjointed-irish-knight
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 9bdd5d36c966f0434f7393268efe573b
 ---
 
 ```rules
 sudoku 9x9
 anti-knight
-kropki-1: kropki r4c5-r5c5 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r3c2-r3c3 colour "white"
-kropki-4: kropki r4c6-r4c7 colour "white"
-kropki-5: kropki r5c7-r6c7 colour "white"
-kropki-6: kropki r5c8-r6c8 colour "white"
-kropki-7: kropki r5c9-r6c9 colour "white"
-kropki-8: kropki r4c7-r4c8 colour "white"
-kropki-9: kropki r6c1-r7c1 colour "white"
+kropki-1: kropki r4c5-r5c5 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r3c2-r3c3 white
+kropki-4: kropki r4c6-r4c7 white
+kropki-5: kropki r5c7-r6c7 white
+kropki-6: kropki r5c8-r6c8 white
+kropki-7: kropki r5c9-r6c9 white
+kropki-8: kropki r4c7-r4c8 white
+kropki-9: kropki r6c1-r7c1 white
 unique-1: unique r1c1-r1c4-r1c7-r4c1-r4c4-r4c7-r7c1-r7c4-r7c7
 unique-2: unique r1c2-r1c5-r1c8-r4c2-r4c5-r4c8-r7c2-r7c5-r7c8
 unique-3: unique r1c3-r1c6-r1c9-r4c3-r4c6-r4c9-r7c3-r7c6-r7c9

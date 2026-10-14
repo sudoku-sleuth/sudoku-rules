@@ -6,6 +6,7 @@ source: https://sudokupad.app/anjmga98jr
 case: https://sudoku-sleuth.com/cases/pushy-pushy
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 8fda29bb5e11ec8b01061c7fdfdc1c8f
 ---
 
 ```rules

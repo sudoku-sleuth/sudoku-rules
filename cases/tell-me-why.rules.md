@@ -6,21 +6,22 @@ source: https://sudokupad.app/jtfkysz6xr
 case: https://sudoku-sleuth.com/cases/tell-me-why
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 351bd50cd7bfd3327a60bb39565e65a6
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c8-r7c8 colour "white"
-kropki-2: kropki r7c2-r8c2 colour "white"
-kropki-3: kropki r3c2-r4c2 colour "white"
-kropki-4: kropki r7c6-r8c6 colour "white"
-kropki-5: kropki r9c1-r9c2 colour "white"
-kropki-6: kropki r8c5-r9c5 colour "black"
-kropki-7: kropki r7c7-r8c7 colour "black"
-kropki-8: kropki r2c8-r3c8 colour "black"
-kropki-9: kropki r4c3-r5c3 colour "black"
-kropki-10: kropki r2c5-r2c6 colour "black"
-kropki-11: kropki r8c6-r8c7 colour "black"
+kropki-1: kropki r6c8-r7c8 white
+kropki-2: kropki r7c2-r8c2 white
+kropki-3: kropki r3c2-r4c2 white
+kropki-4: kropki r7c6-r8c6 white
+kropki-5: kropki r9c1-r9c2 white
+kropki-6: kropki r8c5-r9c5 black
+kropki-7: kropki r7c7-r8c7 black
+kropki-8: kropki r2c8-r3c8 black
+kropki-9: kropki r4c3-r5c3 black
+kropki-10: kropki r2c5-r2c6 black
+kropki-11: kropki r8c6-r8c7 black
 whispers-1: whispers r3c2-r2c2-r1c2 gap 4
 whispers-2: whispers r1c3-r1c2-r1c1 gap 4
 whispers-3: whispers r3c4-r2c5-r2c4-r2c3 gap 4

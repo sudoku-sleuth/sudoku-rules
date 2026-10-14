@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/rat-run-27-productivity
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 0ca575ad76b65ecfc0675af0b66e8c8d
 ---
 
 ```rules

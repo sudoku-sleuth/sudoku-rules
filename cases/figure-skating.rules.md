@@ -6,6 +6,7 @@ source: https://sudokupad.app/mghfjibbk8
 case: https://sudoku-sleuth.com/cases/figure-skating
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 93064569fd21bcc20a17162be116e93e
 ---
 
 ```rules

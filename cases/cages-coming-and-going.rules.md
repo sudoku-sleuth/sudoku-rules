@@ -6,6 +6,7 @@ source: https://sudokupad.app/vw12m79nlv
 case: https://sudoku-sleuth.com/cases/cages-coming-and-going
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: bf9972aa22ace1c0d59e0c84632a5f3b
 ---
 
 ```rules

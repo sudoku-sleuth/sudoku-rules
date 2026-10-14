@@ -6,24 +6,25 @@ source: ""
 case: https://sudoku-sleuth.com/cases/stickman-event-proposal
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: ef8c08bf807800f9b657569a9edd06ce
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r8c1-r8c2 colour "white"
-kropki-2: kropki r8c5-r8c6 colour "white"
-kropki-3: kropki r7c5-r8c5 colour "white"
-kropki-4: kropki r5c3-r6c3 colour "white"
-kropki-5: kropki r6c4-r6c5 colour "white"
-kropki-6: kropki r6c8-r7c8 colour "white"
-kropki-7: kropki r8c7-r8c8 colour "white"
-kropki-8: kropki r2c3-r3c3 colour "white"
-kropki-9: kropki r2c3-r2c4 colour "white"
-kropki-10: kropki r2c4-r3c4 colour "white"
-kropki-11: kropki r7c3-r8c3 colour "white"
-kropki-12: kropki r1c1-r2c1 colour "black"
-kropki-13: kropki r2c1-r3c1 colour "black"
-kropki-14: kropki r3c1-r3c2 colour "black"
+kropki-1: kropki r8c1-r8c2 white
+kropki-2: kropki r8c5-r8c6 white
+kropki-3: kropki r7c5-r8c5 white
+kropki-4: kropki r5c3-r6c3 white
+kropki-5: kropki r6c4-r6c5 white
+kropki-6: kropki r6c8-r7c8 white
+kropki-7: kropki r8c7-r8c8 white
+kropki-8: kropki r2c3-r3c3 white
+kropki-9: kropki r2c3-r2c4 white
+kropki-10: kropki r2c4-r3c4 white
+kropki-11: kropki r7c3-r8c3 white
+kropki-12: kropki r1c1-r2c1 black
+kropki-13: kropki r2c1-r3c1 black
+kropki-14: kropki r3c1-r3c2 black
 renban-1: renban r1c7-r1c8-r2c8-r2c7
 renban-2: renban r3c8-r4c8-r5c9-r5c8-r5c7-r3c6-r3c7-r4c6-r4c7
 renban-3: renban r2c3-r2c4-r3c3-r3c4

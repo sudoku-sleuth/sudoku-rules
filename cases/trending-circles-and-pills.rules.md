@@ -7,27 +7,28 @@ case: https://sudoku-sleuth.com/cases/trending-circles-and-pills
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 6d51dd346d3399481620475b1cb8818f
 ---
 
 ```rules
 sudoku 9x9
-kropki-1: kropki r6c3-r6c4 colour "white"
-kropki-2: kropki r6c5-r6c6 colour "white"
-kropki-3: kropki r9c7-r9c8 colour "white"
-kropki-4: kropki r9c8-r9c9 colour "white"
-kropki-5: kropki r7c5-r7c6 colour "white"
-kropki-6: kropki r4c7-r5c7 colour "white"
-kropki-7: kropki r4c2-r4c3 colour "white"
-kropki-8: kropki r3c7-r3c8 colour "white"
-kropki-9: kropki r7c7-r7c8 colour "white"
-kropki-10: kropki r4c8-r5c8 colour "white"
-kropki-11: kropki r5c8-r6c8 colour "white"
-kropki-12: kropki r6c8-r7c8 colour "white"
-kropki-13: kropki r3c9-r4c9 colour "white"
-kropki-14: kropki r8c4-r8c5 colour "white"
-kropki-15: kropki r1c8-r2c8 colour "black"
-kropki-16: kropki r1c7-r1c8 colour "black"
-kropki-17: kropki r3c8-r4c8 colour "black"
+kropki-1: kropki r6c3-r6c4 white
+kropki-2: kropki r6c5-r6c6 white
+kropki-3: kropki r9c7-r9c8 white
+kropki-4: kropki r9c8-r9c9 white
+kropki-5: kropki r7c5-r7c6 white
+kropki-6: kropki r4c7-r5c7 white
+kropki-7: kropki r4c2-r4c3 white
+kropki-8: kropki r3c7-r3c8 white
+kropki-9: kropki r7c7-r7c8 white
+kropki-10: kropki r4c8-r5c8 white
+kropki-11: kropki r5c8-r6c8 white
+kropki-12: kropki r6c8-r7c8 white
+kropki-13: kropki r3c9-r4c9 white
+kropki-14: kropki r8c4-r8c5 white
+kropki-15: kropki r1c8-r2c8 black
+kropki-16: kropki r1c7-r1c8 black
+kropki-17: kropki r3c8-r4c8 black
 ```
 
 ```drawing

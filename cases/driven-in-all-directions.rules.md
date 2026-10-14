@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/driven-in-all-directions
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=4 r1c9=2 r9c1=9 r9c9=5
+exported: 3c067894bfedb3994c31d9a0f17b6fa5
 ---
 
 ```rules

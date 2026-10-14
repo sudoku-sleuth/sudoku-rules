@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/a-hurricane-came
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r1c1=6 r2c2=7 r3c3=3 r4c6=3 r5c2=4 r5c8=2 r6c4=1 r7c7=4 r8c8=6 r9c9=8
+exported: 558a15d0f994c0e79193f6fddcb38274
 ---
 
 ```rules

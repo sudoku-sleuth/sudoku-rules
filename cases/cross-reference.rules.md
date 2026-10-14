@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/cross-reference
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: b2c6c12ae7a37e95e5913f2e42ae57e2
 ---
 
 ```rules

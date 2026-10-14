@@ -6,6 +6,7 @@ source: https://sudokupad.app/fw9mrlhldu
 case: https://sudoku-sleuth.com/cases/romans-in-and-out-of-cages
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 11b0a63c705bfec22e6540ee35adc0c0
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/ztrb4zsbaz
 case: https://sudoku-sleuth.com/cases/progressive-flow
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 7b539c00ee138e674af8f346f1fe2ba6
 ---
 
 ```rules

@@ -6,24 +6,25 @@ source: ""
 case: https://sudoku-sleuth.com/cases/here-comes-the-pitch
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e11b967d96c4896140147aa9ad42559c
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r1c1-r2c1 total 14 connected true
 cage-2: cage r2c5-r3c5 total 14 connected true
-kropki-1: kropki r7c7-r7c8 colour "white"
-kropki-2: kropki r2c9-r3c9 colour "white"
-kropki-3: kropki r8c1-r8c2 colour "white"
-kropki-4: kropki r9c1-r9c2 colour "white"
-kropki-5: kropki r6c7-r6c8 colour "white"
-kropki-6: kropki r6c1-r7c1 colour "black"
-kropki-7: kropki r4c1-r4c2 colour "black"
-kropki-8: kropki r7c5-r8c5 colour "black"
-kropki-9: kropki r7c6-r7c7 colour "black"
-kropki-10: kropki r5c7-r6c7 colour "black"
-kropki-11: kropki r6c8-r6c9 colour "black"
-kropki-12: kropki r4c9-r5c9 colour "black"
+kropki-1: kropki r7c7-r7c8 white
+kropki-2: kropki r2c9-r3c9 white
+kropki-3: kropki r8c1-r8c2 white
+kropki-4: kropki r9c1-r9c2 white
+kropki-5: kropki r6c7-r6c8 white
+kropki-6: kropki r6c1-r7c1 black
+kropki-7: kropki r4c1-r4c2 black
+kropki-8: kropki r7c5-r8c5 black
+kropki-9: kropki r7c6-r7c7 black
+kropki-10: kropki r5c7-r6c7 black
+kropki-11: kropki r6c8-r6c9 black
+kropki-12: kropki r4c9-r5c9 black
 whispers-1: whispers r4c2-r5c1-r6c1-r7c2-r7c3-r6c4-r5c4 gap 5
 whispers-2: whispers r6c1-r5c2-r4c2-r4c3-r5c4 gap 5
 whispers-3: whispers r4c3-r5c3-r6c4 gap 5

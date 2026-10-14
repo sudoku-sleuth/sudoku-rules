@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parroty-lines
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 5fc71525cc07dad8c0d7fa3293fcb1e6
 ---
 
 ```rules

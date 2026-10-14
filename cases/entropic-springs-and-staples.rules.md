@@ -6,6 +6,7 @@ source: https://sudokupad.app/mdp/entropic-springs-and-staples
 case: https://sudoku-sleuth.com/cases/entropic-springs-and-staples
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: e3ab3581f59ddf55740ee57514733c64
 ---
 
 ```rules

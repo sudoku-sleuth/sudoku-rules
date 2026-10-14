@@ -6,6 +6,7 @@ source: https://sudokupad.app/akaixo5jro
 case: https://sudoku-sleuth.com/cases/modular-scrolls
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 0a5058c1ec91e48eeb4dea8419e18d72
 ---
 
 ```rules

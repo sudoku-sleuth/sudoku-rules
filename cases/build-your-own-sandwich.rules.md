@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/build-your-own-sandwich
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r3c8=5 r8c3=4 r9c9=8
+exported: 29633bc7442058549fdc66a190360e6f
 ---
 
 ```rules

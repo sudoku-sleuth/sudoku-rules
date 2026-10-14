@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/tea-with-the-queen
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c3=2
+exported: 64c2899fe1680a1d387c7fdc07dbdbf7
 ---
 
 ```rules

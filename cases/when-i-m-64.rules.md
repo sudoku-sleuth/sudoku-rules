@@ -6,6 +6,7 @@ source: https://sudokupad.app/h4opu2ifuy
 case: https://sudoku-sleuth.com/cases/when-i-m-64
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: eef5833a07ee544d0fca2196cf84632e
 ---
 
 ```rules

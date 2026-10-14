@@ -10,6 +10,7 @@ drawingCoverage: unclaimed-only
 flags:
   - A feature in the source still needs a drawing definition.
   - Some of the source rules still need to be included in our reading.
+exported: 3415a6863b7f9fd9ae6475eee4d4b799
 ---
 
 ```rules

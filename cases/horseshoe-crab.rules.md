@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/horseshoe-crab
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: 86c5ed01d231d2610e74d6a16128d0ca
 ---
 
 ```rules
@@ -15,9 +16,9 @@ cage-1: cage r7c8-r7c9-r8c9 total 13 connected true
 cage-2: cage r9c7-r9c8-r9c9 total 19 connected true
 cage-3: cage r9c2-r9c3 total 11 connected true
 cage-4: cage r9c4-r9c5 total 11 connected true
-kropki-1: kropki r5c7-r5c8 colour "black"
-kropki-2: kropki r5c1-r6c1 colour "black"
-kropki-3: kropki r4c1-r5c1 colour "black"
+kropki-1: kropki r5c7-r5c8 black
+kropki-2: kropki r5c1-r6c1 black
+kropki-3: kropki r4c1-r5c1 black
 pair-1: pair r3c8-r4c8 sum 5
 pair-2: pair r3c7-r3c8 sum 5
 pair-3: pair r4c8-r4c9 sum 5

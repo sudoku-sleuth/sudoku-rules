@@ -1,10 +1,10 @@
 ---
 fog:
   initiallyLit:
-    - 0
-    - 1
-    - 9
-    - 10
+    - r1c1
+    - r1c2
+    - r2c1
+    - r2c2
 format: open-rules
 title: Mumble German through the Fog
 setter: Meggen033
@@ -107,6 +107,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: a27bfd03f806adf65a6319876e981cb9
 ---
 
 ```rules
@@ -140,13 +141,13 @@ unique-27: unique r7c7-r7c8-r7c9-r8c7-r8c8-r8c9-r9c7-r9c8-r9c9
 cage-1: cage r1c1-r1c2-r2c1 total 12 connected true
 cage-2: cage r4c1-r4c2-r5c1 total 10 connected true
 cage-3: cage r4c5-r5c5-r6c5 total 10 connected true
-kropki-1: kropki r4c1-r4c2 colour "white"
-kropki-2: kropki r3c2-r4c2 colour "white"
-kropki-3: kropki r5c2-r5c3 colour "white"
-kropki-4: kropki r8c3-r9c3 colour "white"
-kropki-5: kropki r5c4-r6c4 colour "black"
-kropki-6: kropki r5c4-r5c5 colour "black"
-kropki-7: kropki r1c4-r1c5 colour "black"
+kropki-1: kropki r4c1-r4c2 white
+kropki-2: kropki r3c2-r4c2 white
+kropki-3: kropki r5c2-r5c3 white
+kropki-4: kropki r8c3-r9c3 white
+kropki-5: kropki r5c4-r6c4 black
+kropki-6: kropki r5c4-r5c5 black
+kropki-7: kropki r1c4-r1c5 black
 whispers r1c1-r1c2-r2c1-r3c1-r4c1-r5c2-r6c3-r7c2-r7c3-r8c4-r9c4-r8c5-r7c5-r6c6-r7c7-r8c7-r7c8-r7c9-r6c9-r5c8-r5c7-r5c6-r4c6-r3c6-r3c7-r4c8-r3c8-r2c9-r2c8-r1c7-r2c6-r2c5-r3c4-r2c3-r2c2 gap 5
 pair-1: pair r1c2-r2c2 sum 10
 pair-2: pair r6c1-r6c2 sum 10

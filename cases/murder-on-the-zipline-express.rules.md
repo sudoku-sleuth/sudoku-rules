@@ -6,6 +6,7 @@ source: https://sudokupad.app/4qt4n1bnz3
 case: https://sudoku-sleuth.com/cases/murder-on-the-zipline-express
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 25abb5bc7a8ffb45f2a5af5dc60845a6
 ---
 
 ```rules

@@ -7,21 +7,22 @@ case: https://sudoku-sleuth.com/cases/balance-of-power-ii
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: cac5663335c8165af9f4b0072d2f7047
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r1c5-r2c5 total 17 connected true
 cage-2: cage r9c4-r9c5 total 10 connected true
-kropki-1: kropki r8c8-r9c8 colour "white"
-kropki-2: kropki r8c7-r8c8 colour "white"
-kropki-3: kropki r6c8-r7c8 colour "white"
-kropki-4: kropki r5c8-r6c8 colour "white"
-kropki-5: kropki r7c8-r7c9 colour "white"
-kropki-6: kropki r3c7-r4c7 colour "white"
-kropki-7: kropki r3c6-r3c7 colour "white"
-kropki-8: kropki r7c2-r7c3 colour "black"
-kropki-9: kropki r7c3-r7c4 colour "black"
+kropki-1: kropki r8c8-r9c8 white
+kropki-2: kropki r8c7-r8c8 white
+kropki-3: kropki r6c8-r7c8 white
+kropki-4: kropki r5c8-r6c8 white
+kropki-5: kropki r7c8-r7c9 white
+kropki-6: kropki r3c7-r4c7 white
+kropki-7: kropki r3c6-r3c7 white
+kropki-8: kropki r7c2-r7c3 black
+kropki-9: kropki r7c3-r7c4 black
 ```
 
 ```drawing

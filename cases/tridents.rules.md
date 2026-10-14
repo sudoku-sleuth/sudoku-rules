@@ -6,6 +6,7 @@ source: https://sudokupad.app/ricwygx0i3
 case: https://sudoku-sleuth.com/cases/tridents
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b174db38c819d963d9e2d07f93b75893
 ---
 
 ```rules
@@ -22,9 +23,9 @@ thermo-9: thermo r5c8-r4c7-r3c7
 thermo-10: thermo r5c8-r4c9-r3c9
 thermo-11: thermo r5c8-r4c8-r3c8-r2c8
 thermo-12: thermo r5c8-r6c8-r7c8-r8c8
-kropki-1: kropki r6c2-r7c2 colour "black"
-kropki-2: kropki r8c5-r9c5 colour "black"
-kropki-3: kropki r7c8-r8c8 colour "black"
+kropki-1: kropki r6c2-r7c2 black
+kropki-2: kropki r8c5-r9c5 black
+kropki-3: kropki r7c8-r8c8 black
 renban-1: renban r6c2-r5c2-r4c2-r3c2-r2c2
 renban-2: renban r8c5-r7c5-r6c5-r5c5-r4c5
 renban-3: renban r7c8-r6c8-r5c8-r4c8-r3c8

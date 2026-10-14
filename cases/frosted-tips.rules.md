@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/frosted-tips
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r5c9=5 r9c1=1
+exported: 83e66f6d9a7b946e35c2f8d9f8e34c6e
 ---
 
 ```rules

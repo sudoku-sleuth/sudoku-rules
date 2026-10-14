@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/slices-of-tentropy
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: ae3fefb94ae59b4fac4040ada4bd8e26
 ---
 
 ```rules

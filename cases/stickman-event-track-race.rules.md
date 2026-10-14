@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/stickman-event-track-race
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a8853a211162c6adf7b5e0d6938225e7
 ---
 
 ```rules
@@ -17,7 +18,7 @@ cage-3: cage r7c9-r8c9 total 9 connected true
 cage-4: cage r1c7-r2c7 total 9 connected true
 cage-5: cage r2c8-r2c9 total 9 connected true
 cage-6: cage r3c3-r3c4 total 9 connected true
-kropki r2c2-r2c3 colour "black"
+kropki r2c2-r2c3 black
 whispers-1: whispers r6c2-r7c3-r8c4-r9c5 gap 5
 whispers-2: whispers r5c9-r5c8-r4c7-r4c6-r5c5 gap 5
 whispers-3: whispers r4c7-r5c6-r6c5-r7c5-r8c5-r8c4-r8c3 gap 5

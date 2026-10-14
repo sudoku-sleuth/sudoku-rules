@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/sandwiches-and-sides
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: a958d4bc6ee6bc3e24d2ff274b1b27d7
 ---
 
 ```rules

@@ -6,6 +6,7 @@ source: https://sudokupad.app/r45ehh63xp
 case: https://sudoku-sleuth.com/cases/two-killer-knights
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 788273ccbad1dfe18cecb5cfe650b9b0
 ---
 
 ```rules

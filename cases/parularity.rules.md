@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/parularity
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c6=2 r6c8=1 r9c1=3
+exported: 0bb1b4a45d18f337235940cb4a99f67c
 ---
 
 ```rules

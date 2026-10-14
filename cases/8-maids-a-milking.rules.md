@@ -6,6 +6,7 @@ source: ""
 case: https://sudoku-sleuth.com/cases/8-maids-a-milking
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: b4b7575c5d83c1b870901de312a80e1c
 ---
 
 ```rules
@@ -23,7 +24,7 @@ cage-10: cage r1c1-r2c1 total 6 connected true
 cage-11: cage r7c9-r8c9-r9c9 total 22 connected true
 thermo-1: thermo r8c3-r7c3-r6c3-r5c3-r4c3
 thermo-2: thermo r8c7-r7c7-r6c7-r5c7-r4c7
-kropki r7c4-r8c4 colour "white"
+kropki r7c4-r8c4 white
 whispers-1: whispers r5c6-r5c5-r5c4-r5c3-r6c2-r7c2-r8c3-r8c4 gap 4
 whispers-2: whispers r8c6-r8c7-r7c8-r6c8-r5c7 gap 4
 renban-1: renban r2c2-r2c3-r2c4

@@ -8,6 +8,7 @@ library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
 givens: r3c3=8 r3c6=4 r4c4=4 r4c5=3 r5c4=7 r5c5=6 r6c3=9 r6c6=5
+exported: 296fe902175e56127b771657ee88adc7
 ---
 
 ```rules
@@ -21,21 +22,21 @@ cage-6: cage r1c7-r1c8-r2c8 total 14 connected true
 cage-7: cage r7c8-r8c7-r8c8 total 15 connected true
 cage-8: cage r7c1-r8c1-r9c1 total 6 connected true
 cage-9: cage r7c4-r7c5 total 7 connected true
-kropki-1: kropki r2c3-r2c4 colour "white"
-kropki-2: kropki r1c5-r2c5 colour "white"
-kropki-3: kropki r2c7-r3c7 colour "white"
-kropki-4: kropki r3c7-r3c8 colour "white"
-kropki-5: kropki r4c8-r5c8 colour "white"
-kropki-6: kropki r5c8-r5c9 colour "white"
-kropki-7: kropki r7c8-r7c9 colour "white"
-kropki-8: kropki r9c6-r9c7 colour "white"
-kropki-9: kropki r8c2-r8c3 colour "white"
-kropki-10: kropki r6c1-r6c2 colour "white"
-kropki-11: kropki r5c1-r6c1 colour "white"
-kropki-12: kropki r4c1-r4c2 colour "white"
-kropki-13: kropki r3c1-r4c1 colour "white"
-kropki-14: kropki r1c1-r2c1 colour "white"
-kropki-15: kropki r3c5-r3c6 colour "white"
+kropki-1: kropki r2c3-r2c4 white
+kropki-2: kropki r1c5-r2c5 white
+kropki-3: kropki r2c7-r3c7 white
+kropki-4: kropki r3c7-r3c8 white
+kropki-5: kropki r4c8-r5c8 white
+kropki-6: kropki r5c8-r5c9 white
+kropki-7: kropki r7c8-r7c9 white
+kropki-8: kropki r9c6-r9c7 white
+kropki-9: kropki r8c2-r8c3 white
+kropki-10: kropki r6c1-r6c2 white
+kropki-11: kropki r5c1-r6c1 white
+kropki-12: kropki r4c1-r4c2 white
+kropki-13: kropki r3c1-r4c1 white
+kropki-14: kropki r1c1-r2c1 white
+kropki-15: kropki r3c5-r3c6 white
 renban-1: renban r7c9-r7c8-r6c8
 renban-2: renban r5c9-r5c8-r4c8
 renban-3: renban r3c8-r3c7-r2c7

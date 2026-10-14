@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/extrovert
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r2c2=3 r2c8=5 r5c5=1 r8c2=2 r8c8=8
+exported: 572c5b19433b129386f9c931435c3b7a
 ---
 
 ```rules

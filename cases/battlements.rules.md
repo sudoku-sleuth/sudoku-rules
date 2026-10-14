@@ -6,6 +6,7 @@ source: https://sudokupad.app/f7iew8xg43
 case: https://sudoku-sleuth.com/cases/battlements
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: c79329dbacb9ea8cbde8b7e639e1c370
 ---
 
 ```rules

@@ -1,13 +1,13 @@
 ---
 fog:
   initiallyLit:
-    - 4
-    - 22
-    - 37
-    - 38
-    - 42
-    - 43
-    - 49
+    - r1c5
+    - r3c5
+    - r5c2
+    - r5c3
+    - r5c7
+    - r5c8
+    - r6c5
 format: open-rules
 title: Foggy Disjoint
 setter: Meggen033
@@ -110,6 +110,7 @@ board:
       - r9c7
       - r9c8
       - r9c9
+exported: 3abffc9ecd8c6da63b95fda9dcb0ecca
 ---
 
 ```rules

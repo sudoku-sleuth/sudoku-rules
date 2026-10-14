@@ -7,6 +7,7 @@ case: https://sudoku-sleuth.com/cases/one-lost-goose
 library: https://rules.sudoku-sleuth.com/
 status: read
 drawingCoverage: unclaimed-only
+exported: e6352ce3af46d99d410a2c957d61ac3c
 ---
 
 ```rules

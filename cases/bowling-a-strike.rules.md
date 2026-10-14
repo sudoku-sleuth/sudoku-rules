@@ -6,17 +6,18 @@ source: https://tinyurl.com/bowlingastrikesudoku
 case: https://sudoku-sleuth.com/cases/bowling-a-strike
 library: https://rules.sudoku-sleuth.com/
 status: read
+exported: 1d0e690dca6979023b8c06cd5c08d513
 ---
 
 ```rules
 sudoku 9x9
 cage-1: cage r1c1-r2c1-r3c1-r4c1-r5c1-r6c1-r7c1 total 34 connected true
 cage-2: cage r1c9-r2c9-r3c9-r4c9-r5c9-r6c9-r7c9 total 34 connected true
-kropki-1: kropki r7c7-r8c7 colour "white"
-kropki-2: kropki r4c6-r4c7 colour "white"
-kropki-3: kropki r4c8-r4c9 colour "white"
-kropki-4: kropki r6c8-r6c9 colour "black"
-kropki-5: kropki r4c3-r4c4 colour "black"
+kropki-1: kropki r7c7-r8c7 white
+kropki-2: kropki r4c6-r4c7 white
+kropki-3: kropki r4c8-r4c9 white
+kropki-4: kropki r6c8-r6c9 black
+kropki-5: kropki r4c3-r4c4 black
 arrow r8c7-r7c7-r6c7-r5c6 bulb ["r9c7"]
 whispers-1: whispers r1c3-r2c4-r3c5-r2c6-r1c7 gap 5
 whispers-2: whispers r7c2-r7c3-r7c4-r7c5-r7c6-r7c7-r7c8 gap 5
