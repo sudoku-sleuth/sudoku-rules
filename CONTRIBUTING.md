@@ -28,7 +28,7 @@ Use the approved page order:
 
 Use setter terms for parameters. Link mathematical notation to `https://rules.sudoku-sleuth.com/predicates.md`. Keep public links public and retain Unicode maths symbols. An optional `shape` string selects the site's index group.
 
-Shared definition pages have `name`, `url` and `document: prelude`, `document: syntax` or `document: home`, with no `kind`. A setup feature such as fog uses `document: feature` and declares no rule formula. Alias pages declare their own `kind` and `alias_of` (or `aliasOf`), pointing directly to a definition; they declare no parameters or formula. Their filenames determine their raw and HTML routes.
+Shared definition pages have `name`, `url` and `document: prelude`, `document: syntax` or `document: home`, with no `kind`. A setup feature such as fog uses `document: feature`. With `domain: play-state` it names the case-file header key it reads (`header`), the play predicate it defines (`defines`), typed `parameters`, optional `requires` formulas with their messages, an `openrules` block for its own `play` types and terms, and one `text` block that defines the predicate: `∀c∈C: visible(c) ↔ …`, with the predicate absent from the right side. A case may use one feature that defines a given predicate. [spec/play-state.md](spec/play-state.md) defines the domain; the site adds the `Domain:` line from the front matter. Alias pages declare their own `kind` and `alias_of` (or `aliasOf`), pointing directly to a definition; they declare no parameters or formula. Their filenames determine their raw and HTML routes.
 
 ## Cases
 

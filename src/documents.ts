@@ -2,8 +2,9 @@ import { parseDeclaredRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result } from "./language/diagnostics.js";
 import { compilePage, compilePrelude, formulaBlocks, type PageSource, type CompiledPage } from "./library.js";
+import { checkFeatureBlocks, compileFeature, type CompiledFeature } from "./features.js";
 import type { CheckedPrelude } from "./language/checker.js";
-export const documentChecks = ["E_HEADER_REQUIRED", "E_HEADER_TYPE", "E_LIBRARY_URL", "E_RULES_REQUIRED", "E_KIND_UNKNOWN", "E_ALIAS_TARGET"] as const;
+export const documentChecks = ["E_HEADER_REQUIRED", "E_HEADER_TYPE", "E_LIBRARY_URL", "E_RULES_REQUIRED", "E_KIND_UNKNOWN", "E_ALIAS_TARGET", "E_FEATURE_REQUIRES", "E_FEATURE_CONFLICT"] as const;
 export interface Header {
     metadata: Record<string, unknown>;
     offset: number;
@@ -33,6 +34,8 @@ export interface RuleRegistry {
     kinds: Set<string>;
     urls: Set<string>;
     lines?: Map<string, LineDeclaration>;
+    /** Setup features, whose header blocks are checked in a case. */
+    features?: CompiledFeature[];
 }
 export interface CaseReference {
     kind: string;
@@ -112,6 +115,13 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
             at += line.length;
         }
     }
+    if (registry.features?.length) {
+        const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};
+        const written = /^[ \t]*(?:[\p{L}\p{N}_-]+:\s+)?sudoku\s+(\d+)x(\d+)\b/mu.exec(rest);
+        const rows = typeof declared.rows === "number" ? declared.rows : written ? Number(written[1]) : undefined;
+        const cols = typeof declared.cols === "number" ? declared.cols : written ? Number(written[2]) : undefined;
+        errors.push(...checkFeatureBlocks(registry.features, { metadata, field, board: { rows, cols } }));
+    }
     if (!found)
         errors.push(diagnostic("E_RULES_REQUIRED", location(page, offset, offset), "Add a fenced rules block containing the puzzle's rule references."));
     return errors.length ? { diagnostics: errors } : { value: { references, deferred }, diagnostics: [] };
@@ -121,6 +131,7 @@ export interface PublicLibrary {
     rules: Map<string, CompiledPage>;
     aliases: Map<string, string>;
     documents: number;
+    features: CompiledFeature[];
     registry: RuleRegistry;
 }
 export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary> {
@@ -135,7 +146,8 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         return { diagnostics };
     const rules = new Map<string, CompiledPage>();
     const aliases = new Map<string, string>();
-    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map() };
+    const features: CompiledFeature[] = [];
+    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), features };
     let documents = 0;
     for (const page of pages) {
         const header = headers.get(page.file)?.value;
@@ -143,12 +155,20 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             continue;
         const { metadata, field } = header;
         if (metadata.document !== undefined) {
-            if (!["prelude", "syntax", "home", "feature"].includes(String(metadata.document)) || metadata.kind !== undefined || metadata.parameters !== undefined || metadata.alias_of !== undefined || metadata.aliasOf !== undefined)
+            if (!["prelude", "syntax", "home", "feature"].includes(String(metadata.document)) || metadata.kind !== undefined || metadata.parameters !== undefined && metadata.document !== "feature" || metadata.alias_of !== undefined || metadata.aliasOf !== undefined)
                 diagnostics.push(diagnostic("E_HEADER_TYPE", field("document"), "A shared document must declare document: prelude, document: syntax, document: feature or document: home, and must not declare a rule kind, parameters or an alias."));
             else {
                 documents++;
                 if (metadata.document === "home" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"The home index cannot declare formulas; put a rule's formula on its kind page."));
-                if (metadata.document === "feature" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"A setup feature page cannot declare rule formulas; write its maths in a math block."));
+                if (metadata.document === "feature" && metadata.domain !== undefined) {
+                    const compiled = compileFeature(page, parsed.value);
+                    diagnostics.push(...compiled.diagnostics);
+                    if (compiled.value) {
+                        if (features.some(feature => feature.header === compiled.value!.header)) diagnostics.push(diagnostic("E_HEADER_TYPE", field("header"), `The header key ${compiled.value.header} is already read by another feature.`));
+                        else features.push(compiled.value);
+                    }
+                }
+                else if (metadata.document === "feature" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"A setup feature page declares formulas only with domain: play-state; otherwise write its maths in a math block."));
                 if (metadata.document === "syntax" && formulaBlocks(page).length) {
                     const checked = compilePrelude(page);
                     diagnostics.push(...checked.diagnostics);
@@ -197,5 +217,5 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             if (declaration) registry.lines!.set(metadata.url, declaration);
         }
     }
-    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, documents, registry }, diagnostics: [] };
+    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, documents, features, registry }, diagnostics: [] };
 }

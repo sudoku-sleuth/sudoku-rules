@@ -8,4 +8,6 @@ The class belongs to the checked formula, including the bodies of called shared 
 
 The strongest requirement wins: existential, then aggregates, then first-order. Unbounded function quantification and universal quantification over unknown structures are outside these classes and return `E_LOGIC_CLASS`; fixed supplied collections can still be quantified over. A wrong or absent page class receives the same code at its declaration (or the start of the document).
 
+Pages also declare a domain. A rule page is solution-domain. A setup feature page with `domain: play-state` in its front matter may also use the player's entries; the site prints a generated `Domain: play-state.` line under its class. The class measures the formula and is independent of the domain. See [play-state.md](play-state.md).
+
 No kind-name table determines these classes. The grammar and type checker inspect the formula and parsed declarations. Evaluation of grids, witnesses and example verdicts is a later phase.

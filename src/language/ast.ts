@@ -26,6 +26,8 @@ export interface Declaration {
   result: Type;
   body?: Expr;
   requires?: Expr;
+  /** Declared with the play prefix: part of the player's side (entries and what follows from them). */
+  play?: boolean;
 }
 export interface TypedDeclaration extends Omit<Declaration, "body" | "requires"> { body?: TypedExpr; requires?: TypedExpr }
 export type LogicClass = "first-order" | "with aggregates" | "existential";

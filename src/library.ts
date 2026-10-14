@@ -56,7 +56,7 @@ export function compilePrelude(page: PageSource): Result<CheckedPrelude> {
   if (diagnostics.length) return { diagnostics };
   return checkPrelude(declarations);
 }
-function pageEnvironment(page: PageSource, environment: Environment): Result<{ environment: Environment; parameters: Parameter[] }> {
+export function pageEnvironment(page: PageSource, environment: Environment, feature = false): Result<{ environment: Environment; parameters: Parameter[] }> {
   const symbols = Object.assign(Object.create(null), environment.symbols) as Record<string, Type>;
   const diagnostics: Diagnostic[] = [];
   const front = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(page.text);
@@ -83,14 +83,15 @@ function pageEnvironment(page: PageSource, environment: Environment): Result<{ e
     if (!identifier.value || identifier.value !== name) { diagnostics.push(diagnostic("E_FORMULA_SYNTAX", span, `The parameter name ${name} cannot be used in formulas; start it with a letter, use only letters, digits or underscores, and avoid formula keywords.`)); continue; }
     const rawType = parameter && typeof parameter === "object" && "type" in parameter ? parameter.type : undefined;
     if (typeof rawType !== "string") { diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", span, `Declare a type for the parameter ${name}, such as cell, number or path<cell>.`)); continue; }
-    if (Object.hasOwn(symbols, name) || Object.hasOwn(environment.terms, name)) { diagnostics.push(diagnostic("E_NAME_SHADOW", span, `The parameter ${name} reuses a shared name; choose another parameter name.`)); continue; }
+    if ((Object.hasOwn(symbols, name) || Object.hasOwn(environment.terms, name)) && (feature || !environment.play?.has(name))) { diagnostics.push(diagnostic("E_NAME_SHADOW", span, `The parameter ${name} reuses a shared name; choose another parameter name.`)); continue; }
     const parsed = parseType(rawType, { file: page.file });
     // A metadata type is located at its declaring key rather than a synthetic string.
     const checked = parsed.value ? checkDeclaredType(parsed.value, environment, span) : parsed;
     diagnostics.push(...checked.diagnostics.map(error => ({ ...error, message: `For parameter ${name}: ${error.message}`, span })));
     if (parsed.value && !checked.diagnostics.length) { symbols[name] = parsed.value; declarations.push({ name, type: parsed.value, span }); }
   }
-  return { value: { environment: { ...environment, symbols }, parameters: declarations }, diagnostics };
+  // A rule page may name a parameter after a play-domain word (skyscraper counts the digits that are visible): the parameter wins, and rules never see the play name.
+  return { value: { environment: { ...environment, symbols, play: new Set([...(environment.play ?? [])].filter(name => !declarations.some(d => d.name === name))) }, parameters: declarations }, diagnostics };
 }
 export function compilePage(page: PageSource, prelude: CheckedPrelude): Result<CompiledPage> {
   const blocks = formulaBlocks(page); const diagnostics: Diagnostic[] = [];

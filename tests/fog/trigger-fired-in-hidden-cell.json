@@ -1,0 +1,33 @@
+{
+  "name": "trigger-fired-in-hidden-cell",
+  "description": "A trigger cell need not be visible: a correct entry in a hidden cell fires the link.",
+  "rows": 5,
+  "cols": 5,
+  "initiallyLit": [
+    "r1c1"
+  ],
+  "links": [
+    {
+      "trigger": [
+        "r4c4"
+      ],
+      "lights": [
+        "r5c5"
+      ]
+    }
+  ],
+  "answer": {
+    "r4c4": 6
+  },
+  "steps": [
+    {
+      "entries": {
+        "r4c4": 6
+      },
+      "lit": [
+        "r1c1",
+        "r5c5"
+      ]
+    }
+  ]
+}

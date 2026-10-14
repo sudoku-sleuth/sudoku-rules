@@ -467,5 +467,55 @@
         }
       }
     ]
+  },
+  {
+    "file": "tests/invalid/integration/fog-empty-trigger.md",
+    "repair": "tests/valid/integration/fog-empty-trigger.md",
+    "mode": "feature",
+    "diagnostics": [
+      {
+        "code": "E_FEATURE_REQUIRES",
+        "check": "E_FEATURE_REQUIRES",
+        "message": "A link needs a trigger cell: a link with none would light its cells at once, and decoders drop it.",
+        "span": {
+          "file": "tests/invalid/integration/fog-empty-trigger.md",
+          "start": {
+            "offset": 142,
+            "line": 10,
+            "column": 3
+          },
+          "end": {
+            "offset": 210,
+            "line": 13,
+            "column": 21
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/integration/fog-and-haze.md",
+    "repair": "tests/valid/integration/fog-and-haze.md",
+    "mode": "feature",
+    "diagnostics": [
+      {
+        "code": "E_FEATURE_CONFLICT",
+        "check": "E_FEATURE_CONFLICT",
+        "message": "A case can have one feature that decides what is visible, and fog already does. Remove either fog or haze.",
+        "span": {
+          "file": "tests/invalid/integration/fog-and-haze.md",
+          "start": {
+            "offset": 171,
+            "line": 12,
+            "column": 3
+          },
+          "end": {
+            "offset": 184,
+            "line": 12,
+            "column": 16
+          }
+        }
+      }
+    ]
   }
 ]

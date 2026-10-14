@@ -22,7 +22,7 @@ D is the face digit. V is the effective value constrained by the value-modifier 
 
 ## Typed vocabulary
 
-Each input and term declares its argument and result types. Ordered lists retain repeated positions; sets do not. Paths are connected ordered lists. The board alphabet contains whole-number face digits; effective values may be exact fractions. Formula variables have explicit types or a supplied collection.
+Each input and term declares its argument and result types. Ordered lists retain repeated positions; sets do not. Paths are connected ordered lists. The board alphabet contains whole-number face digits; effective values may be exact fractions. Formula variables have explicit types or a supplied collection. The player's entries E and the answer's digit answer(c) = D(c) belong to the play-state setup features described under Play state; rule pages never use E.
 
 ```openrules
 input C: set<cell>;
@@ -122,6 +122,19 @@ term mainRay(c:cell):list<cell> = ⟨boardCell(row(c)+t,col(c)+t):t∈[0,minimum
 term antiRay(c:cell):list<cell> = ⟨boardCell(row(c)+t,col(c)-t):t∈[0,minimumPosition(rows-row(c),col(c)+1))⟩;
 term boardDiagonals():set<list<cell>> = {mainRay(c):c∈{d∈C:row(d)=0 ∨ col(d)=0}} ∪ {antiRay(c):c∈{d∈C:row(d)=0 ∨ col(d)=cols-1}};
 term countRun(L:list<cell>):position = Σ_{i∈{t∈[0,|L|): ∃j∈[0,|L|): |t-j|=1 ∧ |D(L[t])-D(L[j])|=1}} D(L[i]);
+# Givens: the digit a case gives a cell, if any.
+primitive givenDigit(c:cell):optional<digit>;
+term given(c:cell):boolean = present(givenDigit(c));
+term givenValue(c:cell):digit requires (given(c)) = unwrap(givenDigit(c));
+# Play state. Declarations marked play are the player's side; rule pages cannot name them.
+term answer(c:cell):digit = D(c);
+play input answered: boolean;
+play primitive known(c:cell):boolean;
+play primitive entry(c:cell):optional<digit>;
+play primitive visible(c:cell):boolean;
+play term placed(c:cell):boolean = present(entry(c));
+play term entered(c:cell):digit requires (placed(c)) = unwrap(entry(c));
+play term correct(c:cell):boolean = placed(c) ∧ (given(c) → entered(c)=givenValue(c)) ∧ (answered → known(c) ∧ entered(c)=answer(c));
 ```
 
 ## Inputs and primitive operations
@@ -139,3 +152,15 @@ A `collection<T>` accepts a set, list or path of T. Aggregates over lists retain
 The connected formula chooses a route of at most |C| cells; revisiting cells is unnecessary for reachability on a finite board. partition covers every board cell exactly once. boardDiagonals constructs maximal straight bishop rays from top/side boundaries. magicLines lists all eight rows, columns and diagonals of a nine-cell square in reading order.
 
 Shift relations compare integer values; their parity is the normalised remainder modulo 2.
+
+## Play state
+
+Some setup features describe what a player sees, not which grids solve the puzzle. They are stated over the player's entries beside the answer.
+
+E is a partial function from cells to symbols: E(c), written entered(c) in formulas, is the symbol the player typed in c, or undefined when the cell is empty. A given is not an entry; a symbol typed over a given is. Pencil marks and colours are not entries. placed(c) holds when E(c) is defined. given(c) holds when the case gives c a digit g(c), written givenValue(c) in formulas. correct(c) holds when c is placed, holds g(c) if it is a given, and, when answered, holds the answer's digit.
+
+answered is true when the host holds a reference answer, and known(c) when that answer covers cell c. With an answer, a symbol counts only if it is the answer's, and no symbol counts in a cell whose answer is unknown. Without an answer, every symbol counts.
+
+visible(c) says that c is shown to the player. A setup feature that decides what is shown defines visible(c) in full, as a function of E. A case has at most one such feature; without one, every cell is visible.
+
+Declarations marked play form the play domain. Rule pages and shared terms outside it cannot use them; setup feature pages can use both domains.

@@ -184,8 +184,13 @@ export class Parser {
   declarations(): Declaration[] {
     const declarations: Declaration[] = [];
     while (this.peek().text !== "<eof>") {
-      const token = this.take();
-      if (!["input", "primitive", "term", "type"].includes(token.text)) fail("E_FORMULA_SYNTAX", token.span, `Start a shared definition with input, primitive, type or term; found ${tokenLabel(token.text)}.`);
+      let token = this.take();
+      let play = false;
+      if (token.text === "play" && ["input", "primitive", "term", "type"].includes(this.peek().text)) {
+        if (this.peek().text === "type") fail("E_FORMULA_SYNTAX", this.peek().span, "A type does not belong to a domain; remove play before type.");
+        play = true; token = this.take();
+      }
+      if (!["input", "primitive", "term", "type"].includes(token.text)) fail("E_FORMULA_SYNTAX", token.span, `Start a shared definition with input, primitive, type, term or play; found ${tokenLabel(token.text)}.`);
       const name = this.identifier(); const generics: string[] = [];
       if (["input", "type"].includes(token.text) && this.peek().text === "<") fail("E_FORMULA_SYNTAX", this.peek().span, "Only term and primitive definitions can use <...> type placeholders; remove them from this input or type declaration.");
       if (this.accept("<")) { do { generics.push(this.identifier().text); } while (this.accept(",")); this.expect(">"); }
@@ -202,7 +207,7 @@ export class Parser {
       if (this.accept("requires")) { this.expect("("); requires = this.expression(); this.expect(")"); }
       const body = token.text === "term" ? (this.expect("="), this.expression()) : undefined;
       this.expect(";");
-      declarations.push({ kind: token.text as Declaration["kind"], name: name.text, span: name.span, generics, parameters, result, body, requires });
+      declarations.push({ kind: token.text as Declaration["kind"], name: name.text, span: name.span, generics, parameters, result, body, requires, ...(play ? { play } : {}) });
     }
     return declarations;
   }

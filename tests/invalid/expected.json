@@ -2773,5 +2773,83 @@
         }
       }
     ]
+  },
+  {
+    "file": "rules/play-in-rule.md",
+    "repair": "rules/play-in-rule.md",
+    "mode": "public",
+    "code": "E_PLAY_DOMAIN",
+    "diagnostics": [
+      {
+        "code": "E_PLAY_DOMAIN",
+        "check": "E_PLAY_DOMAIN",
+        "message": "placed depends on what a player has entered, and a rule applies to every solution. Use the answer grid, D or V; the player's entries belong to setup features.",
+        "span": {
+          "file": "rules/play-in-rule.md",
+          "start": {
+            "offset": 231,
+            "line": 13,
+            "column": 10
+          },
+          "end": {
+            "offset": 237,
+            "line": 13,
+            "column": 16
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/play-leak.md",
+    "repair": "rules/play-leak.md",
+    "mode": "prelude",
+    "code": "E_PLAY_DOMAIN",
+    "diagnostics": [
+      {
+        "code": "E_PLAY_DOMAIN",
+        "check": "E_PLAY_DOMAIN",
+        "message": "shown is shared by every rule, so it cannot use entry, which depends on what a player has entered. Declare shown with play, or use the answer grid.",
+        "span": {
+          "file": "rules/play-leak.md",
+          "start": {
+            "offset": 147,
+            "line": 4,
+            "column": 40
+          },
+          "end": {
+            "offset": 152,
+            "line": 4,
+            "column": 45
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "rules/play-fixed-point.md",
+    "repair": "rules/play-fixed-point.md",
+    "mode": "feature",
+    "code": "E_PLAY_DEFINITION",
+    "diagnostics": [
+      {
+        "code": "E_PLAY_DEFINITION",
+        "check": "E_PLAY_DEFINITION",
+        "message": "visible appears on the right side, directly or through a shared term, so the definition would be circular. Define visible from the entries alone; lighting a cell must not fire anything by itself.",
+        "span": {
+          "file": "rules/play-fixed-point.md",
+          "start": {
+            "offset": 171,
+            "line": 12,
+            "column": 1
+          },
+          "end": {
+            "offset": 200,
+            "line": 12,
+            "column": 30
+          }
+        }
+      }
+    ]
   }
 ]

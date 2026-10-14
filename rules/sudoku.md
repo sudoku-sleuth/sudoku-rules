@@ -25,10 +25,10 @@ Class: **with aggregates**.
 [Shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define D and distinct. H ranges over the rows, columns and standard boxes.
 
 ```text
-rows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ distinct_D(house))
+rows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ distinct_D(house)) ∧ (∀c∈C: given(c) → D(c)=givenValue(c))
 ```
 
-Every house contains nine different digits from 1 to 9.
+Every house contains nine different digits from 1 to 9. A given cell holds its given digit.
 
 ## Example
 

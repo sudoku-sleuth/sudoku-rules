@@ -8,7 +8,7 @@ The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). 
 
 - `rules/<kind>.md`: rule pages with YAML front matter.
 - `rules/predicates.md`: shared mathematical definitions, with `document: prelude` and no `kind` field.
-- `rules/fog.md`: the fog setup feature (`document: feature`): its case-file header, meaning and maths. `tests/fog/` holds its conformance fixtures.
+- `rules/fog.md`: the fog setup feature (`document: feature`, `domain: play-state`): its case-file header, parameters and the maths that define which cells are visible. `tests/fog/` holds its conformance fixtures, run against that formula.
 - `cases/*.rules.md`: case files, including their attribution and source links.
 - `scripts/`: static generator and lint entry points.
 - `src/`: portable formula compiler and the `openrules` file-reading CLI.

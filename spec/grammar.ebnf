@@ -4,12 +4,14 @@
    '-' is subtraction, never an identifier character. Strings use JSON escapes. *)
 formula      = expression, EOF ;
 prelude      = { declaration }, EOF ;
-declaration  = ("input", identifier, ":", type
+declaration  = [ "play" ], ("input", identifier, ":", type
              | "type", identifier, "=", type
              | ("primitive" | "term"), identifier, [ generics ],
                "(", [ parameters ], ")", ":", type, [ requirement ],
                [ "=", expression ]), ";" ;
-(* term requires a body; primitive/input/type cannot have one. *)
+(* term requires a body; primitive/input/type cannot have one. `play` is a keyword only
+   at the start of a declaration and puts the name in the play domain (play-state.md);
+   `play type` is rejected. *)
 generics     = "<", identifier, { ",", identifier }, ">" ;
 parameters   = identifier, ":", type, { ",", identifier, ":", type } ;
 requirement  = "requires", "(", expression, ")" ;

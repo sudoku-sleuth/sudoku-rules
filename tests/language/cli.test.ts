@@ -65,6 +65,6 @@ test("default lint:spec checks the complete production case corpus", async () =>
   const [stdout, stderr] = await Promise.all([new Response(process.stdout).text(), new Response(process.stderr).text()]);
   expect(await process.exited).toBe(0);
   expect(stderr).not.toContain("E_");
-  expect(stdout).toContain("86/86 pages checked; 82 formula blocks");
+  expect(stdout).toContain("86/86 pages checked; 84 formula blocks");
   expect(stdout).toContain("Cases: 3895 headers/reference lists; 74898 references; 0 deferred URLs");
 });

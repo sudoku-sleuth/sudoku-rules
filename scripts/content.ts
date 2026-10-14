@@ -95,7 +95,7 @@ export function renderMarkdown(body: string, pageNames: Set<string> = new Set())
       const example = renderCaseExample(text);
       if (example) return example + "\n";
     }
-    if (lang === "math" || ((lang === "text" || (lang === "openrules" && !/^(?:input|primitive|term|type)\s/m.test(text))) && (/[∀∃∧∨↔→]|[=<>≥≤]/u.test(text) || parseFormula(text).value))) {
+    if (lang === "math" || ((lang === "text" || (lang === "openrules" && !/^(?:play\s+)?(?:input|primitive|term|type)\s/m.test(text))) && (/[∀∃∧∨↔→]|[=<>≥≤]/u.test(text) || parseFormula(text).value))) {
       return `<div class="formula" role="region" aria-label="Mathematical formula" tabindex="0">${renderMath(text)}</div>\n`;
     }
     return `<pre><code${lang ? ` class="language-${escapeHtml(lang)}"` : ""}>${escapeHtml(text)}</code></pre>\n`;
