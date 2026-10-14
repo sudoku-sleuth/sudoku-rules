@@ -149,6 +149,10 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
     const features: CompiledFeature[] = [];
     const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), features };
     let documents = 0;
+    const listed = headers.get(shared[0].file)?.value?.metadata.feature_predicates;
+    if (listed !== undefined && (!Array.isArray(listed) || listed.some(name => typeof name !== "string")))
+        diagnostics.push(diagnostic("E_HEADER_TYPE", headers.get(shared[0].file)!.value!.field("feature_predicates"), "List the predicates a feature may define as names, for example feature_predicates: [visible]."));
+    const definable: string[] = Array.isArray(listed) ? listed.filter((name): name is string => typeof name === "string") : [];
     for (const page of pages) {
         const header = headers.get(page.file)?.value;
         if (!header)
@@ -161,7 +165,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
                 documents++;
                 if (metadata.document === "home" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"The home index cannot declare formulas; put a rule's formula on its kind page."));
                 if (metadata.document === "feature" && metadata.domain !== undefined) {
-                    const compiled = compileFeature(page, parsed.value);
+                    const compiled = compileFeature(page, parsed.value, definable);
                     diagnostics.push(...compiled.diagnostics);
                     if (compiled.value) {
                         if (features.some(feature => feature.header === compiled.value!.header)) diagnostics.push(diagnostic("E_HEADER_TYPE", field("header"), `The header key ${compiled.value.header} is already read by another feature.`));

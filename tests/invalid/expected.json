@@ -2851,5 +2851,31 @@
         }
       }
     ]
+  },
+  {
+    "file": "rules/play-fixed-definition.md",
+    "repair": "rules/play-fixed-definition.md",
+    "mode": "feature",
+    "code": "E_PLAY_DEFINITION",
+    "diagnostics": [
+      {
+        "code": "E_PLAY_DEFINITION",
+        "check": "E_PLAY_DEFINITION",
+        "message": "correct is fixed by the shared definitions, and a feature cannot redefine it. A feature can define visible.",
+        "span": {
+          "file": "rules/play-fixed-definition.md",
+          "start": {
+            "offset": 50,
+            "line": 4,
+            "column": 10
+          },
+          "end": {
+            "offset": 57,
+            "line": 4,
+            "column": 17
+          }
+        }
+      }
+    ]
   }
 ]

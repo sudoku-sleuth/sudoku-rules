@@ -60,6 +60,7 @@ test("CLI prints setter messages and locations, reserving parser detail for JSON
 });
 
 
+// Reads and lints the whole production case corpus (3,900 files); on a slow CI runner it exceeds bun's 5 s default.
 test("default lint:spec checks the complete production case corpus", async () => {
   const process = Bun.spawn(["bun", "run", "lint:spec"], { stdout: "pipe", stderr: "pipe" });
   const [stdout, stderr] = await Promise.all([new Response(process.stdout).text(), new Response(process.stderr).text()]);
@@ -67,4 +68,4 @@ test("default lint:spec checks the complete production case corpus", async () =>
   expect(stderr).not.toContain("E_");
   expect(stdout).toContain("86/86 pages checked; 84 formula blocks");
   expect(stdout).toContain("Cases: 3895 headers/reference lists; 74898 references; 0 deferred URLs");
-});
+}, 60_000);

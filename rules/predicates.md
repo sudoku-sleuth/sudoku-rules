@@ -2,6 +2,7 @@
 document: prelude
 name: Shared predicates
 url: https://rules.sudoku-sleuth.com/predicates.md
+feature_predicates: [visible]
 ---
 
 # Shared predicates

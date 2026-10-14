@@ -16,7 +16,7 @@ test("every registered slice-1 check has a raw rejecting fixture and a repair", 
   }
 });
 const publicPrelude = compilePrelude({file:"rules/predicates.md",text:await Bun.file("rules/predicates.md").text()}).value!;
-const compile = (entry: Fixture, page: { file: string; text: string }) => entry.mode === "prelude" ? compilePrelude(page) : entry.mode === "feature" ? compileFeature(page, publicPrelude) : compilePage(page, entry.mode === "public" ? publicPrelude : prelude);
+const compile = (entry: Fixture, page: { file: string; text: string }) => entry.mode === "prelude" ? compilePrelude(page) : entry.mode === "feature" ? compileFeature(page, publicPrelude, ["visible"]) : compilePage(page, entry.mode === "public" ? publicPrelude : prelude);
 for (const entry of manifest) {
   test(`rejects ${entry.file} with its exact ordered diagnostic and full source span`, async () => {
     const page = { file: entry.file, text: await Bun.file(`tests/invalid/${entry.file}`).text() };

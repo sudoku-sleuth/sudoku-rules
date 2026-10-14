@@ -111,8 +111,12 @@ function frontMatter(page: PageSource): FrontMatter | undefined {
   return { metadata, field };
 }
 
-/** Compiles a `document: feature` page that declares `domain: play-state`. */
-export function compileFeature(page: PageSource, prelude: CheckedPrelude): Result<CompiledFeature> {
+/**
+ * Compiles a `document: feature` page that declares `domain: play-state`. `definable` lists the play predicates
+ * a feature may define (the prelude front matter key feature_predicates); the others, such as `known` and
+ * `correct`, are fixed by the shared definitions.
+ */
+export function compileFeature(page: PageSource, prelude: CheckedPrelude, definable: readonly string[]): Result<CompiledFeature> {
   const diagnostics: Diagnostic[] = [];
   const front = frontMatter(page);
   if (!front) return { diagnostics: [diagnostic("E_SIGNATURE_REQUIRED", location(page, 0, 0), "Start this feature page with a --- header declaring its domain, header key and the predicate it defines.")] };
@@ -122,6 +126,7 @@ export function compileFeature(page: PageSource, prelude: CheckedPrelude): Resul
   if (typeof header !== "string" || !/^[a-z][\w-]*$/.test(header)) diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", field("header"), "Name the case-file header key this feature reads, for example header: fog."));
   const target = typeof defines === "string" && Object.hasOwn(prelude.environment.terms, defines) ? prelude.environment.terms[defines] : undefined;
   if (typeof defines !== "string") diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", field("defines"), "Name the play predicate this feature defines, for example defines: visible."));
+  else if (!definable.includes(defines)) diagnostics.push(diagnostic("E_PLAY_DEFINITION", field("defines"), `${defines} is fixed by the shared definitions, and a feature cannot redefine it. A feature can define ${definable.join(", ")}.`));
   else if (!target || !prelude.environment.play?.has(defines) || target.kind !== "primitive" || target.parameters.length !== 1 || target.parameters[0].type.name !== "cell" || target.result.name !== "boolean")
     diagnostics.push(diagnostic("E_PLAY_DEFINITION", field("defines"), `${defines} is not a play predicate of one cell that a feature can define; use one declared with play primitive in the shared definitions.`));
   const blocks = formulaBlocks(page);

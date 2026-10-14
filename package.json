@@ -1,6 +1,6 @@
 {
   "name": "@sudoku-sleuth/open-rules",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "The Open Rules formula language and linter for Sudoku rule definitions.",
   "files": [
     "dist",

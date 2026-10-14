@@ -34,6 +34,10 @@ Shared definition pages have `name`, `url` and `document: prelude`, `document: s
 
 Add examples under `cases/<case-name>.rules.md`. Front matter includes `format: open-rules`, `title`, `setter`, `source`, `case`, `library`, and `status`. Keep attribution and source links. Use fenced `rules` blocks for declarations. Custom rules carry their definition in the case file.
 
+## Release notes
+
+Record each change in `CHANGELOG.md` under the next version, and mark a change that breaks an export, a front-matter key or a diagnostic code as Breaking. The release tag must match `package.json`.
+
 ## Check the change
 
 ```sh

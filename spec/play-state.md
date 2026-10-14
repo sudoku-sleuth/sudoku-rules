@@ -17,8 +17,8 @@ E is a partial function from cells to symbols: E(c) is the symbol the player typ
 - Erasing makes E(c) undefined. Every play predicate is a function of the current E; history is not part of the state.
 - Pencil marks, colours and pen marks are not in E and make nothing visible. A feature that needs them adds a further `play` primitive beside `entry`.
 - The answer is the solution grid: `answer(c)` is D(c). The prelude uses S as a local name for a cell group, so the vocabulary does not.
-- `answered` is true when the host holds a reference solution; `known(c)` when that solution covers c. They define both cases exactly as SudokuPad 0.611.0 behaves (`feature-fog.js`; ADR 0085 in the Sudoku Sleuth repository): with a solution, a symbol counts only if it equals the solution's symbol in c, and nothing counts in a cell whose solution symbol is unknown; with no solution, any symbol counts.
-- `correct(c) = placed(c) ∧ (given(c) → entered(c)=givenValue(c)) ∧ (answered → known(c) ∧ entered(c)=answer(c))`. A given counts only when the player types its own digit over it. A case's givens agree with the answer: `sudoku.md` states `∀c∈C: given(c) → D(c)=givenValue(c)`.
+- `answered` is true when the host holds a reference solution; `known(c)` when that solution covers c. They define both cases as SudokuPad 0.611.0 behaves (`feature-fog.js`): with a solution, a symbol counts only if it equals the solution's symbol in c, and nothing counts in a cell whose solution symbol is unknown; with no solution, any symbol counts.
+- `correct(c) = placed(c) ∧ (given(c) → entered(c)=givenValue(c)) ∧ (answered → known(c) ∧ entered(c)=answer(c))`. A given counts only when the player types its own digit over it. One deliberate difference from SudokuPad: with links, no answer, and a different digit typed over a given, SudokuPad's lamp accepts any entered digit; here that entry is not correct, because a given is correct only with its own digit (as it already is without links). A case's givens agree with the answer: `sudoku.md` states `∀c∈C: given(c) → D(c)=givenValue(c)`.
 
 ## Typing
 
@@ -38,6 +38,7 @@ Domain is not a logical class. A page's class measures its formula (`Class: **fi
 `visible(c)` is the general play predicate: c is shown to the player. It is declared `play primitive` in `rules/predicates.md` and has no meaning of its own. A visibility feature contributes by defining it.
 
 - The page states `defines: visible` and one formula `∀c∈C: visible(c) ↔ φ(c)`. `visible` does not occur in φ, directly or through a term, so visibility is a function of E and never a fixed point: lighting a cell fires nothing by itself. Anything else is E_PLAY_DEFINITION.
+- Only predicates listed in the prelude front matter (`feature_predicates`, today `visible`) can be defined. A feature that names `known`, `correct` or any other name is E_PLAY_DEFINITION.
 - The page may carry an `openrules` block of its own `play` types and terms, compiled as an extension of the prelude. It may not redeclare a prelude name. Fog-specific words live there.
 - Free names in φ are the page's parameters, its own declarations and the prelude.
 - A case has at most one feature that defines a given predicate. Two is E_FEATURE_CONFLICT. A later composition rule can lift this.
