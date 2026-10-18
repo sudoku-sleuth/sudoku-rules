@@ -1,3 +1,4 @@
+import { markdownBlocks } from "./rules-blocks.js";
 import { isAlias, parseDocument, visit } from "yaml";
 import { diagnostic, location, type Diagnostic, type Span } from "./language/diagnostics.js";
 import { parseType } from "./language/parser.js";
@@ -7,21 +8,8 @@ import type { PageSource } from "./library.js";
 export interface CaseBlock { language: string; text: string; offset: number; end: number }
 /** Only top-level fences count; examples nested in a Markdown fence are prose. */
 export function caseBlocks(page: PageSource): CaseBlock[] {
-  const result: CaseBlock[] = [];
-  let open: { fence: string; language: string; offset: number } | undefined, offset = 0;
-  for (const line of page.text.match(/[^\n]*(?:\n|$)/g) ?? []) {
-    if (!line) continue;
-    if (!open) {
-      const m = /^ {0,3}(`{3,}|~{3,})([^\r\n]*)/.exec(line);
-      if (m) open = { fence: m[1], language: m[2].trim(), offset: offset + line.length };
-    } else if (new RegExp(`^ {0,3}${open.fence[0]}{${open.fence.length},}\\s*$`).test(line.trimEnd())) {
-      result.push({ language: open.language, text: page.text.slice(open.offset, offset), offset: open.offset, end: offset + line.length });
-      open = undefined;
-    }
-    offset += line.length;
-  }
-  if (open && ["rules", "custom-rules"].includes(open.language)) result.push({ language: "unclosed", text: "", offset: open.offset, end: offset });
-  return result;
+  return markdownBlocks(page.text).flatMap(block => block.closed ? [block] :
+    ["rules", "custom-rules"].includes(block.language) ? [{ language: "unclosed", text: "", offset: block.offset, end: block.end }] : []);
 }
 export function headingSlug(text: string): string {
   return text.trim().toLowerCase().replace(/[^\p{L}\p{N}_\s-]/gu, "").replace(/\s/g, "-");

@@ -1,5 +1,6 @@
 import { checkBoard, checkParameters, cellValid, explicitBoardParameters, object, type CaseParameters } from "./case-values.js";
 import { caseBlocks, readCustomDefinitions, checkCustomParameters } from "./custom-definitions.js";
+import { ruleDeclaration } from "./rules-blocks.js";
 import { parseDeclaredRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result } from "./language/diagnostics.js";
@@ -93,10 +94,10 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
     for (const block of ruleBlocks) {
         let at = block.offset;
         for (const line of block.text.split(/(?<=\n)/)) {
-            const match = /^\s*(?:[\p{L}\p{N}_.-]+:\s+|"(?:[^"\\]|\\.)*":\s+)?(?:not\s+)*([^\s]+)/u.exec(line);
-            if (match && match[1] !== "#") {
-                const kind = match[1];
-                const begin = at + match[0].lastIndexOf(kind);
+            const declaration = ruleDeclaration(line);
+            if (declaration) {
+                const kind = declaration.reference;
+                const begin = at + declaration.referenceStart;
                 const span = location(page, begin, begin + kind.length);
                 const tail = line.slice(begin + kind.length - at).trimEnd();
                 const local = custom.definitions.get(kind);

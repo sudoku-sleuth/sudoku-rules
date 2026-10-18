@@ -13,6 +13,8 @@ Each release lists what changed. A change that breaks a published export, front-
 - Case checks for required parameters, unknown and repeated keys, nested value types, cell bounds, board fields, alphabet and givens. Board-dependent omission values must be explicit on non-standard dimensions or alphabets.
 - Diagnostics `E_CASE_BOARD`, `E_CASE_PARAMETERS` and `E_CUSTOM_DEFINITION`, with rejecting case fixtures and passing repairs.
 
+- Portable semantic normalisation and comparison: explicit board context, finite logical primitives, located differences, rewrite provenance and exhaustive declaration coverage. Slice A covers houses, unique, clone, diagonals, chess and scoped moves, allowed digits, parity cells and untotalled cages. Unsupported declarations retain specific coverage reasons. The existing exact-rational `compare` signature is preserved.
+
 ### Changed
 
 - Feature headers reject a supplied `null` for an optional value instead of treating it as absent. In fog setup, omit `links` for neighbourhood reveal or supply a list for linked reveals.

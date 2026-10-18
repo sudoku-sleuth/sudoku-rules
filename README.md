@@ -62,6 +62,8 @@ bun run openrules lint /path/to/rule.md --prelude rules/predicates.md
 
 Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; rule parameters, boards and embedded custom definitions are checked using the [case-file contract](spec/case-files.md). Fetching, custom formula execution and example verdicts are separate phases.
 
+Semantic comparison exports `normalise(file, board)` and `compare(a, b)`. They lower supported declarations to a versioned logical tree with board context, source links and per-declaration coverage. See the [normal-form specification](spec/normal-form.md) for the API, primitive meanings and coverage by kind.
+
 The portable entry exports `parseFormula`, `parsePrelude`, `checkFormula`, `compilePrelude`, `compilePage`, `compileLibrary` and exact rational arithmetic. It performs no I/O and imports no Node APIs. Callers supply `{file, text}` pages; future URL loading will take an injected fetch. The CLI owns file access.
 
 Rejecting Markdown fixtures and their repairs live in `tests/invalid/` and `tests/valid/`. Tests assert every full diagnostic in `tests/invalid/expected.json`; update expectations only after reviewing a deliberate diagnostic change. The [integration report](docs/reports/library-integration.md) records the library migration, rejection corpus and checks.

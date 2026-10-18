@@ -1,3 +1,4 @@
+import { markdownBlocks } from "./rules-blocks.js";
 import { declareRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isAlias, isMap, isScalar, parseDocument, visit } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result, type Source } from "./language/diagnostics.js";
@@ -27,22 +28,9 @@ function metadataMessage(code: string, text: string, offset: number): string {
 }
 
 export function formulaBlocks(page: PageSource): FormulaBlock[] {
-  const blocks: FormulaBlock[] = [];
-  let open: { fence: string; language: string; offset: number } | undefined;
-  let offset = 0;
-  for (const line of page.text.match(/[^\n]*(?:\n|$)/g) ?? []) {
-    if (!line) continue;
-    if (!open) {
-      const match = /^ {0,3}(`{3,}|~{3,})([^\r\n]*)/.exec(line);
-      if (match) open = { fence: match[1], language: match[2].trim(), offset: offset + line.length };
-    } else if (new RegExp(`^ {0,3}${open.fence[0]}{${open.fence.length},}\\s*$`).test(line.trimEnd())) {
-      if (["text", "openrules"].includes(open.language)) blocks.push({ file: page.file, text: page.text.slice(open.offset, offset), document: page.text, offset: open.offset, language: open.language, closed: true });
-      open = undefined;
-    }
-    offset += line.length;
-  }
-  if (open && ["text", "openrules"].includes(open.language)) blocks.push({ file: page.file, text: page.text.slice(open.offset), document: page.text, offset: open.offset, language: open.language, closed: false });
-  return blocks;
+  return markdownBlocks(page.text).filter(block => ["text", "openrules"].includes(block.language)).map(block => ({
+    file: page.file, text: block.text, document: page.text, offset: block.offset, language: block.language, closed: block.closed,
+  }));
 }
 export function compilePrelude(page: PageSource): Result<CheckedPrelude> {
   const blocks = formulaBlocks(page);
