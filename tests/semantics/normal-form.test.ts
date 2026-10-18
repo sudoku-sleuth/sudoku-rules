@@ -20,6 +20,7 @@ function evaluate(f: Formula, answer: Record<string, number>): boolean {
     case "Distinct": return new Set(f.cells.map(c => answer[c])).size === (f.collection === "set" ? new Set(f.cells).size : f.cells.length);
     case "Allowed": return f.values.includes(answer[f.cell]);
     case "CountAtLeast": return f.cells.filter(c => answer[c] === f.digit).length >= f.count;
+    case "SumEqual": return f.left.reduce((n,c) => n+BigInt(answer[c]),0n) === f.right.reduce((n,c) => n+BigInt(answer[c]),0n);
     case "Pair": return f.table.some(([a, b]) => a === answer[f.cells[0]] && b === answer[f.cells[1]]);
   }
 }
@@ -600,7 +601,7 @@ test("fog start cells, links and link members are sets with retained provenance"
   expect(compare(absent,nf('unique r1c1')).covered).toBe('structural-difference');
   const fromClear = compare(nf('unique r1c1'),absent);
   expect(fromClear.differences.find(d => d.side === 'right' && d.primitive === 'Play')!.sources[0].kind).toBe('header:fog');
-  expect(compare(nf('thermo r1c1-r1c2',board(),'fog: {}\n'),nf('thermo r1c1-r1c2',board(),'fog: {}\n')).status).toBe('unresolved');
+  expect(compare(nf('arrow r1c1-r1c2',board(),'fog: {}\n'),nf('arrow r1c1-r1c2',board(),'fog: {}\n')).status).toBe('unresolved');
   expect(compare(nf('unique r1c1',board(),'fog: {initiallyLit: [0,1]}\n'),nf('unique r1c1',board(),'fog: {initiallyLit: [r1c1,r1c2]}\n')).status).toBe('equivalent');
 });
 

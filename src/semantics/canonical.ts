@@ -21,6 +21,20 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
   sources = [...new Map([...sources, ...(state.links.get(key(input)) ?? [])].map(s => [key(s), s])).values()];
   let result: Formula;
   switch (input.op) {
+    case "SumEqual": {
+      const weights = new Map<Cell, number>();
+      input.left.forEach(c => weights.set(c, (weights.get(c) ?? 0) + 1));
+      input.right.forEach(c => weights.set(c, (weights.get(c) ?? 0) - 1));
+      const entries = [...weights].filter(([,n]) => n).sort(([a],[b]) => a < b ? -1 : 1);
+      const gcd = (a: number,b: number): number => b ? gcd(b,a%b) : a;
+      const divisor = entries.reduce((n,[,w]) => gcd(n,Math.abs(w)),0) || 1;
+      const sign = (entries[0]?.[1] ?? 1) > 0 ? 1 : -1;
+      const left: Cell[] = [], right: Cell[] = [];
+      for (const [c,w] of entries) (w*sign > 0 ? left : right).push(...Array<Cell>(Math.abs(w)/divisor).fill(c));
+      result = entries.length ? { op: "SumEqual", channel: input.channel, left, right } : { op: "All", children: [] };
+      rewrite(state,"sum-equation",input,result,sources);
+      break;
+    }
     case "Distinct": {
       const cells = input.collection === "list" ? input.cells : sortedCells(input.cells);
       const children = cells.flatMap((a, i) => cells.slice(i + 1).map(b => pair(state.board, a, b, (x, y) => x !== y)));

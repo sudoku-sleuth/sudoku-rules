@@ -1,22 +1,17 @@
+import { lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
 import type { Instance } from "./reader.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
-export class UnsupportedSemantics extends Error {}
-
-export function all(children: Formula[]): Formula { return { op: "All", children }; }
-export const distinct = (cells: Cell[]): Formula => ({ op: "Distinct", channel: "D", collection: "set", cells: sortedCells(cells) });
-export function pair(board: CanonicalBoard, a: Cell, b: Cell, test: (x: number, y: number) => boolean): Formula {
-  const table: [number, number][] = [];
-  for (const x of board.alphabet) for (const y of board.alphabet) if (test(x, y)) table.push([x, y]);
-  return { op: "Pair", channel: "D", cells: [a, b], table };
-}
+export { all, distinct, pair, UnsupportedSemantics } from "./primitives.js";
+import { all, distinct, pair, UnsupportedSemantics } from "./primitives.js";
 function digitList(raw: unknown, board: CanonicalBoard): number[] {
   if (!Array.isArray(raw) || raw.some(d => !Number.isSafeInteger(d) || !board.alphabet.includes(d))) throw Error("Supply a digit list drawn from the board alphabet.");
   return raw;
 }
 const fields: Record<string, string[]> = {
+  ...lineFields,
   pair: ["relation"], kropki: ["colour"], quadruple: ["digits"], outside: ["digits"],
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
@@ -33,9 +28,10 @@ export function lower(instance: Instance, board: CanonicalBoard): Formula {
   if (!allowed) throw Error(`No lowering for ${kind}.`);
   for (const name of Object.keys(p)) if (!allowed.includes(name)) throw Error(`${kind} has no parameter ${name}.`);
   validateCells(instance, board);
-  const needsCells = ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "kropki", "quadruple", "outside"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "kropki", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length) throw Error(`${kind} needs a nonempty cell list.`);
   if (!needsCells && instance.cells) throw Error(`${kind} does not take a cell list.`);
+  if (Object.hasOwn(lineFields, kind)) return lowerLine(instance, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
     if (cells.length * (cells.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
@@ -130,7 +126,7 @@ export function condition(instance: Instance, base: Formula, board: CanonicalBoa
   if (!cond) return base;
   const cells = instance.cells!;
   let predicate: Formula;
-  if (cond.predicate === "distinct") predicate = ["allowed-digits", "outside", "pair", "kropki"].includes(instance.kind) ? { op: "Distinct", channel: "D", collection: "list", cells } : distinct(cells);
+  if (cond.predicate === "distinct") predicate = (Object.hasOwn(lineFields, instance.kind) || ["allowed-digits", "outside", "pair", "kropki"].includes(instance.kind)) ? { op: "Distinct", channel: "D", collection: "list", cells } : distinct(cells);
   else if (cond.predicate === "connected") {
     const reached = new Set<Cell>([cells[0]]);
     let changed = true;
