@@ -18,6 +18,18 @@ YAML lint checks front matter, page names, slugs, and canonical URLs. Specificat
 
 Fix reported problems at their source; do not change the setter's meaning to silence a finding. Ask the setter when a fix requires a choice of meanings. Rerun after the final edit, not only before it.
 
+## Compare with the source
+
+Use the inventory in [reading-input.md](reading-input.md) to check completeness before delivery:
+
+- Reconcile every supplied structured field, including the fog mask and all reveal links, with its output. Preserve absent versus empty `links`; a supplied `null` is rejected.
+- Trace every drawing edge, including closure, against the expanded path and cell set.
+- Check dot fill, stroke and text separately against the raw drawing record and setter meaning.
+- Rebuild each negative relation's scope and exceptions from its own marks and explicit exceptions.
+- Check that flags identify only the cells or groups in doubt and that independent conditions remain declared.
+
+The checker receives the case file, not its original drawing or input JSON. It validates supplied fog fields, cell bounds, types and flags, but cannot establish that a source mask was copied, a drawing was fully traversed, a dot was classified correctly, or an exception belongs to its stated relation. Perform those comparisons against the source; a passing lint result does not replace them.
+
 ## Published checker command — maintainer hook
 
 <!-- PUBLISHED CHECKER COMMAND: replace this section with the released package command and its file argument when the package is published. -->

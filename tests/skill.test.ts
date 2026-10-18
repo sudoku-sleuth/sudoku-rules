@@ -14,7 +14,7 @@ afterAll(async () => { await rm(temporary, { recursive: true, force: true }); })
 
 test("the distributed skill's references and all three case examples pass repository lint", async () => {
   const result = await lintSkill(skill);
-  expect(result.references).toBe(5);
+  expect(result.references).toBe(6);
   expect(result.examples).toBe(3);
 });
 

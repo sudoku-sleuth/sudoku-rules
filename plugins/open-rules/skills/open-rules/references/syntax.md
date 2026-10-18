@@ -8,6 +8,8 @@ Required fields are `format: open-rules`, `title`, `setter`, `source`, `case`, `
 
 `status: read` records a reading, not setter confirmation. `confirmed` records explicit confirmation. `flagged` accompanies a `flags` list of unresolved reasons; it does not make an ambiguous meaning safe to guess.
 
+Localise each flag to the affected cells or groups and keep independently established declarations. Read [reading-input.md](reading-input.md) for the input inventory, fog header, line expansion, dot appearance and negative-exception examples. Supplied fog belongs in the top-level `fog` header, including `initiallyLit` and every supplied reveal link.
+
 On a standard board, write `sudoku 9x9` once in the rules block. This supplies digits 1–9, rows, columns, and standard 3×3 boxes. Optional top-level `givens` can be `r4c8=1 r5c5=9`, or an 81-character grid string with `.` for an empty cell. Top-level `regions` lists extra regions, not the standard boxes.
 
 For a different board, omit `sudoku 9x9` and supply explicit YAML `board` fields: `rows`, `cols`, `symbols`, `givens`, and `regions`. Regions are lists of rXcY cell lists. Givens can be a grid string or a list such as `[{cell: r1c1, digit: 1}]`. Do not infer an alphabet or region layout. Declare givens in exactly one place, either top-level `givens` or `board.givens`, and give each cell at most one digit.

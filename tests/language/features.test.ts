@@ -16,6 +16,14 @@ test("a fog block is decoded against the page's parameter types", () => {
   expect(check("fog: yes\n").map(d => d.code)).toEqual(["E_HEADER_TYPE"]);
 });
 
+test("a supplied null reveal list cannot silently select neighbourhood reveal", () => {
+  const result = check("fog:\n  initiallyLit: [r2c2]\n  links: null\n");
+  expect(result.map(d => d.code)).toEqual(["E_HEADER_TYPE"]);
+  expect(result[0].message).toBe("fog.links must be a list.");
+  for (const links of ["", "  links: []\n", "  links: [{trigger: [r2c2], lights: [r3c3]}]\n"])
+    expect(check(`fog:\n  initiallyLit: [r2c2]\n${links}`)).toEqual([]);
+});
+
 test("lights stay on the grid and triggers may leave it", () => {
   expect(check("fog:\n  initiallyLit: [r1c1]\n  links: [{trigger: [r6c1], lights: [r2c2]}]\n", "# explicit board")).toEqual([]);
   expect(check("fog:\n  initiallyLit: [r1c1]\n  links: [{trigger: [r1c1], lights: [r6c1]}]\n", "# explicit board").map(d => d.code)).toEqual(["E_HEADER_TYPE"]);
