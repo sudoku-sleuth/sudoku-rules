@@ -24,6 +24,12 @@ Regions are lists of cell lists. Use `board.regions` without the standard Sudoku
 declaration. With `sudoku 9x9`, top-level `regions` adds regions to the standard
 boxes; `board.regions` must be empty or absent.
 
+Dimensions and region membership do not impose house uniqueness. When normal Sudoku
+applies to an explicit board, declare `unique` for every row, column and region.
+The published `sudoku` kind supports only `9x9`. `W_CASE_HOUSES` reports a nonempty
+region list without any positive, unconditional `unique` or `sudoku 9x9` declaration.
+It checks absence, not completeness or custom formula meaning.
+
 ## Rule parameters
 
 [Rule-line syntax](../rules/syntax.md) defines declarations. Primary cell paths

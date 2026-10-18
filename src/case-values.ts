@@ -10,7 +10,7 @@ export const explicitBoardParameters: Record<string, string[]> = {
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],
   nabner: ["distinct"], cage: ["repeats"], sandwich: ["crusts"], index: ["strips"],
 };
-export const caseValueChecks = ["E_CASE_BOARD", "E_CASE_PARAMETERS", "E_CUSTOM_DEFINITION"] as const;
+export const caseValueChecks = ["E_CASE_BOARD", "E_CASE_PARAMETERS", "E_CUSTOM_DEFINITION", "W_CASE_HOUSES"] as const;
 
 /** Split JSON containers and strings as single tokens, retaining the authored values. */
 export function valueTokens(line: string): string[] {

@@ -73,3 +73,18 @@ test("nested records, enums, missing operands and malformed JSON are rejected", 
     'arrow r1c1-r1c2 bulb ["r1c3"',
   ]) expect(check(template.replace("sudoku 9x9", `sudoku 9x9\n${line}`)).diagnostics[0].code).toBe("E_CASE_PARAMETERS");
 });
+
+test("regions without houses warn; negated, conditional and prose mentions do not supply houses", async () => {
+  const source = await Bun.file("tests/invalid/cases/missing-houses.rules.md").text();
+  for (const line of ["not unique r1c1-r1c2", "unique r1c1-r1c2 if distinct", "unique r1c1-r1c2 unless distinct", "# unique r1c1-r1c2"]) {
+    expect(check(source.replace("thermo r1c1-r1c2-r1c3", line)).diagnostics.map(d => d.code)).toEqual(["W_CASE_HOUSES"]);
+  }
+  for (const line of ['"Row one": unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6', "https://rules.sudoku-sleuth.com/unique.md r1c1-r1c2"]) {
+    // This diagnostic checks total absence; one explicit house does not prove completeness.
+    expect(check(source.replace("thermo r1c1-r1c2-r1c3", line)).diagnostics).toEqual([]);
+  }
+  expect(check(source.replace(/  regions:\n(?:    - .*\n)+/, "")).diagnostics).toEqual([]);
+  expect(check(template.replace("status: read", "status: read\nregions: [[r1c1, r2c2]]")).diagnostics).toEqual([]);
+  const noStandard = template.replace("status: read", "status: read\nboard: {rows: 9, cols: 9, symbols: [1,2,3,4,5,6,7,8,9], regions: [[r1c1, r2c2]]}").replace("sudoku 9x9", "not sudoku 9x9");
+  expect(check(noStandard).diagnostics.map(d => d.code)).toEqual(["E_CASE_BOARD", "W_CASE_HOUSES"]);
+});

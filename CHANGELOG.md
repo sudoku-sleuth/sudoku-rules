@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- `W_CASE_HOUSES` for regions without house constraints, with a rejecting six-symbol fixture and a complete 18-house repair.
+
 - Setter-skill guidance and worked examples for structured input inventories, fog setup, complete line geometry, dot appearance, relation-specific negative exceptions and localised uncertainty.
 - A rejecting fog-header fixture and passing repair for `links: null`.
 
@@ -14,6 +16,8 @@ Each release lists what changed. A change that breaks a published export, front-
 - Diagnostics `E_CASE_BOARD`, `E_CASE_PARAMETERS` and `E_CUSTOM_DEFINITION`, with rejecting case fixtures and passing repairs.
 
 ### Changed
+
+- Setter-skill guidance now requires explicit normal Sudoku houses on non-standard boards, reads full sentences and domain context before questions, limits ambiguous grouping to the disputed strokes, and preserves clear clauses beside malformed relations. Worked examples cover six-symbol houses, stated renban length and independent slow-thermo/clone clauses.
 
 - Feature headers reject a supplied `null` for an optional value instead of treating it as absent. In fog setup, omit `links` for neighbourhood reveal or supply a list for linked reveals.
 

@@ -23,7 +23,7 @@ test("examples extraction retains nested rules and custom definitions", async ()
   expect(examples).toHaveLength(3);
   for (const example of examples) {
     expect(frontMatter(example, "example.rules.md").metadata.format).toBe("open-rules");
-    expect(example).toContain("```rules\nsudoku 9x9\n");
+    expect(example).toContain("```rules\n");
     expect(example).toContain("## Setter wording");
   }
   expect(examples[2]).toContain("```custom-rules\n");
@@ -127,6 +127,6 @@ test("skill checker labels its temporary case counts as examples only", async ()
   expect(await process.exited).toBe(0);
   expect(stderr).not.toContain("E_");
   expect(stdout).toContain("Skill examples only: Formula lint:");
-  expect(stdout).toContain("Cases: 3 headers/reference lists; 11 references; 0 deferred URLs");
+  expect(stdout).toContain("Cases: 3 headers/reference lists; 28 references; 0 deferred URLs");
   expect(stdout).not.toMatch(/^Formula lint:/m);
 });
