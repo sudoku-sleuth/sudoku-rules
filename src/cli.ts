@@ -36,7 +36,7 @@ async function filesAt(target: string): Promise<string[]> {
 async function lintFormulaFiles(target: string, preludeFile = resolve(dirname(fileURLToPath(import.meta.url)), "../rules/predicates.md")): Promise<LintReport> {
     const preludeSource: PageSource = { file: preludeFile, text: await readFile(preludeFile, "utf8") };
     const prelude = compilePrelude(preludeSource);
-    const report: LintReport = { phase: "formula", files: 0, formulas: 0, checked: 0, diagnostics: [...prelude.diagnostics], pending: ["remaining rule-line validation", "URL resolution", "example evaluation"] };
+    const report: LintReport = { phase: "formula", files: 0, formulas: 0, checked: 0, diagnostics: [...prelude.diagnostics], pending: ["URL resolution", "custom formula execution", "example evaluation"] };
     const files = await filesAt(target);
     for (const file of files) {
         const page: PageSource = { file, text: await readFile(file, "utf8") };
@@ -78,7 +78,7 @@ export async function lintFiles(target: string, preludeFile?: string): Promise<L
     if (await exists(join(libraryFolder,"README.md"))) paths.push(join(libraryFolder,"README.md"));
     const pages = await Promise.all(paths.filter(file => !file.endsWith(".rules.md")).map(async (file) => ({ file, text: await readFile(file, "utf8") })));
     const library = compilePublicLibrary(pages);
-    const report: LintReport = { phase: "formula", files: pages.length, formulas: pages.reduce((n, page) => n + formulaBlocks(page).length, 0), checked: library.value ? pages.length : 0, diagnostics: library.diagnostics, pending: ["remaining rule-line validation", "URL resolution", "example evaluation"], aliases: library.value?.aliases.size, documents: library.value?.documents, cases: 0, references: 0, deferredReferences: 0 };
+    const report: LintReport = { phase: "formula", files: pages.length, formulas: pages.reduce((n, page) => n + formulaBlocks(page).length, 0), checked: library.value ? pages.length : 0, diagnostics: library.diagnostics, pending: ["URL resolution", "custom formula execution", "example evaluation"], aliases: library.value?.aliases.size, documents: library.value?.documents, cases: 0, references: 0, deferredReferences: 0 };
     if (library.value) {
         casePaths ??= await filesAt(join(libraryFolder, "../cases")).catch(error => { if (error.code === "ENOENT")
             return []; throw error; });
@@ -96,7 +96,7 @@ export async function lintFiles(target: string, preludeFile?: string): Promise<L
 }
 export async function main(args: string[]): Promise<number> {
     if (args[0] === "--help" || args[0] === "help") {
-        console.log("Usage: openrules lint <file-or-directory> [--prelude file] [--json]\nSlice 1 checks formula syntax, signatures, names, types and exact constant arithmetic. Case headers and known rule references are checked when a library is available. Declared pair and Kropki keyword parameters are checked; full rule lines, URL loading and example evaluation follow in later slices.");
+        console.log("Usage: openrules lint <file-or-directory> [--prelude file] [--json]\nSlice 1 checks formula syntax, signatures, names, types and exact constant arithmetic. Case headers and known rule references are checked when a library is available. Case boards, givens, typed parameters and embedded definition references are checked. URL loading, custom formula execution and example evaluation are separate phases.");
         return 0;
     }
     if (args[0] !== "lint" || !args[1] || args.slice(2).some((arg, index, rest) => arg !== "--json" && arg !== "--prelude" && rest[index - 1] !== "--prelude") || args.includes("--prelude") && !args[args.indexOf("--prelude") + 1]) {

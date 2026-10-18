@@ -517,5 +517,30 @@
         }
       }
     ]
+  },
+  {
+    "file": "tests/invalid/integration/fog-null-links.md",
+    "repair": "tests/valid/integration/fog-null-links.md",
+    "mode": "feature",
+    "diagnostics": [
+      {
+        "code": "E_HEADER_TYPE",
+        "check": "E_HEADER_TYPE",
+        "message": "fog.links must be a list.",
+        "span": {
+          "file": "tests/invalid/integration/fog-null-links.md",
+          "start": {
+            "offset": 137,
+            "line": 10,
+            "column": 3
+          },
+          "end": {
+            "offset": 171,
+            "line": 11,
+            "column": 14
+          }
+        }
+      }
+    ]
   }
 ]

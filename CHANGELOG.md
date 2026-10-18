@@ -4,6 +4,22 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ## Unreleased (0.3.0)
 
+### Added
+
+- Setter-skill guidance and worked examples for structured input inventories, fog setup, complete line geometry, dot appearance, relation-specific negative exceptions and localised uncertainty.
+- A rejecting fog-header fixture and passing repair for `links: null`.
+
+- Case-local custom definitions referenced by section fragments, with complete definitions under their named headings. Setter-chosen external HTTPS Markdown URLs remain supported.
+- Case checks for required parameters, unknown and repeated keys, nested value types, cell bounds, board fields, alphabet and givens. Board-dependent omission values must be explicit on non-standard dimensions or alphabets.
+- Diagnostics `E_CASE_BOARD`, `E_CASE_PARAMETERS` and `E_CUSTOM_DEFINITION`, with rejecting case fixtures and passing repairs.
+
+### Changed
+
+- Feature headers reject a supplied `null` for an optional value instead of treating it as absent. In fog setup, omit `links` for neighbourhood reveal or supply a list for linked reveals.
+
+- The setter skill declares fully understood custom rules with in-file definitions when no external URL was supplied, and lists the parameters to state explicitly on non-standard boards.
+- Embedded external custom definitions are resolved locally and no longer counted as deferred URLs.
+
 ### Breaking
 
 - Case files moved out of the library; they are kept by Sudoku Sleuth. The `cases/` folder, the generated `/cases/` pages and raw case routes, and the `cases` count in the build result are gone. The checker still reads a case file given to it, and a folder passed to `openrules lint` still checks a `cases/` folder beside `rules/` when one exists.

@@ -49,7 +49,7 @@ Satisfies the rule: r1c1=1, r1c2=2, r1c3=5. The third digit is 1+2×2=5.
 Breaks the rule: r1c1=1, r1c2=2, r1c3=6. The third digit is 6, while 1+2×2=5.
 ````
 
-The proposed kind belongs in the draft page's fragment. Until the page is published, use its embedded custom definition when writing an actual case file.
+The proposed kind belongs in the draft page's fragment. Until the page is published, use its embedded custom definition and an in-file section fragment when writing an actual case file. A setter-chosen external HTTPS Markdown URL is also allowed.
 
 If the example needs board context, use a complete case inside an outer four-backtick `markdown` fence, as in [examples.md](examples.md). Use a longer outer fence whenever its contents contain a fence of the same length.
 

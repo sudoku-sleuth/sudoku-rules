@@ -42,7 +42,7 @@ test("grammar follows renamed kinds, record fields and new enum members", async 
   const renamed = original.replaceAll("kind: pair", "kind: bond").replaceAll("https://rules.sudoku-sleuth.com/pair.md", "https://other.example/bond.md");
   const checked = compilePublicLibrary([shared, { file: "bond.md", text: renamed }]);
   expect(checked.diagnostics).toEqual([]);
-  const source = (await Bun.file("tests/valid/lines/unknown-op.rules.md").text()).replace("sudoku 9x9\n", "").replace("pair r", "bond r").replace("https://rules.sudoku-sleuth.com/", "https://other.example/");
+  const source = (await Bun.file("tests/valid/lines/unknown-op.rules.md").text()).replace("sudoku 9x9\n", "").replace("status: read", "status: read\nboard: {rows: 9, cols: 9, symbols: [1,2,3,4,5,6,7,8,9]}").replace("pair r", "bond r").replace("https://rules.sudoku-sleuth.com/", "https://other.example/");
   expect(checkCaseReferences({ file: "bond.rules.md", text: source }, checked.value!.registry).diagnostics).toEqual([]);
   const novel = renamed.replace("type: PairRelation", "type: 'record{action:enum{offset},amount:optional<number>}'")
     .replace(/      tag: op\n      choices:[\s\S]*?(?=  cells:)/, "      tag: action\n      choices:\n        offset: {amount: integer}\n")

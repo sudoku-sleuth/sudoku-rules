@@ -8,16 +8,20 @@ Required fields are `format: open-rules`, `title`, `setter`, `source`, `case`, `
 
 `status: read` records a reading, not setter confirmation. `confirmed` records explicit confirmation. `flagged` accompanies a `flags` list of unresolved reasons; it does not make an ambiguous meaning safe to guess.
 
+Localise each flag to the affected cells or groups and keep independently established declarations. Read [reading-input.md](reading-input.md) for the input inventory, fog header, line expansion, dot appearance and negative-exception examples. Supplied fog belongs in the top-level `fog` header, including `initiallyLit` and every supplied reveal link.
+
 On a standard board, write `sudoku 9x9` once in the rules block. This supplies digits 1–9, rows, columns, and standard 3×3 boxes. Optional top-level `givens` can be `r4c8=1 r5c5=9`, or an 81-character grid string with `.` for an empty cell. Top-level `regions` lists extra regions, not the standard boxes.
 
-For a different board, omit `sudoku 9x9` and supply explicit YAML `board` fields: `rows`, `cols`, `symbols`, `givens`, and `regions`. Regions are lists of rXcY cell lists. Givens can be a grid string or a list such as `[{cell: r1c1, digit: 1}]`. Do not infer an alphabet or region layout.
+For a different board, omit `sudoku 9x9` and supply explicit YAML `board` fields: `rows`, `cols`, `symbols`, `givens`, and `regions`. Regions are lists of rXcY cell lists. Givens can be a grid string or a list such as `[{cell: r1c1, digit: 1}]`. Do not infer an alphabet or region layout. Declare givens in exactly one place, either top-level `givens` or `board.givens`, and give each cell at most one digit.
+
+For any dimensions or ordered alphabet other than 9×9 with 1–9, state `loop` on summit, whispers, parity, modular, entropic, primality and line-choice; modular `modulus`; nabner `distinct`; cage `repeats`; sandwich `crusts`; and index `strips`. Write the intended values explicitly, such as `loop false`, `repeats false`, or `crusts [1,6]`. Preserve empty `strips []` when there are no authored strips.
 
 ## Coordinates and declarations
 
 Rows run top to bottom; columns run left to right. Both start at 1. `r2c3` is row 2, column 3. Stay within the declared board.
 
 ```text
-[id: ]kind-or-HTTPS-Markdown-URL [cell-path] [parameter value]...
+[id: ]kind-or-section-fragment-or-HTTPS-Markdown-URL [cell-path] [parameter value]...
 ```
 
 One line declares one rule instance. A path uses hyphens or commas and preserves its order. `r1c1-r1c3` lists exactly two cells: it does not include r1c2. Include every intermediate position yourself. Do not sort paths or remove repeated positions.
@@ -60,21 +64,23 @@ The first four forms take a whole-number value; the last three take no value. `l
 
 ## Custom rules
 
-When no library kind matches, reference an HTTPS `.md` URL and embed the entire definition in a fenced `custom-rules` YAML list. Each entry supplies:
+When no library kind matches, define the rule in the file and reference its section fragment, such as `#weighted-triple`. Use `## Definitions` with one named subsection per custom rule, and embed the entire definition in a fenced `custom-rules` YAML list. Each entry supplies:
 
-- `url`: exactly the URL used by the instance.
+- `url`: exactly the fragment or external URL used by the instance.
 - `name`: the setter's rule name.
 - `parameters`: supplied inputs and their meanings.
 - `definition`: the full meaning, including scope and exceptions.
 - `maths`: a formula over the shared definitions, with local notation defined.
 - `example`: one satisfying and one breaking assignment with explanations.
 
-Use a URL chosen by the setter for that definition. The definition is embedded, so the case does not depend on fetching that URL. Do not claim the URL is already hosted or assign an unpublished kind under the library root. The `setter.example` URL in [examples.md](examples.md) is illustrative.
+Use a lowercase heading slug for the fragment: `### Weighted triple` gives `#weighted-triple`. Put its complete `custom-rules` entry inside that section. Each definition must be referenced by a declaration. The worked file in [examples.md](examples.md) shows the layout.
 
 ```rules
-weighted-1: https://setter.example/rules/weighted-triple.md r1c1-r1c2-r1c3
+weighted-1: #weighted-triple r1c1-r1c2-r1c3
 ```
 
-The URL basename supplies the custom kind. If it differs, supply an explicit `kind "chosen-kind"` parameter. Unknown kinds remain custom; embedding a definition does not make them published library kinds or executable code.
+A setter-chosen external HTTPS `.md` URL is also allowed. Keep the same complete definition in the case, with that URL in both the declaration and `url` field. It does not need to be fetched. Do not invent a hosted URL or assign an unpublished kind under the library root. No external URL is needed for an in-file definition; declare a fully understood rule instead of asking only for a URL or flagging it.
+
+The fragment slug or URL basename supplies the custom kind. An explicit `kind "chosen-kind"` can name a different custom kind. A custom definition has exactly the six fields above: do not add `class` or other fields. Put any explanatory classification in prose. Custom definitions describe rule meaning; executable formula and example evaluation are separate checks.
 
 The primary path is available as `cells`; define its order and length in the embedded parameters and maths. Supply additional parameters with JSON values. Keep the setter's wording outside `rules` and `custom-rules` fences.

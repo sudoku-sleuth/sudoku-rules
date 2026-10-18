@@ -1,0 +1,650 @@
+[
+  {
+    "file": "tests/invalid/cases/custom-off-board.rules.md",
+    "repair": "tests/valid/cases/custom-off-board.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "cells item 3 must be an in-board cell in r1c1 form.",
+        "span": {
+          "file": "tests/invalid/cases/custom-off-board.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/duplicate-definition.rules.md",
+    "repair": "tests/valid/cases/duplicate-definition.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple must name the heading whose section contains this complete custom definition.",
+        "span": {
+          "file": "tests/invalid/cases/duplicate-definition.rules.md",
+          "start": {
+            "offset": 722,
+            "line": 38,
+            "column": 1
+          },
+          "end": {
+            "offset": 1130,
+            "line": 48,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/duplicate-givens.rules.md",
+    "repair": "tests/valid/cases/duplicate-givens.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_BOARD",
+        "check": "E_CASE_BOARD",
+        "message": "Declare givens once, in the header or in board.givens.",
+        "span": {
+          "file": "tests/invalid/cases/duplicate-givens.rules.md",
+          "start": {
+            "offset": 137,
+            "line": 9,
+            "column": 9
+          },
+          "end": {
+            "offset": 143,
+            "line": 9,
+            "column": 15
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/duplicate-parameter.rules.md",
+    "repair": "tests/valid/cases/duplicate-parameter.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "Declare line once.",
+        "span": {
+          "file": "tests/invalid/cases/duplicate-parameter.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 160,
+            "line": 13,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/empty-alphabet.rules.md",
+    "repair": "tests/valid/cases/empty-alphabet.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_BOARD",
+        "check": "E_CASE_BOARD",
+        "message": "board.symbols must be a nonempty list of distinct finite numbers.",
+        "span": {
+          "file": "tests/invalid/cases/empty-alphabet.rules.md",
+          "start": {
+            "offset": 136,
+            "line": 9,
+            "column": 8
+          },
+          "end": {
+            "offset": 167,
+            "line": 9,
+            "column": 39
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/incomplete-definition.rules.md",
+    "repair": "tests/valid/cases/incomplete-definition.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "A custom definition needs only url, name, parameters, definition, maths and example, each complete; parameters must be a mapping.",
+        "span": {
+          "file": "tests/invalid/cases/incomplete-definition.rules.md",
+          "start": {
+            "offset": 256,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 672,
+            "line": 31,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/incomplete-definition.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-board.rules.md",
+    "repair": "tests/valid/cases/missing-board.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_BOARD",
+        "check": "E_CASE_BOARD",
+        "message": "Declare a board or sudoku 9x9.",
+        "span": {
+          "file": "tests/invalid/cases/missing-board.rules.md",
+          "start": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "offset": 0,
+            "line": 1,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-cells.rules.md",
+    "repair": "tests/valid/cases/missing-cells.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "State line explicitly for this rule.",
+        "span": {
+          "file": "tests/invalid/cases/missing-cells.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 160,
+            "line": 13,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-crusts.rules.md",
+    "repair": "tests/valid/cases/missing-crusts.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "State crusts explicitly on this board.",
+        "span": {
+          "file": "tests/invalid/cases/missing-crusts.rules.md",
+          "start": {
+            "offset": 193,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 201,
+            "line": 13,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-custom-url.rules.md",
+    "repair": "tests/valid/cases/missing-custom-url.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "A custom definition needs only url, name, parameters, definition, maths and example, each complete; parameters must be a mapping.",
+        "span": {
+          "file": "tests/invalid/cases/missing-custom-url.rules.md",
+          "start": {
+            "offset": 256,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 638,
+            "line": 30,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/missing-custom-url.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-definition.rules.md",
+    "repair": "tests/valid/cases/missing-definition.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/missing-definition.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-loop.rules.md",
+    "repair": "tests/valid/cases/missing-loop.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "State loop explicitly on this board.",
+        "span": {
+          "file": "tests/invalid/cases/missing-loop.rules.md",
+          "start": {
+            "offset": 193,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 201,
+            "line": 13,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-repeats.rules.md",
+    "repair": "tests/valid/cases/missing-repeats.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "State repeats explicitly on this board.",
+        "span": {
+          "file": "tests/invalid/cases/missing-repeats.rules.md",
+          "start": {
+            "offset": 193,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 197,
+            "line": 13,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/missing-section.rules.md",
+    "repair": "tests/valid/cases/missing-section.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple must name the heading whose section contains this complete custom definition.",
+        "span": {
+          "file": "tests/invalid/cases/missing-section.rules.md",
+          "start": {
+            "offset": 255,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 663,
+            "line": 31,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/missing-section.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/nested-cell.rules.md",
+    "repair": "tests/valid/cases/nested-cell.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "groups item 1 item 1 must be an in-board cell in r1c1 form.",
+        "span": {
+          "file": "tests/invalid/cases/nested-cell.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 164,
+            "line": 13,
+            "column": 11
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/off-board-pair.rules.md",
+    "repair": "tests/valid/cases/off-board-pair.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "Use cells within the declared board.",
+        "span": {
+          "file": "tests/invalid/cases/off-board-pair.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 158,
+            "line": 13,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/repeated-given-cell.rules.md",
+    "repair": "tests/valid/cases/repeated-given-cell.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_BOARD",
+        "check": "E_CASE_BOARD",
+        "message": "Cell r1c1 has more than one given.",
+        "span": {
+          "file": "tests/invalid/cases/repeated-given-cell.rules.md",
+          "start": {
+            "offset": 137,
+            "line": 9,
+            "column": 9
+          },
+          "end": {
+            "offset": 150,
+            "line": 9,
+            "column": 22
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/unknown-definition-field.rules.md",
+    "repair": "tests/valid/cases/unknown-definition-field.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "A custom definition needs only url, name, parameters, definition, maths and example, each complete; parameters must be a mapping.",
+        "span": {
+          "file": "tests/invalid/cases/unknown-definition-field.rules.md",
+          "start": {
+            "offset": 256,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 685,
+            "line": 32,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/unknown-definition-field.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/unknown-parameter.rules.md",
+    "repair": "tests/valid/cases/unknown-parameter.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "Unknown parameter class; use the parameters on the rule page.",
+        "span": {
+          "file": "tests/invalid/cases/unknown-parameter.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 160,
+            "line": 13,
+            "column": 7
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/unused-definition.rules.md",
+    "repair": "tests/valid/cases/unused-definition.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+        "span": {
+          "file": "tests/invalid/cases/unused-definition.rules.md",
+          "start": {
+            "offset": 229,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 637,
+            "line": 31,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/wrong-board.rules.md",
+    "repair": "tests/valid/cases/wrong-board.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_BOARD",
+        "check": "E_CASE_BOARD",
+        "message": "board.rows must be a positive whole number.",
+        "span": {
+          "file": "tests/invalid/cases/wrong-board.rules.md",
+          "start": {
+            "offset": 136,
+            "line": 9,
+            "column": 8
+          },
+          "end": {
+            "offset": 180,
+            "line": 9,
+            "column": 52
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/wrong-boolean.rules.md",
+    "repair": "tests/valid/cases/wrong-boolean.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "repeats must be true or false.",
+        "span": {
+          "file": "tests/invalid/cases/wrong-boolean.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 158,
+            "line": 13,
+            "column": 5
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/wrong-number.rules.md",
+    "repair": "tests/valid/cases/wrong-number.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "gap must be a finite number.",
+        "span": {
+          "file": "tests/invalid/cases/wrong-number.rules.md",
+          "start": {
+            "offset": 154,
+            "line": 13,
+            "column": 1
+          },
+          "end": {
+            "offset": 162,
+            "line": 13,
+            "column": 9
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/wrong-symbol-type.rules.md",
+    "repair": "tests/valid/cases/wrong-symbol-type.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_BOARD",
+        "check": "E_CASE_BOARD",
+        "message": "board.symbols must be a nonempty list of distinct finite numbers.",
+        "span": {
+          "file": "tests/invalid/cases/wrong-symbol-type.rules.md",
+          "start": {
+            "offset": 136,
+            "line": 9,
+            "column": 8
+          },
+          "end": {
+            "offset": 180,
+            "line": 9,
+            "column": 52
+          }
+        }
+      }
+    ]
+  }
+]

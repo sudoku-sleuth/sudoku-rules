@@ -47,7 +47,7 @@ bun run build:package
 bun run build
 ```
 
-`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Other rule-line parameters, custom definitions, URL fetching and example verdicts remain pending; external URLs are counted separately as deferred.
+`bun run lint` runs YAML lint, spec lint, and skill lint in order. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Case parameters are checked against the published signatures, including required inputs, nested types and cell bounds. Board data, givens and embedded custom definition references are checked. See [the case-file contract](spec/case-files.md). External URLs without embedded definitions are deferred; fetching, custom formula execution and example verdicts remain pending.
 
 ## Formula package
 
@@ -60,7 +60,7 @@ bun run openrules lint rules --json
 bun run openrules lint /path/to/rule.md --prelude rules/predicates.md
 ```
 
-Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; pair and Kropki keyword syntax is checked; complete rule-line validation and fetching arrive in later slices.
+Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; rule parameters, boards and embedded custom definitions are checked using the [case-file contract](spec/case-files.md). Fetching, custom formula execution and example verdicts are separate phases.
 
 The portable entry exports `parseFormula`, `parsePrelude`, `checkFormula`, `compilePrelude`, `compilePage`, `compileLibrary` and exact rational arithmetic. It performs no I/O and imports no Node APIs. Callers supply `{file, text}` pages; future URL loading will take an injected fetch. The CLI owns file access.
 

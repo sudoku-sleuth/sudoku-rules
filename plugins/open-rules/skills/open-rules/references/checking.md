@@ -14,9 +14,21 @@ bun run lint:spec /path/to/puzzle.rules.md
 
 For a proposed library page, pass `/path/to/rules/<kind>.md` to both commands. Check any supporting case separately. You can also place files under the checkout's `rules/` or `cases/` and run `bun run lint` to check the collection.
 
-YAML lint checks front matter, page names, slugs, and canonical URLs. Specification lint now checks library formulas against the typed shared prelude: grammar, explicit parameter/term signatures, names, types, logical class and exact constant arithmetic. Every parameter needs a front matter `type`, for example `path<cell>`. Read the checkout's `spec/grammar.ebnf`, `spec/types.md` and `rules/predicates.md` when writing executable formulas. The checker also checks case headers and references to known rule kinds. Full rule-line parameters, custom definitions embedded in cases, URL loading and example verdicts are later phases; the command reports them as pending. External references are counted as deferred, rather than as loaded definitions. State which checks actually ran. If a tool or checkout is unavailable, obtain it before marking the task checked.
+YAML lint checks front matter, page names, slugs, and canonical URLs. Specification lint now checks library formulas against the typed shared prelude: grammar, explicit parameter/term signatures, names, types, logical class and exact constant arithmetic. Every parameter needs a front matter `type`, for example `path<cell>`. Read the checkout's `spec/grammar.ebnf`, `spec/types.md` and `rules/predicates.md` when writing executable formulas. The checker also checks case headers and references to known rule kinds. Case validation checks board data, givens, declared parameter names and types, required cells, bounds, and explicit board-dependent parameters on non-standard boards. It checks custom definition fields, section fragments, and references. Only external URLs without an embedded definition are deferred. URL loading, custom formula execution and example verdicts are reported as pending. State which checks actually ran. If a tool or checkout is unavailable, obtain it before marking the task checked.
 
 Fix reported problems at their source; do not change the setter's meaning to silence a finding. Ask the setter when a fix requires a choice of meanings. Rerun after the final edit, not only before it.
+
+## Compare with the source
+
+Use the inventory in [reading-input.md](reading-input.md) to check completeness before delivery:
+
+- Reconcile every supplied structured field, including the fog mask and all reveal links, with its output. Preserve absent versus empty `links`; a supplied `null` is rejected.
+- Trace every drawing edge, including closure, against the expanded path and cell set.
+- Check dot fill, stroke and text separately against the raw drawing record and setter meaning.
+- Rebuild each negative relation's scope and exceptions from its own marks and explicit exceptions.
+- Check that flags identify only the cells or groups in doubt and that independent conditions remain declared.
+
+The checker receives the case file, not its original drawing or input JSON. It validates supplied fog fields, cell bounds, types and flags, but cannot establish that a source mask was copied, a drawing was fully traversed, a dot was classified correctly, or an exception belongs to its stated relation. Perform those comparisons against the source; a passing lint result does not replace them.
 
 ## Published checker command — maintainer hook
 

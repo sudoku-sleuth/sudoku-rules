@@ -14,7 +14,7 @@ afterAll(async () => { await rm(temporary, { recursive: true, force: true }); })
 
 test("the distributed skill's references and all three case examples pass repository lint", async () => {
   const result = await lintSkill(skill);
-  expect(result.references).toBe(5);
+  expect(result.references).toBe(6);
   expect(result.examples).toBe(3);
 });
 
@@ -127,6 +127,6 @@ test("skill checker labels its temporary case counts as examples only", async ()
   expect(await process.exited).toBe(0);
   expect(stderr).not.toContain("E_");
   expect(stdout).toContain("Skill examples only: Formula lint:");
-  expect(stdout).toContain("Cases: 3 headers/reference lists; 11 references; 1 deferred URLs");
+  expect(stdout).toContain("Cases: 3 headers/reference lists; 11 references; 0 deferred URLs");
   expect(stdout).not.toMatch(/^Formula lint:/m);
 });

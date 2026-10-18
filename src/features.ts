@@ -207,7 +207,7 @@ function decode(raw: unknown, type: Type, environment: Environment, board: Board
   const inner = resolved.args?.[0];
   switch (resolved.name) {
     case "cell": return decodeCell(raw, board, true);
-    case "optional": return raw === undefined || raw === null ? { value: undefined } : decode(raw, inner!, environment, board, name);
+    case "optional": return raw === undefined ? { value: undefined } : decode(raw, inner!, environment, board, name);
     case "set": case "list": case "path": {
       if (!Array.isArray(raw)) return { error: `${name} must be a list` };
       const out: Value[] = [];
