@@ -24,6 +24,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Changed
 
+- Instance IDs accept readable hyphenated, dotted, digit-leading and Unicode names. Reserved declaration words, cells, paths, dimensions and numbers require JSON quotes. The parser, canonical writer, specification and setter skill share this contract; parameter and reference syntax are unchanged.
+
 - Declaration reading uses one front end in place of the prefix regular expression, whitespace/JSON tokenizers and semantic per-kind decoding. Existing diagnostic codes are retained. Semantic reading now rejects invalid pair declarations through the same grammar as case checking.
 
 - Open Rules skill convention F3 treats rules or clues declared wrong, false or never correct as failures of each named instance. Guidance uses existing negation forms and includes a colour-based line example without imposing an opposite rule or merely negating a combined statement.

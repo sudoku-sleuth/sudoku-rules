@@ -55,7 +55,14 @@ export interface DeclarationGrammar {
     total?: boolean;
     opaque?: boolean;
 }
-const identifier = /^[\p{L}][\p{L}0-9_]*$/u;
+const instanceName = /^[\p{L}0-9][\p{L}\p{M}0-9_.-]*$/u;
+const reservedInstanceNames = new Set(['not', 'if', 'unless', 'true', 'false', 'null', 'uniform', 'distinct', 'connected']);
+const numberToken = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
+// Instance names have their own syntax; formula identifiers and references do not change.
+function bareInstanceName(value: string): boolean {
+    return instanceName.test(value) && !reservedInstanceNames.has(value)
+        && !path.test(value) && !/^\d+x\d+$/.test(value) && !numberToken.test(value);
+}
 const cell = /^r[1-9]\d*c[1-9]\d*$/;
 const path = /^r\d+c\d+(?:[-,]r\d+c\d+)*$/;
 /** Lex one declaration, retaining UTF-16 offsets and Unicode source columns. */
@@ -119,7 +126,7 @@ export function lexDeclaration(source: Source, code: DiagnosticCode = 'E_CASE_PA
                 while (i < text.length && !/\s/u.test(text[i]))
                     i++;
                 const raw = text.slice(start, i);
-                emit(raw.endsWith(':') && !raw.includes('://') ? 'id' : cell.test(raw) ? 'cell' : path.test(raw) ? 'path' : /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(raw) ? 'number' : ['not', 'if', 'unless'].includes(raw) ? raw as 'not' | 'if' | 'unless' : ['true', 'false', 'null', 'uniform', 'distinct', 'connected'].includes(raw) ? 'keyword' : 'identifier', start);
+                emit(raw.endsWith(':') && !raw.includes('://') ? 'id' : cell.test(raw) ? 'cell' : path.test(raw) ? 'path' : numberToken.test(raw) ? 'number' : ['not', 'if', 'unless'].includes(raw) ? raw as 'not' | 'if' | 'unless' : ['true', 'false', 'null', 'uniform', 'distinct', 'connected'].includes(raw) ? 'keyword' : 'identifier', start);
             }
         }
         out.push({ kind: 'eof', text: '', span: location(source, text.trimEnd().length, text.trimEnd().length) });
@@ -243,8 +250,8 @@ export function parseDeclaration(source: Source, grammar: DeclarationGrammar | (
         let instance: DeclarationName | undefined;
         if (tokens[i].kind === 'id') {
             const token = tokens[i++], raw = token.text.slice(0, -1);
-            if (!raw.startsWith('"') && !identifier.test(raw))
-                fail('E_CASE_PARAMETERS', token.span, 'Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.');
+            if (!raw.startsWith('"') && !bareInstanceName(raw))
+                fail('E_CASE_PARAMETERS', token.span, 'Use a letter or digit followed by letters, combining marks, digits, underscores, hyphens or dots for an instance ID; quote reserved words, cells, paths, dimensions, numbers and other names as JSON strings.');
             instance = { value: raw.startsWith('"') ? JSON.parse(raw) : raw, span: token.span };
         }
         const negations: {
@@ -387,7 +394,7 @@ export function declarationParameters(ast: DeclarationTail, primary = 'cells'): 
 export function printDeclaration(ast: DeclarationAST, grammar: DeclarationGrammar = {}): string {
     const parts: string[] = [];
     if (ast.instance)
-        parts.push(`${identifier.test(ast.instance.value) ? ast.instance.value : JSON.stringify(ast.instance.value)}:`);
+        parts.push(`${bareInstanceName(ast.instance.value) ? ast.instance.value : JSON.stringify(ast.instance.value)}:`);
     parts.push(...ast.negations.map(() => 'not'), ast.kind.value);
     if (ast.cells)
         parts.push((ast.cells.value as string[]).join('-'));

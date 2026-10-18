@@ -37,6 +37,8 @@ whispers_2: whispers r5c1-r5c2 gap 5
 
 Without an explicit ID, the canonical kind is the ID. Repeated kinds need unique IDs, such as `thermo-1`, `thermo-2`. Do not reuse the standard board's `row-1` through `row-9`, `col-1` through `col-9`, or `box-1` through `box-9` IDs. Drawing records refer to instance IDs.
 
+Start an unquoted instance ID with a Unicode letter or ASCII digit; continue with letters, combining marks, ASCII digits, underscores, hyphens or dots. Use names such as `thermo-1`, `2nd-clue` or `group.a`. Quote reserved declaration words (`not`, `if`, `unless`, `true`, `false`, `null`, `uniform`, `distinct`, `connected`), cell or path spellings (including zero coordinates), dimensions and numbers: `"if":`, `"r1c1":`, `"9x9":`, `"12":`. Quote other characters, whitespace and a leading underscore, hyphen or dot. Preserve the exact ID in drawing references.
+
 Named parameter values usually use JSON syntax: numbers, `true`/`false`, quoted strings, arrays, and objects. A single cell may be unquoted. Use rXcY strings for cells inside arrays and nested groups. IDs or parameter names containing spaces use JSON quotes.
 
 ```rules

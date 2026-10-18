@@ -23,7 +23,7 @@ cell = "r" positive-row "c" positive-column
 value = JSON-value | cell
 ```
 
-The instance ID precedes every operator. An unquoted ID starts with a letter and continues with letters, digits or underscores. Write other IDs as JSON strings, for example `"clue-1":`. Repeated kinds need distinct IDs, including a positive and negated instance of the same kind.
+The instance ID precedes every operator. An unquoted ID starts with a Unicode letter or ASCII digit and continues with letters, combining marks, ASCII digits, underscores, hyphens or dots: `clue-1:`, `2nd-clue:`, `group.a:`. Quote reserved declaration words (`not`, `if`, `unless`, `true`, `false`, `null`, `uniform`, `distinct`, `connected`), cell or path spellings, dimensions and numbers: `"r1c1":`, `"9x9":`, `"12":`. Other characters and whitespace also require JSON quotes. Repeated kinds need distinct IDs, including a positive and negated instance of the same kind.
 The `total` parameter aliases cage `sum`; the writer uses `total`.
 A separate `#` followed by whitespace or the end of the line starts a comment.
 A fragment such as `#weighted-triple` remains a rule reference.
