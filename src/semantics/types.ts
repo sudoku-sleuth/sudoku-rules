@@ -24,6 +24,7 @@ export type Formula =
   | { op: "Not"; child: Formula }
   | { op: "Distinct"; channel: Channel; collection: "set" | "list"; cells: Cell[] }
   | { op: "Pair"; channel: Channel; cells: [Cell, Cell]; table: [number, number][] }
+  | { op: "SumEqual"; channel: Channel; left: Cell[]; right: Cell[] }
   | { op: "CountAtLeast"; channel: "D"; cells: Cell[]; digit: number; count: number }
   | { op: "Allowed"; channel: Channel; cell: Cell; values: number[] };
 export interface SemanticSource { span: Span; kind: string; instance?: string }
@@ -34,7 +35,7 @@ export interface Coverage {
 }
 export interface SemanticIssue { code: string; message: string; span: Span }
 export interface Rewrite {
-  rule: "distinct-pairs" | "pair-order" | "boolean-canonical" | "double-not" | "house-implied" | "value-channel" | "fog-sets";
+  rule: "distinct-pairs" | "pair-order" | "boolean-canonical" | "double-not" | "house-implied" | "value-channel" | "fog-sets" | "sum-equation";
   version: 1; before: string; after: string; sources: SemanticSource[];
   /** A retained unconditional house that justifies removing the pair. */
   witness?: Cell[];

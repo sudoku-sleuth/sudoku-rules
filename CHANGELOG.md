@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Semantic line coverage for strict and slow thermometers, German/Dutch and close whispers, parity, modular and entropic windows, palindromes, Renban, Bremban, Nabner, primality, summit, shifter and region sums. Paths retain direction, closure, cyclic windows and repeated occurrences; region sums validate their supplied region runs and preserve exact sum coefficients.
+
 - `W_CASE_HOUSES` for regions without house constraints, with a rejecting six-symbol fixture and a complete 18-house repair.
 
 - Setter-skill guidance and worked examples for structured input inventories, fog setup, complete line geometry, dot appearance, relation-specific negative exceptions and localised uncertainty.
@@ -33,6 +35,8 @@ Each release lists what changed. A change that breaks a published export, front-
 - Embedded external custom definitions are resolved locally and no longer counted as deferred URLs.
 
 ### Fixed
+
+- Semantic normalisation resolves Sudoku box geometry before lowering regional lines, so omitted standard regions and explicitly supplied regions produce equivalent complete forms regardless of declaration order.
 
 - Fog correctness follows the published play predicates with and without an answer, including given values and partial answer coverage. Off-board trigger spots are accepted and never fire; links with identical trigger sets share the union of their lights.
 - Repeated-cell multiplicities reduce to canonical weights and singleton membership. Duplicate negative relations are removed before finite expansion is charged.

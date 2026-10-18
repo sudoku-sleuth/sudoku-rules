@@ -57,12 +57,13 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | Distinct(channel, collection, cells) | Values at every two different positions are unequal. A `set` removes duplicate cells; a `list` retains occurrences. Empty and singleton collections are true. Canonical output expands this macro to inequality pairs. |
 | Pair(channel, cells, table) | The ordered values at the two cells belong to the explicit allowed-pair table. Its axes use the board's actual numeric alphabet. Swapping cells transposes the table. A pair with the same cell on both axes uses only diagonal table entries. |
 | Allowed(channel, cell, values) | The cell's value belongs to this explicit numeric set. An empty set is false. |
+| SumEqual(channel, left, right) | Exact equality of sums over two occurrence lists, including repeated visits. Canonical equations cancel common occurrences, divide coefficients by their common factor and choose a fixed sign. |
 | CountAtLeast(D, cells, digit, count) | The number of matching digit occurrences is at least count. Cells are a sorted list retaining occurrence multiplicity. |
 | All(children) | Conjunction; empty All is true. |
 | Any(children) | Disjunction; empty Any is false. |
 | Not(child) | Boolean complement of the complete child formula. |
 
-`D` is the face digit. `V` is the effective value and equals D when no modifier or unresolved definition can change that channel. The normaliser rewrites parity, pair and Kropki restrictions from V to D only after establishing this identity. It does not construct effective-value tables for an unknown domain. Arithmetic, quantified witnesses, opaque custom terms and collections with computed selection have no lowering in this version; their declarations remain uncovered. Numeric constants in this finite fragment are safe integers. The formula compiler's separate exact rational arithmetic remains unchanged.
+`D` is the face digit. `V` is the effective value and equals D when no modifier or unresolved definition can change that channel. The normaliser rewrites effective-value thermos, whispers, palindromes, renban and region sums, as well as parity-cell, pair and Kropki restrictions from V to D only after establishing this identity. It does not construct effective-value tables for an unknown domain. General arithmetic, quantified witnesses, opaque custom terms and collections with computed selection have no lowering in this version; their declarations remain uncovered. Digits, counts and moduli in this finite fragment are safe integers. Whisper gaps accept finite numeric bounds; integral differences are compared to their exact ceiling or floor. The formula compiler's separate exact rational arithmetic remains unchanged.
 
 ## Coverage by declaration kind
 
@@ -85,8 +86,22 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | outside | At-least counts over cell occurrences. Order is immaterial; repeated positions still count. |
 | negative | Each listed relation is forbidden on orthogonal face-digit pairs in its direction and within scope, excluding exactly its declared exception pairs. |
 | cage, killer | Untotalled cages lower to distinctness unless repeats is true. Killer is the cage alias. Any supplied total (`total` or `sum`) leaves the whole declaration uncovered. |
+| thermo, slow-thermo | Directed adjacent strict increase on V, or nondecrease on D, respectively. |
+| whispers, whisper | Absolute adjacent V difference at least the required gap; German uses 5, Dutch uses 4. Optional loop closure. |
+| close-whispers | Absolute adjacent D difference at most the required gap. |
+| parity | Opposite numeric digit parity at each edge, including declared closure. |
+| modular | Distinct normalised remainders in every three-position window; positive integral modulus defaults to 3. Open two-position paths require different remainders. |
+| entropic | Distinct classes in every three-position window, using equal thirds of the ordered alphabet. Open two-position paths require different classes. |
+| palindrome | Equality of V at mirrored path positions. |
+| renban | Distinct V values covering a consecutive integer interval of the path length. Repeated cells are rejected. |
+| bremban | The distinct D values cover a consecutive integer interval; repeated values and visits are permitted. |
+| nabner | Every pair of path positions has nonconsecutive D values; optional `distinct` forbids equal values. Repeated cells are rejected. |
+| primality | Every D exceeds one; adjacent positions alternate prime and composite classes. Optional closure. |
+| summit | Unequal adjacent D values; successive differences reverse sign at internal 1 or 9 and retain sign elsewhere. Includes cyclic triples on loops. |
+| shifter-line | Exclude 5. Within a primary region, adjacent D values share parity and polarity above/below 5; across regions exactly one relationship changes. |
+| region-sum | Equal V sums over explicit maximal region runs, checked in path order against primary board regions. Returning to a region starts a new run. Occurrence multiplicity is retained. |
 
-Every other kind is unsupported with the reason exported by `declarationRegistry`: absent-digits, arrow, between, bremban, cage-expressions, cage-pair, cage-shapes, close-whispers, constructed-regions, coordinate-arrows, counting-circles, diagonal-lines, doll-sum, double-arrow, entropic, equal-sums, equality-cage, extremum, flat-mates, greek-carpet, hidden-modular, index, index-line, layered-cage, limited-digits, line-choice, little-killer, lockout, look-and-say, magic-square, mean-lines, modular, molecules, n-mate, nabner, numbered-room, ordered-block, palindrome, parity, pointing-arrow, pointing-thermo, pressure-gauge, primality, product-cage, region-sum, remainder-cage, renban, rotational-sums, run-sum, same-class, sandwich, shifter-line, skyscraper, slow-thermo, sum-free-cage, summit, tardis, thermo, value-modifier, vault, whisper, whispers, window-classes, x-sum and yin-yang.
+Every other kind is unsupported with the reason exported by `declarationRegistry`: absent-digits, arrow, between, cage-expressions, cage-pair, cage-shapes, constructed-regions, coordinate-arrows, counting-circles, diagonal-lines, doll-sum, double-arrow, equal-sums, equality-cage, extremum, flat-mates, greek-carpet, hidden-modular, index, index-line, layered-cage, limited-digits, line-choice, little-killer, lockout, look-and-say, magic-square, mean-lines, molecules, n-mate, numbered-room, ordered-block, pointing-arrow, pointing-thermo, pressure-gauge, product-cage, remainder-cage, rotational-sums, run-sum, same-class, sandwich, skyscraper, sum-free-cage, tardis, value-modifier, vault, window-classes, x-sum and yin-yang.
 
 Foreign definitions and their dependencies are unresolved. URL spelling never grants a foreign definition the meaning of a built-in kind. Known aliases retain their original source kind. Unsupported header setup, custom definitions and uniform shading conditions remain uncovered. No opaque identity establishes executable coverage.
 
@@ -106,6 +121,7 @@ Rewrites are terminating and versioned. Each record has its name, version, befor
 | double-not | Complementing twice preserves a complete Boolean meaning. |
 | house-implied | Remove positive inequality already asserted by an unconditional house; retain the house and its proof link. |
 | value-channel | V equals D in the absence of uncovered value bindings or definitions. |
+| sum-equation | Cancel common sum occurrences, divide integral coefficients by their common factor, and orient the first nonzero coefficient positively. |
 | fog-sets | Canonicalise initially lit cells and trigger sets, union lights for identical trigger sets, and remove links with inactive triggers without changing the presence of links. |
 
 House removal works pair by pair: no single house needs to contain the entire marked group. Each comparison side derives its own baseline; differing houses stay visible as board differences. Conditional and negated declarations never become baseline houses. Removed pairs retain their rule source on the house link and rewrite record. Original primitive keys and their sources remain in the source map even after flattening or removal. Declaration order never enters mathematical identity.
@@ -121,6 +137,16 @@ Quadruple cell collections remove duplicate positions. Outside cell collections 
 Negative declarations require `relations` and `except`. Validated relation records are deduplicated by operator and value before pair expansion and resource accounting. Absent `within` covers all orthogonal edges; `within []` covers none. A nonempty scope covers an edge only when both endpoints belong to a common listed group. Direction restricts those edges to horizontal or vertical. Exception pairs are unordered sets of exactly two positions; lists and groups are validated against active cells. Asymmetric relations use row-major endpoint order before canonical pair transposition.
 
 Exceptions belong to each negative declaration. A pair carrying a white clue does not exempt a black negative, and a V clue does not exempt an X negative. Separate declarations preserve independent exception lists. A declaration listing several relations explicitly shares its own exceptions across those relations. The API never infers exceptions from other declarations or drawings.
+
+## Paths, windows and regions
+
+Paths retain their ordered occurrences. Adjacency rules expand to their exact edges, so splitting or joining declarations compares equally when the resulting edges agree. Branches are supplied as separate paths; touching artwork adds no edge. Thermo direction starts at the bulb. Direction-free rules reverse through their lowered clauses. Palindrome, interval and window rules retain their whole scope; splitting them does not generally preserve meaning.
+
+Loop closure follows the published shared predicates: only paths longer than two add a last-to-first edge. Cyclic three-position windows require at least three positions. A closed two-position modular or entropic path has no windows; its open counterpart has the explicit two-position class restriction. Repeated closing endpoints remain occurrences, rather than being removed. A cyclic window can therefore differ from an open path with its first position repeated at the end. An open path repeating its first two positions captures all cyclic triples.
+
+Entropic classes use the ordered alphabet, whose size must be divisible by three. Modular remainders are normalised even for negative digits. Summit always turns at numeric 1 and 9; shifter always excludes numeric 5. Missing primary regions leave region-sum and shifter coverage unresolved. Neither region geometry nor these lines supplies houses.
+
+Renban and Bremban expand to finite disjunctions of consecutive intervals drawn from the actual alphabet. Renban also requires pairwise distinctness. Region sums retain exact integral coefficient equations; comparison does not solve arbitrary systems of aggregate equations. Expansion limits leave the whole declaration uncovered, with its source and reason retained.
 
 ## Fog play state
 
