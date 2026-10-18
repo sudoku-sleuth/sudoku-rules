@@ -11,3 +11,4 @@ export * from "./features.js";
 
 export * from "./rule-lines.js";
 
+export { caseValueChecks } from "./case-values.js";

@@ -16,7 +16,7 @@ named-parameters = *(space parameter space value)
 keyword-parameters = space declared-keyword *(space declared-operand)
 condition = ("if" | "unless") space predicate
 predicate = "uniform" | "distinct" | "connected"
-reference = kind-name | HTTPS-Markdown-URL
+reference = kind-name | section-fragment | HTTPS-Markdown-URL
 cells = cell *("-" cell | "," cell)
 cell = "r" positive-row "c" positive-column
 value = JSON-value | cell
@@ -25,6 +25,19 @@ value = JSON-value | cell
 The instance ID precedes every operator. Repeated kinds need distinct IDs, including a positive and negated instance of the same kind.
 The `total` parameter aliases cage `sum`; the writer uses `total`.
 The cell path lists each cell explicitly; r1c1-r1c3 names two cells, not a three-cell range.
+
+## Custom definitions and boards
+
+A case may define a custom rule inside its own file. A declaration such as
+`weighted-1: #weighted-triple r1c1-r1c2-r1c3` references the complete definition
+under `### Weighted triple` in a `## Definitions` section. A setter-chosen external
+HTTPS Markdown URL is also allowed. The definition has `url`, `name`, `parameters`,
+`definition`, `maths` and `example`; every definition is referenced. See the
+[case-file contract](../spec/case-files.md) for the full layout and checks.
+
+On non-standard dimensions or alphabets, state board-dependent parameters
+explicitly, including whispers `loop`, cage `repeats` and sandwich `crusts`.
+The case-file contract lists all such parameters, board fields and given forms.
 
 ## Pair relationships and Kropki
 

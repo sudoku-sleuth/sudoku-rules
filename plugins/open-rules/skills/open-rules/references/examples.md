@@ -72,14 +72,19 @@ status: read
 
 ```rules
 sudoku 9x9
-weighted-1: https://setter.example/rules/weighted-triple.md r1c1-r1c2-r1c3
+weighted-1: #weighted-triple r1c1-r1c2-r1c3
 ```
 
+## Definitions
+
+### Weighted triple
+
 ```custom-rules
-- url: https://setter.example/rules/weighted-triple.md
+- url: "#weighted-triple"
   name: Weighted triple
   parameters:
     cells:
+      type: path<cell>
       description: Exactly three cells in order, from the marked start.
       default: Required.
   definition: The third face digit equals the first face digit plus twice the second face digit.
@@ -92,4 +97,4 @@ weighted-1: https://setter.example/rules/weighted-triple.md r1c1-r1c2-r1c3
 Normal Sudoku rules apply. Starting at r1c1, follow r1c1-r1c2-r1c3. The third digit is the first digit plus twice the second digit.
 ````
 
-The custom reference and embedded definition use the same URL. The formula uses D because the setter specified face digits. It defines the three positions explicitly rather than assigning a nearby library kind.
+The declaration references the Weighted triple section inside this file. Its complete definition uses the same fragment; no external URL is needed. The formula uses D because the setter specified face digits. It defines the three positions explicitly rather than assigning a nearby library kind.

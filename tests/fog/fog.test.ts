@@ -27,7 +27,7 @@ for (const name of names) {
     if (fixture.rejected) {
       // A link without a trigger is not a fog block: the case is rejected with the page's message.
       const links = fixture.links!.map(l => `    - trigger: [${l.trigger.join(", ")}]\n      lights: [${l.lights.join(", ")}]\n`).join("");
-      const text = `---\nformat: open-rules\ntitle: Example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nfog:\n  initiallyLit: [${fixture.initiallyLit.join(", ")}]\n  links:\n${links}---\n\n\`\`\`rules\nsudoku ${fixture.rows}x${fixture.cols}\n\`\`\`\n`;
+      const text = `---\nformat: open-rules\ntitle: Example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard: {rows: ${fixture.rows}, cols: ${fixture.cols}, symbols: [1,2,3,4,5,6,7,8,9]}\nfog:\n  initiallyLit: [${fixture.initiallyLit.join(", ")}]\n  links:\n${links}---\n\n\`\`\`rules\n# board supplied in header\n\`\`\`\n`;
       const result = checkCaseReferences({ file: "fixture.rules.md", text }, library.value!.registry);
       expect(result.diagnostics.map(d => d.code)).toEqual(["E_FEATURE_REQUIRES"]);
       expect(result.diagnostics[0].message).toContain(fixture.rejected);

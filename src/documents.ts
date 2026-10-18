@@ -1,3 +1,5 @@
+import { checkBoard, checkParameters, cellValid, explicitBoardParameters, object, type CaseParameters } from "./case-values.js";
+import { caseBlocks, readCustomDefinitions, checkCustomParameters } from "./custom-definitions.js";
 import { parseDeclaredRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result } from "./language/diagnostics.js";
@@ -34,6 +36,7 @@ export interface RuleRegistry {
     kinds: Set<string>;
     urls: Set<string>;
     lines?: Map<string, LineDeclaration>;
+    parameters?: Map<string, CaseParameters>;
     /** Setup features, whose header blocks are checked in a case. */
     features?: CompiledFeature[];
 }
@@ -77,44 +80,55 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
     const references: CaseReference[] = [];
     const deferred: string[] = [];
     const rest = page.text.slice(offset);
-    const fence = /^ {0,3}```rules\s*\r?\n([\s\S]*?)^ {0,3}```\s*$/gm;
-    let block: RegExpExecArray | null;
-    let found = false;
-    while ((block = fence.exec(rest))) {
-        found = true;
-        const start = offset + block.index + block[0].indexOf(block[1]);
-        let at = start;
-        for (const line of block[1].split(/(?<=\n)/)) {
-            const match = /^\s*(?:[\p{L}\p{N}_-]+:\s+)?(?:not\s+)*([^\s]+)/u.exec(line);
-            if (match && !match[1].startsWith("#")) {
+    const blocks = caseBlocks(page);
+    const custom = readCustomDefinitions(page, blocks);
+    errors.push(...custom.diagnostics);
+    const usedCustom = new Set<string>();
+    const ruleBlocks = blocks.filter(b => b.language === "rules");
+    const standardCount = ruleBlocks.flatMap(b => b.text.split(/\r?\n/)).filter(line => /^\s*(?:not\s+)*sudoku\s+9x9\s*$/.test(line)).length;
+    const board = checkBoard(metadata, standardCount, field);
+    // A hand-built registry can check references without providing parameter contracts.
+    if (registry.parameters) errors.push(...board.diagnostics);
+    const found = ruleBlocks.length > 0;
+    for (const block of ruleBlocks) {
+        let at = block.offset;
+        for (const line of block.text.split(/(?<=\n)/)) {
+            const match = /^\s*(?:[\p{L}\p{N}_.-]+:\s+|"(?:[^"\\]|\\.)*":\s+)?(?:not\s+)*([^\s]+)/u.exec(line);
+            if (match && match[1] !== "#") {
                 const kind = match[1];
                 const begin = at + match[0].lastIndexOf(kind);
                 const span = location(page, begin, begin + kind.length);
-                let url: URL | undefined;
-                try {
-                    url = root ? new URL(kind.endsWith(".md") || /^https?:\/\//.test(kind) ? kind : `${kind}.md`, root) : undefined;
+                const tail = line.slice(begin + kind.length - at).trimEnd();
+                const local = custom.definitions.get(kind);
+                if (local || kind.startsWith("#")) {
+                    if (!local) errors.push(diagnostic("E_CUSTOM_DEFINITION", span, `${kind} has no complete in-file definition.`));
+                    else { usedCustom.add(kind); references.push({kind, url: kind, span}); errors.push(...checkCustomParameters(page, tail, span, local, board.board)); }
+                } else {
+                    let url: URL | undefined;
+                    try { url = root ? new URL(kind.endsWith(".md") || /^https?:\/\//.test(kind) ? kind : `${kind}.md`, root) : undefined; } catch {}
+                    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind) && !/^https?:\/\/[^\s]+\.md$/.test(kind))
+                        errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} is not a rule kind or a full Markdown rule URL.`));
+                    else if (url && registry.urls.has(url.href)) {
+                        references.push({kind, url: url.href, span});
+                        const declaration = registry.lines?.get(url.href);
+                        if (declaration) {
+                            const parsed = parseDeclaredRuleLine({ file: page.file, text: tail, document: page.text, offset: begin + kind.length }, declaration);
+                            errors.push(...parsed.diagnostics);
+                            if (parsed.value && (parsed.value[declaration.cells.name] as string[]).some(c => !cellValid(c, board.board))) errors.push(diagnostic("E_CASE_PARAMETERS", span, "Use cells within the declared board."));
+                        } else if (registry.parameters?.has(url.href) && !(new URL(url.href).pathname.endsWith("/sudoku.md") && tail.trim() === "9x9")) {
+                            errors.push(...checkParameters(page, tail, span, registry.parameters.get(url.href)!, board.board));
+                        }
+                    } else if (url && custom.definitions.has(url.href)) {
+                        usedCustom.add(url.href); references.push({kind, url: url.href, span}); errors.push(...checkCustomParameters(page, tail, span, custom.definitions.get(url.href)!, board.board));
+                    } else if (url && ![...registry.urls].some(address => url!.href.startsWith(new URL(".", address).href))) {
+                        deferred.push(url.href); references.push({kind, url: url.href, span});
+                    } else errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
                 }
-                catch { }
-                if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind) && !/^https?:\/\/[^\s]+\.md$/.test(kind))
-                    errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} is not a rule kind or a full Markdown rule URL.`));
-                else if (url && registry.urls.has(url.href)) {
-                    references.push({ kind, url: url.href, span });
-                    const declaration = registry.lines?.get(url.href);
-                    if (declaration) {
-                        const tail = begin + kind.length - at;
-                        errors.push(...parseDeclaredRuleLine({ file: page.file, text: line.slice(tail).trimEnd(), document: page.text, offset: at + tail }, declaration).diagnostics);
-                    }
-                }
-                else if (url && ![...registry.urls].some(address => url!.href.startsWith(new URL(".", address).href))) {
-                    deferred.push(url.href);
-                    references.push({ kind, url: url.href, span });
-                }
-                else
-                    errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
             }
             at += line.length;
         }
     }
+    for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
     if (registry.features?.length) {
         const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};
         const written = /^[ \t]*(?:[\p{L}\p{N}_-]+:\s+)?sudoku\s+(\d+)x(\d+)\b/mu.exec(rest);
@@ -147,7 +161,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
     const rules = new Map<string, CompiledPage>();
     const aliases = new Map<string, string>();
     const features: CompiledFeature[] = [];
-    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), features };
+    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), parameters: new Map(), features };
     let documents = 0;
     const listed = headers.get(shared[0].file)?.value?.metadata.feature_predicates;
     if (listed !== undefined && (!Array.isArray(listed) || listed.some(name => typeof name !== "string")))
@@ -202,6 +216,10 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         diagnostics.push(...checked.diagnostics);
         if (checked.value) {
             rules.set(kind, checked.value);
+            if (typeof metadata.url === "string") {
+                const raw = object(metadata.parameters) ? metadata.parameters : {};
+                registry.parameters!.set(metadata.url, { types: parsed.value.environment.types ?? {}, explicit: explicitBoardParameters[kind], parameters: Object.fromEntries(checked.value.parameters.map(p => [p.name, { type: p.type, required: object(raw[p.name]) && /^Required\b/.test(String((raw[p.name] as Record<string, unknown>).default)) }])) });
+            }
             if (checked.value.line && typeof metadata.url === "string") registry.lines!.set(metadata.url, checked.value.line);
         }
     }
@@ -219,6 +237,8 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             const targetUrl = targetPage && headers.get(targetPage.file)?.value?.metadata.url;
             const declaration = typeof targetUrl === "string" ? registry.lines!.get(targetUrl) : undefined;
             if (declaration) registry.lines!.set(metadata.url, declaration);
+            const parameters = typeof targetUrl === "string" ? registry.parameters!.get(targetUrl) : undefined;
+            if (parameters) registry.parameters!.set(metadata.url, parameters);
         }
     }
     return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, documents, features, registry }, diagnostics: [] };
