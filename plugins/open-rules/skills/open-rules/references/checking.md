@@ -26,7 +26,12 @@ Use the inventory in [reading-input.md](reading-input.md) to check completeness 
 - Trace every drawing edge, including closure, against the expanded path and cell set.
 - Check dot fill, stroke and text separately against the raw drawing record and setter meaning.
 - Rebuild each negative relation's scope and exceptions from its own marks and explicit exceptions.
+- For stated normal Sudoku, check every row, column and region has a house constraint. Board metadata alone is insufficient.
+- Read each whole source sentence and its domain context before retaining a question about length or connectivity.
+- Preserve clear clauses beside malformed wording; withhold only the missing relation.
 - Check that flags identify only the cells or groups in doubt and that independent conditions remain declared.
+
+`W_CASE_HOUSES` flags a nonempty region list without a positive, unconditional `sudoku 9x9` or `unique` declaration. Like other diagnostics, it prevents a clean lint result. Review the source: add all required houses when normal Sudoku applies, or retain the intended non-house region metadata and report the warning. The presence of one `unique` declaration only clears this absence check; verify the complete set yourself. Custom formulas and source wording need manual review.
 
 The checker receives the case file, not its original drawing or input JSON. It validates supplied fog fields, cell bounds, types and flags, but cannot establish that a source mask was copied, a drawing was fully traversed, a dot was classified correctly, or an exception belongs to its stated relation. Perform those comparisons against the source; a passing lint result does not replace them.
 

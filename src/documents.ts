@@ -89,6 +89,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
     const board = checkBoard(metadata, standardCount, field);
     // A hand-built registry can check references without providing parameter contracts.
     if (registry.parameters) errors.push(...board.diagnostics);
+    let hasHouse = false;
     const found = ruleBlocks.length > 0;
     for (const block of ruleBlocks) {
         let at = block.offset;
@@ -109,6 +110,9 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
                     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind) && !/^https?:\/\/[^\s]+\.md$/.test(kind))
                         errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} is not a rule kind or a full Markdown rule URL.`));
                     else if (url && registry.urls.has(url.href)) {
+                        const positive = !/^\s*(?:[\p{L}\p{N}_.-]+:\s+|"(?:[^"\\]|\\.)*":\s+)?not\s/u.test(line);
+                        const house = new URL(url.href).pathname.split("/").at(-1);
+                        if (positive && !/\b(?:if|unless)\b/.test(tail) && (house === "unique.md" || house === "sudoku.md" && tail.trim() === "9x9")) hasHouse = true;
                         references.push({kind, url: url.href, span});
                         const declaration = registry.lines?.get(url.href);
                         if (declaration) {
@@ -128,6 +132,10 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
             at += line.length;
         }
     }
+    const explicitBoard = object(metadata.board) ? metadata.board : {};
+    const hasRegions = [metadata.regions, explicitBoard.regions].some(regions => Array.isArray(regions) && regions.length > 0);
+    if (registry.parameters && hasRegions && !hasHouse)
+        errors.push(diagnostic("W_CASE_HOUSES", field(explicitBoard.regions !== undefined ? "board" : "regions"), "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board)."));
     for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
     if (registry.features?.length) {
         const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};

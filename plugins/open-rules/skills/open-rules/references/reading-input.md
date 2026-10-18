@@ -40,7 +40,7 @@ For a whisper loop on the same square, preserve the closing adjacency too:
 whispers r2c2-r2c3-r2c4-r3c4-r4c4-r4c3-r4c2-r3c2 gap 5 loop true
 ```
 
-Repeating the starting cell at the end is another way to express that whisper adjacency. Renban constrains the cell set; repeating a cell is unnecessary. Neither a hyphen nor `loop true` inserts omitted intermediate cells. Touching strokes alone do not establish whether they form one rule instance: ask about the specific junction when grouping changes the meaning.
+Repeating the starting cell at the end is another way to express that whisper adjacency. Renban constrains the cell set; repeating a cell is unnecessary. Neither a hyphen nor `loop true` inserts omitted intermediate cells. Touching strokes alone do not establish whether they form one rule instance. Read the whole source sentence and its domain context first. An explicit length or connected-figure definition can settle grouping; ask only about the junction or gap still unresolved.
 
 ## Separate fill, stroke and text
 
@@ -84,3 +84,27 @@ flags:
 ```
 
 Withhold only the disputed grouping; do not invent either alternative. Keep known givens, other clues and fog fields in the same file. Before delivery, reconcile the inventory: each established fact has a declaration, and each unresolved fact has a localised question.
+
+
+### Use the complete sentence
+
+Suppose the source says, “Each renban has exactly three cells.” Two strokes are r1c1–r1c2–r1c3 and r1c3–r2c3–r3c3. The length requirement settles the touching strokes as two three-cell renbans:
+
+```rules
+renban-1: renban r1c1-r1c2-r1c3
+renban-2: renban r1c3-r2c3-r3c3
+```
+
+Their five-cell union contradicts the sentence; no grouping question is needed. If instead the source says, “Each connected branching figure is one line,” use the connected figure as the rule instance. If a small gap leaves actual connectivity uncertain, ask whether those specific endpoints are joined. Do not reopen the meaning of “one line” that the sentence already supplies.
+
+### Preserve clear clauses around malformed wording
+
+Suppose the text states three independent clauses: “Digits on the blue thermometer never decrease from its bulb. The two marked dominoes are clones in the indicated order. Digits on the grey thermometer are from its bulb.” The grey sentence omits the relation. Keep the blue slow thermometer and the corresponding clone pairs:
+
+```rules
+slow-thermo r4c1-r4c2-r4c3
+clone-1: clone r6c1-r8c4
+clone-2: clone r6c2-r8c5
+```
+
+Flag only the grey path, for example: “On the grey thermometer r2c6–r2c7–r2c8, what relation applies from the bulb at r2c6?” Do not guess strict or non-strict increase or remove the blue and clone declarations. Keep candidate readings in the question, outside the rules block; `confirmed` requires explicit setter confirmation of the reading.
