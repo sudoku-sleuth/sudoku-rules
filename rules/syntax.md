@@ -8,12 +8,13 @@ url: https://rules.sudoku-sleuth.com/syntax.md
 
 A case file declares its library root once. Every rule name resolves to its Markdown definition under that root.
 One line states a rule, its cells and parameters, with an optional condition.
+The [declaration grammar](../spec/declarations.ebnf) defines the complete syntax.
 
 ```ebnf
 instance = [id ":" space] *("not" space) rule [space condition]
 rule = reference [space cells] (keyword-parameters | named-parameters)
 named-parameters = *(space parameter space value)
-keyword-parameters = space declared-keyword *(space declared-operand)
+keyword-parameters = space declared-keyword *(space declared-operand) named-parameters
 condition = ("if" | "unless") space predicate
 predicate = "uniform" | "distinct" | "connected"
 reference = kind-name | section-fragment | HTTPS-Markdown-URL
@@ -22,14 +23,16 @@ cell = "r" positive-row "c" positive-column
 value = JSON-value | cell
 ```
 
-The instance ID precedes every operator. Repeated kinds need distinct IDs, including a positive and negated instance of the same kind.
+The instance ID precedes every operator. An unquoted ID starts with a letter and continues with letters, digits or underscores. Write other IDs as JSON strings, for example `"clue-1":`. Repeated kinds need distinct IDs, including a positive and negated instance of the same kind.
 The `total` parameter aliases cage `sum`; the writer uses `total`.
+A separate `#` followed by whitespace or the end of the line starts a comment.
+A fragment such as `#weighted-triple` remains a rule reference.
 The cell path lists each cell explicitly; r1c1-r1c3 names two cells, not a three-cell range.
 
 ## Custom definitions and boards
 
 A case may define a custom rule inside its own file. A declaration such as
-`weighted-1: #weighted-triple r1c1-r1c2-r1c3` references the complete definition
+`weighted_1: #weighted-triple r1c1-r1c2-r1c3` references the complete definition
 under `### Weighted triple` in a `## Definitions` section. A setter-chosen external
 HTTPS Markdown URL is also allowed. The definition has `url`, `name`, `parameters`,
 `definition`, `maths` and `example`; every definition is referenced. See the
@@ -44,13 +47,13 @@ The case-file contract lists all such parameters, board fields and given forms.
 The parameter declarations on [pair](pair.md) define its keyword grammar. Write two cells, the relationship keyword, then a whole-number value where needed:
 
 ```rules
-pair-1: pair r1c1-r1c2 ratio 3
-pair-2: pair r4c4-r4c5 difference 2
-pair-3: pair r2c2-r3c2 sum 10
-pair-4: pair r5c1-r5c2 at-least 4
-pair-5: pair r6c1-r6c2 less
-pair-6: pair r7c1-r7c2 multiple
-pair-7: pair r8c1-r8c2 shift
+pair_1: pair r1c1-r1c2 ratio 3
+pair_2: pair r4c4-r4c5 difference 2
+pair_3: pair r2c2-r3c2 sum 10
+pair_4: pair r5c1-r5c2 at-least 4
+pair_5: pair r6c1-r6c2 less
+pair_6: pair r7c1-r7c2 multiple
+pair_7: pair r8c1-r8c2 shift
 ```
 
 `less`, `multiple` and `shift` take no value. `less` preserves the cells' order. The page defines each relationship. Pair lines no longer use a `relation` JSON object.
@@ -89,8 +92,8 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define it
 
 ```rules
 yin-yang
-cage-1: cage r1c2-r1c3 total 17 repeats true if uniform
-cage-2: not cage r1c2-r1c3 total 17 repeats true unless uniform
+cage_1: cage r1c2-r1c3 total 17 repeats true if uniform
+cage_2: not cage r1c2-r1c3 total 17 repeats true unless uniform
 renban r1c5-r1c6-r1c7 if uniform
 nabner r1c5-r1c6-r1c7 distinct true unless uniform
 quadruple r5c3-r5c4-r6c3-r6c4 digits [2,9] if uniform

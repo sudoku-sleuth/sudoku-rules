@@ -6,6 +6,7 @@ parameters:
     type: record{rows:position,cols:position}
     description: The board dimensions and standard boxes; write 9x9.
     default: Required.
+    syntax: {form: dimensions}
 kind: sudoku
 ---
 

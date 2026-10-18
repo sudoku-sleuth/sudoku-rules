@@ -1,0 +1,1792 @@
+{
+  "tests/fixtures/cases/to-the-revolution.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 271,
+          "line": 15,
+          "column": 1
+        },
+        "end": {
+          "offset": 282,
+          "line": 15,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 338,
+          "line": 16,
+          "column": 1
+        },
+        "end": {
+          "offset": 349,
+          "line": 16,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 375,
+          "line": 17,
+          "column": 1
+        },
+        "end": {
+          "offset": 386,
+          "line": 17,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 442,
+          "line": 18,
+          "column": 1
+        },
+        "end": {
+          "offset": 453,
+          "line": 18,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 509,
+          "line": 19,
+          "column": 1
+        },
+        "end": {
+          "offset": 520,
+          "line": 19,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 551,
+          "line": 20,
+          "column": 1
+        },
+        "end": {
+          "offset": 562,
+          "line": 20,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/fixtures/cases/to-the-revolution.rules.md",
+        "start": {
+          "offset": 588,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 599,
+          "line": 21,
+          "column": 12
+        }
+      }
+    }
+  ],
+  "tests/invalid/lines/non-integer.rules.md": [
+    {
+      "code": "E_LINE_TYPE",
+      "check": "E_LINE_TYPE",
+      "message": "The difference value must be a whole number; 1.5 is not a whole number.",
+      "span": {
+        "file": "tests/invalid/lines/non-integer.rules.md",
+        "start": {
+          "offset": 191,
+          "line": 13,
+          "column": 27
+        },
+        "end": {
+          "offset": 194,
+          "line": 13,
+          "column": 30
+        }
+      }
+    }
+  ],
+  "tests/invalid/lines/legacy-json.rules.md": [
+    {
+      "code": "E_LINE_KEYWORD",
+      "check": "E_LINE_KEYWORD",
+      "message": "relation is not a relation keyword; choose difference, at-least, ratio, sum, less, multiple, shift.",
+      "span": {
+        "file": "tests/invalid/lines/legacy-json.rules.md",
+        "start": {
+          "offset": 180,
+          "line": 13,
+          "column": 16
+        },
+        "end": {
+          "offset": 188,
+          "line": 13,
+          "column": 24
+        }
+      }
+    }
+  ],
+  "tests/invalid/lines/unknown-op.rules.md": [
+    {
+      "code": "E_LINE_KEYWORD",
+      "check": "E_LINE_KEYWORD",
+      "message": "divide is not a relation keyword; choose difference, at-least, ratio, sum, less, multiple, shift.",
+      "span": {
+        "file": "tests/invalid/lines/unknown-op.rules.md",
+        "start": {
+          "offset": 180,
+          "line": 13,
+          "column": 16
+        },
+        "end": {
+          "offset": 186,
+          "line": 13,
+          "column": 22
+        }
+      }
+    }
+  ],
+  "tests/invalid/lines/wrong-cell-count.rules.md": [
+    {
+      "code": "E_LINE_SYNTAX",
+      "check": "E_LINE_SYNTAX",
+      "message": "Write 2 cells for cells, joined by hyphens, such as r1c1-r1c2.",
+      "span": {
+        "file": "tests/invalid/lines/wrong-cell-count.rules.md",
+        "start": {
+          "offset": 170,
+          "line": 13,
+          "column": 6
+        },
+        "end": {
+          "offset": 184,
+          "line": 13,
+          "column": 20
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/missing-crusts.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "State crusts explicitly on this board.",
+      "span": {
+        "file": "tests/invalid/cases/missing-crusts.rules.md",
+        "start": {
+          "offset": 193,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 201,
+          "line": 13,
+          "column": 9
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/off-board-pair.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "cells item 2 must be an in-board cell in r1c1 form.",
+      "span": {
+        "file": "tests/invalid/cases/off-board-pair.rules.md",
+        "start": {
+          "offset": 164,
+          "line": 13,
+          "column": 11
+        },
+        "end": {
+          "offset": 169,
+          "line": 13,
+          "column": 16
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/missing-cells.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "State line explicitly for this rule.",
+      "span": {
+        "file": "tests/invalid/cases/missing-cells.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 160,
+          "line": 13,
+          "column": 7
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/duplicate-parameter.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Declare line once.",
+      "span": {
+        "file": "tests/invalid/cases/duplicate-parameter.rules.md",
+        "start": {
+          "offset": 171,
+          "line": 13,
+          "column": 18
+        },
+        "end": {
+          "offset": 176,
+          "line": 13,
+          "column": 23
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/wrong-symbol-type.rules.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "board.symbols must be a nonempty list of distinct finite numbers.",
+      "span": {
+        "file": "tests/invalid/cases/wrong-symbol-type.rules.md",
+        "start": {
+          "offset": 136,
+          "line": 9,
+          "column": 8
+        },
+        "end": {
+          "offset": 180,
+          "line": 9,
+          "column": 52
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/empty-alphabet.rules.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "board.symbols must be a nonempty list of distinct finite numbers.",
+      "span": {
+        "file": "tests/invalid/cases/empty-alphabet.rules.md",
+        "start": {
+          "offset": 136,
+          "line": 9,
+          "column": 8
+        },
+        "end": {
+          "offset": 167,
+          "line": 9,
+          "column": 39
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/duplicate-givens.rules.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "Declare givens once, in the header or in board.givens.",
+      "span": {
+        "file": "tests/invalid/cases/duplicate-givens.rules.md",
+        "start": {
+          "offset": 137,
+          "line": 9,
+          "column": 9
+        },
+        "end": {
+          "offset": 143,
+          "line": 9,
+          "column": 15
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/missing-loop.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "State loop explicitly on this board.",
+      "span": {
+        "file": "tests/invalid/cases/missing-loop.rules.md",
+        "start": {
+          "offset": 193,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 201,
+          "line": 13,
+          "column": 9
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/wrong-boolean.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "repeats must be true or false.",
+      "span": {
+        "file": "tests/invalid/cases/wrong-boolean.rules.md",
+        "start": {
+          "offset": 177,
+          "line": 13,
+          "column": 24
+        },
+        "end": {
+          "offset": 184,
+          "line": 13,
+          "column": 31
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/unknown-parameter.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Unknown parameter class; use the parameters on the rule page.",
+      "span": {
+        "file": "tests/invalid/cases/unknown-parameter.rules.md",
+        "start": {
+          "offset": 171,
+          "line": 13,
+          "column": 18
+        },
+        "end": {
+          "offset": 176,
+          "line": 13,
+          "column": 23
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/nested-cell.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "groups item 1 item 1 must be an in-board cell in r1c1 form.",
+      "span": {
+        "file": "tests/invalid/cases/nested-cell.rules.md",
+        "start": {
+          "offset": 174,
+          "line": 13,
+          "column": 21
+        },
+        "end": {
+          "offset": 181,
+          "line": 13,
+          "column": 28
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/wrong-board.rules.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "board.rows must be a positive whole number.",
+      "span": {
+        "file": "tests/invalid/cases/wrong-board.rules.md",
+        "start": {
+          "offset": 136,
+          "line": 9,
+          "column": 8
+        },
+        "end": {
+          "offset": 180,
+          "line": 9,
+          "column": 52
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/missing-houses.rules.md": [
+    {
+      "code": "W_CASE_HOUSES",
+      "check": "W_CASE_HOUSES",
+      "message": "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board).",
+      "span": {
+        "file": "tests/invalid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 160,
+          "line": 10,
+          "column": 3
+        },
+        "end": {
+          "offset": 476,
+          "line": 19,
+          "column": 43
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/repeated-given-cell.rules.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "Cell r1c1 has more than one given.",
+      "span": {
+        "file": "tests/invalid/cases/repeated-given-cell.rules.md",
+        "start": {
+          "offset": 137,
+          "line": 9,
+          "column": 9
+        },
+        "end": {
+          "offset": 150,
+          "line": 9,
+          "column": 22
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/missing-repeats.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "State repeats explicitly on this board.",
+      "span": {
+        "file": "tests/invalid/cases/missing-repeats.rules.md",
+        "start": {
+          "offset": 193,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 197,
+          "line": 13,
+          "column": 5
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/missing-board.rules.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "Declare a board or sudoku 9x9.",
+      "span": {
+        "file": "tests/invalid/cases/missing-board.rules.md",
+        "start": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/wrong-number.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "gap must be a finite number.",
+      "span": {
+        "file": "tests/invalid/cases/wrong-number.rules.md",
+        "start": {
+          "offset": 177,
+          "line": 13,
+          "column": 24
+        },
+        "end": {
+          "offset": 180,
+          "line": 13,
+          "column": 27
+        }
+      }
+    }
+  ],
+  "tests/invalid/integration/unknown-local-url.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "Declare a board or sudoku 9x9.",
+      "span": {
+        "file": "tests/invalid/integration/unknown-local-url.md",
+        "start": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/invalid/integration/unknown-kind.md": [
+    {
+      "code": "E_CASE_BOARD",
+      "check": "E_CASE_BOARD",
+      "message": "Declare a board or sudoku 9x9.",
+      "span": {
+        "file": "tests/invalid/integration/unknown-kind.md",
+        "start": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "offset": 0,
+          "line": 1,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/unused-definition.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/unused-definition.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/unused-definition.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/missing-section.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-section.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/missing-section.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/missing-custom-url.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-custom-url.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/missing-custom-url.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/incomplete-definition.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/incomplete-definition.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/incomplete-definition.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/missing-definition.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-definition.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/missing-definition.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/unknown-definition-field.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/unknown-definition-field.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/unknown-definition-field.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/custom-off-board.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/custom-off-board.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/custom-off-board.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/duplicate-definition.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/duplicate-definition.rules.md",
+        "start": {
+          "offset": 154,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 165,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "tests/valid/cases/duplicate-definition.rules.md",
+        "start": {
+          "offset": 256,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 664,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ],
+  "tests/valid/cases/missing-houses.rules.md": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 491,
+          "line": 23,
+          "column": 1
+        },
+        "end": {
+          "offset": 497,
+          "line": 23,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 535,
+          "line": 24,
+          "column": 1
+        },
+        "end": {
+          "offset": 541,
+          "line": 24,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 579,
+          "line": 25,
+          "column": 1
+        },
+        "end": {
+          "offset": 585,
+          "line": 25,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 623,
+          "line": 26,
+          "column": 1
+        },
+        "end": {
+          "offset": 629,
+          "line": 26,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 667,
+          "line": 27,
+          "column": 1
+        },
+        "end": {
+          "offset": 673,
+          "line": 27,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 711,
+          "line": 28,
+          "column": 1
+        },
+        "end": {
+          "offset": 717,
+          "line": 28,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 755,
+          "line": 29,
+          "column": 1
+        },
+        "end": {
+          "offset": 761,
+          "line": 29,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 799,
+          "line": 30,
+          "column": 1
+        },
+        "end": {
+          "offset": 805,
+          "line": 30,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 843,
+          "line": 31,
+          "column": 1
+        },
+        "end": {
+          "offset": 849,
+          "line": 31,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 887,
+          "line": 32,
+          "column": 1
+        },
+        "end": {
+          "offset": 893,
+          "line": 32,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 931,
+          "line": 33,
+          "column": 1
+        },
+        "end": {
+          "offset": 937,
+          "line": 33,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 975,
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "offset": 981,
+          "line": 34,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 1019,
+          "line": 35,
+          "column": 1
+        },
+        "end": {
+          "offset": 1028,
+          "line": 35,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 1066,
+          "line": 36,
+          "column": 1
+        },
+        "end": {
+          "offset": 1075,
+          "line": 36,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 1113,
+          "line": 37,
+          "column": 1
+        },
+        "end": {
+          "offset": 1122,
+          "line": 37,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 1160,
+          "line": 38,
+          "column": 1
+        },
+        "end": {
+          "offset": 1169,
+          "line": 38,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 1207,
+          "line": 39,
+          "column": 1
+        },
+        "end": {
+          "offset": 1216,
+          "line": 39,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 1254,
+          "line": 40,
+          "column": 1
+        },
+        "end": {
+          "offset": 1263,
+          "line": 40,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "W_CASE_HOUSES",
+      "check": "W_CASE_HOUSES",
+      "message": "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board).",
+      "span": {
+        "file": "tests/valid/cases/missing-houses.rules.md",
+        "start": {
+          "offset": 160,
+          "line": 10,
+          "column": 3
+        },
+        "end": {
+          "offset": 476,
+          "line": 19,
+          "column": 43
+        }
+      }
+    }
+  ],
+  "rules/constructed-regions.md#example-0": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "borders must not be empty.",
+      "span": {
+        "file": "rules/constructed-regions.md#example-0",
+        "start": {
+          "offset": 260,
+          "line": 19,
+          "column": 36
+        },
+        "end": {
+          "offset": 262,
+          "line": 19,
+          "column": 38
+        }
+      }
+    }
+  ],
+  "rules/cage-shapes.md#example-0": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "free must not be empty.",
+      "span": {
+        "file": "rules/cage-shapes.md#example-0",
+        "start": {
+          "offset": 298,
+          "line": 19,
+          "column": 82
+        },
+        "end": {
+          "offset": 300,
+          "line": 19,
+          "column": 84
+        }
+      }
+    }
+  ],
+  "rules/value-modifier.md#example-0": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "atMostOne must not be empty.",
+      "span": {
+        "file": "rules/value-modifier.md#example-0",
+        "start": {
+          "offset": 362,
+          "line": 25,
+          "column": 95
+        },
+        "end": {
+          "offset": 364,
+          "line": 25,
+          "column": 97
+        }
+      }
+    }
+  ],
+  "rules/negative.md#example-0": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "except must not be empty.",
+      "span": {
+        "file": "rules/negative.md#example-0",
+        "start": {
+          "offset": 221,
+          "line": 13,
+          "column": 59
+        },
+        "end": {
+          "offset": 223,
+          "line": 13,
+          "column": 61
+        }
+      }
+    }
+  ],
+  "plugins/open-rules/skills/open-rules/references/examples.md#example-0": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 491,
+          "line": 23,
+          "column": 1
+        },
+        "end": {
+          "offset": 497,
+          "line": 23,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 535,
+          "line": 24,
+          "column": 1
+        },
+        "end": {
+          "offset": 541,
+          "line": 24,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 579,
+          "line": 25,
+          "column": 1
+        },
+        "end": {
+          "offset": 585,
+          "line": 25,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 623,
+          "line": 26,
+          "column": 1
+        },
+        "end": {
+          "offset": 629,
+          "line": 26,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 667,
+          "line": 27,
+          "column": 1
+        },
+        "end": {
+          "offset": 673,
+          "line": 27,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 711,
+          "line": 28,
+          "column": 1
+        },
+        "end": {
+          "offset": 717,
+          "line": 28,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 755,
+          "line": 29,
+          "column": 1
+        },
+        "end": {
+          "offset": 761,
+          "line": 29,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 799,
+          "line": 30,
+          "column": 1
+        },
+        "end": {
+          "offset": 805,
+          "line": 30,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 843,
+          "line": 31,
+          "column": 1
+        },
+        "end": {
+          "offset": 849,
+          "line": 31,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 887,
+          "line": 32,
+          "column": 1
+        },
+        "end": {
+          "offset": 893,
+          "line": 32,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 931,
+          "line": 33,
+          "column": 1
+        },
+        "end": {
+          "offset": 937,
+          "line": 33,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 975,
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "offset": 981,
+          "line": 34,
+          "column": 7
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 1019,
+          "line": 35,
+          "column": 1
+        },
+        "end": {
+          "offset": 1028,
+          "line": 35,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 1066,
+          "line": 36,
+          "column": 1
+        },
+        "end": {
+          "offset": 1075,
+          "line": 36,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 1113,
+          "line": 37,
+          "column": 1
+        },
+        "end": {
+          "offset": 1122,
+          "line": 37,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 1160,
+          "line": 38,
+          "column": 1
+        },
+        "end": {
+          "offset": 1169,
+          "line": 38,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 1207,
+          "line": 39,
+          "column": 1
+        },
+        "end": {
+          "offset": 1216,
+          "line": 39,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 1254,
+          "line": 40,
+          "column": 1
+        },
+        "end": {
+          "offset": 1263,
+          "line": 40,
+          "column": 10
+        }
+      }
+    },
+    {
+      "code": "W_CASE_HOUSES",
+      "check": "W_CASE_HOUSES",
+      "message": "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board).",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-0",
+        "start": {
+          "offset": 160,
+          "line": 10,
+          "column": 3
+        },
+        "end": {
+          "offset": 476,
+          "line": 19,
+          "column": 43
+        }
+      }
+    }
+  ],
+  "plugins/open-rules/skills/open-rules/references/examples.md#example-1": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-1",
+        "start": {
+          "offset": 182,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 193,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-1",
+        "start": {
+          "offset": 219,
+          "line": 14,
+          "column": 1
+        },
+        "end": {
+          "offset": 230,
+          "line": 14,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-1",
+        "start": {
+          "offset": 256,
+          "line": 15,
+          "column": 1
+        },
+        "end": {
+          "offset": 263,
+          "line": 15,
+          "column": 8
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-1",
+        "start": {
+          "offset": 287,
+          "line": 16,
+          "column": 1
+        },
+        "end": {
+          "offset": 294,
+          "line": 16,
+          "column": 8
+        }
+      }
+    },
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-1",
+        "start": {
+          "offset": 323,
+          "line": 17,
+          "column": 1
+        },
+        "end": {
+          "offset": 330,
+          "line": 17,
+          "column": 8
+        }
+      }
+    }
+  ],
+  "plugins/open-rules/skills/open-rules/references/examples.md#example-2": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Start an instance ID with a letter, followed by letters, digits or underscores; quote other names as JSON strings.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-2",
+        "start": {
+          "offset": 169,
+          "line": 13,
+          "column": 1
+        },
+        "end": {
+          "offset": 180,
+          "line": 13,
+          "column": 12
+        }
+      }
+    },
+    {
+      "code": "E_CUSTOM_DEFINITION",
+      "check": "E_CUSTOM_DEFINITION",
+      "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-2",
+        "start": {
+          "offset": 271,
+          "line": 21,
+          "column": 1
+        },
+        "end": {
+          "offset": 754,
+          "line": 31,
+          "column": 1
+        }
+      }
+    }
+  ]
+}

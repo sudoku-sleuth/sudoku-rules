@@ -1,8 +1,9 @@
+import type { DeclarationTail } from "./declarations.js";
 import { markdownBlocks } from "./rules-blocks.js";
 import { isAlias, parseDocument, visit } from "yaml";
 import { diagnostic, location, type Diagnostic, type Span } from "./language/diagnostics.js";
 import { parseType } from "./language/parser.js";
-import { checkParameters, object, type CaseBoard } from "./case-values.js";
+import { checkParameterAST, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import type { PageSource } from "./library.js";
 
 export interface CaseBlock { language: string; text: string; offset: number; end: number }
@@ -51,10 +52,14 @@ export function readCustomDefinitions(page: PageSource, blocks: CaseBlock[]): { 
   return { definitions, diagnostics };
 }
 
-export function checkCustomParameters(page: PageSource, tail: string, span: Span, definition: CustomDefinition, board: CaseBoard): Diagnostic[] {
+export function customParameterContract(definition: CustomDefinition): CaseParameters {
   const parameters = Object.fromEntries(Object.entries(definition.parameters).map(([name, raw]) => {
     const declared = object(raw) && typeof raw.type === "string" ? parseType(raw.type).value : undefined;
     return [name, { type: declared ?? (["cells", "line"].includes(name) ? {name: "path", args: [{name: "cell"}]} : undefined), required: !object(raw) || raw.default === undefined || /^Required\b/.test(String(raw.default)) }];
   }));
-  return checkParameters(page, tail, span, {parameters: {...parameters, kind: {type: undefined, required: false}}, types: {}}, board);
+  return {parameters: {...parameters, kind: {type: undefined, required: false}}, types: {}};
+}
+
+export function checkCustomParameters(ast: DeclarationTail, span: Span, definition: CustomDefinition, board: CaseBoard): Diagnostic[] {
+  return checkParameterAST(ast, span, customParameterContract(definition), board);
 }

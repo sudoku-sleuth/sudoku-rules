@@ -5,7 +5,25 @@ import { standardHouses } from "../../src/semantics/board";
 const a: Cell = "r1c1", b: Cell = "r1c2", c: Cell = "r1c3", d: Cell = "r1c4";
 const board: BoardContext = { rows: 1, cols: 4, activeCells: [a,b,c,d], alphabet: [1,2,3,4,5,6,7,8,9], regions: [[a,b],[c,d]] };
 const file = (rules: string) => ({ file: "synthetic.rules.md", text: `---\nformat: open-rules\ntitle: Synthetic\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\n${rules}\n\`\`\`` });
-const nf = (rules: string, context = board) => normalise(file(rules),context);
+// Synthetic nonstandard boards state the standard fixture choices explicitly.
+function explicitFixture(rules: string): string {
+  return rules.split("\n").map(line => {
+    const kind = /^(?:\w+: )?(?:not )?([a-z-]+)/.exec(line)?.[1];
+    const choices: Record<string, Record<string, number | boolean>> = {
+      whispers: {loop:false}, whisper: {loop:false}, parity: {loop:false},
+      modular: {loop:false,modulus:3}, entropic: {loop:false}, primality: {loop:false},
+      summit: {loop:false}, nabner: {distinct:false},
+    };
+    for (const [name,value] of Object.entries(choices[kind ?? ""] ?? {})) {
+      if (new RegExp(`\\b${name}\\s`).test(line)) continue;
+      const condition = line.search(/ (?:if|unless) /);
+      const at = condition < 0 ? line.length : condition;
+      line = line.slice(0,at) + ` ${name} ${value}` + line.slice(at);
+    }
+    return line;
+  }).join("\n");
+}
+const nf = (rules: string, context = board) => normalise(file(explicitFixture(rules)),context);
 function form(rules: string, context = board) { const n = nf(rules,context); expect(n.issues).toEqual([]); expect(n.status).toBe("complete"); return n.normalForm!; }
 function eq(x: string,y: string,context = board) { expect(compare(nf(x,context),nf(y,context)).status).toBe("equivalent"); }
 function differs(x: string,y: string,context = board) { expect(compare(nf(x,context),nf(y,context)).covered).toBe("structural-difference"); }
@@ -124,7 +142,7 @@ test("ill-typed fields are rejected before conditions, negation and coverage", (
   }
   for (const kind of ["thermo","whispers","palindrome","renban","region-sum"]) {
     const tail = kind === "whispers" ? " gap 5" : kind === "region-sum" ? ` segments [["${a}","${b}"]]` : "";
-    const n = nf(`value-modifier\n${kind} ${a}-${b}${tail}`);
+    const n = nf(`value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct true\n${kind} ${a}-${b}${tail}`);
     expect(n.status).toBe("partial"); expect(n.normalForm!.coverage.find(c => c.kind === kind)!.status).toBe("unsupported");
     expect(compare(n,n).status).toBe("unresolved");
   }
@@ -267,4 +285,12 @@ test("fractional gaps and extreme safe digits retain exact pair differences", ()
   const primality = form(`primality ${a}-${b}`,{ ...board, alphabet: [2,4,341550071728321,2147483647] });
   expect(evaluate(primality.solution,assignment([2,341550071728321]))).toBe(true);
   expect(evaluate(primality.solution,assignment([2,2147483647]))).toBe(false);
+});
+
+test("nonstandard line omissions use the same checker validation", () => {
+  for (const rule of ["whispers r1c1-r1c2 gap 5", "modular r1c1-r1c2", "nabner r1c1-r1c2"]) {
+    const result = normalise(file(rule), board);
+    expect(result.status).toBe("invalid");
+    expect(result.issues.some(issue => issue.message.includes("explicitly on this board"))).toBe(true);
+  }
 });

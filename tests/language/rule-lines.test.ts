@@ -53,7 +53,7 @@ test("grammar follows renamed kinds, record fields and new enum members", async 
 });
 test("IDs, negation, full URLs, conditions and CRLF retain source locations", async () => {
   const source = await Bun.file("tests/valid/lines/unknown-op.rules.md").text();
-  for (const prefix of ["not ", "pair-1: not not ", ""])
+  for (const prefix of ["not ", "pair_1: not not ", ""])
     expect(checkCaseReferences({ file: "wrapped.rules.md", text: source.replace("pair r", `${prefix}pair r`).replace("ratio 3", "ratio 3 unless distinct") }, library.registry).diagnostics).toEqual([]);
   expect(checkCaseReferences({ file: "url.rules.md", text: source.replace("pair r", "https://rules.sudoku-sleuth.com/pair.md r") }, library.registry).diagnostics).toEqual([]);
   const bad = source.replace("ratio 3", "ratio 1.5").replaceAll("\n", "\r\n");

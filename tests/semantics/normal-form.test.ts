@@ -1,6 +1,8 @@
 import { expect, test } from "bun:test";
 import { readdir, readFile } from "node:fs/promises";
 import { compare, normalise, visibleCells, declarationRegistry, exact, readHeader, type BoardContext, type Cell, type Formula, type Normalisation } from "../../src";
+import { declarationLibrary } from "../../src/declaration-library";
+import type { Type } from "../../src/language/ast";
 import { canonicalise, type CanonicalState } from "../../src/semantics/canonical";
 
 const cells = (rows: number, cols = rows): Cell[] => Array.from({ length: rows * cols }, (_, i) => `r${Math.floor(i / cols) + 1}c${i % cols + 1}`);
@@ -111,7 +113,7 @@ test("parity reads V=D only with established identity and uses actual digits", (
     expect(evaluate(f.solution, { r1c1: even[0] })).toBe(true);
     expect(evaluate(f.solution, { r1c1: alphabet.find(d => d % 2 !== 0)! })).toBe(false);
   }
-  const mixed = nf('value-modifier\nparity-cells r1c1 parity "odd"');
+  const mixed = nf('value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false\nparity-cells r1c1 parity "odd"');
   expect(mixed.status).toBe("partial");
   expect(mixed.normalForm!.coverage.find(c => c.kind === "parity-cells")!.reason).toContain("Effective-value domain");
   expect(compare(mixed, mixed).status).toBe("unresolved");
@@ -124,7 +126,7 @@ test("allowed digits are membership sets; paths can repeat without multiplying r
   expect(evaluate(f.solution, { r1c1: 2 })).toBe(false);
   different("allowed-digits r1c1 digits [1,3]", "allowed-digits r1c1 digits [1,2]");
   equivalent("allowed-digits r1c1 digits [1,2,3,4]", "unique r1c1");
-  different("allowed-digits r1c1 digits []", "unique r1c1");
+  expect(nf("allowed-digits r1c1 digits []").status).toBe("invalid");
 });
 
 test("explicit houses imply pairs independently, even when no one house contains the group", () => {
@@ -203,13 +205,13 @@ test("every supported family is checked under not, if, unless and negate all", (
 });
 
 test("mixed coverage, foreign definitions and play setup never yield whole-file agreement", () => {
-  for (const result of [nf("unique r1c1-r1c2\ncage r1c1-r1c2 total 3"), nf("https://example.test/custom.md r1c1"), nf("unique r1c1", board(), "definitions: {}\n")]) {
+  for (const result of [nf("unique r1c1-r1c2\ncage r1c1-r1c2 repeats false total 3"), nf("https://example.test/custom.md r1c1"), nf("unique r1c1", board(), "definitions: {}\n")]) {
     expect(result.issues).toEqual([]);
     expect(result.status).toBe("partial");
     const c = compare(result, result);
     expect(c.status).toBe("unresolved"); expect(c.uncovered.length).toBeGreaterThan(0);
   }
-  expect(compare(nf("unique r1c1-r1c2\ncage r1c1 total 2"), nf("clone r1c1-r1c2\ncage r1c1 total 2")).covered).toBe("structural-difference");
+  expect(compare(nf("unique r1c1-r1c2\ncage r1c1 repeats false total 2"), nf("clone r1c1-r1c2\ncage r1c1 repeats false total 2")).covered).toBe("structural-difference");
   const alternate = normalise({ ...file("unique r1c1"), text: file("unique r1c1").text.replace("https://rules.sudoku-sleuth.com/", "https://example.test/") }, board());
   expect(alternate.status).toBe("partial");
 });
@@ -296,18 +298,18 @@ test("path conditions retain repeated positions while set conditions remove them
 });
 
 test("untotalled cage and killer alias use distinctness and retain house witnesses", () => {
-  equivalent('cage r1c1-r1c2', 'unique r1c1-r1c2');
+  equivalent('cage r1c1-r1c2 repeats false', 'unique r1c1-r1c2');
   equivalent('killer r1c2-r1c1 repeats false', 'unique r1c1-r1c2');
   equivalent('cage r1c1-r1c2 repeats true', 'unique r1c1');
-  equivalent('not cage r1c1-r1c2', 'not unique r1c1-r1c2');
-  different('cage r1c1-r1c2', 'cage r1c1-r1c2 repeats true');
+  equivalent('not cage r1c1-r1c2 repeats false', 'not unique r1c1-r1c2');
+  different('cage r1c1-r1c2 repeats false', 'cage r1c1-r1c2 repeats true');
   const context = { ...board(), houses: [{cells: ['r1c1','r1c2'] as Cell[]}] };
-  equivalent('cage r1c1-r1c2', 'unique r1c1', context);
-  const f = complete(nf('cage r1c1-r1c2', context));
+  equivalent('cage r1c1-r1c2 repeats false', 'unique r1c1', context);
+  const f = complete(nf('cage r1c1-r1c2 repeats false', context));
   expect(f.rewrites.find(r => r.rule === 'house-implied')!.sources.some(s => s.kind === 'cage')).toBe(true);
-  expect(evaluate(complete(nf('cage r1c1-r1c2')).solution, {r1c1: 1, r1c2: 2})).toBe(true);
-  expect(evaluate(complete(nf('cage r1c1-r1c2')).solution, {r1c1: 1, r1c2: 1})).toBe(false);
-  for (const rule of ['cage r1c1 total 1', 'killer r1c1 sum 1']) expect(nf(rule).status).toBe('partial');
+  expect(evaluate(complete(nf('cage r1c1-r1c2 repeats false')).solution, {r1c1: 1, r1c2: 2})).toBe(true);
+  expect(evaluate(complete(nf('cage r1c1-r1c2 repeats false')).solution, {r1c1: 1, r1c2: 1})).toBe(false);
+  for (const rule of ['cage r1c1 repeats false total 1', 'killer r1c1 repeats false sum 1']) expect(nf(rule).status).toBe('partial');
 });
 
 test("explicit board headers agree with resolved context and retain board provenance", () => {
@@ -339,7 +341,24 @@ test("finite expansion limits report uncovered declarations instead of agreement
 
 test("every unsupported kind reports its registered reason when encountered", () => {
   for (const [kind, capability] of Object.entries(declarationRegistry)) if (capability.status === "unsupported") {
-    const result = nf(kind);
+    const url = `https://rules.sudoku-sleuth.com/${kind}.md`;
+    const contract = declarationLibrary.parameters!.get(url)!;
+    const value = (type: Type): unknown => {
+      if (contract.types[type.name]) return value(contract.types[type.name]);
+      if (type.name === 'enum') return type.members![0];
+      if (type.name === 'expression') return {op:'number',value:1};
+      if (type.name === 'cell') return 'r1c1';
+      if (type.name === 'boolean') return false;
+      if (['list','set','path','collection'].includes(type.name)) return [value(type.args![0])];
+      if (type.name === 'record') return Object.fromEntries(Object.entries(type.fields!).filter(([,t])=>t.name !== 'optional').map(([n,t])=>[n,value(t)]));
+      return 1;
+    };
+    const line = declarationLibrary.lines!.get(url);
+    const keyword = line && Object.keys(line.parameter.keywords)[0];
+    const tail = line ? `${Array.from({length:line.cells.count},(_,i)=>`r1c${i+1}`).join('-')} ${keyword} ${line.parameter.keywords[keyword!].map(()=>1).join(' ')}` : '';
+    const named = Object.entries(contract.parameters).filter(([name,p])=>p.required && name !== line?.cells.name && name !== line?.parameter.name).map(([name,p])=>`${name} ${JSON.stringify(value(p.type!))}`).join(' ');
+    const result = nf(`${kind} ${tail} ${named}`, board(9));
+    expect(result.issues).toEqual([]);
     expect(result.status).toBe("partial");
     expect(result.normalForm!.coverage).toHaveLength(1);
     expect(result.normalForm!.coverage[0]).toMatchObject({kind, status: "unsupported", reason: capability.reason});
@@ -429,10 +448,10 @@ test("seeded random permutations and duplications of declaration lines preserve 
 });
 
 test("merged readers agree on dotted and quoted instance labels and negation", () => {
-  for (const label of ["clue.1", '"clue one"']) {
+  for (const label of ['"clue.1"', '"clue one"']) {
     const source = `${label}: not not unique r1c1-r1c2`;
     expect(compare(nf(source), nf("unique r1c1-r1c2")).status).toBe("equivalent");
-    expect(complete(nf(source)).coverage[0].source.instance).toBe(label);
+    expect(complete(nf(source)).coverage[0].source.instance).toBe(JSON.parse(label));
   }
 });
 
@@ -440,22 +459,22 @@ test("shared declaration boundaries retain nested slice B parameters across fenc
   const rule = 'negative relations [{"op": "sum", "value": 5}] except [["r1c1", "r1c2"]] within [["r1c1", "r1c2", "r2c1"]]';
   const expected = nf(rule);
   complete(expected);
-  for (const label of ["clue.1", '\"clue one\"']) {
+  for (const label of ['"clue.1"', '\"clue one\"']) {
     for (const fence of ["```", "~~~~"]) {
       const input = file(`${label}: not not ${rule}`);
       const text = input.text.replaceAll("```", fence).replaceAll("\n", "\r\n");
       const result = normalise({ ...input, text }, board());
       expect(compare(expected, result).status).toBe("equivalent");
-      expect(complete(result).coverage[0].source.instance).toBe(label);
+      expect(complete(result).coverage[0].source.instance).toBe(JSON.parse(label));
     }
   }
 });
 
 test("in-file custom fragment declarations retain semantic coverage, including without labels", async () => {
   const template = await readFile("tests/valid/cases/missing-section.rules.md", "utf8");
-  for (const prefix of ["weighted-1: ", "", '"weighted triple": ']) {
+  for (const prefix of ["weighted_1: ", "", '"weighted triple": ']) {
     for (const fence of ["```", "~~~~"]) {
-      const text = template.replace("weighted-1: ", prefix).replaceAll("```", fence).replaceAll("\n", "\r\n");
+      const text = template.replace("weighted_1: ", prefix).replaceAll("```", fence).replaceAll("\n", "\r\n");
       const result = normalise({ file: "custom.rules.md", text }, board(9));
       expect(result.issues).toEqual([]);
       expect(result.status).toBe("partial");
@@ -518,7 +537,7 @@ test("pair keywords have exact tables on zero, signed and nonstandard alphabets"
 
 test("effective pair values stay uncovered when modifiers or custom definitions are unresolved", () => {
   for (const rule of ['pair r1c1-r1c2 sum 4','kropki r1c1-r1c2 black']) {
-    const result = nf(`value-modifier\n${rule}`);
+    const result = nf(`value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false\n${rule}`);
     expect(result.status).toBe('partial');
     expect(result.normalForm!.coverage.find(c => c.kind === rule.split(' ')[0])!.status).toBe('unsupported');
     expect(compare(result,result).status).toBe('unresolved');
@@ -535,12 +554,12 @@ test("multiplicity lowering sorts digit lists and preserves outside occurrences"
     const f = complete(nf(`${kind} r1c1-r1c2-r2c1 digits [1,1]`));
     expect(evaluate(f.solution,{r1c1:1,r1c2:1,r2c1:2})).toBe(true);
     expect(evaluate(f.solution,{r1c1:1,r1c2:2,r2c1:2})).toBe(false);
-    equivalent(`${kind} r1c1 digits []`,'unique r1c1');
+    expect(nf(`${kind} r1c1 digits []`).status).toBe('invalid');
     equivalent(`not ${kind} r1c1 digits [1,1]`,'unique r1c1');
   }
 });
 
-const negative = (op: string, value?: number, except: string[][] = [], suffix = '') => `negative relations ${JSON.stringify([{op,...(value === undefined ? {} : {value})}])} except ${JSON.stringify(except)} ${suffix}`.trim();
+const negative = (op: string, value?: number, except: string[][] = [], suffix = '') => `negative relations ${JSON.stringify([{op,...(value === undefined ? {} : {value})}])} except ${JSON.stringify(except.length ? except : [['r1c1','r1c1']])} ${suffix}`.trim();
 test("negative relations have independent XV and Kropki exceptions and exact scopes", () => {
   const context: BoardContext = {rows:2,cols:2,alphabet:[0,1,2,3,4,5,10],activeCells:cells(2)};
   const scope = 'within [["r1c1","r1c2"]]';
@@ -566,7 +585,7 @@ test("negative relations have independent XV and Kropki exceptions and exact sco
   equivalent(`not not ${negative('sum',5)}`,negative('sum',5),context);
   expect(nf(`${negative('sum',5)} if distinct`,context).status).toBe('invalid');
   const wide: BoardContext = {rows:1,cols:10,alphabet:[0,1],activeCells:['r1c9','r1c10']};
-  equivalent(negative('less'), 'not pair r1c9-r1c10 less',wide);
+  equivalent(negative('less',undefined,[['r1c9','r1c9']]), 'not pair r1c9-r1c10 less',wide);
 });
 
 test("new parameter types are checked before negation and false conditions", () => {
@@ -575,9 +594,9 @@ test("new parameter types are checked before negation and false conditions", () 
     'pair r1c1-r1c2 relation {"op":"less","value":1}', 'pair r1c1 less',
     'kropki r1c1-r1c2 colour ["white"]', 'kropki r1c1-r1c2 colour null',
     'quadruple r1c1 digits [true]','outside r1c1 digits [5]',
-    'negative relations [{"op":"sum"}] except []','negative relations [{"op":"less","extra":1}] except []',
+    'negative relations [{"op":"sum"}] except [["r1c1","r1c1"]]','negative relations [{"op":"less","extra":1}] except [["r1c1","r1c1"]]',
     'negative relations [] except null','negative relations [] except [["r1c1"]]',
-    'negative relations [] except [] within null', 'negative relations [] except [] direction ["vertical"]',
+    'negative relations [] except [["r1c1","r1c1"]] within null', 'negative relations [] except [["r1c1","r1c1"]] direction ["vertical"]',
     'negative relations [] except [["r1c1","r9c9"]]',
   ]) expect(nf(`not ${rule}`).status).toBe('invalid');
   expect(nf('not pair r1c1-r3c3 ratio null if connected').status).toBe('invalid');
@@ -601,7 +620,7 @@ test("fog start cells, links and link members are sets with retained provenance"
   expect(compare(absent,nf('unique r1c1')).covered).toBe('structural-difference');
   const fromClear = compare(nf('unique r1c1'),absent);
   expect(fromClear.differences.find(d => d.side === 'right' && d.primitive === 'Play')!.sources[0].kind).toBe('header:fog');
-  expect(compare(nf('arrow r1c1-r1c2',board(),'fog: {}\n'),nf('arrow r1c1-r1c2',board(),'fog: {}\n')).status).toBe('unresolved');
+  expect(compare(nf('arrow r1c1-r1c2 bulb ["r1c3"]',board(),'fog: {}\n'),nf('arrow r1c1-r1c2 bulb ["r1c3"]',board(),'fog: {}\n')).status).toBe('unresolved');
   expect(compare(nf('unique r1c1',board(),'fog: {initiallyLit: [0,1]}\n'),nf('unique r1c1',board(),'fog: {initiallyLit: [r1c1,r1c2]}\n')).status).toBe('equivalent');
 });
 
@@ -652,7 +671,7 @@ test("slice B canonical rewrites preserve all small assignments and every source
 
 test("negative relation sets split and deduplicate without merging their negation scope", () => {
   const context: BoardContext = {rows:1,cols:3,alphabet:[0,1,2,3],activeCells:['r1c1','r1c2','r1c3']};
-  const combined = 'negative relations [{"op":"difference","value":1},{"op":"ratio","value":2},{"op":"difference","value":1}] except []';
+  const combined = 'negative relations [{"op":"difference","value":1},{"op":"ratio","value":2},{"op":"difference","value":1}] except [["r1c1","r1c1"]]';
   equivalent(combined,`a: ${negative('ratio',2)}\nb: ${negative('difference',1)}`,context);
   different(`not ${combined}`,`a: not ${negative('ratio',2)}\nb: not ${negative('difference',1)}`,context);
   const neg = complete(nf(`not ${combined}`,context));
@@ -740,7 +759,7 @@ test("splitting fog links with identical trigger sets preserves canonical play a
 test("duplicate negative relations are removed before expansion is charged", () => {
   const context: BoardContext = {rows:1, cols:64, alphabet:Array.from({length:64},(_,i)=>i), activeCells:cells(1,64)};
   const single = nf(negative('difference',1), context);
-  const repeated = nf('negative relations [{"op":"difference","value":1},{"value":1,"op":"difference"},{"op":"difference","value":1},{"op":"difference","value":1}] except []', context);
+  const repeated = nf('negative relations [{"op":"difference","value":1},{"value":1,"op":"difference"},{"op":"difference","value":1},{"op":"difference","value":1}] except [["r1c1","r1c1"]]', context);
   complete(single); complete(repeated);
   expect(compare(single,repeated).status).toBe('equivalent');
 });

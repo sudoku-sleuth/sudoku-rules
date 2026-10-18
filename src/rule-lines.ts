@@ -1,6 +1,7 @@
+import { parseDeclarationTail, declarationParameters } from "./declarations.js";
 import type { Type } from "./language/ast.js";
 import type { CheckedPrelude } from "./language/checker.js";
-import { capture, fail, location, type Result, type Source, type Span } from "./language/diagnostics.js";
+import { capture, fail, type Result, type Source, type Span } from "./language/diagnostics.js";
 import type { CompiledPage } from "./library.js";
 
 /** Opt-in line syntax belongs to parameter declarations, not to kind names. */
@@ -14,7 +15,14 @@ const resolve = (type: Type, prelude: CheckedPrelude): Type => prelude.environme
 export function declareRuleLine(metadata: Record<string, unknown>, page: CompiledPage, prelude: CheckedPrelude, span: Span): Result<LineDeclaration | undefined> {
   return capture(() => {
     const parameters = object(metadata.parameters) ? metadata.parameters : {};
-    const marked = Object.entries(parameters).filter(([, value]) => object(value) && value.syntax !== undefined);
+    const dimensions = Object.entries(parameters).filter(([,raw]) => object(raw) && object(raw.syntax) && raw.syntax.form === "dimensions");
+    for(const [name,raw] of dimensions) {
+      const type = page.parameters.find(p => p.name === name)?.type;
+      const syntax = (raw as {syntax:Record<string,unknown>}).syntax;
+      if(dimensions.length !== 1 || Object.keys(syntax).some(k=>k!=="form") || type?.name !== "record" || Object.keys(type.fields ?? {}).sort().join(",") !== "cols,rows" || type.fields?.rows.name !== "position" || type.fields?.cols.name !== "position")
+        fail("E_LINE_DECLARATION",span,"Dimension syntax needs one record parameter with rows and cols of type position.");
+    }
+    const marked = Object.entries(parameters).filter(([, value]) => object(value) && value.syntax !== undefined && (!object(value.syntax) || value.syntax.form !== "dimensions"));
     if (!marked.length) return undefined;
     const invalid = (): never => fail("E_LINE_DECLARATION", span, "The rule-line syntax must declare one cell list and one keyword parameter, with choices and fields matching their declared types.");
     let cells: LineDeclaration["cells"] | undefined, parameter: KeywordParameter | undefined;
@@ -58,37 +66,6 @@ export function declareRuleLine(metadata: Record<string, unknown>, page: Compile
 
 /** Parse only declared line parameters; board bounds and composition are later checks. */
 export function parseDeclaredRuleLine(source: Source, declaration: LineDeclaration): Result<Record<string, unknown>> {
-  return capture(() => {
-    const tokens = [...source.text.matchAll(/"(?:[^"\\]|\\.)*"|\S+/g)];
-    let i = 0;
-    const here = () => tokens[i] ? location(source, tokens[i].index!, tokens[i].index! + tokens[i][0].length) : location(source, source.text.trimEnd().length, source.text.trimEnd().length);
-    const cellToken = tokens[i]?.[0] ?? "";
-    const cells = cellToken.split(/[-,]/);
-    if (cells.length !== declaration.cells.count || cells.some(cell => !/^r[1-9]\d*c[1-9]\d*$/.test(cell)))
-      fail("E_LINE_SYNTAX", here(), `Write ${declaration.cells.count} cells for ${declaration.cells.name}, joined by hyphens, such as r1c1-r1c2.`);
-    i++;
-    const parameter = declaration.parameter;
-    if (parameter.named && tokens[i]?.[0] === parameter.name) i++;
-    let keyword = tokens[i]?.[0] ?? "";
-    if (parameter.named && keyword.startsWith('"')) {
-      try { keyword = JSON.parse(keyword); } catch { /* reported as an unknown keyword below */ }
-    }
-    if (!Object.hasOwn(parameter.keywords, keyword))
-      fail("E_LINE_KEYWORD", here(), `${keyword || "This line"} is not a ${parameter.name} keyword; choose ${Object.keys(parameter.keywords).join(", ")}.`);
-    i++;
-    const value: Record<string, unknown> = parameter.tag ? { [parameter.tag]: keyword } : {};
-    for (const operand of parameter.keywords[keyword]) {
-      const token = tokens[i]?.[0];
-      if (token === undefined || ["if", "unless"].includes(token))
-        fail("E_LINE_VALUE", here(), `${keyword} needs a ${operand.field}; write a whole number after ${keyword}.`);
-      if (!/^-?\d+$/.test(token))
-        fail("E_LINE_TYPE", here(), `The ${keyword} ${operand.field} must be a whole number; ${token} is not a whole number.`);
-      // Keep the exact decimal spelling: no floating-point rounding or safe-integer restriction.
-      value[operand.field] = BigInt(token).toString();
-      i++;
-    }
-    if (i < tokens.length && !(["if", "unless"].includes(tokens[i][0]) && tokens.length === i + 2 && ["uniform", "distinct", "connected"].includes(tokens[i + 1][0])))
-      fail("E_LINE_SYNTAX", here(), `Unexpected ${tokens[i][0]} after ${keyword}; use only its declared values and an optional if or unless condition.`);
-    return { [declaration.cells.name]: cells, [parameter.name]: parameter.tag ? value : keyword };
-  });
+  const parsed = parseDeclarationTail(source, {line: declaration});
+  return parsed.value ? {value: declarationParameters(parsed.value, declaration.cells.name), diagnostics: []} : {diagnostics: parsed.diagnostics};
 }

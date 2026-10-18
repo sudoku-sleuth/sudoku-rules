@@ -27,24 +27,24 @@ board:
 ---
 
 ```rules
-row-1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6
-row-2: unique r2c1-r2c2-r2c3-r2c4-r2c5-r2c6
-row-3: unique r3c1-r3c2-r3c3-r3c4-r3c5-r3c6
-row-4: unique r4c1-r4c2-r4c3-r4c4-r4c5-r4c6
-row-5: unique r5c1-r5c2-r5c3-r5c4-r5c5-r5c6
-row-6: unique r6c1-r6c2-r6c3-r6c4-r6c5-r6c6
-col-1: unique r1c1-r2c1-r3c1-r4c1-r5c1-r6c1
-col-2: unique r1c2-r2c2-r3c2-r4c2-r5c2-r6c2
-col-3: unique r1c3-r2c3-r3c3-r4c3-r5c3-r6c3
-col-4: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4
-col-5: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5
-col-6: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6
-region-1: unique r1c1-r1c2-r1c3-r2c1-r2c2-r2c3
-region-2: unique r1c4-r1c5-r1c6-r2c4-r2c5-r2c6
-region-3: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
-region-4: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
-region-5: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
-region-6: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
+row_1: unique r1c1-r1c2-r1c3-r1c4-r1c5-r1c6
+row_2: unique r2c1-r2c2-r2c3-r2c4-r2c5-r2c6
+row_3: unique r3c1-r3c2-r3c3-r3c4-r3c5-r3c6
+row_4: unique r4c1-r4c2-r4c3-r4c4-r4c5-r4c6
+row_5: unique r5c1-r5c2-r5c3-r5c4-r5c5-r5c6
+row_6: unique r6c1-r6c2-r6c3-r6c4-r6c5-r6c6
+col_1: unique r1c1-r2c1-r3c1-r4c1-r5c1-r6c1
+col_2: unique r1c2-r2c2-r3c2-r4c2-r5c2-r6c2
+col_3: unique r1c3-r2c3-r3c3-r4c3-r5c3-r6c3
+col_4: unique r1c4-r2c4-r3c4-r4c4-r5c4-r6c4
+col_5: unique r1c5-r2c5-r3c5-r4c5-r5c5-r6c5
+col_6: unique r1c6-r2c6-r3c6-r4c6-r5c6-r6c6
+region_1: unique r1c1-r1c2-r1c3-r2c1-r2c2-r2c3
+region_2: unique r1c4-r1c5-r1c6-r2c4-r2c5-r2c6
+region_3: unique r3c1-r3c2-r3c3-r4c1-r4c2-r4c3
+region_4: unique r3c4-r3c5-r3c6-r4c4-r4c5-r4c6
+region_5: unique r5c1-r5c2-r5c3-r6c1-r6c2-r6c3
+region_6: unique r5c4-r5c5-r5c6-r6c4-r6c5-r6c6
 thermo r1c1-r1c2-r1c3
 ```
 
@@ -72,11 +72,11 @@ status: read
 
 ```rules
 sudoku 9x9
-whispers-1: whispers r2c1-r2c2 gap 5
-whispers-2: whispers r4c1-r4c2 gap 5
-pair-1: pair r6c1-r6c2 ratio 3
-pair-2: pair r7c1-r7c2 difference 2
-pair-3: pair r8c1-r8c2 sum 10
+whispers_1: whispers r2c1-r2c2 gap 5
+whispers_2: whispers r4c1-r4c2 gap 5
+pair_1: pair r6c1-r6c2 ratio 3
+pair_2: pair r7c1-r7c2 difference 2
+pair_3: pair r8c1-r8c2 sum 10
 kropki r9c1-r9c2 white
 ```
 
@@ -102,7 +102,7 @@ status: read
 
 ```rules
 sudoku 9x9
-weighted-1: #weighted-triple r1c1-r1c2-r1c3
+weighted_1: #weighted-triple r1c1-r1c2-r1c3
 ```
 
 ## Definitions

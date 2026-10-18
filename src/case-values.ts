@@ -1,10 +1,10 @@
+import { declarationParameters, type DeclarationValue, type DeclarationTail, type DeclarationGrammar } from "./declarations.js";
 import type { Type } from "./language/ast.js";
-import { diagnostic, location, type Diagnostic, type Span } from "./language/diagnostics.js";
-import type { PageSource } from "./library.js";
+import { diagnostic, type Diagnostic, type Span } from "./language/diagnostics.js";
 
 export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
-export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean }>; types: Record<string, Type>; explicit?: string[] }
+export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
   summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],
@@ -12,28 +12,6 @@ export const explicitBoardParameters: Record<string, string[]> = {
 };
 export const caseValueChecks = ["E_CASE_BOARD", "E_CASE_PARAMETERS", "E_CUSTOM_DEFINITION", "W_CASE_HOUSES"] as const;
 
-/** Split JSON containers and strings as single tokens, retaining the authored values. */
-export function valueTokens(line: string): string[] {
-  const result: string[] = [];
-  let start = 0, depth = 0, quoted = false, escaped = false;
-  for (let i = 0; i <= line.length; i++) {
-    const ch = line[i] ?? " ";
-    if (quoted) {
-      if (escaped) escaped = false;
-      else if (ch === "\\") escaped = true;
-      else if (ch === '"') quoted = false;
-    } else if (ch === '"') quoted = true;
-    else if (ch === "[" || ch === "{") depth++;
-    else if (ch === "]" || ch === "}") depth--;
-    else if (/\s/.test(ch) && depth === 0) {
-      if (line.slice(start, i).trim()) result.push(line.slice(start, i).trim());
-      start = i + 1;
-    }
-    if (depth < 0) throw Error("Close each structured value with its matching bracket.");
-  }
-  if (quoted || depth) throw Error("Close each quoted string and structured value.");
-  return result;
-}
 const cellPattern = /^r([1-9]\d*)c([1-9]\d*)$/;
 export function cellValid(value: unknown, board: CaseBoard): boolean {
   if (typeof value !== "string") return false;
@@ -51,7 +29,7 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
     case "optional": return value === undefined ? undefined : child(value, type.args![0]);
     case "cell": return cellValid(value, board) ? undefined : "must be an in-board cell in r1c1 form";
     case "number": case "value": case "digit": case "position":
-      return typeof value === "number" && Number.isFinite(value) && (!["position", "digit"].includes(type.name) || Number.isInteger(value)) ? undefined : `must be a ${["position", "digit"].includes(type.name) ? "whole number" : "finite number"}`;
+      return typeof value === "bigint" || typeof value === "number" && Number.isFinite(value) && (!["position", "digit"].includes(type.name) || Number.isInteger(value)) ? undefined : `must be a ${["position", "digit"].includes(type.name) ? "whole number" : "finite number"}`;
     case "boolean": return typeof value === "boolean" ? undefined : "must be true or false";
     case "enum": return typeof value === "string" && type.members?.includes(value) ? undefined : `must be one of ${type.members?.join(", ")}`;
     case "set": case "list": case "path": case "collection":
@@ -124,45 +102,63 @@ export function checkBoard(metadata: Record<string, unknown>, standardCount: num
   return { board, diagnostics };
 }
 
-export function checkParameters(_page: PageSource, tail: string, span: Span, contract: CaseParameters, board: CaseBoard): Diagnostic[] {
-  const bad = (message: string) => [diagnostic("E_CASE_PARAMETERS", span, message)];
-  try {
-    const parts = valueTokens(tail), data: Record<string, unknown> = Object.create(null);
-    const parameters = contract.parameters;
-    const primary = Object.hasOwn(parameters, "cells") ? "cells" : Object.hasOwn(parameters, "line") ? "line" : undefined;
-    if (parts[0] && /^r\d+c\d+(?:[-,]r\d+c\d+)*$/.test(parts[0])) {
-      if (!primary) return bad("This rule has no primary cell list; name each parameter.");
-      data[primary] = parts.shift()!.split(/[-,]/);
+export function parameterGrammar(contract?: CaseParameters): DeclarationGrammar {
+  const parameters = contract?.parameters ?? {};
+  return {primary: Object.hasOwn(parameters, "cells") ? "cells" : Object.hasOwn(parameters, "line") ? "line" : undefined, total: Object.hasOwn(parameters, "total"), positional: contract?.positional};
+}
+export function checkParameterAST(ast: DeclarationTail, span: Span, contract: CaseParameters, board: CaseBoard): Diagnostic[] {
+  const bad = (message: string, at = span) => [diagnostic("E_CASE_PARAMETERS", at, message)];
+  const parameters = contract.parameters, primary = parameterGrammar(contract).primary;
+  if(ast.cells && !primary) return bad("This rule has no primary cell list; name each parameter.", ast.cells.span);
+  const data = declarationParameters(ast, primary);
+  const seen = new Set(ast.cells && primary ? [primary] : []);
+  for(const parameter of ast.parameters) {
+    const name = parameter.name.value;
+    // Keyword operands are exact integers. Validate their decoded numeric value
+    // against the same page type without changing their AST representation.
+    if (parameter.notation === 'keywords' && parameter.value.fields) {
+      const record = {...parameter.value.value as Record<string, unknown>};
+      for (const field of parameter.value.fields) if (/^-?\d+$/.test(field.value.raw))
+        record[field.name.value] = BigInt(field.value.raw);
+      data[name] = record;
     }
-    let condition = false;
-    if (["if", "unless"].includes(parts.at(-2) ?? "")) {
-      if (!["uniform", "distinct", "connected"].includes(parts.at(-1)!)) return bad("Use uniform, distinct or connected for a condition.");
-      condition = true;
-      parts.splice(-2);
+    if(!Object.hasOwn(parameters,name)) return bad(`Unknown parameter ${name}; use the parameters on the rule page.`, parameter.name.span);
+    if(seen.has(name)) return bad(`Declare ${name} once.`, parameter.name.span);
+    seen.add(name);
+  }
+  if(ast.condition && (!primary || !Array.isArray(data[primary]) || !(data[primary] as unknown[]).length)) return bad("A condition needs a nonempty primary cell list.", ast.condition.span);
+  for (const [name, parameter] of Object.entries(parameters)) {
+    if (!Object.hasOwn(data, name)) {
+      if (parameter.required || (!board.standard && contract.explicit?.includes(name))) return bad(`State ${name} explicitly${parameter.required ? " for this rule" : " on this board"}.`);
+      continue;
     }
-    if (parts.length % 2) return bad("Write parameters as name/value pairs.");
-    for (let i = 0; i < parts.length; i += 2) {
-      let key: unknown = parts[i].startsWith('"') ? JSON.parse(parts[i]) : parts[i];
-      if (typeof key !== "string") return bad("A parameter name must be text.");
-      if (["cells", "line"].includes(key) && primary) key = primary;
-      if (key === "sum" && Object.hasOwn(parameters, "total")) key = "total";
-      const name = String(key);
-      if (!Object.hasOwn(parameters, name)) return bad(`Unknown parameter ${name}; use the parameters on the rule page.`);
-      if (Object.hasOwn(data, name)) return bad(`Declare ${name} once.`);
-      const raw = parts[i + 1];
-      data[name] = cellPattern.test(raw) ? raw : /^(?:r\d+c\d+)(?:[-,]r\d+c\d+)+$/.test(raw) ? raw.split(/[-,]/) : JSON.parse(raw);
+    const node = ast.parameters.find(p=>p.name.value === name)?.value ?? (name === primary ? ast.cells : undefined);
+    if (name === "kind" && typeof data[name] !== "string") return bad("A custom kind must be text.", node?.span);
+    const problem = parameter.type ? valueProblem(data[name], parameter.type, contract.types, board) : undefined;
+    if (problem) return bad(`${name} ${problem}.`, node && parameter.type ? problemSpan(node, data[name], parameter.type, contract.types, board) : span);
+    if (parameter.required && Array.isArray(data[name]) && !(data[name] as unknown[]).length) return bad(`${name} must not be empty.`, node?.span);
+  }
+  return [];
+}
+
+/** Locate the first value rejected by the shared type contract. */
+function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: Record<string, Type>, board: CaseBoard, depth = 0): Span {
+  if (depth > 128) return node.span;
+  const alias = Object.hasOwn(types, type.name) ? types[type.name] : undefined;
+  if (alias) return problemSpan(node, value, alias, types, board, depth + 1);
+  if (type.name === 'optional') return problemSpan(node, value, type.args![0], types, board, depth + 1);
+  if (['set','list','path','collection'].includes(type.name) && Array.isArray(value)) {
+    const index = value.findIndex(v => valueProblem(v, type.args![0], types, board) !== undefined);
+    if (index >= 0 && node.children?.[index]) return problemSpan(node.children[index], value[index], type.args![0], types, board, depth + 1);
+  }
+  if (type.name === 'record' && object(value)) {
+    const unknown = node.fields?.find(f => !Object.hasOwn(type.fields ?? {}, f.name.value));
+    if (unknown) return unknown.name.span;
+    for (const [name, childType] of Object.entries(type.fields ?? {})) {
+      if (!valueProblem(value[name], childType, types, board)) continue;
+      const field = node.fields?.filter(f => f.name.value === name).at(-1);
+      return field ? problemSpan(field.value, value[name], childType, types, board, depth + 1) : node.span;
     }
-    if (condition && (!primary || !Array.isArray(data[primary]) || !(data[primary] as unknown[]).length)) return bad("A condition needs a nonempty primary cell list.");
-    for (const [name, parameter] of Object.entries(parameters)) {
-      if (!Object.hasOwn(data, name)) {
-        if (parameter.required || (!board.standard && contract.explicit?.includes(name))) return bad(`State ${name} explicitly${parameter.required ? " for this rule" : " on this board"}.`);
-        continue;
-      }
-      if (name === "kind" && typeof data[name] !== "string") return bad("A custom kind must be text.");
-      const problem = parameter.type ? valueProblem(data[name], parameter.type, contract.types, board) : undefined;
-      if (problem) return bad(`${name} ${problem}.`);
-      if (parameter.required && Array.isArray(data[name]) && !(data[name] as unknown[]).length) return bad(`${name} must not be empty.`);
-    }
-    return [];
-  } catch { return bad("Write each parameter value as JSON or a cell in r1c1 form; close every string and bracket."); }
+  }
+  return node.span;
 }

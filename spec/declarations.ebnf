@@ -1,0 +1,32 @@
+(* One physical line in a rules fence. Space is horizontal whitespace.
+   JSON follows RFC 8259. Markers and comments apply only outside JSON. *)
+declaration = [ instance-id, ":", space ], { "not", space }, reference,
+              [ space, arguments ], [ space, condition ], [ space, comment ];
+instance-id = identifier | json-string;
+identifier = letter, { letter | digit | "_" };
+letter = ? Unicode category L ? ;
+reference = kind | fragment | markdown-url;
+kind = lower-or-digit, { lower-or-digit | "-", lower-or-digit };
+fragment = "#", identifier;
+markdown-url = ("https://" | "http://"), url-body, ".md";
+arguments = named-form | keyword-form | dimensions-form;
+named-form = [ cells ], { space, parameter-name, space, value };
+parameter-name = identifier | json-string;
+value = json-value | cell | cells;
+cells = cell, { ("-" | ","), cell };
+cell = "r", positive-integer, "c", positive-integer;
+keyword-form = cells, space, [ declared-name, space ], declared-keyword,
+               { space, declared-integer-operand },
+               { space, parameter-name, space, value };
+declared-integer-operand = [ "-" ], digit, { digit };
+dimensions-form = natural, "x", natural, { space, parameter-name, space, value };
+condition = ("if" | "unless"), space, ("uniform" | "distinct" | "connected");
+comment = "#", [ space, comment-text ];
+positive-integer = nonzero-digit, { digit };
+natural = digit, { digit };
+space = horizontal-whitespace, { horizontal-whitespace };
+
+(* Parameter names, types, required inputs and the available argument form come
+   from the referenced page. Keyword choices, operand order and cell count come
+   from its parameter syntax metadata. A dimensions form names one record input.
+   A reference whose definition is unresolved retains its arguments as tokens. *)
