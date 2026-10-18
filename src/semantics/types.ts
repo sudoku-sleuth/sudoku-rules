@@ -18,12 +18,13 @@ export interface CanonicalBoard {
   rows: number; cols: number; alphabet: number[]; activeCells: Cell[];
   regions: Cell[][]; houses: Cell[][]; givens: { cell: Cell; digit: number }[];
 }
-/** Slice A primitives. Pair tables list allowed ordered face-value pairs explicitly. */
+/** Finite semantic primitives. Pair tables list allowed ordered face-value pairs explicitly. */
 export type Formula =
   | { op: "All" | "Any"; children: Formula[] }
   | { op: "Not"; child: Formula }
   | { op: "Distinct"; channel: Channel; collection: "set" | "list"; cells: Cell[] }
   | { op: "Pair"; channel: Channel; cells: [Cell, Cell]; table: [number, number][] }
+  | { op: "CountAtLeast"; channel: "D"; cells: Cell[]; digit: number; count: number }
   | { op: "Allowed"; channel: Channel; cell: Cell; values: number[] };
 export interface SemanticSource { span: Span; kind: string; instance?: string }
 export interface Coverage {
@@ -33,14 +34,19 @@ export interface Coverage {
 }
 export interface SemanticIssue { code: string; message: string; span: Span }
 export interface Rewrite {
-  rule: "distinct-pairs" | "pair-order" | "boolean-canonical" | "double-not" | "house-implied" | "value-channel";
+  rule: "distinct-pairs" | "pair-order" | "boolean-canonical" | "double-not" | "house-implied" | "value-channel" | "fog-sets";
   version: 1; before: string; after: string; sources: SemanticSource[];
   /** A retained unconditional house that justifies removing the pair. */
   witness?: Cell[];
 }
 export interface SourceLink { primitive: string; sources: SemanticSource[] }
+export interface FogPlay {
+  op: "Fog"; initiallyLit: Cell[];
+  /** Absent uses neighbourhood reveal; an empty list uses links only. */
+  links?: { trigger: Cell[]; lights: Cell[] }[];
+}
 export interface NormalForm {
-  version: 1; board: CanonicalBoard; solution: Formula; play: "all-visible" | "unresolved";
+  version: 1; board: CanonicalBoard; solution: Formula; play: "all-visible" | "unresolved" | FogPlay;
   coverage: Coverage[]; sources: SourceLink[]; rewrites: Rewrite[];
 }
 export interface Normalisation {
@@ -52,7 +58,7 @@ export interface SemanticDifference {
   primitive: Formula["op"] | "Board" | "Play";
   cells: Cell[];
   side: "left" | "right";
-  term: Formula | CanonicalBoard | string;
+  term: Formula | CanonicalBoard | FogPlay | string;
   sources: SemanticSource[];
   /** A structural difference does not establish different solution sets. */
   message: string;
