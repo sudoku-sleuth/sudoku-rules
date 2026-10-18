@@ -2,7 +2,17 @@
    JSON follows RFC 8259. Markers and comments apply only outside JSON. *)
 declaration = [ instance-id, ":", space ], { "not", space }, reference,
               [ space, arguments ], [ space, condition ], [ space, comment ];
-instance-id = identifier | json-string;
+instance-id = bare-instance-id | json-string;
+bare-instance-id = (letter | digit), { letter | mark | digit | "_" | "-" | "." };
+mark = ? Unicode category M ? ;
+(* A bare instance ID excludes reserved-instance-word, cell/path spellings
+   r[0-9]+c[0-9]+([-,]r[0-9]+c[0-9]+)*, dimensions
+   [0-9]+x[0-9]+, and number tokens as defined below. Use json-string instead.
+   These exclusions apply only to instance IDs. *)
+reserved-instance-word = "not" | "if" | "unless" | "true" | "false" | "null"
+                       | "uniform" | "distinct" | "connected";
+number-token = [ "-" ], (digit, { digit }, [ ".", { digit } ] | ".", digit, { digit }),
+               [ ("e" | "E"), [ "+" | "-" ], digit, { digit } ];
 identifier = letter, { letter | digit | "_" };
 letter = ? Unicode category L ? ;
 reference = kind | fragment | markdown-url;

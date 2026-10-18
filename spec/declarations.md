@@ -15,8 +15,16 @@ inside its complete case file, including CRLF documents.
 A hyphen or comma separates explicitly listed cell positions. `r1c1-r3c3`
 names two cells. Paths preserve order and repeated positions. A comment starts
 with a separate `#` token followed by whitespace or the end of the line.
-`#weighted-triple` is a reference. Instance IDs start with a Unicode letter and
-continue with letters, digits or underscores; quote other IDs as JSON strings.
+`#weighted-triple` is a reference. Instance IDs start with a Unicode letter or ASCII digit and
+continue with Unicode letters, combining marks, ASCII digits, underscores,
+hyphens or dots: `clue-2`, `2nd-clue`, `group.a`, `Éclair-2`.
+Quote reserved declaration words (`not`, `if`, `unless`, `true`, `false`, `null`,
+`uniform`, `distinct`, `connected`), cell or path spellings (including zero
+coordinates), dimensions such as `9x9`, and number tokens such as `12`, `1.5`
+or `2e3`. Other characters, a leading underscore, hyphen or dot, and whitespace
+also require JSON quotes. Rule kinds such as `thermo` remain valid IDs; parameter
+and reference syntax are independent. ID values are case-sensitive and retain
+their exact Unicode spelling without normalization.
 Whitespace separates declaration tokens, including a quoted value and its condition. Strings and JSON containers may contain `#`,
 `not`, `if` and `unless` as values.
 
@@ -77,7 +85,7 @@ It returns the same parameter record and diagnostic codes as before.
 `printDeclaration(ast)` writes a canonical declaration. It preserves reference
 spelling, decoded instance IDs, negation count, cell order and multiplicity,
 parameter order, conditions and comments. Cells use hyphens; strings and structured
-values use JSON; reserved parameter names stay quoted; keyword integers use their canonical decimal spelling. Optional
+values use JSON; instance IDs use the bare form above when accepted and JSON quotes otherwise; reserved parameter names stay quoted; keyword integers use their canonical decimal spelling. Optional
 grammar input also supports ASTs constructed by callers. Parsing canonical text
 with the same page grammar preserves the AST's meaning and writing it again
 produces the same text. JSON numbers must be finite at every depth. Source spans and raw spellings belong to each input text.

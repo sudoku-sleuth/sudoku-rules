@@ -91,7 +91,7 @@ test('7: numeric overflow is rejected at every JSON depth and in dimensions', ()
 });
 test('8: unquoted instance IDs follow identifier syntax; other names are quoted', () => {
  expect(check('sudoku 9x9\nbad!: unique r1c1-r1c2').value).toBeUndefined();
- for (const id of ['bad!','123','_a','a-b','a.b']) expect(parseDeclaration(source(`${id}: unique r1c1-r1c2`)).value).toBeUndefined();
+ for (const id of ['bad!','123','_a','if','r1c1','9x9']) expect(parseDeclaration(source(`${id}: unique r1c1-r1c2`)).value).toBeUndefined();
  for (const id of ['a','Éclair_2','bad!','a-b','']) roundtrip(`${JSON.stringify(id)}: unique r1c1-r1c2`,grammar('unique'));
 });
 test('9: parameter diagnostics point at the offending value', () => {
