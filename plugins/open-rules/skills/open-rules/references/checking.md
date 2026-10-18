@@ -27,9 +27,11 @@ Use the inventory in [reading-input.md](reading-input.md) to check completeness 
 - Check dot fill, stroke and text separately against the raw drawing record and setter meaning.
 - Rebuild each negative relation's scope and exceptions from its own marks and explicit exceptions.
 - For stated normal Sudoku, check every row, column and region has a house constraint. Board metadata alone is insufficient.
-- Read each whole source sentence and its domain context before retaining a question about length or connectivity.
+- Apply F1–F2: connected same-colour lines are continuous; cells not drawn in that colour are excluded. Flag text/drawing conflicts and ask only about unsettled meanings.
 - Preserve clear clauses beside malformed wording; withhold only the missing relation.
-- Check that flags identify only the cells or groups in doubt and that independent conditions remain declared.
+- Check that flags identify only the cells or groups in doubt and that independent conditions remain declared (P1).
+- Check both readings and their recorded tests against the same stored solve. A recommendation without a recorded passing test and a failing alternative warrants a review warning; missing or non-distinguishing tests mean no recommendation (P2). This is a manual check, not an automated diagnostic.
+- Keep final-answer riddles in prose without grid constraints (P3).
 
 `W_CASE_HOUSES` flags a nonempty region list without a positive, unconditional `sudoku 9x9` or `unique` declaration. Like other diagnostics, it prevents a clean lint result. Review the source: add all required houses when normal Sudoku applies, or retain the intended non-house region metadata and report the warning. The presence of one `unique` declaration only clears this absence check; verify the complete set yourself. Custom formulas and source wording need manual review.
 

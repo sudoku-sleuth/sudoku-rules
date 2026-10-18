@@ -4,7 +4,7 @@
 
 Read the whole supplied input, including top-level fields outside the drawing. Track each meaningful field or drawing record, its location, its interpretation, and the declaration or question it supports. Distinguish absent, empty and supplied values. Check claims such as “no mask supplied” against this inventory before including them in a case file.
 
-Inspect dimensions, symbols, active boards, regions, givens, fog, cages, lines, shapes, text and the setter's wording. Generic canvas metadata must agree with the setter's board description before it becomes a Sudoku house. Keep raw drawing indices in working notes so appearance and geometry can be checked again.
+Inspect dimensions, symbols, active boards, regions, givens, any stored solve, fog, cages, lines, shapes, text and the setter's wording. Generic canvas metadata must agree with the setter's board description before it becomes a Sudoku house. Keep raw drawing indices in working notes so appearance and geometry can be checked again.
 
 ### Fog
 
@@ -40,7 +40,7 @@ For a whisper loop on the same square, preserve the closing adjacency too:
 whispers r2c2-r2c3-r2c4-r3c4-r4c4-r4c3-r4c2-r3c2 gap 5 loop true
 ```
 
-Repeating the starting cell at the end is another way to express that whisper adjacency. Renban constrains the cell set; repeating a cell is unnecessary. Neither a hyphen nor `loop true` inserts omitted intermediate cells. Touching strokes alone do not establish whether they form one rule instance. Read the whole source sentence and its domain context first. An explicit length or connected-figure definition can settle grouping; ask only about the junction or gap still unresolved.
+Repeating the starting cell at the end is another way to express that whisper adjacency. Renban constrains the cell set; repeating a cell is unnecessary. Neither a hyphen nor `loop true` inserts omitted intermediate cells. Under F1, connected lines of the same colour are one continuous line. Under F2, a cell not drawn in that colour is not on the line. Do not ask about membership those facts settle. If the text conflicts with the drawing, flag the conflict instead of splitting the line to fit the text. Unsettled meanings, including different-colour joins, remain candidate readings under P1–P2.
 
 ## Separate fill, stroke and text
 
@@ -66,36 +66,52 @@ negative relations [{"op":"sum","value":5}] except [["r1c1","r1c2"]]
 
 Adding r3c1–r3c2 to `except` would wrongly exempt the white-only edge from the missing-V rule. Digits 4 and 5 satisfy its white dot and missing-V condition; 2 and 3 satisfy the white dot but violate the missing-V condition. If all X marks are also shown, compile their sum-10 exceptions separately unless the setter explicitly gives X and V a shared exemption policy. The same reasoning applies to white/black dot negatives: follow the stated policy for each relation rather than assuming every mark exempts every relation.
 
+## Negate each named instance (F3)
+
+When the setter says a rule or clue is wrong, false or never correct, each instance named by that statement must fail its complete rule. For instances R₁ and R₂, require ¬R₁ ∧ ¬R₂. Negating only their conjunction, ¬(R₁ ∧ R₂), would allow one to hold. Failure imposes no opposite rule or additional condition.
+
+For example, “Blue lines are never renban lines” means every blue line must fail renban. For two blue paths, write:
+
+```rules
+blue-1: not renban r1c1-r1c2-r1c3
+blue-2: not renban r3c1-r3c2-r3c3
+```
+
+Digits 1, 2, 4 on the first path and 4, 6, 8 on the second satisfy this requirement: each fails renban. Digits 1, 2, 3 on either path break it, even if the other path fails renban. Neither path acquires another line type.
+
+Use the library's [`not` prefix](https://rules.sudoku-sleuth.com/syntax.md) on each affected declaration, preserving its parameters. `not` negates the whole rule, including internal quantifiers; it does not require every component check to fail. Use case-header `negate: all` only when the setter's statement covers every declared rule, since it negates each declaration individually. Keep unaffected declarations positive. If no existing negation form expresses the stated meaning, supply a complete custom definition.
+
 ## Localise uncertainty
 
 Identify the exact cells, stroke records or groups where the interpretation changes. Preserve every independent declaration. A question about one branched figure does not suspend every line of its colour.
 
-For example, a simple pink stroke is established as a renban through r6c1–r6c3. Two other pink strokes meet at r2c7, and it is unclear whether they form one renban or two. Keep the simple stroke:
+Direct questions to the setter on import, including daily imports, or to the catalogue maintainer for catalogue cases (P1). Keep final-answer riddles as prose without a grid declaration (P3).
 
-```rules
-renban r6c1-r6c2-r6c3
-```
+### Stored solve and tested readings (P2)
 
-Use `status: flagged` and a specific header reason:
+Accept optional task input `storedSolve`: a complete known answer as an array of rows, top to bottom, with symbols left to right in the board's declared alphabet. Each row has `board.cols` entries and there are `board.rows` rows. Record its source; when adapting a source-specific answer field, record that mapping. It is input evidence, not givens or a new case-header field. Missing or incomplete answers cannot support a recommendation.
+
+Test every competing reading on that same solve, recording the condition checked, values and pass/fail result (or untested with a reason). Recommend only a reading that passes while the alternative fails. Both pass, both fail, no solve or an unavailable test means no recommendation. A test-based recommendation remains a question until confirmed.
+
+For example, on a four-symbol 4×4 board, a mark labelled “3” between r1c1 and r1c2 has two candidate readings: sum 3 (A), or difference 3 (B). The supplied known answer is:
 
 ```yaml
+storedSolve:
+  - [1, 2, 3, 4]
+  - [3, 4, 1, 2]
+  - [2, 1, 4, 3]
+  - [4, 3, 2, 1]
+```
+
+Testing this one stored solve gives A: 1+2=3, pass; B: |1−2|=1≠3, fail. Recommend A and ask for confirmation. Record both readings, the solve source, test evidence, recommendation and question in the existing string `flags` field:
+
+```yaml
+status: flagged
 flags:
-  - "Pink strokes 4 and 5 meet at r2c7: is their union one renban or is each stroke a separate renban?"
+  - "Mark 3 at r1c1–r1c2: A = sum 3; B = difference 3. Stored solve: supplied storedSolve, r1c1=1 and r1c2=2. A passes (1+2=3); B fails (|1−2|=1, not 3). Recommend A. Is sum 3 intended?"
 ```
 
-Withhold only the disputed grouping; do not invent either alternative. Keep known givens, other clues and fog fields in the same file. Before delivery, reconcile the inventory: each established fact has a declaration, and each unresolved fact has a localised question.
-
-
-### Use the complete sentence
-
-Suppose the source says, “Each renban has exactly three cells.” Two strokes are r1c1–r1c2–r1c3 and r1c3–r2c3–r3c3. The length requirement settles the touching strokes as two three-cell renbans:
-
-```rules
-renban-1: renban r1c1-r1c2-r1c3
-renban-2: renban r1c3-r2c3-r3c3
-```
-
-Their five-cell union contradicts the sentence; no grouping question is needed. If instead the source says, “Each connected branching figure is one line,” use the connected figure as the rule instance. If a small gap leaves actual connectivity uncertain, ask whether those specific endpoints are joined. Do not reopen the meaning of “one line” that the sentence already supplies.
+Withhold the disputed declaration until resolved. Keep known givens, independent clues and fog fields. With no distinguishing test, record both readings and the result or reason untested, write “no recommendation”, and ask which is intended. Keep the answer and resolution in this puzzle's file, not in the skill.
 
 ### Preserve clear clauses around malformed wording
 
