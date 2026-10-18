@@ -10,7 +10,7 @@ status: read
 
 ```rules
 sudoku 9x9
-weighted-1: #weighted-triple r1c1-r1c2-r10c3
+weighted_1: #weighted-triple r1c1-r1c2-r10c3
 ```
 
 ## Definitions

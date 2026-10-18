@@ -8,18 +8,21 @@ import { all, condition, lower, validateCells, UnsupportedSemantics } from "./lo
 import { checkBoardHeaders } from "./headers.js";
 import { readSemanticFile } from "./reader.js";
 import { declarationRegistry, type DeclarationCapability } from "./registry.js";
-import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, NormalForm, SemanticDifference, SemanticFile, SemanticSource } from "./types.js";
+import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, NormalForm, SemanticDifference, SemanticFile, SemanticIssue, SemanticSource } from "./types.js";
 export * from "./types.js";
 export { declarationRegistry } from "./registry.js";
 
 /** Portable structural normalisation. No URL loading, execution, or board solving. */
 export function normalise(file: SemanticFile, context: BoardContext): Normalisation {
-  const read = readSemanticFile(file);
-  const issues = read.issues;
+  const issues: SemanticIssue[] = [];
   const here = location(file, 0, 0);
   let board;
   try { board = canonicalBoard(context); }
   catch (error) { issues.push({ code: "E_SEMANTIC_BOARD", message: (error as Error).message, span: here }); return { status: "invalid", issues }; }
+  const read = readSemanticFile(file, {rows: board.rows, cols: board.cols, symbols: board.alphabet,
+    standard: board.rows === 9 && board.cols === 9 && board.alphabet.join(',') === '1,2,3,4,5,6,7,8,9'});
+  issues.push(...read.issues);
+  read.issues = issues;
   const boardSources = read.extras.filter(e => ["header:board", "header:givens", "header:regions"].includes(e.kind)).map(e => e.source);
   checkBoardHeaders(read, board);
   if (issues.length) return { status: "invalid", issues };
@@ -65,10 +68,10 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   // declaration-supplied geometry too, before any formula can read regions.
   for (const { instance, sources } of ordered) {
     if (instance.kind !== "sudoku") continue;
-    try { validateCells(instance, board); }
+    try { validateCells(instance.ast, board); }
     catch (error) { issues.push(...sources.map(source => ({ code: "E_SEMANTIC_CELL", message: (error as Error).message, span: source.span }))); continue; }
     try {
-      lower(instance, board);
+      lower(instance.ast, board);
       // Negation changes the constraint, not the board's geometry.
       if (!board.regions.length) board.regions = groups(standardHouses().slice(18));
     } catch (error) {
@@ -80,14 +83,14 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
     const { kind } = instance;
     const cover = (status: Coverage["status"], reason?: string) => coverage.push(...sources.map(source => ({ kind, source, status, ...(reason ? { reason } : {}) })));
     const capability = Object.hasOwn(capabilities, kind) ? capabilities[kind] : undefined;
-    try { validateCells(instance, board); }
+    try { validateCells(instance.ast, board); }
     catch (error) { issues.push(...sources.map(source => ({ code: "E_SEMANTIC_CELL", message: (error as Error).message, span: source.span }))); continue; }
     if (!capability || capability.status === "unsupported") {
       cover("unsupported", capability?.status === "unsupported" ? capability.reason : "The referenced definition and its dependencies have not been resolved.");
       continue;
     }
     try {
-      let formula = lower(instance, board);
+      let formula = lower(instance.ast, board);
       const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : ([...valueLines, "parity-cells", "pair", "kropki"].includes(kind)) && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
       if (reason) { cover("unsupported", reason); continue; }
       if (([...valueLines, "parity-cells", "pair", "kropki"].includes(kind))) {
@@ -96,7 +99,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
         formula = convert(formula);
         state.rewrites.push({ rule: "value-channel", version: 1, before, after: key(formula), sources });
       }
-      formula = condition(instance, formula, board);
+      formula = condition(instance.ast, formula, board, instance.negated);
       if (kind === "sudoku") {
         // Only positive houses imply pair facts.
         if (!instance.negated && !instance.condition) for (const cells of groups(standardHouses())) {

@@ -25,10 +25,3 @@ export function rulesBlocks(text: string, offset = 0): { blocks: { text: string;
   return { blocks: blocks.map(block => ({ text: block.text, start: block.offset })), unclosed: blocks.some(block => !block.closed) };
 }
 
-/** Read the shared declaration prefix, distinguishing fragment references from comments. */
-export function ruleDeclaration(line: string): { instance?: string; reference: string; referenceStart: number; tail: string; negated: boolean } | undefined {
-  const match = /^\s*(?:([\p{L}\p{N}_.-]+|"(?:[^"\\]|\\.)*"):\s+)?((?:not\s+)*)([^\s]+)/u.exec(line);
-  if (!match || match[3] === "#") return undefined;
-  const referenceStart = match[0].length - match[3].length;
-  return { instance: match[1], reference: match[3], referenceStart, tail: line.slice(match[0].length), negated: (match[2].match(/not\s+/g)?.length ?? 0) % 2 === 1 };
-}

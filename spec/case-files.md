@@ -32,7 +32,8 @@ It checks absence, not completeness or custom formula meaning.
 
 ## Rule parameters
 
-[Rule-line syntax](../rules/syntax.md) defines declarations. Primary cell paths
+[Rule-line syntax](../rules/syntax.md) defines declarations. The
+[declaration grammar](declarations.md) specifies tokens, ASTs and canonical text. Primary cell paths
 supply the page's `cells` or `line` parameter. Named `cells` and `line` spellings
 refer to that primary parameter; cage `sum` also accepts the page's `total` name.
 Values are JSON, single rXcY cells, or explicitly listed cell paths. Parameters

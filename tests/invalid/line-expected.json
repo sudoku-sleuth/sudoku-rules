@@ -30,9 +30,9 @@
     "mode": "case",
     "diagnostics": [
       {
-        "code": "E_LINE_SYNTAX",
-        "check": "E_LINE_SYNTAX",
-        "message": "Unexpected 2 after less; use only its declared values and an optional if or unless condition.",
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "Write parameters as name/value pairs.",
         "span": {
           "file": "tests/invalid/lines/extra-value.rules.md",
           "start": {

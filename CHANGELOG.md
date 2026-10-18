@@ -7,6 +7,7 @@ Each release lists what changed. A change that breaks a published export, front-
 ### Added
 
 - Semantic line coverage for strict and slow thermometers, German/Dutch and close whispers, parity, modular and entropic windows, palindromes, Renban, Bremban, Nabner, primality, summit, shifter and region sums. Paths retain direction, closure, cyclic windows and repeated occurrences; region sums validate their supplied region runs and preserve exact sum coefficients.
+- A declaration lexer, located AST, page-derived grammar and canonical writer. Case checks and semantic lowering share one parsed declaration pipeline. The portable grammar contracts are generated from rule pages. See `spec/declarations.md` and `spec/declarations.ebnf`.
 
 - `W_CASE_HOUSES` for regions without house constraints, with a rejecting six-symbol fixture and a complete 18-house repair.
 
@@ -22,6 +23,8 @@ Each release lists what changed. A change that breaks a published export, front-
 - Semantic coverage for pair keywords, Kropki, quadruple and outside multiplicities, scoped negative relations with explicit exceptions, and fog play state. Exact pair tables use the supplied alphabet. Fog comparison preserves missing versus empty links; `visibleCells` computes current reveals from entries and answer availability.
 
 ### Changed
+
+- Declaration reading uses one front end in place of the prefix regular expression, whitespace/JSON tokenizers and semantic per-kind decoding. Existing diagnostic codes are retained. Semantic reading now rejects invalid pair declarations through the same grammar as case checking.
 
 - Open Rules skill convention F3 treats rules or clues declared wrong, false or never correct as failures of each named instance. Guidance uses existing negation forms and includes a colour-based line example without imposing an opposite rule or merely negating a combined statement.
 

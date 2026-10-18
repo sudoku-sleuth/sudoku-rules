@@ -51,7 +51,7 @@ test("all board-dependent defaults are explicit on a different alphabet", () => 
   }
 });
 test("negation and conditions do not hide invalid parameters", () => {
-  const source = template.replace("weighted-1: #weighted-triple r1c1-r1c2-r1c3", "weighted-1: #weighted-triple r1c1-r1c2-r1c3\nclue: not whispers r1c1-r1c2 gap false unless distinct");
+  const source = template.replace("weighted_1: #weighted-triple r1c1-r1c2-r1c3", "weighted_1: #weighted-triple r1c1-r1c2-r1c3\nclue: not whispers r1c1-r1c2 gap false unless distinct");
   expect(check(source).diagnostics[0].code).toBe("E_CASE_PARAMETERS");
 });
 test("parameter checks follow full URLs and aliases", () => {

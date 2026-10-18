@@ -1,7 +1,8 @@
 import { lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
-import type { Instance } from "./reader.js";
+import type { DeclarationAST } from "../declarations.js";
+import { semanticDeclaration } from "./declaration.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
 export { all, distinct, pair, UnsupportedSemantics } from "./primitives.js";
@@ -18,20 +19,22 @@ const fields: Record<string, string[]> = {
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
 };
-export function validateCells(instance: Instance, board: CanonicalBoard): void {
+export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
+  const instance=semanticDeclaration(ast);
   for (const cell of instance.cells ?? []) if (!board.activeCells.includes(cell)) throw Error(`${cell} is not an active board cell.`);
 }
 /** Validate completely before wrapping with negation or a condition. */
-export function lower(instance: Instance, board: CanonicalBoard): Formula {
+export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
+  const instance=semanticDeclaration(ast);
   const { kind, parameters: p } = instance;
   const allowed = fields[kind];
   if (!allowed) throw Error(`No lowering for ${kind}.`);
   for (const name of Object.keys(p)) if (!allowed.includes(name)) throw Error(`${kind} has no parameter ${name}.`);
-  validateCells(instance, board);
+  validateCells(ast, board);
   const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "kropki", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length) throw Error(`${kind} needs a nonempty cell list.`);
   if (!needsCells && instance.cells) throw Error(`${kind} does not take a cell list.`);
-  if (Object.hasOwn(lineFields, kind)) return lowerLine(instance, board);
+  if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
     if (cells.length * (cells.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
@@ -120,7 +123,8 @@ export function lower(instance: Instance, board: CanonicalBoard): Formula {
     }
   }
 }
-export function condition(instance: Instance, base: Formula, board: CanonicalBoard): Formula {
+export function condition(ast: DeclarationAST, base: Formula, board: CanonicalBoard, negated = ast.negations.length % 2 === 1): Formula {
+  const instance={...semanticDeclaration(ast),negated};
   if (instance.negated) base = { op: "Not", child: base };
   const cond = instance.condition;
   if (!cond) return base;

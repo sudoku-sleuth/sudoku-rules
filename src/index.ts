@@ -15,3 +15,5 @@ export { caseValueChecks } from "./case-values.js";
 
 export * from "./semantics/index.js";
 export { compare } from "./compare.js";
+
+export * from "./declarations.js";

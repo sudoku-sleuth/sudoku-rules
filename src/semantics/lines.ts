@@ -1,5 +1,6 @@
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
-import type { Instance } from "./reader.js";
+import type { DeclarationAST } from "../declarations.js";
+import { semanticDeclaration } from "./declaration.js";
 import { all, pair, UnsupportedSemantics } from "./primitives.js";
 import { key, sortedCells } from "./board.js";
 
@@ -28,7 +29,8 @@ function prime(value: number): boolean {
   return true;
 }
 
-export function lowerLine(instance: Instance, board: CanonicalBoard): Formula {
+export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
+  const instance = semanticDeclaration(ast);
   const { kind, parameters: p } = instance;
   const path = instance.cells!;
   for (const name of ["loop", "distinct"]) if (p[name] !== undefined && typeof p[name] !== "boolean") throw Error(`${name} must be true or false.`);

@@ -31,8 +31,8 @@ One line declares one rule instance. A path uses hyphens or commas and preserves
 ```rules
 sudoku 9x9
 thermo r1c1-r1c2-r1c3
-whispers-1: whispers r3c1-r3c2 gap 5
-whispers-2: whispers r5c1-r5c2 gap 5
+whispers_1: whispers r3c1-r3c2 gap 5
+whispers_2: whispers r5c1-r5c2 gap 5
 ```
 
 Without an explicit ID, the canonical kind is the ID. Repeated kinds need unique IDs, such as `thermo-1`, `thermo-2`. Do not reuse the standard board's `row-1` through `row-9`, `col-1` through `col-9`, or `box-1` through `box-9` IDs. Drawing records refer to instance IDs.
@@ -51,13 +51,13 @@ The short names `whisper` and `killer` alias `whispers` and `cage`. Prefer the c
 Use the keywords declared on the pair page, rather than a JSON relation object:
 
 ```rules
-pair-1: pair r1c1-r1c2 ratio 3
-pair-2: pair r4c4-r4c5 difference 2
-pair-3: pair r2c2-r3c2 sum 10
-pair-4: pair r5c1-r5c2 at-least 3
-pair-5: pair r6c1-r6c2 less
-pair-6: pair r7c1-r7c2 multiple
-pair-7: pair r8c1-r8c2 shift
+pair_1: pair r1c1-r1c2 ratio 3
+pair_2: pair r4c4-r4c5 difference 2
+pair_3: pair r2c2-r3c2 sum 10
+pair_4: pair r5c1-r5c2 at-least 3
+pair_5: pair r6c1-r6c2 less
+pair_6: pair r7c1-r7c2 multiple
+pair_7: pair r8c1-r8c2 shift
 ```
 
 The first four forms take a whole-number value; the last three take no value. `less` means the first cell's value is smaller. Check the [pair page](https://rules.sudoku-sleuth.com/pair.md) for every relationship's meaning, particularly shift. The parser derives these forms from the page's parameter declarations.
@@ -78,7 +78,7 @@ When no library kind matches, define the rule in the file and reference its sect
 Use a lowercase heading slug for the fragment: `### Weighted triple` gives `#weighted-triple`. Put its complete `custom-rules` entry inside that section. Each definition must be referenced by a declaration. The worked file in [examples.md](examples.md) shows the layout.
 
 ```rules
-weighted-1: #weighted-triple r1c1-r1c2-r1c3
+weighted_1: #weighted-triple r1c1-r1c2-r1c3
 ```
 
 A setter-chosen external HTTPS `.md` URL is also allowed. Keep the same complete definition in the case, with that URL in both the declaration and `url` field. It does not need to be fetched. Do not invent a hosted URL or assign an unpublished kind under the library root. No external URL is needed for an in-file definition; declare a fully understood rule instead of asking only for a URL or flagging it.

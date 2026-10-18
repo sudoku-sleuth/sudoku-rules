@@ -37,12 +37,14 @@
     "lint:yaml": "bun scripts/lint-yaml.ts",
     "lint:spec": "bun scripts/lint-spec.ts",
     "lint:skill": "bun scripts/lint-skill.ts",
-    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill",
+    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill && bun run lint:declarations",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "build:package": "bun scripts/build-package.ts",
     "openrules": "bun src/cli.ts",
-    "build": "bun scripts/build.ts"
+    "build": "bun scripts/build.ts",
+    "generate:declarations": "bun scripts/declaration-library.ts",
+    "lint:declarations": "bun scripts/declaration-library.ts --check"
   },
   "dependencies": {
     "yaml": "2.9.1"

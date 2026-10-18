@@ -73,8 +73,8 @@ When the setter says a rule or clue is wrong, false or never correct, each insta
 For example, “Blue lines are never renban lines” means every blue line must fail renban. For two blue paths, write:
 
 ```rules
-blue-1: not renban r1c1-r1c2-r1c3
-blue-2: not renban r3c1-r3c2-r3c3
+blue_1: not renban r1c1-r1c2-r1c3
+blue_2: not renban r3c1-r3c2-r3c3
 ```
 
 Digits 1, 2, 4 on the first path and 4, 6, 8 on the second satisfy this requirement: each fails renban. Digits 1, 2, 3 on either path break it, even if the other path fails renban. Neither path acquires another line type.
@@ -119,8 +119,8 @@ Suppose the text states three independent clauses: “Digits on the blue thermom
 
 ```rules
 slow-thermo r4c1-r4c2-r4c3
-clone-1: clone r6c1-r8c4
-clone-2: clone r6c2-r8c5
+clone_1: clone r6c1-r8c4
+clone_2: clone r6c2-r8c5
 ```
 
 Flag only the grey path, for example: “On the grey thermometer r2c6–r2c7–r2c8, what relation applies from the bulb at r2c6?” Do not guess strict or non-strict increase or remove the blue and clone declarations. Keep candidate readings in the question, outside the rules block; `confirmed` requires explicit setter confirmation of the reading.

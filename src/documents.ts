@@ -1,7 +1,8 @@
-import { checkBoard, checkParameters, cellValid, explicitBoardParameters, object, type CaseParameters } from "./case-values.js";
-import { caseBlocks, readCustomDefinitions, checkCustomParameters } from "./custom-definitions.js";
-import { ruleDeclaration } from "./rules-blocks.js";
-import { parseDeclaredRuleLine, type LineDeclaration } from "./rule-lines.js";
+import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, object, type CaseBoard, type CaseParameters } from "./case-values.js";
+import { caseBlocks, readCustomDefinitions, checkCustomParameters, customParameterContract } from "./custom-definitions.js";
+import { declarationLibrary } from "./declaration-library.js";
+import { parseDeclaration, type DeclarationAST } from "./declarations.js";
+import { type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result } from "./language/diagnostics.js";
 import { compilePage, compilePrelude, formulaBlocks, type PageSource, type CompiledPage } from "./library.js";
@@ -46,7 +47,8 @@ export interface CaseReference {
     url: string;
     span: ReturnType<typeof location>;
 }
-export function checkCaseReferences(page: PageSource, registry: RuleRegistry): Result<{
+export function checkCaseReferences(page: PageSource, registry: RuleRegistry, context?: CaseBoard): Result<{
+    declarations: DeclarationAST[];
     references: CaseReference[];
     deferred: string[];
 }> {
@@ -78,59 +80,71 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
     catch {
         errors.push(diagnostic("E_LIBRARY_URL", field("library"), "The library field must be a full HTTP or HTTPS URL ending in /, without a query, fragment or login."));
     }
+    const declarations: DeclarationAST[] = [];
     const references: CaseReference[] = [];
     const deferred: string[] = [];
-    const rest = page.text.slice(offset);
     const blocks = caseBlocks(page);
     const custom = readCustomDefinitions(page, blocks);
     errors.push(...custom.diagnostics);
     const usedCustom = new Set<string>();
     const ruleBlocks = blocks.filter(b => b.language === "rules");
-    const standardCount = ruleBlocks.flatMap(b => b.text.split(/\r?\n/)).filter(line => /^\s*(?:not\s+)*sudoku\s+9x9\s*$/.test(line)).length;
-    const board = checkBoard(metadata, standardCount, field);
-    // A hand-built registry can check references without providing parameter contracts.
-    if (registry.parameters) errors.push(...board.diagnostics);
-    let hasHouse = false;
-    const found = ruleBlocks.length > 0;
+    const parsedLines: {declaration: DeclarationAST}[] = [];
+    const parseErrors: Diagnostic[] = [];
     for (const block of ruleBlocks) {
         let at = block.offset;
         for (const line of block.text.split(/(?<=\n)/)) {
-            const declaration = ruleDeclaration(line);
-            if (declaration) {
-                const kind = declaration.reference;
-                const begin = at + declaration.referenceStart;
-                const span = location(page, begin, begin + kind.length);
-                const tail = line.slice(begin + kind.length - at).trimEnd();
-                const local = custom.definitions.get(kind);
-                if (local || kind.startsWith("#")) {
-                    if (!local) errors.push(diagnostic("E_CUSTOM_DEFINITION", span, `${kind} has no complete in-file definition.`));
-                    else { usedCustom.add(kind); references.push({kind, url: kind, span}); errors.push(...checkCustomParameters(page, tail, span, local, board.board)); }
-                } else {
-                    let url: URL | undefined;
-                    try { url = root ? new URL(kind.endsWith(".md") || /^https?:\/\//.test(kind) ? kind : `${kind}.md`, root) : undefined; } catch {}
-                    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind) && !/^https?:\/\/[^\s]+\.md$/.test(kind))
-                        errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} is not a rule kind or a full Markdown rule URL.`));
-                    else if (url && registry.urls.has(url.href)) {
-                        const positive = !/^\s*(?:[\p{L}\p{N}_.-]+:\s+|"(?:[^"\\]|\\.)*":\s+)?not\s/u.test(line);
-                        const house = new URL(url.href).pathname.split("/").at(-1);
-                        if (positive && !/\b(?:if|unless)\b/.test(tail) && (house === "unique.md" || house === "sudoku.md" && tail.trim() === "9x9")) hasHouse = true;
-                        references.push({kind, url: url.href, span});
-                        const declaration = registry.lines?.get(url.href);
-                        if (declaration) {
-                            const parsed = parseDeclaredRuleLine({ file: page.file, text: tail, document: page.text, offset: begin + kind.length }, declaration);
-                            errors.push(...parsed.diagnostics);
-                            if (parsed.value && (parsed.value[declaration.cells.name] as string[]).some(c => !cellValid(c, board.board))) errors.push(diagnostic("E_CASE_PARAMETERS", span, "Use cells within the declared board."));
-                        } else if (registry.parameters?.has(url.href) && !(new URL(url.href).pathname.endsWith("/sudoku.md") && tail.trim() === "9x9")) {
-                            errors.push(...checkParameters(page, tail, span, registry.parameters.get(url.href)!, board.board));
-                        }
-                    } else if (url && custom.definitions.has(url.href)) {
-                        usedCustom.add(url.href); references.push({kind, url: url.href, span}); errors.push(...checkCustomParameters(page, tail, span, custom.definitions.get(url.href)!, board.board));
-                    } else if (url && ![...registry.urls].some(address => url!.href.startsWith(new URL(".", address).href))) {
-                        deferred.push(url.href); references.push({kind, url: url.href, span});
-                    } else errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
-                }
-            }
+            const parsed = parseDeclaration({file:page.file, text:line.trimEnd(), document:page.text, offset:at}, kind => {
+                let url: string | undefined;
+                try { url = root ? new URL(kind.endsWith(".md") || /^https?:/.test(kind) ? kind : `${kind}.md`, root).href : undefined; } catch {}
+                const local = custom.definitions.get(kind) ?? (url ? custom.definitions.get(url) : undefined);
+                const contract = local ? customParameterContract(local) : url ? registry.parameters?.get(url) : undefined;
+                // A reference-only registry still recognises published surface forms.
+                const published = (url ? declarationLibrary.parameters?.get(url) : undefined) ??
+                    (registry.kinds.has(kind) ? [...declarationLibrary.parameters ?? []].find(([address]) => address.endsWith(`/${kind}.md`))?.[1] : undefined);
+                const line = url ? registry.lines?.get(url) : undefined;
+                const positional = (contract ?? published)?.positional;
+                return {...parameterGrammar(contract), positional, line, opaque: !contract && !line && !positional};
+            });
+            parseErrors.push(...parsed.diagnostics);
+            const declaration = parsed.value;
+            if(declaration) parsedLines.push({declaration});
             at += line.length;
+        }
+    }
+    const dimensions = (ast: DeclarationAST) => ast.parameters.find(p=>p.name.value === "board")?.value.value as {rows:number;cols:number}|undefined;
+    const standard = (ast: DeclarationAST) => /(?:^|\/)sudoku(?:\.md)?$/.test(ast.kind.value) && dimensions(ast)?.rows === 9 && dimensions(ast)?.cols === 9;
+    const board = context ? {board: context, diagnostics: []} : checkBoard(metadata, parsedLines.filter(({declaration})=>standard(declaration)).length, field);
+    // A hand-built registry can check references without providing parameter contracts.
+    if (registry.parameters) errors.push(...board.diagnostics);
+    errors.push(...parseErrors);
+    let hasHouse = false;
+    const found = ruleBlocks.length > 0;
+    for (const {declaration} of parsedLines) {
+        declarations.push(declaration);
+        const kind = declaration.kind.value;
+        const span = declaration.kind.span;
+        const local = custom.definitions.get(kind);
+        if (local || kind.startsWith("#")) {
+            if (!local) errors.push(diagnostic("E_CUSTOM_DEFINITION", span, `${kind} has no complete in-file definition.`));
+            else { usedCustom.add(kind); references.push({kind, url: kind, span}); errors.push(...checkCustomParameters(declaration, span, local, board.board)); }
+        } else {
+            let url: URL | undefined;
+            try { url = root ? new URL(kind.endsWith(".md") || /^https?:\/\//.test(kind) ? kind : `${kind}.md`, root) : undefined; } catch {}
+            if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind) && !/^https?:\/\/[^\s]+\.md$/.test(kind))
+                errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} is not a rule kind or a full Markdown rule URL.`));
+            else if (url && registry.urls.has(url.href)) {
+                const positive = declaration.negations.length % 2 === 0;
+                const house = new URL(url.href).pathname.split("/").at(-1);
+                if (positive && !declaration.condition && (house === "unique.md" || house === "sudoku.md" && standard(declaration))) hasHouse = true;
+                references.push({kind, url: url.href, span});
+                if (registry.parameters?.has(url.href)) {
+                    errors.push(...checkParameterAST(declaration, span, registry.parameters.get(url.href)!, board.board));
+                }
+            } else if (url && custom.definitions.has(url.href)) {
+                usedCustom.add(url.href); references.push({kind, url: url.href, span}); errors.push(...checkCustomParameters(declaration, span, custom.definitions.get(url.href)!, board.board));
+            } else if (url && ![...registry.urls].some(address => url!.href.startsWith(new URL(".", address).href))) {
+                deferred.push(url.href); references.push({kind, url: url.href, span});
+            } else errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
         }
     }
     const explicitBoard = object(metadata.board) ? metadata.board : {};
@@ -140,14 +154,14 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry): R
     for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
     if (registry.features?.length) {
         const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};
-        const written = /^[ \t]*(?:[\p{L}\p{N}_-]+:\s+)?sudoku\s+(\d+)x(\d+)\b/mu.exec(rest);
-        const rows = typeof declared.rows === "number" ? declared.rows : written ? Number(written[1]) : undefined;
-        const cols = typeof declared.cols === "number" ? declared.cols : written ? Number(written[2]) : undefined;
+        const written = parsedLines.map(({declaration})=>dimensions(declaration)).find(Boolean);
+        const rows = typeof declared.rows === "number" ? declared.rows : written?.rows;
+        const cols = typeof declared.cols === "number" ? declared.cols : written?.cols;
         errors.push(...checkFeatureBlocks(registry.features, { metadata, field, board: { rows, cols } }));
     }
     if (!found)
         errors.push(diagnostic("E_RULES_REQUIRED", location(page, offset, offset), "Add a fenced rules block containing the puzzle's rule references."));
-    return errors.length ? { diagnostics: errors } : { value: { references, deferred }, diagnostics: [] };
+    return errors.length ? { diagnostics: errors } : { value: { declarations, references, deferred }, diagnostics: [] };
 }
 export interface PublicLibrary {
     prelude: CheckedPrelude;
@@ -227,7 +241,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             rules.set(kind, checked.value);
             if (typeof metadata.url === "string") {
                 const raw = object(metadata.parameters) ? metadata.parameters : {};
-                registry.parameters!.set(metadata.url, { types: parsed.value.environment.types ?? {}, explicit: explicitBoardParameters[kind], parameters: Object.fromEntries(checked.value.parameters.map(p => [p.name, { type: p.type, required: object(raw[p.name]) && /^Required\b/.test(String((raw[p.name] as Record<string, unknown>).default)) }])) });
+                registry.parameters!.set(metadata.url, { types: parsed.value.environment.types ?? {}, explicit: explicitBoardParameters[kind], positional: Object.entries(raw).some(([,v]) => object(v) && object(v.syntax) && v.syntax.form === "dimensions") ? {name: Object.entries(raw).find(([,v]) => object(v) && object(v.syntax) && v.syntax.form === "dimensions")![0], form: "dimensions"} : undefined, parameters: Object.fromEntries(checked.value.parameters.map(p => [p.name, { type: p.type, required: object(raw[p.name]) && /^Required\b/.test(String((raw[p.name] as Record<string, unknown>).default)) }])) });
             }
             if (checked.value.line && typeof metadata.url === "string") registry.lines!.set(metadata.url, checked.value.line);
         }

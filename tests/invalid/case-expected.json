@@ -10,14 +10,14 @@
         "span": {
           "file": "tests/invalid/cases/custom-off-board.rules.md",
           "start": {
-            "offset": 166,
+            "offset": 193,
             "line": 13,
-            "column": 13
+            "column": 40
           },
           "end": {
-            "offset": 182,
+            "offset": 198,
             "line": 13,
-            "column": 29
+            "column": 45
           }
         }
       }
@@ -82,14 +82,14 @@
         "span": {
           "file": "tests/invalid/cases/duplicate-parameter.rules.md",
           "start": {
-            "offset": 154,
+            "offset": 171,
             "line": 13,
-            "column": 1
+            "column": 18
           },
           "end": {
-            "offset": 160,
+            "offset": 176,
             "line": 13,
-            "column": 7
+            "column": 23
           }
         }
       }
@@ -424,14 +424,14 @@
         "span": {
           "file": "tests/invalid/cases/nested-cell.rules.md",
           "start": {
-            "offset": 154,
+            "offset": 174,
             "line": 13,
-            "column": 1
+            "column": 21
           },
           "end": {
-            "offset": 164,
+            "offset": 181,
             "line": 13,
-            "column": 11
+            "column": 28
           }
         }
       }
@@ -444,18 +444,18 @@
       {
         "code": "E_CASE_PARAMETERS",
         "check": "E_CASE_PARAMETERS",
-        "message": "Use cells within the declared board.",
+        "message": "cells item 2 must be an in-board cell in r1c1 form.",
         "span": {
           "file": "tests/invalid/cases/off-board-pair.rules.md",
           "start": {
-            "offset": 154,
+            "offset": 164,
             "line": 13,
-            "column": 1
+            "column": 11
           },
           "end": {
-            "offset": 158,
+            "offset": 169,
             "line": 13,
-            "column": 5
+            "column": 16
           }
         }
       }
@@ -538,14 +538,14 @@
         "span": {
           "file": "tests/invalid/cases/unknown-parameter.rules.md",
           "start": {
-            "offset": 154,
+            "offset": 171,
             "line": 13,
-            "column": 1
+            "column": 18
           },
           "end": {
-            "offset": 160,
+            "offset": 176,
             "line": 13,
-            "column": 7
+            "column": 23
           }
         }
       }
@@ -610,14 +610,14 @@
         "span": {
           "file": "tests/invalid/cases/wrong-boolean.rules.md",
           "start": {
-            "offset": 154,
+            "offset": 177,
             "line": 13,
-            "column": 1
+            "column": 24
           },
           "end": {
-            "offset": 158,
+            "offset": 184,
             "line": 13,
-            "column": 5
+            "column": 31
           }
         }
       }
@@ -634,14 +634,14 @@
         "span": {
           "file": "tests/invalid/cases/wrong-number.rules.md",
           "start": {
-            "offset": 154,
+            "offset": 177,
             "line": 13,
-            "column": 1
+            "column": 24
           },
           "end": {
-            "offset": 162,
+            "offset": 180,
             "line": 13,
-            "column": 9
+            "column": 27
           }
         }
       }
