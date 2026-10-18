@@ -50,6 +50,35 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
       } else result = node;
       break;
     }
+    case "CountAtLeast": {
+      let count = input.count;
+      const weights = new Map<Cell, number>();
+      for (const cell of input.cells) weights.set(cell, (weights.get(cell) ?? 0) + 1);
+      if (count <= 0) result = { op: "All", children: [] };
+      else if (count > input.cells.length) result = { op: "Any", children: [] };
+      else {
+        // Matching occurrences of one cell move together. Reduce their common
+        // factor before capping weights; capping may expose another factor.
+        const gcd = (a: number, b: number): number => b ? gcd(b, a % b) : a;
+        for (;;) {
+          const divisor = [...weights.values()].reduce(gcd, 0);
+          count = Math.ceil(count / divisor);
+          let capped = false;
+          for (const [cell, weight] of weights) {
+            const reduced = weight / divisor;
+            weights.set(cell, Math.min(reduced, count));
+            capped ||= reduced > count;
+          }
+          if (!capped) break;
+        }
+        const cells = [...weights].sort(([a],[b]) => a < b ? -1 : a > b ? 1 : 0).flatMap(([cell, weight]) => Array<Cell>(weight).fill(cell));
+        result = weights.size === 1
+          ? canonicalise({ op: "Allowed", channel: input.channel, cell: cells[0], values: [input.digit] }, state, sources, positive)
+          : { ...input, cells, count };
+      }
+      rewrite(state, "boolean-canonical", input, result, sources);
+      break;
+    }
     case "Allowed": {
       const node: Formula = { op: "Allowed", channel: input.channel, cell: input.cell, values: [...new Set(input.values)].sort((a, b) => a - b) };
       result = node.values.length === state.board.alphabet.length || !node.values.length ? { op: node.values.length ? "All" : "Any", children: [] } : node;
@@ -61,7 +90,13 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
       const value = truth(child);
       if (child.op === "Not") { result = child.child; rewrite(state, "double-not", input, result, sources); }
       else if (value !== undefined) { result = { op: value ? "Any" : "All", children: [] }; rewrite(state, "boolean-canonical", input, result, sources); }
-      else result = { op: "Not", child };
+      else if (child.op === "Pair") {
+        const excluded = new Set(child.table.map(key));
+        const table: [number,number][] = [];
+        for (const a of state.board.alphabet) for (const b of state.board.alphabet) if (!excluded.has(key([a,b]))) table.push([a,b]);
+        result = canonicalise({ ...child, table }, state, sources, positive);
+        rewrite(state, "boolean-canonical", input, result, sources);
+      } else result = { op: "Not", child };
       break;
     }
     default: {

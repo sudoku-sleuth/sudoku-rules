@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
 import { readdir, readFile } from "node:fs/promises";
-import { compare, normalise, declarationRegistry, exact, readHeader, type BoardContext, type Cell, type Formula, type Normalisation } from "../../src";
+import { compare, normalise, visibleCells, declarationRegistry, exact, readHeader, type BoardContext, type Cell, type Formula, type Normalisation } from "../../src";
 import { canonicalise, type CanonicalState } from "../../src/semantics/canonical";
 
 const cells = (rows: number, cols = rows): Cell[] => Array.from({ length: rows * cols }, (_, i) => `r${Math.floor(i / cols) + 1}c${i % cols + 1}`);
@@ -19,6 +19,7 @@ function evaluate(f: Formula, answer: Record<string, number>): boolean {
     case "Not": return !evaluate(f.child, answer);
     case "Distinct": return new Set(f.cells.map(c => answer[c])).size === (f.collection === "set" ? new Set(f.cells).size : f.cells.length);
     case "Allowed": return f.values.includes(answer[f.cell]);
+    case "CountAtLeast": return f.cells.filter(c => answer[c] === f.digit).length >= f.count;
     case "Pair": return f.table.some(([a, b]) => a === answer[f.cells[0]] && b === answer[f.cells[1]]);
   }
 }
@@ -187,7 +188,7 @@ test("negation complements complete bundles, double negation cancels and negate 
 });
 
 test("every supported family is checked under not, if, unless and negate all", () => {
-  const examples = ['unique r1c1-r1c2', 'clone r1c1-r1c2', 'allowed-digits r1c1-r1c2 digits [1,3]', 'parity-cells r1c1-r1c2 parity "odd"'];
+  const examples = ['unique r1c1-r1c2', 'clone r1c1-r1c2', 'allowed-digits r1c1-r1c2 digits [1,3]', 'parity-cells r1c1-r1c2 parity "odd"', 'pair r1c1-r1c2 less', 'kropki r1c1-r1c2 white', 'quadruple r1c1-r1c2 digits [1]', 'outside r1c1-r1c2 digits [1,1]'];
   for (const rule of examples) {
     equivalent(`not not ${rule}`, rule);
     equivalent(`${rule} if connected`, rule);
@@ -201,7 +202,7 @@ test("every supported family is checked under not, if, unless and negate all", (
 });
 
 test("mixed coverage, foreign definitions and play setup never yield whole-file agreement", () => {
-  for (const result of [nf("unique r1c1-r1c2\ncage r1c1-r1c2 total 3"), nf("https://example.test/custom.md r1c1"), nf("unique r1c1", board(), "fog: {initiallyLit: []}\n"), nf("unique r1c1", board(), "definitions: {}\n")]) {
+  for (const result of [nf("unique r1c1-r1c2\ncage r1c1-r1c2 total 3"), nf("https://example.test/custom.md r1c1"), nf("unique r1c1", board(), "definitions: {}\n")]) {
     expect(result.issues).toEqual([]);
     expect(result.status).toBe("partial");
     const c = compare(result, result);
@@ -266,7 +267,7 @@ test("each enabled rewrite preserves meaning on all small assignments under its 
   expect(evaluate(ordered, {r1c1: 2, r1c3: 0})).toBe(false);
   const seen = new Set([...form.rewrites, ...pairState.rewrites].map(r => r.rule));
   // Internal double Not also occurs when unless wraps a connected condition.
-  const extra = complete(nf('unique r1c1-r1c2 unless distinct', context));
+  const extra = complete(nf('unique r1c1-r1c2-r1c3 unless distinct', context));
   extra.rewrites.forEach(r => seen.add(r.rule));
   for (const rule of ["distinct-pairs", "pair-order", "boolean-canonical", "double-not", "house-implied", "value-channel"]) expect(seen.has(rule)).toBe(true);
   for (const rewrite of [...form.rewrites, ...extra.rewrites, ...pairState.rewrites]) {
@@ -416,7 +417,7 @@ test("reference checks ignore prose and nested examples and read actual fence bo
 test("seeded random permutations and duplications of declaration lines preserve equivalence", () => {
   let seed = 0x5eed;
   const random = () => { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; return seed / 2 ** 32; };
-  const lines = ['a: unique r1c1-r1c2', 'b: not clone r2c1-r2c2', 'c: allowed-digits r3c1 digits [1,3]', 'd: unique r1c1-r1c2 if connected', 'e: parity-cells r4c1 parity "odd"'];
+  const lines = ['a: unique r1c1-r1c2', 'b: not clone r2c1-r2c2', 'c: allowed-digits r3c1 digits [1,3]', 'd: unique r1c1-r1c2 if connected', 'e: parity-cells r4c1 parity "odd"', 'f: pair r1c1-r2c1 less', 'g: kropki r3c1-r3c2 black', 'h: outside r1c1-r1c1-r1c2 digits [1,1]', 'i: quadruple r2c1-r2c2 digits [2]', 'j: negative relations [{"op":"sum","value":5}] except [["r1c1","r1c2"]] direction "horizontal"'];
   const original = nf(lines.join("\n")); complete(original);
   for (let trial = 0; trial < 100; trial++) {
     const shuffled = lines.flatMap(line => Array.from({ length: 1 + Math.floor(random() * 4) }, () => line));
@@ -431,6 +432,21 @@ test("merged readers agree on dotted and quoted instance labels and negation", (
     const source = `${label}: not not unique r1c1-r1c2`;
     expect(compare(nf(source), nf("unique r1c1-r1c2")).status).toBe("equivalent");
     expect(complete(nf(source)).coverage[0].source.instance).toBe(label);
+  }
+});
+
+test("shared declaration boundaries retain nested slice B parameters across fences and labels", () => {
+  const rule = 'negative relations [{"op": "sum", "value": 5}] except [["r1c1", "r1c2"]] within [["r1c1", "r1c2", "r2c1"]]';
+  const expected = nf(rule);
+  complete(expected);
+  for (const label of ["clue.1", '\"clue one\"']) {
+    for (const fence of ["```", "~~~~"]) {
+      const input = file(`${label}: not not ${rule}`);
+      const text = input.text.replaceAll("```", fence).replaceAll("\n", "\r\n");
+      const result = normalise({ ...input, text }, board());
+      expect(compare(expected, result).status).toBe("equivalent");
+      expect(complete(result).coverage[0].source.instance).toBe(label);
+    }
   }
 });
 
@@ -457,4 +473,273 @@ test("both readers reject unclosed rules and custom definition fences", async ()
   const result = normalise({ file: "custom.rules.md", text: custom.replace(/```\n$/, "") }, board(9));
   expect(result.status).toBe("invalid");
   expect(result.issues.some(issue => issue.code === "E_CUSTOM_DEFINITION")).toBe(true);
+});
+
+test("pair keywords have exact tables on zero, signed and nonstandard alphabets", () => {
+  const alphabet = [-6,-3,-1,0,1,2,3,5,6,9];
+  const context = board(4, alphabet);
+  const cases: [string, (a:number,b:number)=>boolean][] = [
+    ['difference 3', (a,b) => Math.abs(a-b) === 3],
+    ['at-least 4', (a,b) => Math.abs(a-b) >= 4],
+    ['ratio 2', (a,b) => 2*a === b || 2*b === a],
+    ['ratio 0', (a,b) => a === 0 || b === 0],
+    ['sum 5', (a,b) => a+b === 5],
+    ['less', (a,b) => a < b],
+    ['multiple', (a,b) => a === 0 && b === 0 || Math.min(a,b) !== 0 && Number.isInteger(Math.max(a,b)/Math.min(a,b))],
+    ['shift', (a,b) => a !== 5 && b !== 5 && ((Math.abs(a%2) === Math.abs(b%2)) !== ((a>5) === (b>5)))],
+  ];
+  for (const [keyword, predicate] of cases) {
+    const form = complete(nf(`pair r1c2-r1c1 ${keyword}`,context));
+    let yes = 0, no = 0;
+    for (const a of alphabet) for (const b of alphabet) {
+      expect(evaluate(form.solution,{r1c2:a,r1c1:b})).toBe(predicate(a,b));
+      if (predicate(a,b)) yes++; else no++;
+    }
+    expect(yes).toBeGreaterThan(0); expect(no).toBeGreaterThan(0);
+    if (keyword !== 'less') equivalent(`pair r1c2-r1c1 ${keyword}`,`pair r1c1-r1c2 ${keyword}`,context);
+    different(`pair r1c2-r1c1 ${keyword}`, 'clone r1c1-r1c2',context);
+  }
+  different('pair r1c1-r1c2 less','pair r1c2-r1c1 less',context);
+  for (const [colour,keyword] of [['white','difference 1'],['black','ratio 2']]) {
+    equivalent(`kropki r1c1-r1c2 ${colour}`,`pair r1c2-r1c1 ${keyword}`,context);
+    equivalent(`kropki r1c1-r1c2 colour "${colour}"`,`kropki r1c1-r1c2 ${colour}`,context);
+  }
+  different('kropki r1c1-r1c2 white','kropki r1c1-r1c2 black',context);
+  const black = complete(nf('kropki r1c1-r1c2 black',context));
+  expect(evaluate(black.solution,{r1c1:0,r1c2:0})).toBe(true);
+  expect(evaluate(black.solution,{r1c1:0,r1c2:1})).toBe(false);
+  // Rounded Number addition would incorrectly accept MAX + 1 = MAX for this relation.
+  const extreme = board(2,[Number.MAX_SAFE_INTEGER,1,0]);
+  const exactSum = complete(nf(`pair r1c1-r1c2 sum ${Number.MAX_SAFE_INTEGER}`,extreme));
+  expect(evaluate(exactSum.solution,{r1c1:Number.MAX_SAFE_INTEGER,r1c2:1})).toBe(false);
+  expect(evaluate(exactSum.solution,{r1c1:Number.MAX_SAFE_INTEGER,r1c2:0})).toBe(true);
+});
+
+test("effective pair values stay uncovered when modifiers or custom definitions are unresolved", () => {
+  for (const rule of ['pair r1c1-r1c2 sum 4','kropki r1c1-r1c2 black']) {
+    const result = nf(`value-modifier\n${rule}`);
+    expect(result.status).toBe('partial');
+    expect(result.normalForm!.coverage.find(c => c.kind === rule.split(' ')[0])!.status).toBe('unsupported');
+    expect(compare(result,result).status).toBe('unresolved');
+  }
+});
+
+test("multiplicity lowering sorts digit lists and preserves outside occurrences", () => {
+  equivalent('quadruple r1c2-r1c1-r1c1 digits [1,2,1]', 'quadruple r1c1-r1c2 digits [2,1,1]');
+  equivalent('outside r1c2-r1c1-r1c1 digits [2,1,1]', 'outside r1c1-r1c2-r1c1 digits [1,1,2]');
+  equivalent('quadruple r1c1-r1c2 digits [1,2]', 'outside r1c2-r1c1 digits [2,1]');
+  different('outside r1c1-r1c1 digits [1,1]', 'quadruple r1c1-r1c1 digits [1,1]');
+  different('quadruple r1c1-r1c2 digits [1]', 'quadruple r1c1-r1c2 digits [1,1]');
+  for (const kind of ['outside','quadruple']) {
+    const f = complete(nf(`${kind} r1c1-r1c2-r2c1 digits [1,1]`));
+    expect(evaluate(f.solution,{r1c1:1,r1c2:1,r2c1:2})).toBe(true);
+    expect(evaluate(f.solution,{r1c1:1,r1c2:2,r2c1:2})).toBe(false);
+    equivalent(`${kind} r1c1 digits []`,'unique r1c1');
+    equivalent(`not ${kind} r1c1 digits [1,1]`,'unique r1c1');
+  }
+});
+
+const negative = (op: string, value?: number, except: string[][] = [], suffix = '') => `negative relations ${JSON.stringify([{op,...(value === undefined ? {} : {value})}])} except ${JSON.stringify(except)} ${suffix}`.trim();
+test("negative relations have independent XV and Kropki exceptions and exact scopes", () => {
+  const context: BoardContext = {rows:2,cols:2,alphabet:[0,1,2,3,4,5,10],activeCells:cells(2)};
+  const scope = 'within [["r1c1","r1c2"]]';
+  for (const [op,value] of [['difference',1],['ratio',2],['sum',5],['sum',10]] as const) {
+    equivalent(negative(op,value,[],scope),`not pair r1c1-r1c2 ${op} ${value}`,context);
+    equivalent(negative(op,value,[['r1c2','r1c1']],scope),'unique r1c1',context);
+    different(negative(op,value,[],scope),negative(op,value,[['r1c1','r1c2']],scope),context);
+  }
+  const rules = `white: ${negative('difference',1,[['r1c1','r1c2']],scope)}\nblack: ${negative('ratio',2,[],scope)}`;
+  const form = complete(nf(rules,context));
+  expect(evaluate(form.solution,{r1c1:1,r1c2:2})).toBe(false); // white exception does not exempt black
+  expect(evaluate(form.solution,{r1c1:2,r1c2:3})).toBe(true);
+  const xv = `v: ${negative('sum',5,[['r1c1','r1c2']],scope)}\nx: ${negative('sum',10,[],scope)}`;
+  const xf = complete(nf(xv,context));
+  expect(evaluate(xf.solution,{r1c1:5,r1c2:5})).toBe(false);
+  expect(evaluate(xf.solution,{r1c1:2,r1c2:3})).toBe(true);
+  different(rules,`white: ${negative('difference',1,[['r1c1','r1c2']],scope)}\nblack: ${negative('ratio',2,[['r1c1','r1c2']],scope)}`,context);
+  different(negative('sum',5,[],'direction "horizontal"'),negative('sum',5,[],'direction "vertical"'),context);
+  equivalent(negative('sum',5,[],'within []'),'unique r1c1',context);
+  different(negative('sum',5),negative('sum',5,[],'within []'),context);
+  equivalent(negative('sum',5,[],'direction "horizontal"'), 'a: not pair r1c1-r1c2 sum 5\nb: not pair r2c1-r2c2 sum 5',context);
+  equivalent(negative('sum',5,[],'direction "vertical"'), 'a: not pair r1c1-r2c1 sum 5\nb: not pair r1c2-r2c2 sum 5',context);
+  equivalent(`not not ${negative('sum',5)}`,negative('sum',5),context);
+  expect(nf(`${negative('sum',5)} if distinct`,context).status).toBe('invalid');
+  const wide: BoardContext = {rows:1,cols:10,alphabet:[0,1],activeCells:['r1c9','r1c10']};
+  equivalent(negative('less'), 'not pair r1c9-r1c10 less',wide);
+});
+
+test("new parameter types are checked before negation and false conditions", () => {
+  for (const rule of [
+    'pair r1c1-r1c2 __proto__ {}','pair r1c1-r1c2 ratio "2"','pair r1c1-r1c2 sum null','pair r1c1-r1c2 difference 1.5',
+    'pair r1c1-r1c2 relation {"op":"less","value":1}', 'pair r1c1 less',
+    'kropki r1c1-r1c2 colour ["white"]', 'kropki r1c1-r1c2 colour null',
+    'quadruple r1c1 digits [true]','outside r1c1 digits [5]',
+    'negative relations [{"op":"sum"}] except []','negative relations [{"op":"less","extra":1}] except []',
+    'negative relations [] except null','negative relations [] except [["r1c1"]]',
+    'negative relations [] except [] within null', 'negative relations [] except [] direction ["vertical"]',
+    'negative relations [] except [["r1c1","r9c9"]]',
+  ]) expect(nf(`not ${rule}`).status).toBe('invalid');
+  expect(nf('not pair r1c1-r3c3 ratio null if connected').status).toBe('invalid');
+});
+
+test("fog start cells, links and link members are sets with retained provenance", () => {
+  const a = nf('unique r1c1',board(),'fog: {initiallyLit: [r1c2,r1c1,r1c1], links: [{trigger: [r2c1,r1c1,r2c1], lights: [r2c2,r1c2,r2c2]}, {trigger: [r1c1,r2c1], lights: [r1c2,r2c2]}]}\n');
+  const b = nf('unique r1c1',board(),'fog: {links: [{lights: [r1c2,r2c2], trigger: [r1c1,r2c1]}], initiallyLit: [r1c1,r1c2]}\n');
+  complete(a); complete(b);
+  expect(compare(a,b).status).toBe('equivalent');
+  expect(a.normalForm!.sources.find(s => s.primitive.startsWith('play:'))!.sources[0].kind).toBe('header:fog');
+  expect(a.normalForm!.rewrites.find(r => r.rule === 'fog-sets')!.sources[0].kind).toBe('header:fog');
+  for (const entry of [{}, {r1c1:1}, {r1c1:1,r2c1:2}, {r1c1:1,r2c1:3}]) expect(visibleCells(a.normalForm!,entry,{r1c1:1,r2c1:2})).toEqual(visibleCells(b.normalForm!,entry,{r1c1:1,r2c1:2}));
+  for (const header of ['fog: {initiallyLit: [r1c1]}\n','fog: {initiallyLit: [r1c1], links: []}\n','fog: {initiallyLit: [r1c2], links: []}\n']) {
+    const changed = nf('unique r1c1',board(),header);
+    expect(compare(a,changed).covered).toBe('structural-difference');
+    expect(compare(a,changed).differences.some(d => d.primitive === 'Play')).toBe(true);
+  }
+  const absent = nf('unique r1c1',board(),'fog: {}\n'), empty = nf('unique r1c1',board(),'fog: {links: []}\n');
+  expect(compare(absent,empty).covered).toBe('structural-difference');
+  expect(compare(absent,nf('unique r1c1')).covered).toBe('structural-difference');
+  const fromClear = compare(nf('unique r1c1'),absent);
+  expect(fromClear.differences.find(d => d.side === 'right' && d.primitive === 'Play')!.sources[0].kind).toBe('header:fog');
+  expect(compare(nf('thermo r1c1-r1c2',board(),'fog: {}\n'),nf('thermo r1c1-r1c2',board(),'fog: {}\n')).status).toBe('unresolved');
+  expect(compare(nf('unique r1c1',board(),'fog: {initiallyLit: [0,1]}\n'),nf('unique r1c1',board(),'fog: {initiallyLit: [r1c1,r1c2]}\n')).status).toBe('equivalent');
+});
+
+test("fog reveals use current correct entries, retract on erase and do not chain from light", () => {
+  const f = complete(nf('unique r1c1',board(),'fog: {initiallyLit: [r1c1], links: [{trigger: [r1c2,r2c1], lights: [r2c2]}, {trigger: [r2c2], lights: [r4c4]}]}\n'));
+  const answer = {r1c2:2,r2c1:3,r2c2:4} as const;
+  expect(visibleCells(f,{r1c2:2,r2c1:3},answer)).toEqual(['r1c1','r2c2']);
+  expect(visibleCells(f,{r1c2:2,r2c1:3,r2c2:4},answer)).toEqual(['r1c1','r2c2','r4c4']);
+  expect(visibleCells(f,{r1c2:2},answer)).toEqual(['r1c1']);
+  expect(visibleCells(f,{r1c2:2,r2c1:4},answer)).toEqual(['r1c1']);
+  expect(visibleCells(f,{r1c2:2,r2c1:3})).toEqual(['r1c1','r2c2']);
+  const context = {...board(),givens:[{cell:'r1c1' as Cell,digit:1}]};
+  const near = complete(nf('unique r1c1',context,'fog: {}\n'));
+  expect(visibleCells(near,{}, {r1c1:1})).toEqual([]);
+  expect(visibleCells(near,{r1c1:1}, {r1c1:1})).toEqual(['r1c1']);
+  expect(visibleCells(near,{r1c2:2}, {r1c2:2})).toEqual(['r1c1','r1c2','r1c3','r2c1','r2c2','r2c3']);
+  expect(visibleCells(near,{}, {r1c2:2})).toEqual([]);
+  expect(visibleCells(near,{r1c2:2})).toEqual(['r1c1','r1c2','r1c3','r2c1','r2c2','r2c3']);
+  const empty = complete(nf('unique r1c1',context,'fog: {links: []}\n'));
+  expect(visibleCells(empty,{r1c2:2},{r1c2:2})).toEqual([]);
+});
+
+test("fog rejects inactive lights, empty triggers and malformed setup", () => {
+  for (const fog of ['null','[]','{links: null}','{initiallyLit: null}','{other: []}',
+    '{links: [{trigger: [], lights: []}]}','{links: [{trigger: [bad], lights: []}]}',
+    '{links: [{trigger: [r1c1], lights: [r9c9]}]}','{initiallyLit: [99]}',
+    '{links: [{trigger: [r1c1], lights: [], other: true}]}']) expect(nf('unique r1c1',board(),`fog: ${fog}\n`).status).toBe('invalid');
+  expect(nf('unique r1c1',{...board(),activeCells:cells(4).filter(c => c !== 'r1c2')},'fog: {links: [{trigger: [r1c1], lights: [r1c2]}]}\n').status).toBe('invalid');
+});
+
+test("slice B canonical rewrites preserve all small assignments and every source", () => {
+  const context: BoardContext = {rows:1,cols:3,alphabet:[0,1,2],activeCells:['r1c1','r1c2','r1c3']};
+  const rules = ['a: pair r1c2-r1c1 difference 1','n: not pair r1c2-r1c1 difference 1','b: kropki r1c3-r1c2 black','c: outside r1c3-r1c1-r1c3 digits [1,1]', 'd: quadruple r1c3-r1c2-r1c2 digits [0,0,0]', 'e: negative relations [{"op":"sum","value":2}] except [["r1c2","r1c3"]]'];
+  for (const rule of rules) {
+    const form = complete(nf(rule,context));
+    const state: CanonicalState = {board:form.board,houses:new Map(),links:new Map(),rewrites:[]};
+    expect(canonicalise(form.solution,state,[])).toEqual(form.solution);
+    for (const rewrite of form.rewrites) {
+      expect(rewrite.sources.length).toBeGreaterThan(0);
+      const before = JSON.parse(rewrite.before) as Formula, after = JSON.parse(rewrite.after) as Formula;
+      for (const a of context.alphabet) for (const b of context.alphabet) for (const c of context.alphabet) expect(evaluate(before,{r1c1:a,r1c2:b,r1c3:c})).toBe(evaluate(after,{r1c1:a,r1c2:b,r1c3:c}));
+    }
+    const duplicate = complete(nf(rule+'\n'+rule.replace(/^\w+:/,'copy:'),context));
+    expect(compare({status:'complete',issues:[],normalForm:form},{status:'complete',issues:[],normalForm:duplicate}).status).toBe('equivalent');
+    expect(duplicate.sources.find(s => s.primitive === JSON.stringify(duplicate.solution))!.sources).toHaveLength(2);
+  }
+});
+
+test("negative relation sets split and deduplicate without merging their negation scope", () => {
+  const context: BoardContext = {rows:1,cols:3,alphabet:[0,1,2,3],activeCells:['r1c1','r1c2','r1c3']};
+  const combined = 'negative relations [{"op":"difference","value":1},{"op":"ratio","value":2},{"op":"difference","value":1}] except []';
+  equivalent(combined,`a: ${negative('ratio',2)}\nb: ${negative('difference',1)}`,context);
+  different(`not ${combined}`,`a: not ${negative('ratio',2)}\nb: not ${negative('difference',1)}`,context);
+  const neg = complete(nf(`not ${combined}`,context));
+  expect(evaluate(neg.solution,{r1c1:1,r1c2:2,r1c3:3})).toBe(true);
+  expect(evaluate(neg.solution,{r1c1:3,r1c2:0,r1c3:3})).toBe(false);
+  const p = complete(nf(negative('difference',1),context));
+  expect(evaluate(p.solution,{r1c1:3,r1c2:0,r1c3:3})).toBe(true);
+  expect(evaluate(p.solution,{r1c1:3,r1c2:2,r1c3:3})).toBe(false);
+});
+
+test("fog link order is irrelevant while trigger and light support remain distinct", () => {
+  const header = (links: unknown[]) => `fog: ${JSON.stringify({initiallyLit:[],links})}\n`;
+  const links = [{trigger:['r1c1'],lights:['r2c1']},{trigger:['r1c2','r1c3'],lights:['r2c2','r2c3']}];
+  const a = nf('unique r1c1',board(),header(links));
+  for (let trial=0; trial<10; trial++) {
+    const permuted = [...links].reverse().map(l => ({trigger:[...l.trigger].reverse(), lights:[...l.lights].reverse()}));
+    expect(compare(a,nf('unique r1c1',board(),header([...permuted,...links]))).status).toBe('equivalent');
+  }
+  for (const changed of [
+    [{trigger:['r1c2'],lights:['r2c1']},links[1]],
+    [{trigger:['r1c1'],lights:['r2c2']},links[1]],
+    [links[0]],
+  ]) expect(compare(a,nf('unique r1c1',board(),header(changed))).covered).toBe('structural-difference');
+  const form = complete(a);
+  const answer = {r1c1:1,r1c2:2,r1c3:3};
+  expect(visibleCells(form,{r1c1:1},answer)).toEqual(['r2c1']);
+  expect(visibleCells(form,{r1c1:2},answer)).toEqual([]);
+});
+
+
+test("fog correctness distinguishes absent answers from uncovered answer cells and respects givens", () => {
+  const context = {...board(2), givens: [{cell: 'r1c1' as Cell, digit: 1}]};
+  const form = complete(nf('unique r1c1', context, 'fog: {}\n'));
+  expect(visibleCells(form, {r1c2: 2})).toEqual(cells(2));
+  expect(visibleCells(form, {r1c1: 1})).toEqual(['r1c1']);
+  expect(visibleCells(form, {r1c1: 2})).toEqual([]);
+  expect(visibleCells(form, {r1c1: 2}, {r1c1: 2})).toEqual([]);
+  expect(visibleCells(form, {r1c2: 2}, {})).toEqual([]);
+  expect(visibleCells(form, {r1c2: 2}, {r1c1: 1})).toEqual([]);
+  expect(visibleCells(form, {r1c2: 2}, {r1c2: 1})).toEqual([]);
+  expect(visibleCells(form, {r1c2: 2}, {r1c2: 2})).toEqual(cells(2));
+});
+
+test("off-board and inactive fog triggers are valid and never correct", () => {
+  const context = {...board(2), activeCells: cells(2).filter(c => c !== 'r2c2')};
+  const empty = nf('unique r1c1', context, 'fog: {links: []}\n');
+  for (const trigger of ['r3c1', 'r2c2', 'r0c1', 'r-1c1', 4, -1]) {
+    const result = nf('unique r1c1', context, `fog: ${JSON.stringify({links: [{trigger: [trigger], lights: ['r1c1']}]})}\n`);
+    const form = complete(result);
+    expect(compare(result, empty).status).toBe('equivalent');
+    expect(visibleCells(form, {r3c1: 1, r2c2: 1, r0c1: 1, 'r-1c1': 1}, {r3c1: 1, r2c2: 1, r0c1: 1, 'r-1c1': 1})).toEqual([]);
+    expect(visibleCells(form, {r3c1: 1, r2c2: 1, r0c1: 1, 'r-1c1': 1})).toEqual([]);
+  }
+});
+
+test("multiplicity weights reduce canonically to primitive counts and singleton membership", () => {
+  equivalent('outside r1c1-r1c1 digits [1,1]', 'outside r1c1 digits [1]');
+  equivalent('outside r1c1 digits [1]', 'allowed-digits r1c1 digits [1]');
+  equivalent('outside r1c1-r1c1-r1c2-r1c2 digits [1,1,1]', 'outside r1c1-r1c2 digits [1,1]');
+  equivalent('outside r1c1-r1c1-r1c2 digits [1]', 'outside r1c1-r1c2 digits [1]');
+  equivalent('outside r1c1-r1c1-r1c2-r1c2-r1c2-r1c2 digits [1,1,1]', 'outside r1c1-r1c2-r1c2 digits [1,1]');
+  const base = complete(nf('unique r1c1', board(2)));
+  for (let a = 1; a <= 4; a++) for (let b = 0; b <= 4; b++) for (let count = 0; count <= a+b+1; count++) {
+    const raw: Formula = {op: 'CountAtLeast', channel: 'D', cells: [...Array<Cell>(a).fill('r1c1'), ...Array<Cell>(b).fill('r1c2')], digit: 1, count};
+    const state: CanonicalState = {board: base.board, houses: new Map(), links: new Map(), rewrites: []};
+    const reduced = canonicalise(raw, state, []);
+    expect(canonicalise(reduced, state, [])).toEqual(reduced);
+    for (const x of [1,2]) for (const y of [1,2]) expect(evaluate(reduced, {r1c1:x,r1c2:y})).toBe(evaluate(raw, {r1c1:x,r1c2:y}));
+  }
+});
+
+test("splitting fog links with identical trigger sets preserves canonical play and visibility", () => {
+  const header = (links: unknown[]) => `fog: ${JSON.stringify({links})}\n`;
+  const joined = nf('unique r1c1', board(2), header([{trigger:['r1c2','r1c1'], lights:['r2c1','r2c2']}]));
+  const split = nf('unique r1c1', board(2), header([{trigger:['r1c1','r1c2','r1c1'], lights:['r2c1']}, {trigger:['r1c2','r1c1'], lights:['r2c2','r2c1']}]));
+  expect(compare(joined, split).status).toBe('equivalent');
+  const a = complete(joined), b = complete(split);
+  for (const answer of [undefined, {}, {r1c1:1}, {r1c1:1,r1c2:2}])
+    for (const x of [undefined,1,2]) for (const y of [undefined,1,2]) {
+      const entries = {r1c1:x,r1c2:y};
+      expect(visibleCells(a,entries,answer)).toEqual(visibleCells(b,entries,answer));
+    }
+});
+
+test("duplicate negative relations are removed before expansion is charged", () => {
+  const context: BoardContext = {rows:1, cols:64, alphabet:Array.from({length:64},(_,i)=>i), activeCells:cells(1,64)};
+  const single = nf(negative('difference',1), context);
+  const repeated = nf('negative relations [{"op":"difference","value":1},{"value":1,"op":"difference"},{"op":"difference","value":1},{"op":"difference","value":1}] except []', context);
+  complete(single); complete(repeated);
+  expect(compare(single,repeated).status).toBe('equivalent');
 });

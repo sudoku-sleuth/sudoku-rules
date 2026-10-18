@@ -17,6 +17,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 - Portable semantic normalisation and comparison: explicit board context, finite logical primitives, located differences, rewrite provenance and exhaustive declaration coverage. Slice A covers houses, unique, clone, diagonals, chess and scoped moves, allowed digits, parity cells and untotalled cages. Unsupported declarations retain specific coverage reasons. The existing exact-rational `compare` signature is preserved.
 
+- Semantic coverage for pair keywords, Kropki, quadruple and outside multiplicities, scoped negative relations with explicit exceptions, and fog play state. Exact pair tables use the supplied alphabet. Fog comparison preserves missing versus empty links; `visibleCells` computes current reveals from entries and answer availability.
+
 ### Changed
 
 - Setter-skill guidance now requires explicit normal Sudoku houses on non-standard boards, reads full sentences and domain context before questions, limits ambiguous grouping to the disputed strokes, and preserves clear clauses beside malformed relations. Worked examples cover six-symbol houses, stated renban length and independent slow-thermo/clone clauses.
@@ -25,6 +27,11 @@ Each release lists what changed. A change that breaks a published export, front-
 
 - The setter skill declares fully understood custom rules with in-file definitions when no external URL was supplied, and lists the parameters to state explicitly on non-standard boards.
 - Embedded external custom definitions are resolved locally and no longer counted as deferred URLs.
+
+### Fixed
+
+- Fog correctness follows the published play predicates with and without an answer, including given values and partial answer coverage. Off-board trigger spots are accepted and never fire; links with identical trigger sets share the union of their lights.
+- Repeated-cell multiplicities reduce to canonical weights and singleton membership. Duplicate negative relations are removed before finite expansion is charged.
 
 ### Breaking
 

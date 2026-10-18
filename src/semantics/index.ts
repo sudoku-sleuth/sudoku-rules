@@ -1,3 +1,5 @@
+import { fogPlay } from "./fog.js";
+export { visibleCells } from "./fog.js";
 import { location } from "../language/diagnostics.js";
 import { boardHouseSources, canonicalBoard, groups, key, standardHouses } from "./board.js";
 import { addSources, canonicalise, sourceLinks, type CanonicalState } from "./canonical.js";
@@ -5,7 +7,7 @@ import { all, condition, lower, validateCells, UnsupportedSemantics } from "./lo
 import { checkBoardHeaders } from "./headers.js";
 import { readSemanticFile } from "./reader.js";
 import { declarationRegistry, type DeclarationCapability } from "./registry.js";
-import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, SemanticDifference, SemanticFile, SemanticSource } from "./types.js";
+import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, NormalForm, SemanticDifference, SemanticFile, SemanticSource } from "./types.js";
 export * from "./types.js";
 export { declarationRegistry } from "./registry.js";
 
@@ -30,7 +32,20 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
     if (Array.isArray(houses)) for (const house of groups(houses)) supplied.set(key(house), [...(supplied.get(key(house)) ?? []), source]);
   }
   board.houses.forEach(cells => state.houses.set(key(cells), { cells, sources: supplied.get(key(cells)) ?? [] }));
+  let coverageFog: Coverage | undefined;
+  let play: NormalForm["play"] = "all-visible";
+  const fog = read.extras.find(e => e.kind === "header:fog");
+  if (fog) {
+    try {
+      play = fogPlay(read.metadata.fog, board);
+      addSources(state, `play:${key(play)}`, [fog.source]);
+      state.rewrites.push({ rule: "fog-sets", version: 1, before: key(read.metadata.fog), after: key(play), sources: [fog.source] });
+      coverageFog = { kind: fog.kind, source: fog.source, status: "lowered" };
+      read.extras = read.extras.filter(e => e !== fog);
+    } catch (error) { issues.push({ code: "E_SEMANTIC_FOG", message: (error as Error).message, span: fog.source.span }); }
+  }
   const coverage: Coverage[] = read.extras.map(e => ({ kind: e.kind, source: e.source, status: "unsupported", reason: e.reason }));
+  if (coverageFog) coverage.push(coverageFog);
   const bundles: { formula: Formula; sources: SemanticSource[] }[] = [];
   const capabilities: Record<string, DeclarationCapability> = declarationRegistry;
   const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || !Object.hasOwn(capabilities, i.kind)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
@@ -57,11 +72,11 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
     }
     try {
       let formula = lower(instance, board);
-      const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : kind === "parity-cells" && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
+      const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : ["parity-cells", "pair", "kropki"].includes(kind) && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
       if (reason) { cover("unsupported", reason); continue; }
-      if (kind === "parity-cells") {
+      if (["parity-cells", "pair", "kropki"].includes(kind)) {
         const before = key(formula);
-        const convert = (f: Formula): Formula => f.op === "Allowed" ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f;
+        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f;
         formula = convert(formula);
         state.rewrites.push({ rule: "value-channel", version: 1, before, after: key(formula), sources });
       }
@@ -94,7 +109,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   for (const house of state.houses.values()) addSources(state, `house:${key(house.cells)}`, house.sources);
   const children = bundles.map(({ formula, sources }) => canonicalise(formula, state, sources));
   const solution = canonicalise(all(children), state, []);
-  const play = read.extras.some(e => e.kind !== "header:board" && e.kind !== "header:givens") ? "unresolved" : "all-visible";
+  if (read.extras.some(e => e.kind !== "header:board" && e.kind !== "header:givens")) play = "unresolved";
   return {
     status: coverage.some(c => c.status === "unsupported") ? "partial" : "complete", issues: [],
     normalForm: { version: 1, board, solution, play, coverage, sources: sourceLinks(state), rewrites: state.rewrites },
@@ -102,7 +117,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
 }
 function support(term: Formula): Cell[] {
   switch (term.op) {
-    case "Pair": case "Distinct": return term.cells;
+    case "Pair": case "Distinct": case "CountAtLeast": return term.cells;
     case "Allowed": return [term.cell];
     case "Not": return support(term.child);
     default: return [...new Set(term.children.flatMap(support))].sort();
@@ -136,6 +151,9 @@ export function compare(left: Normalisation, right: Normalisation): Comparison {
       differences.push({ primitive: term.op, cells, side, term, sources: form.sources.find(s => s.primitive === key(term))?.sources ?? [], message: `${term.op} on ${cells.join("–") || "the empty support"} exists only on the ${side}; structural difference.` });
     }
   }
-  if (a.play !== b.play) differences.push({ primitive: "Play", cells: [], side: "left", term: a.play, sources: [], message: "Visibility coverage differs." });
-  return { status: !differences.length && !uncovered.length && a.play === "all-visible" && b.play === "all-visible" ? "equivalent" : "unresolved", covered: differences.length ? "structural-difference" : "equal", differences, uncovered, issues };
+  if (key(a.play) !== key(b.play)) for (const [form, side] of [[a, "left"], [b, "right"]] as const) {
+    const cells = typeof form.play === "object" ? [...new Set([...form.play.initiallyLit, ...(form.play.links ?? []).flatMap(l => [...l.trigger, ...l.lights])])].sort() : [];
+    differences.push({ primitive: "Play", cells, side, term: form.play, sources: form.sources.filter(s => s.primitive.startsWith("play:")).flatMap(s => s.sources), message: `Visibility setup on the ${side} differs.` });
+  }
+  return { status: !differences.length && !uncovered.length && a.play !== "unresolved" && b.play !== "unresolved" ? "equivalent" : "unresolved", covered: differences.length ? "structural-difference" : "equal", differences, uncovered, issues };
 }

@@ -1,3 +1,4 @@
+import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
 import type { Instance } from "./reader.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -16,6 +17,8 @@ function digitList(raw: unknown, board: CanonicalBoard): number[] {
   return raw;
 }
 const fields: Record<string, string[]> = {
+  pair: ["relation"], kropki: ["colour"], quadruple: ["digits"], outside: ["digits"],
+  negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
@@ -30,7 +33,7 @@ export function lower(instance: Instance, board: CanonicalBoard): Formula {
   if (!allowed) throw Error(`No lowering for ${kind}.`);
   for (const name of Object.keys(p)) if (!allowed.includes(name)) throw Error(`${kind} has no parameter ${name}.`);
   validateCells(instance, board);
-  const needsCells = ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer"].includes(kind);
+  const needsCells = ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "kropki", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length) throw Error(`${kind} needs a nonempty cell list.`);
   if (!needsCells && instance.cells) throw Error(`${kind} does not take a cell list.`);
   const cells = sortedCells(instance.cells ?? []);
@@ -39,6 +42,40 @@ export function lower(instance: Instance, board: CanonicalBoard): Formula {
   };
   if (instance.condition && !cells.length) throw Error("A condition needs a nonempty primary cell list.");
   switch (kind) {
+    case "pair": case "kropki": {
+      if (instance.cells!.length !== 2) throw Error(`${kind} requires exactly two cell positions.`);
+      if (kind === "kropki" && (typeof p.colour !== "string" || !["white", "black"].includes(p.colour))) throw Error("Choose white or black.");
+      const r = relation(kind === "pair" ? p.relation : { op: p.colour === "white" ? "difference" : "ratio", value: p.colour === "white" ? 1 : 2 });
+      return { ...pair(board, instance.cells![0], instance.cells![1], (a,b) => holds(r,a,b)), channel: "V" } as Formula;
+    }
+    case "quadruple": case "outside": {
+      const digits = digitList(p.digits, board);
+      const positions = kind === "quadruple" ? cells : [...instance.cells!].sort();
+      return all([...new Set(digits)].map(digit => ({ op: "CountAtLeast", channel: "D", cells: positions, digit, count: digits.filter(d => d === digit).length })));
+    }
+    case "negative": {
+      if (!Array.isArray(p.relations)) throw Error("Supply a list of relations.");
+      const relations = [...new Map(p.relations.map(raw => { const r = relation(raw); return [key([r.op, r.value]), r]; })).values()];
+      const cellGroups = (raw: unknown): Cell[][] => {
+        if (!Array.isArray(raw) || raw.some(g => !Array.isArray(g) || g.some(c => !board.activeCells.includes(c)))) throw Error("Supply lists of active board cells.");
+        return raw;
+      };
+      const except = cellGroups(p.except);
+      if (except.some(g => g.length !== 2)) throw Error("Every exception needs exactly two cells.");
+      const within = p.within === undefined ? undefined : cellGroups(p.within);
+      if (p.direction !== undefined && (typeof p.direction !== "string" || !["horizontal", "vertical"].includes(p.direction))) throw Error("Choose horizontal or vertical.");
+      const nodes: Formula[] = [];
+      const ordered = [...board.activeCells].sort((a,b) => { const [ar,ac] = coordinates(a), [br,bc] = coordinates(b); return ar-br || ac-bc; });
+      ordered.forEach((a,i) => ordered.slice(i+1).forEach(b => {
+        const [ar,ac] = coordinates(a), [br,bc] = coordinates(b);
+        if (Math.abs(ar-br)+Math.abs(ac-bc) !== 1 || p.direction === "horizontal" && ar !== br || p.direction === "vertical" && ac !== bc || within && !within.some(g => g.includes(a) && g.includes(b)) || except.some(g => g.includes(a) && g.includes(b))) return;
+        for (const r of relations) {
+          if ((nodes.length+1)*board.alphabet.length**2 > 1_000_000) throw new UnsupportedSemantics("Finite negative expansion exceeds 1,000,000 value combinations.");
+          nodes.push(pair(board,a,b,(x,y) => !holds(r,x,y)));
+        }
+      }));
+      return all(nodes);
+    }
     case "sudoku": {
       if (p.size !== "9x9") throw Error("The sudoku definition requires 9x9; supply nonstandard board houses through BoardContext and unique declarations.");
       if (board.rows !== 9 || board.cols !== 9 || board.activeCells.length !== 81 || board.alphabet.join() !== "1,2,3,4,5,6,7,8,9") throw Error("sudoku 9x9 requires a complete 9x9 board with ordered alphabet 1–9.");
@@ -93,7 +130,7 @@ export function condition(instance: Instance, base: Formula, board: CanonicalBoa
   if (!cond) return base;
   const cells = instance.cells!;
   let predicate: Formula;
-  if (cond.predicate === "distinct") predicate = instance.kind === "allowed-digits" ? { op: "Distinct", channel: "D", collection: "list", cells } : distinct(cells);
+  if (cond.predicate === "distinct") predicate = ["allowed-digits", "outside", "pair", "kropki"].includes(instance.kind) ? { op: "Distinct", channel: "D", collection: "list", cells } : distinct(cells);
   else if (cond.predicate === "connected") {
     const reached = new Set<Cell>([cells[0]]);
     let changed = true;

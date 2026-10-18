@@ -11,7 +11,26 @@ export interface Instance {
 }
 export interface ReadFile { instances: Instance[]; metadata: Record<string, unknown>; issues: SemanticIssue[]; extras: { kind: string; source: SemanticSource; reason: string }[] }
 const root = "https://rules.sudoku-sleuth.com/";
-const tokenPattern = /"(?:[^"\\]|\\.)*"|\[(?:[^\[\]"]|"(?:[^"\\]|\\.)*")*\]|\{[^{}]*\}|[^\s]+/g;
+// Balanced JSON values retain nested relation and cell lists as one token.
+function tokensOf(text: string): string[] {
+  const tokens: string[] = [];
+  let start = 0, depth = 0, quoted = false, escaped = false;
+  for (let i = 0; i <= text.length; i++) {
+    const c = text[i];
+    if (!quoted && depth === 0 && (c === undefined || /\s/.test(c))) {
+      if (i > start) tokens.push(text.slice(start, i));
+      start = i + 1;
+    } else if (quoted) {
+      if (escaped) escaped = false;
+      else if (c === "\\") escaped = true;
+      else if (c === '"') quoted = false;
+    } else if (c === '"') quoted = true;
+    else if (c === "[" || c === "{") depth++;
+    else if (c === "]" || c === "}") depth--;
+  }
+  if (quoted || depth !== 0) throw Error("This line contains an incomplete JSON value.");
+  return tokens;
+}
 
 /** Reads the published instance grammar; decoding of unsupported families remains deferred. */
 export function readSemanticFile(file: SemanticFile): ReadFile {
@@ -44,8 +63,8 @@ export function readSemanticFile(file: SemanticFile): ReadFile {
       if (declaration) {
         const span = location(file, at + raw.indexOf(text), at + raw.indexOf(text) + text.length);
         const problem = (message: string) => result.issues.push({ code: "E_SEMANTIC_LINE", message, span });
-        const tokens = [...declaration.tail.matchAll(tokenPattern)].map(m => m[0]);
-        if (tokens.join(" ").replace(/\s/g, "") !== declaration.tail.replace(/\s/g, "")) problem("This line contains an incomplete JSON value.");
+        let tokens: string[];
+        try { tokens = tokensOf(declaration.tail); } catch { problem("This line contains an incomplete JSON value."); at += raw.length; continue; }
         const instance = declaration.instance;
         if (instance) { if (ids.has(instance) && ids.get(instance) !== text) problem(`The instance ID ${instance} names different declarations.`); ids.set(instance, text); }
         const negated = (metadata.negate === "all") !== declaration.negated;
@@ -59,7 +78,7 @@ export function readSemanticFile(file: SemanticFile): ReadFile {
           kind = new URL(`${reference}.md`, String(metadata.library)).href;
         }
         const source: SemanticSource = { span, kind, ...(instance ? { instance } : {}) };
-        const parsed: Instance = { kind, negated, parameters: {}, source };
+        const parsed: Instance = { kind, negated, parameters: Object.create(null) as Record<string, unknown>, source };
         if (tokens.length >= 2 && ["if", "unless"].includes(tokens[tokens.length - 2])) {
           const predicate = tokens.pop()!; const unless = tokens.pop() === "unless";
           if (!["uniform", "distinct", "connected"].includes(predicate)) problem(`Unknown condition ${predicate}.`);
@@ -67,6 +86,15 @@ export function readSemanticFile(file: SemanticFile): ReadFile {
         }
         if (tokens[0] && /^r\d+c\d+(?:[-,]r\d+c\d+)*$/.test(tokens[0])) parsed.cells = tokens.shift()!.split(/[-,]/) as Cell[];
         if (kind === "sudoku") parsed.parameters.size = tokens.shift();
+        if (kind === "pair" && ["difference", "at-least", "ratio", "sum", "less", "multiple", "shift"].includes(tokens[0])) {
+          const op = tokens.shift()!;
+          const relation: Record<string, unknown> = { op };
+          if (["difference", "at-least", "ratio", "sum"].includes(op)) {
+            try { relation.value = JSON.parse(tokens.shift() ?? ""); } catch { problem("Supply a whole-number relation value."); }
+          }
+          parsed.parameters.relation = relation;
+        }
+        if (kind === "kropki" && ["white", "black"].includes(tokens[0])) parsed.parameters.colour = tokens.shift();
         const unsupported = !Object.hasOwn(declarationRegistry, kind) || declarationRegistry[kind as keyof typeof declarationRegistry].status === "unsupported";
         while (tokens.length && !unsupported) {
           const name = tokens.shift()!, value = tokens.shift();
