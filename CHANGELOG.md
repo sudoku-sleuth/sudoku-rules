@@ -21,6 +21,10 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Changed
 
+- Open Rules skill convention F3 treats rules or clues declared wrong, false or never correct as failures of each named instance. Guidance uses existing negation forms and includes a colour-based line example without imposing an opposite rule or merely negating a combined statement.
+
+- Open Rules skill conventions F1–F2 and P1–P3 cover line continuity and membership, questions about ambiguous intent, recommendations tested against a stored solve, and final-answer riddles. References document `storedSolve` input and flags carrying both readings and test evidence, with a worked distinguishing test. Removed guidance that split connected same-colour lines to fit a reading.
+
 - Setter-skill guidance now requires explicit normal Sudoku houses on non-standard boards, reads full sentences and domain context before questions, limits ambiguous grouping to the disputed strokes, and preserves clear clauses beside malformed relations. Worked examples cover six-symbol houses, stated renban length and independent slow-thermo/clone clauses.
 
 - Feature headers reject a supplied `null` for an optional value instead of treating it as absent. In fog setup, omit `links` for neighbourhood reveal or supply a list for linked reveals.

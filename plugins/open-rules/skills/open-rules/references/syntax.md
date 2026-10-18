@@ -8,7 +8,7 @@ Required fields are `format: open-rules`, `title`, `setter`, `source`, `case`, `
 
 `status: read` records a reading, not setter confirmation. `confirmed` records explicit confirmation. `flagged` accompanies a `flags` list of unresolved reasons; it does not make an ambiguous meaning safe to guess.
 
-Localise each flag to the affected cells or groups and keep independently established declarations. Read [reading-input.md](reading-input.md) for the input inventory, fog header, line expansion, dot appearance and negative-exception examples. Supplied fog belongs in the top-level `fog` header, including `initiallyLit` and every supplied reveal link.
+Localise each flag to the affected cells or groups and keep independently established declarations. For an ambiguous reading, record both alternatives, the stored-solve source and test evidence (or why untested), any justified recommendation, and the confirmation question in the flag string. `storedSolve` is task input, not a case-header field; see [reading-input.md](reading-input.md) for the tested example, input inventory and drawing checks. Supplied fog belongs in the top-level `fog` header, including `initiallyLit` and every supplied reveal link.
 
 On a standard board, write `sudoku 9x9` once in the rules block. This supplies digits 1–9, rows, columns, and standard 3×3 boxes. Optional top-level `givens` can be `r4c8=1 r5c5=9`, or an 81-character grid string with `.` for an empty cell. Top-level `regions` lists extra regions, not the standard boxes.
 
