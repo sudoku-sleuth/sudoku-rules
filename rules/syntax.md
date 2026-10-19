@@ -144,3 +144,17 @@ term unlessRule(base:boolean,condition:boolean):boolean = ¬condition → base;
 term negatedUnlessRule(base:boolean,condition:boolean):boolean = ¬condition → ¬base;
 term composeRules(instantiated:list<boolean>):boolean = ∀meaning∈instantiated: meaning;
 ```
+
+## Decorative marks
+
+Declare markings as decoration only when the puzzle text explicitly says they
+carry no rule. List their cells, including every cell of a region:
+
+```rules
+decoration r1c1-r1c2-r2c2 note "Ignore the grey ribbon." element "grey-ribbon"
+```
+
+[Decoration](https://rules.sudoku-sleuth.com/decoration.md) adds no condition.
+The optional `element` metadata is available on every declaration and identifies
+the same drawn mark across declarations. Sharing cells alone does not identify
+the same mark. Do not use negation or conditions on decoration.

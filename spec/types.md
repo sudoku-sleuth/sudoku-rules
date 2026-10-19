@@ -16,3 +16,5 @@ Each constant is a reduced BigInt fraction. Decimals, sums, products, comparison
 Mapped comprehensions `{f(x):x∈S}` produce sets; `⟨f(i):i∈[a,b),P(i)⟩` produces an ordered list, filtered by the Boolean condition P. Names in the body/filter bind only within that comprehension. Indexing still requires a whole-number position proved within the list's bounds.
 
 Guard proofs may unfold checked definitions, combine exact inequalities, and tighten a strict integer bound by one. Rational bounds are never rounded. Splitting an “or” fact requires the goal to hold in every branch. Numeric remainder bounds follow its defined integer arithmetic; division still needs a proved nonzero divisor. Proof searches are bounded and conservatively reject an unproved condition.
+
+`string` is text, supplied as a JSON string in declaration values. Decoration notes and common drawing element IDs use this type.

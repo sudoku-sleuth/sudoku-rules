@@ -1,0 +1,21 @@
+[
+  {
+    "code": "W_DECORATION_OVERLAP",
+    "check": "W_DECORATION_OVERLAP",
+    "message": "Drawn element \"grey-ribbon\" is decorative and constrained on overlapping cells; check which declaration describes the mark.",
+    "span": {
+      "file": "tests/decoration/overlap.rules.md",
+      "start": {
+        "offset": 164,
+        "line": 13,
+        "column": 1
+      },
+      "end": {
+        "offset": 206,
+        "line": 13,
+        "column": 43
+      }
+    },
+    "detail": "Constraining declaration at tests/decoration/overlap.rules.md:14:1."
+  }
+]

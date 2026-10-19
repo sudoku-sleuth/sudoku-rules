@@ -30,6 +30,7 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
     case "cell": return cellValid(value, board) ? undefined : "must be an in-board cell in r1c1 form";
     case "number": case "value": case "digit": case "position":
       return typeof value === "bigint" || typeof value === "number" && Number.isFinite(value) && (!["position", "digit"].includes(type.name) || Number.isInteger(value)) ? undefined : `must be a ${["position", "digit"].includes(type.name) ? "whole number" : "finite number"}`;
+    case "string": return typeof value === "string" ? undefined : "must be text";
     case "boolean": return typeof value === "boolean" ? undefined : "must be true or false";
     case "enum": return typeof value === "string" && type.members?.includes(value) ? undefined : `must be one of ${type.members?.join(", ")}`;
     case "set": case "list": case "path": case "collection":

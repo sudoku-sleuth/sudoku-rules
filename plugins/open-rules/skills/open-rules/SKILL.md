@@ -21,6 +21,7 @@ Help a setter give their puzzle a precise, shareable rules file, or propose a ne
 - **F3:** When the setter says a rule or clue is wrong, false or never correct, every named instance must individually fail that rule. Negate each instance's complete rule with `not`; use `negate: all` only when every declared rule is covered. Do not replace it with an opposite rule or merely negate the combined statement. See [reading-input.md](references/reading-input.md) for an example.
 - **P1:** Ask, do not assume. Flag ambiguous intent with competing readings. Direct questions to the setter on import (including daily imports), or to the catalogue maintainer for catalogue cases.
 - **P2:** Test each competing reading against the stored solve. Recommend a reading only when that solve satisfies it and breaks the alternative. With no stored solve or no distinguishing result, recommend nothing. See [reading-input.md](references/reading-input.md) for `storedSolve` and the question record.
+- **F4:** When the setter explicitly says markings are decorative or should be ignored, declare them with `decoration` and identify the marks in a note. Never guess decoration from appearance or a solve. See [syntax.md](references/syntax.md).
 - **P3:** Keep final-answer riddles as prose; they declare no grid constraint.
 
 Keep puzzle-specific answers in the puzzle's file. Different-colour joins, outside diagonal clues, inherited series values and decorative paths are candidate readings to test under P2, never additional conventions.

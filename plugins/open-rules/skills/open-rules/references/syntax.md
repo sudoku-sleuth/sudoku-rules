@@ -88,3 +88,15 @@ Keep the URL form for shared rules: `weighted-1: https://example.com/rules/weigh
 An optional `class` declares `first-order` (the default), `with aggregates` or `existential`; the checker verifies it. All parameters need explicit types. Custom formulas pass the same grammar, name, type and guard checks as library formulas. Keep their meaning marked custom; review the prose and assignments separately.
 
 The primary path is available as `cells`; define its order and length in the embedded parameters and maths. Supply additional parameters with JSON values. Keep the setter's wording outside `rules` and `custom-rules` fences.
+
+## Decorative marks
+
+When the setter explicitly says markings are decorative or should be ignored,
+use `decoration <cells> [note "..."] [element "..."]`. A region is an explicit
+cell set. Never guess decoration from appearance, an unfamiliar mark or a solve.
+If the meaning is unsettled, ask and flag the affected marks. Notes identify
+which marks to ignore and carry no constraint. Use the optional common `element`
+metadata on declarations to identify the same drawn element; distinct marks on
+the same cells have different IDs. Resolve `W_DECORATION_OVERLAP` by checking the
+stated meaning, without silently deleting a rule. Decoration cannot be negated
+or conditional and remains inert under `negate: all`.

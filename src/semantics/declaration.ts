@@ -3,6 +3,7 @@ import type { Cell } from './types.js';
 /** Project parsed values for the finite semantic primitives. */
 export function semanticParameters(ast: DeclarationAST): Record<string, unknown> {
   const values=declarationParameters({...ast,cells:undefined});
+  delete values.element;
   // Board dimensions have a compact semantic representation.
   const positional=ast.parameters.find(p=>p.name.value === "board" && /(?:^|\/)sudoku(?:\.md)?$/.test(ast.kind.value));
   if(positional) {delete values[positional.name.value];const {rows,cols}=positional.value.value as {rows:number;cols:number};values.size=`${rows}x${cols}`;}

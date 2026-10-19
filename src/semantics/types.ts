@@ -48,6 +48,7 @@ export interface FogPlay {
 }
 export interface NormalForm {
   version: 1; board: CanonicalBoard; solution: Formula; play: "all-visible" | "unresolved" | FogPlay;
+  decorations?: { cells: Cell[]; note?: string; element?: string; source: SemanticSource }[];
   coverage: Coverage[]; sources: SourceLink[]; rewrites: Rewrite[];
 }
 export interface Normalisation {
