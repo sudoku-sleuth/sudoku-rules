@@ -65,29 +65,17 @@ For example, a six-symbol board can use `whispers r1c1-r1c2 gap 3 loop false`,
 
 ## In-file custom definitions
 
-A case can define its own rule. A custom declaration references either a section
-fragment in the same file or a setter-chosen external HTTPS Markdown URL. An
-external URL is optional; no hosted page is needed for an in-file definition.
-
-Put local definitions under `## Definitions`, one subsection per rule. The
-fragment is the subsection's Markdown heading slug: lowercase, punctuation removed,
-whitespace replaced by hyphens. Duplicate headings receive `-1`, `-2`, and so on.
-Use simple unique headings so references stay clear. Fenced example headings do
-not declare sections.
-
-Each definition is a `custom-rules` YAML list entry, inside its referenced section:
+A case can define its own rule under a local `id`. Use a local name unless the
+setter has an address for sharing the rule. The reference is `#` followed by the
+id; the display `name` and Markdown headings do not determine that id.
 
 ````markdown
 ```rules
 weighted-1: #weighted-triple r1c1-r1c2-r1c3
 ```
 
-## Definitions
-
-### Weighted triple
-
 ```custom-rules
-- url: "#weighted-triple"
+- id: weighted-triple
   name: Weighted triple
   parameters:
     cells:
@@ -96,26 +84,41 @@ weighted-1: #weighted-triple r1c1-r1c2-r1c3
       default: Required.
   definition: The third face digit equals the first plus twice the second.
   maths: "|cells| = 3 ∧ D(cells[2]) = D(cells[0]) + 2 × D(cells[1])"
-  example: "Satisfies: 1,2,5 because 5=1+2×2. Breaks: 1,2,6 because 6≠1+2×2."
+  example: "Satisfies: 1,2,5. Breaks: 1,2,6."
 ```
 ````
 
-The entry has exactly `url`, `name`, `parameters`, `definition`, `maths` and
-`example`. Text fields must be nonempty; `parameters` is a mapping, empty when no
-inputs are supplied. Describe each input as text or a mapping with a nonempty
-`description`, an optional type and a default. An absent default or `Required.`
-requires that input. The primary path is `cells`; its meaning states order,
-scope and length. Define local notation in `maths`. Give satisfying and breaking
-assignments with explanations in `example`. Classification belongs in prose;
-`class` is not an entry field.
+An id uses the same spelling as a kind: lowercase letters and digits separated by
+single hyphens. It is unique within the file and cannot equal a library kind.
+`#id` resolves only to that file's embedded definition, never to a library page or
+an external address. Two files' local ids have separate scope even when spelled
+alike. Tools retain the source file with local references; a bare local id is
+never a cross-file identity. Undefined, duplicate, colliding and unused definitions
+produce `E_CUSTOM_DEFINITION`, following the existing unused-definition error convention.
 
-The reference and the entry's `url` must match exactly. Every definition must be
-referenced, and every local fragment must resolve to the section containing its
-complete definition. Several sections can each carry a `custom-rules` block.
-Definitions cannot repeat a URL or fragment. An external definition uses the same
-six fields with its HTTPS `.md` URL in both places. Its complete meaning stays in
-the file. It is resolved locally rather than counted as a deferred fetch.
+Required fields are `name`, `parameters`, `definition`, `maths` and `example`, plus
+at least one of `id` and `url`. Text fields are nonempty. Parameters form a mapping
+(empty for no inputs); every parameter has a `type` and a nonempty `description`.
+An absent default or `Required.` requires the input. The primary cell path is
+`cells` or `line`; state its order, scope and length. The optional `class` is
+`first-order` (the default), `with aggregates` or `existential`, and must match the
+formula's logical class. Other entry fields are errors.
 
-The checker validates the entry structure and supplied parameters. It does not
-prove that the prose, formula and assignments express the same meaning. Custom
-formula execution, URL loading and example evaluation are separate phases.
+An optional `url` is an HTTPS `.md` address. Adding it to a definition with an id
+provides a publication address without changing the id, parameters or meaning.
+Either `#id` or that URL may reference the same embedded definition. A URL-only
+definition remains supported, with the URL in its declaration and `url` field.
+The URL basename supplies its kind; it never acquires a library kind's meaning.
+No definition is fetched. URLs cannot repeat or replace a library page.
+
+The older `url: "#weighted-triple"` form remains supported: its fragment must name
+the heading whose section contains the complete definition. Prefer `id` for new
+files; it has no heading or section-placement requirement. Every definition must
+be referenced, and several fences may contain definitions.
+
+Custom parameters and maths use the same formula parser, shared names, type checks,
+guard checks and logical-class checks as library pages. Diagnostics point into the
+case file, including quoted and multiline YAML values. This checks formula validity;
+the rule remains custom and its intended meaning unverified. Matching prose and
+assignments to the formula requires review. URL loading and example evaluation
+remain separate phases.

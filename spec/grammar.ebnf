@@ -80,3 +80,11 @@ EOF          = ? end of tokens after whitespace and comments ? ;
    Core arithmetic is exact rational arithmetic, not JavaScript floating point. *)
 
 (* Enum member names may also be JSON strings, allowing setter values such as "first-five". *)
+
+(* Case rule references use spec/declarations.ebnf. A local reference is "#",
+   case-local-id; a custom-rules YAML entry declares id: case-local-id, with
+   an optional HTTPS .md publication URL. IDs have file scope only. *)
+case-local-id = lower-or-digit, { lower-or-digit | "-", lower-or-digit };
+lower-or-digit = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i"
+               | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r"
+               | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" | digit;

@@ -54,12 +54,14 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFil
     if (/^https?:/.test(reference)) {
       if(reference.startsWith(root) && /^[a-z0-9-]+\.md$/.test(reference.slice(root.length))) kind=reference.slice(root.length,-3);
     } else if (!reference.startsWith("#") && metadata.library !== root) kind=new URL(`${reference}.md`,String(metadata.library)).href;
+    const resolved = referenceCheck.value?.references.find(r => r.span.start.offset === ast.kind.span.start.offset);
+    if (resolved?.custom) kind = resolved.url;
     if (instance !== undefined) {
       const identity = instanceIdentity(ast, kind, negated);
       if (ids.has(instance) && ids.get(instance) !== identity) problem(`The instance ID ${instance} names different declarations.`);
       ids.set(instance, identity);
     }
-    const source: SemanticSource = {span,kind,...(instance !== undefined?{instance}:{})};
+    const source: SemanticSource = {span,kind,...(resolved?.custom ? {custom: true, ...(resolved.scope ? {scope: resolved.scope} : {})} : {}),...(instance !== undefined?{instance}:{})};
     const parsed: Instance = {ast,kind,negated,parameters:Object.create(null),source};
     if(ast.cells) parsed.cells=ast.cells.value as Cell[];
     if(ast.condition) parsed.condition={unless:ast.condition.unless,predicate:ast.condition.predicate.value};

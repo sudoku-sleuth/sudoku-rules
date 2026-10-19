@@ -1,6 +1,6 @@
 import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { caseBlocks, readCustomDefinitions, checkCustomParameters, customParameterContract } from "./custom-definitions.js";
-import { declarationLibrary } from "./declaration-library.js";
+import { declarationLibrary, defaultCasePrelude } from "./declaration-library.js";
 import { parseDeclaration, type DeclarationAST } from "./declarations.js";
 import { type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
@@ -41,10 +41,13 @@ export interface RuleRegistry {
     parameters?: Map<string, CaseParameters>;
     /** Setup features, whose header blocks are checked in a case. */
     features?: CompiledFeature[];
+    prelude?: CheckedPrelude;
 }
 export interface CaseReference {
     kind: string;
     url: string;
+    custom?: boolean;
+    scope?: string;
     span: ReturnType<typeof location>;
 }
 export function checkCaseReferences(page: PageSource, registry: RuleRegistry, context?: CaseBoard): Result<{
@@ -84,9 +87,11 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     const references: CaseReference[] = [];
     const deferred: string[] = [];
     const blocks = caseBlocks(page);
-    const custom = readCustomDefinitions(page, blocks);
+    const custom = readCustomDefinitions(page, blocks, registry.kinds, registry.prelude ?? defaultCasePrelude(), registry.urls);
     errors.push(...custom.diagnostics);
     const usedCustom = new Set<string>();
+    const resolveCustom = (reference: string) => custom.definitions.get(reference) ??
+        (/^https:\/\//.test(reference) ? [...custom.definitions.values()].find(d => d.metadata.url === reference) : undefined);
     const ruleBlocks = blocks.filter(b => b.language === "rules");
     const parsedLines: {declaration: DeclarationAST}[] = [];
     const parseErrors: Diagnostic[] = [];
@@ -96,7 +101,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
             const parsed = parseDeclaration({file:page.file, text:line.trimEnd(), document:page.text, offset:at}, kind => {
                 let url: string | undefined;
                 try { url = root ? new URL(kind.endsWith(".md") || /^https?:/.test(kind) ? kind : `${kind}.md`, root).href : undefined; } catch {}
-                const local = custom.definitions.get(kind) ?? (url ? custom.definitions.get(url) : undefined);
+                const local = resolveCustom(kind) ?? (url ? resolveCustom(url) : undefined);
                 const contract = local ? customParameterContract(local) : url ? registry.parameters?.get(url) : undefined;
                 // A reference-only registry still recognises published surface forms.
                 const published = (url ? declarationLibrary.parameters?.get(url) : undefined) ??
@@ -123,10 +128,10 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
         declarations.push(declaration);
         const kind = declaration.kind.value;
         const span = declaration.kind.span;
-        const local = custom.definitions.get(kind);
+        const local = resolveCustom(kind);
         if (local || kind.startsWith("#")) {
             if (!local) errors.push(diagnostic("E_CUSTOM_DEFINITION", span, `${kind} has no complete in-file definition.`));
-            else { usedCustom.add(kind); references.push({kind, url: kind, span}); errors.push(...checkCustomParameters(declaration, span, local, board.board)); }
+            else { usedCustom.add(local.url); references.push({kind, url: local.url, span, custom: true, ...(local.url.startsWith("#") ? {scope: page.file} : {})}); errors.push(...checkCustomParameters(declaration, span, local, board.board)); }
         } else {
             let url: URL | undefined;
             try { url = root ? new URL(kind.endsWith(".md") || /^https?:\/\//.test(kind) ? kind : `${kind}.md`, root) : undefined; } catch {}
@@ -184,7 +189,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
     const rules = new Map<string, CompiledPage>();
     const aliases = new Map<string, string>();
     const features: CompiledFeature[] = [];
-    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), parameters: new Map(), features };
+    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), parameters: new Map(), features, prelude: parsed.value };
     let documents = 0;
     const listed = headers.get(shared[0].file)?.value?.metadata.feature_predicates;
     if (listed !== undefined && (!Array.isArray(listed) || listed.some(name => typeof name !== "string")))

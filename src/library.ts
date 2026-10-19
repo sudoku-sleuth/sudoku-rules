@@ -1,7 +1,7 @@
 import { markdownBlocks } from "./rules-blocks.js";
 import { declareRuleLine, type LineDeclaration } from "./rule-lines.js";
 import { isAlias, isMap, isScalar, parseDocument, visit } from "yaml";
-import { diagnostic, location, type Diagnostic, type Result, type Source } from "./language/diagnostics.js";
+import { diagnostic, location, type Diagnostic, type Result, type Span, type Source } from "./language/diagnostics.js";
 import { parseFormula, parseIdentifier, parsePrelude, parseType } from "./language/parser.js";
 import { checkDeclaredType, checkFormula, checkPrelude, type CheckedPrelude, type Environment } from "./language/checker.js";
 import type { CheckedFormula, LogicClass, Parameter, Type } from "./language/ast.js";
@@ -81,6 +81,13 @@ export function pageEnvironment(page: PageSource, environment: Environment, feat
   // A rule page may name a parameter after a play-domain word (skyscraper counts the digits that are visible): the parameter wins, and rules never see the play name.
   return { value: { environment: { ...environment, symbols, play: new Set([...(environment.play ?? [])].filter(name => !declarations.some(d => d.name === name))) }, parameters: declarations }, diagnostics };
 }
+
+/** Shared classification check for library pages and embedded case formulas. */
+export function checkLogicClass(formulas: CheckedFormula[], declared: unknown, span: Span): Diagnostic[] {
+  const strongest = formulas.reduce<LogicClass>((current, formula) => current === "existential" || formula.logicClass === "existential" ? "existential" : current === "with aggregates" || formula.logicClass === "with aggregates" ? "with aggregates" : "first-order", "first-order");
+  return declared === strongest ? [] : [diagnostic("E_LOGIC_CLASS", span, `This formula belongs to the ${strongest} class; write Class: **${strongest}** on the rule page.`)];
+}
+
 export function compilePage(page: PageSource, prelude: CheckedPrelude): Result<CompiledPage> {
   const blocks = formulaBlocks(page); const diagnostics: Diagnostic[] = [];
   const formulas: CheckedFormula[] = [];
@@ -98,8 +105,7 @@ export function compilePage(page: PageSource, prelude: CheckedPrelude): Result<C
   }
   const classMatch = /Class:\s*\*\*([^*]+)\*\*/.exec(page.text);
   if (formulas.length && !diagnostics.length) {
-    const strongest = formulas.reduce<LogicClass>((current, formula) => current === "existential" || formula.logicClass === "existential" ? "existential" : current === "with aggregates" || formula.logicClass === "with aggregates" ? "with aggregates" : "first-order", "first-order");
-    if (!classMatch || classMatch[1] !== strongest) diagnostics.push(diagnostic("E_LOGIC_CLASS", location(page, classMatch?.index ?? 0, (classMatch?.index ?? 0) + (classMatch?.[0].length ?? 0)), `This formula belongs to the ${strongest} class; write Class: **${strongest}** on the rule page.`));
+    diagnostics.push(...checkLogicClass(formulas, classMatch?.[1], location(page, classMatch?.index ?? 0, (classMatch?.index ?? 0) + (classMatch?.[0].length ?? 0))));
   }
   const compiled: CompiledPage = { file: page.file, parameters: environment.value?.parameters ?? [], formulas };
   if (!diagnostics.length) {

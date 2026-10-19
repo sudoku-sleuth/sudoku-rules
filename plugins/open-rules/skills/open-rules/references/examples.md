@@ -110,7 +110,7 @@ weighted_1: #weighted-triple r1c1-r1c2-r1c3
 ### Weighted triple
 
 ```custom-rules
-- url: "#weighted-triple"
+- id: weighted-triple
   name: Weighted triple
   parameters:
     cells:
@@ -118,7 +118,7 @@ weighted_1: #weighted-triple r1c1-r1c2-r1c3
       description: Exactly three cells in order, from the marked start.
       default: Required.
   definition: The third face digit equals the first face digit plus twice the second face digit.
-  maths: "line = cells; |line| = 3 ∧ D(line[2]) = D(line[0]) + 2 × D(line[1])"
+  maths: "|cells| = 3 ∧ D(cells[2]) = D(cells[0]) + 2 × D(cells[1])"
   example: "Satisfies: r1c1=1, r1c2=2, r1c3=5 because 5=1+2×2. Breaks: r1c1=1, r1c2=2, r1c3=6 because 6≠1+2×2."
 ```
 
@@ -127,4 +127,52 @@ weighted_1: #weighted-triple r1c1-r1c2-r1c3
 Normal Sudoku rules apply. Starting at r1c1, follow r1c1-r1c2-r1c3. The third digit is the first digit plus twice the second digit.
 ````
 
-The declaration references the Weighted triple section inside this file. Its complete definition uses the same fragment; no external URL is needed. The formula uses D because the setter specified face digits. It defines the three positions explicitly rather than assigning a nearby library kind.
+The declaration references the local id `weighted-triple`. Its complete definition is embedded; no external URL is needed. The formula uses D because the setter specified face digits. It defines the three positions explicitly rather than assigning a nearby library kind.
+
+## Different white-dot pairs across the grid
+
+List all white-dot endpoints in one rule, two cells at a time. This custom condition
+compares every drawn dot with every other dot. Separate Kropki declarations supply
+the difference-one relationship at each dot.
+
+````markdown
+---
+format: open-rules
+title: Different white-dot pairs
+setter: Example
+source: ""
+case: ""
+library: https://rules.sudoku-sleuth.com/
+status: read
+---
+
+```rules
+sudoku 9x9
+kropki r1c1-r1c2 white
+kropki r4c3-r4c4 white
+kropki r7c6-r7c7 white
+all-dots: #different-dot-pairs cells ["r1c1","r1c2","r4c3","r4c4","r7c6","r7c7"]
+```
+
+```custom-rules
+- id: different-dot-pairs
+  name: Different white-dot pairs
+  parameters:
+    cells:
+      type: list<cell>
+      description: All white-dot endpoints across the grid, two cells per dot; retain repeated endpoints when dots share a cell.
+      default: Required.
+  definition: Every white dot joins a different unordered pair of digits.
+  maths: >-
+    |cells| mod 2=0 ∧ ∀i∈[0,|cells|-1): ∀j∈[0,|cells|-1): (i mod 2=0 ∧ j mod 2=0 ∧ i≠j) → ¬((D(cells[i])=D(cells[j]) ∧ D(cells[i+1])=D(cells[j+1])) ∨ (D(cells[i])=D(cells[j+1]) ∧ D(cells[i+1])=D(cells[j])))
+  example: "Satisfies: pairs (1,2), (3,4), (5,6). Breaks: (1,2), (2,1), (5,6), since the first two dots repeat an unordered pair."
+```
+
+## Setter wording
+
+Normal Sudoku rules apply. White dots join consecutive digits. Every white dot
+joins a different unordered pair of digits. All three dots are listed above.
+````
+
+Pair order does not matter: (1,2) and (2,1) repeat the same pair. The list order
+groups endpoints into dots; it does not connect dots into a line.

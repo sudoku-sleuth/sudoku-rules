@@ -68,23 +68,23 @@ The first four forms take a whole-number value; the last three take no value. `l
 
 ## Custom rules
 
-When no library kind matches, define the rule in the file and reference its section fragment, such as `#weighted-triple`. Use `## Definitions` with one named subsection per custom rule, and embed the entire definition in a fenced `custom-rules` YAML list. Each entry supplies:
+When no library kind matches, use a local name unless the setter has an address. Reference `#weighted-triple` on the rule line and put `id: weighted-triple` in a fenced `custom-rules` YAML list. Headings are optional and do not name the rule. Each entry supplies:
 
-- `url`: exactly the fragment or external URL used by the instance.
-- `name`: the setter's rule name.
-- `parameters`: supplied inputs and their meanings.
+- `id`: a unique local name using lowercase letters, digits and single hyphens; it cannot equal a library kind.
+- `name`: a display name.
+- `parameters`: typed inputs with descriptions and defaults; an absent default means required.
 - `definition`: the full meaning, including scope and exceptions.
-- `maths`: a formula over the shared definitions, with local notation defined.
-- `example`: one satisfying and one breaking assignment with explanations.
-
-Use a lowercase heading slug for the fragment: `### Weighted triple` gives `#weighted-triple`. Put its complete `custom-rules` entry inside that section. Each definition must be referenced by a declaration. The worked file in [examples.md](examples.md) shows the layout.
+- `maths`: a checked formula over the shared definitions.
+- `example`: satisfying and breaking assignments with explanations.
 
 ```rules
-weighted_1: #weighted-triple r1c1-r1c2-r1c3
+weighted-1: #weighted-triple r1c1-r1c2-r1c3
 ```
 
-A setter-chosen external HTTPS `.md` URL is also allowed. Keep the same complete definition in the case, with that URL in both the declaration and `url` field. It does not need to be fetched. Do not invent a hosted URL or assign an unpublished kind under the library root. No external URL is needed for an in-file definition; declare a fully understood rule instead of asking only for a URL or flagging it.
+Local names belong only to this case file. They never resolve to library kinds or external URLs, and matching names in different files do not identify a shared rule. Every definition must be referenced. See the two custom worked cases in [examples.md](examples.md).
 
-The fragment slug or URL basename supplies the custom kind. An explicit `kind "chosen-kind"` can name a different custom kind. A custom definition has exactly the six fields above: do not add `class` or other fields. Put any explanatory classification in prose. Custom definitions describe rule meaning; executable formula and example evaluation are separate checks.
+Keep the URL form for shared rules: `weighted-1: https://example.com/rules/weighted-triple.md r1c1-r1c2-r1c3`, with that address as the embedded entry's `url`. Do not invent a hosted address. A local entry may later gain this optional URL while retaining its id and meaning; either reference then works. The complete definition stays embedded and nothing is fetched. Existing section-bound `url: "#weighted-triple"` entries remain supported.
+
+An optional `class` declares `first-order` (the default), `with aggregates` or `existential`; the checker verifies it. All parameters need explicit types. Custom formulas pass the same grammar, name, type and guard checks as library formulas. Keep their meaning marked custom; review the prose and assignments separately.
 
 The primary path is available as `cells`; define its order and length in the embedded parameters and maths. Supply additional parameters with JSON values. Keep the setter's wording outside `rules` and `custom-rules` fences.
