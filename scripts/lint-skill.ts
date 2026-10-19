@@ -45,7 +45,7 @@ export async function lintSkill(skillDirectory = resolve(import.meta.dir, "../pl
   const examplesFile = join(root, "references/examples.md");
   if (!checked.has(examplesFile)) throw new Error("SKILL.md must link to references/examples.md");
   const examples = caseExamples(await readFile(examplesFile, "utf8"));
-  if (examples.length < 2 || examples.length > 3) throw new Error("examples.md must contain 2–3 complete fenced markdown case files");
+  if (examples.length < 2 || examples.length > 4) throw new Error("examples.md must contain 2–4 complete fenced markdown case files");
   const temporary = await mkdtemp(join(tmpdir(), "open-rules-examples-"));
   try {
     await mkdir(join(temporary, "cases"));

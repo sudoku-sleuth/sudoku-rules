@@ -12,22 +12,22 @@ let temporary: string;
 beforeAll(async () => { temporary = await mkdtemp(join(tmpdir(), "open-rules-skill-test-")); });
 afterAll(async () => { await rm(temporary, { recursive: true, force: true }); });
 
-test("the distributed skill's references and all three case examples pass repository lint", async () => {
+test("the distributed skill's references and all four case examples pass repository lint", async () => {
   const result = await lintSkill(skill);
   expect(result.references).toBe(6);
-  expect(result.examples).toBe(3);
+  expect(result.examples).toBe(4);
 });
 
 test("examples extraction retains nested rules and custom definitions", async () => {
   const examples = caseExamples(await readFile(join(skill, "references/examples.md"), "utf8"));
-  expect(examples).toHaveLength(3);
+  expect(examples).toHaveLength(4);
   for (const example of examples) {
     expect(frontMatter(example, "example.rules.md").metadata.format).toBe("open-rules");
     expect(example).toContain("```rules\n");
     expect(example).toContain("## Setter wording");
   }
   expect(examples[2]).toContain("```custom-rules\n");
-  expect(examples[2]).toContain("D(line[2]) = D(line[0]) + 2 × D(line[1])");
+  expect(examples[2]).toContain("D(cells[2]) = D(cells[0]) + 2 × D(cells[1])");
 });
 
 test("skill lint rejects missing front matter, wrong name, empty and oversized descriptions", async () => {
@@ -127,6 +127,6 @@ test("skill checker labels its temporary case counts as examples only", async ()
   expect(await process.exited).toBe(0);
   expect(stderr).not.toContain("E_");
   expect(stdout).toContain("Skill examples only: Formula lint:");
-  expect(stdout).toContain("Cases: 3 headers/reference lists; 28 references; 0 deferred URLs");
+  expect(stdout).toContain("Cases: 4 headers/reference lists; 33 references; 0 deferred URLs");
   expect(stdout).not.toMatch(/^Formula lint:/m);
 });

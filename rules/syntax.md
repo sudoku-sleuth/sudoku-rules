@@ -32,9 +32,9 @@ The cell path lists each cell explicitly; r1c1-r1c3 names two cells, not a three
 ## Custom definitions and boards
 
 A case may define a custom rule inside its own file. A declaration such as
-`weighted_1: #weighted-triple r1c1-r1c2-r1c3` references the complete definition
-under `### Weighted triple` in a `## Definitions` section. A setter-chosen external
-HTTPS Markdown URL is also allowed. The definition has `url`, `name`, `parameters`,
+`weighted_1: #weighted-triple r1c1-r1c2-r1c3` references an embedded definition with `id: weighted-triple`. The id is scoped
+to this file and is independent of headings. A setter-chosen external
+HTTPS Markdown URL is also allowed. The definition has `id` and/or `url`, `name`, `parameters`,
 `definition`, `maths` and `example`; every definition is referenced. See the
 [case-file contract](../spec/case-files.md) for the full layout and checks.
 

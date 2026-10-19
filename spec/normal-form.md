@@ -103,7 +103,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 
 Every other kind is unsupported with the reason exported by `declarationRegistry`: absent-digits, arrow, between, cage-expressions, cage-pair, cage-shapes, constructed-regions, coordinate-arrows, counting-circles, diagonal-lines, doll-sum, double-arrow, equal-sums, equality-cage, extremum, flat-mates, greek-carpet, hidden-modular, index, index-line, layered-cage, limited-digits, line-choice, little-killer, lockout, look-and-say, magic-square, mean-lines, molecules, n-mate, numbered-room, ordered-block, pointing-arrow, pointing-thermo, pressure-gauge, product-cage, remainder-cage, rotational-sums, run-sum, same-class, sandwich, skyscraper, sum-free-cage, tardis, value-modifier, vault, window-classes, x-sum and yin-yang.
 
-Foreign definitions and their dependencies are unresolved. URL spelling never grants a foreign definition the meaning of a built-in kind. Known aliases retain their original source kind. Unsupported header setup, custom definitions and uniform shading conditions remain uncovered. No opaque identity establishes executable coverage.
+Foreign definitions and their dependencies are unresolved. URL spelling never grants a foreign definition the meaning of a built-in kind. Known aliases retain their original source kind. Unsupported header setup, custom definitions and uniform shading conditions remain uncovered. No opaque identity establishes executable coverage. Embedded custom references carry `source.custom: true`. Local custom references retain their source file in `source.scope`; matching local names in different files never identify a shared rule. Adding a publication URL does not change their custom coverage.
 
 ## Composition and rewrites
 

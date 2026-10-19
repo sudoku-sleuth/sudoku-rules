@@ -6,6 +6,15 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Case-local custom rule ids (`#id`) independent of headings, with optional publication URLs and file-scoped references.
+- Embedded custom formulas use the library parser, names, types, guards and logical-class checks, with diagnostics in the case file.
+- A whole-grid custom white-dot pair example in the setter skill.
+
+### Breaking
+
+- Custom parameters now require explicit types and custom formulas must pass the formula checker. Previously accepted malformed or unguarded formulas are rejected. Custom definitions may declare `class`, defaulting to first-order.
+
+
 - Semantic line coverage for strict and slow thermometers, German/Dutch and close whispers, parity, modular and entropic windows, palindromes, Renban, Bremban, Nabner, primality, summit, shifter and region sums. Paths retain direction, closure, cyclic windows and repeated occurrences; region sums validate their supplied region runs and preserve exact sum coefficients.
 - A declaration lexer, located AST, page-derived grammar and canonical writer. Case checks and semantic lowering share one parsed declaration pipeline. The portable grammar contracts are generated from rule pages. See `spec/declarations.md` and `spec/declarations.ebnf`.
 

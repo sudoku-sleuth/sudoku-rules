@@ -19,7 +19,7 @@ weighted_1: #weighted-triple r1c1-r1c2-r1c3
 
 ```custom-rules
 - url: "#weighted-triple"
-  class: first-order
+  unknown: first-order
   name: Weighted triple
   parameters:
     cells:

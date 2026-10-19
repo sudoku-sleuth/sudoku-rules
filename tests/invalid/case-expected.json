@@ -126,7 +126,7 @@
       {
         "code": "E_CUSTOM_DEFINITION",
         "check": "E_CUSTOM_DEFINITION",
-        "message": "A custom definition needs only url, name, parameters, definition, maths and example, each complete; parameters must be a mapping.",
+        "message": "A custom definition needs name, parameters, definition, maths and example, with an id or url; each must be complete; parameters must be a mapping.",
         "span": {
           "file": "tests/invalid/cases/incomplete-definition.rules.md",
           "start": {
@@ -240,7 +240,7 @@
       {
         "code": "E_CUSTOM_DEFINITION",
         "check": "E_CUSTOM_DEFINITION",
-        "message": "A custom definition needs only url, name, parameters, definition, maths and example, each complete; parameters must be a mapping.",
+        "message": "A custom definition needs an id or url.",
         "span": {
           "file": "tests/invalid/cases/missing-custom-url.rules.md",
           "start": {
@@ -492,7 +492,7 @@
       {
         "code": "E_CUSTOM_DEFINITION",
         "check": "E_CUSTOM_DEFINITION",
-        "message": "A custom definition needs only url, name, parameters, definition, maths and example, each complete; parameters must be a mapping.",
+        "message": "A custom definition needs name, parameters, definition, maths and example, with an id or url; each must be complete; parameters must be a mapping.",
         "span": {
           "file": "tests/invalid/cases/unknown-definition-field.rules.md",
           "start": {
@@ -501,7 +501,7 @@
             "column": 1
           },
           "end": {
-            "offset": 685,
+            "offset": 687,
             "line": 32,
             "column": 1
           }
@@ -666,6 +666,486 @@
             "offset": 180,
             "line": 9,
             "column": 52
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/local-undefined.rules.md",
+    "repair": "tests/valid/cases/local-undefined.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#absent has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/local-undefined.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 173,
+            "line": 13,
+            "column": 20
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+        "span": {
+          "file": "tests/invalid/cases/local-undefined.rules.md",
+          "start": {
+            "offset": 249,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 653,
+            "line": 31,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/local-duplicate.rules.md",
+    "repair": "tests/valid/cases/local-duplicate.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "Define #weighted-triple once.",
+        "span": {
+          "file": "tests/invalid/cases/local-duplicate.rules.md",
+          "start": {
+            "offset": 258,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 1066,
+            "line": 41,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/local-collision.rules.md",
+    "repair": "tests/valid/cases/local-collision.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "Local rule #thermo collides with a library kind; choose another id.",
+        "span": {
+          "file": "tests/invalid/cases/local-collision.rules.md",
+          "start": {
+            "offset": 255,
+            "line": 21,
+            "column": 7
+          },
+          "end": {
+            "offset": 261,
+            "line": 21,
+            "column": 13
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#thermo has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/local-collision.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 173,
+            "line": 13,
+            "column": 20
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/local-unused.rules.md",
+    "repair": "tests/valid/cases/local-unused.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "Reference #weighted-triple from a rules declaration or remove its unused definition.",
+        "span": {
+          "file": "tests/invalid/cases/local-unused.rules.md",
+          "start": {
+            "offset": 215,
+            "line": 21,
+            "column": 1
+          },
+          "end": {
+            "offset": 619,
+            "line": 31,
+            "column": 1
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/local-invalid-id.rules.md",
+    "repair": "tests/valid/cases/local-invalid-id.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "Use lowercase letters and digits with single hyphens for a local rule id.",
+        "span": {
+          "file": "tests/invalid/cases/local-invalid-id.rules.md",
+          "start": {
+            "offset": 264,
+            "line": 21,
+            "column": 7
+          },
+          "end": {
+            "offset": 273,
+            "line": 21,
+            "column": 16
+          }
+        }
+      },
+      {
+        "code": "E_CUSTOM_DEFINITION",
+        "check": "E_CUSTOM_DEFINITION",
+        "message": "#weighted-triple has no complete in-file definition.",
+        "span": {
+          "file": "tests/invalid/cases/local-invalid-id.rules.md",
+          "start": {
+            "offset": 166,
+            "line": 13,
+            "column": 13
+          },
+          "end": {
+            "offset": 182,
+            "line": 13,
+            "column": 29
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-broken-formula.rules.md",
+    "repair": "tests/valid/cases/custom-broken-formula.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "w is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "tests/invalid/cases/custom-broken-formula.rules.md",
+          "start": {
+            "offset": 526,
+            "line": 29,
+            "column": 12
+          },
+          "end": {
+            "offset": 527,
+            "line": 29,
+            "column": 13
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-unguarded.rules.md",
+    "repair": "tests/valid/cases/custom-unguarded.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_OPERATION_UNGUARDED",
+        "check": "E_OPERATION_UNGUARDED",
+        "message": "The position 2 might be outside cells; show that 0 ≤ 2 < |cells| before reading it (positions start at 0).",
+        "span": {
+          "file": "tests/invalid/cases/custom-unguarded.rules.md",
+          "start": {
+            "offset": 527,
+            "line": 29,
+            "column": 13
+          },
+          "end": {
+            "offset": 535,
+            "line": 29,
+            "column": 21
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-unknown-name.rules.md",
+    "repair": "tests/valid/cases/custom-unknown-name.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "missing is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "tests/invalid/cases/custom-unknown-name.rules.md",
+          "start": {
+            "offset": 525,
+            "line": 29,
+            "column": 11
+          },
+          "end": {
+            "offset": 532,
+            "line": 29,
+            "column": 18
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-wrong-type.rules.md",
+    "repair": "tests/valid/cases/custom-wrong-type.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "(cells + 1) needs numbers on both sides of +.",
+        "span": {
+          "file": "tests/invalid/cases/custom-wrong-type.rules.md",
+          "start": {
+            "offset": 525,
+            "line": 29,
+            "column": 11
+          },
+          "end": {
+            "offset": 534,
+            "line": 29,
+            "column": 20
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-shadow.rules.md",
+    "repair": "tests/valid/cases/custom-shadow.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_NAME_SHADOW",
+        "check": "E_NAME_SHADOW",
+        "message": "The parameter D reuses a shared name; choose another parameter name.",
+        "span": {
+          "file": "tests/invalid/cases/custom-shadow.rules.md",
+          "start": {
+            "offset": 322,
+            "line": 24,
+            "column": 5
+          },
+          "end": {
+            "offset": 432,
+            "line": 28,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "|D| needs a number or a group of items; D is a function taking a cell and returning a face digit.",
+        "span": {
+          "file": "tests/invalid/cases/custom-shadow.rules.md",
+          "start": {
+            "offset": 518,
+            "line": 29,
+            "column": 12
+          },
+          "end": {
+            "offset": 519,
+            "line": 29,
+            "column": 13
+          }
+        }
+      },
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "This rule has no primary cell list; name each parameter.",
+        "span": {
+          "file": "tests/invalid/cases/custom-shadow.rules.md",
+          "start": {
+            "offset": 183,
+            "line": 13,
+            "column": 30
+          },
+          "end": {
+            "offset": 197,
+            "line": 13,
+            "column": 44
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-missing-type.rules.md",
+    "repair": "tests/valid/cases/custom-missing-type.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_SIGNATURE_REQUIRED",
+        "check": "E_SIGNATURE_REQUIRED",
+        "message": "Declare a type for the parameter cells, such as cell, number or path<cell>.",
+        "span": {
+          "file": "tests/invalid/cases/custom-missing-type.rules.md",
+          "start": {
+            "offset": 322,
+            "line": 24,
+            "column": 5
+          },
+          "end": {
+            "offset": 417,
+            "line": 27,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "cells is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "tests/invalid/cases/custom-missing-type.rules.md",
+          "start": {
+            "offset": 503,
+            "line": 28,
+            "column": 12
+          },
+          "end": {
+            "offset": 508,
+            "line": 28,
+            "column": 17
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-unknown-type.rules.md",
+    "repair": "tests/valid/cases/custom-unknown-type.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_TYPE",
+        "check": "E_TYPE",
+        "message": "For parameter cells: The type MissingType is not defined; declare it in the shared definitions.",
+        "span": {
+          "file": "tests/invalid/cases/custom-unknown-type.rules.md",
+          "start": {
+            "offset": 322,
+            "line": 24,
+            "column": 5
+          },
+          "end": {
+            "offset": 441,
+            "line": 28,
+            "column": 1
+          }
+        }
+      },
+      {
+        "code": "E_NAME_UNDEFINED",
+        "check": "E_NAME_UNDEFINED",
+        "message": "cells is not defined; declare it as a parameter, a formula variable or a shared term.",
+        "span": {
+          "file": "tests/invalid/cases/custom-unknown-type.rules.md",
+          "start": {
+            "offset": 527,
+            "line": 29,
+            "column": 12
+          },
+          "end": {
+            "offset": 532,
+            "line": 29,
+            "column": 17
+          }
+        }
+      },
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "cells has unsupported case type MissingType.",
+        "span": {
+          "file": "tests/invalid/cases/custom-unknown-type.rules.md",
+          "start": {
+            "offset": 183,
+            "line": 13,
+            "column": 30
+          },
+          "end": {
+            "offset": 197,
+            "line": 13,
+            "column": 44
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-wrong-class.rules.md",
+    "repair": "tests/valid/cases/custom-wrong-class.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_LOGIC_CLASS",
+        "check": "E_LOGIC_CLASS",
+        "message": "This formula belongs to the first-order class; set class: first-order in this custom definition.",
+        "span": {
+          "file": "tests/invalid/cases/custom-wrong-class.rules.md",
+          "start": {
+            "offset": 289,
+            "line": 22,
+            "column": 10
+          },
+          "end": {
+            "offset": 300,
+            "line": 22,
+            "column": 21
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/custom-syntax.rules.md",
+    "repair": "tests/valid/cases/custom-syntax.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_FORMULA_SYNTAX",
+        "check": "E_FORMULA_SYNTAX",
+        "message": "Expected a value or condition here; found the end of the formula.",
+        "span": {
+          "file": "tests/invalid/cases/custom-syntax.rules.md",
+          "start": {
+            "offset": 534,
+            "line": 29,
+            "column": 20
+          },
+          "end": {
+            "offset": 534,
+            "line": 29,
+            "column": 20
           }
         }
       }

@@ -551,5 +551,25 @@
   ],
   "plugins/open-rules/skills/open-rules/references/examples.md#example-0": [],
   "plugins/open-rules/skills/open-rules/references/examples.md#example-1": [],
-  "plugins/open-rules/skills/open-rules/references/examples.md#example-2": []
+  "plugins/open-rules/skills/open-rules/references/examples.md#example-2": [
+    {
+      "code": "E_FORMULA_SYNTAX",
+      "check": "E_FORMULA_SYNTAX",
+      "message": "Expected the end of the formula here; found “;”.",
+      "span": {
+        "file": "plugins/open-rules/skills/open-rules/references/examples.md#example-2",
+        "start": {
+          "offset": 585,
+          "line": 29,
+          "column": 23
+        },
+        "end": {
+          "offset": 586,
+          "line": 29,
+          "column": 24
+        }
+      }
+    }
+  ],
+  "tests/invalid/cases/unknown-definition-field.rules.md": []
 }

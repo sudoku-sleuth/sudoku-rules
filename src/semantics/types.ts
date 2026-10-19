@@ -27,7 +27,7 @@ export type Formula =
   | { op: "SumEqual"; channel: Channel; left: Cell[]; right: Cell[] }
   | { op: "CountAtLeast"; channel: "D"; cells: Cell[]; digit: number; count: number }
   | { op: "Allowed"; channel: Channel; cell: Cell; values: number[] };
-export interface SemanticSource { span: Span; kind: string; instance?: string }
+export interface SemanticSource { span: Span; kind: string; instance?: string; scope?: string; custom?: boolean }
 export interface Coverage {
   kind: string; source: SemanticSource;
   status: "lowered" | "unsupported";

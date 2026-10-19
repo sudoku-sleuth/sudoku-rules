@@ -18,7 +18,7 @@ for(const entry of baseline) {
     expect(actual.issues).toEqual(rejections[entry.file as keyof typeof rejections]);
     if (!actual.issues.length && !entry.reading.issues.length) {
      // The old reader omitted some named parameters; retain its instance provenance checks.
-     const provenance = (instances: typeof actual.instances) => instances.map(({parameters,...instance}) => instance);
+     const provenance = (instances: typeof actual.instances) => instances.map(({parameters,...instance}) => ({...instance, source: {...instance.source, ...instance.kind.startsWith('#') ? {scope: entry.file, custom: true} : {}}}));
      expect(provenance(actual.instances)).toEqual(provenance(entry.reading.instances));
     }
    }
