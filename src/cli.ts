@@ -121,7 +121,7 @@ export async function main(args: string[]): Promise<number> {
                 console.error(`${diagnostic.span.file}:${diagnostic.span.start.line}:${diagnostic.span.start.column} ${diagnostic.code}: ${diagnostic.message}`);
             console.log(`Formula lint: ${report.checked}/${report.files} pages checked; ${report.formulas} formula blocks.${report.cases !== undefined ? ` Cases: ${report.cases} headers/reference lists; ${report.references} references; ${report.deferredReferences} deferred URLs.` : ""} Pending: ${report.pending.join(", ")}.`);
         }
-        return report.diagnostics.length ? 1 : 0;
+        return report.diagnostics.some(d => d.code !== "W_DECORATION_OVERLAP") ? 1 : 0;
     }
     catch (error) {
         console.error(error instanceof Error ? error.message : String(error));

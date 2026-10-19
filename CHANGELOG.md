@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- `decoration` declares explicitly decorative marks with a true formula, optional notes and drawing element IDs. Decorations remain metadata in semantic normal forms. `W_DECORATION_OVERLAP` warns about overlapping declarations for the same drawn element. Portable contracts, examples and setter guidance cover the declaration.
+
 - Case-local custom rule ids (`#id`) independent of headings, with optional publication URLs and file-scoped references.
 - Embedded custom formulas use the library parser, names, types, guards and logical-class checks, with diagnostics in the case file.
 - A whole-grid custom white-dot pair example in the setter skill.

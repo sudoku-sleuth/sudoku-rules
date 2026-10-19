@@ -72,7 +72,7 @@ export function customParameterContract(definition: CustomDefinition): CaseParam
     const declared = object(raw) && typeof raw.type === "string" ? parseType(raw.type).value : undefined;
     return [name, { type: declared ?? (["cells", "line"].includes(name) ? {name: "path", args: [{name: "cell"}]} : undefined), required: !object(raw) || raw.default === undefined || /^Required\b/.test(String(raw.default)) }];
   }));
-  return {parameters: {...parameters, kind: {type: undefined, required: false}}, types: definition.types ?? {}};
+  return {parameters: {element: {type: {name: "string"}, required: false}, ...parameters, kind: {type: undefined, required: false}}, types: definition.types ?? {}};
 }
 
 export function checkCustomParameters(ast: DeclarationTail, span: Span, definition: CustomDefinition, board: CaseBoard): Diagnostic[] {

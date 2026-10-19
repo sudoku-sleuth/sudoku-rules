@@ -40,3 +40,8 @@ space = horizontal-whitespace, { horizontal-whitespace };
    from the referenced page. Keyword choices, operand order and cell count come
    from its parameter syntax metadata. A dimensions form names one record input.
    A reference whose definition is unresolved retains its arguments as tokens. *)
+
+(* decoration uses named-form with required cells:set<cell> and optional
+   note:string. Every declaration accepts optional element:string drawing
+   metadata. Neither note nor element changes logical meaning. Decoration
+   disallows explicit negation and condition; file-level negate leaves it inert. *)

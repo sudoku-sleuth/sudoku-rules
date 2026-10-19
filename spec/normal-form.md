@@ -163,3 +163,12 @@ Play differences appear separately as `Play` differences with header provenance.
 The finite fragment accepts 1–64 distinct safe-integer alphabet digits and 1–1024 active cells. A declaration can expand at most 1,000,000 value combinations; a file at most 2,000,000. File accounting folds identities and deduplicates canonical clauses before charging expansion. Crossing an expansion bound reports the declaration as uncovered. It never establishes equivalence by truncation.
 
 The synthetic tests cover every registry entry, line permutations, duplicated clauses, source merging, idempotence, each rewrite's satisfying cases and near-misses, and exhaustive small assignment checks under house premises. They also cover whole-rule negation, condition scope, nonstandard boards, mixed coverage and retained rational comparison.
+
+## Decoration metadata
+
+`decoration` has complete coverage and contributes no solution or play condition.
+Normalisation retains each occurrence in optional `NormalForm.decorations` with
+sorted unique `cells`, optional `note` and `element`, and its `source`. Comparison
+ignores this field. A file containing only decorations has the true solution
+(`All` with no children). File-level negation does not negate decorations.
+Common `element` metadata is removed before mathematical lowering for all kinds.

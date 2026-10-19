@@ -1,12 +1,13 @@
 import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { caseBlocks, readCustomDefinitions, checkCustomParameters, customParameterContract } from "./custom-definitions.js";
 import { declarationLibrary, defaultCasePrelude } from "./declaration-library.js";
-import { parseDeclaration, type DeclarationAST } from "./declarations.js";
+import { declarationParameters, parseDeclaration, type DeclarationAST } from "./declarations.js";
 import { type LineDeclaration } from "./rule-lines.js";
 import { isMap, isScalar, parseDocument, visit, isAlias } from "yaml";
 import { diagnostic, location, type Diagnostic, type Result } from "./language/diagnostics.js";
 import { compilePage, compilePrelude, formulaBlocks, type PageSource, type CompiledPage } from "./library.js";
 import { checkFeatureBlocks, compileFeature, type CompiledFeature } from "./features.js";
+import type { Type } from "./language/ast.js";
 import type { CheckedPrelude } from "./language/checker.js";
 export const documentChecks = ["E_HEADER_REQUIRED", "E_HEADER_TYPE", "E_LIBRARY_URL", "E_RULES_REQUIRED", "E_KIND_UNKNOWN", "E_ALIAS_TARGET", "E_FEATURE_REQUIRES", "E_FEATURE_CONFLICT"] as const;
 export interface Header {
@@ -166,7 +167,43 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     }
     if (!found)
         errors.push(diagnostic("E_RULES_REQUIRED", location(page, offset, offset), "Add a fenced rules block containing the puzzle's rule references."));
-    return errors.length ? { diagnostics: errors } : { value: { declarations, references, deferred }, diagnostics: [] };
+    const publishedKind = (ast: DeclarationAST) => references.find(r => r.span.start.offset === ast.kind.span.start.offset)?.url;
+    const decorations = declarations.filter(ast => publishedKind(ast) === "https://rules.sudoku-sleuth.com/decoration.md");
+    for (const ast of decorations) {
+        if (ast.negations.length || ast.condition)
+            errors.push(diagnostic("E_CASE_PARAMETERS", ast.condition?.span ?? ast.negations[0].span, "Decoration carries no rule; omit negation and conditions."));
+    }
+    const warnings: Diagnostic[] = [];
+    for (const decoration of decorations) {
+        const data = declarationParameters(decoration, "cells");
+        if (typeof data.element !== "string" || !data.element) continue;
+        const cells = Array.isArray(data.cells) ? data.cells : [];
+        for (const other of declarations) {
+            if (decorations.includes(other)) continue;
+            const customDefinition = resolveCustom(other.kind.value) ?? resolveCustom(publishedKind(other) ?? "");
+            const contract = customDefinition ? customParameterContract(customDefinition) : registry.parameters?.get(publishedKind(other) ?? "");
+            const values = declarationParameters(other, parameterGrammar(contract).primary);
+            const containsOverlap = (value: unknown, type?: Type, depth = 0): boolean => {
+                if (!type || depth > 128) return false;
+                const alias = contract?.types[type.name];
+                if (alias) return containsOverlap(value, alias, depth + 1);
+                if (type.name === "cell") return cells.includes(value);
+                if (type.name === "optional") return containsOverlap(value, type.args?.[0], depth + 1);
+                if (["set", "list", "path", "collection"].includes(type.name) && Array.isArray(value))
+                    return value.some(item => containsOverlap(item, type.args?.[0], depth + 1));
+                if (type.name === "record" && object(value))
+                    return Object.entries(type.fields ?? {}).some(([name, field]) => containsOverlap(value[name], field, depth + 1));
+                return false;
+            };
+            const overlap = contract ? Object.entries(values).some(([name, value]) => containsOverlap(value, contract.parameters[name]?.type))
+                : Array.isArray(other.cells?.value) && other.cells.value.some(cell => cells.includes(cell));
+            if (values.element === data.element && overlap)
+                warnings.push(diagnostic("W_DECORATION_OVERLAP", decoration.span,
+                    `Drawn element ${JSON.stringify(data.element)} is decorative and constrained on overlapping cells; check which declaration describes the mark.`,
+                    `Constraining declaration at ${other.span.file}:${other.span.start.line}:${other.span.start.column}.`));
+        }
+    }
+    return errors.length ? { diagnostics: [...errors, ...warnings] } : { value: { declarations, references, deferred }, diagnostics: warnings };
 }
 export interface PublicLibrary {
     prelude: CheckedPrelude;
@@ -246,7 +283,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             rules.set(kind, checked.value);
             if (typeof metadata.url === "string") {
                 const raw = object(metadata.parameters) ? metadata.parameters : {};
-                registry.parameters!.set(metadata.url, { types: parsed.value.environment.types ?? {}, explicit: explicitBoardParameters[kind], positional: Object.entries(raw).some(([,v]) => object(v) && object(v.syntax) && v.syntax.form === "dimensions") ? {name: Object.entries(raw).find(([,v]) => object(v) && object(v.syntax) && v.syntax.form === "dimensions")![0], form: "dimensions"} : undefined, parameters: Object.fromEntries(checked.value.parameters.map(p => [p.name, { type: p.type, required: object(raw[p.name]) && /^Required\b/.test(String((raw[p.name] as Record<string, unknown>).default)) }])) });
+                registry.parameters!.set(metadata.url, { types: parsed.value.environment.types ?? {}, explicit: explicitBoardParameters[kind], positional: Object.entries(raw).some(([,v]) => object(v) && object(v.syntax) && v.syntax.form === "dimensions") ? {name: Object.entries(raw).find(([,v]) => object(v) && object(v.syntax) && v.syntax.form === "dimensions")![0], form: "dimensions"} : undefined, parameters: Object.fromEntries([["element", {type: {name: "string"}, required: false}], ...checked.value.parameters.map(p => [p.name, { type: p.type, required: object(raw[p.name]) && /^Required\b/.test(String((raw[p.name] as Record<string, unknown>).default)) }])]) });
             }
             if (checked.value.line && typeof metadata.url === "string") registry.lines!.set(metadata.url, checked.value.line);
         }

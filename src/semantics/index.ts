@@ -1,3 +1,4 @@
+import { declarationParameters } from "../declarations.js";
 import { valueLines } from "./lines.js";
 import { fogPlay } from "./fog.js";
 export { visibleCells } from "./fog.js";
@@ -50,13 +51,14 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   }
   const coverage: Coverage[] = read.extras.map(e => ({ kind: e.kind, source: e.source, status: "unsupported", reason: e.reason }));
   if (coverageFog) coverage.push(coverageFog);
+  const decorations: NonNullable<NormalForm["decorations"]> = [];
   const bundles: { formula: Formula; sources: SemanticSource[] }[] = [];
   const capabilities: Record<string, DeclarationCapability> = declarationRegistry;
   const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || !Object.hasOwn(capabilities, i.kind)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
   let expansion = 0;
   const charged = new Set<string>();
   const cost = (f: Formula): number => f.op === "Pair" ? f.table.length : f.op === "Distinct" ? f.cells.length * (f.cells.length - 1) / 2 * board.alphabet.length ** 2 : f.op === "Not" ? cost(f.child) : f.op === "All" || f.op === "Any" ? f.children.reduce((n,c) => n + cost(c), 0) : f.op === "Allowed" ? f.values.length : f.op === "SumEqual" ? f.left.length + f.right.length : 0;
-  const identity = (i: typeof read.instances[number]) => key([i.kind, i.negated, i.cells, Object.entries(i.parameters).sort(([x],[y]) => x < y ? -1 : x > y ? 1 : 0), i.condition]);
+  const identity = (i: typeof read.instances[number]) => key([i.kind, i.negated, i.cells, i.ast.parameters.find(p => p.name.value === "element")?.value.value, Object.entries(i.parameters).sort(([x],[y]) => x < y ? -1 : x > y ? 1 : 0), i.condition]);
   const grouped = new Map<string, { instance: typeof read.instances[number]; sources: SemanticSource[] }>();
   for (const instance of read.instances) {
     const id = identity(instance), previous = grouped.get(id);
@@ -87,6 +89,14 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
     catch (error) { issues.push(...sources.map(source => ({ code: "E_SEMANTIC_CELL", message: (error as Error).message, span: source.span }))); continue; }
     if (!capability || capability.status === "unsupported") {
       cover("unsupported", capability?.status === "unsupported" ? capability.reason : "The referenced definition and its dependencies have not been resolved.");
+      continue;
+    }
+    if (kind === "decoration") {
+      const data = declarationParameters(instance.ast, "cells");
+      for (const source of sources) decorations.push({cells: [...new Set(data.cells as Cell[])].sort(),
+        ...(typeof data.note === "string" ? {note: data.note} : {}),
+        ...(typeof data.element === "string" ? {element: data.element} : {}), source});
+      cover("lowered");
       continue;
     }
     try {
@@ -130,7 +140,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   if (read.extras.some(e => e.kind !== "header:board" && e.kind !== "header:givens")) play = "unresolved";
   return {
     status: coverage.some(c => c.status === "unsupported") ? "partial" : "complete", issues: [],
-    normalForm: { version: 1, board, solution, play, coverage, sources: sourceLinks(state), rewrites: state.rewrites },
+    normalForm: { version: 1, board, solution, play, ...(decorations.length ? {decorations} : {}), coverage, sources: sourceLinks(state), rewrites: state.rewrites },
   };
 }
 function support(term: Formula): Cell[] {

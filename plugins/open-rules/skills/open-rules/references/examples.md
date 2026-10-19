@@ -176,3 +176,15 @@ joins a different unordered pair of digits. All three dots are listed above.
 
 Pair order does not matter: (1,2) and (2,1) repeat the same pair. The list order
 groups endpoints into dots; it does not connect dots into a line.
+
+## Decorative ribbon
+
+The puzzle text states: “Normal Sudoku rules apply. The grey ribbon is decorative.”
+Add this declaration beside the board declaration in the case file:
+
+```rules
+decoration r1c1-r1c2-r2c2 note "The grey ribbon is decorative." element "grey-ribbon"
+```
+
+The declaration records the ribbon without adding a constraint. Other clues on
+these cells keep their own meanings.

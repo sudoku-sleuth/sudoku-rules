@@ -7,7 +7,7 @@ export interface Environment { symbols: Record<string, Type>; terms: Record<stri
 export interface CheckedPrelude { environment: Environment; declarations: TypedDeclaration[] }
 const numeric = (type: Type) => ["number", "digit", "value", "position"].includes(type.name);
 const collections = ["path", "set", "list", "collection"];
-const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression"];
+const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "string", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression"];
 function same(a: Type, b: Type): boolean { return typeName(a) === typeName(b); }
 function assignable(actual: Type, expected: Type): boolean {
   if (same(actual, expected)) return true;
@@ -16,6 +16,7 @@ function assignable(actual: Type, expected: Type): boolean {
   if (actual.name === "path" && expected.name === "list") return !!actual.args?.[0] && !!expected.args?.[0] && assignable(actual.args[0],expected.args[0]);
   if (expected.name === "collection" && collections.includes(actual.name)) return !!actual.args?.[0] && !!expected.args?.[0] && assignable(actual.args[0],expected.args[0]);
   if (expected.name === "number" && numeric(actual)) return true;
+  if (actual.name === "literal" && expected.name === "string") return true;
   if (actual.name === "literal" && expected.name === "enum" && actual.members?.every(value => expected.members?.includes(value))) return true;
   if (actual.name === "fn" && expected.name === "fn") return actual.args?.length === expected.args?.length && (expected.args ?? []).every((t, i) => assignable(t, actual.args![i])) && !!actual.result && !!expected.result && assignable(actual.result, expected.result);
   if (actual.name === "record" || expected.name === "record") return false;

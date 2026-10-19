@@ -89,3 +89,25 @@ values use JSON; instance IDs use the bare form above when accepted and JSON quo
 grammar input also supports ASTs constructed by callers. Parsing canonical text
 with the same page grammar preserves the AST's meaning and writing it again
 produces the same text. JSON numbers must be finite at every depth. Source spans and raw spellings belong to each input text.
+
+## Decorative marks and drawing identity
+
+`decoration <cells> [note "..."] [element "..."]` uses the existing named form
+and primary `cells: set<cell>` contract. A region is an explicit set of cells;
+there is no second region selector or implicit path expansion. The formula is
+`true`. Negation markers and conditions on this declaration are rejected with
+`E_CASE_PARAMETERS`; `negate: all` applies only to rule declarations.
+
+Every declaration accepts optional `element "..."` drawing metadata through its
+parameter contract, including custom definitions. `element` is reserved for this
+purpose. It identifies a drawn mark, independently of the declaration's instance
+ID. Use distinct element IDs for different marks, even on the same cells. Element
+IDs and decoration notes use the `string` type and JSON string values. Neither
+field supplies a mathematical predicate.
+
+`W_DECORATION_OVERLAP` reports a decoration and another declaration sharing a
+nonempty element ID and at least one cell in their supplied parameters. It does
+not infer drawing identity from cells, colour, notes or shape. The decoration's
+span is primary; detail locates the constraining declaration. This warning retains
+`checkCaseReferences.value` and does not fail CLI lint. Existing house diagnostics
+retain their current behavior.

@@ -20,7 +20,7 @@ test("CLI reports checked formula pages and explicitly pending case checks", asy
   expect(bad.checked).toBe(0);
   expect(bad.diagnostics[0].code).toBe("E_NAME_UNDEFINED");
   const cases = await lintFiles("tests/fixtures/cases");
-  expect(cases.checked).toBe(86);
+  expect(cases.checked).toBe(87);
   expect(cases.cases).toBe(1);
   expect(cases.references).toBe(9);
   expect(cases.pending).toEqual(["URL resolution", "example evaluation"]);
@@ -65,6 +65,6 @@ test("default lint:spec checks the library and finds no case files", async () =>
   const [stdout, stderr] = await Promise.all([new Response(process.stdout).text(), new Response(process.stderr).text()]);
   expect(await process.exited).toBe(0);
   expect(stderr).not.toContain("E_");
-  expect(stdout).toContain("86/86 pages checked; 84 formula blocks");
+  expect(stdout).toContain("87/87 pages checked; 85 formula blocks");
   expect(stdout).toContain("Cases: 0 headers/reference lists; 0 references; 0 deferred URLs");
 }, 60_000);

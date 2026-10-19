@@ -3,6 +3,7 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  decoration: lowered,
   sudoku: lowered,
   unique: lowered,
   clone: lowered,

@@ -38,3 +38,9 @@ full spans are in `tests/invalid/case-expected.json`. [case-files.md](case-files
 defines the contract.
 
 `W_CASE_HOUSES` warns that regions have no positive, unconditional house declaration. It uses the same diagnostic contract and rejects a clean lint result until addressed or reported for source review. It does not infer normal Sudoku from region metadata or prove house completeness. The raw fixture and complete repair are `missing-houses.rules.md` in the case fixture directories.
+
+`W_DECORATION_OVERLAP` warns when a decoration and a constraining declaration
+share an explicit nonempty `element` ID and overlapping supplied cells. The
+warning points to the decoration and locates the other declaration in `detail`.
+It retains the case result and exits CLI lint successfully when no other
+diagnostics occur. It does not cancel the other declaration's constraint.
