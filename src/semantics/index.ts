@@ -54,7 +54,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   const decorations: NonNullable<NormalForm["decorations"]> = [];
   const bundles: { formula: Formula; sources: SemanticSource[] }[] = [];
   const capabilities: Record<string, DeclarationCapability> = declarationRegistry;
-  const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || !Object.hasOwn(capabilities, i.kind)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
+  const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || i.kind === "liar-cells" || i.kind === "clue-count" || !Object.hasOwn(capabilities, i.kind)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
   let expansion = 0;
   const charged = new Set<string>();
   const cost = (f: Formula): number => f.op === "Pair" ? f.table.length : f.op === "Distinct" ? f.cells.length * (f.cells.length - 1) / 2 * board.alphabet.length ** 2 : f.op === "Not" ? cost(f.child) : f.op === "All" || f.op === "Any" ? f.children.reduce((n,c) => n + cost(c), 0) : f.op === "Allowed" ? f.values.length : f.op === "SumEqual" ? f.left.length + f.right.length : 0;

@@ -19,7 +19,7 @@ Absolute value for a number and size for a group both use |x|. Σ adds and Π mu
 
 The interval [a,b) includes a and excludes b. The collection 𝒫(C) contains all subsets of the board.
 
-D is the face digit. V is the effective value constrained by the value-modifier rule, whose formula binds the modified cell set M. Without modifiers V=D. A finished answer supplies the shared shading set H and the numeric face/value channels. Modifier cells, electron cells, hidden cages, constructed regions and letter assignments are bound by their owning rule formulas.
+D is the face digit. V is the effective value constrained by a value assignment rule: value-modifier binds an affine modifier set, while liar-cells binds cells with independently chosen real values. Without a value assignment V=D. A finished answer supplies the shared shading set H and the numeric face/value channels. Modifier cells, electron cells, hidden cages, constructed regions and letter assignments are bound by their owning rule formulas.
 
 ## Typed vocabulary
 
@@ -37,6 +37,7 @@ input ValuedRuleMeanings: list<boolean>;
 type PairRelation = record{op:enum{difference,"at-least",ratio,sum,less,multiple,shift},value:optional<number>};
 type ClassSystem = enum{parity,mod3,entropy};
 type Move = enum{knight,king,orthogonal,bishop};
+primitive clueHolds(q:clause):boolean;
 primitive face(c:cell):digit;
 primitive effective(c:cell):value;
 primitive toValue(x:number):value;
@@ -142,9 +143,11 @@ play term correct(c:cell):boolean = placed(c) ∧ (given(c) → entered(c)=given
 
 C contains every board cell. rows and cols give its dimensions; row, col and cellIndex are zero-based. boardCell(r,k) denotes that coordinate; the surrounding formula must keep it inside the board. Regions is the board's primary partition. The ordered alphabet 𝔄 contains the whole-number face digits; alphabetPosition(d) is d's zero-based position in it. ℤ denotes all whole numbers, including negative numbers. `position` means an integer used as a position, not an assertion that it is on the board.
 
-face reads the face digit; effective reads the effective value. toValue preserves a number exactly while identifying it as an effective value. The value-modifier formula existentially binds M, checks its placement and constrains every effective value using its factor and offset parameters. M is not a prelude input. Without a value modifier V=D. H is the shared shading answer. ValuedRuleMeanings contains the instantiated Boolean meanings of every rule reading the same V channel.
+face reads the face digit; effective reads the effective value. toValue preserves a number exactly while identifying it as an effective value. The value-modifier formula existentially binds M, checks its placement and constrains every effective value using its factor and offset parameters. M is not a prelude input. The liar-cells formula instead requires V to differ from D exactly on its chosen set, with permitted values and separate digit/value distinctness. Without a value assignment V=D. H is the shared shading answer. ValuedRuleMeanings contains the instantiated Boolean meanings of every rule reading the same V channel.
 
 present reports whether an optional field was supplied; unwrap reads it only after present has been proved. minimumDigit/maximumDigit and minimumValue/maximumValue return the least/greatest item of a nonempty collection. Their arguments have to be nonempty; they do not supply invented defaults.
+
+A `clause` is an owned clue record with a nonempty `id`, a `rule` reference and named `args`. clueHolds evaluates its complete instantiated rule under the same answer and shared channels as the owning declaration. Its private witnesses retain their original quantifiers. It does not assert the clue separately.
 
 An `expression` is an authored arithmetic tree containing whole numbers, letters, addition, subtraction, multiplication, division or powers. Take the distinct letters across the supplied expressions in lexicographic order; letterCount counts them, and the list passed to defined and eval gives their integer answers in that order. defined is true precisely when every letter has an answer and every subexpression is defined. eval returns the exact integer result: division requires a nonzero divisor and an integer quotient; a power requires a nonnegative integer exponent. Undefined subexpressions never return a guessed value. These operations read the arithmetic tree, rather than defining a new Sudoku rule.
 

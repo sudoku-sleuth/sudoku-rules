@@ -6,16 +6,15 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- `liar-cells` assigns real values different from written digits, with exact group counts and separate digit/value distinctness. Includes a worked 9x9 assignment and sourced German Whisper Lies and Region Sum Lies cases.
+
+- `clue-count` counts false complete clues in an explicit scope using exactly, at-least or at-most. Owned clue records use checked rule contracts and named arguments, including case-local rules and nested counts. Includes generated declaration contracts and setter guidance.
+
 - `decoration` declares explicitly decorative marks with a true formula, optional notes and drawing element IDs. Decorations remain metadata in semantic normal forms. `W_DECORATION_OVERLAP` warns about overlapping declarations for the same drawn element. Portable contracts, examples and setter guidance cover the declaration.
 
 - Case-local custom rule ids (`#id`) independent of headings, with optional publication URLs and file-scoped references.
 - Embedded custom formulas use the library parser, names, types, guards and logical-class checks, with diagnostics in the case file.
 - A whole-grid custom white-dot pair example in the setter skill.
-
-### Breaking
-
-- Custom parameters now require explicit types and custom formulas must pass the formula checker. Previously accepted malformed or unguarded formulas are rejected. Custom definitions may declare `class`, defaulting to first-order.
-
 
 - Semantic line coverage for strict and slow thermometers, German/Dutch and close whispers, parity, modular and entropic windows, palindromes, Renban, Bremban, Nabner, primality, summit, shifter and region sums. Paths retain direction, closure, cyclic windows and repeated occurrences; region sums validate their supplied region runs and preserve exact sum coefficients.
 - A declaration lexer, located AST, page-derived grammar and canonical writer. Case checks and semantic lowering share one parsed declaration pipeline. The portable grammar contracts are generated from rule pages. See `spec/declarations.md` and `spec/declarations.ebnf`.
@@ -58,6 +57,8 @@ Each release lists what changed. A change that breaks a published export, front-
 - Repeated-cell multiplicities reduce to canonical weights and singleton membership. Duplicate negative relations are removed before finite expansion is charged.
 
 ### Breaking
+
+- Custom parameters now require explicit types and custom formulas must pass the formula checker. Previously accepted malformed or unguarded formulas are rejected. Custom definitions may declare `class`, defaulting to first-order.
 
 - Case files moved out of the library; they are kept by Sudoku Sleuth. The `cases/` folder, the generated `/cases/` pages and raw case routes, and the `cases` count in the build result are gone. The checker still reads a case file given to it, and a folder passed to `openrules lint` still checks a `cases/` folder beside `rules/` when one exists.
 

@@ -1150,5 +1150,53 @@
         }
       }
     ]
+  },
+  {
+    "file": "tests/invalid/cases/liar-groups-default.rules.md",
+    "repair": "tests/valid/cases/liar-groups-default.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "State groups explicitly on this board.",
+        "span": {
+          "file": "tests/invalid/cases/liar-groups-default.rules.md",
+          "start": {
+            "offset": 200,
+            "line": 16,
+            "column": 1
+          },
+          "end": {
+            "offset": 210,
+            "line": 16,
+            "column": 11
+          }
+        }
+      }
+    ]
+  },
+  {
+    "file": "tests/invalid/cases/liar-values-default.rules.md",
+    "repair": "tests/valid/cases/liar-values-default.rules.md",
+    "diagnostics": [
+      {
+        "code": "E_CASE_PARAMETERS",
+        "check": "E_CASE_PARAMETERS",
+        "message": "State values explicitly on this board.",
+        "span": {
+          "file": "tests/invalid/cases/liar-values-default.rules.md",
+          "start": {
+            "offset": 200,
+            "line": 16,
+            "column": 1
+          },
+          "end": {
+            "offset": 210,
+            "line": 16,
+            "column": 11
+          }
+        }
+      }
+    ]
   }
 ]

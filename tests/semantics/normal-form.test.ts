@@ -39,7 +39,7 @@ test("registry inventories every published kind, including aliases, with a speci
     if (typeof page.metadata.kind === "string") kinds.push(page.metadata.kind);
   }
   expect(Object.keys(declarationRegistry).sort()).toEqual(kinds.sort());
-  expect(kinds.length).toBe(83);
+  expect(kinds.length).toBe(85);
   for (const entry of Object.values(declarationRegistry)) if (entry.status === "unsupported") expect(entry.reason.length).toBeGreaterThan(20);
 });
 
@@ -346,6 +346,7 @@ test("every unsupported kind reports its registered reason when encountered", ()
     const value = (type: Type): unknown => {
       if (contract.types[type.name]) return value(contract.types[type.name]);
       if (type.name === 'enum') return type.members![0];
+      if (type.name === 'clause') return {id:'dot',rule:'kropki',args:{cells:['r1c1','r1c2'],colour:'black'}};
       if (type.name === 'expression') return {op:'number',value:1};
       if (type.name === 'cell') return 'r1c1';
       if (type.name === 'boolean') return false;

@@ -6,6 +6,7 @@ export const object = (v: unknown): v is Record<string, unknown> => !!v && typeo
 export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
 export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
+  "liar-cells": ["groups", "values"],
   summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],
   nabner: ["distinct"], cage: ["repeats"], sandwich: ["crusts"], index: ["strips"],
@@ -42,6 +43,8 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
       for (const key of Object.keys(value)) if (!Object.hasOwn(type.fields ?? {}, key)) return `has unknown field ${key}`;
       for (const [key, t] of Object.entries(type.fields ?? {})) { const problem = child(value[key], t); if (problem) return `${key} ${problem}`; }
       return;
+    case "clause":
+      return object(value) && Object.keys(value).every(k => ["id", "rule", "args"].includes(k)) && typeof value.id === "string" && !!value.id.trim() && typeof value.rule === "string" && !!value.rule && object(value.args) ? undefined : "must be a clue record with id, rule and named args";
     case "expression":
       // Expressions are authored JSON arithmetic trees, not executable source strings.
       if (!object(value)) return "must be an arithmetic expression";

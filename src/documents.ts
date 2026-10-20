@@ -157,7 +157,6 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     const hasRegions = [metadata.regions, explicitBoard.regions].some(regions => Array.isArray(regions) && regions.length > 0);
     if (registry.parameters && hasRegions && !hasHouse)
         errors.push(diagnostic("W_CASE_HOUSES", field(explicitBoard.regions !== undefined ? "board" : "regions"), "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board)."));
-    for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
     if (registry.features?.length) {
         const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};
         const written = parsedLines.map(({declaration})=>dimensions(declaration)).find(Boolean);
@@ -168,11 +167,53 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     if (!found)
         errors.push(diagnostic("E_RULES_REQUIRED", location(page, offset, offset), "Add a fenced rules block containing the puzzle's rule references."));
     const publishedKind = (ast: DeclarationAST) => references.find(r => r.span.start.offset === ast.kind.span.start.offset)?.url;
+    const validateClues = (ast: DeclarationAST, depth = 0): void => {
+        if (depth > 32) { errors.push(diagnostic("E_CASE_PARAMETERS", ast.span, "Clue counts may nest at most 32 levels.")); return; }
+        const count = ast.parameters.find(p => p.name.value === "count");
+        if (typeof count?.value.value === "number" && count.value.value < 0)
+            errors.push(diagnostic("E_CASE_PARAMETERS", count.value.span, "A false-clue count must be nonnegative."));
+        const clues = ast.parameters.find(p => p.name.value === "clues")?.value;
+        const ids = new Set<string>();
+        for (const node of clues?.children ?? []) {
+            if (!object(node.value) || typeof node.value.rule !== "string" || !object(node.value.args)) continue;
+            const record = node.value;
+            if (ids.has(String(record.id))) errors.push(diagnostic("E_CASE_PARAMETERS", node.span, "Use distinct clue IDs within each count."));
+            ids.add(String(record.id));
+            const reference = record.rule as string;
+            const local = resolveCustom(reference);
+            let url: string | undefined;
+            try { url = root ? new URL(reference.endsWith(".md") || /^https?:/.test(reference) ? reference : `${reference}.md`, root).href : undefined; } catch {}
+            const definition = local ?? (url ? resolveCustom(url) : undefined);
+            const contract = definition ? customParameterContract(definition) : url ? registry.parameters?.get(url) : undefined;
+            if (!contract) { errors.push(diagnostic("E_CASE_PARAMETERS", node.span, `Resolve the complete rule contract for ${reference} before counting it.`)); continue; }
+            if (url === "https://rules.sudoku-sleuth.com/decoration.md") { errors.push(diagnostic("E_CASE_PARAMETERS", node.span, "Decoration is not a counted clue.")); continue; }
+            if (definition) usedCustom.add(definition.url);
+            const args = node.fields?.find(f => f.name.value === "args")?.value;
+            const nested: DeclarationAST = {kind:{value:reference,span:node.span}, negations:[], span:node.span,
+                parameters:(args?.fields ?? []).map(f => ({name:f.name,value:f.value,span:f.span}))};
+            errors.push(...checkParameterAST(nested, node.span, contract, board.board));
+            const line = url ? registry.lines?.get(url) : undefined;
+            if (line) {
+                const data = record.args as Record<string, unknown>;
+                const cells = data[line.cells.name];
+                const parameter = line.parameter;
+                const selection = data[parameter.name];
+                const keyword = parameter.tag && object(selection) ? selection[parameter.tag] : selection;
+                const operands = typeof keyword === "string" ? parameter.keywords[keyword] : undefined;
+                if (!Array.isArray(cells) || cells.length !== line.cells.count || !operands ||
+                    operands.some(o => !object(selection) || !Number.isInteger(selection[o.field])))
+                    errors.push(diagnostic("E_CASE_PARAMETERS", node.span, "Use the referenced rule's cell count and whole-number keyword operands."));
+            }
+            if (url === "https://rules.sudoku-sleuth.com/clue-count.md") validateClues(nested, depth + 1);
+        }
+    };
+    for (const ast of declarations) if (publishedKind(ast) === "https://rules.sudoku-sleuth.com/clue-count.md") validateClues(ast);
     const decorations = declarations.filter(ast => publishedKind(ast) === "https://rules.sudoku-sleuth.com/decoration.md");
     for (const ast of decorations) {
         if (ast.negations.length || ast.condition)
             errors.push(diagnostic("E_CASE_PARAMETERS", ast.condition?.span ?? ast.negations[0].span, "Decoration carries no rule; omit negation and conditions."));
     }
+    for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
     const warnings: Diagnostic[] = [];
     for (const decoration of decorations) {
         const data = declarationParameters(decoration, "cells");

@@ -111,3 +111,44 @@ not infer drawing identity from cells, colour, notes or shape. The decoration's
 span is primary; detail locates the constraining declaration. This warning retains
 `checkCaseReferences.value` and does not fail CLI lint. Existing house diagnostics
 retain their current behavior.
+
+## Liar cells
+
+`liar-cells [groups [["r1c1",...],...]] [count 1] [values [1,...,9]]
+[distinctDigits true] [distinctValues true]` uses the existing named form.
+All arguments are named; there is no primary cell list. Defaults belong to the
+rule meaning and are not inserted by parsing or canonical writing. On a
+nonstandard board, omitted `groups` or `values` produces `E_CASE_PARAMETERS`.
+Nested group cells receive the usual bounds checks; counts use `position`,
+values use `list<number>`, and the two distinctness flags use `boolean`.
+No new token, condition or drawing metadata is introduced. `element` remains
+metadata; neither decoration nor a local `#id` identifies which cells lie.
+
+## False-clue counts
+
+`clue-count clues [{"id":"dot-a","rule":"kropki","args":{"cells":["r1c1","r1c2"],"colour":"black"}},...] comparison "exactly" count 1`
+counts complete false predicates. `comparison` also accepts `"at-least"` and
+`"at-most"`; count is a nonnegative integer. The nonempty clue list is one exact
+scope. Repeat the declaration per line or box; list all relevant marks for a
+grid-wide count. Segments or edges count separately only when explicitly listed.
+
+The scalar `clause` type carries owned `id`, `rule`, `args` records. IDs must be
+nonempty and unique within each list. Different IDs preserve repeated meanings
+as separate clues. Resolve each referenced published or case-local contract and
+check named arguments, defaults and board bounds before accepting the owner.
+Unknown external contracts are errors here, rather than deferred truths.
+Drawing metadata belongs in args. Decorations are not counted clues. Nested
+counts are checked recursively, to depth 32; IDs are local to each list. No
+instance truth lookup or executable formula string is introduced.
+
+`clueHolds` evaluates the complete instantiated predicate on the shared answer.
+The owner does not assert its children positively. Negation, including file-level
+`negate: all`, complements the owner once, without negating its children. Private
+existential witnesses keep their clause's quantifiers; D, V and other global
+answer channels remain shared. Counts precede formula deduplication. A count
+larger than the scope is accepted: exactly/at-least are unsatisfiable and at-most
+is vacuous. Conditions still require a primary cell list; a count owner has none.
+Finite semantic comparison leaves the whole owner uncovered.
+
+Per-mark alternative kinds remain a proposal in
+[lying-clues.md](../docs/design/lying-clues.md).

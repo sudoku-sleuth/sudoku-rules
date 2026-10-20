@@ -4,7 +4,7 @@ import type {Type} from "../../src";
 type Value=Rational|string|boolean|undefined|Value[]|Group|Callable|{[key:string]:Value};
 interface Group {group:Value[]}
 type Callable=(...args:Value[])=>Value;
-export interface Fragment {faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];parameters:Record<string,unknown>}
+export interface Fragment {clueTruth?:(clue:unknown)=>boolean;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];parameters:Record<string,unknown>}
 const number=(value:Value):Rational=>{if(!value||typeof value!=="object"||!("numerator" in value))throw Error("Expected exact number");return value as Rational;};
 const truth=(value:Value):boolean=>{if(typeof value!=="boolean")throw Error("Expected Boolean");return value;};
 const members=(value:Value):Value[]=>{if(Array.isArray(value))return value;if(value&&typeof value==="object"&&"group" in value)return (value as Group).group;throw Error("Expected collection");};
@@ -24,6 +24,7 @@ export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name
  const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),ValuedRuleMeanings:[true]};
  for(const parameter of parameters)env[parameter.name]=typed(fragment.parameters[parameter.name],parameter.type,prelude);
  const primitives:Record<string,Callable>={
+  clueHolds:q=>{if(!fragment.clueTruth)throw Error("Supply clue truth for this fragment");return fragment.clueTruth(q);},
   face:c=>exact(String(fragment.faces[String(c)])),effective:c=>exact(String((fragment.values??fragment.faces)[String(c)])),toValue:x=>x,
   present:x=>x!==undefined,unwrap:x=>{if(x===undefined)throw Error("Missing optional value");return x;},
   alphabetPosition:d=>exact(String(members(env.𝔄).findIndex(item=>key(item)===key(d)))),

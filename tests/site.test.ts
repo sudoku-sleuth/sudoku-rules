@@ -181,7 +181,7 @@ test("index rule and alias routes coexist with the home catalogue", async () => 
 
 test("the full library has byte-identical public routes", async () => {
   const built=await buildSite(".",join(temporary,"production-site"));
-  expect(built.pages).toBe(87);
+  expect(built.pages).toBe(89);
   const home=await readFile(join(built.output,"index.html"),"utf8");
   for(const name of await readdir("rules")) {
     if(!name.endsWith(".md"))continue;

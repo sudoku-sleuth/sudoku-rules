@@ -22,6 +22,7 @@ Help a setter give their puzzle a precise, shareable rules file, or propose a ne
 - **P1:** Ask, do not assume. Flag ambiguous intent with competing readings. Direct questions to the setter on import (including daily imports), or to the catalogue maintainer for catalogue cases.
 - **P2:** Test each competing reading against the stored solve. Recommend a reading only when that solve satisfies it and breaks the alternative. With no stored solve or no distinguishing result, recommend nothing. See [reading-input.md](references/reading-input.md) for `storedSolve` and the question record.
 - **F4:** When the setter explicitly says markings are decorative or should be ignored, declare them with `decoration` and identify the marks in a note. Never guess decoration from appearance or a solve. See [syntax.md](references/syntax.md).
+- **F5:** When cells or clues lie, declare the stated meaning; never guess which cells or clues lie. Liar cells change V while normal Sudoku still reads D. Use `liar-cells` for independently chosen real values, not an affine `value-modifier`. A count of false clues or a choice of clue kinds is not individual negation or decoration; see [lying.md](references/lying.md).
 - **P3:** Keep final-answer riddles as prose; they declare no grid constraint.
 
 Keep puzzle-specific answers in the puzzle's file. Different-colour joins, outside diagonal clues, inherited series values and decorative paths are candidate readings to test under P2, never additional conventions.

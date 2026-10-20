@@ -70,6 +70,8 @@ export const declarationRegistry = {
   "index-line": pending("Guarded inverse-permutation indexing is not lowered."),
   "n-mate": pending("Digit-indexed rays and cage sums are not lowered."),
   "pressure-gauge": pending("Larger and smaller neighbour counts are not lowered."),
+  "clue-count": pending("Counts of owned clue truths are not lowered."),
+  "liar-cells": pending("Shared liar-cell choices and independent effective-value assignments are not lowered."),
   "value-modifier": pending("Shared effective-value bindings and modifier witnesses are not lowered."),
   "look-and-say": pending("Exact listed-digit multiplicities are not lowered."),
   "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
