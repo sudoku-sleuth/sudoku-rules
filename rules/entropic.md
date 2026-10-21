@@ -8,14 +8,14 @@ parameters:
     default: Required.
     type: path<cell>
   loop:
-    description: Whether the line closes, joining its last cell back to its first.
+    description: Whether the path closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
 ---
 
 # Entropic
 
-On a standard 1–9 board, every three consecutive cells on the line contain one low digit (1–3), one middle digit (4–6) and one high digit (7–9), in any order. On a two-cell open line, the digits come from different groups.
+On a standard 1–9 board, every three consecutive cells on the path contain one low digit (1–3), one middle digit (4–6) and one high digit (7–9), in any order. On a two-cell open path, the digits come from different groups.
 
 For other boards, divide the puzzle’s ordered list of allowed symbols into three equal-sized groups. This list is called the ordered alphabet. The groups follow its supplied order, not necessarily numerical order; its length must be divisible by three. On a loop, triples also cross the join between the last and first cells.
 
@@ -24,7 +24,7 @@ For other boards, divide the puzzle’s ordered list of allowed symbols into thr
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| loop | Whether the path closes, joining its last cell back to its first. | false (open path). |
 
 ## Maths
 
@@ -38,7 +38,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∧ (¬loop ∧ |line|=2 → classEntropy(D(line[0]))!=classEntropy(D(line[1])))
 ```
 
-Every window of three path positions has one symbol from each equal-sized third of the ordered board alphabet. An open two-cell line uses different thirds. Loop windows wrap. The alphabet size must be divisible by 3.
+Every window of three path positions has one symbol from each equal-sized third of the ordered board alphabet. An open two-cell path uses different thirds. Loop windows wrap. The alphabet size must be divisible by 3.
 
 ## Example
 

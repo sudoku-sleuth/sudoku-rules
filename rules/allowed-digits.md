@@ -8,21 +8,21 @@ parameters:
     default: Required.
     type: path<cell>
   digits:
-    description: The permitted printed digits. Listing a digit does not require it to appear.
+    description: The permitted digits. Listing a digit does not require it to appear.
     default: Required.
     type: list<digit>
 ---
 
 # Allowed Digits
 
-Every marked cell contains one of the listed digits. The cells can form a line, a cage, a shaded area or a scattered group. The drawing does not add a sum or a no-repeat condition.
+Every marked cell contains one of the listed digits. The cells can form a path, a cage, a shaded area or a scattered group. The drawing does not add a sum or a no-repeat condition.
 
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | line | The marked cells, listed with hyphens; their order does not affect this rule. | Required. |
-| digits | The permitted printed digits. Listing a digit does not require it to appear. | Required. |
+| digits | The permitted digits. Listing a digit does not require it to appear. | Required. |
 
 ## Maths
 
@@ -35,8 +35,6 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ```
 
 Every listed cell contains an allowed digit. Cell order and repeated entries in the allowed list do not change this condition. It does not require every allowed digit to occur.
-
-A region whose category is chosen by the solver needs more than this rule. For example, “all cells use either {1,2,4,8} or {3,6,9}” requires one shared choice for the whole region. Allowing their union would also permit a mixture. Restrictions between neighbouring regions are separate conditions.
 
 ## Example
 

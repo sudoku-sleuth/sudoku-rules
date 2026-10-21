@@ -14,6 +14,8 @@ interface Assignment { digits: Record<string, number>; values?: Record<string, n
 // A complete witness set for these nonnegative fragments: delete zeros from any positive
 // remainder without changing its sum, and use [0] to witness zero. Positive sums are bounded by B.
 function remainders(alphabet: number[], maximum: number): number[][] {
+  // These fixtures use one-cell bulbs (at most 9); reject larger searches before enumerating compositions.
+  if (maximum > 9) throw Error("Remainder fixture limit: sum at most 9.");
   if (alphabet.some(d => d < 0)) throw Error("These fixtures require nonnegative symbols.");
   const results: number[][] = alphabet.includes(0) ? [[],[0]] : [[]];
   function append(prefix: number[], remaining: number) {
@@ -54,7 +56,40 @@ test("complete arrows retain equality, effective one-cell values, and ordered pr
   expect(holds(pill,["r2c1","r2c2"],["r1c2","r1c1"],false)).toBe(false);
   expect(holds(a,["r1c2"],[],true)).toBe(false);
 });
-test("the documented cloned-area and consecutive-cage declarations use existing kinds", () => {
-  const text = `---\nformat: open-rules\ntitle: Synthetic\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\nsudoku 9x9\nclone-1: clone r1c1-r4c4\nclone-2: clone r1c2-r4c5\ncage r1c1-r2c1-r2c2 total 7 repeats true\nbremban r1c1-r2c1-r2c2\n\`\`\``;
+test("the documented cloned-area, consecutive-cage and Greek Carpet declarations use existing kinds", () => {
+  const text = `---\nformat: open-rules\ntitle: Synthetic\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\nsudoku 9x9\nclone-1: clone r1c1-r4c4\nclone-2: clone r1c2-r4c5\ncage r1c3-r1c4-r2c4 total 7 repeats true\nbremban r1c3-r1c4-r2c4\ngreek-carpet r1c1-r1c2 unrolled ["r4c4","r4c5"]\n\`\`\``;
   expect(checkCaseReferences({file:"synthetic.rules.md",text},library.registry).diagnostics).toEqual([]);
+});
+
+function ruleHolds(kind: string, faces: Record<string, number>, parameters: Record<string, unknown>): boolean {
+  const rule = library.rules.get(kind)!;
+  return fragmentVerdict(rule.formulas[0].ast, library.prelude, rule.parameters, {faces, parameters});
+}
+
+test("the documented Bremban examples evaluate their satisfy and break claims", () => {
+  const line = ["r1c3", "r1c4", "r2c4"];
+  expect(ruleHolds("bremban", {r1c3:1,r1c4:2,r2c4:1}, {line})).toBe(true);
+  expect(ruleHolds("bremban", {r1c3:1,r1c4:3,r2c4:1}, {line})).toBe(false);
+  for (const [digits, expected] of [[[2,3,2], true], [[1,5,1], false]] as const) {
+    const faces = Object.fromEntries(line.map((cell, i) => [cell, digits[i]]));
+    expect(ruleHolds("cage", faces, {cells:line,total:7,repeats:true})).toBe(true);
+    expect(ruleHolds("bremban", faces, {line})).toBe(expected);
+  }
+});
+
+test("the documented cloned areas evaluate each corresponding equality group", () => {
+  for (const [last, expected] of [[7, true], [8, false]] as const) {
+    const faces = {r1c1:2,r1c2:7,r4c4:2,r4c5:last};
+    expect(ruleHolds("clone", faces, {cells:["r1c1","r4c4"]})).toBe(true);
+    expect(ruleHolds("clone", faces, {cells:["r1c2","r4c5"]})).toBe(expected);
+  }
+});
+
+test("Greek Carpet evaluates corresponding positions, including shared starts", () => {
+  const parameters = {line:["r1c1","r1c2"],unrolled:["r1c3","r1c4"]};
+  expect(ruleHolds("greek-carpet", {r1c1:1,r1c2:2,r1c3:1,r1c4:2}, parameters)).toBe(true);
+  expect(ruleHolds("greek-carpet", {r1c1:1,r1c2:2,r1c3:1,r1c4:3}, parameters)).toBe(false);
+  const shared = {line:["r1c1","r1c2","r2c2"],unrolled:["r1c1","r1c2","r1c3"]};
+  expect(ruleHolds("greek-carpet", {r1c1:1,r1c2:2,r2c2:3,r1c3:3}, shared)).toBe(true);
+  expect(ruleHolds("greek-carpet", {r1c1:1,r1c2:2,r2c2:3,r1c3:4}, shared)).toBe(false);
 });

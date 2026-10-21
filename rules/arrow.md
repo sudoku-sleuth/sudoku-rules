@@ -12,14 +12,14 @@ parameters:
     default: Required.
     type: list<cell>
   line:
-    description: The cells in order, for example r1c1-r1c2-r1c3.
+    description: The shaft cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
 ---
 
 # Arrow
 
-The values on an arrow’s shaft sum to the value in its circle (the bulb). Here, a one-cell bulb uses effective values: the printed digits after any declared value modifiers. A bulb with several cells forms a decimal number from its printed digits, in the supplied order; the shaft’s printed digits sum to that number.
+An arrow’s shaft sums to its bulb. Complete one-cell arrows compare effective values (printed digits after declared value modifiers) on both sides; every other case compares printed digits. A bulb with several cells forms a decimal number from its printed digits, in the supplied order. Digits may repeat on complete and partial arrows unless a row, column or box forbids it.
 
 For an ordinary horizontal bulb, list its cells left to right; for a vertical bulb, list them top to bottom. The supplied order determines the number, including for an unusually shaped bulb.
 
@@ -30,7 +30,7 @@ For an ordinary horizontal bulb, list its cells left to right; for a vertical bu
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | bulb | The bulb cells in decimal reading order, normally left to right or top to bottom. | Required. |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| line | The shaft cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | partial | Whether the declaration supplies only a shaft fragment, for example under fog. | false (complete arrow). |
 
 ## Maths

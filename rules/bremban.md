@@ -48,19 +48,19 @@ status: read
 
 ```rules
 sudoku 9x9
-bremban r1c1-r1c2-r1c3
+bremban r1c3-r1c4-r2c4
 ```
 ````
 
-Satisfies the rule: r1c1=1, r1c2=2, r1c3=1. The different digits are 1 and 2, a consecutive run.
+Satisfies the rule: r1c3=1, r1c4=2, r2c4=1. The different digits are 1 and 2, a consecutive run.
 
-Breaks the rule: r1c1=1, r1c2=3, r1c3=1. The different digits 1 and 3 miss 2.
+Breaks the rule: r1c3=1, r1c4=3, r2c4=1. The different digits 1 and 3 miss 2.
 
 ### A consecutive cage with repeats
 
 ```rules
-cage r1c1-r2c1-r2c2 total 7 repeats true
-bremban r1c1-r2c1-r2c2
+cage r1c3-r1c4-r2c4 total 7 repeats true
+bremban r1c3-r1c4-r2c4
 ```
 
 Satisfies both rules: 2, 3, 2 totals 7, and its distinct digits are the consecutive set {2,3}. Breaks Bremban while satisfying the cage sum: 1, 5, 1 totals 7, but {1,5} has gaps.
