@@ -11,7 +11,9 @@ parameters:
 
 # Clone
 
-All listed cells contain the same digit.
+All listed cells contain the same digit. One declaration is one equality group.
+
+For cloned areas, write one declaration for each corresponding position across the areas. Do not put every cell of every area in one declaration: that would make all those digits equal. The regions may contain different digits within each copy.
 
 ## Parameters
 
@@ -53,3 +55,14 @@ clone r1c1-r1c2
 Satisfies the rule: r1c1=1, r1c2=1. Both cells contain 1.
 
 Breaks the rule: r1c1=1, r1c2=2. The cells contain different digits.
+
+### Two cloned areas
+
+Two horizontal dominoes, r1c1–r1c2 and r4c4–r4c5, are clones when their corresponding positions match:
+
+```rules
+clone-1: clone r1c1-r4c4
+clone-2: clone r1c2-r4c5
+```
+
+Satisfies both declarations: the first domino is [2,7] and the second is [2,7]. Breaks the second declaration: the first is [2,7] and the second is [2,8]. The digits 2 and 7 are not required to equal each other.

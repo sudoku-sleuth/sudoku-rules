@@ -93,6 +93,13 @@
         "r1c1"
       ],
       "partial": true
+    },
+    "witnesses": {
+      "remainder": [
+        [
+          1
+        ]
+      ]
     }
   },
   {
@@ -118,6 +125,13 @@
         "r1c1"
       ],
       "partial": true
+    },
+    "witnesses": {
+      "remainder": [
+        [
+          1
+        ]
+      ]
     }
   },
   {
@@ -146,6 +160,13 @@
         "r1c2"
       ],
       "partial": true
+    },
+    "witnesses": {
+      "remainder": [
+        [
+          1
+        ]
+      ]
     }
   },
   {
@@ -174,6 +195,13 @@
         "r1c2"
       ],
       "partial": true
+    },
+    "witnesses": {
+      "remainder": [
+        [
+          1
+        ]
+      ]
     }
   },
   {

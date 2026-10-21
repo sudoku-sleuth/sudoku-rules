@@ -4,25 +4,25 @@ url: https://rules.sudoku-sleuth.com/allowed-digits.md
 kind: allowed-digits
 parameters:
   line:
-    description: The cells in order, for example r1c1-r1c2-r1c3.
+    description: The marked cells, listed with hyphens; their order does not affect this rule.
     default: Required.
     type: path<cell>
   digits:
-    description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
+    description: The permitted digits. Listing a digit does not require it to appear.
     default: Required.
     type: list<digit>
 ---
 
 # Allowed Digits
 
-Every marked cell contains one of the listed digits.
+Every marked cell contains one of the listed digits. The cells can form a path, a cage, a shaded area or a scattered group. The drawing does not add a sum or a no-repeat condition.
 
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
+| line | The marked cells, listed with hyphens; their order does not affect this rule. | Required. |
+| digits | The permitted digits. Listing a digit does not require it to appear. | Required. |
 
 ## Maths
 
@@ -34,7 +34,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∀c∈line: D(c)∈digits
 ```
 
-Every cell contains one of the listed digits.
+Every listed cell contains an allowed digit. Cell order and repeated entries in the allowed list do not change this condition. It does not require every allowed digit to occur.
 
 ## Example
 

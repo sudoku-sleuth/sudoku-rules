@@ -1,6 +1,6 @@
 # Contributing
 
-Propose changes through a pull request. Published rule meanings are fixed. Clarify wording without changing the accepted assignments; introduce a new kind when the meaning changes.
+Propose changes through a pull request. Published rule meanings are fixed. Clarify wording without changing the accepted assignments; introduce a new kind when the meaning changes. A published meaning that is plainly wrong is corrected in place and marked Breaking in the changelog.
 
 ## Rule pages
 
