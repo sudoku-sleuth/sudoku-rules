@@ -15,7 +15,9 @@ parameters:
 
 # Entropic
 
-Every three consecutive digits contain one from each third of the ordered alphabet. On a two-cell line, the digits come from different thirds.
+On a standard 1–9 board, every three consecutive cells on the line contain one low digit (1–3), one middle digit (4–6) and one high digit (7–9), in any order. On a two-cell open line, the digits come from different groups.
+
+For other boards, divide the puzzle’s ordered list of allowed symbols into three equal-sized groups. This list is called the ordered alphabet. The groups follow its supplied order, not necessarily numerical order; its length must be divisible by three. On a loop, triples also cross the join between the last and first cells.
 
 ## Parameters
 

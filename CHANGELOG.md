@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Clearer Arrow, Allowed Digits, Bremban, Entropic, Greek Carpet and Clone explanations, with cage and cloned-area examples.
+
 - `decoration` declares explicitly decorative marks with a true formula, optional notes and drawing element IDs. Decorations remain metadata in semantic normal forms. `W_DECORATION_OVERLAP` warns about overlapping declarations for the same drawn element. Portable contracts, examples and setter guidance cover the declaration.
 
 - Case-local custom rule ids (`#id`) independent of headings, with optional publication URLs and file-scoped references.
@@ -13,6 +15,8 @@ Each release lists what changed. A change that breaks a published export, front-
 - A whole-grid custom white-dot pair example in the setter skill.
 
 ### Breaking
+
+- Correct the partial Arrow formula to require a non-empty omitted shaft remainder made from allowed digits. Equality is rejected for positive-only alphabets and can hold when zero is allowed. The rule’s logical class is now existential; the declaration syntax is unchanged.
 
 - Custom parameters now require explicit types and custom formulas must pass the formula checker. Previously accepted malformed or unguarded formulas are rejected. Custom definitions may declare `class`, defaulting to first-order.
 
