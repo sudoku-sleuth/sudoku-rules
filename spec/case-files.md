@@ -122,3 +122,38 @@ case file, including quoted and multiline YAML values. This checks formula valid
 the rule remains custom and its intended meaning unverified. Matching prose and
 assignments to the formula requires review. URL loading and example evaluation
 remain separate phases.
+
+## Shared solution assignments
+
+The solution includes named routes, undirected networks and region collections.
+The names are ordinary string parameters, scoped to the case and to their type.
+`routeAnswer`, `networkAnswer` and `partitionAnswer` in the shared prelude read
+those assignments. Reusing a name reuses its object. Instance IDs identify rule
+occurrences; they do not identify these shared objects.
+
+For finite sets of referenced names A, B and G, the solution condition is
+
+```text
+∃ (L_a)_{a∈A}, (E_b)_{b∈B}, (P_g)_{g∈G}:
+  all instantiated rule formulas hold under this one assignment
+```
+
+Each L is a finite cell list, each E a finite list of two-cell edges, and each P
+a finite set of cell sets. Constructors check topology and scope. Named answer
+readers introduce no topology by themselves. The case-wide choice encloses
+negation and conditional declarations. A negated clue tests the chosen object;
+it does not bind a new one. Per-page logical classes classify each formula's
+checks on these solution inputs, as they do for H, D and V.
+
+```rules
+route name "trail" scope ["r1c1","r1c2","r1c3"] cover true
+route-clue name "trail" total 6 distinct true
+route-clue name "trail" relations [{"op":"difference","value":1}]
+```
+
+All three lines constrain one ordered route. Independent route existentials
+would allow the total and step clues to choose different routes. A custom
+formula can reuse `routeAnswer("trail")` with existing shared predicates, such
+as `consecutiveValues(routeAnswer("trail"),"D",false)`. Network and partition
+readers compose in the same way. The primary Regions input remains separate
+from every named constructed partition.

@@ -98,6 +98,26 @@ Cells use r1c1 notation. Repeated rules have numbered IDs; singleton rules use t
 - [aggregate-relation](https://rules.sudoku-sleuth.com/aggregate-relation.md)
 - [lookup](https://rules.sudoku-sleuth.com/lookup.md)
 
+- [relation-scope](https://rules.sudoku-sleuth.com/relation-scope.md)
+- [local-sequence](https://rules.sudoku-sleuth.com/local-sequence.md)
+- [index-count](https://rules.sudoku-sleuth.com/index-count.md)
+- [coordinate-count](https://rules.sudoku-sleuth.com/coordinate-count.md)
+- [aggregate-equation](https://rules.sudoku-sleuth.com/aggregate-equation.md)
+- [subset-total](https://rules.sudoku-sleuth.com/subset-total.md)
+- [digit-profile](https://rules.sudoku-sleuth.com/digit-profile.md)
+- [profile-relation](https://rules.sudoku-sleuth.com/profile-relation.md)
+- [number-property](https://rules.sudoku-sleuth.com/number-property.md)
+- [derived-count](https://rules.sudoku-sleuth.com/derived-count.md)
+- [neighbour-count](https://rules.sudoku-sleuth.com/neighbour-count.md)
+- [route](https://rules.sudoku-sleuth.com/route.md)
+- [route-group](https://rules.sudoku-sleuth.com/route-group.md)
+- [route-clue](https://rules.sudoku-sleuth.com/route-clue.md)
+- [maze](https://rules.sudoku-sleuth.com/maze.md)
+- [network-clue](https://rules.sudoku-sleuth.com/network-clue.md)
+- [region-partition](https://rules.sudoku-sleuth.com/region-partition.md)
+- [region-shape](https://rules.sudoku-sleuth.com/region-shape.md)
+- [region-clue](https://rules.sudoku-sleuth.com/region-clue.md)
+
 A standard board is one line: [sudoku 9x9](https://rules.sudoku-sleuth.com/sudoku.md).
 
 The short names [whisper](https://rules.sudoku-sleuth.com/whisper.md) and [killer](https://rules.sudoku-sleuth.com/killer.md) refer to whispers and cage.

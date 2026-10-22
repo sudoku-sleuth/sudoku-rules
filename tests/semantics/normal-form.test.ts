@@ -39,7 +39,7 @@ test("registry inventories every published kind, including aliases, with a speci
     if (typeof page.metadata.kind === "string") kinds.push(page.metadata.kind);
   }
   expect(Object.keys(declarationRegistry).sort()).toEqual(kinds.sort());
-  expect(kinds.length).toBe(90);
+  expect(kinds.length).toBe(109);
   for (const entry of Object.values(declarationRegistry)) if (entry.status === "unsupported") expect(entry.reason.length).toBeGreaterThan(20);
 });
 
@@ -349,6 +349,7 @@ test("every unsupported kind reports its registered reason when encountered", ()
       if (type.name === 'expression') return {op:'number',value:1};
       if (type.name === 'cell') return 'r1c1';
       if (type.name === 'boolean') return false;
+      if (type.name === 'string') return 'synthetic';
       if (['list','set','path','collection'].includes(type.name)) return [value(type.args![0])];
       if (type.name === 'record') return Object.fromEntries(Object.entries(type.fields!).filter(([,t])=>t.name !== 'optional').map(([n,t])=>[n,value(t)]));
       return 1;

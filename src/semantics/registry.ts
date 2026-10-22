@@ -3,6 +3,26 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  "relation-scope": pending("Scoped alternative relations and incident-edge selection are not lowered."),
+  "local-sequence": pending("Directed transitions, divisor sequences and recurrences are not lowered."),
+  "index-count": pending("Counts of bounded answer-dependent index hits are not lowered."),
+  "coordinate-count": pending("Counts of transformed coordinate hits are not lowered."),
+  "aggregate-equation": pending("Weighted powers and products of selected aggregates are not lowered."),
+  "subset-total": pending("Existence or exclusion of bounded subset totals are not lowered."),
+  "digit-profile": pending("Arbitrary numeric class counts and windows are not lowered."),
+  "profile-relation": pending("Numeric set and multiset comparisons are not lowered."),
+  "number-property": pending("Decimal orientation and numeric result properties are not lowered."),
+  "derived-count": pending("Counts and ranks of derived aggregate results are not lowered."),
+  "neighbour-count": pending("Scoped neighbour predicate counts are not lowered."),
+  "route": pending("Shared route assignments and topology are not lowered."),
+  "route-group": pending("Relations between shared routes are not lowered."),
+  "route-clue": pending("Numeric clues on a shared route are not lowered."),
+  "maze": pending("Shared connected network and tree assignments are not lowered."),
+  "network-clue": pending("Clues on shared graph edges and degrees are not lowered."),
+  "region-partition": pending("Shared connected region assignments are not lowered."),
+  "region-shape": pending("Template congruence and galaxy symmetry are not lowered."),
+  "region-clue": pending("Clues on a shared region partition are not lowered."),
+
   lookup: pending("Channel-dependent bounded lookup relations are not lowered."),
   "aggregate-relation": pending("Selected aggregate operand expressions are not lowered."),
   "difference-line": pending("Common or distinct edge differences and signed steps are not lowered."),

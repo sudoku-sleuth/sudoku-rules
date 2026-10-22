@@ -6,6 +6,13 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Relation Scope composes inclusive pair alternatives over bounded all-pair, move and incident-edge scopes. Local Sequence supplies directed transitions, integer divisibility and two-term recurrences. Index Count and Coordinate Count count bounded lookup hits with independent channels and coordinate transforms.
+- Aggregate Equation composes weighted powers, sums and products of shared aggregate operands. Subset Total requires or excludes bounded subsets. Digit Profile supplies arbitrary overlapping classes, class windows and self frequencies; Profile Relation compares sets or multisets.
+- Number Property applies primality, compositeness, integer powers, divisibility and decimal place counts to aggregate or decimal results. Derived Count counts matching or distinct derived results and ranks targets. Neighbour Count counts inclusive relation matches over explicit neighbourhoods.
+- Named shared route, network and partition assignments. Route, Route Group and Route Clue compose paths and loops with geometry, crossing, touch, coverage and numeric conditions. Maze and Network Clue compose connected networks, trees, degrees and route membership.
+- Region Partition, Region Shape and Region Clue compose connected regions, partial-board islands, tilings and galaxies with size, shape, symmetry, separation, aggregate and boundary-crossing conditions. Existing Constructed Regions keeps its local existential meaning.
+- Synthetic formula verdicts, public declaration examples, generated contracts and whole-instance unsupported coverage for the new meanings. Published-default fixtures remain unchanged.
+
 - Parameter-bound shorthands with checked `alias_bind` expressions. Quadruple shares Outside's occurrence definition; Kropki, Bremban, Slow Thermo and the anti-move rules bind canonical parameters while retaining their names, URLs and defaults.
 - Shared numeric channels, pair relations, monotonicity, aggregate operands, extrema and bounded lookup. Lookup supports independent index/result channels and configurable targets and relations. Existing arithmetic and indexing pages use these shared operations.
 - Explicit line networks with junction windows and whole-component Renban/Nabner. Modular window length is independent of modulus. Renban/Nabner expose channels, repeat policies and stopping-prefix selection; Thermo supports either-end orientation.

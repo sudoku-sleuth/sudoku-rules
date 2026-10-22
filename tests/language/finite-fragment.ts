@@ -4,7 +4,7 @@ import type {Type} from "../../src";
 type Value=Rational|string|boolean|undefined|Value[]|Group|Callable|{[key:string]:Value};
 interface Group {group:Value[]}
 type Callable=(...args:Value[])=>Value;
-export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];witnesses?:Record<string,unknown[]>}
+export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];routeAnswers?:Record<string,string[]>;networkAnswers?:Record<string,string[][]>;partitionAnswers?:Record<string,string[][]>;witnesses?:Record<string,unknown[]>}
 const number=(value:Value):Rational=>{if(!value||typeof value!=="object"||!("numerator" in value))throw Error("Expected exact number");return value as Rational;};
 const truth=(value:Value):boolean=>{if(typeof value!=="boolean")throw Error("Expected Boolean");return value;};
 const members=(value:Value):Value[]=>{if(Array.isArray(value))return value;if(value&&typeof value==="object"&&"group" in value)return (value as Group).group;throw Error("Expected collection");};
@@ -21,11 +21,14 @@ function typed(value:unknown,type:Type,prelude:CheckedPrelude):Value{
 }
 export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:string;type:Type}[],fragment:Fragment):boolean{
  const cells=Object.keys(fragment.faces);if(cells.length>81)throw Error("Fragment limit: 81 cells");
- const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),Regions:group((fragment.regions??[]).map(region=>group(region))),H:group(fragment.shaded??[]),rows:exact(String(fragment.rows??9)),cols:exact(String(fragment.cols??9)),ℤ:group(Array.from({length:17},(_,i)=>exact(String(i)))),ValuedRuleMeanings:[true]};
+ const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),Regions:group((fragment.regions??[]).map(region=>group(region))),H:group(fragment.shaded??[]),rows:exact(String(fragment.rows??9)),cols:exact(String(fragment.cols??9)),ℤ:group(Array.from({length:33},(_,i)=>exact(String(i-16)))),ValuedRuleMeanings:[true]};
  for(const parameter of parameters)env[parameter.name]=typed(fragment.parameters[parameter.name],parameter.type,prelude);
  const primitives:Record<string,Callable>={
   face:c=>exact(String(fragment.faces[String(c)])),effective:c=>exact(String((fragment.values??fragment.faces)[String(c)])),toValue:x=>x,
   relationSpec:(op,n)=>({op:op!,value:n!}),
+  routeAnswer:name=>{const value=fragment.routeAnswers?.[String(name)];if(!value)throw Error(`Missing shared route ${name}`);return value;},
+  networkAnswer:name=>{const value=fragment.networkAnswers?.[String(name)];if(!value)throw Error(`Missing shared network ${name}`);return value;},
+  partitionAnswer:name=>{const value=fragment.partitionAnswers?.[String(name)];if(!value)throw Error(`Missing shared partition ${name}`);return group(value.map(region=>group(region)));},
   connected:input=>{
    const items=members(input);if(!items.length)return false;
    const explicit=Array.isArray(items[0]);
