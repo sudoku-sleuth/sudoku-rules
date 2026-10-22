@@ -4,7 +4,8 @@ url: https://rules.sudoku-sleuth.com/region-clue.md
 kind: region-clue
 shape: Regions
 parameters:
-  name:
+  partitionRef:
+    shared: {role: read, type: partition}
     type: string
     description: The shared region collection name.
     default: Required.
@@ -42,7 +43,7 @@ Each marker compares its region aggregate with target when supplied. Without tar
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | The shared region collection name. | Required. |
+| partitionRef | The shared region collection name. | Required. |
 | markers | Cells whose containing region is constrained. | Required. |
 | operation | Aggregate over each containing region. | sum. |
 | target | Fixed aggregate target. | Absent; read the marker number. |
@@ -57,7 +58,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let P=partitionAnswer(name); |P|>0 ∧ (∀m∈markers: ∃R∈P: m∈R ∧ aggregate(R,channel,operation)=(if present(target) then unwrap(target) else read(m,channel))) ∧ (present(perRegion) → ∀R∈P:countWhere(markers,λm:cell:m∈R)=unwrap(perRegion)) ∧ (∀g∈rays: (∀c∈g.cells:∃R∈P:c∈R) ∧ g.total=(count i∈[0,|g.cells|-1): ¬samePartition(P,g.cells[i],g.cells[i+1])))
+let P=partitionAnswer(partitionRef); |P|>0 ∧ (∀m∈markers: ∃R∈P: m∈R ∧ aggregate(R,channel,operation)=(if present(target) then unwrap(target) else read(m,channel))) ∧ (present(perRegion) → ∀R∈P:countWhere(markers,λm:cell:m∈R)=unwrap(perRegion)) ∧ (∀g∈rays: (∀c∈g.cells:∃R∈P:c∈R) ∧ g.total=(count i∈[0,|g.cells|-1): ¬samePartition(P,g.cells[i],g.cells[i+1])))
 ```
 
 ## Example
@@ -76,7 +77,7 @@ status: read
 ```rules
 sudoku 9x9
 region-partition name "areas" scope ["r1c1","r1c2"] sizes [2]
-region-clue name "areas" markers ["r1c1"] operation "count"
+region-clue partitionRef "areas" markers ["r1c1"] operation "count"
 ```
 ````
 

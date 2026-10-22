@@ -6,27 +6,27 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
-- Phase B reference checks require one constructor per shared typed name, including custom readers and reified truth labels. Route clues and groups read constructor closure; all shared constructors and readers use the existential class. Invalid recurrence loops, loop endpoints, reversed non-decimal operands, fractional coordinate transforms and empty partition scopes are lint errors.
-- Route crossings cover proper interior intersections of straight steps of any length. Region Clue uses `rays` for boundary-count lists; Digit Profile uses `exhaustive` for class coverage. Counting Circles, Constructed Regions and Aggregate Relation state their exact equivalence to the general pages. Existing published-default fixtures are unchanged.
+- Shared-name reference checks require one constructor per shared typed name, including custom readers and reified truth labels. Route clues and groups read constructor closure; all shared constructors and readers use the existential class. Invalid recurrence loops, loop endpoints, reversed non-decimal operands, fractional coordinate transforms and empty partition scopes are lint errors.
+- Route crossings cover proper interior intersections of straight steps of any length. Region Clue uses `rays` for boundary-count lists; Digit Profile uses `exhaustive` for class coverage. Counting Circles, Constructed Regions and Aggregate Relation bind parameters of their general rules.
 
 - Shared case-wide selections, truth labels, integer assignments, numeric channels and symbol-entry channels. Selection, Marking Relation, Battenburg, Shade Components and Japanese Sums compose marking, maximal connectivity and ordered run clues.
 - Mapped Values supplies affine, explicit-map and bounded free values on shared masks and scoped channels. Paired Roles constrains one-to-one role pairings on shared undirected networks. Existing Value Modifier and Yin Yang meanings are unchanged.
 - Choice Count and Assignment compose rule reification, cardinality, bijections and explicit conditional meanings. Cell Entries and Symbol House express multiple entries, missing symbols and repeated house symbols without changing the standard Sudoku board contract.
-- JSON-quoted string defaults in generated consumer contracts. New synthetic examples, semantic fragments and complete unsupported-instance coverage; mapped values prevent an unjustified V=D rewrite.
+- JSON-quoted string defaults in generated consumer contracts. Mapped Values declarations preserve their channel constraints during semantic normalisation.
 
 - Relation Scope composes inclusive pair alternatives over bounded all-pair, move and incident-edge scopes. Local Sequence supplies directed transitions, integer divisibility and two-term recurrences. Index Count and Coordinate Count count bounded lookup hits with independent channels and coordinate transforms.
 - Aggregate Equation composes weighted powers, sums and products of shared aggregate operands. Subset Total requires or excludes bounded subsets. Digit Profile supplies arbitrary overlapping classes, class windows and self frequencies; Profile Relation compares sets or multisets.
 - Number Property applies primality, compositeness, integer powers, divisibility and decimal place counts to aggregate or decimal results. Derived Count counts matching or distinct derived results and ranks targets. Neighbour Count counts inclusive relation matches over explicit neighbourhoods.
 - Named shared route, network and partition assignments. Route, Route Group and Route Clue compose paths and loops with geometry, crossing, touch, coverage and numeric conditions. Maze and Network Clue compose connected networks, trees, degrees and route membership.
 - Region Partition, Region Shape and Region Clue compose connected regions, partial-board islands, tilings and galaxies with size, shape, symmetry, separation, aggregate and boundary-crossing conditions. Existing Constructed Regions keeps its local existential meaning.
-- Synthetic formula verdicts, public declaration examples, generated contracts and whole-instance unsupported coverage for the new meanings. Published-default fixtures remain unchanged.
+- Public declaration examples and generated contracts for the new rules.
 
 - Parameter-bound shorthands with checked `alias_bind` expressions. Quadruple shares Outside's occurrence definition; Kropki, Bremban, Slow Thermo and the anti-move rules bind canonical parameters while retaining their names, URLs and defaults.
 - Shared numeric channels, pair relations, monotonicity, aggregate operands, extrema and bounded lookup. Lookup supports independent index/result channels and configurable targets and relations. Existing arithmetic and indexing pages use these shared operations.
 - Explicit line networks with junction windows and whole-component Renban/Nabner. Modular window length is independent of modulus. Renban/Nabner expose channels, repeat policies and stopping-prefix selection; Thermo supports either-end orientation.
 - Difference Line distinguishes equal absolute differences, different absolute differences and signed steps. Split Pea uses reversible endpoint decimal reading. Prefix Sum and Blocked Sight share stopping selectors, channels and aggregate output. Sum Partition distinguishes overlapping coverage from disjoint partitions, including cyclic cuts.
 - Shared graph traversals, reversal, cyclic cuts, maximal region runs, ordered rays and record-high visibility. Line Choice retains its printed-digit Renban branch and vacuous ordered two-cell modular/entropic choices. Explicit networks require distinct classes across components shorter than their window.
-- Declaration contracts, public examples, MathML/site coverage and semantic regression fragments for these meanings. Finite comparison leaves extended instances uncovered when their lowering is unavailable.
+- Declaration contracts, worked examples and mathematical notation for these rules. Rule comparison reports which declarations it can compare.
 
 - Decorative rule symbols beside library names and page headings, with a page-slug mapping, theme colours and MIT licensing.
 - Region Sum `combine` selects separate visits or one total per visited primary region. Zipper `centre` selects the existing odd-centre rule, independent pair sums or a required odd centre. Existing defaults are preserved; portable declaration contracts and region-sum semantic lowering include the new choices.
@@ -61,7 +61,7 @@ Each release lists what changed. A change that breaks a published export, front-
 - Case checks for required parameters, unknown and repeated keys, nested value types, cell bounds, board fields, alphabet and givens. Board-dependent omission values must be explicit on non-standard dimensions or alphabets.
 - Diagnostics `E_CASE_BOARD`, `E_CASE_PARAMETERS` and `E_CUSTOM_DEFINITION`, with rejecting case fixtures and passing repairs.
 
-- Portable semantic normalisation and comparison: explicit board context, finite logical primitives, located differences, rewrite provenance and exhaustive declaration coverage. Slice A covers houses, unique, clone, diagonals, chess and scoped moves, allowed digits, parity cells and untotalled cages. Unsupported declarations retain specific coverage reasons. The existing exact-rational `compare` signature is preserved.
+- Compare rule declarations on a specified board and locate their differences. Comparison supports houses, unique, clone, diagonals, chess and scoped moves, allowed digits, parity cells and cages without totals. Other declarations report why they cannot be compared. The `compare` API is unchanged.
 
 - Semantic coverage for pair keywords, Kropki, quadruple and outside multiplicities, scoped negative relations with explicit exceptions, and fog play state. Exact pair tables use the supplied alphabet. Fog comparison preserves missing versus empty links; `visibleCells` computes current reveals from entries and answer availability.
 

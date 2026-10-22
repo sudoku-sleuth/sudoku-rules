@@ -118,6 +118,18 @@ Cells use r1c1 notation. Repeated rules have numbered IDs; singleton rules use t
 - [region-shape](https://rules.sudoku-sleuth.com/region-shape.md)
 - [region-clue](https://rules.sudoku-sleuth.com/region-clue.md)
 
+- [selection](https://rules.sudoku-sleuth.com/selection.md)
+- [marking-relation](https://rules.sudoku-sleuth.com/marking-relation.md)
+- [battenburg](https://rules.sudoku-sleuth.com/battenburg.md)
+- [shade-components](https://rules.sudoku-sleuth.com/shade-components.md)
+- [japanese-sums](https://rules.sudoku-sleuth.com/japanese-sums.md)
+- [mapped-values](https://rules.sudoku-sleuth.com/mapped-values.md)
+- [paired-roles](https://rules.sudoku-sleuth.com/paired-roles.md)
+- [choice-count](https://rules.sudoku-sleuth.com/choice-count.md)
+- [assignment](https://rules.sudoku-sleuth.com/assignment.md)
+- [cell-entries](https://rules.sudoku-sleuth.com/cell-entries.md)
+- [symbol-house](https://rules.sudoku-sleuth.com/symbol-house.md)
+
 A standard board is one line: [sudoku 9x9](https://rules.sudoku-sleuth.com/sudoku.md).
 
 The short names [whisper](https://rules.sudoku-sleuth.com/whisper.md) and [killer](https://rules.sudoku-sleuth.com/killer.md) refer to whispers and cage.

@@ -16,6 +16,13 @@ parameters:
     type: PairRelation
     description: The relation applied to the two aggregate results.
     default: Required.
+alias_of: aggregate-equation
+alias_bind:
+  left: '⟨weightedOperand(left,1,1):i∈[0,1)⟩'
+  right: '⟨weightedOperand(right,1,1):i∈[0,1)⟩'
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: 'relation'
 ---
 
 # Aggregate Relation
@@ -38,13 +45,7 @@ This is [Aggregate Equation](aggregate-equation.md) with one term on each side, 
 
 ## Maths
 
-Class: **with aggregates**.
-
-The [shared predicates](predicates.md) define operand selection, repeat policy and each aggregate expression.
-
-```text
-operandValid(left) ∧ operandValid(right) ∧ pairRelation(relation,aggregateExpression(left),aggregateExpression(right))
-```
+This is a shorthand for [aggregate-equation](aggregate-equation.md). Its header binds the general rule parameters.
 
 ## Example
 

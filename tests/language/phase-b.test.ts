@@ -146,27 +146,27 @@ test('route topology checks closure, repeats, endpoints, edges and touch indepen
 });
 test('route groups separate sharing, touching, coverage and diagonal crossings',()=>{
  const extra={routeAnswers:{upper:[a,b],lower:[d,e]}};
- const params={names:['upper','lower']};
+ const params={routes:['upper','lower']};
  expect(verdict('route-group',params,extra)).toBe(true);
  expect(verdict('route-group',{...params,noTouch:'orthogonal'},extra)).toBe(false);
  expect(verdict('route-group',{...params,cover:scope},extra)).toBe(true);
  expect(verdict('route-group',{...params,cover:[a,b]},extra)).toBe(false);
- expect(verdict('route-group',{names:['upper','upper']},extra)).toBe(false);
+ expect(verdict('route-group',{routes:['upper','upper']},extra)).toBe(false);
  expect(verdict('route-group',params,{routeAnswers:{upper:[a,e],lower:[b,d]}})).toBe(false);
 });
 test('shared references conjoin conditions on one answer, including under negation',()=>{
  const expression='aggregate(routeAnswer("trail"),"D","sum")=3 ∧ aggregate(routeAnswer("trail"),"D","sum")=7';
  for(const L of [[a,b],[c,d]])expect(formula(expression,{routeAnswers:{trail:L}})).toBe(false);
- expect(verdict('route-clue',{name:'trail',total:3},{routeAnswers:{trail:[a,b]}})).toBe(true);
- expect(verdict('route-clue',{name:'trail',total:7},{routeAnswers:{trail:[a,b]}},true)).toBe(true);
- expect(()=>verdict('route-clue',{name:'absent',total:3},routes)).toThrow('Missing shared route');
+ expect(verdict('route-clue',{route:'trail',total:3},{routeAnswers:{trail:[a,b]}})).toBe(true);
+ expect(verdict('route-clue',{route:'trail',total:7},{routeAnswers:{trail:[a,b]}},true)).toBe(true);
+ expect(()=>verdict('route-clue',{route:'absent',total:3},routes)).toThrow('Missing shared route');
 });
 test('route clues use the chosen order and cyclic windows',()=>{
  const extra={routeAnswers:{trail:[a,b,c]}};
- expect(verdict('route-clue',{name:'trail',relations:[difference],total:6},extra)).toBe(true);
- expect(verdict('route-clue',{name:'trail',relations:[difference]},{...extra,routeClosures:{trail:true}})).toBe(false);
- expect(verdict('route-clue',{name:'trail',classes:[[1],[2],[3]],length:3},extra)).toBe(true);
- expect(verdict('route-clue',{name:'trail',classes:[[1],[2],[3]],length:2},extra)).toBe(false);
+ expect(verdict('route-clue',{route:'trail',relations:[difference],total:6},extra)).toBe(true);
+ expect(verdict('route-clue',{route:'trail',relations:[difference]},{...extra,routeClosures:{trail:true}})).toBe(false);
+ expect(verdict('route-clue',{route:'trail',classes:[[1],[2],[3]],length:3},extra)).toBe(true);
+ expect(verdict('route-clue',{route:'trail',classes:[[1],[2],[3]],length:2},extra)).toBe(false);
 });
 const tree={networkAnswers:{passages:[[a,b],[a,d],[d,e]]}};
 test('maze constructor rejects duplicate edges, disconnection and cycles',()=>{
@@ -183,8 +183,8 @@ test('maze constructor rejects duplicate edges, disconnection and cycles',()=>{
  expect(verdict('maze',{name:'passages',scope:[]},{networkAnswers:{passages:[]}})).toBe(false);
 });
 test('network clues refer to the same graph and route',()=>{
- expect(verdict('network-clue',{name:'passages',line:'trail',degrees:[{cell:a,degree:2}]},{...tree,routeAnswers:{trail:[b,a,d,e]}})).toBe(true);
- expect(verdict('network-clue',{name:'passages',line:'trail'},{...tree,routeAnswers:{trail:[a,e]}})).toBe(false);
+ expect(verdict('network-clue',{network:'passages',route:'trail',degrees:[{cell:a,degree:2}]},{...tree,routeAnswers:{trail:[b,a,d,e]}})).toBe(true);
+ expect(verdict('network-clue',{network:'passages',route:'trail'},{...tree,routeAnswers:{trail:[a,e]}})).toBe(false);
 });
 function paths(prefix:string[],remaining:string[]):string[][]{return [prefix,...remaining.flatMap((c,i)=>paths([...prefix,c],remaining.filter((_,j)=>j!==i)))];}
 const partition={partitionAnswers:{areas:[[a,b],[d,e]]},witnesses:{route:paths([],scope).filter(p=>p.length)}};
@@ -199,23 +199,23 @@ test('region constructor binds exact scope, connectivity, sizes, borders and cha
  expect(verdict('region-partition',{...params,distinct:true,channel:'V'},{...partition,values:{...faces,[a]:0.5,[b]:0.5}})).toBe(false);
 });
 test('region shape, translation, rotation, reflection and galaxy centre checks',()=>{
- const params={name:'areas',shapes:[[a,b]],uses:[2]};
+ const params={partitionRef:'areas',shapes:[[a,b]],uses:[2]};
  expect(verdict('region-shape',params,partition)).toBe(true);
  const vertical={partitionAnswers:{areas:[[a,d],[b,e]]}};
  expect(verdict('region-shape',{...params,rotations:false,reflections:false},vertical)).toBe(false);
  expect(verdict('region-shape',{...params,rotations:true,reflections:false},vertical)).toBe(true);
- expect(verdict('region-shape',{name:'areas',centres:[{row2:0,col2:1},{row2:2,col2:1}]},partition)).toBe(true);
- expect(verdict('region-shape',{name:'areas',centres:[{row2:1,col2:1}]},partition)).toBe(false);
- expect(verdict('region-shape',{name:'areas',centres:[{row2:0,col2:0}]},partition)).toBe(false);
- expect(verdict('region-shape',{name:'areas',centres:[{row2:0,col2:1},{row2:0,col2:1}]},partition)).toBe(false);
+ expect(verdict('region-shape',{partitionRef:'areas',centres:[{row2:0,col2:1},{row2:2,col2:1}]},partition)).toBe(true);
+ expect(verdict('region-shape',{partitionRef:'areas',centres:[{row2:1,col2:1}]},partition)).toBe(false);
+ expect(verdict('region-shape',{partitionRef:'areas',centres:[{row2:0,col2:0}]},partition)).toBe(false);
+ expect(verdict('region-shape',{partitionRef:'areas',centres:[{row2:0,col2:1},{row2:0,col2:1}]},partition)).toBe(false);
 });
 test('region clues count size, marker occurrences and return crossings on the shared partition',()=>{
- expect(verdict('region-clue',{name:'areas',markers:[b],operation:'count'},partition)).toBe(true);
- expect(verdict('region-clue',{name:'areas',markers:[a],operation:'count'},partition)).toBe(false);
- expect(verdict('region-clue',{name:'areas',markers:[a,d],perRegion:1,target:3},partition)).toBe(false);
- expect(verdict('region-clue',{name:'areas',markers:[a,d],perRegion:1,operation:'count',target:2},partition)).toBe(true);
- expect(verdict('region-clue',{name:'areas',markers:[],rays:[{cells:[a,d,a],total:2}]},partition)).toBe(true);
- expect(verdict('region-clue',{name:'areas',markers:[],rays:[{cells:[a,c],total:1}]},partition)).toBe(false);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[b],operation:'count'},partition)).toBe(true);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[a],operation:'count'},partition)).toBe(false);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[a,d],perRegion:1,target:3},partition)).toBe(false);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[a,d],perRegion:1,operation:'count',target:2},partition)).toBe(true);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[],rays:[{cells:[a,d,a],total:2}]},partition)).toBe(true);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[],rays:[{cells:[a,c],total:1}]},partition)).toBe(false);
 });
 test('coordinate hits use bounded destinations and exact transformed integer indices',()=>{
  const params={sources:[b],scope:[a,b,c],target:2,total:1};
@@ -234,8 +234,8 @@ test('self frequencies and arbitrary class windows retain whole-list closure',()
 });
 test('shape reflections can be allowed without admitting a half-turn rotation',()=>{
  const extra={partitionAnswers:{areas:[[a,b,e]]}};
- expect(verdict('region-shape',{name:'areas',shapes:[[a,b,d]],rotations:false,reflections:false},extra)).toBe(false);
- expect(verdict('region-shape',{name:'areas',shapes:[[a,b,d]],rotations:false,reflections:true},extra)).toBe(true);
+ expect(verdict('region-shape',{partitionRef:'areas',shapes:[[a,b,d]],rotations:false,reflections:false},extra)).toBe(false);
+ expect(verdict('region-shape',{partitionRef:'areas',shapes:[[a,b,d]],rotations:false,reflections:true},extra)).toBe(true);
  // The unique orientation of this asymmetric four-cell template needs a half turn.
  expect(formula('congruent({boardCell(0,0),boardCell(0,1),boardCell(0,2),boardCell(1,0)},{boardCell(1,0),boardCell(1,1),boardCell(1,2),boardCell(0,2)},false,true)')).toBe(false);
  expect(formula('congruent({boardCell(0,0),boardCell(0,1),boardCell(0,2),boardCell(1,0)},{boardCell(1,0),boardCell(1,1),boardCell(1,2),boardCell(0,2)},true,false)')).toBe(true);
@@ -256,25 +256,25 @@ function caseCheck(lines:string){
  return checkCaseReferences({file:'review.rules.md',text},library.registry).diagnostics;
 }
 test('review 1: every shared name has exactly one constructor, including negated and conditional references',()=>{
- for(const line of ['route-clue name "ghost"','route-group names ["ghost"]','network-clue name "ghost"','region-clue name "ghost" markers ["r1c1"]','region-shape name "ghost"'])expect(caseCheck(line).some(d=>d.message.includes('exactly one constructor'))).toBe(true);
+ for(const line of ['route-clue route "ghost"','route-group routes ["ghost"]','network-clue network "ghost"','region-clue partitionRef "ghost" markers ["r1c1"]','region-shape partitionRef "ghost"'])expect(caseCheck(line).some(d=>d.message.includes('exactly one constructor'))).toBe(true);
  const constructor='route name "trail" scope ["r1c1","r1c2"]';
- expect(caseCheck(`${constructor}\nnot route-clue name "trail"`)).toEqual([]);
+ expect(caseCheck(`${constructor}\nnot route-clue route "trail"`)).toEqual([]);
  expect(caseCheck(`route-1: ${constructor}\nroute-2: not ${constructor}`).some(d=>d.message.includes('found 2'))).toBe(true);
  for(const [kind,p] of [['maze','scope ["r1c1"]'],['region-partition','scope ["r1c1"]'],['selection','scope ["r1c1"]'],['assignment','size 1 labels 1'],['cell-entries','scope ["r1c1"]']] as const){
   expect(caseCheck(`${kind}-1: ${kind} name "x" ${p}\n${kind}-2: ${kind} name "x" ${p}`).some(d=>d.message.includes('found 2'))).toBe(true);
  }
- for(const kind of ['route-clue','region-shape','region-clue'])expect(verdict(kind,{name:'empty',markers:[]},{routeAnswers:{empty:[]},partitionAnswers:{empty:[]}})).toBe(false);
- expect(verdict('network-clue',{name:'empty'},{networkAnswers:{empty:[]}})).toBe(false);
+ for(const kind of ['route-clue','region-shape','region-clue'])expect(verdict(kind,{route:'empty',partitionRef:'empty',markers:[]},{routeAnswers:{empty:[]},partitionAnswers:{empty:[]}})).toBe(false);
+ expect(verdict('network-clue',{network:'empty'},{networkAnswers:{empty:[]}})).toBe(true);
 });
 test('review 2: clues and mixed route groups read constructor closure; network lines must be open',()=>{
  const x={routeAnswers:{trail:[a,b,c]},routeClosures:{trail:true}};
- expect(verdict('route-clue',{name:'trail',relations:[difference]},x)).toBe(false);
+ expect(verdict('route-clue',{route:'trail',relations:[difference]},x)).toBe(false);
  const mixed={routeAnswers:{upper:[a,c,e],lower:[d,b]},routeClosures:{upper:true,lower:false}};
- expect(verdict('route-group',{names:['upper','lower']},mixed)).toBe(false);
- expect(verdict('route-group',{names:['upper','lower']},{...mixed,routeClosures:{upper:false,lower:false}})).toBe(true);
- expect(verdict('route-group',{names:['upper','lower'],crossings:true},mixed)).toBe(true);
- expect(verdict('network-clue',{name:'passages',line:'trail'},{...tree,routeAnswers:{trail:[b,a,d,e]},routeClosures:{trail:true}})).toBe(false);
- expect(caseCheck('route name "trail" scope ["r1c1","r1c2"]\nroute-clue name "trail" loop true').some(d=>d.code==='E_CASE_PARAMETERS')).toBe(true);
+ expect(verdict('route-group',{routes:['upper','lower']},mixed)).toBe(false);
+ expect(verdict('route-group',{routes:['upper','lower']},{...mixed,routeClosures:{upper:false,lower:false}})).toBe(true);
+ expect(verdict('route-group',{routes:['upper','lower'],crossings:true},mixed)).toBe(true);
+ expect(verdict('network-clue',{network:'passages',route:'trail'},{...tree,routeAnswers:{trail:[b,a,d,e]},routeClosures:{trail:true}})).toBe(false);
+ expect(caseCheck('route name "trail" scope ["r1c1","r1c2"]\nroute-clue route "trail" loop true').some(d=>d.code==='E_CASE_PARAMETERS')).toBe(true);
 });
 test('review 3: simpler frequency, partition and aggregate meanings equal their general forms',()=>{
  for(const xs of [[1,2,2],[1,2,3],[3,3,3]]){
@@ -302,7 +302,7 @@ test('review 4: coordinate bases, factors and offset accept signed integers and 
 });
 test('review 5: every shared constructor and clue is existential, including through prelude wrappers',()=>{
  for(const kind of ['route','route-clue','route-group','maze','network-clue','region-partition','region-shape','region-clue','selection','marking-relation','battenburg','shade-components','japanese-sums','mapped-values','paired-roles','choice-count','assignment','cell-entries','symbol-house'])expect(library.rules.get(kind)!.formulas[0].logicClass).toBe('existential');
- expect(checkFormula(parseFormula('routeClosed("trail")').value!,library.prelude.environment).value!.logicClass).toBe('existential');
+ expect(checkFormula(parseFormula('routeClosed("trail")').value!,library.prelude.environment).value!.logicClass).toBe('first-order');
 });
 test('review 6: incompatible recurrence, endpoints and reversed operands are lint errors',()=>{
  for(const line of ['local-sequence line ["r1c1","r1c2"] mode "recurrence" loop true','route name "trail" scope ["r1c1","r1c2"] loop true startCell "r1c1"','route name "trail" scope ["r1c1","r1c2"] loop true endCell "r1c1"','number-property operand {"cells":["r1c1"],"channel":"D","operation":"sum","repeats":true} property "prime" reverse true'])expect(caseCheck(line).some(d=>d.code==='E_CASE_PARAMETERS')).toBe(true);
@@ -313,7 +313,7 @@ test('review 7: proper crossings cover long bishops and knights without treating
   const extra={faces:{[x]:1,[y]:2,[z]:3,[w]:4}};
   expect(formula(`segmentCross(boardCell(${Number(x[1])-1},${Number(x[3])-1}),boardCell(${Number(y[1])-1},${Number(y[3])-1}),boardCell(${Number(z[1])-1},${Number(z[3])-1}),boardCell(${Number(w[1])-1},${Number(w[3])-1}))`,extra)).toBe(true);
   const routes={...extra,routeAnswers:{one:[x,y],two:[z,w]}};
-  expect(verdict('route-group',{names:['one','two']},routes)).toBe(false);
+  expect(verdict('route-group',{routes:['one','two']},routes)).toBe(false);
  }
  expect(formula('segmentCross(boardCell(0,0),boardCell(1,1),boardCell(1,1),boardCell(0,2))')).toBe(false);
 });
@@ -326,8 +326,8 @@ test('review 8: profile exhaustiveness, loop topology and boundary rays have dis
 test('review 9: empty partition scopes fail, implicit targets use marker channel, and zero powers equal one',()=>{
  expect(caseCheck('region-partition name "areas" scope []').some(d=>d.code==='E_CASE_PARAMETERS')).toBe(true);
  expect(verdict('region-partition',{name:'areas',scope:[]},{partitionAnswers:{areas:[]}})).toBe(false);
- expect(verdict('region-clue',{name:'areas',markers:[b],operation:'count'},partition)).toBe(true);
- expect(verdict('region-clue',{name:'areas',markers:[b],operation:'count',channel:'V'},{...partition,values:{...faces,[b]:3}})).toBe(false);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[b],operation:'count'},partition)).toBe(true);
+ expect(verdict('region-clue',{partitionRef:'areas',markers:[b],operation:'count',channel:'V'},{...partition,values:{...faces,[b]:3}})).toBe(false);
  expect(formula('0^0=1')).toBe(true);
 });
 test('review 7: route constructors forbid crossing long bishop and knight steps unless enabled',()=>{

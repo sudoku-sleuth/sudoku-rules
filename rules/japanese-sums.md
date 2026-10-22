@@ -8,7 +8,8 @@ parameters:
     type: list<cell>
     description: "Cells in clue order."
     default: "Required."
-  name:
+  selectionRef:
+    shared: {role: read, type: selection}
     type: string
     description: "The selection name; H means board shading."
     default: '"H".'
@@ -35,7 +36,7 @@ Read the maximal nonempty runs of marked cells in the supplied order. Their sums
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | line | Cells in clue order. | Required. |
-| name | The selection name; H means board shading. | "H". |
+| selectionRef | The selection name; H means board shading. | "H". |
 | totals | One total per maximal marked run. | Required. |
 | channel | Read face digits D or effective values V. | D. |
 | repeats | Allow equal numbers within a run. | true. |
@@ -47,7 +48,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-japaneseSums(line,name,totals,channel,repeats)
+japaneseSums(line,selectionRef,totals,channel,repeats)
 ```
 
 ## Example

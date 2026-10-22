@@ -5,14 +5,17 @@ kind: paired-roles
 shape: Global
 parameters:
   left:
+    shared: {role: read, type: selection}
     type: string
     description: "Left selection name."
     default: "Required."
   right:
+    shared: {role: read, type: selection}
     type: string
     description: "Right selection name."
     default: "Required."
-  pairs:
+  name:
+    shared: {role: construct, type: network}
     type: string
     description: "Shared network name containing undirected pairs."
     default: "Required."
@@ -32,7 +35,7 @@ parameters:
 
 # Paired Roles
 
-Pair each cell in the left role with exactly one cell in the right role, covering scope. The roles are disjoint shared selections. Network edges are undirected; the numeric relation always reads the left-role cell first and the right-role cell second. Empty roles and an empty pairing are allowed only for empty scope.
+Pair each cell in the left role with exactly one cell in the right role, covering scope. The roles are disjoint shared selections with different names. Network edges are undirected; the numeric relation always reads the left-role cell first and the right-role cell second. Empty roles and an empty pairing are allowed only for empty scope.
 
 ## Parameters
 
@@ -40,7 +43,7 @@ Pair each cell in the left role with exactly one cell in the right role, coverin
 | --- | --- | --- |
 | left | Left selection name. | Required. |
 | right | Right selection name. | Required. |
-| pairs | Shared network name containing undirected pairs. | Required. |
+| name | Shared network name containing undirected pairs. | Required. |
 | scope | Cells covered by the two roles. | Required. |
 | relation | Numeric relation from left to right. | Required. |
 | channel | Read face digits D or effective values V. | D. |
@@ -52,7 +55,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let A=selectedCells(left); let B=selectedCells(right); let E=networkAnswer(pairs); A∪B=scope ∧ |A∩B|=0 ∧ canonicalEdges(E) ∧ (∀e∈E:|e|=2 ∧ ((e[0]∈A ∧ e[1]∈B) ∨ (e[1]∈A ∧ e[0]∈B))) ∧ (∀a∈A:∀b∈B:graphEdge(E,a,b) → pairRelation(relation,read(a,channel),read(b,channel))) ∧ (∀c∈scope:networkDegree(E,c)=1)
+left!=right ∧ let A=selectedCells(left); let B=selectedCells(right); let E=networkAnswer(name); A∪B=scope ∧ |A∩B|=0 ∧ canonicalEdges(E) ∧ (∀e∈E:|e|=2 ∧ ((e[0]∈A ∧ e[1]∈B) ∨ (e[1]∈A ∧ e[0]∈B))) ∧ (∀a∈A:∀b∈B:graphEdge(E,a,b) → pairRelation(relation,read(a,channel),read(b,channel))) ∧ (∀c∈scope:networkDegree(E,c)=1)
 ```
 
 ## Example
@@ -72,7 +75,7 @@ status: read
 sudoku 9x9
 selection-1: selection name "hot" scope ["r1c1","r1c2"]
 selection-2: selection name "cold" scope ["r1c1","r1c2"]
-paired-roles left "hot" right "cold" pairs "partners" scope ["r1c1","r1c2"] relation {"op":"sum","value":5}
+paired-roles left "hot" right "cold" name "partners" scope ["r1c1","r1c2"] relation {"op":"sum","value":5}
 ```
 ````
 

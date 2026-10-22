@@ -132,3 +132,24 @@ retain their current behavior.
 String parameter defaults use a JSON-quoted string followed by optional prose
 punctuation, for example `default: '"H".'`. The generated portable contract
 contains the decoded string. An unquoted description is not a string default.
+
+Shared-name parameters declare `shared: {role: construct, type: route}` in
+the page header. Roles are `construct`, `read` and `conjoin`; types are route,
+network, partition, selection, choice, assignment, value and symbol. Compilation
+retains this metadata in parameter contracts and in `registry.sharedNames`, keyed
+by the declared kind. `registry.kindByUrl` maps publication URLs to declared
+kinds independently of filenames. Generated declaration contracts retain both
+maps. Conjoined value channels may have several declarations; other shared
+objects require one constructor. Battenburg reads a selection only in selection
+mode; an empty Region Partition name selects a local partition.
+
+Custom shared readers resolve fixed names through bounded quantifiers, list
+images and countWhere predicates, including lambda arguments to prelude terms.
+Unresolved or missing shared names are diagnosed at the supplying case parameter.
+
+Shared selection references use `selectionRef`; Symbol House uses `symbols`
+and Mapped Values uses `values` for channel names. Published `selection`
+parameters remain PrefixSelection objects and `channel` parameters remain
+Channel values. Constructors, including Value Modifier, use `name`.
+Route Group requires at least two different names in `routes`. Cell Entries
+rejects the reserved names D and V.

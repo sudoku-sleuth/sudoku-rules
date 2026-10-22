@@ -138,7 +138,7 @@ For finite sets of referenced names A, B and G, the solution condition is
   all instantiated rule formulas hold under this one assignment
 ```
 
-Every referenced typed name has exactly one constructor per name: Route for routes, Maze or Paired Roles for networks, Region Partition or Shade Components for partitions. Missing and duplicate constructors are lint errors (`E_CASE_PARAMETERS`), even under negation or a condition. The constructor fixes topology once; Route also fixes closure, read by `routeClosed(name)`. Clues require a nonempty route, edge list or partition. A one-cell Maze with no edges is permitted as a constructor but cannot satisfy Network Clue.
+Every referenced typed name has exactly one constructor per name: Route for routes, Maze or Paired Roles for networks, Region Partition or Shade Components for partitions. Missing and duplicate constructors are lint errors (`E_CASE_PARAMETERS`), even under negation or a condition. The constructor fixes topology once; Route also fixes closure, read by `routeClosed(name)`. Route and partition clues require nonempty objects. Network Clue permits the empty edge list of a one-cell Maze.
 
 Each L is a finite cell list, each E a finite list of two-cell edges, and each P
 a finite set of cell sets. Constructors check topology and scope. Named answer
@@ -148,8 +148,8 @@ it does not bind a new one. Every constructor and clue reading these shared choi
 
 ```rules
 route name "trail" scope ["r1c1","r1c2","r1c3"] cover true
-route-clue name "trail" total 6 distinct true
-route-clue name "trail" relations [{"op":"difference","value":1}]
+route-clue route "trail" total 6 distinct true
+route-clue route "trail" relations [{"op":"difference","value":1}]
 ```
 
 All three lines constrain one ordered route. Independent route existentials
@@ -174,7 +174,7 @@ Each reader uses one case-wide object per typed name:
 | channelValue(name,c) | Number; D and V read the existing channels | Mapped Values |
 | cellSymbols(name,c) | Digit list; D reads a singleton face digit | Cell Entries and Symbol House |
 
-Selection, Assignment, Mapped Values and Cell Entries are the unique constructors for their named selections, integer lists, numeric channels and symbol lists. Shade Components constructs its components partition; Paired Roles constructs its pairs network and reads its two selections. A custom `reified(choiceAnswer("label"),meaning)` constructs that truth label once. Choice Count reads those labels. The board inputs H, D and V are reserved and need no additional constructor. Every named reader, including one inside a custom formula or prelude wrapper, is subject to the same reference check. Custom reader names must resolve from fixed case parameters or literals.
+Selection, Assignment and Cell Entries are the unique constructors for their named selections, integer lists and symbol lists. Mapped Values declarations conjoin on numeric channels; a referenced named numeric channel needs at least one declaration. Shade Components constructs its components partition; Paired Roles constructs its pairs network and reads its two selections. A custom `reified(choiceAnswer("label"),meaning)` constructs that truth label once. Choice Count reads those labels. The board inputs H, D and V are reserved and need no additional constructor. Every named reader, including one inside a custom formula or prelude wrapper, is subject to the same reference check. Custom reader names must resolve from fixed case parameters or literals.
 
 Supply the assignments for every referenced name and cell. Missing answer data
 is an unavailable assignment, never a default value. Constructors constrain
@@ -200,7 +200,7 @@ pair; integer bounds precede the indexed reads. More than one relation may hold
 on a pair, while the selected labels must still obey the declared bijection.
 
 Mapped Values can target V for existing valued rules. Separate names are read
-in custom formulas with channelValue. Each named output channel has one Mapped Values constructor. Use a single scope and mapping to constrain that channel, or distinct output names for independent maps. V remains a reserved board channel. The equations constrain values directly, including under negation. A conditional mapping is a custom
+in custom formulas with channelValue. Declarations on V and named output channels conjoin, without constructor uniqueness. The default outside free leaves cells outside each scope unconstrained; explicit outside identity constrains those cells to D and may conflict with another declaration. D is read-only. The equations constrain values directly, including under negation. A conditional mapping is a custom
 formula over the same channel; a declaration condition requires a nonempty
 primary cell list and does not read a named scope parameter.
 
@@ -209,3 +209,11 @@ named symbol channel and Cell Entries to constrain each cell. Adding entries
 never changes the board header's alphabet, givens, primary regions or houses.
 Declare alternative-board houses explicitly; omit sudoku when its standard
 all-different houses are not intended.
+
+Shared constructors use `name`. Readers use `route`, `network`, `partitionRef`,
+`selectionRef`, `symbols` or `values` for the corresponding reference. Route Group takes
+`routes`; Choice Count takes `choices`. `line` always supplies cells, and
+`pairs` supplies cell pairs. Value Modifier keeps `name` for its modifier kind. Published `selection` parameters
+use PrefixSelection objects; published `channel` parameters use Channel values.
+An empty Region Partition name selects a local existential partition, without a
+shared binding; Constructed Regions binds this form.

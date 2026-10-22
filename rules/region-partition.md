@@ -5,9 +5,10 @@ kind: region-partition
 shape: Regions
 parameters:
   name:
+    shared: {role: construct, type: partition}
     type: string
     description: The shared region collection name.
-    default: Required.
+    default: '"". Choose a local partition.'
   scope:
     type: set<cell>
     description: Cells covered exactly once.
@@ -44,9 +45,9 @@ parameters:
 
 # Region Partition
 
-Partition the scope into nonempty orthogonally connected regions. Choose allowed sizes, a region count, distinct numbers, joins and borders. A scope smaller than the board constructs islands or selected areas; other cells belong to no region in this assignment. Every joined or separated pair must lie in scope. The same name lets shape rules and numeric clues constrain this exact partition.
+Partition the scope into nonempty orthogonally connected regions. Choose positive allowed sizes, a region count, distinct numbers, joins and borders. A scope smaller than the board constructs islands or selected areas; other cells belong to no region in this assignment. Every joined or separated pair must lie in scope. The same name lets shape rules and numeric clues constrain this exact partition.
 
-The scope must be nonempty.
+The scope must be nonempty. An empty name chooses a local existential partition; a nonempty name constructs the shared partition.
 
 [Constructed Regions](constructed-regions.md) is the local existential equivalent with scope C, one allowed size, distinct printed digits, the same joins and borders, and no count or separation. It exposes no shared name.
 
@@ -54,7 +55,7 @@ The scope must be nonempty.
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | The shared region collection name. | Required. |
+| name | The shared region collection name; empty chooses a local partition. | "". |
 | scope | Cells covered exactly once. | Required. |
 | sizes | Allowed region sizes. | Empty list; any positive size. |
 | count | Required number of regions. | Absent; no count condition. |
@@ -71,7 +72,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let P=partitionAnswer(name); |scope|>0 ∧ connectedRegionPartition(P,scope) ∧ (present(count) → |P|=unwrap(count)) ∧ (∀R∈P: (|sizes|>0 → |R|∈sizes) ∧ (distinct → repeatPolicy(R,channel,false))) ∧ (∀e∈joins: |e|=2 ∧ e[0]∈scope ∧ e[1]∈scope ∧ samePartition(P,e[0],e[1])) ∧ (∀e∈borders: |e|=2 ∧ e[0]∈scope ∧ e[1]∈scope ∧ ¬samePartition(P,e[0],e[1])) ∧ (present(separation) → separatedRegions(P,unwrap(separation)))
+if name="" then ∃P:set<set<cell>>: partitionMeaning(P,scope,sizes,count,distinct,channel,joins,borders,separation) else partitionMeaning(partitionAnswer(name),scope,sizes,count,distinct,channel,joins,borders,separation)
 ```
 
 ## Example

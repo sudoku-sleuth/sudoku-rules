@@ -5,6 +5,7 @@ kind: cell-entries
 shape: Cells
 parameters:
   name:
+    shared: {role: construct, type: symbol}
     type: string
     description: "Shared symbol channel name."
     default: "Required."
@@ -32,7 +33,7 @@ parameters:
 
 # Cell Entries
 
-Give every cell in scope a list of symbols from the board alphabet, with the stated size bounds and repeat policy. The name `D` is reserved for the face digit and cannot be written. These are additional solution entries, read through symbolAnswer(name,c); they do not replace D. Optionally equate D to their sum or first entry. First-entry mode requires a nonempty list even when minimum is zero. Lists preserve order and repeated symbols; cells outside scope are unconstrained by this declaration.
+Give every cell in scope a list of symbols from the board alphabet, with the stated size bounds and repeat policy. The names `D` and `V` are reserved for face digits and effective values and cannot be written. These are additional solution entries, read through symbolAnswer(name,c); they do not replace D. Optionally equate D to their sum or first entry. First-entry mode requires a nonempty list even when minimum is zero. Lists preserve order and repeated symbols; cells outside scope are unconstrained by this declaration.
 
 ## Parameters
 
@@ -52,7 +53,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-name!="D" ∧ minimum>=0 ∧ maximum>=minimum ∧ ∀c∈scope: let xs=symbolAnswer(name,c); minimum<=|xs| ∧ |xs|<=maximum ∧ (∀d∈xs:d∈𝔄) ∧ (distinct → distinctAt(xs,λd:digit:d)) ∧ (faceMode="sum" → D(c)=Σ_{d∈xs}d) ∧ (faceMode="first" → |xs|>0 ∧ D(c)=xs[0])
+name!="D" ∧ name!="V" ∧ minimum>=0 ∧ maximum>=minimum ∧ ∀c∈scope: let xs=symbolAnswer(name,c); minimum<=|xs| ∧ |xs|<=maximum ∧ (∀d∈xs:d∈𝔄) ∧ (distinct → distinctAt(xs,λd:digit:d)) ∧ (faceMode="sum" → D(c)=Σ_{d∈xs}d) ∧ (faceMode="first" → |xs|>0 ∧ D(c)=xs[0])
 ```
 
 ## Example

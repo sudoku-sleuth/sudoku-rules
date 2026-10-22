@@ -5,6 +5,7 @@ kind: route
 shape: Lines
 parameters:
   name:
+    shared: {role: construct, type: route}
     type: string
     description: The shared route name.
     default: Required.
@@ -65,6 +66,8 @@ parameters:
 # Route
 
 Construct one named route with distinct cells and allowed steps. A loop closes its last cell to its first and has at least three cells. An open route may specify endpoints. Covering visits every cell in scope once. Required and forbidden edges are undirected. Touch restrictions exclude consecutive steps; proper interior step crossings are checked separately. Crossings mean interior intersections of straight segments of any length, including bishop and knight steps; shared endpoints and collinear overlaps are excluded. The same name in another declaration refers to this same route, including its order.
+
+A long step passing through a visited cell is allowed by `crossings false` when that cell is an endpoint of the other step. Only intersections strictly inside both steps count; collinear overlaps do not count.
 
 ## Parameters
 

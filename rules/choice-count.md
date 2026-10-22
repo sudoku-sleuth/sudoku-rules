@@ -4,7 +4,8 @@ url: https://rules.sudoku-sleuth.com/choice-count.md
 kind: choice-count
 shape: Global
 parameters:
-  names:
+  choices:
+    shared: {role: read, type: choice}
     type: list<string>
     description: "Distinct shared truth labels."
     default: "Required."
@@ -26,7 +27,7 @@ Count true labels in one shared Boolean assignment. Names must be distinct, so a
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| names | Distinct shared truth labels. | Required. |
+| choices | Distinct shared truth labels. | Required. |
 | minimum | Minimum true labels. | 0. |
 | maximum | Maximum true labels. | Absent; no upper bound. |
 
@@ -37,7 +38,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-(∀i,j∈[0,|names|):i!=j → names[i]!=names[j]) ∧ minimum>=0 ∧ countWhere(names,λs:string:choiceAnswer(s))>=minimum ∧ (present(maximum) → unwrap(maximum)>=minimum ∧ countWhere(names,λs:string:choiceAnswer(s))<=unwrap(maximum))
+(∀i,j∈[0,|choices|):i!=j → choices[i]!=choices[j]) ∧ minimum>=0 ∧ countWhere(choices,λs:string:choiceAnswer(s))>=minimum ∧ (present(maximum) → unwrap(maximum)>=minimum ∧ countWhere(choices,λs:string:choiceAnswer(s))<=unwrap(maximum))
 ```
 
 ## Example
@@ -55,7 +56,7 @@ status: read
 
 ```rules
 sudoku 9x9
-choice-count names ["first","second"] minimum 1 maximum 1
+choice-count choices ["first","second"] minimum 1 maximum 1
 #line-truth firstLine ["r1c1","r1c2"] secondLine ["r1c1","r1c3"]
 ```
 

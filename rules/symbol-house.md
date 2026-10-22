@@ -4,7 +4,8 @@ url: https://rules.sudoku-sleuth.com/symbol-house.md
 kind: symbol-house
 shape: Regions
 parameters:
-  name:
+  symbols:
+    shared: {role: read, type: symbol}
     type: string
     description: "Symbol channel name; D reads one face digit per cell."
     default: '"D".'
@@ -30,7 +31,7 @@ Each supplied house has exactly the stated multiplicity of each listed symbol ac
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | Symbol channel name; D reads one face digit per cell. | "D". |
+| symbols | Symbol channel name; D reads one face digit per cell. | "D". |
 | houses | Groups whose symbol multiplicities are constrained. | Required. |
 | digits | Distinct symbols to count. | Required. |
 | counts | Exact counts in the same order as digits. | Required. |
@@ -42,7 +43,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-|digits|=|counts| ∧ distinctAt(digits,λd:digit:d) ∧ (∀d∈digits:d∈𝔄) ∧ (∀n∈counts:n>=0) ∧ ∀G∈houses: (∀c∈G:∀d∈cellSymbols(name,c):d∈digits) ∧ (∀i∈[0,|digits|): 0<=i ∧ i<|counts| ∧ (Σ_{c∈G}symbolFrequency(cellSymbols(name,c),digits[i]))=counts[i])
+|digits|=|counts| ∧ distinctAt(digits,λd:digit:d) ∧ (∀d∈digits:d∈𝔄) ∧ (∀n∈counts:n>=0) ∧ ∀G∈houses: (∀c∈G:∀d∈cellSymbols(symbols,c):d∈digits) ∧ (∀i∈[0,|digits|): 0<=i ∧ i<|counts| ∧ (Σ_{c∈G}countWhere(cellSymbols(symbols,c),λd:digit:d=digits[i]))=counts[i])
 ```
 
 ## Example
@@ -61,7 +62,7 @@ status: read
 ```rules
 sudoku 9x9
 cell-entries name "pencil" scope ["r1c1","r1c2"] minimum 0 maximum 3
-symbol-house name "pencil" houses [["r1c1","r1c2"]] digits [1,2,3] counts [2,1,0]
+symbol-house symbols "pencil" houses [["r1c1","r1c2"]] digits [1,2,3] counts [2,1,0]
 ```
 ````
 

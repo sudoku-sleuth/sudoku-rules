@@ -4,7 +4,8 @@ url: https://rules.sudoku-sleuth.com/route-clue.md
 kind: route-clue
 shape: Lines
 parameters:
-  name:
+  route:
+    shared: {role: read, type: route}
     type: string
     description: The shared route name.
     default: Required.
@@ -42,7 +43,7 @@ Apply numeric clues to a shared route. Every step satisfies an inclusive relatio
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | The shared route name. | Required. |
+| route | The shared route name. | Required. |
 | channel | Channel supplying route numbers. | D. |
 | relations | Inclusive alternatives required on every directed step. | Empty list; no step relation. |
 | total | Required sum of visited numbers. | Absent; no sum condition. |
@@ -57,7 +58,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let L=routeAnswer(name); let closed=routeClosed(name); |L|>0 ∧ (|relations|>0 → ∀i,j∈[0,|L|): next(L,i,j,closed) → relatedAny(relations,read(L[i],channel),read(L[j],channel))) ∧ (present(total) → aggregate(L,channel,"sum")=unwrap(total)) ∧ (distinct → repeatPolicy(L,channel,false)) ∧ (present(classes) → length>=1 ∧ ∀s∈[0,|L|): start(L,length,s,closed) ∧ (closed → |L|>0) → ∀ns∈unwrap(classes): classCount(window(L,length,s,closed),ns,channel)=1)
+let L=routeAnswer(route); let closed=routeClosed(route); |L|>0 ∧ (|relations|>0 → ∀i,j∈[0,|L|): next(L,i,j,closed) → relatedAny(relations,read(L[i],channel),read(L[j],channel))) ∧ (present(total) → aggregate(L,channel,"sum")=unwrap(total)) ∧ (distinct → repeatPolicy(L,channel,false)) ∧ (present(classes) → length>=1 ∧ ∀s∈[0,|L|): start(L,length,s,closed) ∧ (closed → |L|>0) → ∀ns∈unwrap(classes): classCount(window(L,length,s,closed),ns,channel)=1)
 ```
 
 ## Example
@@ -76,7 +77,7 @@ status: read
 ```rules
 sudoku 9x9
 route name "trail" scope ["r1c1","r1c2","r1c3"] cover true
-route-clue name "trail" relations [{"op":"difference","value":1}] total 6
+route-clue route "trail" relations [{"op":"difference","value":1}] total 6
 ```
 ````
 

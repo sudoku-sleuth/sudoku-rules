@@ -4,7 +4,8 @@ url: https://rules.sudoku-sleuth.com/region-shape.md
 kind: region-shape
 shape: Regions
 parameters:
-  name:
+  partitionRef:
+    shared: {role: read, type: partition}
     type: string
     description: The shared region collection name.
     default: Required.
@@ -38,7 +39,7 @@ Constrain a shared region collection by template shape, template counts or half-
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | The shared region collection name. | Required. |
+| partitionRef | The shared region collection name. | Required. |
 | shapes | Allowed template shapes. | Empty list; no template condition. |
 | rotations | Allow quarter-turn rotations of templates. | true. |
 | reflections | Allow reflected templates. | true. |
@@ -52,7 +53,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let P=partitionAnswer(name); |P|>0 ∧ (|shapes|>0 → ∀R∈P: ∃S∈shapes:congruent(S,R,rotations,reflections)) ∧ (present(uses) → |shapes|=|unwrap(uses)| ∧ ∀i∈[0,|shapes|): 0<=i ∧ i<|unwrap(uses)| ∧ countWhere(P,λR:set<cell>:congruent(shapes[i],R,rotations,reflections))=unwrap(uses)[i]) ∧ (present(centres) → (∀i,j∈[0,|unwrap(centres)|): i!=j → (unwrap(centres)[i].row2!=unwrap(centres)[j].row2 ∨ unwrap(centres)[i].col2!=unwrap(centres)[j].col2)) ∧ (∀R∈P: countWhere(unwrap(centres),λg:RegionCentre:centreInside(R,g))=1 ∧ ∀g∈unwrap(centres):centreInside(R,g) → symmetricRegion(R,g.row2,g.col2)) ∧ (∀g∈unwrap(centres):∃R∈P:centreInside(R,g)))
+let P=partitionAnswer(partitionRef); |P|>0 ∧ (|shapes|>0 → ∀R∈P: ∃S∈shapes:congruent(S,R,rotations,reflections)) ∧ (present(uses) → |shapes|=|unwrap(uses)| ∧ ∀i∈[0,|shapes|): 0<=i ∧ i<|unwrap(uses)| ∧ countWhere(P,λR:set<cell>:congruent(shapes[i],R,rotations,reflections))=unwrap(uses)[i]) ∧ (present(centres) → (∀i,j∈[0,|unwrap(centres)|): i!=j → (unwrap(centres)[i].row2!=unwrap(centres)[j].row2 ∨ unwrap(centres)[i].col2!=unwrap(centres)[j].col2)) ∧ (∀R∈P: countWhere(unwrap(centres),λg:RegionCentre:centreInside(R,g))=1 ∧ ∀g∈unwrap(centres):centreInside(R,g) → symmetricRegion(R,g.row2,g.col2)) ∧ (∀g∈unwrap(centres):∃R∈P:centreInside(R,g)))
 ```
 
 ## Example
@@ -71,7 +72,7 @@ status: read
 ```rules
 sudoku 9x9
 region-partition name "areas" scope ["r1c1","r1c2","r2c1","r2c2"] sizes [2]
-region-shape name "areas" shapes [["r1c1","r1c2"]]
+region-shape partitionRef "areas" shapes [["r1c1","r1c2"]]
 ```
 ````
 

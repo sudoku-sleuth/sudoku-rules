@@ -30,6 +30,9 @@ export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name
   assignmentAnswer:name=>{const x=fragment.assignmentAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared assignment ${name}`);return x.map(n=>exact(String(n)));},
   valueAnswer:(name,c)=>{const x=fragment.valueAnswers?.[String(name)]?.[String(c)];if(x===undefined)throw Error(`Missing shared value ${name}/${c}`);return exact(String(x));},
   symbolAnswer:(name,c)=>{const x=fragment.symbolAnswers?.[String(name)]?.[String(c)];if(x===undefined)throw Error(`Missing shared symbols ${name}/${c}`);return x.map(n=>exact(String(n)));},
+  orderedCells:S=>members(S).sort((a,b)=>cells.indexOf(String(a))-cells.indexOf(String(b))),
+  absent:()=>undefined,
+  weightedOperand:(operand,coefficient,power)=>({operand:operand!,coefficient:coefficient!,power:power!}),
   relationSpec:(op,n)=>({op:op!,value:n!}),
   routeClosed:name=>fragment.routeClosures?.[String(name)] ?? false,
   routeAnswer:name=>{const value=fragment.routeAnswers?.[String(name)];if(!value)throw Error(`Missing shared route ${name}`);return value;},
@@ -105,7 +108,7 @@ export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name
    case "image":case "comprehension":{const values=members(child(0));const result:Value[]=[];for(const item of values){const local={...scope,[node.binders![0].name]:item};if(node.kind==="comprehension"){if(truth(evaluate(node.children[1],local)))result.push(item);}else if(!node.children[2]||truth(evaluate(node.children[2],local)))result.push(evaluate(node.children[1],local));}return node.value==="list"?result:group(result);}
    case "aggregate":case "quantifier":{
     const domain=node.hasDomain?members(child(0)):undefined;
-    const choices=(name:string,type:Type):Value[]=>{if(Object.hasOwn(fragment.witnesses??{},name))return fragment.witnesses![name].map(value=>typed(value,type,prelude));if(type.name!=="set"||type.args?.[0].name!=="cell")throw Error("Unsupported fragment witness type");return Array.from({length:2**cells.length},(_,mask)=>group(cells.filter((_,i)=>mask&(1<<i))));};
+    const choices=(name:string,type:Type):Value[]=>{if(/^boundAlias\d+$/.test(name) && type.name==="set" && type.args?.[0].name==="set" && fragment.witnesses?.P)return fragment.witnesses.P.map(value=>typed(value,type,prelude));if(Object.hasOwn(fragment.witnesses??{},name))return fragment.witnesses![name].map(value=>typed(value,type,prelude));if(type.name!=="set"||type.args?.[0].name!=="cell")throw Error("Unsupported fragment witness type");return Array.from({length:2**cells.length},(_,mask)=>group(cells.filter((_,i)=>mask&(1<<i))));};
     function* assignments(i:number,local:Record<string,Value>):Generator<Record<string,Value>>{if(i===node.binders!.length){yield local;return;}const binder=node.binders![i];for(const item of domain??choices(binder.name,binder.type!))yield* assignments(i+1,{...local,[binder.name]:item});}
     const body=node.children[node.hasDomain?1:0];
     if(node.kind==="quantifier"){for(const local of assignments(0,scope)){const verdict=truth(evaluate(body,local));if(node.value==="exists"&&verdict)return true;if(node.value==="forall"&&!verdict)return false;}return node.value==="forall";}

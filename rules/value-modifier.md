@@ -26,6 +26,7 @@ parameters:
   atMostOne:
     description: The cells in each group that may contain at most one modified cell.
     default: Required.
+    empty_when: exactly
     type: list<set<cell>>
   distinct:
     description: Whether modified cells must contain different digits.

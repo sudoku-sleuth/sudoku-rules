@@ -46,6 +46,8 @@ primitive row(c:cell):position;
 primitive col(c:cell):position;
 primitive cellIndex(c:cell):position;
 primitive boardCell(r:position,k:position):cell;
+primitive orderedCells(S:set<cell>):list<cell>;
+primitive absent<T>(sample:T):optional<T>;
 primitive present<T>(x:optional<T>):boolean;
 primitive unwrap<T>(x:optional<T>):T requires (present(x));
 primitive minimumDigit(S:collection<digit>):digit requires (|S|>0);
@@ -193,6 +195,7 @@ term sequenceMeaning(L:list<cell>,ch:Channel,mode:enum{transitions,divisors,recu
 term indexHit(L:list<cell>,source:cell,indexChannel:Channel,ch:Channel,offset:position,target:number,r:PairRelation):boolean = let n=read(source,indexChannel)+offset; ⌊n⌋=n ∧ ∃k∈[1,|L|+1): k=n ∧ lookupRelated(L,k,target,ch,r);
 # Aggregate arithmetic, arbitrary numeric profiles and derived quantities.
 type WeightedOperand = record{operand:AggregateOperand,coefficient:number,power:position};
+primitive weightedOperand(operand:AggregateOperand,coefficient:number,power:position):WeightedOperand;
 term weightedValid(o:WeightedOperand):boolean = operandValid(o.operand) ∧ o.power>=0;
 term weightedResult(o:WeightedOperand):number requires (weightedValid(o)) = o.coefficient*aggregateExpression(o.operand)^o.power;
 term expressionValid(os:list<WeightedOperand>):boolean = ∀o∈os: weightedValid(o);
@@ -217,6 +220,7 @@ term routeCells(L:list<cell>):set<cell> = {c∈C:c∈L};
 term simpleRoute(L:list<cell>,S:set<cell>,m:Move,closed:boolean):boolean = |L|>0 ∧ (closed → |L|>=3) ∧ (∀c∈L:c∈S) ∧ distinctAt(L,λc:cell:cellIndex(c)) ∧ ∀i,j∈[0,|L|): next(L,i,j,closed) → moveRelation(m,L[i],L[j]);
 term routeEdge(L:list<cell>,a:cell,b:cell,closed:boolean):boolean = ∃i,j∈[0,|L|): next(L,i,j,closed) ∧ {a,b}={L[i],L[j]};
 term segmentSide(a:cell,b:cell,c:cell):number = (row(b)-row(a))*(col(c)-col(a))-(col(b)-col(a))*(row(c)-row(a));
+# Crossings are strictly inside both segments; an endpoint on another segment does not count.
 term segmentCross(a:cell,b:cell,c:cell,d:cell):boolean = segmentSide(a,b,c)*segmentSide(a,b,d)<0 ∧ segmentSide(c,d,a)*segmentSide(c,d,b)<0;
 term routeCrosses(L:list<cell>,M:list<cell>,closedL:boolean,closedM:boolean):boolean = ∃i,j∈[0,|L|): ∃k,t∈[0,|M|): next(L,i,j,closedL) ∧ next(M,k,t,closedM) ∧ segmentCross(L[i],L[j],M[k],M[t]);
 term noRouteTouch(L:list<cell>,m:Move,closed:boolean):boolean = ∀i,j∈[0,|L|): i!=j ∧ ¬consecutive(L,i,j,closed) → ¬moveRelation(m,L[i],L[j]);
@@ -224,6 +228,7 @@ term canonicalEdges(E:list<list<cell>>):boolean = ∀i∈[0,|E|): |E[i]|=2 ∧ E
 term networkOn(E:list<list<cell>>,S:set<cell>,m:Move):boolean = |S|>0 ∧ canonicalEdges(E) ∧ (∀e∈E: |e|=2 ∧ e[0]∈S ∧ e[1]∈S ∧ moveRelation(m,e[0],e[1])) ∧ (if |S|=1 then |E|=0 else graphVertices(E)=S ∧ connected(E));
 term networkDegree(E:list<list<cell>>,c:cell):position = countWhere(E,λe:list<cell>:c∈e);
 term connectedRegionPartition(P:set<set<cell>>,S:set<cell>):boolean = partition(P,S) ∧ ∀R∈P: connectedCells(R);
+term partitionMeaning(P:set<set<cell>>,scope:set<cell>,sizes:list<position>,count:optional<position>,distinct:boolean,channel:Channel,joins:list<list<cell>>,borders:list<list<cell>>,separation:optional<Move>):boolean = (∀n∈sizes:n>0) ∧ |scope|>0 ∧ connectedRegionPartition(P,scope) ∧ (present(count) → |P|=unwrap(count)) ∧ (∀R∈P: (|sizes|>0 → |R|∈sizes) ∧ (distinct → repeatPolicy(R,channel,false))) ∧ (∀e∈joins: |e|=2 ∧ e[0]∈scope ∧ e[1]∈scope ∧ samePartition(P,e[0],e[1])) ∧ (∀e∈borders: |e|=2 ∧ e[0]∈scope ∧ e[1]∈scope ∧ ¬samePartition(P,e[0],e[1])) ∧ (present(separation) → separatedRegions(P,unwrap(separation)));
 term congruent(A:set<cell>,B:set<cell>,rotate:boolean,reflect:boolean):boolean = |A|=|B| ∧ |A|>0 ∧ ∃a∈A: ∃b∈B: ∃u,v∈{-1,1}: ∃swap∈{true,false}: (rotate ∨ (¬swap ∧ u=1 ∧ v=1) ∨ (reflect ∧ (if swap then u*v=1 else u*v=-1))) ∧ (reflect ∨ (if swap then u*v=-1 else u*v=1)) ∧ ∀p∈A: ∃q∈B: row(q)=row(b)+u*(if swap then col(p)-col(a) else row(p)-row(a)) ∧ col(q)=col(b)+v*(if swap then row(p)-row(a) else col(p)-col(a));
 term symmetricRegion(R:set<cell>,r2:position,c2:position):boolean = ∀a∈R: ∃b∈R: row(a)+row(b)=r2 ∧ col(a)+col(b)=c2;
 term separatedRegions(P:set<set<cell>>,m:Move):boolean = ∀A,B∈P: A!=B → ∀a∈A: ∀b∈B: ¬moveRelation(m,a,b);
@@ -240,7 +245,6 @@ term marked(name:string,c:cell):boolean = c∈selectedCells(name);
 term channelValue(name:string,c:cell):number = if name="D" then toValue(D(c)) else if name="V" then V(c) else valueAnswer(name,c);
 term reified(truth:boolean,meaning:boolean):boolean = truth ↔ meaning;
 term conditionalMeaning(choice:boolean,yes:boolean,no:boolean):boolean = if choice then yes else no;
-term truthCount(meanings:list<boolean>):position = countWhere(meanings,λb:boolean:b);
 term markingRelation(a:cell,b:cell,name:string,relation:enum{same,different,"implies"}):boolean = if relation="same" then (marked(name,a) ↔ marked(name,b)) else if relation="different" then ¬(marked(name,a) ↔ marked(name,b)) else (marked(name,a) → marked(name,b));
 term alternatingSquare(r:position,k:position,f:fn(cell)->boolean):boolean = (f(boardCell(r,k)) ↔ f(boardCell(r+1,k+1))) ∧ (f(boardCell(r,k+1)) ↔ f(boardCell(r+1,k))) ∧ ¬(f(boardCell(r,k)) ↔ f(boardCell(r,k+1)));
 term componentPartition(P:set<set<cell>>,S:set<cell>):boolean = connectedRegionPartition(P,S) ∧ separatedRegions(P,"orthogonal");
@@ -252,7 +256,6 @@ term validValueMap(mapping:list<ValueMap>):boolean = distinctAt(mapping,λp:Valu
 term mappedValue(d:digit,v:number,mapping:list<ValueMap>):boolean = ∃p∈mapping:p.digit=d ∧ p.value=v;
 term boundedAssignment(xs:list<position>,size:position,labels:position,bijective:boolean):boolean = size>=0 ∧ labels>=0 ∧ |xs|=size ∧ (∀x∈xs:0<=x ∧ x<labels) ∧ (bijective → size=labels ∧ distinctAt(xs,λx:position:x));
 term cellSymbols(name:string,c:cell):list<digit> = if name="D" then ⟨D(c):i∈[0,1)⟩ else symbolAnswer(name,c);
-term symbolFrequency(xs:list<digit>,d:digit):position = countWhere(xs,λx:digit:x=d);
 # Givens: the digit a case gives a cell, if any.
 primitive givenDigit(c:cell):optional<digit>;
 term given(c:cell):boolean = present(givenDigit(c));
@@ -286,6 +289,8 @@ Shift relations compare integer values; their parity is the normalised remainder
 
 ## Channels, operands and geometry
 
+`orderedCells(S)` lists the cells once in increasing board cell index. `absent(sample)` constructs an absent optional value with the sample's type. `weightedOperand(o,c,p)` constructs a WeightedOperand record with operand o, coefficient c and power p; it adds no rule condition.
+
 `Channel` chooses D or V. `read` returns the chosen number; `relationSpec(op,n)` constructs a PairRelation whose op is op and whose value is n. It introduces no additional relation. `monotonic` chooses one direction for the whole list. `numericBetween` compares numbers, while `betweenPositions` selects positions.
 
 `aggregate` sums, multiplies or counts occurrences. `repeatPolicy` compares numbers in the chosen channel, including separate occurrences of the same cell in a list. `AggregateOperand` first selects a zero-based slice, then an optional stopping prefix. Its start defaults to zero and its length to the remaining list. An absent include field excludes the stopping cell. Sum, product and count use the chosen channel; decimal reading uses face digits, one base-ten digit per cell. `operandValid` checks bounds, repeats, decimal symbols and the existence of a requested stopping cell before `aggregateExpression` reads the result.
@@ -318,13 +323,15 @@ Declarations marked play form the play domain. Rule pages and shared terms outsi
 
 ## Shared assignments
 
-`routeAnswer(name)`, `networkAnswer(name)` and `partitionAnswer(name)` read the finished answer's named ordered routes, undirected edge lists and region collections. A name is a case-sensitive string. Each typed name has exactly one constructor and denotes one object throughout the case; different types have separate namespaces. Different names may denote equal objects.
+`routeAnswer(name)`, `networkAnswer(name)` and `partitionAnswer(name)` read the finished answer's named ordered routes, undirected edge lists and region collections. A name is a case-sensitive string. Each route, network, partition, selection, choice, assignment or symbol name has exactly one constructor and denotes one object throughout the case; different types have separate namespaces. Different names may denote equal objects.
 
 For each finite set of names referenced by a case, choose those objects once, together with the digit and value assignments, and conjoin every instantiated formula under that shared choice. This is a joint existential assignment, including when a declaration is negated. Negation tests its named object; it does not choose a fresh object or mean that no possible object exists. An omitted constructor supplies no topology. A constructor and every clue on its result must use the same name. These assignments are solution data, never setter parameters or player entries.
 
 `routeClosed(name)` reads the unique Route constructor’s loop parameter as case schema, including under negation or a condition. It is not a separately chosen Boolean; changing the polarity of a rule never changes this metadata. Clues and groups never supply closure again.
 
 `simpleRoute` checks nonempty, distinct cells and every step, including closure. A closed route has at least three cells. `routeEdge` is undirected; its list retains a chosen start and orientation for directed clues. `noRouteTouch` exempts consecutive positions, including a closed route's join. `segmentCross` detects proper interior intersections of straight steps of any length, including bishop and knight steps. Shared endpoints and collinear overlaps are not crossings; use disjoint and touch conditions for those. `canonicalEdges` rejects duplicate undirected edges. `networkOn` checks the exact vertex scope and connectivity, allowing a one-cell graph with no edges. A connected simple graph is a tree exactly when its edge count is one less than its vertex count.
+
+A long step passing through a visited cell is allowed by `crossings false` when that cell is an endpoint of the other step. Only intersections strictly inside both steps count; collinear overlaps do not count.
 
 `congruent` checks translations, with optional quarter-turn rotations and reflections. `symmetricRegion` uses doubled zero-based centre coordinates, so centres may lie on cells, edges or corners. `separatedRegions` tests different regions only. A partition covers exactly its stated scope, which may be a proper subset of the board.
 
@@ -343,8 +350,8 @@ that start's rank. Zero-sum runs still consume a clue. Empty lists match only
 empty clues. It rejects repeated cells; it imposes no movement convention.
 
 `choiceAnswer(name)` reads one Boolean label. `reified(label,meaning)` is
-Boolean equivalence to the complete meaning, including its guards. `truthCount`
-counts true occurrences in a list. `conditionalMeaning` chooses between two
+Boolean equivalence to the complete meaning, including its guards. `countWhere`
+counts occurrences satisfying its predicate. `conditionalMeaning` chooses between two
 explicit complete meanings. False reification negates a whole rule; explicit
 inversion need not equal that complement. Labels name solution Booleans, not
 rule instance IDs. Formulas provide their meanings directly, without reference
@@ -362,15 +369,15 @@ reads the face digit; `channelValue("V",c)` reads the existing effective value;
 other names read independent value assignments. Mapped Values constrains these
 channels using a shared selection. Map keys are unique; unlisted selected digits
 are rejected. Free mode requires membership in its explicit allowed list. Outside
-identity constrains every other board cell to D; outside free leaves those cells
-for another declaration. Declarations on a channel conjoin; they do not run as
+identity constrains every other board cell to D; the default outside free leaves those cells
+for another declaration. V and named value channels have the same ownership policy: declarations on a channel conjoin; they do not run as
 sequential transformations. D is read-only. Existing Channel parameters still
 accept only D or V; named channels are used in formulas through channelValue.
 
 `symbolAnswer(name,c)` reads an ordered list of whole-number symbols for a cell.
 `cellSymbols("D",c)` is the one-element list containing D(c); other names read
-symbolAnswer. D is reserved and Cell Entries cannot write it. `symbolFrequency`
-counts occurrences, including repeats within one cell. Symbol House totals these
+symbolAnswer. D is reserved and Cell Entries cannot write it. `countWhere`
+counts symbol occurrences, including repeats within one cell. Symbol House totals these
 frequencies over each cell set and excludes unlisted symbols. Cell Entries
 supplies per-cell alphabet, size, repeat and face-link conditions. These solution
 lists are separate from the player's entries and pencil marks. Empty entries

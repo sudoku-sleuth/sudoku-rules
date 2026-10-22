@@ -16,7 +16,8 @@ parameters:
     type: enum{parity,selection}
     description: "The two-class source."
     default: "parity."
-  name:
+  selectionRef:
+    shared: {role: read, type: selection}
     type: string
     description: "Selection name used in selection mode."
     default: '"H".'
@@ -41,7 +42,7 @@ By default, every marked 2×2 square alternates between two classes across each 
 | marks | Zero-based top-left coordinates of marked squares. | Required. |
 | scope | Cells on which squares may lie. | Required. |
 | mode | The two-class source. | parity. |
-| name | Selection name used in selection mode. | "H". |
+| selectionRef | Selection name used in selection mode. | "H". |
 | positive | Require marked squares to alternate. | true. |
 | exhaustive | Forbid the pattern on unmarked squares inside scope. | false. |
 
@@ -52,7 +53,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-(∀m∈marks:0<=m.r ∧ m.r<rows-1 ∧ 0<=m.k ∧ m.k<cols-1 ∧ window2(m.r,m.k)⊆scope) ∧ ∀r∈[0,rows-1): ∀k∈[0,cols-1): window2(r,k)⊆scope → let pattern=alternatingSquare(r,k,λc:cell:if mode="parity" then odd(D(c)) else marked(name,c)); let shown=∃m∈marks:m.r=r ∧ m.k=k; (positive ∧ shown → pattern) ∧ (exhaustive ∧ ¬shown → ¬pattern)
+(∀m∈marks:0<=m.r ∧ m.r<rows-1 ∧ 0<=m.k ∧ m.k<cols-1 ∧ window2(m.r,m.k)⊆scope) ∧ ∀r∈[0,rows-1): ∀k∈[0,cols-1): window2(r,k)⊆scope → let pattern=alternatingSquare(r,k,λc:cell:if mode="parity" then odd(D(c)) else marked(selectionRef,c)); let shown=∃m∈marks:m.r=r ∧ m.k=k; (positive ∧ shown → pattern) ∧ (exhaustive ∧ ¬shown → ¬pattern)
 ```
 
 ## Example

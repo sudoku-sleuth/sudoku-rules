@@ -4,7 +4,8 @@ url: https://rules.sudoku-sleuth.com/marking-relation.md
 kind: marking-relation
 shape: Edges
 parameters:
-  name:
+  selectionRef:
+    shared: {role: read, type: selection}
     type: string
     description: "The shared selection name; H means board shading."
     default: "Required."
@@ -34,7 +35,7 @@ Each ordered pair has the stated relationship between its two marks. Same and di
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | The shared selection name; H means board shading. | Required. |
+| selectionRef | The shared selection name; H means board shading. | Required. |
 | pairs | Ordered cell pairs. | Empty list. |
 | relation | Relationship between pair marks. | different. |
 | line | Occurrences along which to count mark changes. | Empty list. |
@@ -47,7 +48,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-(∀p∈pairs: |p|=2 ∧ markingRelation(p[0],p[1],name,relation)) ∧ (present(transitions) → countWhere([0,|line|-1),λi:position:0<=i ∧ i<|line| ∧ 0<=i+1 ∧ i+1<|line| ∧ ¬(marked(name,line[i]) ↔ marked(name,line[i+1])))=unwrap(transitions))
+(∀p∈pairs: |p|=2 ∧ markingRelation(p[0],p[1],selectionRef,relation)) ∧ (present(transitions) → countWhere([0,|line|-1),λi:position:0<=i ∧ i<|line| ∧ 0<=i+1 ∧ i+1<|line| ∧ ¬(marked(selectionRef,line[i]) ↔ marked(selectionRef,line[i+1])))=unwrap(transitions))
 ```
 
 ## Example
@@ -65,7 +66,7 @@ status: read
 
 ```rules
 sudoku 9x9
-marking-relation name "H" pairs [["r1c1","r1c2"]]
+marking-relation selectionRef "H" pairs [["r1c1","r1c2"]]
 ```
 ````
 

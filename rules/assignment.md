@@ -5,6 +5,7 @@ kind: assignment
 shape: Global
 parameters:
   name:
+    shared: {role: construct, type: assignment}
     type: string
     description: "The shared assignment name."
     default: "Required."

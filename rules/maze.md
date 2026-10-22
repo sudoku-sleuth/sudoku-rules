@@ -5,6 +5,7 @@ kind: maze
 shape: Lines
 parameters:
   name:
+    shared: {role: construct, type: network}
     type: string
     description: The shared network name.
     default: Required.

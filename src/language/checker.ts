@@ -1,3 +1,4 @@
+import { chosenAnswerPrimitives } from "../shared-primitives.js";
 import { capture, diagnostic, fail, type Diagnostic, type Result, type Span } from "./diagnostics.js";
 import { expressionLabel, describeType } from "./wording.js";
 import { arithmetic, exact, floor, printExact } from "./exact.js";
@@ -24,8 +25,8 @@ function assignable(actual: Type, expected: Type): boolean {
   return actual.name === expected.name && (actual.args ?? []).length === (expected.args ?? []).length && (actual.args ?? []).every((t, i) => assignable(t, expected.args![i])) && (!expected.result || !!actual.result && assignable(actual.result, expected.result));
 }
 function validateType(type: Type, env: Environment, span: Span) {
-  // Inferred only for an empty collection; no source declaration can name this type.
-  if (type.name === "empty") return;
+  // Empty collections and string literals have inferred types that source declarations cannot name.
+  if (type.name === "empty" || type.name === "literal") return;
   const arity = ["path", "set", "list", "optional", "collection"].includes(type.name) ? 1 : 0;
   if (!builtInTypes.includes(type.name) && !env.generics?.includes(type.name) && !Object.hasOwn(env.types ?? {}, type.name)) {
     fail("E_TYPE", span, `The type ${type.name} is not defined; declare it in the shared definitions.`);
@@ -425,7 +426,7 @@ export function logicClass(ast: TypedExpr, env: Environment): LogicClass {
     }
     if (node.kind === "call" && node.children[0].kind === "name") {
       const name = node.children[0].value!;
-      if (["routeAnswer", "routeClosed", "networkAnswer", "partitionAnswer", "selectionAnswer", "choiceAnswer", "assignmentAnswer", "valueAnswer", "symbolAnswer"].includes(name)) classification = "existential";
+      if (Object.hasOwn(chosenAnswerPrimitives, name)) classification = "existential";
       if (!visited.has(name) && Object.hasOwn(env.terms, name) && env.terms[name]?.body) { visited.add(name); visit(env.terms[name].body!); }
     }
     if (node.kind === "let") { visit(node.children[0], bindings); visit(node.children[1], { ...bindings, [node.binders![0].name]: node.children[0] }); }

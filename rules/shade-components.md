@@ -4,11 +4,13 @@ url: https://rules.sudoku-sleuth.com/shade-components.md
 kind: shade-components
 shape: Regions
 parameters:
-  name:
+  selectionRef:
+    shared: {role: read, type: selection}
     type: string
     description: "The selection name; H means board shading."
     default: "Required."
-  components:
+  name:
+    shared: {role: construct, type: partition}
     type: string
     description: "The shared partition name for the components."
     default: "Required."
@@ -34,8 +36,8 @@ The named partition is exactly the maximal orthogonally connected components of 
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| name | The selection name; H means board shading. | Required. |
-| components | The shared partition name for the components. | Required. |
+| selectionRef | The selection name; H means board shading. | Required. |
+| name | The shared partition name for the components. | Required. |
 | scope | The scope in which components are computed. | Required. |
 | selected | Use selected cells; false uses the complement in scope. | true. |
 | count | Required component count. | Absent; no count condition. |
@@ -47,7 +49,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let S={c∈scope:marked(name,c) ↔ selected}; let P=partitionAnswer(components); componentPartition(P,S) ∧ (present(count) → |P|=unwrap(count))
+let S={c∈scope:marked(selectionRef,c) ↔ selected}; let P=partitionAnswer(name); componentPartition(P,S) ∧ (present(count) → |P|=unwrap(count))
 ```
 
 ## Example
@@ -65,7 +67,7 @@ status: read
 
 ```rules
 sudoku 9x9
-shade-components name "H" components "islands" scope ["r1c1","r1c2","r1c3"] count 2
+shade-components selectionRef "H" name "islands" scope ["r1c1","r1c2","r1c3"] count 2
 ```
 ````
 

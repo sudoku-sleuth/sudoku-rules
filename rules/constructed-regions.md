@@ -15,6 +15,17 @@ parameters:
     description: Pairs of cells that must belong to the same region.
     default: Required.
     type: list<list<cell>>
+alias_of: region-partition
+alias_bind:
+  name: '""'
+  scope: 'C'
+  sizes: '⟨size:i∈[0,1)⟩'
+  count: 'absent(|C|)'
+  distinct: 'true'
+  channel: '"D"'
+  joins: 'joins'
+  borders: 'borders'
+  separation: 'absent("orthogonal")'
 ---
 
 # Constructed Regions
@@ -33,18 +44,7 @@ This is the local existential form of [Region Partition](region-partition.md) wi
 
 ## Maths
 
-Class: **existential**.
-
-The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
-
-```text
-∃P:set<set<cell>>: partition(P,C)
-  ∧ (∀R∈P: |R|=size ∧ connectedCells(R) ∧ distinct_D(R))
-  ∧ (∀p∈joins: |p|=2 ∧ samePartition(P,p[0],p[1]))
-  ∧ (∀p∈borders: |p|=2 ∧ ¬samePartition(P,p[0],p[1]))
-```
-
-There is a partition of the board into orthogonally connected sets of size cells. Each set has distinct digits; each border separates sets and each join identifies one set. With size equal to the alphabet size, each set contains every symbol.
+This is a shorthand for [region-partition](region-partition.md). Its header binds the general rule parameters.
 
 ## Example
 

@@ -30,6 +30,8 @@ parameters:
 
 Derive one number from every operand pair, then count matching occurrences, distinct results, or rank a target among those results. Rank is one plus the number of occurrences strictly below the target; ties share that rank. Ratios divide left by right and require a nonzero right result. Distinct mode removes equal results only after every quantity has been calculated.
 
+In distinct mode, omit target and relation.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

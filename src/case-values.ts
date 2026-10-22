@@ -4,7 +4,8 @@ import { diagnostic, type Diagnostic, type Span } from "./language/diagnostics.j
 
 export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
-export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
+export interface SharedParameter { role: "construct" | "read" | "conjoin"; type: "route" | "network" | "partition" | "selection" | "choice" | "assignment" | "value" | "symbol" }
+export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string; shared?: SharedParameter }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
   summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],

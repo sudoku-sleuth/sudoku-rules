@@ -5,6 +5,7 @@ kind: selection
 shape: Cells
 parameters:
   name:
+    shared: {role: construct, type: selection}
     type: string
     description: "The shared selection name; H means board shading."
     default: "Required."

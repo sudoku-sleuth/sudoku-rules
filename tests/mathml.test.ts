@@ -46,7 +46,7 @@ test("all public rule formula blocks parse and render with native MathML and a t
       count++;
     }
   }
-  expect(count).toBeGreaterThan(0);
+  expect(count).toBe(110);
 });
 
 test("unsupported symbols and unbalanced prose math use escaped plain text", () => {

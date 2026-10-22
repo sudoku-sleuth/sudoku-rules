@@ -45,8 +45,9 @@ test("every production page compiles atomically with its declared public prelude
     const pages = await Promise.all(names.map(async (name) => ({ file: `rules/${name}`, text: await readFile(`rules/${name}`, "utf8") })));
     const result = compilePublicLibrary(pages);
     expect(result.diagnostics).toEqual([]);
+    expect(result.value!.rules.size).toBe(118);
     expect(result.value!.rules.size+result.value!.aliases.size+result.value!.documents).toBe(names.length);
     expect(result.value!.aliases.size).toBe(2);
-    expect(result.value!.shorthands.size).toBe(6);
+    expect(result.value!.shorthands.size).toBe(9);
     expect(result.value!.documents).toBe(4);
 });
