@@ -111,15 +111,27 @@ export function compilePage(page: PageSource, prelude: CheckedPrelude): Result<C
   }
   const compiled: CompiledPage = { file: page.file, parameters: environment.value?.parameters ?? [], formulas };
   if (!diagnostics.length) {
-    const front = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(page.text)!;
-    const doc = parseDocument(front[1]);
-    const node = doc.get("parameters", true);
-    const start = front[0].indexOf(front[1]);
-    const declaration = declareRuleLine(doc.toJS(), compiled, prelude, location(page, start + ((isMap(node) ? node.range?.[0] : 0) ?? 0), start + ((isMap(node) ? node.range?.[1] : 0) ?? 0)));
-    diagnostics.push(...declaration.diagnostics);
-    if (declaration.value) compiled.line = declaration.value;
+    const contract = compilePageContract(page, prelude);
+    diagnostics.push(...contract.diagnostics);
+    if (contract.value?.line) compiled.line = contract.value.line;
   }
   return { ...(diagnostics.length ? {} : { value: compiled }), diagnostics };
+}
+/** Compile the parsed input contract without requiring or inventing a formula. */
+export function compilePageContract(page: PageSource, prelude: CheckedPrelude): Result<CompiledPage> {
+  const environment = pageEnvironment(page, prelude.environment);
+  if (!environment.value || environment.diagnostics.length) return {diagnostics: environment.diagnostics};
+  const compiled: CompiledPage = {file: page.file, parameters: environment.value.parameters, formulas: []};
+  const diagnostics: Diagnostic[] = [];
+  const front = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(page.text)!;
+  const doc = parseDocument(front[1]);
+  const node = doc.get("parameters", true);
+  const start = front[0].indexOf(front[1]);
+  const declaration = declareRuleLine(doc.toJS(), compiled, prelude, location(page, start + ((isMap(node) ? node.range?.[0] : 0) ?? 0), start + ((isMap(node) ? node.range?.[1] : 0) ?? 0)));
+  diagnostics.push(...declaration.diagnostics);
+  if (declaration.value) compiled.line = declaration.value;
+  if (diagnostics.length) return {diagnostics};
+  return {value: compiled, diagnostics: []};
 }
 export function compileLibrary(pages: PageSource[], preludePage: PageSource): Result<TypedLibrary> {
   const prelude = compilePrelude(preludePage);

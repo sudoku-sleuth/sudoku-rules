@@ -42,7 +42,7 @@ Class: **existential**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|bulb|>0 ∧ decimalValid(bulb) ∧ let B=decimal(bulb);
+|bulb|>0 ∧ (|bulb|>1 → decimalValid(bulb)) ∧ let B=if |bulb|=1 then D(bulb[0]) else if decimalValid(bulb) then decimal(bulb) else 0;
 (partial → ∃remainder:list<digit>: |remainder|>0 ∧ (∀d∈remainder:d∈𝔄) ∧ aggregate(line,"D","sum")+Σ_{d∈remainder}d=B)
 ∧ (¬partial → (|bulb|=1 → aggregate(line,"V","sum")=V(bulb[0])) ∧ (|bulb|!=1 → aggregate(line,"D","sum")=B))
 ```

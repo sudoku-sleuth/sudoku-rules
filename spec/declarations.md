@@ -70,7 +70,7 @@ alias_bind:
   channel: '"V"'
 ```
 
-Compilation checks binding types against the canonical parameter types, renames canonical locals to prevent capture, and checks the instantiated formula. The shorthand retains its own rule-line syntax. The public library's rules map includes compiled bound instantiations; its aliases map records their canonical targets. Plain aliases retain the target contract.
+Compilation checks binding types against the canonical parameter types, renames canonical locals to prevent capture, and checks the instantiated formula. The shorthand retains its own rule-line syntax. The public library's rules map includes compiled bound instantiations; its `shorthands` map records each canonical `target` and its `bindings`. The `aliases` map contains only exact renames, which retain the target contract. Look up a kind in `rules` first (including compiled shorthands); if absent, resolve it once through `aliases` and look up that canonical rule. Never follow a shorthand as a plain alias: doing so discards its bindings. Registry parameter contracts expose fixed page defaults as `default`; absent or board-dependent defaults remain omitted.
 
 A required collection parameter can declare `empty_when: edges`. An empty authored list is then accepted when that other declared parameter is supplied. This permits `modular line [] edges ...` while keeping ordinary line declarations nonempty. The rule's formula validates the edges and their connectedness. Conditions still require a nonempty primary cell list; negation applies to the complete instance.
 

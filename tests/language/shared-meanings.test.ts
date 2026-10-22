@@ -1,7 +1,7 @@
 import { expect, test } from 'bun:test';
 import { readdir } from 'node:fs/promises';
 import { parse, stringify } from 'yaml';
-import { compilePublicLibrary, checkCaseReferences, normalise, type Expr } from '../../src';
+import { compilePublicLibrary, checkCaseReferences, normalise, parseFormula, checkFormula, type Expr } from '../../src';
 import { fragmentVerdict, type Fragment } from './finite-fragment';
 import { caseExamples } from '../../scripts/lint-skill';
 const sources = await Promise.all((await readdir('rules')).filter(n => n.endsWith('.md')).map(async n => ({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
@@ -9,21 +9,11 @@ const compiled = compilePublicLibrary(sources);
 if (!compiled.value) throw Error(JSON.stringify(compiled.diagnostics));
 const library = compiled.value;
 const a='r1c1', b='r1c2', c='r1c3', d='r1c4', e='r1c5';
-const channel = {channel:'D'};
-const defaults: Record<string,Record<string,unknown>> = {
- thermo:{channel:'V',strict:true,orientation:'forward'}, 'slow-thermo':{...channel,orientation:'forward'},
- renban:{channel:'V',repeats:false}, nabner:{...channel,distinct:false,separated:false},
- modular:{modulus:3,length:3,loop:false},entropic:{loop:false},parity:{loop:false},
- 'line-choice':{loop:false}, 'difference-line':{...channel,loop:false,diamonds:[]},
- 'prefix-sum':{...channel,crusts:[],include:false},
- 'blocked-sight':{...channel,blockers:[],blocking:'listed',includeBlocker:false,includeOrigin:false,records:false,offset:0,targetCells:[]},
- 'sum-partition':{...channel,repeats:true,loop:false},lookup:{...channel,indexChannel:'D',offset:0,relation:{op:'difference',value:0}},
-};
 function verdict(kind:string,parameters:Record<string,unknown>,faces:Record<string,number>,extra:Partial<Fragment>={},negated=false) {
  const page=library.rules.get(kind)!;
  const ast=page.formulas[0].ast;
  const formula:Expr=negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast;
- return fragmentVerdict(formula,library.prelude,page.parameters,{faces,parameters:{...defaults[kind],...parameters},...extra});
+ return fragmentVerdict(formula,library.prelude,page.parameters,{faces,parameters:{...Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,"default")).map(([name,p])=>[name,p.default])),...parameters},...extra});
 }
 const line=[a,b,c], edges=[[a,b],[b,c],[b,d]];
 test('either-end thermo chooses one orientation for the whole path',()=>{
@@ -72,13 +62,29 @@ test('disconnected or malformed edges cannot supply a network meaning',()=>{
  expect(verdict('modular',{line:[],edges:[[a,b],[c,d]]},{[a]:1,[b]:2,[c]:3,[d]:4})).toBe(false);
  expect(verdict('modular',{line:[],edges:[[a,b,c]]},{[a]:1,[b]:2,[c]:3})).toBe(false);
 });
-test('Line Choice uses standalone V Renban and the entropic two-cell condition',()=>{
+test('Line Choice retains printed Renban and vacuous ordered two-cell choices',()=>{
  const faces={[a]:1,[b]:2,[c]:4};const values={[a]:1,[b]:2,[c]:3};
- expect(verdict('line-choice',{line,kinds:['renban'],min:1,max:1},faces,{values})).toBe(verdict('renban',{line},faces,{values}));
- for(const pair of [[1,2],[1,4]]) {
-  const faces={[a]:pair[0],[b]:pair[1]};
-  expect(verdict('line-choice',{line:[a,b],kinds:['entropic'],min:1,max:1},faces)).toBe(verdict('entropic',{line:[a,b]},faces));
+ expect(verdict('line-choice',{line,kinds:['renban'],min:1,max:1},faces,{values})).toBe(false);
+ expect(verdict('renban',{line},faces,{values})).toBe(true);
+ for(const kind of ['modular','entropic']) {
+  const faces={[a]:1,[b]:1};
+  expect(verdict('line-choice',{line:[a,b],kinds:[kind],min:1,max:1},faces)).toBe(true);
+  expect(verdict(kind,{line:[a,b]},faces)).toBe(false);
+  expect(verdict('line-choice',{line:[],edges:[[a,b]],kinds:[kind],min:1,max:1},faces)).toBe(false);
  }
+});
+test('short network components require distinct classes across all vertices',()=>{
+ for(const kind of ['modular','entropic']) {
+  expect(verdict(kind,{line:[],edges:[[a,b]]},{[a]:1,[b]:1})).toBe(false);
+  expect(verdict(kind,{line:[],edges:[[a,b]]},{[a]:1,[b]:5})).toBe(true);
+ }
+ expect(verdict('modular',{line:[],edges:[[a,b],[b,c]],modulus:4,length:4},{[a]:1,[b]:2,[c]:5})).toBe(false);
+ expect(verdict('modular',{line:[],edges:[[a,b],[b,c]],modulus:4,length:4},{[a]:1,[b]:2,[c]:3})).toBe(true);
+});
+test('Close Whispers defaults to printed digits with an optional effective channel',()=>{
+ const faces={[a]:1,[b]:3};const extra={values:{[a]:1,[b]:8}};
+ expect(verdict('close-whispers',{line:[a,b],gap:2},faces,extra)).toBe(true);
+ expect(verdict('close-whispers',{line:[a,b],gap:2,channel:'V'},faces,extra)).toBe(false);
 });
 test('absolute differences differ from signed arithmetic steps',()=>{
  const faces={[a]:2,[b]:4,[c]:2};
@@ -197,4 +203,49 @@ test('empty network primary lists require explicitly supplied edges',()=>{
  const envelope=(line:string)=>({file:'geometry.rules.md',text:'---\nformat: open-rules\ntitle: Geometry example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\n'+line+'\n```'});
  expect(checkCaseReferences(envelope('modular line []'),library.registry).diagnostics.some(d=>d.code==='E_CASE_PARAMETERS')).toBe(true);
  expect(checkCaseReferences(envelope('modular line [] edges [["r1c1","r1c2"]]'),library.registry).diagnostics).toEqual([]);
+});
+
+test('registry derives fixed defaults from page declarations',()=>{
+ const fixed=(kind:string,name:string)=>library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters[name].default;
+ expect(fixed('thermo','strict')).toBe(true);
+ expect(fixed('thermo','orientation')).toBe('forward');
+ expect(fixed('thermo','channel')).toBe('V');
+ expect(fixed('close-whispers','channel')).toBe('D');
+ expect(fixed('zipper','centre')).toBe('when-odd');
+ expect(fixed('region-sum','combine')).toBe(false);
+ for(const kind of ['killer','whisper'])expect(library.aliases.has(kind)).toBe(true);
+ for(const kind of ['kropki','slow-thermo','anti-king','anti-knight','bremban','quadruple']) {
+  expect(library.aliases.has(kind)).toBe(false);
+  expect(library.shorthands.get(kind)!.bindings).toBeDefined();
+  expect(library.rules.get(kind)!.formulas.length).toBe(1);
+ }
+ expect(library.shorthands.get('kropki')!.bindings.channel).toBe('"V"');
+});
+test('shorthand parsing ignores prose class labels and binding errors point into YAML',()=>{
+ const raw=sources.find(p=>p.file==='rules/kropki.md')!;
+ const withProse={...raw,text:raw.text+'\nClass: **invented prose**.\n'};
+ expect(compilePublicLibrary(sources.map(p=>p===raw?withProse:p)).diagnostics).toEqual([]);
+ const invalid={...raw,text:raw.text.replace('channel: \'"V"\'','channel: \'false\'')};
+ expect(invalid.text).not.toBe(raw.text);
+ const result=compilePublicLibrary(sources.map(p=>p===raw?invalid:p));
+ expect(result.value).toBeUndefined();
+ const error=result.diagnostics[0];
+ expect(error.span.file).toBe(raw.file);
+ expect(error.span.start.line).toBeGreaterThan(1);
+ expect(invalid.text.slice(error.span.start.offset,error.span.end.offset)).toBe("'false'");
+});
+test('validNetwork uses the connected primitive rather than tuple enumeration',()=>{
+ expect(library.prelude.environment.terms.connected.kind).toBe('primitive');
+ const term=library.prelude.environment.terms.validNetwork;
+ function names(ast:Expr):string[]{return [...(ast.kind==='name'?[ast.value!]:[]),...ast.children.flatMap(names)];}
+ expect(names(term.body!)).toContain('connected');
+ expect(names(term.body!)).not.toContain('cellLists');
+});
+
+test('connected retains orthogonal cell-collection meaning alongside explicit edges',()=>{
+ const parsed=parseFormula('connected({c∈C:D(c)>0})').value!;
+ const checked=checkFormula(parsed,library.prelude.environment);
+ expect(checked.diagnostics).toEqual([]);
+ expect(fragmentVerdict(checked.value!.ast,library.prelude,[],{faces:{[a]:1,[b]:2},parameters:{}})).toBe(true);
+ expect(fragmentVerdict(checked.value!.ast,library.prelude,[],{faces:{[a]:1,[c]:2},parameters:{}})).toBe(false);
 });

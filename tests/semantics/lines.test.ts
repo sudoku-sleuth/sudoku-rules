@@ -310,3 +310,24 @@ test("region-sum combined visits retain occurrences and the default separate-vis
   expect(evaluate(repeated, assignment([2,1,4]))).toBe(true);
   expect(evaluate(repeated, assignment([2,1,2]))).toBe(false);
 });
+
+test('explicit default extensions preserve the existing lowering',()=>{
+ for(const [base,defaults] of [
+  ['thermo r1c1-r1c2','strict true orientation "forward" channel "V"'],
+  ['slow-thermo r1c1-r1c2','orientation "forward" channel "D"'],
+  ['renban r1c1-r1c2','channel "V" repeats false'],
+  ['nabner r1c1-r1c2','channel "D" separated false'],
+  ['modular r1c1-r1c2','length 3'],
+  ['close-whispers r1c1-r1c2 gap 2','channel "D"'],
+  ['region-sum r1c1-r1c2-r1c3 segments [["r1c1","r1c2"],["r1c3"]]','channel "V"'],
+ ]) {
+  const before=nf(base),after=nf(`${base} ${defaults}`);
+  expect(before.status).toBe('complete');expect(after.issues).toEqual([]);expect(after.status).toBe('complete');
+  expect(compare(before,after).status).toBe('equivalent');
+ }
+ for(const extra of ['strict false','orientation "reverse"','channel "D"']) {
+  const result=nf(`thermo r1c1-r1c2 ${extra}`);
+  expect(result.issues).toEqual([]);expect(result.status).toBe('partial');
+  expect(result.normalForm!.coverage.some(c=>c.status==='unsupported')).toBe(true);
+ }
+});

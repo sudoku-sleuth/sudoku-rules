@@ -4,7 +4,7 @@ import { diagnostic, type Diagnostic, type Span } from "./language/diagnostics.j
 
 export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
-export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; emptyWhen?: string }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
+export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
   summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],
@@ -162,4 +162,22 @@ function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: 
     }
   }
   return node.span;
+}
+
+/** Fixed defaults are read from the page's human-readable default declaration. */
+export function declaredDefault(raw: unknown, type: Type, types: Record<string, Type>): {default?: unknown} {
+  if (typeof raw === "boolean" || typeof raw === "number") return {default: raw};
+  if (typeof raw !== "string") return {};
+  const value = raw.trim();
+  if (/^(Empty list|Empty set|No authored strips|\[\])/.test(value)) return {default: []};
+  const token = value.split(/[ .;(]/, 1)[0];
+  const resolved = types[type.name] ?? type;
+  if (resolved.name === "boolean" && ["true", "false"].includes(token)) return {default: token === "true"};
+  if (resolved.name === "enum" && resolved.members?.includes(token)) return {default: token};
+  if (["number", "position", "digit", "value"].includes(resolved.name)) {
+    const match = /^(-?\d+(?:\.\d+)?)(?:[.; (]|$)/.exec(value);
+    if (match) return {default: Number(match[1])};
+  }
+  if (value === "difference 0 (equal).") return {default: {op: "difference", value: 0}};
+  return {};
 }

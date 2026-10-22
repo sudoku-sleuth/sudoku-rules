@@ -46,6 +46,7 @@ test("every production page compiles atomically with its declared public prelude
     const result = compilePublicLibrary(pages);
     expect(result.diagnostics).toEqual([]);
     expect(result.value!.rules.size).toBe(88);
-    expect(result.value!.aliases.size).toBe(8);
+    expect(result.value!.aliases.size).toBe(2);
+    expect(result.value!.shorthands.size).toBe(6);
     expect(result.value!.documents).toBe(4);
 });

@@ -133,3 +133,11 @@ test("new variant parameters are accepted through the published declaration cont
   const text = `---\nformat: open-rules\ntitle: Synthetic\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\nsudoku 9x9\nzipper r1c1-r2c2-r3c3 centre "ignore"\nregion-sum r1c3-r1c4-r2c3 segments [["r1c3"],["r1c4"],["r2c3"]] combine true\n\`\`\``;
   expect(checkCaseReferences({file:"synthetic.rules.md",text},library.registry).diagnostics).toEqual([]);
 });
+
+test("16 by 16 one-cell bulbs accept 12 without decimal digit validation", () => {
+ const alphabet=Array.from({length:16},(_,i)=>i+1);
+ expect(holds({digits:{r1c1:12,r1c2:5,r1c3:7},alphabet},["r1c2","r1c3"],["r1c1"],false)).toBe(true);
+ expect(holds({digits:{r1c1:12,r1c2:5,r1c3:8},alphabet},["r1c2","r1c3"],["r1c1"],false)).toBe(false);
+ expect(holds({digits:{r1c1:12,r1c2:5},values:{r1c1:20,r1c2:20},alphabet},["r1c2"],["r1c1"],false)).toBe(true);
+ expect(holds({digits:{r1c1:-2,r1c2:-2},alphabet:[-2,0,12]},["r1c2"],["r1c1"],false)).toBe(true);
+});

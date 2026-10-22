@@ -12,6 +12,10 @@ parameters:
     description: The greatest difference allowed between neighbours.
     default: Required.
     type: number
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
   edges:
     type: optional<list<list<cell>>>
     description: Explicit undirected edges of one connected network; each edge lists two different cells.
@@ -32,6 +36,7 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | gap | The greatest difference allowed between neighbours. | Required. |
+| channel | Read printed digits (D) or effective values (V). | D. |
 | edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
@@ -41,7 +46,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-lineGeometry(line,edges,false) ∧ ∀W∈lineWindows(line,edges,2,false): |W|=2 → |V(W[0])-V(W[1])|<=gap
+lineGeometry(line,edges,false) ∧ ∀W∈lineWindows(line,edges,2,false): |W|=2 → |read(W[0],channel)-read(W[1],channel)|<=gap
 ```
 
 Every drawn edge is compared, including branches and junctions.

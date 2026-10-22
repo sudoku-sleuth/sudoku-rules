@@ -1,5 +1,5 @@
 import { compileBoundAlias } from './bound-alias.js';
-import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, object, type CaseBoard, type CaseParameters } from "./case-values.js";
+import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { caseBlocks, readCustomDefinitions, checkCustomParameters, customParameterContract } from "./custom-definitions.js";
 import { declarationLibrary, defaultCasePrelude } from "./declaration-library.js";
 import { declarationParameters, parseDeclaration, type DeclarationAST } from "./declarations.js";
@@ -14,7 +14,7 @@ export const documentChecks = ["E_HEADER_REQUIRED", "E_HEADER_TYPE", "E_LIBRARY_
 export interface Header {
     metadata: Record<string, unknown>;
     offset: number;
-    field: (name: string) => ReturnType<typeof location>;
+    field: (name: string, child?: string) => ReturnType<typeof location>;
 }
 export function readHeader(page: PageSource): Result<Header> {
     const match = /^(?:\uFEFF)?---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(page.text);
@@ -32,8 +32,8 @@ export function readHeader(page: PageSource): Result<Header> {
     const metadata = doc.toJS({ maxAliasCount: 0 });
     if (!metadata || typeof metadata !== "object" || Array.isArray(metadata))
         return { diagnostics: [diagnostic("E_HEADER_TYPE", location(page, 0, 0), "Write the header as named fields, rather than a list or single value.")] };
-    const field = (name: string) => { const pair = isMap(doc.contents) ? doc.contents.items.find(pair => isScalar(pair.key) && pair.key.value === name) : undefined; if (!pair)
-        return location(page, 0, 0); const node = pair.value ?? pair.key; return location(page, offset + (node?.range?.[0] ?? 0), offset + (node?.range?.[1] ?? 0)); };
+    const field = (name: string, child?: string) => { const pair = isMap(doc.contents) ? doc.contents.items.find(pair => isScalar(pair.key) && pair.key.value === name) : undefined; if (!pair)
+        return location(page, 0, 0); const node = child && isMap(pair.value) ? pair.value.get(child, true) : pair.value ?? pair.key; return location(page, offset + (node?.range?.[0] ?? 0), offset + (node?.range?.[1] ?? 0)); };
     return { value: { metadata, offset: match[0].length, field }, diagnostics: [] };
 }
 export interface RuleRegistry {
@@ -210,6 +210,7 @@ export interface PublicLibrary {
     prelude: CheckedPrelude;
     rules: Map<string, CompiledPage>;
     aliases: Map<string, string>;
+    shorthands: Map<string, {target: string; bindings: Record<string, string>}>;
     documents: number;
     features: CompiledFeature[];
     registry: RuleRegistry;
@@ -226,6 +227,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         return { diagnostics };
     const rules = new Map<string, CompiledPage>();
     const aliases = new Map<string, string>();
+    const shorthands = new Map<string, {target: string; bindings: Record<string, string>}>();
     const features: CompiledFeature[] = [];
     const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), parameters: new Map(), features, prelude: parsed.value };
     const register = (kind: string, metadata: Record<string, unknown>, compiled: CompiledPage) => {
@@ -237,6 +239,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             ...compiled.parameters.map(parameter => {
                 const declaration = object(raw[parameter.name]) ? raw[parameter.name] as Record<string, unknown> : {};
                 return [parameter.name, {type: parameter.type, required: /^Required\b/.test(String(declaration.default)),
+                    ...declaredDefault(declaration.default, parameter.type, parsed.value!.environment.types ?? {}),
                     ...(typeof declaration.empty_when === "string" ? {emptyWhen: declaration.empty_when} : {})}];
             }),
         ]);
@@ -292,8 +295,9 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         if (alias !== undefined) {
             if (typeof alias !== "string" || (metadata.parameters !== undefined && metadata.alias_bind === undefined) || metadata.alias_of !== undefined && metadata.aliasOf !== undefined || formulaBlocks(page).length)
                 diagnostics.push(diagnostic("E_ALIAS_TARGET", field(metadata.alias_of !== undefined ? "alias_of" : "aliasOf"), `The alias ${kind} must name one target and must not declare parameters or a formula.`));
-            else
-                aliases.set(kind, alias);
+            else if (metadata.alias_bind !== undefined)
+                shorthands.set(kind, {target: alias, bindings: metadata.alias_bind as Record<string, string>});
+            else aliases.set(kind, alias);
             continue;
         }
         const checked = compilePage(page, parsed.value);
@@ -309,13 +313,14 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         if (!metadata || metadata.alias_bind === undefined) continue;
         const target = rules.get(String(metadata.alias_of ?? metadata.aliasOf));
         if (!target) continue;
-        const compiled = compileBoundAlias(page, metadata.alias_bind, target, parsed.value);
+        const header = headers.get(page.file)!.value!;
+        const compiled = compileBoundAlias(page, metadata.alias_bind, target, parsed.value, header.field("alias_bind"), name => header.field("alias_bind", name));
         diagnostics.push(...compiled.diagnostics);
         if (compiled.value && typeof metadata.kind === "string") rules.set(metadata.kind,compiled.value);
         if (compiled.value && typeof metadata.kind === "string") register(metadata.kind, metadata, compiled.value);
     }
-    for (const [kind, target] of aliases) {
-        if (!rules.has(target) || aliases.has(target)) {
+    for (const [kind, target] of [...aliases, ...[...shorthands].map(([kind, s]) => [kind, s.target] as const)]) {
+        if (!rules.has(target) || aliases.has(target) || shorthands.has(target)) {
             const page = pages.find(page => headers.get(page.file)?.value?.metadata.kind === kind)!;
             diagnostics.push(diagnostic("E_ALIAS_TARGET", headers.get(page.file)!.value!.field(headers.get(page.file)!.value!.metadata.alias_of !== undefined ? "alias_of" : "aliasOf"), `The alias ${kind} must point to an existing rule definition; ${target} is missing, invalid or another alias.`));
         }
@@ -332,5 +337,5 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             if (parameters) registry.parameters!.set(metadata.url, parameters);
         }
     }
-    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, documents, features, registry }, diagnostics: [] };
+    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, shorthands, documents, features, registry }, diagnostics: [] };
 }

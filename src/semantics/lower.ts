@@ -1,3 +1,4 @@
+import { declarationLibrary } from "../declaration-library.js";
 import { lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
@@ -34,12 +35,16 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     renban:["edges","channel","repeats","selection"], nabner:["edges","channel","separated","selection"],
     bremban:["edges","selection"], "shifter-line":["edges"],
     modular:["edges","length"], entropic:["edges"], parity:["edges"], whispers:["edges"], whisper:["edges"],
-    "close-whispers":["edges"], primality:["edges"], summit:["edges"], "region-sum":["channel"],
+    "close-whispers":["edges","channel"], primality:["edges"], summit:["edges"], "region-sum":["channel"],
     pair:["channel"], cage:["channel"], killer:["channel"], "scoped-move":["scope","channel"],
   };
   for (const name of Object.keys(p)) {
     if (allowed.includes(name)) continue;
-    if (extensions[kind]?.includes(name)) throw new UnsupportedSemantics(`The ${name} parameter of ${kind} is not lowered; the whole instance remains uncovered.`);
+    if (extensions[kind]?.includes(name)) {
+      const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
+      if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;
+      throw new UnsupportedSemantics(`The ${name} parameter of ${kind} is not lowered; the whole instance remains uncovered.`);
+    }
     throw Error(`${kind} has no parameter ${name}.`);
   }
   validateCells(ast, board);

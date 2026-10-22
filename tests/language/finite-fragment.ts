@@ -4,7 +4,7 @@ import type {Type} from "../../src";
 type Value=Rational|string|boolean|undefined|Value[]|Group|Callable|{[key:string]:Value};
 interface Group {group:Value[]}
 type Callable=(...args:Value[])=>Value;
-export interface Fragment {faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];witnesses?:Record<string,unknown[]>}
+export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];witnesses?:Record<string,unknown[]>}
 const number=(value:Value):Rational=>{if(!value||typeof value!=="object"||!("numerator" in value))throw Error("Expected exact number");return value as Rational;};
 const truth=(value:Value):boolean=>{if(typeof value!=="boolean")throw Error("Expected Boolean");return value;};
 const members=(value:Value):Value[]=>{if(Array.isArray(value))return value;if(value&&typeof value==="object"&&"group" in value)return (value as Group).group;throw Error("Expected collection");};
@@ -20,12 +20,28 @@ function typed(value:unknown,type:Type,prelude:CheckedPrelude):Value{
  return value as Value;
 }
 export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:string;type:Type}[],fragment:Fragment):boolean{
- const cells=Object.keys(fragment.faces);if(cells.length>8)throw Error("Fragment limit: eight cells");
- const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),Regions:group((fragment.regions??[]).map(region=>group(region))),H:group(fragment.shaded??[]),rows:exact("9"),cols:exact("9"),ValuedRuleMeanings:[true]};
+ const cells=Object.keys(fragment.faces);if(cells.length>81)throw Error("Fragment limit: 81 cells");
+ const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),Regions:group((fragment.regions??[]).map(region=>group(region))),H:group(fragment.shaded??[]),rows:exact(String(fragment.rows??9)),cols:exact(String(fragment.cols??9)),ℤ:group(Array.from({length:17},(_,i)=>exact(String(i)))),ValuedRuleMeanings:[true]};
  for(const parameter of parameters)env[parameter.name]=typed(fragment.parameters[parameter.name],parameter.type,prelude);
  const primitives:Record<string,Callable>={
   face:c=>exact(String(fragment.faces[String(c)])),effective:c=>exact(String((fragment.values??fragment.faces)[String(c)])),toValue:x=>x,
   relationSpec:(op,n)=>({op:op!,value:n!}),
+  connected:input=>{
+   const items=members(input);if(!items.length)return false;
+   const explicit=Array.isArray(items[0]);
+   const vertices=explicit?items.flatMap(members):items;
+   const es=explicit?items.map(members):vertices.flatMap(a=>vertices.filter(b=>{
+    const coords=(c:Value)=>/^r(\d+)c(\d+)$/.exec(String(c))!.slice(1).map(Number);
+    const [r,c]=coords(a),[s,d]=coords(b);return Math.abs(r-s)+Math.abs(c-d)===1;
+   }).map(b=>[a,b]));
+   if(!vertices.length)return false;
+   const reached=new Set([key(vertices[0])]);let changed=true;
+   while(changed){changed=false;for(const [a,b] of es)if(reached.has(key(a))!==reached.has(key(b))){reached.add(key(a));reached.add(key(b));changed=true;}}
+   return vertices.every(v=>reached.has(key(v)));
+  },
+  letterCount:expressions=>exact(String(new Set(members(expressions).map(e=>(e as {name:string}).name)).size)),
+  defined:(e,letters)=>{if((e as {op:string}).op!=="letter")throw Error("Unsupported fixture expression");return members(letters).length===1;},
+  eval:(e,letters)=>{if((e as {op:string}).op!=="letter")throw Error("Unsupported fixture expression");return members(letters)[0];},
   cellIndex:c=>exact(String(cells.indexOf(String(c)))),
   row:c=>exact(String(Number(/r(\d+)/.exec(String(c))![1])-1)),col:c=>exact(String(Number(/c(\d+)/.exec(String(c))![1])-1)),
   boardCell:(r,c)=>`r${number(r).numerator+1n}c${number(c).numerator+1n}`,

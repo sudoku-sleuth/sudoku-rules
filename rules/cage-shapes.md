@@ -39,7 +39,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∃chosen:list<set<cell>>:
   |chosen|=|hidden|
   ∧ (∀i∈[0,|hidden|): let h=hidden[i]; let cageSet=chosen[i];
-    |cageSet|=size ∧ cageSet⊆C ∧ connected(cageSet) ∧ h.known⊆cageSet
+    |cageSet|=size ∧ cageSet⊆C ∧ connectedCells(cageSet) ∧ h.known⊆cageSet
     ∧ cageSet∩free=∅ ∧ h.clue∈cageSet ∧ (∀c∈cageSet: cellIndex(h.clue)<=cellIndex(c))
     ∧ distinct_D(cageSet) ∧ sum_D(cageSet)=h.sum)
   ∧ (∀i,j∈[0,|hidden|): i!=j → chosen[i]∩chosen[j]=∅)

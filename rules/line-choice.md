@@ -56,15 +56,15 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ```text
 lineGeometry(line,edges,loop) ∧ let S=if present(edges) then graphVertices(unwrap(edges)) else {c∈C:c∈line};
 let selected=λoption:enum{renban,nabner,modular,entropic,parity}:
-  (option="renban" ∧ (if present(edges) then consecutiveValues(S,"V",false) else consecutiveValues(line,"V",false)))
+  (option="renban" ∧ (if present(edges) then consecutiveValues(S,"D",false) else consecutiveValues(line,"D",false)))
   ∨ (option="nabner" ∧ (if present(edges) then nonconsecutiveValues(S,"D",true,false) else nonconsecutiveValues(line,"D",true,false)))
-  ∨ (option="modular" ∧ modularMeaning(line,edges,loop,3,3))
-  ∨ (option="entropic" ∧ entropicMeaning(line,edges,loop))
+  ∨ (option="modular" ∧ (if present(edges) then modularMeaning(line,edges,loop,3,3) else ∀W∈lineWindows(line,edges,3,loop): distinctAt(W,λc:cell:classMod3(D(c)))))
+  ∨ (option="entropic" ∧ (if present(edges) then entropicMeaning(line,edges,loop) else |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀W∈lineWindows(line,edges,3,loop): distinctAt(W,λc:cell:classEntropy(D(c)))))
   ∨ (option="parity" ∧ parityMeaning(line,edges,loop));
 min<=countWhere(kinds,selected)<=max
 ```
 
-Each branch uses the standalone rule’s shared meaning and defaults. Renban reads V; Nabner reads D and permits repeats. Modular and entropic include the standalone two-cell condition. Negation applies to this entire counted choice.
+Renban reads D; Nabner reads D and permits repeats. Ordered modular and entropic choices check three-position windows, so an open two-cell choice is vacuous. Explicit networks use the standalone component checks, including distinct classes when the component is smaller than the window. Negation applies to this entire counted choice.
 
 ## Example
 

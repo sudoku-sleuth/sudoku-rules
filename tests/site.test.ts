@@ -8,7 +8,7 @@ import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
 
-// These tests build the whole library (86 pages); allow for slower CI runners.
+// These tests build the whole library; allow for slower CI runners.
 setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");

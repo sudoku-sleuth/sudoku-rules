@@ -1,22 +1,26 @@
-import { compilePage, type CompiledPage, type PageSource } from './library.js';
+import { compilePageContract, type CompiledPage, type PageSource } from './library.js';
 import { checkFormula, type CheckedPrelude } from './language/checker.js';
 import { parseFormula } from './language/parser.js';
 import type { Expr } from './language/ast.js';
-import { diagnostic, location, type Result } from './language/diagnostics.js';
+import { diagnostic, type Result, type Span } from './language/diagnostics.js';
 
 /** A shorthand has its own input contract and binds every canonical input explicitly. */
-export function compileBoundAlias(page: PageSource, bindings: unknown, target: CompiledPage, prelude: CheckedPrelude): Result<CompiledPage> {
-  const span = location(page, 0, 0);
+export function compileBoundAlias(page: PageSource, bindings: unknown, target: CompiledPage, prelude: CheckedPrelude, span: Span, bindingSpan: (name: string) => Span): Result<CompiledPage> {
   const bad = (message: string): Result<CompiledPage> => ({ diagnostics: [diagnostic('E_ALIAS_TARGET', span, message)] });
   if (!bindings || typeof bindings !== 'object' || Array.isArray(bindings)) return bad('alias_bind must map every target parameter to a formula expression.');
   const values = bindings as Record<string, unknown>;
   if (Object.keys(values).sort().join('\0') !== target.parameters.map(p => p.name).sort().join('\0') || Object.values(values).some(v => typeof v !== 'string'))
     return bad('alias_bind must bind every target parameter exactly once, using formula expressions.');
   // Compile the shorthand's own grammar without introducing a second definition.
-  const stub = compilePage({...page, text: page.text.replace(/Class:\s*\*\*[^*]+\*\*/g, 'Class: **first-order**') + '\nClass: **first-order**.\n\n```text\ntrue\n```\n'}, prelude);
+  const stub = compilePageContract(page, prelude);
   if (!stub.value) return stub;
   const environment = {...prelude.environment, symbols: {...prelude.environment.symbols, ...Object.fromEntries(stub.value.parameters.map(p => [p.name,p.type]))}};
-  const parsed = target.parameters.map(p => parseFormula(values[p.name] as string, {file:page.file}));
+  const parsed = target.parameters.map(p => {
+    const parsed = parseFormula(values[p.name] as string, {file:page.file});
+    const span = bindingSpan(p.name);
+    const locate = (node: Expr): Expr => ({...node, span, children: node.children.map(locate), binders: node.binders?.map(b => ({...b,span}))});
+    return {value: parsed.value && locate(parsed.value), diagnostics: parsed.diagnostics.map(d => ({...d,span}))};
+  });
   const diagnostics = parsed.flatMap(p => p.diagnostics);
   if (diagnostics.length) return {diagnostics};
   // Rename canonical locals as well as parameters to prevent capture by shorthand inputs.

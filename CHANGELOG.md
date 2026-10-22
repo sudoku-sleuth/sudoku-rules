@@ -10,7 +10,7 @@ Each release lists what changed. A change that breaks a published export, front-
 - Shared numeric channels, pair relations, monotonicity, aggregate operands, extrema and bounded lookup. Lookup supports independent index/result channels and configurable targets and relations. Existing arithmetic and indexing pages use these shared operations.
 - Explicit line networks with junction windows and whole-component Renban/Nabner. Modular window length is independent of modulus. Renban/Nabner expose channels, repeat policies and stopping-prefix selection; Thermo supports either-end orientation.
 - Difference Line distinguishes equal absolute differences, different absolute differences and signed steps. Split Pea uses reversible endpoint decimal reading. Prefix Sum and Blocked Sight share stopping selectors, channels and aggregate output. Sum Partition distinguishes overlapping coverage from disjoint partitions, including cyclic cuts.
-- Shared graph traversals, reversal, cyclic cuts, maximal region runs, ordered rays and record-high visibility. Line Choice now uses the standalone Renban channel and the standalone modular/entropic two-cell conditions. Region Sum validates its supplied maximal runs.
+- Shared graph traversals, reversal, cyclic cuts, maximal region runs, ordered rays and record-high visibility. Line Choice retains its printed-digit Renban branch and vacuous ordered two-cell modular/entropic choices. Explicit networks require distinct classes across components shorter than their window.
 - Declaration contracts, public examples, MathML/site coverage and semantic regression fragments for these meanings. Finite comparison leaves extended instances uncovered when their lowering is unavailable.
 
 - Decorative rule symbols beside library names and page headings, with a page-slug mapping, theme colours and MIT licensing.
@@ -25,6 +25,9 @@ Each release lists what changed. A change that breaks a published export, front-
 - A whole-grid custom white-dot pair example in the setter skill.
 
 ### Breaking
+
+- Tightened Region Sum’s published formula to require the ordered maximal primary-region runs, matching the existing semantic lowering. The previous r1c1-r1c2-r1c3 example split one box into two visits; that split is now rejected. The corrected crossing-boundary and return-visit examples show the requirement.
+
 
 - Correct the partial Arrow formula to require a non-empty omitted shaft remainder made from allowed digits. Equality is rejected for positive-only alphabets and can hold when zero is allowed. The rule’s logical class is now existential; the declaration syntax is unchanged.
 
@@ -49,7 +52,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Changed
 
-- Clarified English definitions against Sudoku U’s standard constraint variants: shared arrow bulbs, optional cage totals, negative dots and XV, repeated quadruple digits, 6-symbol classes, shout and whisper gaps, indexing, fortress cells, clone composition, look-and-say groups and permitted repetitions. Existing rule meanings are preserved.
+- Clarified English definitions against Sudoku U’s standard constraint variants: shared arrow bulbs, optional cage totals, negative dots and XV, repeated quadruple digits, 6-symbol classes, shout and whisper gaps, indexing, fortress cells, clone composition, look-and-say groups and permitted repetitions. These wording edits preserve their meanings; formula corrections are listed separately.
 - Corrected the Region Sum worked example to cross a standard box boundary. Documented comparison coverage and remaining rule proposals in `docs/reports/standard-phrasing.md`.
 
 - Instance IDs accept readable hyphenated, dotted, digit-leading and Unicode names. Reserved declaration words, cells, paths, dimensions and numbers require JSON quotes. The parser, canonical writer, specification and setter skill share this contract; parameter and reference syntax are unchanged.
