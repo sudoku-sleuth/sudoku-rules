@@ -4,6 +4,7 @@ url: https://rules.sudoku-sleuth.com/close-whispers.md
 kind: close-whispers
 parameters:
   line:
+    empty_when: edges
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
@@ -11,11 +12,19 @@ parameters:
     description: The greatest difference allowed between neighbours.
     default: Required.
     type: number
+  edges:
+    type: optional<list<list<cell>>>
+    description: Explicit undirected edges of one connected network; each edge lists two different cells.
+    default: Absent; use the ordered line.
 ---
 
 # Close Whispers
 
 Neighbouring digits along the line differ by at most the stated maximum.
+
+These are also called shout-n lines: use `gap n` for the largest permitted difference. Equal neighbours satisfy the rule when the gap is nonnegative. Digits may repeat when other rules allow.
+
+With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
 ## Parameters
 
@@ -23,18 +32,19 @@ Neighbouring digits along the line differ by at most the stated maximum.
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | gap | The greatest difference allowed between neighbours. | Required. |
+| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀i ∈ [0,|line|−1): |D(line[i])−D(line[i+1])| ≤ gap
+lineGeometry(line,edges,false) ∧ ∀W∈lineWindows(line,edges,2,false): |W|=2 → |V(W[0])-V(W[1])|<=gap
 ```
 
-Neighbouring path positions differ in digit by at most gap.
+Every drawn edge is compared, including branches and junctions.
 
 ## Example
 

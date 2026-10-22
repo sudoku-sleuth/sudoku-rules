@@ -58,6 +58,22 @@ Adding a rule page supplies its grammar through these declarations. Run
 `src/declaration-library.ts`. `lint:declarations` checks that these contracts match
 the pages. Runtime parsing performs no filesystem access or URL loading.
 
+## Canonical definitions and bound shorthands
+
+`alias_of: target` retains the target's parameter contract. A parameter-bound shorthand also declares its own `parameters` and an `alias_bind` mapping. Bind every target parameter exactly once to a formula expression over the shorthand's inputs and shared prelude. Targets are canonical definitions; alias chains are rejected. Shorthands do not declare another formula.
+
+```yaml
+alias_of: pair
+alias_bind:
+  cells: cells
+  relation: 'relationSpec(if colour="white" then "difference" else "ratio", if colour="white" then 1 else 2)'
+  channel: '"V"'
+```
+
+Compilation checks binding types against the canonical parameter types, renames canonical locals to prevent capture, and checks the instantiated formula. The shorthand retains its own rule-line syntax. The public library's rules map includes compiled bound instantiations; its aliases map records their canonical targets. Plain aliases retain the target contract.
+
+A required collection parameter can declare `empty_when: edges`. An empty authored list is then accepted when that other declared parameter is supplied. This permits `modular line [] edges ...` while keeping ordinary line declarations nonempty. The rule's formula validates the edges and their connectedness. Conditions still require a nonempty primary cell list; negation applies to the complete instance.
+
 ## Shared pipeline
 
 The case checker extracts rules fences, parses each line once, resolves references

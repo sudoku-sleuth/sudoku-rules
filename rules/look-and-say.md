@@ -15,7 +15,9 @@ parameters:
 
 # Look And Say
 
-Each listed digit occurs exactly the stated number of times in the cage.
+Each listed digit occurs exactly the stated number of times in the marked cells.
+
+The marked cells may be a cage, a diagonal or another stated group. Read a printed clue as count–digit pairs: 1432 means one 4 and three 2s, written `counts [{"digit":4,"count":1},{"digit":2,"count":3}]`. Unlisted digits may appear. The clue imposes no sum or general no-repeat condition. An empty `counts` list imposes no restriction.
 
 ## Parameters
 

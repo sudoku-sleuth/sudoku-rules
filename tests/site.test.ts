@@ -91,7 +91,7 @@ test("index rule has its own route without overwriting the library homepage", as
   await writeFile(join(source, "rules/index.md"), "---\nname: Index\nkind: index\nurl: https://rules.sudoku-sleuth.com/index.md\n---\n# Index\n\nA digit points to its own position.\n");
   const result = await buildSite(source, join(temporary, "index-site"));
   expect(await readFile(join(result.output, "index.html"), "utf8")).toContain('href="/index/"');
-  expect(await readFile(join(result.output, "index/index.html"), "utf8")).toContain('<h1 id="index">Index</h1>');
+  expect(await readFile(join(result.output, "index/index.html"), "utf8")).toContain('<h1 id="index"><span class="rule-heading">');
   expect(await readFile(join(result.output, "index.md"))).toEqual(await readFile(join(source, "rules/index.md")));
 });
 
@@ -181,7 +181,12 @@ test("index rule and alias routes coexist with the home catalogue", async () => 
 
 test("the full library has byte-identical public routes", async () => {
   const built=await buildSite(".",join(temporary,"production-site"));
-  expect(built.pages).toBe(87);
+  expect(built.pages).toBe((await readdir("rules")).filter(n => n.endsWith(".md")).length);
+  const icons: Record<string,string> = JSON.parse(await readFile("site/icons/rules.json","utf8"));
+  for (const slug of ["kropki","bremban","slow-thermo","quadruple","anti-king","anti-knight"]) {
+    const ownIcon=(await readFile(join("site/icons",icons[slug]),"utf8")).replace("<svg ",'<svg class="rule-icon" focusable="false" ');
+    expect(await readFile(join(built.output,slug,"index.html"),"utf8")).toContain(ownIcon);
+  }
   const home=await readFile(join(built.output,"index.html"),"utf8");
   for(const name of await readdir("rules")) {
     if(!name.endsWith(".md"))continue;
@@ -203,4 +208,24 @@ test("theme bootstrap is hash-authorised before the stylesheet on every reading 
     for (const theme of ["light", "dark", "system"]) expect(html).toContain(`data-theme-choice="${theme}"`);
     expect(html).not.toContain("unsafe-inline");
   }
+});
+
+test("rule symbols cover the published page set and stay decorative and theme-aware", async () => {
+  const icons: Record<string, string> = JSON.parse(await readFile("site/icons/rules.json", "utf8"));
+  const slugs = (await readdir("rules")).filter(n => n.endsWith(".md")).map(n => n.slice(0,-3));
+  expect(Object.keys(icons).length).toBe(slugs.length-1);
+  expect(slugs.filter(slug => !icons[slug])).toEqual(["decoration"]);
+  for (const [slug, path] of Object.entries(icons)) {
+    expect(slugs).toContain(slug);
+    const svg = await readFile(join("site/icons", path), "utf8");
+    expect(svg).toContain('aria-hidden="true"');
+    expect(svg).toContain('stroke="currentColor"');
+    expect(svg).not.toMatch(/<(title|desc|script)\b|\b(role|aria-label|style)=|#[0-9a-f]{3,8}\b/i);
+    expect(await readFile(join(output, "icons", path), "utf8")).toBe(svg);
+  }
+  const home = await readFile(join(output, "index.html"), "utf8");
+  expect(home).toContain('class="rule-name"><svg class="rule-icon" focusable="false" aria-hidden="true"');
+  const page = await readFile(join(output, "thermo/index.html"), "utf8");
+  expect(page).toContain('class="rule-heading"><svg class="rule-icon"');
+  expect(await readFile("site/style.css", "utf8")).toContain('.rule-icon .accent { stroke: var(--blue); }');
 });

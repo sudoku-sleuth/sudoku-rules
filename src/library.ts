@@ -69,6 +69,8 @@ export function pageEnvironment(page: PageSource, environment: Environment, feat
     const span = location(page, offset, front[0].indexOf(front[1]) + (isScalar(key) ? key.range?.[1] ?? name.length : name.length));
     const identifier = parseIdentifier(name);
     if (!identifier.value || identifier.value !== name) { diagnostics.push(diagnostic("E_FORMULA_SYNTAX", span, `The parameter name ${name} cannot be used in formulas; start it with a letter, use only letters, digits or underscores, and avoid formula keywords.`)); continue; }
+    const emptyWhen = parameter && typeof parameter === "object" && "empty_when" in parameter ? parameter.empty_when : undefined;
+    if (emptyWhen !== undefined && (typeof emptyWhen !== "string" || emptyWhen === name || !Object.hasOwn(parameters, emptyWhen))) diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", span, "empty_when must name another parameter on this page."));
     const rawType = parameter && typeof parameter === "object" && "type" in parameter ? parameter.type : undefined;
     if (typeof rawType !== "string") { diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", span, `Declare a type for the parameter ${name}, such as cell, number or path<cell>.`)); continue; }
     if ((Object.hasOwn(symbols, name) || Object.hasOwn(environment.terms, name)) && (feature || !environment.play?.has(name))) { diagnostics.push(diagnostic("E_NAME_SHADOW", span, `The parameter ${name} reuses a shared name; choose another parameter name.`)); continue; }

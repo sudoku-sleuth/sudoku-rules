@@ -11,6 +11,14 @@ parameters:
     description: The total the digits or values must add up to.
     default: Required.
     type: number
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
+  repeats:
+    type: boolean
+    description: Whether numbers may repeat on the ray.
+    default: true.
 ---
 
 # Little Killer
@@ -23,6 +31,8 @@ Digits along the listed ray add up to the clue. Repeats are allowed by this rule
 | --- | --- | --- |
 | cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 | sum | The total the digits or values must add up to. | Required. |
+| channel | Read printed digits (D) or effective values (V). | D. |
+| repeats | Whether numbers may repeat on the ray. | true. |
 
 ## Maths
 
@@ -31,10 +41,10 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-sum_D(cells)=sum
+repeatPolicy(cells,channel,repeats) ∧ aggregate(cells,channel,"sum")=sum
 ```
 
-The digits along the supplied ray sum to sum. No distinctness is added.
+The selected numbers sum to the clue. Repeats are allowed by default.
 
 ## Example
 

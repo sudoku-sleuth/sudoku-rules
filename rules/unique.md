@@ -13,6 +13,8 @@ parameters:
 
 All digits in the listed cells are different. Declare each row, column and region that needs this rule.
 
+For an extra Sudoku region, list all its cells. With as many cells as allowed symbols, no repeats forces every symbol to appear. The same rule defines disjoint groups: declare one group for each relative box position, collecting that position from every box. Region geometry alone does not impose this rule.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

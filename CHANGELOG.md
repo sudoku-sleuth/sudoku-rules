@@ -6,6 +6,16 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Parameter-bound shorthands with checked `alias_bind` expressions. Quadruple shares Outside's occurrence definition; Kropki, Bremban, Slow Thermo and the anti-move rules bind canonical parameters while retaining their names, URLs and defaults.
+- Shared numeric channels, pair relations, monotonicity, aggregate operands, extrema and bounded lookup. Lookup supports independent index/result channels and configurable targets and relations. Existing arithmetic and indexing pages use these shared operations.
+- Explicit line networks with junction windows and whole-component Renban/Nabner. Modular window length is independent of modulus. Renban/Nabner expose channels, repeat policies and stopping-prefix selection; Thermo supports either-end orientation.
+- Difference Line distinguishes equal absolute differences, different absolute differences and signed steps. Split Pea uses reversible endpoint decimal reading. Prefix Sum and Blocked Sight share stopping selectors, channels and aggregate output. Sum Partition distinguishes overlapping coverage from disjoint partitions, including cyclic cuts.
+- Shared graph traversals, reversal, cyclic cuts, maximal region runs, ordered rays and record-high visibility. Line Choice now uses the standalone Renban channel and the standalone modular/entropic two-cell conditions. Region Sum validates its supplied maximal runs.
+- Declaration contracts, public examples, MathML/site coverage and semantic regression fragments for these meanings. Finite comparison leaves extended instances uncovered when their lowering is unavailable.
+
+- Decorative rule symbols beside library names and page headings, with a page-slug mapping, theme colours and MIT licensing.
+- Region Sum `combine` selects separate visits or one total per visited primary region. Zipper `centre` selects the existing odd-centre rule, independent pair sums or a required odd centre. Existing defaults are preserved; portable declaration contracts and region-sum semantic lowering include the new choices.
+
 - Clearer Arrow, Allowed Digits, Bremban, Entropic, Greek Carpet and Clone explanations, with cage and cloned-area examples.
 
 - `decoration` declares explicitly decorative marks with a true formula, optional notes and drawing element IDs. Decorations remain metadata in semantic normal forms. `W_DECORATION_OVERLAP` warns about overlapping declarations for the same drawn element. Portable contracts, examples and setter guidance cover the declaration.
@@ -38,6 +48,9 @@ Each release lists what changed. A change that breaks a published export, front-
 - Semantic coverage for pair keywords, Kropki, quadruple and outside multiplicities, scoped negative relations with explicit exceptions, and fog play state. Exact pair tables use the supplied alphabet. Fog comparison preserves missing versus empty links; `visibleCells` computes current reveals from entries and answer availability.
 
 ### Changed
+
+- Clarified English definitions against Sudoku U’s standard constraint variants: shared arrow bulbs, optional cage totals, negative dots and XV, repeated quadruple digits, 6-symbol classes, shout and whisper gaps, indexing, fortress cells, clone composition, look-and-say groups and permitted repetitions. Existing rule meanings are preserved.
+- Corrected the Region Sum worked example to cross a standard box boundary. Documented comparison coverage and remaining rule proposals in `docs/reports/standard-phrasing.md`.
 
 - Instance IDs accept readable hyphenated, dotted, digit-leading and Unicode names. Reserved declaration words, cells, paths, dimensions and numbers require JSON quotes. The parser, canonical writer, specification and setter skill share this contract; parameter and reference syntax are unchanged.
 

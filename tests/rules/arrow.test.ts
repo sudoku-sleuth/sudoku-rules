@@ -93,3 +93,43 @@ test("Greek Carpet evaluates corresponding positions, including shared starts", 
   expect(ruleHolds("greek-carpet", {r1c1:1,r1c2:2,r2c2:3,r1c3:3}, shared)).toBe(true);
   expect(ruleHolds("greek-carpet", {r1c1:1,r1c2:2,r2c2:3,r1c3:4}, shared)).toBe(false);
 });
+
+
+test("zipper variants distinguish an ignored centre, an odd centre, and an even line", () => {
+  const rule = library.rules.get("zipper")!;
+  function zipper(digits: number[], centre: string) {
+    const line = digits.map((_, i) => `r${i+1}c${i+1}`);
+    return fragmentVerdict(rule.formulas[0].ast, library.prelude, rule.parameters, {
+      faces: Object.fromEntries(line.map((cell, i) => [cell, digits[i]])), parameters: {line, centre},
+    });
+  }
+  expect(zipper([1,2,9,4,5], "ignore")).toBe(true);
+  expect(zipper([1,2,9,4,5], "when-odd")).toBe(false);
+  expect(zipper([1,2,9,4,6], "ignore")).toBe(false);
+  expect(zipper([1,2,6,4,5], "required")).toBe(true);
+  expect(zipper([1,2,4,5], "when-odd")).toBe(true);
+  expect(zipper([1,2,4,5], "required")).toBe(false);
+});
+
+test("region-sum formula combines return visits without counting unvisited regions", () => {
+  const rule = library.rules.get("region-sum")!;
+  const line = ["r1c3", "r1c4", "r2c3"];
+  const regions = [["r1c3", "r2c3"], ["r1c4"], ["r9c9"]];
+  function regional(digits: number[], combine: boolean) {
+    return fragmentVerdict(rule.formulas[0].ast, library.prelude, rule.parameters, {
+      faces: Object.fromEntries(line.map((cell, i) => [cell, digits[i]])), regions,
+      parameters: {line, segments: line.map(c => [c]), combine},
+    });
+  }
+  expect(regional([1,3,2], true)).toBe(true);
+  expect(regional([1,4,2], true)).toBe(false);
+  expect(regional([1,3,2], false)).toBe(false);
+  expect(regional([3,3,3], false)).toBe(true);
+  expect(regional([3,3,3], true)).toBe(false);
+});
+
+
+test("new variant parameters are accepted through the published declaration contracts", () => {
+  const text = `---\nformat: open-rules\ntitle: Synthetic\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\nsudoku 9x9\nzipper r1c1-r2c2-r3c3 centre "ignore"\nregion-sum r1c3-r1c4-r2c3 segments [["r1c3"],["r1c4"],["r2c3"]] combine true\n\`\`\``;
+  expect(checkCaseReferences({file:"synthetic.rules.md",text},library.registry).diagnostics).toEqual([]);
+});

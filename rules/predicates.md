@@ -36,6 +36,8 @@ input H: set<cell>;
 input ValuedRuleMeanings: list<boolean>;
 type PairRelation = record{op:enum{difference,"at-least",ratio,sum,less,multiple,shift},value:optional<number>};
 type ClassSystem = enum{parity,mod3,entropy};
+type Channel = enum{D,V};
+type Orientation = enum{forward,reverse,either};
 type Move = enum{knight,king,orthogonal,bishop};
 primitive face(c:cell):digit;
 primitive effective(c:cell):value;
@@ -123,6 +125,64 @@ term mainRay(c:cell):list<cell> = ⟨boardCell(row(c)+t,col(c)+t):t∈[0,minimum
 term antiRay(c:cell):list<cell> = ⟨boardCell(row(c)+t,col(c)-t):t∈[0,minimumPosition(rows-row(c),col(c)+1))⟩;
 term boardDiagonals():set<list<cell>> = {mainRay(c):c∈{d∈C:row(d)=0 ∨ col(d)=0}} ∪ {antiRay(c):c∈{d∈C:row(d)=0 ∨ col(d)=cols-1}};
 term countRun(L:list<cell>):position = Σ_{i∈{t∈[0,|L|): ∃j∈[0,|L|): |t-j|=1 ∧ |D(L[t])-D(L[j])|=1}} D(L[i]);
+# Shared numeric channels, scope and aggregates.
+primitive relationSpec(op:enum{difference,"at-least",ratio,sum,less,multiple,shift},n:number):PairRelation;
+term read(c:cell,ch:Channel):number = if ch="D" then toValue(D(c)) else V(c);
+term aggregate(S:collection<cell>,ch:Channel,operation:enum{sum,product,count}):number = if operation="count" then |S| else if operation="sum" then Σ_{c∈S} read(c,ch) else Π_{c∈S} read(c,ch);
+term repeatPolicy(S:collection<cell>,ch:Channel,repeats:boolean):boolean = repeats ∨ ∀d∈{read(c,ch):c∈S}: countWhere(S,λc:cell: read(c,ch)=d)<=1;
+term numericBetween(x:number,a:number,b:number,inclusive:boolean):boolean = if inclusive then minimumPair(a,b)<=x<=maximumPair(a,b) else minimumPair(a,b)<x<maximumPair(a,b);
+term relationOnScope(S:set<cell>,pairs:list<list<cell>>,r:PairRelation,ch:Channel):boolean = (∀p∈pairs: |p|=2 ∧ (∀c∈p:c∈S)) ∧ ∀p∈pairs: |p|=2 → pairRelation(r,read(p[0],ch),read(p[1],ch));
+term monotonic(L:list<cell>,strict:boolean,direction:Orientation,ch:Channel):boolean = ((direction="forward" ∨ direction="either") ∧ ∀i∈[0,|L|-1): if strict then read(L[i],ch)<read(L[i+1],ch) else read(L[i],ch)<=read(L[i+1],ch)) ∨ ((direction="reverse" ∨ direction="either") ∧ ∀i∈[0,|L|-1): if strict then read(L[i],ch)>read(L[i+1],ch) else read(L[i],ch)>=read(L[i+1],ch));
+term consecutiveValues(S:collection<cell>,ch:Channel,repeats:boolean):boolean = |S|>0 ∧ repeatPolicy(S,ch,repeats) ∧ ∀a,b∈S: read(a,ch)<read(b,ch) → ∃k∈[1,|S|): read(b,ch)-read(a,ch)=k ∧ ∀j∈[0,k): ∃c∈S: read(c,ch)=read(a,ch)+j;
+term nonconsecutiveValues(S:collection<cell>,ch:Channel,repeats:boolean,separated:boolean):boolean = repeatPolicy(S,ch,repeats ∧ ¬separated) ∧ ∀a,b∈S: a!=b → if separated then |read(a,ch)-read(b,ch)|>1 else |read(a,ch)-read(b,ch)|!=1;
+term extremumAt(c:cell,neighbours:set<cell>,mode:enum{min,max},ch:Channel):boolean = ∀d∈neighbours: if mode="min" then read(c,ch)<read(d,ch) else read(c,ch)>read(d,ch);
+term scopedMove(m:Move,relation:enum{same,consecutive},digits:list<digit>,scope:set<cell>,ch:Channel):boolean = ∀a,b∈scope: moveRelation(m,a,b) ∧ (D(a)∈digits ∨ D(b)∈digits) → ¬(if relation="same" then read(a,ch)=read(b,ch) else pairRelation(relationSpec("difference",1),read(a,ch),read(b,ch)));
+term lookup(L:list<cell>,n:position):cell requires (1<=n ∧ n<=|L|) = L[n-1];
+term lookupRelated(L:list<cell>,n:position,target:number,ch:Channel,r:PairRelation):boolean = 1<=n ∧ n<=|L| ∧ pairRelation(r,read(lookup(L,n),ch),target);
+term lookupEquals(L:list<cell>,n:position,target:number,ch:Channel):boolean = lookupRelated(L,n,target,ch,relationSpec("difference",0));
+term inverseIndex(L:list<cell>,ch:Channel):boolean = ∀i∈[0,|L|): let n=read(L[i],ch); ⌊n⌋=n ∧ ∃k∈[1,|L|+1): k=n ∧ lookupEquals(L,k,i+1,ch);
+# Ordered geometry and explicit undirected networks.
+primitive cellLists(S:set<cell>,n:position):set<list<cell>>;
+term reversal(L:list<cell>):list<cell> = ⟨L[|L|-1-i]:i∈[0,|L|)⟩;
+term cyclicCut(L:list<cell>,s:position):list<cell> requires (|L|>0 ∧ 0<=s ∧ s<|L|) = ⟨L[rem(s+i,|L|)]:i∈[0,|L|)⟩;
+term graphEdge(E:list<list<cell>>,a:cell,b:cell):boolean = a!=b ∧ ∃e∈E: |e|=2 ∧ {a,b}={e[0],e[1]};
+term graphVertices(E:list<list<cell>>):set<cell> = {c∈C: ∃e∈E:c∈e};
+term graphWindow(E:list<list<cell>>,W:list<cell>,k:position):boolean = k>=1 ∧ |W|=k ∧ distinctAt(W,λc:cell: cellIndex(c)) ∧ (∀c∈W:c∈graphVertices(E)) ∧ ∀i∈[0,|W|-1): graphEdge(E,W[i],W[i+1]);
+term graphWindows(E:list<list<cell>>,k:position):set<list<cell>> = {W∈cellLists(graphVertices(E),k): graphWindow(E,W,k)};
+term lineWindows(L:list<cell>,E:optional<list<list<cell>>>,k:position,closed:boolean):set<list<cell>> = if present(E) then graphWindows(unwrap(E),k) else {window(L,k,s,closed):s∈{i∈[0,|L|): k>=0 ∧ start(L,k,i,closed) ∧ (closed → |L|>0)}};
+term validNetwork(E:list<list<cell>>):boolean = |E|>0 ∧ (∀e∈E: |e|=2 ∧ e[0]!=e[1]) ∧ ∀a,b∈graphVertices(E): ∃n∈[1,|C|+1): ∃W∈cellLists(graphVertices(E),n): |W|=n ∧ W[0]=a ∧ W[n-1]=b ∧ (∀i∈[0,n-1):graphEdge(E,W[i],W[i+1]));
+term lineGeometry(L:list<cell>,E:optional<list<list<cell>>>,closed:boolean):boolean = present(E) → ¬closed ∧ validNetwork(unwrap(E)) ∧ (∀c∈L:c∈graphVertices(unwrap(E)));
+term maximalRegionRuns(L:list<cell>,segments:list<list<cell>>):boolean = (∀s∈segments: |s|>0 ∧ ∃R∈Regions: ∀c∈s:c∈R) ∧ (Σ_{s∈segments}|s|)=|L| ∧ (∀i∈[0,|segments|): let offset=Σ_{j∈[0,i)} |segments[j]|; ∀k∈[0,|segments[i]|): 0<=offset+k ∧ offset+k<|L| ∧ segments[i][k]=L[offset+k]) ∧ ∀i∈[0,|segments|-1): |segments[i]|>0 ∧ |segments[i+1]|>0 → 0<=|segments[i]|-1 ∧ |segments[i]|-1<|segments[i]| ∧ ¬sameRegion(segments[i][|segments[i]|-1],segments[i+1][0]);
+term modularMeaning(L:list<cell>,E:optional<list<list<cell>>>,closed:boolean,m:position,k:position):boolean = m>=1 ∧ k>=2 ∧ lineGeometry(L,E,closed) ∧ (∀W∈lineWindows(L,E,k,closed): distinctAt(W,λc:cell:rem(D(c),m))) ∧ (¬present(E) ∧ ¬closed ∧ |L|=2 → rem(D(L[0]),m)!=rem(D(L[1]),m));
+term entropicMeaning(L:list<cell>,E:optional<list<list<cell>>>,closed:boolean):boolean = |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ lineGeometry(L,E,closed) ∧ (∀W∈lineWindows(L,E,3,closed): distinctAt(W,λc:cell:classEntropy(D(c)))) ∧ (¬present(E) ∧ ¬closed ∧ |L|=2 → classEntropy(D(L[0]))!=classEntropy(D(L[1])));
+term parityMeaning(L:list<cell>,E:optional<list<list<cell>>>,closed:boolean):boolean = lineGeometry(L,E,closed) ∧ ∀W∈lineWindows(L,E,2,closed): |W|=2 → ¬(odd(D(W[0]))↔odd(D(W[1])));
+# Decimal operands. Each cell contributes one base-ten digit.
+term decimal(L:list<cell>):number requires (∀c∈L:0<=D(c) ∧ D(c)<=9) = Σ_{i∈[0,|L|)} D(L[i])*10^(|L|-1-i);
+term decimalValid(L:list<cell>):boolean = ∀c∈L:0<=D(c) ∧ D(c)<=9;
+term reversibleDecimal(L:list<cell>,n:number):boolean = decimalValid(L) ∧ decimalValid(reversal(L)) ∧ (decimal(L)=n ∨ decimal(reversal(L))=n);
+# Rays and finite stopping selectors.
+term orderedRay(origin:cell,dr:position,dc:position,includeOrigin:boolean):list<cell> requires (|dr|<=1 ∧ |dc|<=1 ∧ (dr!=0 ∨ dc!=0)) = ⟨boardCell(row(origin)+t*dr,col(origin)+t*dc): t∈[0,rows+cols), (includeOrigin ∨ t>0) ∧ 0<=row(origin)+t*dr ∧ row(origin)+t*dr<rows ∧ 0<=col(origin)+t*dc ∧ col(origin)+t*dc<cols⟩;
+term blockedPrefix(L:list<cell>,block:fn(cell)->boolean,includeBlocker:boolean):list<cell> = ⟨L[i]:i∈[0,|L|), (∀j∈[0,i):¬block(L[j])) ∧ (includeBlocker ∨ ¬block(L[i]))⟩;
+term recordHigh(L:list<cell>,i:position,ch:Channel):boolean = pos(L,i) ∧ ∀j∈[0,i): read(L[j],ch)<read(L[i],ch);
+term visibleRecords(L:list<cell>,ch:Channel):list<cell> = ⟨L[i]:i∈[0,|L|), recordHigh(L,i,ch)⟩;
+# Aggregate operands preserve occurrence order before selecting a slice or prefix.
+type AggregateOperand = record{cells:list<cell>,channel:Channel,operation:enum{sum,product,count,decimal},repeats:boolean,start:optional<position>,length:optional<position>,stop:optional<enum{target,given,crust}>,target:optional<number>,crusts:optional<list<digit>>,include:optional<boolean>};
+term prefixStop(c:cell,mode:enum{target,given,crust},target:optional<number>,crusts:list<digit>,ch:Channel):boolean = (mode="target" ∧ present(target) ∧ read(c,ch)=unwrap(target)) ∨ (mode="given" ∧ given(c)) ∨ (mode="crust" ∧ D(c)∈crusts);
+term operandSlice(o:AggregateOperand):list<cell> = let a=if present(o.start) then unwrap(o.start) else 0; let n=if present(o.length) then unwrap(o.length) else |o.cells|-a; ⟨o.cells[i]:i∈[0,|o.cells|), a<=i ∧ i<a+n⟩;
+term operandCells(o:AggregateOperand):list<cell> = if present(o.stop) then blockedPrefix(operandSlice(o),λc:cell:prefixStop(c,unwrap(o.stop),o.target,if present(o.crusts) then unwrap(o.crusts) else ⟨D(d):d∈o.cells,false⟩,o.channel),present(o.include) ∧ unwrap(o.include)) else operandSlice(o);
+term operandBounds(o:AggregateOperand):boolean = let a=if present(o.start) then unwrap(o.start) else 0; let n=if present(o.length) then unwrap(o.length) else |o.cells|-a; 0<=a ∧ 0<=n ∧ a+n<=|o.cells|;
+term operandValid(o:AggregateOperand):boolean = operandBounds(o) ∧ repeatPolicy(operandCells(o),o.channel,o.repeats) ∧ (o.operation="decimal" → o.channel="D" ∧ decimalValid(operandCells(o))) ∧ (present(o.stop) → ∃c∈operandSlice(o): prefixStop(c,unwrap(o.stop),o.target,if present(o.crusts) then unwrap(o.crusts) else ⟨D(d):d∈o.cells,false⟩,o.channel));
+term aggregateExpression(o:AggregateOperand):number requires (operandValid(o)) = if o.operation="decimal" then decimal(operandCells(o)) else if o.operation="sum" then aggregate(operandCells(o),o.channel,"sum") else if o.operation="product" then aggregate(operandCells(o),o.channel,"product") else aggregate(operandCells(o),o.channel,"count");
+# Sight blockers may depend on the answer's channels, shading or primary regions.
+type SightBlock = enum{listed,"different-parity","different-colour","different-region",greater,"at-least","not-equal"};
+term sightBlock(origin:cell,c:cell,mode:SightBlock,listed:set<cell>,ch:Channel):boolean = (mode="listed" ∧ c∈listed) ∨ (mode="different-colour" ∧ ¬(shaded(c)↔shaded(origin))) ∨ (mode="different-region" ∧ ¬sameRegion(c,origin)) ∨ (mode="greater" ∧ read(c,ch)>read(origin,ch)) ∨ (mode="at-least" ∧ read(c,ch)>=read(origin,ch)) ∨ (mode="not-equal" ∧ read(c,ch)!=read(origin,ch)) ∨ (mode="different-parity" ∧ ⌊read(c,ch)⌋=read(c,ch) ∧ ⌊read(origin,ch)⌋=read(origin,ch) ∧ rem(read(c,ch),2)!=rem(read(origin,ch),2));
+# Derived selections can feed either arithmetic or whole-set line meanings.
+type PrefixSelection = record{stop:enum{target,given,crust},target:optional<number>,crusts:list<digit>,include:boolean};
+term selectionValid(L:list<cell>,s:PrefixSelection,ch:Channel):boolean = ∃c∈L:prefixStop(c,s.stop,s.target,s.crusts,ch);
+term selectedPrefix(L:list<cell>,s:PrefixSelection,ch:Channel):list<cell> = blockedPrefix(L,λc:cell:prefixStop(c,s.stop,s.target,s.crusts,ch),s.include);
+term sumSegment(L:list<cell>,a:position,b:position,total:number,ch:Channel,repeats:boolean):boolean = 0<=a ∧ a<b ∧ b<=|L| ∧ let part=⟨L[i]:i∈[a,b)⟩; repeatPolicy(part,ch,repeats) ∧ aggregate(part,ch,"sum")=total;
+term partitionSums(L:list<cell>,total:number,ch:Channel,repeats:boolean):boolean = ∃cuts:list<position>: |cuts|>=2 ∧ cuts[0]=0 ∧ cuts[|cuts|-1]=|L| ∧ ∀i∈[0,|cuts|-1): sumSegment(L,cuts[i],cuts[i+1],total,ch,repeats);
+term sumLineMeaning(L:list<cell>,total:number,mode:enum{cover,partition},ch:Channel,repeats:boolean,closed:boolean):boolean = |L|>0 ∧ if mode="partition" then (if closed then ∃s∈[0,|L|):partitionSums(cyclicCut(L,s),total,ch,repeats) else partitionSums(L,total,ch,repeats)) else if closed then ∀i∈[0,|L|): ∃s∈[0,|L|): ∃k∈[1,|L|+1): start(L,k,s,true) ∧ (∃j∈[0,k):rem(s+j,|L|)=i) ∧ repeatPolicy(window(L,k,s,true),ch,repeats) ∧ aggregate(window(L,k,s,true),ch,"sum")=total else ∀i∈[0,|L|): ∃a∈[0,|L|): ∃b∈[a+1,|L|+1): a<=i ∧ i<b ∧ sumSegment(L,a,b,total,ch,repeats);
 # Givens: the digit a case gives a cell, if any.
 primitive givenDigit(c:cell):optional<digit>;
 term given(c:cell):boolean = present(givenDigit(c));
@@ -153,6 +213,26 @@ A `collection<T>` accepts a set, list or path of T. Aggregates over lists retain
 The connected formula chooses a route of at most |C| cells; revisiting cells is unnecessary for reachability on a finite board. partition covers every board cell exactly once. boardDiagonals constructs maximal straight bishop rays from top/side boundaries. magicLines lists all eight rows, columns and diagonals of a nine-cell square in reading order.
 
 Shift relations compare integer values; their parity is the normalised remainder modulo 2.
+
+## Channels, operands and geometry
+
+`Channel` chooses D or V. `read` returns the chosen number; `relationSpec(op,n)` constructs a PairRelation whose op is op and whose value is n. It introduces no additional relation. `monotonic` chooses one direction for the whole list. `numericBetween` compares numbers, while `betweenPositions` selects positions.
+
+`aggregate` sums, multiplies or counts occurrences. `repeatPolicy` compares numbers in the chosen channel, including separate occurrences of the same cell in a list. `AggregateOperand` first selects a zero-based slice, then an optional stopping prefix. Its start defaults to zero and its length to the remaining list. An absent include field excludes the stopping cell. Sum, product and count use the chosen channel; decimal reading uses face digits, one base-ten digit per cell. `operandValid` checks bounds, repeats, decimal symbols and the existence of a requested stopping cell before `aggregateExpression` reads the result.
+
+`cellLists(S,n)` is the finite set of every ordered n-tuple over S, with repetition allowed; for n=0 it contains the empty list, and for n<0 it is empty. It supplies candidate tuples, without imposing a puzzle rule. `graphWindow` keeps simple traversals: cells do not repeat, each consecutive pair is a drawn edge, and either direction through a junction is included. `validNetwork` requires two different endpoints per edge and one connected component. Reversed or repeated edge records denote the same undirected adjacency.
+
+With explicit edges, a line's whole-set rules use all vertices of the component. Window rules use every traversal of the stated length. Modulus and length are independent. Without explicit edges, windows retain the supplied position order, repeated positions and any last-to-first join. `reversal` reverses that order; `cyclicCut` starts a closed list at the chosen position. `maximalRegionRuns` checks ordered primary-region visits, including every return and every occurrence.
+
+`lookup` reads a one-based position only after its bounds are established. `lookupRelated` also requires those bounds and applies a shared pair relation to the result and target. `inverseIndex` applies that lookup to each position of a self-inverse list.
+
+## Rays, prefixes and sums
+
+`orderedRay` lists cells nearest first from an origin in a unit horizontal, vertical or diagonal direction. Its includeOrigin argument controls whether position zero is included. `blockedPrefix` stops at the first blocker, optionally retaining it; without a blocker it keeps the whole list. `prefixStop` supplies target-number, given and crust-digit stopping conditions. Rules requesting a stopping prefix also require a stopping cell to exist.
+
+`recordHigh` compares a number strictly with all earlier numbers on its ordered ray. Equal heights hide later copies. `visibleRecords` retains those record highs. Sight blockers can read numbers, shading or primary regions. Across several rays, Blocked Sight takes the union of selected cells and includes the origin at most once.
+
+`sumSegment` selects a nonempty consecutive interval. `partitionSums` covers every position exactly once with adjacent intervals of the required sum. `sumLineMeaning` also permits overlapping covering intervals. Closed lines may cross the join; a closed partition chooses a cyclic cut before partitioning.
 
 ## Play state
 

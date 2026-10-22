@@ -29,7 +29,19 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const { kind, parameters: p } = instance;
   const allowed = fields[kind];
   if (!allowed) throw Error(`No lowering for ${kind}.`);
-  for (const name of Object.keys(p)) if (!allowed.includes(name)) throw Error(`${kind} has no parameter ${name}.`);
+  const extensions: Record<string,string[]> = {
+    thermo:["strict","orientation","channel"], "slow-thermo":["orientation","channel"],
+    renban:["edges","channel","repeats","selection"], nabner:["edges","channel","separated","selection"],
+    bremban:["edges","selection"], "shifter-line":["edges"],
+    modular:["edges","length"], entropic:["edges"], parity:["edges"], whispers:["edges"], whisper:["edges"],
+    "close-whispers":["edges"], primality:["edges"], summit:["edges"], "region-sum":["channel"],
+    pair:["channel"], cage:["channel"], killer:["channel"], "scoped-move":["scope","channel"],
+  };
+  for (const name of Object.keys(p)) {
+    if (allowed.includes(name)) continue;
+    if (extensions[kind]?.includes(name)) throw new UnsupportedSemantics(`The ${name} parameter of ${kind} is not lowered; the whole instance remains uncovered.`);
+    throw Error(`${kind} has no parameter ${name}.`);
+  }
   validateCells(ast, board);
   const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "kropki", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length) throw Error(`${kind} needs a nonempty cell list.`);

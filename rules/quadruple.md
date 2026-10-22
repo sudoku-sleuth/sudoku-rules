@@ -11,11 +11,17 @@ parameters:
     description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
     default: Required.
     type: list<digit>
+alias_of: outside
+alias_bind:
+  cells: cells
+  digits: digits
 ---
 
 # Quadruple
 
 The surrounding cells contain every listed digit, including the stated number of copies.
+
+For a circle at a grid intersection, list the four touching cells. Listing a digit once requires at least one copy; listing it twice requires at least two copies. Additional copies and unlisted digits are allowed. An empty `digits` list imposes no restriction; an empty circle has no implied total or distinctness rule.
 
 ## Parameters
 
@@ -26,13 +32,9 @@ The surrounding cells contain every listed digit, including the stated number of
 
 ## Maths
 
-Class: **with aggregates**.
-
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀d∈digits: countWhere(cells,λc:cell: D(c)=d)>=multiplicity(digits,d)
-```
+This is a shorthand for [outside](outside.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
 For every listed digit d, its occurrences among cells are at least its multiplicity in digits. Extra copies and unlisted digits are allowed by this check.
 

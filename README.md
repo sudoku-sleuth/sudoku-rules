@@ -82,7 +82,7 @@ This replaces `_site/` with the fixture preview. Run `bun run build` again to bu
 
 The homepage browses Lines, Edges, Cells, Cages, Outside, Regions and Global. Rows use each page’s opening meaning; Kropki uses the plain white/black reading. An optional recognised `shape` selects the group; otherwise `ruleShape` in `scripts/content.ts` classifies the kind and parameters. Aliases share the canonical row and keep their own pages. Search includes meanings, aliases, German/Dutch whispers and XV keywords, and searches across shapes. Without JavaScript, every group remains visible and the shape links jump to its heading.
 
-Rule formulas render as native MathML with the original notation retained in a text annotation. The Bureau mark, icons and display font are local assets; light and dark use the same layout with brand colour tokens. Source Markdown and canonical URLs stay unchanged. `/writing/` provides the checker and AI skill instructions; `/contributing/` renders the contribution guide.
+Rule formulas render as native MathML with the original notation retained in a text annotation. The Bureau mark, icons and display font are local assets; light and dark use the same layout with brand colour tokens. Rule symbols in `site/icons/rules/` are original Sudoku Sleuth artwork under the repository’s MIT licence. `site/icons/rules.json` maps page slugs to symbols; aliases use the canonical symbol. The symbols inherit theme colours and are hidden from screen readers beside the rule name. Source Markdown and canonical URLs stay unchanged. `/writing/` provides the checker and AI skill instructions; `/contributing/` renders the contribution guide.
 
 ## Propose a rule
 

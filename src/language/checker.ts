@@ -17,7 +17,7 @@ function assignable(actual: Type, expected: Type): boolean {
   if (expected.name === "collection" && collections.includes(actual.name)) return !!actual.args?.[0] && !!expected.args?.[0] && assignable(actual.args[0],expected.args[0]);
   if (expected.name === "number" && numeric(actual)) return true;
   if (actual.name === "literal" && expected.name === "string") return true;
-  if (actual.name === "literal" && expected.name === "enum" && actual.members?.every(value => expected.members?.includes(value))) return true;
+  if (["literal", "enum"].includes(actual.name) && expected.name === "enum" && actual.members?.every(value => expected.members?.includes(value))) return true;
   if (actual.name === "fn" && expected.name === "fn") return actual.args?.length === expected.args?.length && (expected.args ?? []).every((t, i) => assignable(t, actual.args![i])) && !!actual.result && !!expected.result && assignable(actual.result, expected.result);
   if (actual.name === "record" || expected.name === "record") return false;
   if (actual.name === "enum" || expected.name === "enum" || actual.name === "literal" || expected.name === "literal") return false;
@@ -379,6 +379,8 @@ function infer(node: Expr, env: Environment, facts: Expr[] = [], requireBinding 
       const yes = infer(node.children[1], env, [...facts, ...factsFrom(condition)]);
       const negated = condition.kind === "binary" && ({"=":"!=","!=":"=","<":">=",">":"<=","<=":">",">=":"<"} as Record<string,string>)[condition.value!] ? {...condition,value:({"=":"!=","!=":"=","<":">=",">":"<=","<=":">",">=":"<"} as Record<string,string>)[condition.value!]} : {kind:"unary" as const,value:"not",span:condition.span,children:[condition]};
       const no = infer(node.children[2], env, [...facts,negated]);
+      if (!same(yes.type,no.type) && ["literal", "enum"].includes(yes.type.name) && ["literal", "enum"].includes(no.type.name))
+        return result({name:"enum",members:[...new Set([...(yes.type.members ?? []),...(no.type.members ?? [])])]},[condition,yes,no]);
       if (!assignable(yes.type, no.type) && !assignable(no.type, yes.type)) fail("E_TYPE", node.span, `The then and else values must have matching types; ${expressionLabel(yes)} is ${describeType(yes.type)} and ${expressionLabel(no)} is ${describeType(no.type)}.`);
       return result(assignable(yes.type, no.type) ? no.type : yes.type, [condition, yes, no]);
     }

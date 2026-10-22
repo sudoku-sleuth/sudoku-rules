@@ -7,6 +7,22 @@ parameters:
     description: The marked cells; order does not affect the consecutive set.
     default: Required.
     type: path<cell>
+    empty_when: edges
+  edges:
+    type: optional<list<list<cell>>>
+    description: The edges of a connected network.
+    default: Absent; use the listed cells.
+  selection:
+    type: optional<PrefixSelection>
+    description: A stopping prefix of the ordered list.
+    default: Absent; use the whole cell set.
+alias_of: renban
+alias_bind:
+  line: line
+  edges: edges
+  channel: '"D"'
+  repeats: "true"
+  selection: selection
 ---
 
 # Bremban
@@ -19,19 +35,17 @@ The marked cells can also be a cage. Declare its sum separately with [Cage](http
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
+| edges | Explicit connected network. | Absent; use the listed cells. |
+| selection | A stopping prefix. | Absent; use the whole cell set. |
 | line | The marked cells; order does not affect the consecutive set. | Required. |
 
 ## Maths
 
-Class: **with aggregates**.
-
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|line|>0 ∧ max_D(line)-min_D(line)+1=|faceDigits(line)|
-```
+Bremban binds [Renban](renban.md) to printed digits with repeats allowed. Its header supplies the canonical parameters.
 
-The set of distinct D values is an integer interval: max(D)−min(D)+1 equals the number of distinct digits. Repeats remain subject to other rules.
+The distinct printed digits form one consecutive run; repeats are allowed.
 
 ## Example
 

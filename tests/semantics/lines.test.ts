@@ -294,3 +294,19 @@ test("nonstandard line omissions use the same checker validation", () => {
     expect(result.issues.some(issue => issue.message.includes("explicitly on this board"))).toBe(true);
   }
 });
+
+
+test("region-sum combined visits retain occurrences and the default separate-visit meaning", () => {
+  const rule = `region-sum ${a}-${c}-${b} segments [["${a}"],["${c}"],["${b}"]]`;
+  eq(rule, rule + " combine false");
+  const combined = form(rule + " combine true").solution;
+  const separate = form(rule).solution;
+  expect(evaluate(combined, assignment([1,2,3]))).toBe(true);
+  expect(evaluate(separate, assignment([1,2,3]))).toBe(false);
+  expect(evaluate(combined, assignment([3,3,3]))).toBe(false);
+  expect(evaluate(separate, assignment([3,3,3]))).toBe(true);
+  expect(evaluate(combined, assignment([1,2,4]))).toBe(false);
+  const repeated = form(`region-sum ${a}-${c}-${a} segments [["${a}"],["${c}"],["${a}"]] combine true`).solution;
+  expect(evaluate(repeated, assignment([2,1,4]))).toBe(true);
+  expect(evaluate(repeated, assignment([2,1,2]))).toBe(false);
+});

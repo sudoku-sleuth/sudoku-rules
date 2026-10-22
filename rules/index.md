@@ -19,7 +19,9 @@ parameters:
 
 # Index
 
-A digit points to its own position in the stated row or column axis. The digit in the pointed cell gives the position of the original cell.
+Each marked digit gives a position along its row or column. The cell at that position contains the marked cell’s column number for column indexing, or row number for row indexing.
+
+With `axis "column"`, a marked cell in column k contains the column position of digit k in its row. This is column indexing; marking cells only in columns 1, 5 and 9 gives 159 indexing. With `axis "row"`, a marked cell in row k contains the row position of digit k in its column. Use separate declarations for the two axes. Positions start at 1.
 
 ## Parameters
 
@@ -31,15 +33,15 @@ A digit points to its own position in the stated row or column axis. The digit i
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀c∈cells: (axis="column" → 1<=D(c)<=cols ∧ D(boardCell(row(c),D(c)-1))=col(c)+1) ∧ (axis="row" → 1<=D(c)<=rows ∧ D(boardCell(D(c)-1,col(c)))=row(c)+1)
+∀c∈cells: if axis="column" then lookupEquals(⟨boardCell(row(c),k):k∈[0,cols)⟩,D(c),col(c)+1,"D") else lookupEquals(⟨boardCell(r,col(c)):r∈[0,rows)⟩,D(c),row(c)+1,"D")
 ```
 
-For column axis, each marked digit names a one-based column in its row; that target contains the marked cell’s column number. Row axis exchanges rows and columns. The named position must be within the board.
+The shared bounded lookup uses a one-based position in the selected row or column.
 
 ## Example
 

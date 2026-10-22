@@ -11,6 +11,10 @@ parameters:
     description: The number of digits visible from the clue.
     default: Required.
     type: position
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
 ---
 
 # Skyscraper
@@ -23,6 +27,7 @@ Read from the clue. A digit is visible when it is greater than every digit befor
 | --- | --- | --- |
 | cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 | visible | The number of digits visible from the clue. | Required. |
+| channel | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
@@ -31,10 +36,10 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|{i∈[0,|cells|): ∀j∈[0,i): D(cells[j])<D(cells[i])}|=visible
+|visibleRecords(cells,channel)|=visible
 ```
 
-visible equals the count of positions whose digit is strictly greater than all preceding digits, reading from the clue.
+Record-high visibility counts a number only when it exceeds every earlier number.
 
 ## Example
 

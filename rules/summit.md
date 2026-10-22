@@ -4,6 +4,7 @@ url: https://rules.sudoku-sleuth.com/summit.md
 kind: summit
 parameters:
   line:
+    empty_when: edges
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
@@ -11,11 +12,17 @@ parameters:
     description: Whether the line closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
+  edges:
+    type: optional<list<list<cell>>>
+    description: All edges of one connected network.
+    default: Absent; use the ordered line.
 ---
 
 # Summit
 
 Neighbouring digits differ. Digits rise or fall along the line, changing direction only at 1 or 9.
+
+With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
 ## Parameters
 
@@ -23,18 +30,20 @@ Neighbouring digits differ. Digits rise or fall along the line, changing directi
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| edges | All edges of one connected network. | Absent; use the ordered line. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-(∀i,j∈[0,|line|): consecutive(line,i,j,loop) → D(line[i])!=D(line[j]))
-∧ ∀i,j,k∈[0,|line|): next(line,i,j,loop) ∧ next(line,j,k,loop) →
-  ((D(line[j])∈{1,9} → (D(line[j])-D(line[i]))*(D(line[k])-D(line[j]))<0)
-  ∧ (D(line[j])∉{1,9} → (D(line[j])-D(line[i]))*(D(line[k])-D(line[j]))>0))
+lineGeometry(line,edges,loop)
+∧ (∀W∈lineWindows(line,edges,2,loop): |W|=2 → D(W[0])!=D(W[1]))
+∧ ∀W∈lineWindows(line,edges,3,loop): |W|=3 →
+  ((D(W[1])∈{1,9} → (D(W[1])-D(W[0]))*(D(W[2])-D(W[1]))<0)
+  ∧ (D(W[1])∉{1,9} → (D(W[1])-D(W[0]))*(D(W[2])-D(W[1]))>0))
 ```
 
 Neighbouring digits differ. At each internal position the two successive differences have the same sign unless its digit is 1 or 9, where the sign reverses. A loop checks all positions cyclically.

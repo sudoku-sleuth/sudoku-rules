@@ -1,0 +1,3 @@
+<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<rect x="7" y="12" width="20" height="20" rx="3"/><rect x="37" y="32" width="20" height="20" rx="3"/><g transform="translate(12 16) scale(0.7)" stroke-width="2.5"><path d="M8 12V0L0 8H11" transform="translate(0 0)"/></g><g transform="translate(42 36) scale(0.7)" stroke-width="2.5"><path d="M8 12V0L0 8H11" transform="translate(0 0)"/></g><path d="M28 25L36 33" class="accent" />
+</svg>

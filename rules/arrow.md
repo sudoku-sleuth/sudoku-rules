@@ -19,19 +19,21 @@ parameters:
 
 # Arrow
 
-An arrow’s shaft sums to its bulb. Complete one-cell arrows compare effective values (printed digits after declared value modifiers) on both sides; every other case compares printed digits. A bulb with several cells forms a decimal number from its printed digits, in the supplied order. Digits may repeat on complete and partial arrows unless a row, column or box forbids it.
+An arrow’s shaft sums to its bulb. Complete one-cell arrows compare effective values (printed digits after declared value modifiers) on both sides; every other case compares printed digits. A bulb with several cells forms a decimal number from its printed digits, in the supplied order. Digits may repeat on complete and partial arrows unless another puzzle rule forbids it.
 
 For an ordinary horizontal bulb, list its cells left to right; for a vertical bulb, list them top to bottom. The supplied order determines the number, including for an unusually shaped bulb.
 
 `partial true` means the supplied shaft is incomplete, for example because fog hides at least one more shaft cell. It does not mean that some player entries are blank. The visible shaft’s printed digits must leave a sum that a non-empty sequence of allowed digits can supply. On a standard 1–9 board, the visible sum is strictly less than the bulb number. If zero is allowed, equality is possible because the omitted part can contain zero.
 
+When several shafts leave the same bulb, declare each shaft separately with the same `bulb` list. Each shaft must reach the bulb total on its own; their sums are not combined. The `line` lists shaft cells only, excluding the bulb.
+
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
+| partial | Whether the declaration supplies only a shaft fragment, for example under fog. | false (complete arrow). |
 | bulb | The bulb cells in decimal reading order, normally left to right or top to bottom. | Required. |
 | line | The shaft cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| partial | Whether the declaration supplies only a shaft fragment, for example under fog. | false (complete arrow). |
 
 ## Maths
 
@@ -40,15 +42,12 @@ Class: **existential**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|bulb|>0 ∧ let B = Σ_{i∈[0,|bulb|)} D(bulb[i])*10^(|bulb|-1-i);
-  (partial → ∃remainder:list<digit>: |remainder|>0 ∧ (∀d∈remainder: d∈𝔄) ∧ sum_D(line)+Σ_{d∈remainder} d=B)
-  ∧ (¬partial → (|bulb|=1 → valueSum(line)=V(bulb[0]))
-    ∧ (|bulb|!=1 → sum_D(line)=B))
+|bulb|>0 ∧ decimalValid(bulb) ∧ let B=decimal(bulb);
+(partial → ∃remainder:list<digit>: |remainder|>0 ∧ (∀d∈remainder:d∈𝔄) ∧ aggregate(line,"D","sum")+Σ_{d∈remainder}d=B)
+∧ (¬partial → (|bulb|=1 → aggregate(line,"V","sum")=V(bulb[0])) ∧ (|bulb|!=1 → aggregate(line,"D","sum")=B))
 ```
 
-D(c) is the printed digit in cell c; V(c) is its value after declared modifiers. Without modifiers, V(c)=D(c). B is the decimal number formed by the listed bulb digits. A complete one-cell bulb uses V on both sides; a complete multi-cell bulb uses D.
-
-For a partial shaft, remainder is a non-empty sequence of symbols from the board’s allowed alphabet 𝔄. Its sum fills the gap between the supplied shaft and B. Repeated digits are allowed by this relation; any house or other puzzle constraint still applies to the complete arrow. The sequence states the arithmetic remainder, not the identities or geometry of hidden cells.
+The shared decimal reading forms the bulb. Complete one-cell arrows use V on both sides; all other arrows use D. A partial shaft leaves a nonempty arithmetic remainder from the allowed alphabet.
 
 ## Example
 

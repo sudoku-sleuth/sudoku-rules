@@ -4,9 +4,9 @@ url: https://rules.sudoku-sleuth.com/outside.md
 kind: outside
 parameters:
   cells:
-    description: The marked cells, for example r1c1-r1c2-r2c2.
+    type: collection<cell>
+    description: The marked cells. Lists retain repeated positions; sets contain each cell once.
     default: Required.
-    type: list<cell>
   digits:
     description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
     default: Required.
@@ -21,7 +21,7 @@ The listed cells contain every stated digit, including its stated number of copi
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| cells | The marked cells. Lists retain repeated positions; sets contain each cell once. | Required. |
 | digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
 
 ## Maths
@@ -34,7 +34,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∀d∈digits: countWhere(cells,λc:cell: D(c)=d)>=multiplicity(digits,d)
 ```
 
-For each listed digit d, occurrences in cells are at least its multiplicity in digits. Unlisted digits and additional copies are allowed.
+Each required digit occurs at least as often as it is listed.
 
 ## Example
 

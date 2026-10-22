@@ -17,6 +17,8 @@ parameters:
 
 The marked cells contain at most the stated number of different digits.
 
+The limit is an upper bound. For exactly n distinct digits, also negate a second Limited Digits declaration with `max n-1` replaced by its numeric value. For an anti-diagonal requiring exactly three distinct digits, apply both bounds separately to each full main diagonal.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

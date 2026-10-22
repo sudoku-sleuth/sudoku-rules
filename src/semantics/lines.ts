@@ -8,7 +8,7 @@ export const lineFields: Record<string, string[]> = {
   thermo: [], "slow-thermo": [], whispers: ["gap", "loop"], whisper: ["gap", "loop"],
   "close-whispers": ["gap"], parity: ["loop"], modular: ["modulus", "loop"],
   entropic: ["loop"], palindrome: [], renban: [], bremban: [], nabner: ["distinct"],
-  "region-sum": ["segments"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
+  "region-sum": ["segments", "combine"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
 };
 export const valueLines = ["thermo", "whispers", "whisper", "palindrome", "renban", "region-sum"];
 const any = (children: Formula[]): Formula => ({ op: "Any", children });
@@ -33,7 +33,7 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance = semanticDeclaration(ast);
   const { kind, parameters: p } = instance;
   const path = instance.cells!;
-  for (const name of ["loop", "distinct"]) if (p[name] !== undefined && typeof p[name] !== "boolean") throw Error(`${name} must be true or false.`);
+  for (const name of ["loop", "distinct", "combine"]) if (p[name] !== undefined && typeof p[name] !== "boolean") throw Error(`${name} must be true or false.`);
   if (["whispers", "whisper", "close-whispers"].includes(kind) && (typeof p.gap !== "number" || !Number.isFinite(p.gap))) throw Error("Supply a finite numeric gap.");
   const modulus = p.modulus === undefined ? 3 : p.modulus;
   if (kind === "modular" && (!Number.isSafeInteger(modulus) || (modulus as number) < 1)) throw Error("modulus must be a positive safe integer.");
@@ -112,7 +112,8 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
     const runs: Cell[][] = [];
     for (const c of path) { const last = runs.at(-1); if (last && region(last[0]) === region(c)) last.push(c); else runs.push([c]); }
     if (key(runs) !== key(segments)) throw Error("segments must match the ordered maximal region runs of the path, retaining every occurrence.");
-    const sums = [...new Map(segments.map(s => [key([...s].sort()), [...s].sort() as Cell[]])).values()].sort((a,b) => key(a).localeCompare(key(b),"en"));
+    const groups = p.combine ? board.regions.map(r => path.filter(c => r.includes(c))).filter(r => r.length) : segments;
+    const sums = [...new Map(groups.map(s => [key([...s].sort()), [...s].sort() as Cell[]])).values()].sort((a,b) => key(a).localeCompare(key(b),"en"));
     for (let i = 1; i < sums.length; i++) nodes.push({ op: "SumEqual", channel: "D", left: sums[0], right: sums[i] });
   }
   const result = all(nodes);

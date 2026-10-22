@@ -15,11 +15,25 @@ parameters:
     description: Whether every occurrence is marked, so unmarked cells obey the opposite condition.
     default: Required.
     type: boolean
+  neighbourhood:
+    type: Move
+    description: The move defining neighbours.
+    default: orthogonal.
+  boundary:
+    type: boolean
+    description: Compare marked cells only with neighbours outside the marked set.
+    default: true.
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
 ---
 
 # Extremum
 
 Each marked digit is smaller than all its unmarked neighbours for a minimum, or larger for a maximum. Exhaustive marking also constrains every unmarked cell.
+
+Neighbours here are orthogonally adjacent cells outside the entire marked set. With `type "max" exhaustive false`, this gives fortress cells: adjacent marked cells are not compared. To compare a minimum or maximum with every orthogonally adjacent cell, declare that cell on its own. With `exhaustive true`, each unmarked cell must have a strictly smaller neighbour for min, or a strictly larger neighbour for max.
 
 ## Parameters
 
@@ -28,6 +42,9 @@ Each marked digit is smaller than all its unmarked neighbours for a minimum, or 
 | type | The mode named in the definition, such as min or max. | Required. |
 | cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 | exhaustive | Whether every occurrence is marked, so unmarked cells obey the opposite condition. | Required. |
+| neighbourhood | The move defining neighbours. | orthogonal. |
+| boundary | Compare marked cells only with neighbours outside the marked set. | true. |
+| channel | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
@@ -36,11 +53,11 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-(∀a∈cells: ∀b∈C: orth(a,b) ∧ b∉cells → ((type="min" ∧ D(a)<D(b)) ∨ (type="max" ∧ D(a)>D(b))))
-∧ (exhaustive → ∀a∈C: a∉cells → ∃b∈C: orth(a,b) ∧ ((type="min" ∧ D(b)<D(a)) ∨ (type="max" ∧ D(b)>D(a))))
+(∀a∈cells: extremumAt(a,{b∈C:moveRelation(neighbourhood,a,b) ∧ (¬boundary ∨ b∉cells)},type,channel))
+∧ (exhaustive → ∀a∈C: a∉cells → ∃b∈C: moveRelation(neighbourhood,a,b) ∧ extremumAt(b,{a},type,channel))
 ```
 
-Every marked cell is strictly smaller (min) or larger (max) than each orthogonal neighbour outside cells. If exhaustive, every unmarked cell has a strictly smaller (min) or larger (max) orthogonal neighbour.
+Marked extrema compare the selected neighbours, excluding the marked set when boundary is true. Exhaustive marking retains the requirement for a strictly lower or higher neighbour at each unmarked cell.
 
 ## Example
 

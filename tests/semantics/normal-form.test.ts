@@ -39,7 +39,7 @@ test("registry inventories every published kind, including aliases, with a speci
     if (typeof page.metadata.kind === "string") kinds.push(page.metadata.kind);
   }
   expect(Object.keys(declarationRegistry).sort()).toEqual(kinds.sort());
-  expect(kinds.length).toBe(83);
+  expect(kinds.length).toBe(90);
   for (const entry of Object.values(declarationRegistry)) if (entry.status === "unsupported") expect(entry.reason.length).toBeGreaterThan(20);
 });
 

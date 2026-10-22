@@ -13,6 +13,8 @@ parameters:
 
 The values along the line read the same forwards and backwards.
 
+Compare positions equally far from the two ends. Digits may repeat, including in neighbouring cells, when other rules allow.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

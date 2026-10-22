@@ -31,10 +31,10 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|cells|>0 ∧ let x=D(cells[0]); 1<=x<=|cells| ∧ D(cells[x-1])=digit
+|cells|>0 ∧ lookupEquals(cells,D(cells[0]),digit,"D")
 ```
 
-The nearest digit names a one-based position within cells. That position contains digit.
+The first digit selects a bounded one-based position containing the clue digit.
 
 ## Example
 

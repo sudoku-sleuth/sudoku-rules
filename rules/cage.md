@@ -15,11 +15,17 @@ parameters:
     description: Whether repeated digits are allowed.
     default: false (distinct digits).
     type: boolean
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: V.
 ---
 
 # Killer cage
 
 Cage digits add up to the stated total value. Digits are different unless repeats are allowed. A cage without a total supplies the repeat rule alone.
+
+Omit `total` for a cage with no printed sum. A blank clue is not a total of zero. Use `total 0` only when zero is the required total. With `repeats true` and no total, this declaration adds no restriction.
 
 ## Parameters
 
@@ -28,6 +34,7 @@ Cage digits add up to the stated total value. Digits are different unless repeat
 | cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 | total | The total the digits or values must add up to. | No total imposed. |
 | repeats | Whether repeated digits are allowed. | false (distinct digits). |
+| channel | Read printed digits (D) or effective values (V). | V. |
 
 ## Maths
 
@@ -36,10 +43,10 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-(¬repeats → distinct_D(cells)) ∧ (present(total) → valueSum(cells)=unwrap(total))
+(¬repeats → distinct_D(cells)) ∧ (present(total) → aggregate(cells,channel,"sum")=unwrap(total))
 ```
 
-Digits differ unless repeats are allowed; when a total is supplied, the cage values add up to it.
+Face digits differ unless repeats are allowed. The selected channel supplies the optional total.
 
 ## Example
 
