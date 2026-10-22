@@ -16,6 +16,13 @@ parameters:
     type: PairRelation
     description: The relation applied to the two aggregate results.
     default: Required.
+alias_of: aggregate-equation
+alias_bind:
+  left: '⟨weightedOperand(left,1,1):i∈[0,1)⟩'
+  right: '⟨weightedOperand(right,1,1):i∈[0,1)⟩'
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: 'relation'
 ---
 
 # Aggregate Relation
@@ -25,6 +32,8 @@ Select the cells of each operand, calculate its result, and compare the two resu
 List cells in reading order. Optional zero-based `start` and `length` select a slice; omitted values select the whole list. A list retains every occurrence, even when it names a cell more than once. Optional `stop` then selects a prefix ending at the first target number, given or listed crust digit. That stopping cell is excluded unless `include` is true. The stopping cell must exist. Decimal reading uses D and requires each printed symbol to be a digit from 0 to 9.
 
 The familiar [Cage](cage.md), [Little Killer](little-killer.md), [Arrow](arrow.md), [Double Arrow](double-arrow.md), [Equal Sums](equal-sums.md) and [Region Sum](region-sum.md) use the same shared aggregate operations with their own operand selection and defaults.
+
+This is [Aggregate Equation](aggregate-equation.md) with one term on each side, each term using the corresponding operand with coefficient 1 and power 1, sum on both sides, and the same relation. Aggregate Equation owns the general equation meaning.
 
 ## Parameters
 
@@ -36,13 +45,7 @@ The familiar [Cage](cage.md), [Little Killer](little-killer.md), [Arrow](arrow.m
 
 ## Maths
 
-Class: **with aggregates**.
-
-The [shared predicates](predicates.md) define operand selection, repeat policy and each aggregate expression.
-
-```text
-operandValid(left) ∧ operandValid(right) ∧ pairRelation(relation,aggregateExpression(left),aggregateExpression(right))
-```
+This is a shorthand for [aggregate-equation](aggregate-equation.md). Its header binds the general rule parameters.
 
 ## Example
 

@@ -39,7 +39,7 @@ test("registry inventories every published kind, including aliases, with a speci
     if (typeof page.metadata.kind === "string") kinds.push(page.metadata.kind);
   }
   expect(Object.keys(declarationRegistry).sort()).toEqual(kinds.sort());
-  expect(kinds.length).toBe(90);
+  expect(kinds.length).toBe(120);
   for (const entry of Object.values(declarationRegistry)) if (entry.status === "unsupported") expect(entry.reason.length).toBeGreaterThan(20);
 });
 
@@ -349,6 +349,7 @@ test("every unsupported kind reports its registered reason when encountered", ()
       if (type.name === 'expression') return {op:'number',value:1};
       if (type.name === 'cell') return 'r1c1';
       if (type.name === 'boolean') return false;
+      if (type.name === 'string') return 'synthetic';
       if (['list','set','path','collection'].includes(type.name)) return [value(type.args![0])];
       if (type.name === 'record') return Object.fromEntries(Object.entries(type.fields!).filter(([,t])=>t.name !== 'optional').map(([n,t])=>[n,value(t)]));
       return 1;
@@ -356,12 +357,29 @@ test("every unsupported kind reports its registered reason when encountered", ()
     const line = declarationLibrary.lines!.get(url);
     const keyword = line && Object.keys(line.parameter.keywords)[0];
     const tail = line ? `${Array.from({length:line.cells.count},(_,i)=>`r1c${i+1}`).join('-')} ${keyword} ${line.parameter.keywords[keyword!].map(()=>1).join(' ')}` : '';
-    const named = Object.entries(contract.parameters).filter(([name,p])=>p.required && name !== line?.cells.name && name !== line?.parameter.name).map(([name,p])=>`${name} ${JSON.stringify(value(p.type!))}`).join(' ');
-    const result = nf(`${kind} ${tail} ${named}`, board(9));
+    const named = Object.entries(contract.parameters).filter(([name,p])=>p.required && name !== line?.cells.name && name !== line?.parameter.name).map(([name,p])=>`${name} ${JSON.stringify(kind==='paired-roles' && name==='right' ? 'other' : kind==='route-group' && name==='routes' ? ['synthetic','other'] : value(p.type!))}`).join(' ');
+    const setup: Record<string,string> = {
+      'mapped-values':'selection name "synthetic" scope ["r1c1"]',
+      'marking-relation':'selection name "synthetic" scope ["r1c1"]',
+      'shade-components':'selection name "synthetic" scope ["r1c1"]',
+      'paired-roles':'first: selection name "synthetic" scope ["r1c1"]\nsecond: selection name "other" scope ["r1c1"]',
+      'route-group':'first: route name "synthetic" scope ["r1c1"]\nsecond: route name "other" scope ["r1c1"]',
+      'route-clue':'route name "synthetic" scope ["r1c1"]',
+      'network-clue':'maze name "synthetic" scope ["r1c1"]',
+      'region-shape':'region-partition name "synthetic" scope ["r1c1"]',
+      'region-clue':'region-partition name "synthetic" scope ["r1c1"]',
+      'choice-count':'#truth',
+    };
+    // Reader examples require constructors; retain whole-instance coverage for
+    // the target declaration without mistaking setup coverage for that target.
+    const source = setup[kind] ? `${setup[kind]}\n${kind} ${tail} ${named}` : `${kind} ${tail} ${named}`;
+    const truth = kind==='choice-count' ? "\n```custom-rules\n- id: truth\n  name: Truth\n  class: existential\n  parameters: {}\n  definition: Reify the synthetic label.\n  maths: 'reified(choiceAnswer(\"synthetic\"),true)'\n  example: The label is true.\n```" : '';
+    const result = nf(source + (truth ? '\n```' + truth + '\n```rules' : ''), board(9));
     expect(result.issues).toEqual([]);
     expect(result.status).toBe("partial");
-    expect(result.normalForm!.coverage).toHaveLength(1);
-    expect(result.normalForm!.coverage[0]).toMatchObject({kind, status: "unsupported", reason: capability.reason});
+    expect(result.normalForm!.coverage).toHaveLength(setup[kind] ? setup[kind].split("\n").length+1 : 1);
+    expect(result.normalForm!.coverage.filter(c=>c.kind===kind)).toHaveLength(1);
+    expect(result.normalForm!.coverage.find(c=>c.kind===kind)).toMatchObject({kind, status: "unsupported", reason: capability.reason});
     expect(compare(result,result).status).toBe("unresolved");
   }
 });

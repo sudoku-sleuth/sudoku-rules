@@ -509,26 +509,6 @@
       }
     }
   ],
-  "rules/value-modifier.md#example-0": [
-    {
-      "code": "E_CASE_PARAMETERS",
-      "check": "E_CASE_PARAMETERS",
-      "message": "atMostOne must not be empty.",
-      "span": {
-        "file": "rules/value-modifier.md#example-0",
-        "start": {
-          "offset": 362,
-          "line": 25,
-          "column": 95
-        },
-        "end": {
-          "offset": 364,
-          "line": 25,
-          "column": 97
-        }
-      }
-    }
-  ],
   "rules/negative.md#example-0": [
     {
       "code": "E_CASE_PARAMETERS",

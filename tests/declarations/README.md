@@ -8,7 +8,7 @@ spans. Keep this baseline fixed.
 
 `regression.test.ts` compares successful old readings with the shared AST reader
 and verifies that previously rejected inputs remain rejected.
-`contract-rejections.json` fixes current diagnostics for 40 migration inputs,
+`contract-rejections.json` fixes current diagnostics for migration inputs,
 including empty diagnostic lists for inputs accepted by the wider instance-ID
 syntax. The original captured input baseline remains fixed. Checks cover
 missing required parameters, invalid types, off-board cells and malformed keyword

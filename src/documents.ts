@@ -1,3 +1,4 @@
+import { checkSharedAnswers } from './shared-answers.js';
 import { compileBoundAlias } from './bound-alias.js';
 import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { caseBlocks, readCustomDefinitions, checkCustomParameters, customParameterContract } from "./custom-definitions.js";
@@ -38,6 +39,9 @@ export function readHeader(page: PageSource): Result<Header> {
 }
 export interface RuleRegistry {
     kinds: Set<string>;
+    /** Page-declared kinds, independent of filenames and URL paths. */
+    kindByUrl?: Map<string, string>;
+    sharedNames?: Map<string, Record<string, import("./case-values.js").SharedParameter>>;
     urls: Set<string>;
     lines?: Map<string, LineDeclaration>;
     parameters?: Map<string, CaseParameters>;
@@ -154,6 +158,13 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
             } else errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
         }
     }
+    errors.push(...checkSharedAnswers(declarations.flatMap(declaration => {
+        const reference = references.find(r => r.span === declaration.kind.span);
+        if (!reference) return [];
+        const custom = resolveCustom(reference.kind) ?? resolveCustom(reference.url);
+        return [{declaration, kind: custom ? "" : registry.kindByUrl?.get(reference.url) ?? reference.kind,
+            contract: custom ? customParameterContract(custom) : registry.parameters?.get(reference.url), custom}];
+    }), registry.prelude ?? defaultCasePrelude()));
     const explicitBoard = object(metadata.board) ? metadata.board : {};
     const hasRegions = [metadata.regions, explicitBoard.regions].some(regions => Array.isArray(regions) && regions.length > 0);
     if (registry.parameters && hasRegions && !hasHouse)
@@ -229,7 +240,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
     const aliases = new Map<string, string>();
     const shorthands = new Map<string, {target: string; bindings: Record<string, string>}>();
     const features: CompiledFeature[] = [];
-    const registry: RuleRegistry = { kinds: new Set(), urls: new Set(), lines: new Map(), parameters: new Map(), features, prelude: parsed.value };
+    const registry: RuleRegistry = { kinds: new Set(), kindByUrl: new Map(), sharedNames: new Map(), urls: new Set(), lines: new Map(), parameters: new Map(), features, prelude: parsed.value };
     const register = (kind: string, metadata: Record<string, unknown>, compiled: CompiledPage) => {
         if (typeof metadata.url !== "string") return;
         const raw = object(metadata.parameters) ? metadata.parameters : {};
@@ -240,9 +251,12 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
                 const declaration = object(raw[parameter.name]) ? raw[parameter.name] as Record<string, unknown> : {};
                 return [parameter.name, {type: parameter.type, required: /^Required\b/.test(String(declaration.default)),
                     ...declaredDefault(declaration.default, parameter.type, parsed.value!.environment.types ?? {}),
+                    ...(object(declaration.shared) ? {shared: declaration.shared as unknown as import("./case-values.js").SharedParameter} : {}),
                     ...(typeof declaration.empty_when === "string" ? {emptyWhen: declaration.empty_when} : {})}];
             }),
         ]);
+        registry.kindByUrl!.set(metadata.url, kind);
+        registry.sharedNames!.set(kind, Object.fromEntries(Object.entries(parameters).flatMap(([name,p]) => object(p) && p.shared ? [[name,p.shared as unknown as import("./case-values.js").SharedParameter]] : [])));
         registry.parameters!.set(metadata.url, {types: parsed.value!.environment.types ?? {}, explicit: explicitBoardParameters[kind],
             positional: dimensions ? {name: dimensions[0], form: "dimensions"} : undefined, parameters});
         if (compiled.line) registry.lines!.set(metadata.url, compiled.line);

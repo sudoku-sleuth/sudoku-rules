@@ -4,7 +4,7 @@ import type {Type} from "../../src";
 type Value=Rational|string|boolean|undefined|Value[]|Group|Callable|{[key:string]:Value};
 interface Group {group:Value[]}
 type Callable=(...args:Value[])=>Value;
-export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];witnesses?:Record<string,unknown[]>}
+export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];routeAnswers?:Record<string,string[]>;routeClosures?:Record<string,boolean>;networkAnswers?:Record<string,string[][]>;partitionAnswers?:Record<string,string[][]>;selectionAnswers?:Record<string,string[]>;choiceAnswers?:Record<string,boolean>;assignmentAnswers?:Record<string,number[]>;valueAnswers?:Record<string,Record<string,number>>;symbolAnswers?:Record<string,Record<string,number[]>>;witnesses?:Record<string,unknown[]>}
 const number=(value:Value):Rational=>{if(!value||typeof value!=="object"||!("numerator" in value))throw Error("Expected exact number");return value as Rational;};
 const truth=(value:Value):boolean=>{if(typeof value!=="boolean")throw Error("Expected Boolean");return value;};
 const members=(value:Value):Value[]=>{if(Array.isArray(value))return value;if(value&&typeof value==="object"&&"group" in value)return (value as Group).group;throw Error("Expected collection");};
@@ -21,11 +21,23 @@ function typed(value:unknown,type:Type,prelude:CheckedPrelude):Value{
 }
 export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:string;type:Type}[],fragment:Fragment):boolean{
  const cells=Object.keys(fragment.faces);if(cells.length>81)throw Error("Fragment limit: 81 cells");
- const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),Regions:group((fragment.regions??[]).map(region=>group(region))),H:group(fragment.shaded??[]),rows:exact(String(fragment.rows??9)),cols:exact(String(fragment.cols??9)),ℤ:group(Array.from({length:17},(_,i)=>exact(String(i)))),ValuedRuleMeanings:[true]};
+ const env:Record<string,Value>={C:group(cells),𝔄:(fragment.alphabet??[1,2,3,4,5,6,7,8,9]).map(value=>exact(String(value))),Regions:group((fragment.regions??[]).map(region=>group(region))),H:group(fragment.shaded??[]),rows:exact(String(fragment.rows??9)),cols:exact(String(fragment.cols??9)),ℤ:group(Array.from({length:33},(_,i)=>exact(String(i-16)))),ValuedRuleMeanings:[true]};
  for(const parameter of parameters)env[parameter.name]=typed(fragment.parameters[parameter.name],parameter.type,prelude);
  const primitives:Record<string,Callable>={
   face:c=>exact(String(fragment.faces[String(c)])),effective:c=>exact(String((fragment.values??fragment.faces)[String(c)])),toValue:x=>x,
+  selectionAnswer:name=>{const x=fragment.selectionAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared selection ${name}`);return group(x);},
+  choiceAnswer:name=>{const x=fragment.choiceAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared choice ${name}`);return x;},
+  assignmentAnswer:name=>{const x=fragment.assignmentAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared assignment ${name}`);return x.map(n=>exact(String(n)));},
+  valueAnswer:(name,c)=>{const x=fragment.valueAnswers?.[String(name)]?.[String(c)];if(x===undefined)throw Error(`Missing shared value ${name}/${c}`);return exact(String(x));},
+  symbolAnswer:(name,c)=>{const x=fragment.symbolAnswers?.[String(name)]?.[String(c)];if(x===undefined)throw Error(`Missing shared symbols ${name}/${c}`);return x.map(n=>exact(String(n)));},
+  orderedCells:S=>members(S).sort((a,b)=>cells.indexOf(String(a))-cells.indexOf(String(b))),
+  absent:()=>undefined,
+  weightedOperand:(operand,coefficient,power)=>({operand:operand!,coefficient:coefficient!,power:power!}),
   relationSpec:(op,n)=>({op:op!,value:n!}),
+  routeClosed:name=>fragment.routeClosures?.[String(name)] ?? false,
+  routeAnswer:name=>{const value=fragment.routeAnswers?.[String(name)];if(!value)throw Error(`Missing shared route ${name}`);return value;},
+  networkAnswer:name=>{const value=fragment.networkAnswers?.[String(name)];if(!value)throw Error(`Missing shared network ${name}`);return value;},
+  partitionAnswer:name=>{const value=fragment.partitionAnswers?.[String(name)];if(!value)throw Error(`Missing shared partition ${name}`);return group(value.map(region=>group(region)));},
   connected:input=>{
    const items=members(input);if(!items.length)return false;
    const explicit=Array.isArray(items[0]);
@@ -96,7 +108,7 @@ export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name
    case "image":case "comprehension":{const values=members(child(0));const result:Value[]=[];for(const item of values){const local={...scope,[node.binders![0].name]:item};if(node.kind==="comprehension"){if(truth(evaluate(node.children[1],local)))result.push(item);}else if(!node.children[2]||truth(evaluate(node.children[2],local)))result.push(evaluate(node.children[1],local));}return node.value==="list"?result:group(result);}
    case "aggregate":case "quantifier":{
     const domain=node.hasDomain?members(child(0)):undefined;
-    const choices=(name:string,type:Type):Value[]=>{if(Object.hasOwn(fragment.witnesses??{},name))return fragment.witnesses![name].map(value=>typed(value,type,prelude));if(type.name!=="set"||type.args?.[0].name!=="cell")throw Error("Unsupported fragment witness type");return Array.from({length:2**cells.length},(_,mask)=>group(cells.filter((_,i)=>mask&(1<<i))));};
+    const choices=(name:string,type:Type):Value[]=>{if(/^boundAlias\d+$/.test(name) && type.name==="set" && type.args?.[0].name==="set" && fragment.witnesses?.P)return fragment.witnesses.P.map(value=>typed(value,type,prelude));if(Object.hasOwn(fragment.witnesses??{},name))return fragment.witnesses![name].map(value=>typed(value,type,prelude));if(type.name!=="set"||type.args?.[0].name!=="cell")throw Error("Unsupported fragment witness type");return Array.from({length:2**cells.length},(_,mask)=>group(cells.filter((_,i)=>mask&(1<<i))));};
     function* assignments(i:number,local:Record<string,Value>):Generator<Record<string,Value>>{if(i===node.binders!.length){yield local;return;}const binder=node.binders![i];for(const item of domain??choices(binder.name,binder.type!))yield* assignments(i+1,{...local,[binder.name]:item});}
     const body=node.children[node.hasDomain?1:0];
     if(node.kind==="quantifier"){for(const local of assignments(0,scope)){const verdict=truth(evaluate(body,local));if(node.value==="exists"&&verdict)return true;if(node.value==="forall"&&!verdict)return false;}return node.value==="forall";}

@@ -7,11 +7,23 @@ parameters:
     description: The marked cells, for example r1c1-r1c2-r2c2.
     default: Required.
     type: set<cell>
+alias_of: digit-profile
+alias_bind:
+  cells: 'orderedCells(cells)'
+  classes: '⟨⟨0:i∈[0,0)⟩:j∈[0,0)⟩'
+  counts: '⟨|C|:i∈[0,0)⟩'
+  exhaustive: 'false'
+  channel: '"D"'
+  selfCount: 'true'
+  windowLength: 'absent(|C|)'
+  loop: 'false'
 ---
 
 # Counting Circles
 
 Each digit appearing in the circles tells you how many circles contain that digit.
+
+This is [Digit Profile](digit-profile.md) with cells listed once, channel D, selfCount true, classes [], counts [], exhaustive false and no windowLength. Digit Profile owns the general frequency meaning.
 
 ## Parameters
 
@@ -21,15 +33,7 @@ Each digit appearing in the circles tells you how many circles contain that digi
 
 ## Maths
 
-Class: **with aggregates**.
-
-The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
-
-```text
-∀d∈faceDigits(cells): countWhere(cells,λc:cell: D(c)=d)=d
-```
-
-Each digit occurring in cells occurs exactly as many times as its digit.
+This is a shorthand for [digit-profile](digit-profile.md). Its header binds the general rule parameters.
 
 ## Example
 

@@ -4,7 +4,8 @@ import { diagnostic, type Diagnostic, type Span } from "./language/diagnostics.j
 
 export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
-export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
+export interface SharedParameter { role: "construct" | "read" | "conjoin"; type: "route" | "network" | "partition" | "selection" | "choice" | "assignment" | "value" | "symbol" }
+export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string; shared?: SharedParameter }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
   summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],
@@ -172,6 +173,10 @@ export function declaredDefault(raw: unknown, type: Type, types: Record<string, 
   if (/^(Empty list|Empty set|No authored strips|\[\])/.test(value)) return {default: []};
   const token = value.split(/[ .;(]/, 1)[0];
   const resolved = types[type.name] ?? type;
+  if (resolved.name === "string") {
+    const match = /^"(?:[^"\\]|\\.)*"(?=[.; ]|$)/.exec(value);
+    if (match) { try { return {default: JSON.parse(match[0])}; } catch { return {}; } }
+  }
   if (resolved.name === "boolean" && ["true", "false"].includes(token)) return {default: token === "true"};
   if (resolved.name === "enum" && resolved.members?.includes(token)) return {default: token};
   if (["number", "position", "digit", "value"].includes(resolved.name)) {
