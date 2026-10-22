@@ -174,3 +174,11 @@ ignores this field. A file containing only decorations has the true solution
 Common `element` metadata is removed before mathematical lowering for all kinds.
 
 Extended geometry, selectors, channels and aggregate meanings retain whole-instance coverage. When a named extension has no finite lowering, the entire declaration is marked unsupported before any constraints are emitted, including under negation. Grammar acceptance and finite executable coverage are separate contracts.
+
+
+Selection, Marking Relation, Battenburg, Shade Components, Japanese Sums,
+Mapped Values, Paired Roles, Choice Count, Assignment, Cell Entries and Symbol
+House retain complete unsupported instance coverage, including under negation.
+A Mapped Values declaration prevents the V-to-D identity rewrite, including
+when negated. A named independent output also conservatively
+prevents that rewrite. The normaliser does not execute shared assignments.

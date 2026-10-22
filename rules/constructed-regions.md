@@ -21,6 +21,8 @@ parameters:
 
 Divide the board into connected regions of the stated size. Each region contains different digits. Borders separate regions; joins put cells in the same region.
 
+This is the local existential form of [Region Partition](region-partition.md) with scope C, sizes [size], distinct true, channel D, the same joins and borders, and no count or separation. Region Partition owns the general partition meaning; this page chooses a local partition rather than exposing a shared name.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

@@ -58,13 +58,13 @@ parameters:
     default: Absent; no additional touch condition.
   crossings:
     type: boolean
-    description: Allow crossings between unit diagonal steps.
+    description: Allow crossings between straight steps of any length.
     default: false.
 ---
 
 # Route
 
-Construct one named route with distinct cells and allowed steps. A loop closes its last cell to its first and has at least three cells. An open route may specify endpoints. Covering visits every cell in scope once. Required and forbidden edges are undirected. Touch restrictions exclude consecutive steps; unit diagonal crossings are checked separately. The same name in another declaration refers to this same route, including its order.
+Construct one named route with distinct cells and allowed steps. A loop closes its last cell to its first and has at least three cells. An open route may specify endpoints. Covering visits every cell in scope once. Required and forbidden edges are undirected. Touch restrictions exclude consecutive steps; proper interior step crossings are checked separately. Crossings mean interior intersections of straight segments of any length, including bishop and knight steps; shared endpoints and collinear overlaps are excluded. The same name in another declaration refers to this same route, including its order.
 
 ## Parameters
 
@@ -83,16 +83,16 @@ Construct one named route with distinct cells and allowed steps. A loop closes i
 | requiredEdges | Undirected edges the route must use. | Empty list. |
 | forbiddenEdges | Undirected edges the route must avoid. | Empty list. |
 | noTouch | Forbid this move between nonconsecutive route cells. | Absent; no additional touch condition. |
-| crossings | Allow crossings between unit diagonal steps. | false. |
+| crossings | Allow crossings between straight steps of any length. | false. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **existential**.
 
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let L=routeAnswer(name); simpleRoute(L,scope,move,loop) ∧ minimum>=1 ∧ minimum<=|L| ∧ |L|<=(if present(maximum) then unwrap(maximum) else |scope|) ∧ (cover → routeCells(L)=scope) ∧ through⊆routeCells(L) ∧ (present(startCell) → ¬loop ∧ |L|>0 ∧ L[0]=unwrap(startCell)) ∧ (present(endCell) → ¬loop ∧ |L|>0 ∧ L[|L|-1]=unwrap(endCell)) ∧ (∀e∈requiredEdges: |e|=2 ∧ routeEdge(L,e[0],e[1],loop)) ∧ (∀e∈forbiddenEdges: |e|=2 ∧ ¬routeEdge(L,e[0],e[1],loop)) ∧ (present(noTouch) → noRouteTouch(L,unwrap(noTouch),loop)) ∧ (crossings ∨ ¬routeCrosses(L,L,loop,loop))
+let L=routeAnswer(name); simpleRoute(L,scope,move,routeClosed(name)) ∧ minimum>=1 ∧ minimum<=|L| ∧ |L|<=(if present(maximum) then unwrap(maximum) else |scope|) ∧ (cover → routeCells(L)=scope) ∧ through⊆routeCells(L) ∧ (present(startCell) → ¬loop ∧ |L|>0 ∧ L[0]=unwrap(startCell)) ∧ (present(endCell) → ¬loop ∧ |L|>0 ∧ L[|L|-1]=unwrap(endCell)) ∧ (∀e∈requiredEdges: |e|=2 ∧ routeEdge(L,e[0],e[1],loop)) ∧ (∀e∈forbiddenEdges: |e|=2 ∧ ¬routeEdge(L,e[0],e[1],loop)) ∧ (present(noTouch) → noRouteTouch(L,unwrap(noTouch),loop)) ∧ (crossings ∨ ¬routeCrosses(L,L,loop,loop))
 ```
 
 ## Example

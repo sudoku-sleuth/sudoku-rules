@@ -8,10 +8,6 @@ parameters:
     type: string
     description: The shared route name.
     default: Required.
-  loop:
-    type: boolean
-    description: Include the closing pair and cyclic windows.
-    default: false.
   channel:
     type: Channel
     description: Channel supplying route numbers.
@@ -40,14 +36,13 @@ parameters:
 
 # Route Clue
 
-Apply numeric clues to a shared route. Every step satisfies an inclusive relation alternative when alternatives are supplied. Sum counts visited cells once. Class windows have the chosen length; each class must occur exactly once in every full window. Windows include the closing join when loop is true. A window longer than the route supplies no class condition.
+Apply numeric clues to a shared route. Every step satisfies an inclusive relation alternative when alternatives are supplied. Sum counts visited cells once. Class windows have the chosen length; each class must occur exactly once in every full window. Windows include the closing join when the named route is closed. A window longer than the route supplies no class condition.
 
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | name | The shared route name. | Required. |
-| loop | Include the closing pair and cyclic windows. | false. |
 | channel | Channel supplying route numbers. | D. |
 | relations | Inclusive alternatives required on every directed step. | Empty list; no step relation. |
 | total | Required sum of visited numbers. | Absent; no sum condition. |
@@ -57,12 +52,12 @@ Apply numeric clues to a shared route. Every step satisfies an inclusive relatio
 
 ## Maths
 
-Class: **with aggregates**.
+Class: **existential**.
 
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let L=routeAnswer(name); (|relations|>0 → ∀i,j∈[0,|L|): next(L,i,j,loop) → relatedAny(relations,read(L[i],channel),read(L[j],channel))) ∧ (present(total) → aggregate(L,channel,"sum")=unwrap(total)) ∧ (distinct → repeatPolicy(L,channel,false)) ∧ (present(classes) → length>=1 ∧ ∀s∈[0,|L|): start(L,length,s,loop) ∧ (loop → |L|>0) → ∀ns∈unwrap(classes): classCount(window(L,length,s,loop),ns,channel)=1)
+let L=routeAnswer(name); let closed=routeClosed(name); |L|>0 ∧ (|relations|>0 → ∀i,j∈[0,|L|): next(L,i,j,closed) → relatedAny(relations,read(L[i],channel),read(L[j],channel))) ∧ (present(total) → aggregate(L,channel,"sum")=unwrap(total)) ∧ (distinct → repeatPolicy(L,channel,false)) ∧ (present(classes) → length>=1 ∧ ∀s∈[0,|L|): start(L,length,s,closed) ∧ (closed → |L|>0) → ∀ns∈unwrap(classes): classCount(window(L,length,s,closed),ns,channel)=1)
 ```
 
 ## Example
@@ -80,6 +75,7 @@ status: read
 
 ```rules
 sudoku 9x9
+route name "trail" scope ["r1c1","r1c2","r1c3"] cover true
 route-clue name "trail" relations [{"op":"difference","value":1}] total 6
 ```
 ````

@@ -127,3 +127,8 @@ not infer drawing identity from cells, colour, notes or shape. The decoration's
 span is primary; detail locates the constraining declaration. This warning retains
 `checkCaseReferences.value` and does not fail CLI lint. Existing house diagnostics
 retain their current behavior.
+
+
+String parameter defaults use a JSON-quoted string followed by optional prose
+punctuation, for example `default: '"H".'`. The generated portable contract
+contains the decoded string. An unquoted description is not a string default.

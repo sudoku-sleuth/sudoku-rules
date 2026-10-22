@@ -16,7 +16,7 @@ parameters:
     type: list<position>
     description: Required count for each class, in the same order.
     default: Required.
-  closed:
+  exhaustive:
     type: boolean
     description: Require every read number to belong to at least one class.
     default: false.
@@ -40,7 +40,9 @@ parameters:
 
 # Digit Profile
 
-Each listed class occurs its stated number of times. Overlapping classes count independently. Repeating a number inside a class does not count it twice. Repeated cell occurrences count separately. Closed profiles allow only numbers belonging to the listed classes. With `selfCount true`, each occurring number equals its frequency in the whole list. Optional `windowLength` applies the listed class counts to each full window instead of the whole list; `loop true` includes cyclic windows. Longer windows than the list supply no class condition. Closure and self-count still apply to the whole list.
+Each listed class occurs its stated number of times. Overlapping classes count independently. Repeating a number inside a class does not count it twice. Repeated cell occurrences count separately. Exhaustive profiles allow only numbers belonging to the listed classes. With `selfCount true`, each occurring number equals its frequency in the whole list. Optional `windowLength` applies the listed class counts to each full window instead of the whole list; `loop true` includes cyclic windows. Longer windows than the list supply no class condition. Exhaustiveness and self-count still apply to the whole list.
+
+[Counting Circles](counting-circles.md) is the printed-digit shorthand with each cell listed once, selfCount true, empty classes and counts, exhaustive false and no windowLength.
 
 ## Parameters
 
@@ -49,7 +51,7 @@ Each listed class occurs its stated number of times. Overlapping classes count i
 | cells | The occurrences to count. | Required. |
 | classes | Arbitrary numeric classes; a class may overlap another. | Required. |
 | counts | Required count for each class, in the same order. | Required. |
-| closed | Require every read number to belong to at least one class. | false. |
+| exhaustive | Require every read number to belong to at least one class. | false. |
 | selfCount | Require each occurring number to equal its frequency. | false. |
 | windowLength | Apply class counts to every full window of this length. | Absent; count over the whole list. |
 | loop | Include cyclic windows. | false. |
@@ -62,7 +64,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-|classes|=|counts| ∧ (∀n∈counts:n>=0) ∧ (selfCount → ownFrequencies(cells,channel)) ∧ (if present(windowLength) then classWindows(cells,classes,counts,unwrap(windowLength),loop,channel) else ∀i∈[0,|classes|): 0<=i ∧ i<|counts| ∧ classCount(cells,classes[i],channel)=counts[i]) ∧ (closed → ∀c∈cells: ∃ns∈classes:read(c,channel)∈ns)
+|classes|=|counts| ∧ (∀n∈counts:n>=0) ∧ (selfCount → ownFrequencies(cells,channel)) ∧ (if present(windowLength) then classWindows(cells,classes,counts,unwrap(windowLength),loop,channel) else ∀i∈[0,|classes|): 0<=i ∧ i<|counts| ∧ classCount(cells,classes[i],channel)=counts[i]) ∧ (exhaustive → ∀c∈cells: ∃ns∈classes:read(c,channel)∈ns)
 ```
 
 ## Example
@@ -80,7 +82,7 @@ status: read
 
 ```rules
 sudoku 9x9
-digit-profile cells ["r1c1","r1c2","r1c3"] classes [[1,3,5,7,9],[2,4,6,8]] counts [2,1] closed true
+digit-profile cells ["r1c1","r1c2","r1c3"] classes [[1,3,5,7,9],[2,4,6,8]] counts [2,1] exhaustive true
 ```
 ````
 

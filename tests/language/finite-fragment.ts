@@ -4,7 +4,7 @@ import type {Type} from "../../src";
 type Value=Rational|string|boolean|undefined|Value[]|Group|Callable|{[key:string]:Value};
 interface Group {group:Value[]}
 type Callable=(...args:Value[])=>Value;
-export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];routeAnswers?:Record<string,string[]>;networkAnswers?:Record<string,string[][]>;partitionAnswers?:Record<string,string[][]>;witnesses?:Record<string,unknown[]>}
+export interface Fragment {rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,number>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];routeAnswers?:Record<string,string[]>;routeClosures?:Record<string,boolean>;networkAnswers?:Record<string,string[][]>;partitionAnswers?:Record<string,string[][]>;selectionAnswers?:Record<string,string[]>;choiceAnswers?:Record<string,boolean>;assignmentAnswers?:Record<string,number[]>;valueAnswers?:Record<string,Record<string,number>>;symbolAnswers?:Record<string,Record<string,number[]>>;witnesses?:Record<string,unknown[]>}
 const number=(value:Value):Rational=>{if(!value||typeof value!=="object"||!("numerator" in value))throw Error("Expected exact number");return value as Rational;};
 const truth=(value:Value):boolean=>{if(typeof value!=="boolean")throw Error("Expected Boolean");return value;};
 const members=(value:Value):Value[]=>{if(Array.isArray(value))return value;if(value&&typeof value==="object"&&"group" in value)return (value as Group).group;throw Error("Expected collection");};
@@ -25,7 +25,13 @@ export function fragmentVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name
  for(const parameter of parameters)env[parameter.name]=typed(fragment.parameters[parameter.name],parameter.type,prelude);
  const primitives:Record<string,Callable>={
   face:c=>exact(String(fragment.faces[String(c)])),effective:c=>exact(String((fragment.values??fragment.faces)[String(c)])),toValue:x=>x,
+  selectionAnswer:name=>{const x=fragment.selectionAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared selection ${name}`);return group(x);},
+  choiceAnswer:name=>{const x=fragment.choiceAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared choice ${name}`);return x;},
+  assignmentAnswer:name=>{const x=fragment.assignmentAnswers?.[String(name)];if(x===undefined)throw Error(`Missing shared assignment ${name}`);return x.map(n=>exact(String(n)));},
+  valueAnswer:(name,c)=>{const x=fragment.valueAnswers?.[String(name)]?.[String(c)];if(x===undefined)throw Error(`Missing shared value ${name}/${c}`);return exact(String(x));},
+  symbolAnswer:(name,c)=>{const x=fragment.symbolAnswers?.[String(name)]?.[String(c)];if(x===undefined)throw Error(`Missing shared symbols ${name}/${c}`);return x.map(n=>exact(String(n)));},
   relationSpec:(op,n)=>({op:op!,value:n!}),
+  routeClosed:name=>fragment.routeClosures?.[String(name)] ?? false,
   routeAnswer:name=>{const value=fragment.routeAnswers?.[String(name)];if(!value)throw Error(`Missing shared route ${name}`);return value;},
   networkAnswer:name=>{const value=fragment.networkAnswers?.[String(name)];if(!value)throw Error(`Missing shared network ${name}`);return value;},
   partitionAnswer:name=>{const value=fragment.partitionAnswers?.[String(name)];if(!value)throw Error(`Missing shared partition ${name}`);return group(value.map(region=>group(region)));},

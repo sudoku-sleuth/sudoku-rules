@@ -172,6 +172,10 @@ export function declaredDefault(raw: unknown, type: Type, types: Record<string, 
   if (/^(Empty list|Empty set|No authored strips|\[\])/.test(value)) return {default: []};
   const token = value.split(/[ .;(]/, 1)[0];
   const resolved = types[type.name] ?? type;
+  if (resolved.name === "string") {
+    const match = /^"(?:[^"\\]|\\.)*"(?=[.; ]|$)/.exec(value);
+    if (match) { try { return {default: JSON.parse(match[0])}; } catch { return {}; } }
+  }
   if (resolved.name === "boolean" && ["true", "false"].includes(token)) return {default: token === "true"};
   if (resolved.name === "enum" && resolved.members?.includes(token)) return {default: token};
   if (["number", "position", "digit", "value"].includes(resolved.name)) {

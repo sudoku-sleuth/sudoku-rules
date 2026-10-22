@@ -13,23 +13,23 @@ parameters:
     description: Allowed destination cells.
     default: Required.
   rowBase:
-    type: position
+    type: number
     description: Zero-based row before adding the transformed index.
     default: 0.
   colBase:
-    type: position
+    type: number
     description: Zero-based column before adding the transformed index.
     default: 0.
   rowFactor:
-    type: position
+    type: number
     description: Multiply the offset index by this row coefficient.
     default: 0.
   colFactor:
-    type: position
+    type: number
     description: Multiply the offset index by this column coefficient.
     default: 1.
   offset:
-    type: position
+    type: number
     description: Add this integer before applying the coordinate coefficients.
     default: -1.
   indexChannel:
@@ -58,6 +58,8 @@ parameters:
 
 Transform each source number into a board coordinate and count successful destinations. Add the offset, multiply by the row and column coefficients, then add the base coordinates. A whole-number index hits only when its destination belongs to scope and satisfies the stated relation with the target. Fractional indices and destinations outside scope are misses. Repeated source occurrences count separately.
 
+The bases, coefficients and offset must all be integers.
+
 The defaults index across the first row using one-based source numbers. Negative factors reverse a direction; setting both factors to zero selects one fixed destination for every integer source number.
 
 ## Parameters
@@ -82,7 +84,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define coordinate hits and shared pair relations.
 
 ```text
-total=countWhere(sources,λs:cell:coordinateHit(s,scope,rowBase,colBase,rowFactor,colFactor,offset,indexChannel,channel,target,relation))
+⌊rowBase⌋=rowBase ∧ ⌊colBase⌋=colBase ∧ ⌊rowFactor⌋=rowFactor ∧ ⌊colFactor⌋=colFactor ∧ ⌊offset⌋=offset ∧ total=countWhere(sources,λs:cell:coordinateHit(s,scope,rowBase,colBase,rowFactor,colFactor,offset,indexChannel,channel,target,relation))
 ```
 
 ## Example

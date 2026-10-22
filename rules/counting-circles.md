@@ -13,6 +13,8 @@ parameters:
 
 Each digit appearing in the circles tells you how many circles contain that digit.
 
+This is [Digit Profile](digit-profile.md) with cells listed once, channel D, selfCount true, classes [], counts [], exhaustive false and no windowLength. Digit Profile owns the general frequency meaning.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

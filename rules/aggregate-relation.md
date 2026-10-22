@@ -26,6 +26,8 @@ List cells in reading order. Optional zero-based `start` and `length` select a s
 
 The familiar [Cage](cage.md), [Little Killer](little-killer.md), [Arrow](arrow.md), [Double Arrow](double-arrow.md), [Equal Sums](equal-sums.md) and [Region Sum](region-sum.md) use the same shared aggregate operations with their own operand selection and defaults.
 
+This is [Aggregate Equation](aggregate-equation.md) with one term on each side, each term using the corresponding operand with coefficient 1 and power 1, sum on both sides, and the same relation. Aggregate Equation owns the general equation meaning.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

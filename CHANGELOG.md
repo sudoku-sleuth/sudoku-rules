@@ -6,6 +6,14 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Phase B reference checks require one constructor per shared typed name, including custom readers and reified truth labels. Route clues and groups read constructor closure; all shared constructors and readers use the existential class. Invalid recurrence loops, loop endpoints, reversed non-decimal operands, fractional coordinate transforms and empty partition scopes are lint errors.
+- Route crossings cover proper interior intersections of straight steps of any length. Region Clue uses `rays` for boundary-count lists; Digit Profile uses `exhaustive` for class coverage. Counting Circles, Constructed Regions and Aggregate Relation state their exact equivalence to the general pages. Existing published-default fixtures are unchanged.
+
+- Shared case-wide selections, truth labels, integer assignments, numeric channels and symbol-entry channels. Selection, Marking Relation, Battenburg, Shade Components and Japanese Sums compose marking, maximal connectivity and ordered run clues.
+- Mapped Values supplies affine, explicit-map and bounded free values on shared masks and scoped channels. Paired Roles constrains one-to-one role pairings on shared undirected networks. Existing Value Modifier and Yin Yang meanings are unchanged.
+- Choice Count and Assignment compose rule reification, cardinality, bijections and explicit conditional meanings. Cell Entries and Symbol House express multiple entries, missing symbols and repeated house symbols without changing the standard Sudoku board contract.
+- JSON-quoted string defaults in generated consumer contracts. New synthetic examples, semantic fragments and complete unsupported-instance coverage; mapped values prevent an unjustified V=D rewrite.
+
 - Relation Scope composes inclusive pair alternatives over bounded all-pair, move and incident-edge scopes. Local Sequence supplies directed transitions, integer divisibility and two-term recurrences. Index Count and Coordinate Count count bounded lookup hits with independent channels and coordinate transforms.
 - Aggregate Equation composes weighted powers, sums and products of shared aggregate operands. Subset Total requires or excludes bounded subsets. Digit Profile supplies arbitrary overlapping classes, class windows and self frequencies; Profile Relation compares sets or multisets.
 - Number Property applies primality, compositeness, integer powers, divisibility and decimal place counts to aggregate or decimal results. Derived Count counts matching or distinct derived results and ranks targets. Neighbour Count counts inclusive relation matches over explicit neighbourhoods.

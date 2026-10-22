@@ -110,5 +110,16 @@
   "region-partition": "rules/regions/constructed-regions.svg",
   "region-shape": "rules/cages/cage-shapes.svg",
   "region-clue": "rules/regions/constructed-regions.svg",
-  "coordinate-count": "rules/regions/index.svg"
+  "coordinate-count": "rules/regions/index.svg",
+  "selection": "rules/cells/parity-cells.svg",
+  "marking-relation": "rules/edges/pair.svg",
+  "battenburg": "rules/global/window-classes.svg",
+  "shade-components": "rules/regions/constructed-regions.svg",
+  "japanese-sums": "rules/outside/x-sum.svg",
+  "mapped-values": "rules/global/value-modifier.svg",
+  "paired-roles": "rules/cells/molecules.svg",
+  "choice-count": "rules/lines/line-choice.svg",
+  "assignment": "rules/cages/cage-expressions.svg",
+  "cell-entries": "rules/cells/allowed-digits.svg",
+  "symbol-house": "rules/global/sudoku.svg"
 }

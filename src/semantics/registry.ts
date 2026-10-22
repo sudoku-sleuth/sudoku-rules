@@ -3,6 +3,17 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  "selection": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "marking-relation": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "battenburg": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "shade-components": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "japanese-sums": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "mapped-values": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "paired-roles": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "choice-count": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "assignment": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "cell-entries": pending("Shared selections, assignments and symbol or value channels are not lowered."),
+  "symbol-house": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "relation-scope": pending("Scoped alternative relations and incident-edge selection are not lowered."),
   "local-sequence": pending("Directed transitions, divisor sequences and recurrences are not lowered."),
   "index-count": pending("Counts of bounded answer-dependent index hits are not lowered."),

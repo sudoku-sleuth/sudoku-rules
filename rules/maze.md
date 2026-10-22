@@ -57,7 +57,7 @@ Construct a connected named network on exactly the scoped cells. Edges join two 
 
 ## Maths
 
-Class: **with aggregates**.
+Class: **existential**.
 
 The [shared predicates](predicates.md) define the notation and operations.
 

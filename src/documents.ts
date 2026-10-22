@@ -1,3 +1,4 @@
+import { checkSharedAnswers } from './shared-answers.js';
 import { compileBoundAlias } from './bound-alias.js';
 import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { caseBlocks, readCustomDefinitions, checkCustomParameters, customParameterContract } from "./custom-definitions.js";
@@ -154,6 +155,13 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
             } else errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
         }
     }
+    errors.push(...checkSharedAnswers(declarations.flatMap(declaration => {
+        const reference = references.find(r => r.span === declaration.kind.span);
+        if (!reference) return [];
+        const custom = resolveCustom(reference.kind) ?? resolveCustom(reference.url);
+        return [{declaration, kind: custom ? "" : new URL(reference.url).pathname.split("/").at(-1)!.replace(/\.md$/, ""),
+            contract: custom ? customParameterContract(custom) : registry.parameters?.get(reference.url), custom}];
+    }), registry.prelude ?? defaultCasePrelude()));
     const explicitBoard = object(metadata.board) ? metadata.board : {};
     const hasRegions = [metadata.regions, explicitBoard.regions].some(regions => Array.isArray(regions) && regions.length > 0);
     if (registry.parameters && hasRegions && !hasHouse)

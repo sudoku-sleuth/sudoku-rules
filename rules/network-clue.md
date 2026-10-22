@@ -42,12 +42,12 @@ Constrain the edges and degrees of a shared network. An optional named open rout
 
 ## Maths
 
-Class: **with aggregates**.
+Class: **existential**.
 
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let E=networkAnswer(name); (|relations|>0 → ∀a,b∈graphVertices(E): cellIndex(a)<cellIndex(b) ∧ graphEdge(E,a,b) → relatedAny(relations,read(a,channel),read(b,channel))) ∧ (∀d∈degrees: networkDegree(E,d.cell)=d.degree) ∧ (present(line) → let L=routeAnswer(unwrap(line)); ∀i∈[0,|L|-1):graphEdge(E,L[i],L[i+1]))
+let E=networkAnswer(name); |E|>0 ∧ (|relations|>0 → ∀a,b∈graphVertices(E): cellIndex(a)<cellIndex(b) ∧ graphEdge(E,a,b) → relatedAny(relations,read(a,channel),read(b,channel))) ∧ (∀d∈degrees: networkDegree(E,d.cell)=d.degree) ∧ (present(line) → let L=routeAnswer(unwrap(line)); |L|>0 ∧ ¬routeClosed(unwrap(line)) ∧ ∀i∈[0,|L|-1):graphEdge(E,L[i],L[i+1]))
 ```
 
 ## Example
@@ -65,6 +65,7 @@ status: read
 
 ```rules
 sudoku 9x9
+maze name "passages" scope ["r1c1","r1c2","r2c1"]
 network-clue name "passages" degrees [{"cell":"r1c1","degree":2}]
 ```
 ````

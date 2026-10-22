@@ -425,6 +425,7 @@ export function logicClass(ast: TypedExpr, env: Environment): LogicClass {
     }
     if (node.kind === "call" && node.children[0].kind === "name") {
       const name = node.children[0].value!;
+      if (["routeAnswer", "routeClosed", "networkAnswer", "partitionAnswer", "selectionAnswer", "choiceAnswer", "assignmentAnswer", "valueAnswer", "symbolAnswer"].includes(name)) classification = "existential";
       if (!visited.has(name) && Object.hasOwn(env.terms, name) && env.terms[name]?.body) { visited.add(name); visit(env.terms[name].body!); }
     }
     if (node.kind === "let") { visit(node.children[0], bindings); visit(node.children[1], { ...bindings, [node.binders![0].name]: node.children[0] }); }
