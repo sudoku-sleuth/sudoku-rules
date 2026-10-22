@@ -41,13 +41,13 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-let n=D(cell); 1<=n<=|ray| ∧ let t=D(ray[n-1]);
+let n=D(cell); 1<=n<=|ray| ∧ let t=D(lookup(ray,n));
 (target="greater" → t>n) ∧ (target="less" → t<n)
 ∧ (target="source" → present(source) ∧ t=D(unwrap(source)))
 ∧ (target="first-five" → t=5 ∧ ∀i∈[0,n-1): D(ray[i])!=5)
 ```
 
-The marked digit names a one-based position within ray. Its target digit is greater, smaller, equal to the source digit, or the first five on the ray, according to target.
+The shared bounded lookup reads the target. first-five also excludes earlier fives.
 
 ## Example
 

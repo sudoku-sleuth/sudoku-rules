@@ -4,6 +4,7 @@ url: https://rules.sudoku-sleuth.com/entropic.md
 kind: entropic
 parameters:
   line:
+    empty_when: edges
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
@@ -11,6 +12,10 @@ parameters:
     description: Whether the path closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
+  edges:
+    type: optional<list<list<cell>>>
+    description: Explicit undirected edges of one connected network; each edge lists two different cells.
+    default: Absent; use the ordered line.
 ---
 
 # Entropic
@@ -19,12 +24,17 @@ On a standard 1–9 board, every three consecutive cells on the path contain one
 
 For other boards, divide the puzzle’s ordered list of allowed symbols into three equal-sized groups. This list is called the ordered alphabet. The groups follow its supplied order, not necessarily numerical order; its length must be divisible by three. On a loop, triples also cross the join between the last and first cells.
 
+For an ordered alphabet of 1–6, the three groups are 1–2, 3–4 and 5–6. Digits may repeat more than two positions apart when other rules allow.
+
+With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
+
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | loop | Whether the path closes, joining its last cell back to its first. | false (open path). |
+| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
 
@@ -33,12 +43,10 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|𝔄|>0 ∧ |𝔄| mod 3=0
-∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classEntropy(D(c))))
-∧ (¬loop ∧ |line|=2 → classEntropy(D(line[0]))!=classEntropy(D(line[1])))
+entropicMeaning(line,edges,loop)
 ```
 
-Every window of three path positions has one symbol from each equal-sized third of the ordered board alphabet. An open two-cell path uses different thirds. Loop windows wrap. The alphabet size must be divisible by 3.
+Every three-cell window uses different alphabet thirds. An open two-cell line uses different thirds. Network windows include every junction traversal.
 
 ## Example
 

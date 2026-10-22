@@ -18,3 +18,5 @@ Mapped comprehensions `{f(x):x∈S}` produce sets; `⟨f(i):i∈[a,b),P(i)⟩` p
 Guard proofs may unfold checked definitions, combine exact inequalities, and tighten a strict integer bound by one. Rational bounds are never rounded. Splitting an “or” fact requires the goal to hold in every branch. Numeric remainder bounds follow its defined integer arithmetic; division still needs a proved nonzero divisor. Proof searches are bounded and conservatively reject an unproved condition.
 
 `string` is text, supplied as a JSON string in declaration values. Decoration notes and common drawing element IDs use this type.
+
+An enum whose members are a subset of another enum can be passed to that wider enum. A conditional between enum choices has the union of its branch members. Each branch still has to satisfy the receiving parameter type.

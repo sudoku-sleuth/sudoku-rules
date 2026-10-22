@@ -25,6 +25,8 @@ parameters:
 
 The clue gives the sum of digits strictly between the two crusts, counted from the clue side. State the crust digits and their occurrence policy.
 
+On a standard 1–9 board the usual crusts are 1 and 9. The crust digits are excluded from the sum; adjacent crusts give a total of zero. List the row or column from the clue side.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

@@ -37,7 +37,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 ```text
 ∃P:set<set<cell>>: partition(P,C)
-  ∧ (∀R∈P: |R|=size ∧ connected(R) ∧ distinct_D(R))
+  ∧ (∀R∈P: |R|=size ∧ connectedCells(R) ∧ distinct_D(R))
   ∧ (∀p∈joins: |p|=2 ∧ samePartition(P,p[0],p[1]))
   ∧ (∀p∈borders: |p|=2 ∧ ¬samePartition(P,p[0],p[1]))
 ```

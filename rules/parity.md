@@ -4,6 +4,7 @@ url: https://rules.sudoku-sleuth.com/parity.md
 kind: parity
 parameters:
   line:
+    empty_when: edges
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
@@ -11,11 +12,17 @@ parameters:
     description: Whether the line closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
+  edges:
+    type: optional<list<list<cell>>>
+    description: Explicit undirected edges of one connected network; each edge lists two different cells.
+    default: Absent; use the ordered line.
 ---
 
 # Parity
 
 Digits alternate between odd and even along the line.
+
+With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
 ## Parameters
 
@@ -23,18 +30,19 @@ Digits alternate between odd and even along the line.
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀i,j∈[0,|line|): consecutive(line,i,j,loop) → ¬(odd(D(line[i])) ↔ odd(D(line[j])))
+parityMeaning(line,edges,loop)
 ```
 
-Neighbouring path positions have different digit parity. Include last/first when loop is true.
+Every drawn adjacency has different digit parity, including network edges and a loop join.
 
 ## Example
 

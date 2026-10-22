@@ -7,29 +7,37 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+    empty_when: edges
+  edges:
+    type: optional<list<list<cell>>>
+    description: The edges of a connected network.
+    default: Absent; use the listed cells.
 ---
 
 # Shifter Line
 
 Digits on the line cannot be 5. Within a region, neighbours are both odd or both even and both below or both above 5. At each region crossing, exactly one of those relationships changes.
 
+With explicit `edges`, every edge in the connected network follows the same region-crossing rule. Write `line []` when no ordered list is needed.
+
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
+| edges | Explicit connected network. | Absent; use the listed cells. |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-(∀c∈line:D(c)!=5)
-∧ ∀i,j∈[0,|line|): consecutive(line,i,j,false) →
-  let P=(odd(D(line[i]))↔odd(D(line[j]))); let Q=(high(D(line[i]))↔high(D(line[j])));
-  (sameRegion(line[i],line[j]) → P ∧ Q) ∧ (¬sameRegion(line[i],line[j]) → ¬(P↔Q))
+lineGeometry(line,edges,false) ∧ (∀c∈line:D(c)!=5) ∧ (present(edges) → ∀c∈graphVertices(unwrap(edges)):D(c)!=5)
+∧ ∀W∈lineWindows(line,edges,2,false): |W|=2 →
+  let P=(odd(D(W[0]))↔odd(D(W[1]))); let Q=(high(D(W[0]))↔high(D(W[1])));
+  (sameRegion(W[0],W[1]) → P ∧ Q) ∧ (¬sameRegion(W[0],W[1]) → ¬(P↔Q))
 ```
 
 No digit is 5. Neighbours within the same authored region share parity and polarity (below/above 5). Across a region boundary exactly one of parity and polarity changes.

@@ -10,17 +10,28 @@ parameters:
     syntax:
       form: keywords
       named: true
-      choices: {white: {}, black: {}}
+      choices:
+        white: {}
+        black: {}
   cells:
     description: The two marked cells in order, for example r1c1-r1c2.
     default: Required.
     type: list<cell>
-    syntax: {form: cells, count: 2}
+    syntax:
+      form: cells
+      count: 2
+alias_of: pair
+alias_bind:
+  cells: cells
+  relation: relationSpec(if colour="white" then "difference" else "ratio",if colour="white" then 1 else 2)
+  channel: '"V"'
 ---
 
 # Kropki
 
 A white relation joins values one apart. A black relation joins values where one is twice the other.
+
+A white dot without a number means difference 1; a black dot without a number means ratio 2. For a numbered dot, use [Pair](https://rules.sudoku-sleuth.com/pair.md) with `difference n` or `ratio n`. An unmarked pair has no restriction from Kropki alone. State “all possible dots are given” with a separate [Negative](https://rules.sudoku-sleuth.com/negative.md) declaration.
 
 ## Parameters
 
@@ -40,14 +51,9 @@ Here `white` and `black` name relationships, not paint instructions. A dot's act
 
 ## Maths
 
-Class: **first-order**.
-
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|cells|=2 ∧ let a=V(cells[0]); let b=V(cells[1]);
-  (colour="white" → |a-b|=1) ∧ (colour="black" → 2*a=b ∨ 2*b=a)
-```
+This is a shorthand for [pair](pair.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
 A white dot joins values differing by 1; a black dot joins values where one is double the other. The colour parameter names the relationship.
 

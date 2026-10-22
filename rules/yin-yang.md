@@ -20,7 +20,7 @@ Class: **existential**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-connected({c ∈ C: shaded(c)}) ∧ connected({c ∈ C: ¬shaded(c)})
+connectedCells({c ∈ C: shaded(c)}) ∧ connectedCells({c ∈ C: ¬shaded(c)})
 ∧ ∀r ∈ [0,rows−1): ∀k ∈ [0,cols−1):
   (∃a ∈ window2(r,k): shaded(a)) ∧ (∃b ∈ window2(r,k): ¬shaded(b))
 ```

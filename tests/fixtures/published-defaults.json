@@ -1,0 +1,3137 @@
+{
+  "revision": "fb4d533cb0ad9753eebbb636fc501588a0deb34b",
+  "prelude": {
+    "file": "rules/predicates.md",
+    "text": "---\ndocument: prelude\nname: Shared predicates\nurl: https://rules.sudoku-sleuth.com/predicates.md\nfeature_predicates: [visible]\n---\n\n# Shared predicates\n\nThese definitions give each rule its precise meaning. C is the finite board, 𝔄 its ordered set of symbols, and N the number of cells. A case file names cells with r1c1 notation; the formulas use zero-based row, column and line positions.\n\nL and S are local names for a supplied ordered list and a cell group. A page declares its parameters explicitly; shortened names such as n must be locally bound. Supplied groups and paths are fixed by the setter. The loop parameter includes the last-to-first step. present(x) means that parameter x was supplied. Omitted booleans are false unless the rule's parameter table gives another default.\n\nThe quantifiers ∀x ∈ S and ∃x ∈ S mean every member and at least one member.\n\nThe symbols →, ∧, ∨, ¬ and ↔ mean implies, and, or, not and exactly when.\n\nAbsolute value for a number and size for a group both use |x|. Σ adds and Π multiplies.\n\nThe interval [a,b) includes a and excludes b. The collection 𝒫(C) contains all subsets of the board.\n\nD is the face digit. V is the effective value constrained by the value-modifier rule, whose formula binds the modified cell set M. Without modifiers V=D. A finished answer supplies the shared shading set H and the numeric face/value channels. Modifier cells, electron cells, hidden cages, constructed regions and letter assignments are bound by their owning rule formulas.\n\n## Typed vocabulary\n\nEach input and term declares its argument and result types. Ordered lists retain repeated positions; sets do not. Paths are connected ordered lists. The board alphabet contains whole-number face digits; effective values may be exact fractions. Formula variables have explicit types or a supplied collection. The player's entries E and the answer's digit answer(c) = D(c) belong to the play-state setup features described under Play state; rule pages never use E.\n\n```openrules\ninput C: set<cell>;\ninput 𝔄: list<digit>;\ninput rows: position;\ninput cols: position;\ninput ℤ: set<position>;\ninput Regions: set<set<cell>>;\ninput H: set<cell>;\ninput ValuedRuleMeanings: list<boolean>;\ntype PairRelation = record{op:enum{difference,\"at-least\",ratio,sum,less,multiple,shift},value:optional<number>};\ntype ClassSystem = enum{parity,mod3,entropy};\ntype Move = enum{knight,king,orthogonal,bishop};\nprimitive face(c:cell):digit;\nprimitive effective(c:cell):value;\nprimitive toValue(x:number):value;\nprimitive row(c:cell):position;\nprimitive col(c:cell):position;\nprimitive cellIndex(c:cell):position;\nprimitive boardCell(r:position,k:position):cell;\nprimitive present<T>(x:optional<T>):boolean;\nprimitive unwrap<T>(x:optional<T>):T requires (present(x));\nprimitive minimumDigit(S:collection<digit>):digit requires (|S|>0);\nprimitive maximumDigit(S:collection<digit>):digit requires (|S|>0);\nprimitive minimumValue(S:collection<value>):value requires (|S|>0);\nprimitive maximumValue(S:collection<value>):value requires (|S|>0);\nprimitive alphabetPosition(d:digit):position;\nprimitive letterCount(expressions:collection<expression>):position;\nprimitive defined(e:expression,letters:list<position>):boolean;\nprimitive eval(e:expression,letters:list<position>):position requires (defined(e,letters));\nterm D(c:cell):digit = face(c);\nterm V(c:cell):value = effective(c);\nterm rem(x:number,m:number):position requires (⌊x⌋=x ∧ ⌊m⌋=m ∧ m>0) = x mod m;\nterm odd(x:number):boolean requires (⌊x⌋=x) = rem(x,2)=1;\nterm high(x:number):boolean = x>5;\nterm prime(x:number):boolean = ⌊x⌋=x ∧ x>1 ∧ ¬(∃a,b ∈ ℤ: a>1 ∧ b>1 ∧ a*b=x);\nterm composite(x:number):boolean = ⌊x⌋=x ∧ x>1 ∧ (∃a,b ∈ ℤ: a>1 ∧ b>1 ∧ a*b=x);\nterm minimumPosition(a:position,b:position):position = if a<b then a else b;\nterm maximumPosition(a:position,b:position):position = if a>b then a else b;\nterm minimumPair(a:number,b:number):number = if a<b then a else b;\nterm maximumPair(a:number,b:number):number = if a>b then a else b;\nterm classParity(d:digit):position = rem(d,2);\nterm classMod3(d:digit):position = rem(d,3);\nterm classEntropy(d:digit):position requires (|𝔄|>0 ∧ |𝔄| mod 3=0) = ⌊(3*alphabetPosition(d))/|𝔄|⌋;\nterm classIds(K:ClassSystem):set<position> = if K=\"parity\" then [0,2) else [0,3);\nterm digitClass(K:ClassSystem,d:digit):position requires (K!=\"entropy\" ∨ (|𝔄|>0 ∧ |𝔄| mod 3=0)) = if K=\"parity\" then classParity(d) else if K=\"mod3\" then classMod3(d) else if |𝔄|>0 ∧ |𝔄| mod 3=0 then classEntropy(d) else 0;\nterm in(c:cell,R:set<cell>):boolean = c∈R;\nterm sameRegion(a:cell,b:cell):boolean = ∃R ∈ Regions: a∈R ∧ b∈R;\nterm orth(a:cell,b:cell):boolean = |row(a)-row(b)|+|col(a)-col(b)|=1;\nterm touch(a:cell,b:cell):boolean = |row(a)-row(b)|=1 ∧ |col(a)-col(b)|=1;\nterm king(a:cell,b:cell):boolean = orth(a,b) ∨ touch(a,b);\nterm knight(a:cell,b:cell):boolean = (|row(a)-row(b)|=1 ∧ |col(a)-col(b)|=2) ∨ (|row(a)-row(b)|=2 ∧ |col(a)-col(b)|=1);\nterm bishop(a:cell,b:cell):boolean = a!=b ∧ |row(a)-row(b)|=|col(a)-col(b)|;\nterm moveRelation(m:Move,a:cell,b:cell):boolean = (m=\"knight\" ∧ knight(a,b)) ∨ (m=\"king\" ∧ king(a,b)) ∨ (m=\"orthogonal\" ∧ orth(a,b)) ∨ (m=\"bishop\" ∧ bishop(a,b));\nterm aboveCell(a:cell,b:cell):boolean = col(a)=col(b) ∧ row(a)+1=row(b);\nterm turn(c:cell):cell = boardCell(rows-1-row(c),cols-1-col(c));\nterm diagonal(direction:enum{main,anti}):set<cell> = {c∈C: if direction=\"main\" then row(c)=col(c) else row(c)+col(c)=cols-1};\nterm window2(r:position,k:position):set<cell> = {boardCell(r,k),boardCell(r,k+1),boardCell(r+1,k),boardCell(r+1,k+1)};\nterm pos(L:list<cell>,i:position):boolean = 0<=i ∧ i<|L|;\nterm at(L:list<cell>,i:position):cell requires (pos(L,i)) = L[i];\nterm mirror(L:list<cell>,i:position):position requires (pos(L,i)) = |L|-1-i;\nterm next(L:list<cell>,i:position,j:position,closed:boolean):boolean = pos(L,i) ∧ pos(L,j) ∧ (j=i+1 ∨ (closed ∧ |L|>2 ∧ i=|L|-1 ∧ j=0));\nterm consecutive(L:list<cell>,i:position,j:position,closed:boolean):boolean = pos(L,i) ∧ pos(L,j) ∧ (|i-j|=1 ∨ (closed ∧ |L|>2 ∧ {i,j}={0,|L|-1}));\nterm start(L:list<cell>,k:position,s:position,closed:boolean):boolean = (¬closed ∧ 0<=s ∧ s<=|L|-k) ∨ (closed ∧ |L|>=k ∧ 0<=s ∧ s<|L|);\nterm window(L:list<cell>,k:position,s:position,closed:boolean):list<cell> requires (k>=0 ∧ start(L,k,s,closed) ∧ (closed → |L|>0)) = ⟨if closed then L[rem(s+t,|L|)] else L[s+t] : t∈[0,k)⟩;\nterm first(L:list<cell>,k:position):list<cell> requires (0<=k ∧ k<=|L|) = ⟨L[t] : t∈[0,k)⟩;\nterm betweenPositions(L:list<cell>,i:position,j:position):list<cell> requires (pos(L,i) ∧ pos(L,j)) = ⟨L[t] : t∈[0,|L|), minimumPosition(i,j)<t ∧ t<maximumPosition(i,j)⟩;\nterm firstOccurrence(L:list<cell>,d:digit,i:position):boolean = pos(L,i) ∧ D(L[i])=d ∧ ∀j∈[0,i): D(L[j])!=d;\nterm distinct_f<T>(S:set<T>,f:fn(T)->number):boolean = ∀a,b∈S: a!=b → f(a)!=f(b);\nterm distinctAt<T>(L:list<T>,f:fn(T)->number):boolean = ∀i,j∈[0,|L|): i!=j → f(L[i])!=f(L[j]);\nterm distinct_D(S:set<cell>):boolean = distinct_f(S,λc:cell: D(c));\nterm distinct_V(S:set<cell>):boolean = distinct_f(S,λc:cell: V(c));\nterm valueSum(S:collection<cell>):number = Σ_{c∈S} V(c);\nterm sum_D(S:collection<cell>):position = Σ_{c∈S} D(c);\nterm product_D(S:collection<cell>):position = Π_{c∈S} D(c);\nterm countWhere<T>(S:collection<T>,P:fn(T)->boolean):position = count x∈S: P(x);\nterm faceDigits(S:collection<cell>):set<digit> = {d∈𝔄: ∃c∈S: D(c)=d};\nterm multiplicity(L:list<digit>,d:digit):position = countWhere(L,λx:digit: x=d);\nterm min_D(S:collection<cell>):digit requires (|S|>0) = minimumDigit({D(c):c∈S});\nterm max_D(S:collection<cell>):digit requires (|S|>0) = maximumDigit({D(c):c∈S});\nterm min_V(S:collection<cell>):value requires (|S|>0) = minimumValue({V(c):c∈S});\nterm max_V(S:collection<cell>):value requires (|S|>0) = maximumValue({V(c):c∈S});\nterm pairRelation(r:PairRelation,a:number,b:number):boolean = (r.op=\"difference\" ∧ present(r.value) ∧ |a-b|=unwrap(r.value)) ∨ (r.op=\"at-least\" ∧ present(r.value) ∧ |a-b|>=unwrap(r.value)) ∨ (r.op=\"ratio\" ∧ present(r.value) ∧ (a*unwrap(r.value)=b ∨ b*unwrap(r.value)=a)) ∨ (r.op=\"sum\" ∧ present(r.value) ∧ a+b=unwrap(r.value)) ∨ (r.op=\"less\" ∧ a<b) ∨ (r.op=\"multiple\" ∧ ((a=0 ∧ b=0) ∨ (minimumPair(a,b)!=0 ∧ ∃q∈ℤ: maximumPair(a,b)=q*minimumPair(a,b)))) ∨ (r.op=\"shift\" ∧ a!=5 ∧ b!=5 ∧ ⌊a⌋=a ∧ ⌊b⌋=b ∧ ¬((odd(a)↔odd(b))↔(high(a)↔high(b))));\nterm connected(S:set<cell>):boolean = |S|>0 ∧ ∀a,b∈S: ∃route:list<cell>: 0<|route| ∧ |route|<=|C| ∧ route[0]=a ∧ route[|route|-1]=b ∧ (∀c∈route:c∈S) ∧ (∀t∈[0,|route|-1):orth(route[t],route[t+1]));\nterm partition(P:set<set<cell>>,board:set<cell>):boolean = (∀R∈P: |R|>0 ∧ R⊆board) ∧ ∀c∈board: ∃R∈P: c∈R ∧ ∀T∈P: (c∈T ↔ T=R);\nterm samePartition(P:set<set<cell>>,a:cell,b:cell):boolean = ∃R∈P: a∈R ∧ b∈R;\nterm shaded(c:cell):boolean = c∈H;\nterm uniform(S:set<cell>):boolean = |S|>0 ∧ ((∀c∈S:shaded(c)) ∨ (∀c∈S:¬shaded(c)));\nterm excludes(S:set<cell>,Q:list<digit>):boolean = ∀d∈Q: ∀c∈S: D(c)!=d;\nterm allCells(groups:list<set<cell>>):set<cell> = {c∈C: ∃G∈groups: c∈G};\nterm magicLines(P:list<cell>):set<set<cell>> requires (|P|=9) = {{P[0],P[1],P[2]},{P[3],P[4],P[5]},{P[6],P[7],P[8]},{P[0],P[3],P[6]},{P[1],P[4],P[7]},{P[2],P[5],P[8]},{P[0],P[4],P[8]},{P[2],P[4],P[6]}};\nterm rowHouse(r:position):set<cell> = {c∈C:row(c)=r};\nterm columnHouse(k:position):set<cell> = {c∈C:col(c)=k};\nterm boxHouse(r:position,k:position):set<cell> = {c∈C:⌊row(c)/3⌋=r ∧ ⌊col(c)/3⌋=k};\nterm standardHouses():set<set<cell>> = {rowHouse(r):r∈[0,9)} ∪ {columnHouse(k):k∈[0,9)} ∪ {boxHouse(⌊i/3⌋,rem(i,3)):i∈[0,9)};\nterm mainRay(c:cell):list<cell> = ⟨boardCell(row(c)+t,col(c)+t):t∈[0,minimumPosition(rows-row(c),cols-col(c)))⟩;\nterm antiRay(c:cell):list<cell> = ⟨boardCell(row(c)+t,col(c)-t):t∈[0,minimumPosition(rows-row(c),col(c)+1))⟩;\nterm boardDiagonals():set<list<cell>> = {mainRay(c):c∈{d∈C:row(d)=0 ∨ col(d)=0}} ∪ {antiRay(c):c∈{d∈C:row(d)=0 ∨ col(d)=cols-1}};\nterm countRun(L:list<cell>):position = Σ_{i∈{t∈[0,|L|): ∃j∈[0,|L|): |t-j|=1 ∧ |D(L[t])-D(L[j])|=1}} D(L[i]);\n# Givens: the digit a case gives a cell, if any.\nprimitive givenDigit(c:cell):optional<digit>;\nterm given(c:cell):boolean = present(givenDigit(c));\nterm givenValue(c:cell):digit requires (given(c)) = unwrap(givenDigit(c));\n# Play state. Declarations marked play are the player's side; rule pages cannot name them.\nterm answer(c:cell):digit = D(c);\nplay input answered: boolean;\nplay primitive known(c:cell):boolean;\nplay primitive entry(c:cell):optional<digit>;\nplay primitive visible(c:cell):boolean;\nplay term placed(c:cell):boolean = present(entry(c));\nplay term entered(c:cell):digit requires (placed(c)) = unwrap(entry(c));\nplay term correct(c:cell):boolean = placed(c) ∧ (given(c) → entered(c)=givenValue(c)) ∧ (answered → known(c) ∧ entered(c)=answer(c));\n```\n\n## Inputs and primitive operations\n\nC contains every board cell. rows and cols give its dimensions; row, col and cellIndex are zero-based. boardCell(r,k) denotes that coordinate; the surrounding formula must keep it inside the board. Regions is the board's primary partition. The ordered alphabet 𝔄 contains the whole-number face digits; alphabetPosition(d) is d's zero-based position in it. ℤ denotes all whole numbers, including negative numbers. `position` means an integer used as a position, not an assertion that it is on the board.\n\nface reads the face digit; effective reads the effective value. toValue preserves a number exactly while identifying it as an effective value. The value-modifier formula existentially binds M, checks its placement and constrains every effective value using its factor and offset parameters. M is not a prelude input. Without a value modifier V=D. H is the shared shading answer. ValuedRuleMeanings contains the instantiated Boolean meanings of every rule reading the same V channel.\n\npresent reports whether an optional field was supplied; unwrap reads it only after present has been proved. minimumDigit/maximumDigit and minimumValue/maximumValue return the least/greatest item of a nonempty collection. Their arguments have to be nonempty; they do not supply invented defaults.\n\nAn `expression` is an authored arithmetic tree containing whole numbers, letters, addition, subtraction, multiplication, division or powers. Take the distinct letters across the supplied expressions in lexicographic order; letterCount counts them, and the list passed to defined and eval gives their integer answers in that order. defined is true precisely when every letter has an answer and every subexpression is defined. eval returns the exact integer result: division requires a nonzero divisor and an integer quotient; a power requires a nonnegative integer exponent. Undefined subexpressions never return a guessed value. These operations read the arithmetic tree, rather than defining a new Sudoku rule.\n\nA `collection<T>` accepts a set, list or path of T. Aggregates over lists retain repeated positions; mapped sets remove duplicate results. Ordered comprehensions traverse intervals in increasing order or traverse a supplied list in its given order; a trailing condition filters that order. Sets have no implied order. Empty sums are zero and empty products are one. distinct_f, distinct_D and distinct_V compare members of a cell set. distinctAt compares different positions of a list or path, even when those positions name the same cell.\n\nThe connected formula chooses a route of at most |C| cells; revisiting cells is unnecessary for reachability on a finite board. partition covers every board cell exactly once. boardDiagonals constructs maximal straight bishop rays from top/side boundaries. magicLines lists all eight rows, columns and diagonals of a nine-cell square in reading order.\n\nShift relations compare integer values; their parity is the normalised remainder modulo 2.\n\n## Play state\n\nSome setup features describe what a player sees, not which grids solve the puzzle. They are stated over the player's entries beside the answer.\n\nE is a partial function from cells to symbols: E(c), written entered(c) in formulas, is the symbol the player typed in c, or undefined when the cell is empty. A given is not an entry; a symbol typed over a given is. Pencil marks and colours are not entries. placed(c) holds when E(c) is defined. given(c) holds when the case gives c a digit g(c), written givenValue(c) in formulas. correct(c) holds when c is placed, holds g(c) if it is a given, and, when answered, holds the answer's digit.\n\nanswered is true when the host holds a reference answer, and known(c) when that answer covers cell c. With an answer, a symbol counts only if it is the answer's, and no symbol counts in a cell whose answer is unknown. Without an answer, every symbol counts.\n\nvisible(c) says that c is shown to the player. A setup feature that decides what is shown defines visible(c) in full, as a function of E. A case has at most one such feature; without one, every cell is visible.\n\nDeclarations marked play form the play domain. Rule pages and shared terms outside it cannot use them; setup feature pages can use both domains.\n"
+  },
+  "pages": [
+    {
+      "kind": "absent-digits",
+      "canonical": "absent-digits",
+      "source": {
+        "file": "rules/absent-digits.md",
+        "text": "---\nname: Absent digits\nurl: https://rules.sudoku-sleuth.com/absent-digits.md\nkind: absent-digits\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2.\n    default: Required.\n    type: set<cell>\n  digits:\n    description: The digits that must be absent, for example [2,4].\n    default: Required.\n    type: list<digit>\n---\n\nClass: **first-order**\n```text\nexcludes(cells,digits)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Absent digits example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard:\n  rows: 1\n  cols: 2\n  symbols:\n    - 1\n    - 2\n    - 3\n    - 4\n---\n\n```rules\nabsent-digits r1c1-r1c2 digits [2,4]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "digits": [
+          2,
+          4
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3
+          }
+        }
+      ],
+      "board": {
+        "rows": 1,
+        "cols": 2,
+        "symbols": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "kind": "allowed-digits",
+      "canonical": "allowed-digits",
+      "source": {
+        "file": "rules/allowed-digits.md",
+        "text": "---\nname: Allowed Digits\nurl: https://rules.sudoku-sleuth.com/allowed-digits.md\nkind: allowed-digits\nparameters:\n  line:\n    description: The marked cells, listed with hyphens; their order does not affect this rule.\n    default: Required.\n    type: path<cell>\n  digits:\n    description: The permitted digits. Listing a digit does not require it to appear.\n    default: Required.\n    type: list<digit>\n---\n\nClass: **first-order**\n```text\n∀c∈line: D(c)∈digits\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Allowed Digits example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nallowed-digits r1c1-r1c2 digits [2,3,5,7]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "digits": [
+          2,
+          3,
+          5,
+          7
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "anti-king",
+      "canonical": "anti-king",
+      "source": {
+        "file": "rules/anti-king.md",
+        "text": "---\nname: Anti King\nurl: https://rules.sudoku-sleuth.com/anti-king.md\nkind: anti-king\nparameters: {}\n---\n\nClass: **first-order**\n```text\n∀a,b ∈ C: king(a,b) → D(a)≠D(b)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Anti King example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nanti-king\n```\n",
+      "parameters": {},
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r2c2": 5
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r2c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "anti-knight",
+      "canonical": "anti-knight",
+      "source": {
+        "file": "rules/anti-knight.md",
+        "text": "---\nname: Anti Knight\nurl: https://rules.sudoku-sleuth.com/anti-knight.md\nkind: anti-knight\nparameters: {}\n---\n\nClass: **first-order**\n```text\n∀a,b ∈ C: knight(a,b) → D(a)≠D(b)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Anti Knight example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nanti-knight\n```\n",
+      "parameters": {},
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r2c3": 6
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r2c3": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "arrow",
+      "canonical": "arrow",
+      "source": {
+        "file": "rules/arrow.md",
+        "text": "---\nname: Arrow\nurl: https://rules.sudoku-sleuth.com/arrow.md\nkind: arrow\nparameters:\n  partial:\n    type: boolean\n    description: Whether the declaration supplies only a shaft fragment, for example under fog.\n    default: false (complete arrow).\n  bulb:\n    description: The bulb cells in decimal reading order, normally left to right or top to bottom.\n    default: Required.\n    type: list<cell>\n  line:\n    description: The shaft cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **existential**\n```text\n|bulb|>0 ∧ let B = Σ_{i∈[0,|bulb|)} D(bulb[i])*10^(|bulb|-1-i);\n  (partial → ∃remainder:list<digit>: |remainder|>0 ∧ (∀d∈remainder: d∈𝔄) ∧ sum_D(line)+Σ_{d∈remainder} d=B)\n  ∧ (¬partial → (|bulb|=1 → valueSum(line)=V(bulb[0]))\n    ∧ (|bulb|!=1 → sum_D(line)=B))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Arrow example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\narrow r1c2-r1c3 bulb [\"r1c1\"]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c2",
+          "r1c3"
+        ],
+        "bulb": [
+          "r1c1"
+        ],
+        "partial": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 2,
+            "r1c3": 3,
+            "r1c1": 5
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 2,
+            "r1c3": 4,
+            "r1c1": 5
+          }
+        }
+      ]
+    },
+    {
+      "kind": "between",
+      "canonical": "between",
+      "source": {
+        "file": "rules/between.md",
+        "text": "---\nname: Between\nurl: https://rules.sudoku-sleuth.com/between.md\nkind: between\nparameters:\n  ends:\n    description: The two end cells, in their stated order.\n    default: Required.\n    type: list<cell>\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n|ends|=2 ∧ ∀c∈line: minimumPair(D(ends[0]),D(ends[1]))<D(c)<maximumPair(D(ends[0]),D(ends[1]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Between example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nbetween r1c2 ends [\"r1c1\",\"r1c3\"]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c2"
+        ],
+        "ends": [
+          "r1c1",
+          "r1c3"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 2,
+            "r1c1": 1,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 4,
+            "r1c1": 1,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "bremban",
+      "canonical": "bremban",
+      "source": {
+        "file": "rules/bremban.md",
+        "text": "---\nname: Bremban\nurl: https://rules.sudoku-sleuth.com/bremban.md\nkind: bremban\nparameters:\n  line:\n    description: The marked cells; order does not affect the consecutive set.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **with aggregates**\n```text\n|line|>0 ∧ max_D(line)-min_D(line)+1=|faceDigits(line)|\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Bremban example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nbremban r1c3-r1c4-r2c4\n```\n",
+      "parameters": {
+        "line": [
+          "r1c3",
+          "r1c4",
+          "r2c4"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c3": 1,
+            "r1c4": 2,
+            "r2c4": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c3": 1,
+            "r1c4": 3,
+            "r2c4": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "cage-expressions",
+      "canonical": "cage-expressions",
+      "source": {
+        "file": "rules/cage-expressions.md",
+        "text": "---\nname: Cage Expressions\nurl: https://rules.sudoku-sleuth.com/cage-expressions.md\nkind: cage-expressions\nparameters:\n  cages:\n    description: The cells in each cage and its expression or relation, as stated in the definition.\n    default: Required.\n    type: list<record{cells:set<cell>,expression:expression}>\n  distinct:\n    description: Whether different letters must have different values.\n    default: Required.\n    type: boolean\n---\n\nClass: **existential**\n```text\n∃letterValues:list<position>:\n  |letterValues|=letterCount({g.expression:g∈cages}) ∧\n  (∀g∈cages: defined(g.expression,letterValues) ∧ eval(g.expression,letterValues)=sum_D(g.cells))\n  ∧ (distinct → ∀i,j∈[0,|letterValues|): i!=j → letterValues[i]!=letterValues[j])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Cage Expressions example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncage-expressions cages [{\"cells\":[\"r1c1\"],\"expression\":{\"op\":\"letter\",\"name\":\"A\"}},{\"cells\":[\"r1c2\"],\"expression\":{\"op\":\"letter\",\"name\":\"A\"}}] distinct false\n```\n",
+      "parameters": {
+        "cages": [
+          {
+            "cells": [
+              "r1c1"
+            ],
+            "expression": {
+              "op": "letter",
+              "name": "A"
+            }
+          },
+          {
+            "cells": [
+              "r1c2"
+            ],
+            "expression": {
+              "op": "letter",
+              "name": "A"
+            }
+          }
+        ],
+        "distinct": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 1,
+            "r1c1": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 2,
+            "r1c1": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "cage-pair",
+      "canonical": "cage-pair",
+      "source": {
+        "file": "rules/cage-pair.md",
+        "text": "---\nname: Cage Pair\nurl: https://rules.sudoku-sleuth.com/cage-pair.md\nkind: cage-pair\nparameters:\n  relation:\n    description: 'The relationship to enforce: its operation and any required value, for example {\"op\":\"difference\",\"value\":1}.'\n    default: Required.\n    type: PairRelation\n  cages:\n    description: The cells in each cage and its expression or relation, as stated in the definition.\n    default: Required.\n    type: list<set<cell>>\n---\n\nClass: **with aggregates**\n```text\n|cages|=2 ∧ pairRelation(relation,sum_D(cages[0]),sum_D(cages[1]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Cage Pair example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncage-pair cages [[\"r1c1\"],[\"r1c2\"]] relation {\"op\":\"difference\",\"value\":1}\n```\n",
+      "parameters": {
+        "cages": [
+          [
+            "r1c1"
+          ],
+          [
+            "r1c2"
+          ]
+        ],
+        "relation": {
+          "op": "difference",
+          "value": 1
+        }
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 2,
+            "r1c1": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 3,
+            "r1c1": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "cage-shapes",
+      "canonical": "cage-shapes",
+      "source": {
+        "file": "rules/cage-shapes.md",
+        "text": "---\nname: Cage Shapes\nurl: https://rules.sudoku-sleuth.com/cage-shapes.md\nkind: cage-shapes\nparameters:\n  size:\n    description: The number of cells in each constructed region or cage.\n    default: Required.\n    type: position\n  hidden:\n    description: \"Each hidden cage: its clue cell, total and known member cells.\"\n    default: Required.\n    type: list<record{clue:cell,sum:number,known:set<cell>}>\n  free:\n    description: Cells excluded from all hidden cages.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **existential**\n```text\n∃chosen:list<set<cell>>:\n  |chosen|=|hidden|\n  ∧ (∀i∈[0,|hidden|): let h=hidden[i]; let cageSet=chosen[i];\n    |cageSet|=size ∧ cageSet⊆C ∧ connected(cageSet) ∧ h.known⊆cageSet\n    ∧ cageSet∩free=∅ ∧ h.clue∈cageSet ∧ (∀c∈cageSet: cellIndex(h.clue)<=cellIndex(c))\n    ∧ distinct_D(cageSet) ∧ sum_D(cageSet)=h.sum)\n  ∧ (∀i,j∈[0,|hidden|): i!=j → chosen[i]∩chosen[j]=∅)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Cage Shapes example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard:\n  rows: 1\n  cols: 2\n  symbols:\n    - 1\n    - 2\n    - 3\n---\n\n```rules\ncage-shapes size 2 hidden [{\"clue\":\"r1c1\",\"sum\":3,\"known\":[\"r1c1\",\"r1c2\"]}] free []\n```\n",
+      "parameters": {
+        "size": 2,
+        "hidden": [
+          {
+            "clue": "r1c1",
+            "sum": 3,
+            "known": [
+              "r1c1",
+              "r1c2"
+            ]
+          }
+        ],
+        "free": []
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        }
+      ],
+      "board": {
+        "rows": 1,
+        "cols": 2,
+        "symbols": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "cage",
+      "canonical": "cage",
+      "source": {
+        "file": "rules/cage.md",
+        "text": "---\nname: Killer cage\nurl: https://rules.sudoku-sleuth.com/cage.md\nkind: cage\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  total:\n    description: The total the digits or values must add up to.\n    default: No total imposed.\n    type: optional<number>\n  repeats:\n    description: Whether repeated digits are allowed.\n    default: false (distinct digits).\n    type: boolean\n---\n\nClass: **with aggregates**\n```text\n(¬repeats → distinct_D(cells)) ∧ (present(total) → valueSum(cells)=unwrap(total))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Killer cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncage r1c1-r1c2 total 3\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "total": 3,
+        "repeats": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "clone",
+      "canonical": "clone",
+      "source": {
+        "file": "rules/clone.md",
+        "text": "---\nname: Clone\nurl: https://rules.sudoku-sleuth.com/clone.md\nkind: clone\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **first-order**\n```text\n∀a,b ∈ cells: D(a)=D(b)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Clone example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nclone r1c1-r1c2\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "close-whispers",
+      "canonical": "close-whispers",
+      "source": {
+        "file": "rules/close-whispers.md",
+        "text": "---\nname: Close Whispers\nurl: https://rules.sudoku-sleuth.com/close-whispers.md\nkind: close-whispers\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  gap:\n    description: The greatest difference allowed between neighbours.\n    default: Required.\n    type: number\n---\n\nClass: **first-order**\n```text\n∀i ∈ [0,|line|−1): |D(line[i])−D(line[i+1])| ≤ gap\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Close Whispers example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nclose-whispers r1c1-r1c2 gap 2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "gap": 2
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "constructed-regions",
+      "canonical": "constructed-regions",
+      "source": {
+        "file": "rules/constructed-regions.md",
+        "text": "---\nname: Constructed Regions\nurl: https://rules.sudoku-sleuth.com/constructed-regions.md\nkind: constructed-regions\nparameters:\n  size:\n    description: The number of cells in each constructed region or cage.\n    default: Required.\n    type: position\n  borders:\n    description: Pairs of neighbouring cells that must belong to different regions.\n    default: Required.\n    type: list<list<cell>>\n  joins:\n    description: Pairs of cells that must belong to the same region.\n    default: Required.\n    type: list<list<cell>>\n---\n\nClass: **existential**\n```text\n∃P:set<set<cell>>: partition(P,C)\n  ∧ (∀R∈P: |R|=size ∧ connected(R) ∧ distinct_D(R))\n  ∧ (∀p∈joins: |p|=2 ∧ samePartition(P,p[0],p[1]))\n  ∧ (∀p∈borders: |p|=2 ∧ ¬samePartition(P,p[0],p[1]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Constructed Regions example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard:\n  rows: 1\n  cols: 3\n  symbols:\n    - 1\n    - 2\n    - 3\n---\n\n```rules\nconstructed-regions size 3 borders [] joins []\n```\n",
+      "parameters": {
+        "size": 3,
+        "borders": [],
+        "joins": []
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1,
+            "r1c3": 3
+          }
+        }
+      ],
+      "board": {
+        "rows": 1,
+        "cols": 3,
+        "symbols": [
+          1,
+          2,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "coordinate-arrows",
+      "canonical": "coordinate-arrows",
+      "source": {
+        "file": "rules/coordinate-arrows.md",
+        "text": "---\nname: Coordinate Arrows\nurl: https://rules.sudoku-sleuth.com/coordinate-arrows.md\nkind: coordinate-arrows\nparameters:\n  arrows:\n    description: The base and tip cells of each arrow, one ordered pair per arrow.\n    default: Required.\n    type: list<list<cell>>\n---\n\nClass: **first-order**\n```text\n(∀p∈arrows: |p|=2 ∧ let a=D(p[0]); let b=D(p[1]);\n  1<=a<=rows ∧ 1<=b<=cols ∧ D(boardCell(a-1,b-1))=a+b)\n∧ (∀i,j∈[0,|arrows|): i!=j → |arrows[i]|=2 ∧ |arrows[j]|=2\n  ∧ (D(arrows[i][0])!=D(arrows[j][0]) ∨ D(arrows[i][1])!=D(arrows[j][1])))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Coordinate Arrows example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncoordinate-arrows arrows [[\"r1c4\",\"r1c5\"]]\n```\n",
+      "parameters": {
+        "arrows": [
+          [
+            "r1c4",
+            "r1c5"
+          ]
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 3,
+            "r1c4": 1,
+            "r1c5": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 4,
+            "r1c4": 1,
+            "r1c5": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "counting-circles",
+      "canonical": "counting-circles",
+      "source": {
+        "file": "rules/counting-circles.md",
+        "text": "---\nname: Counting Circles\nurl: https://rules.sudoku-sleuth.com/counting-circles.md\nkind: counting-circles\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **with aggregates**\n```text\n∀d∈faceDigits(cells): countWhere(cells,λc:cell: D(c)=d)=d\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Counting Circles example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncounting-circles r1c1-r1c2-r1c3\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "decoration",
+      "canonical": "decoration",
+      "source": {
+        "file": "rules/decoration.md",
+        "text": "---\nname: Decoration\nurl: https://rules.sudoku-sleuth.com/decoration.md\nkind: decoration\nshape: cells\nparameters:\n  cells:\n    type: set<cell>\n    description: The cells covered by the decorative marks, including every cell of a marked region.\n    default: Required.\n  note:\n    type: string\n    description: A description of which marks to ignore.\n    default: Omitted.\n---\n\nClass: **first-order**\n```text\ntrue\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Decoration\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ndecoration r1c1-r1c2-r2c2 note \"The grey ribbon is decorative.\" element \"grey-ribbon\"\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r2c2"
+        ],
+        "note": "The grey ribbon is decorative.",
+        "element": "grey-ribbon"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c2": 3
+          }
+        },
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 9,
+            "r1c2": 1,
+            "r2c2": 7
+          }
+        }
+      ]
+    },
+    {
+      "kind": "diagonal-lines",
+      "canonical": "diagonal-lines",
+      "source": {
+        "file": "rules/diagonal-lines.md",
+        "text": "---\nname: Diagonal Lines\nurl: https://rules.sudoku-sleuth.com/diagonal-lines.md\nkind: diagonal-lines\nparameters:\n  classes:\n    description: \"The digit classes to use: parity, remainder or alphabet thirds.\"\n    default: Required.\n    type: ClassSystem\n  minLength:\n    description: The shortest diagonal covered by the rule.\n    default: Required.\n    type: number\n---\n\nClass: **with aggregates**\n```text\n(classes!=\"entropy\" ∨ (|𝔄|>0 ∧ |𝔄| mod 3=0))\n∧ ∀L∈boardDiagonals(): |L|>=maximumPair(3,minLength) →\n  ((∃k∈classIds(classes): ∀c∈L: digitClass(classes,D(c))=k)\n   ∨ (∀s∈[0,|L|-|classIds(classes)|+1):\n     distinctAt(window(L,|classIds(classes)|,s,false),λc:cell: digitClass(classes,D(c)))))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Diagonal Lines example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard:\n  rows: 3\n  cols: 3\n  symbols:\n    - 1\n    - 2\n    - 3\n    - 4\n    - 5\n    - 6\n    - 7\n    - 8\n    - 9\n---\n\n```rules\ndiagonal-lines classes \"parity\" minLength 3\n```\n",
+      "parameters": {
+        "classes": "parity",
+        "minLength": 3
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r2c2": 3,
+            "r3c3": 5
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r2c2": 3,
+            "r3c3": 5
+          }
+        }
+      ],
+      "board": {
+        "rows": 3,
+        "cols": 3,
+        "symbols": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "diagonal",
+      "canonical": "diagonal",
+      "source": {
+        "file": "rules/diagonal.md",
+        "text": "---\nname: Diagonal\nurl: https://rules.sudoku-sleuth.com/diagonal.md\nkind: diagonal\nparameters:\n  direction:\n    description: The chosen diagonal or neighbour orientation, as named in the definition.\n    default: Required.\n    type: enum{main,anti}\n---\n\nClass: **first-order**\n```text\ndistinct_D(diagonal(direction))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Diagonal example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ndiagonal direction \"main\"\n```\n",
+      "parameters": {
+        "direction": "main"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r2c2": 2,
+            "r3c3": 3,
+            "r4c4": 4,
+            "r5c5": 5,
+            "r6c6": 6,
+            "r7c7": 7,
+            "r8c8": 8,
+            "r9c9": 9
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r2c2": 1,
+            "r3c3": 3,
+            "r4c4": 4,
+            "r5c5": 5,
+            "r6c6": 6,
+            "r7c7": 7,
+            "r8c8": 8,
+            "r9c9": 9
+          }
+        }
+      ]
+    },
+    {
+      "kind": "doll-sum",
+      "canonical": "doll-sum",
+      "source": {
+        "file": "rules/doll-sum.md",
+        "text": "---\nname: Doll Sum\nurl: https://rules.sudoku-sleuth.com/doll-sum.md\nkind: doll-sum\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  sums:\n    description: The permitted or required totals.\n    default: Required.\n    type: list<number>\n---\n\nClass: **with aggregates**\n```text\n∀s∈sums: ∃i,j∈[0,|cells|): i<j ∧ D(cells[i])+D(cells[j])=s\n  ∧ sum_D(betweenPositions(cells,i,j))=s\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Doll Sum example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ndoll-sum r1c1-r1c2-r1c3 sums [5]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "sums": [
+          5
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 5,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "double-arrow",
+      "canonical": "double-arrow",
+      "source": {
+        "file": "rules/double-arrow.md",
+        "text": "---\nname: Double Arrow\nurl: https://rules.sudoku-sleuth.com/double-arrow.md\nkind: double-arrow\nparameters:\n  ends:\n    description: The two end cells, in their stated order.\n    default: Required.\n    type: list<cell>\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **with aggregates**\n```text\n|ends|=2 ∧ sum_D(line)=D(ends[0])+D(ends[1])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Double Arrow example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ndouble-arrow r1c2 ends [\"r1c1\",\"r1c3\"]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c2"
+        ],
+        "ends": [
+          "r1c1",
+          "r1c3"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 5,
+            "r1c1": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 6,
+            "r1c1": 2,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "entropic",
+      "canonical": "entropic",
+      "source": {
+        "file": "rules/entropic.md",
+        "text": "---\nname: Entropic\nurl: https://rules.sudoku-sleuth.com/entropic.md\nkind: entropic\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  loop:\n    description: Whether the path closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n---\n\nClass: **with aggregates**\n```text\n|𝔄|>0 ∧ |𝔄| mod 3=0\n∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classEntropy(D(c))))\n∧ (¬loop ∧ |line|=2 → classEntropy(D(line[0]))!=classEntropy(D(line[1])))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Entropic example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nentropic r1c1-r1c2-r1c3\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 4,
+            "r1c3": 7
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 4,
+            "r1c3": 6
+          }
+        }
+      ]
+    },
+    {
+      "kind": "equal-sums",
+      "canonical": "equal-sums",
+      "source": {
+        "file": "rules/equal-sums.md",
+        "text": "---\nname: Equal Sums\nurl: https://rules.sudoku-sleuth.com/equal-sums.md\nkind: equal-sums\nparameters:\n  groups:\n    description: The cells in each group, one list per group.\n    default: Required.\n    type: list<set<cell>>\n---\n\nClass: **with aggregates**\n```text\n∀A,B ∈ groups: sum_D(A)=sum_D(B)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Equal Sums example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nequal-sums groups [[\"r1c1\",\"r1c2\"],[\"r1c3\"]]\n```\n",
+      "parameters": {
+        "groups": [
+          [
+            "r1c1",
+            "r1c2"
+          ],
+          [
+            "r1c3"
+          ]
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c3": 3,
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c3": 4,
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "equality-cage",
+      "canonical": "equality-cage",
+      "source": {
+        "file": "rules/equality-cage.md",
+        "text": "---\nname: Equality Cage\nurl: https://rules.sudoku-sleuth.com/equality-cage.md\nkind: equality-cage\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **with aggregates**\n```text\ndistinct_D(cells) ∧ (∀c∈cells: D(c)!=(|𝔄|+1)/2)\n∧ countWhere(cells,λc:cell: D(c)<(|𝔄|+1)/2 ∧ odd(D(c)))=countWhere(cells,λc:cell: D(c)>(|𝔄|+1)/2 ∧ ¬odd(D(c)))\n∧ countWhere(cells,λc:cell: D(c)<(|𝔄|+1)/2 ∧ ¬odd(D(c)))=countWhere(cells,λc:cell: D(c)>(|𝔄|+1)/2 ∧ odd(D(c)))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Equality Cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nequality-cage r1c1-r1c2\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 6
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 7
+          }
+        }
+      ]
+    },
+    {
+      "kind": "extremum",
+      "canonical": "extremum",
+      "source": {
+        "file": "rules/extremum.md",
+        "text": "---\nname: Extremum\nurl: https://rules.sudoku-sleuth.com/extremum.md\nkind: extremum\nparameters:\n  type:\n    description: The mode named in the definition, such as min or max.\n    default: Required.\n    type: enum{min,max}\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  exhaustive:\n    description: Whether every occurrence is marked, so unmarked cells obey the opposite condition.\n    default: Required.\n    type: boolean\n---\n\nClass: **first-order**\n```text\n(∀a∈cells: ∀b∈C: orth(a,b) ∧ b∉cells → ((type=\"min\" ∧ D(a)<D(b)) ∨ (type=\"max\" ∧ D(a)>D(b))))\n∧ (exhaustive → ∀a∈C: a∉cells → ∃b∈C: orth(a,b) ∧ ((type=\"min\" ∧ D(b)<D(a)) ∨ (type=\"max\" ∧ D(b)>D(a))))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Extremum example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nextremum r1c1 type \"min\" exhaustive false\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1"
+        ],
+        "type": "min",
+        "exhaustive": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c1": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1,
+            "r2c1": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "flat-mates",
+      "canonical": "flat-mates",
+      "source": {
+        "file": "rules/flat-mates.md",
+        "text": "---\nname: Flat Mates\nurl: https://rules.sudoku-sleuth.com/flat-mates.md\nkind: flat-mates\nparameters:\n  digit:\n    description: The specified digit.\n    default: Required.\n    type: digit\n  above:\n    description: The digit immediately above the marked digit.\n    default: Required.\n    type: digit\n  below:\n    description: The digit immediately below the marked digit.\n    default: Required.\n    type: digit\n---\n\nClass: **first-order**\n```text\n∀c ∈ C: D(c)=digit → ∃a ∈ C: (aboveCell(a,c) ∧ D(a)=above) ∨ (aboveCell(c,a) ∧ D(a)=below)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Flat Mates example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nflat-mates digit 5 above 1 below 9\n```\n",
+      "parameters": {
+        "digit": 5,
+        "above": 1,
+        "below": 9
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r2c1": 5,
+            "r3c1": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 5,
+            "r2c1": 1,
+            "r3c1": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "greek-carpet",
+      "canonical": "greek-carpet",
+      "source": {
+        "file": "rules/greek-carpet.md",
+        "text": "---\nname: Greek Carpet\nurl: https://rules.sudoku-sleuth.com/greek-carpet.md\nkind: greek-carpet\nparameters:\n  line:\n    description: The rolled path in order from its corresponding starting end.\n    default: Required.\n    type: path<cell>\n  unrolled:\n    description: The corresponding cells on the unrolled path, in order.\n    default: Required.\n    type: list<cell>\n---\n\nClass: **first-order**\n```text\n|line|=|unrolled| ∧ ∀i∈[0,|line|): D(line[i])=D(unrolled[i])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Greek Carpet example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ngreek-carpet r1c1-r1c2 unrolled [\"r1c3\",\"r1c4\"]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "unrolled": [
+          "r1c3",
+          "r1c4"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c4": 2,
+            "r1c3": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c4": 3,
+            "r1c3": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "hidden-modular",
+      "canonical": "hidden-modular",
+      "source": {
+        "file": "rules/hidden-modular.md",
+        "text": "---\nname: Hidden Modular\nurl: https://rules.sudoku-sleuth.com/hidden-modular.md\nkind: hidden-modular\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  extent:\n    description: \"How to choose the span: to-max, between-ends or first-x.\"\n    default: Required.\n    type: enum{\"to-max\",\"between-ends\",\"first-x\"}\n---\n\nClass: **with aggregates**\n```text\n|𝔄|>0 ∧ ∃a,b∈[0,|cells|):\n  a<=b ∧ ((extent=\"to-max\" ∧ a=0 ∧ firstOccurrence(cells,𝔄[|𝔄|-1],b))\n    ∨ (extent=\"between-ends\" ∧ ∃i,j∈[0,|cells|): firstOccurrence(cells,𝔄[0],i)\n       ∧ firstOccurrence(cells,𝔄[|𝔄|-1],j) ∧ a=minimumPosition(i,j) ∧ b=maximumPosition(i,j))\n    ∨ (extent=\"first-x\" ∧ a=0 ∧ |cells|>0 ∧ 1<=D(cells[0])<=|cells| ∧ b=D(cells[0])-1))\n  ∧ ∀s∈[a,b-1): distinctAt(window(cells,3,s,false),λc:cell: classMod3(D(c)))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Hidden Modular example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nhidden-modular r1c1-r1c2-r1c3 extent \"first-x\"\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "extent": "first-x"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 3,
+            "r1c2": 1,
+            "r1c3": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 3,
+            "r1c2": 1,
+            "r1c3": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "index-line",
+      "canonical": "index-line",
+      "source": {
+        "file": "rules/index-line.md",
+        "text": "---\nname: Index Line\nurl: https://rules.sudoku-sleuth.com/index-line.md\nkind: index-line\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required. No repeated cell; 2 ≤ n ≤ min(16,\\|𝔄\\|).\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n∀i ∈ [0,|line|): 1 ≤ D(line[i]) ≤ |line| ∧ D(line[D(line[i])−1])=i+1\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Index Line example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nindex-line r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "index",
+      "canonical": "index",
+      "source": {
+        "file": "rules/index.md",
+        "text": "---\nname: Index\nurl: https://rules.sudoku-sleuth.com/index.md\nkind: index\nparameters:\n  strips:\n    description: The marked cells in each straight strip.\n    default: No authored strips.\n    type: list<list<cell>>\n  axis:\n    description: \"The indexing direction: row or column.\"\n    default: Required.\n    type: enum{row,column}\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **first-order**\n```text\n∀c∈cells: (axis=\"column\" → 1<=D(c)<=cols ∧ D(boardCell(row(c),D(c)-1))=col(c)+1) ∧ (axis=\"row\" → 1<=D(c)<=rows ∧ D(boardCell(D(c)-1,col(c)))=row(c)+1)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Index example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nindex r1c1 axis \"column\"\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1"
+        ],
+        "axis": "column",
+        "strips": []
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "killer",
+      "canonical": "cage",
+      "source": {
+        "file": "rules/killer.md",
+        "text": "---\nname: Killer cage\nurl: https://rules.sudoku-sleuth.com/killer.md\nkind: killer\nalias_of: cage\n---\n\n\n"
+      },
+      "example": "---\nformat: open-rules\ntitle: Killer cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ncage r1c1-r1c2 total 3\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "total": 3,
+        "repeats": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "kropki",
+      "canonical": "kropki",
+      "source": {
+        "file": "rules/kropki.md",
+        "text": "---\nname: Kropki\nurl: https://rules.sudoku-sleuth.com/kropki.md\nkind: kropki\nparameters:\n  colour:\n    description: \"The relationship: white means difference 1; black means ratio 2.\"\n    default: Required.\n    type: enum{white,black}\n    syntax:\n      form: keywords\n      named: true\n      choices: {white: {}, black: {}}\n  cells:\n    description: The two marked cells in order, for example r1c1-r1c2.\n    default: Required.\n    type: list<cell>\n    syntax: {form: cells, count: 2}\n---\n\nClass: **first-order**\n```text\n|cells|=2 ∧ let a=V(cells[0]); let b=V(cells[1]);\n  (colour=\"white\" → |a-b|=1) ∧ (colour=\"black\" → 2*a=b ∨ 2*b=a)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Kropki example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nkropki r1c1-r1c2 black\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "colour": "black"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 5
+          }
+        }
+      ]
+    },
+    {
+      "kind": "layered-cage",
+      "canonical": "layered-cage",
+      "source": {
+        "file": "rules/layered-cage.md",
+        "text": "---\nname: Layered Cage\nurl: https://rules.sudoku-sleuth.com/layered-cage.md\nkind: layered-cage\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  upper:\n    description: The digits treated as the upper layer.\n    default: Required.\n    type: set<digit>\n---\n\nClass: **first-order**\n```text\n∀a,b ∈ cells:\n  (row(a)=row(b) → ((D(a)∈upper) ↔ (D(b)∈upper)))\n  ∧ (D(a)∈upper ∧ D(b)∉upper → row(a)<row(b))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Layered Cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nlayered-cage r1c1-r2c1 upper [2,4,6,8]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r2c1"
+        ],
+        "upper": [
+          2,
+          4,
+          6,
+          8
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r2c1": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r2c1": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "limited-digits",
+      "canonical": "limited-digits",
+      "source": {
+        "file": "rules/limited-digits.md",
+        "text": "---\nname: Limited Digits\nurl: https://rules.sudoku-sleuth.com/limited-digits.md\nkind: limited-digits\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  max:\n    description: The greatest number of listed rules or different digits allowed.\n    default: Required.\n    type: number\n---\n\nClass: **with aggregates**\n```text\n|faceDigits(line)| ≤ max\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Limited Digits example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nlimited-digits r1c1-r1c2-r1c3 max 2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "max": 2
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "line-choice",
+      "canonical": "line-choice",
+      "source": {
+        "file": "rules/line-choice.md",
+        "text": "---\nname: Line Choice\nurl: https://rules.sudoku-sleuth.com/line-choice.md\nkind: line-choice\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  kinds:\n    description: The line rules available to choose from.\n    default: Required.\n    type: list<enum{renban,nabner,modular,entropic,parity}>\n  min:\n    description: The least number of listed rules that must hold.\n    default: Required.\n    type: number\n  max:\n    description: The greatest number of listed rules or different digits allowed.\n    default: Required.\n    type: number\n  loop:\n    description: Whether the line closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n---\n\nClass: **with aggregates**\n```text\nlet selected=λoption:enum{renban,nabner,modular,entropic,parity}:\n  (option=\"renban\" ∧ |line|>0 ∧ distinctAt(line,λoccurrence:cell: D(occurrence)) ∧ max_D(line)-min_D(line)=|line|-1)\n  ∨ (option=\"nabner\" ∧ ∀i,j∈[0,|line|): i!=j → |D(line[i])-D(line[j])|!=1)\n  ∨ (option=\"modular\" ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classMod3(D(c))))\n  ∨ (option=\"entropic\" ∧ |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classEntropy(D(c))))\n  ∨ (option=\"parity\" ∧ ∀s∈[0,|line|): start(line,2,s,loop) → distinctAt(window(line,2,s,loop),λc:cell: classParity(D(c))));\nmin<=countWhere(kinds,selected)<=max\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Line Choice example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nline-choice r1c1-r1c2-r1c3 kinds [\"renban\",\"nabner\"] min 1 max 1\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "kinds": [
+          "renban",
+          "nabner"
+        ],
+        "min": 1,
+        "max": 1,
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 5
+          }
+        }
+      ]
+    },
+    {
+      "kind": "little-killer",
+      "canonical": "little-killer",
+      "source": {
+        "file": "rules/little-killer.md",
+        "text": "---\nname: Little Killer\nurl: https://rules.sudoku-sleuth.com/little-killer.md\nkind: little-killer\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  sum:\n    description: The total the digits or values must add up to.\n    default: Required.\n    type: number\n---\n\nClass: **with aggregates**\n```text\nsum_D(cells)=sum\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Little Killer example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nlittle-killer r1c1-r1c2 sum 3\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "sum": 3
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "lockout",
+      "canonical": "lockout",
+      "source": {
+        "file": "rules/lockout.md",
+        "text": "---\nname: Lockout\nurl: https://rules.sudoku-sleuth.com/lockout.md\nkind: lockout\nparameters:\n  ends:\n    description: The two end cells, in their stated order.\n    default: Required.\n    type: list<cell>\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  gap:\n    description: The least difference between the two end digits.\n    default: Required.\n    type: number\n---\n\nClass: **first-order**\n```text\n|ends|=2 ∧ |D(ends[0])-D(ends[1])|>=gap ∧ ∀c∈line: D(c)<minimumPair(D(ends[0]),D(ends[1])) ∨ D(c)>maximumPair(D(ends[0]),D(ends[1]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Lockout example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nlockout r1c2 ends [\"r1c1\",\"r1c3\"] gap 4\n```\n",
+      "parameters": {
+        "line": [
+          "r1c2"
+        ],
+        "ends": [
+          "r1c1",
+          "r1c3"
+        ],
+        "gap": 4
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 1,
+            "r1c1": 2,
+            "r1c3": 7
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 4,
+            "r1c1": 2,
+            "r1c3": 7
+          }
+        }
+      ]
+    },
+    {
+      "kind": "look-and-say",
+      "canonical": "look-and-say",
+      "source": {
+        "file": "rules/look-and-say.md",
+        "text": "---\nname: Look And Say\nurl: https://rules.sudoku-sleuth.com/look-and-say.md\nkind: look-and-say\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  counts:\n    type: list<record{digit:digit,count:position}>\n    description: Each digit and the exact number of times it must appear.\n    default: Required.\n---\n\nClass: **with aggregates**\n```text\n∀p∈counts: countWhere(cells,λc:cell: D(c)=p.digit)=p.count\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Look And Say example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nlook-and-say r1c1-r1c2 counts [{\"digit\":1,\"count\":1}]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "counts": [
+          {
+            "digit": 1,
+            "count": 1
+          }
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "magic-square",
+      "canonical": "magic-square",
+      "source": {
+        "file": "rules/magic-square.md",
+        "text": "---\nname: Magic Square\nurl: https://rules.sudoku-sleuth.com/magic-square.md\nkind: magic-square\nparameters:\n  places:\n    description: The nine cells of each candidate magic square, in row order.\n    default: Required.\n    type: list<list<cell>>\n---\n\nClass: **with aggregates**\n```text\n∃P∈places: |P|=9 ∧ distinctAt(P,λoccurrence:cell: D(occurrence)) ∧ (∀c∈P: D(c)∈[1,10)) ∧ (∀T∈magicLines(P): sum_D(T)=15)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Magic Square example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nmagic-square places [[\"r1c1\",\"r1c2\",\"r1c3\",\"r1c4\",\"r1c5\",\"r1c6\",\"r1c7\",\"r1c8\",\"r1c9\"]]\n```\n",
+      "parameters": {
+        "places": [
+          [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r1c4",
+            "r1c5",
+            "r1c6",
+            "r1c7",
+            "r1c8",
+            "r1c9"
+          ]
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c8": 9,
+            "r1c9": 2,
+            "r1c1": 8,
+            "r1c2": 1,
+            "r1c3": 6,
+            "r1c4": 3,
+            "r1c5": 5,
+            "r1c6": 7,
+            "r1c7": 4
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c8": 2,
+            "r1c9": 9,
+            "r1c1": 8,
+            "r1c2": 1,
+            "r1c3": 6,
+            "r1c4": 3,
+            "r1c5": 5,
+            "r1c6": 7,
+            "r1c7": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "mean-lines",
+      "canonical": "mean-lines",
+      "source": {
+        "file": "rules/mean-lines.md",
+        "text": "---\nname: Mean Lines\nurl: https://rules.sudoku-sleuth.com/mean-lines.md\nkind: mean-lines\nparameters:\n  lines:\n    description: The cells in each line, in order.\n    default: Required.\n    type: list<list<cell>>\n---\n\nClass: **with aggregates**\n```text\n∀A,B ∈ lines: |B| × sum_D(A) = |A| × sum_D(B)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Mean Lines example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nmean-lines lines [[\"r1c1\",\"r1c2\"],[\"r1c3\"]]\n```\n",
+      "parameters": {
+        "lines": [
+          [
+            "r1c1",
+            "r1c2"
+          ],
+          [
+            "r1c3"
+          ]
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c3": 2,
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c3": 3,
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "modular",
+      "canonical": "modular",
+      "source": {
+        "file": "rules/modular.md",
+        "text": "---\nname: Modular\nurl: https://rules.sudoku-sleuth.com/modular.md\nkind: modular\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  loop:\n    description: Whether the line closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n  modulus:\n    description: The divisor used to take remainders.\n    default: 3; modulus ≥ 1.\n    type: position\n---\n\nClass: **with aggregates**\n```text\nmodulus>=1 ∧ (∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: rem(D(c),modulus)))\n∧ (¬loop ∧ |line|=2 → rem(D(line[0]),modulus)!=rem(D(line[1]),modulus))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Modular example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nmodular r1c1-r1c2-r1c3\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "loop": false,
+        "modulus": 3
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "molecules",
+      "canonical": "molecules",
+      "source": {
+        "file": "rules/molecules.md",
+        "text": "---\nname: Molecules\nurl: https://rules.sudoku-sleuth.com/molecules.md\nkind: molecules\nparameters:\n  atoms:\n    description: The electron cells touching each atom, one list per atom.\n    default: Required.\n    type: list<set<cell>>\n  sum:\n    description: The total the digits or values must add up to.\n    default: Required.\n    type: number\n  electronMax:\n    description: Every digit at or below this number must be an electron.\n    default: Required.\n    type: digit\n---\n\nClass: **existential**\n```text\n∃E:set<cell>: E⊆allCells(atoms)\n  ∧ (∀c∈allCells(atoms): D(c)<=electronMax → c∈E)\n  ∧ (∀A∈atoms: sum_D(A∩E)=sum)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Molecules example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nmolecules atoms [[\"r1c1\",\"r1c2\"]] sum 3 electronMax 2\n```\n",
+      "parameters": {
+        "atoms": [
+          [
+            "r1c1",
+            "r1c2"
+          ]
+        ],
+        "sum": 3,
+        "electronMax": 2
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "n-mate",
+      "canonical": "n-mate",
+      "source": {
+        "file": "rules/n-mate.md",
+        "text": "---\nname: N Mate\nurl: https://rules.sudoku-sleuth.com/n-mate.md\nkind: n-mate\nparameters:\n  cell:\n    description: The clue cell.\n    default: Required.\n    type: cell\n  ray:\n    description: The cells along the ray, nearest first.\n    default: Required.\n    type: list<cell>\n  cage:\n    description: The cells in the cage.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **with aggregates**\n```text\nlet n=D(cell); 1<=n<=|ray| ∧ n+D(ray[n-1])=sum_D(cage) ∧ distinct_D(cage)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: N Mate example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nn-mate cell \"r1c1\" ray [\"r1c2\",\"r1c3\"] cage [\"r1c4\"]\n```\n",
+      "parameters": {
+        "cell": "r1c1",
+        "ray": [
+          "r1c2",
+          "r1c3"
+        ],
+        "cage": [
+          "r1c4"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c4": 3,
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 4
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c4": 4,
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "nabner",
+      "canonical": "nabner",
+      "source": {
+        "file": "rules/nabner.md",
+        "text": "---\nname: Nabner\nurl: https://rules.sudoku-sleuth.com/nabner.md\nkind: nabner\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required. L has no repeated cell.\n    type: path<cell>\n  distinct:\n    description: Whether repeated digits are forbidden.\n    default: false (repeats allowed).\n    type: boolean\n---\n\nClass: **first-order**\n```text\n∀i,j ∈ [0,|line|): i ≠ j →\n  |D(line[i])−D(line[j])| ≠ 1 ∧ (distinct → D(line[i]) ≠ D(line[j]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Nabner example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nnabner r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "distinct": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "negative",
+      "canonical": "negative",
+      "source": {
+        "file": "rules/negative.md",
+        "text": "---\nname: Negative\nurl: https://rules.sudoku-sleuth.com/negative.md\nkind: negative\nparameters:\n  relations:\n    description: The relationships to forbid, each with its operation and any required value.\n    default: Required.\n    type: list<PairRelation>\n  except:\n    description: The cell pairs exempt from the negative rule.\n    default: Required.\n    type: list<list<cell>>\n  within:\n    description: Groups limiting the pairs covered by the rule.\n    default: Absent; no inferred value.\n    type: optional<list<set<cell>>>\n  direction:\n    description: The chosen diagonal or neighbour orientation, as named in the definition.\n    default: Absent; no inferred value.\n    type: optional<enum{horizontal,vertical}>\n---\n\nClass: **first-order**\n```text\n∀a,b∈C: ∀r∈relations:\n  cellIndex(a)<cellIndex(b) ∧ orth(a,b)\n  ∧ (if present(within) then ∃G∈unwrap(within): a∈G ∧ b∈G else true)\n  ∧ (if present(direction) then (unwrap(direction)=\"horizontal\" ∧ row(a)=row(b)) ∨ (unwrap(direction)=\"vertical\" ∧ col(a)=col(b)) else true)\n  ∧ ¬(∃p∈except: |p|=2 ∧ {a,b}={p[0],p[1]})\n  → ¬pairRelation(r,D(a),D(b))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Negative example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nnegative relations [{\"op\":\"difference\",\"value\":1}] except [] within [[\"r1c1\",\"r1c2\"]]\n```\n",
+      "parameters": {
+        "relations": [
+          {
+            "op": "difference",
+            "value": 1
+          }
+        ],
+        "except": [],
+        "within": [
+          [
+            "r1c1",
+            "r1c2"
+          ]
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c2": 3,
+            "r1c1": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c2": 2,
+            "r1c1": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "numbered-room",
+      "canonical": "numbered-room",
+      "source": {
+        "file": "rules/numbered-room.md",
+        "text": "---\nname: Numbered Room\nurl: https://rules.sudoku-sleuth.com/numbered-room.md\nkind: numbered-room\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  digit:\n    description: The specified digit.\n    default: Required.\n    type: digit\n---\n\nClass: **first-order**\n```text\n|cells|>0 ∧ let x=D(cells[0]); 1<=x<=|cells| ∧ D(cells[x-1])=digit\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Numbered Room example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nnumbered-room r1c1-r1c2-r1c3 digit 3\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "digit": 3
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3,
+            "r1c3": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4,
+            "r1c3": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "ordered-block",
+      "canonical": "ordered-block",
+      "source": {
+        "file": "rules/ordered-block.md",
+        "text": "---\nname: Ordered Block\nurl: https://rules.sudoku-sleuth.com/ordered-block.md\nkind: ordered-block\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  digits:\n    description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.\n    default: Required.\n    type: list<digit>\n---\n\nClass: **first-order**\n```text\n∃p∈[0,|cells|-|digits|+1): ∀i∈[0,|digits|): D(cells[p+i])=digits[i]\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Ordered Block example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nordered-block r1c1-r1c2-r1c3 digits [2,3]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "digits": [
+          2,
+          3
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3,
+            "r1c3": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "outside",
+      "canonical": "outside",
+      "source": {
+        "file": "rules/outside.md",
+        "text": "---\nname: Outside\nurl: https://rules.sudoku-sleuth.com/outside.md\nkind: outside\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  digits:\n    description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.\n    default: Required.\n    type: list<digit>\n---\n\nClass: **with aggregates**\n```text\n∀d∈digits: countWhere(cells,λc:cell: D(c)=d)>=multiplicity(digits,d)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Outside example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\noutside r1c1-r1c2-r1c3 digits [1,2]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "digits": [
+          1,
+          2
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3,
+            "r1c3": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "pair",
+      "canonical": "pair",
+      "source": {
+        "file": "rules/pair.md",
+        "text": "---\nname: Pair\nurl: https://rules.sudoku-sleuth.com/pair.md\nkind: pair\nparameters:\n  relation:\n    description: 'The relationship keyword and any required whole-number value, for example difference 1.'\n    default: Required.\n    type: PairRelation\n    syntax:\n      form: keywords\n      tag: op\n      choices:\n        difference: {value: integer}\n        at-least: {value: integer}\n        ratio: {value: integer}\n        sum: {value: integer}\n        less: {}\n        multiple: {}\n        shift: {}\n  cells:\n    description: The two marked cells in order, for example r1c1-r1c2.\n    default: Required.\n    type: list<cell>\n    syntax: {form: cells, count: 2}\n---\n\nClass: **first-order**\n```text\n|cells|=2 ∧ pairRelation(relation,V(cells[0]),V(cells[1]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Pair example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\npair r1c1-r1c2 sum 10\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "relation": {
+          "op": "sum",
+          "value": "10"
+        }
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 3,
+            "r1c2": 7
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 3,
+            "r1c2": 8
+          }
+        }
+      ]
+    },
+    {
+      "kind": "palindrome",
+      "canonical": "palindrome",
+      "source": {
+        "file": "rules/palindrome.md",
+        "text": "---\nname: Palindrome\nurl: https://rules.sudoku-sleuth.com/palindrome.md\nkind: palindrome\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n∀i ∈ [0,|line|): V(line[i]) = V(line[mirror(line,i)])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Palindrome example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\npalindrome r1c1-r1c2-r2c3-r2c4-r3c4\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r2c3",
+          "r2c4",
+          "r3c4"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c3": 3,
+            "r2c4": 2,
+            "r3c4": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c3": 3,
+            "r2c4": 2,
+            "r3c4": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "parity-cells",
+      "canonical": "parity-cells",
+      "source": {
+        "file": "rules/parity-cells.md",
+        "text": "---\nname: Parity Cells\nurl: https://rules.sudoku-sleuth.com/parity-cells.md\nkind: parity-cells\nparameters:\n  parity:\n    description: \"The required parity: odd or even.\"\n    default: Required.\n    type: enum{odd,even}\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **first-order**\n```text\n∀c∈cells: ⌊V(c)⌋=V(c) ∧ (parity=\"odd\" → odd(V(c))) ∧ (parity=\"even\" → rem(V(c),2)=0)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Parity Cells example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nparity-cells r1c1-r1c2 parity \"odd\"\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "parity": "odd"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "parity",
+      "canonical": "parity",
+      "source": {
+        "file": "rules/parity.md",
+        "text": "---\nname: Parity\nurl: https://rules.sudoku-sleuth.com/parity.md\nkind: parity\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  loop:\n    description: Whether the line closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n---\n\nClass: **first-order**\n```text\n∀i,j∈[0,|line|): consecutive(line,i,j,loop) → ¬(odd(D(line[i])) ↔ odd(D(line[j])))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Parity example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nparity r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "pointing-arrow",
+      "canonical": "pointing-arrow",
+      "source": {
+        "file": "rules/pointing-arrow.md",
+        "text": "---\nname: Pointing Arrow\nurl: https://rules.sudoku-sleuth.com/pointing-arrow.md\nkind: pointing-arrow\nparameters:\n  cell:\n    description: The clue cell.\n    default: Required.\n    type: cell\n  ray:\n    description: The cells along the ray, nearest first.\n    default: Required.\n    type: list<cell>\n  target:\n    description: \"The target relationship: greater, less, source or first-five.\"\n    default: Required.\n    type: enum{greater,less,source,\"first-five\"}\n  source:\n    description: The cell whose digit the target must match.\n    default: Absent; source target requires it.\n    type: optional<cell>\n---\n\nClass: **first-order**\n```text\nlet n=D(cell); 1<=n<=|ray| ∧ let t=D(ray[n-1]);\n(target=\"greater\" → t>n) ∧ (target=\"less\" → t<n)\n∧ (target=\"source\" → present(source) ∧ t=D(unwrap(source)))\n∧ (target=\"first-five\" → t=5 ∧ ∀i∈[0,n-1): D(ray[i])!=5)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Pointing Arrow example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\npointing-arrow cell \"r1c1\" ray [\"r1c2\",\"r1c3\"] target \"greater\"\n```\n",
+      "parameters": {
+        "cell": "r1c1",
+        "ray": [
+          "r1c2",
+          "r1c3"
+        ],
+        "target": "greater"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c3": 3,
+            "r1c1": 2,
+            "r1c2": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c3": 2,
+            "r1c1": 2,
+            "r1c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "pointing-thermo",
+      "canonical": "pointing-thermo",
+      "source": {
+        "file": "rules/pointing-thermo.md",
+        "text": "---\nname: Pointing Thermo\nurl: https://rules.sudoku-sleuth.com/pointing-thermo.md\nkind: pointing-thermo\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  ray:\n    description: The cells along the ray, nearest first.\n    default: Required.\n    type: list<cell>\n---\n\nClass: **first-order**\n```text\n|line|>0 ∧ (∀i∈[0,|line|-1): D(line[i])<D(line[i+1]))\n∧ let x=D(line[|line|-1]); 1<=x<=|ray| ∧ D(ray[x-1])=D(line[0])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Pointing Thermo example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\npointing-thermo r1c1-r1c2 ray [\"r1c3\",\"r1c4\"]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "ray": [
+          "r1c3",
+          "r1c4"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c4": 1,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c4": 4,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "pressure-gauge",
+      "canonical": "pressure-gauge",
+      "source": {
+        "file": "rules/pressure-gauge.md",
+        "text": "---\nname: Pressure Gauge\nurl: https://rules.sudoku-sleuth.com/pressure-gauge.md\nkind: pressure-gauge\nparameters:\n  type:\n    description: Low counts larger neighbours; high counts smaller neighbours.\n    default: Required.\n    type: enum{low,high}\n  cell:\n    description: The clue cell.\n    default: Required.\n    type: cell\n  neighbours:\n    description: The cells counted or compared around the clue.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **with aggregates**\n```text\n(type=\"low\" → countWhere(neighbours,λc:cell: D(c)>D(cell))=D(cell)) ∧ (type=\"high\" → countWhere(neighbours,λc:cell: D(c)<D(cell))=D(cell))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Pressure Gauge example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\npressure-gauge type \"low\" cell \"r1c1\" neighbours [\"r1c2\",\"r1c3\"]\n```\n",
+      "parameters": {
+        "type": "low",
+        "cell": "r1c1",
+        "neighbours": [
+          "r1c2",
+          "r1c3"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c3": 1,
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c3": 3,
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "primality",
+      "canonical": "primality",
+      "source": {
+        "file": "rules/primality.md",
+        "text": "---\nname: Primality\nurl: https://rules.sudoku-sleuth.com/primality.md\nkind: primality\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  loop:\n    description: Whether the line closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n---\n\nClass: **first-order**\n```text\n∀c ∈ line: D(c)>1\n∧ ∀i,j∈[0,|line|): consecutive(line,i,j,loop) → ¬(prime(D(line[i])) ↔ prime(D(line[j])))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Primality example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nprimality r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "product-cage",
+      "canonical": "product-cage",
+      "source": {
+        "file": "rules/product-cage.md",
+        "text": "---\nname: Product Cage\nurl: https://rules.sudoku-sleuth.com/product-cage.md\nkind: product-cage\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  product:\n    description: The total obtained by multiplying the digits.\n    default: Required.\n    type: number\n  distinct:\n    description: Whether repeated digits are forbidden.\n    default: Required.\n    type: boolean\n---\n\nClass: **with aggregates**\n```text\nproduct_D(cells)=product ∧ (distinct → distinct_D(cells))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Product Cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nproduct-cage r1c1-r1c2 product 6 distinct false\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "product": 6,
+        "distinct": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "quadruple",
+      "canonical": "quadruple",
+      "source": {
+        "file": "rules/quadruple.md",
+        "text": "---\nname: Quadruple\nurl: https://rules.sudoku-sleuth.com/quadruple.md\nkind: quadruple\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  digits:\n    description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.\n    default: Required.\n    type: list<digit>\n---\n\nClass: **with aggregates**\n```text\n∀d∈digits: countWhere(cells,λc:cell: D(c)=d)>=multiplicity(digits,d)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Quadruple example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nquadruple r1c1-r1c2-r2c1-r2c2 digits [1,2]\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r2c1",
+          "r2c2"
+        ],
+        "digits": [
+          1,
+          2
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c1": 1,
+            "r2c2": 1
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3,
+            "r2c1": 1,
+            "r2c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "region-sum",
+      "canonical": "region-sum",
+      "source": {
+        "file": "rules/region-sum.md",
+        "text": "---\nname: Region Sum\nurl: https://rules.sudoku-sleuth.com/region-sum.md\nkind: region-sum\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  segments:\n    description: The cells in each segment, listed in path order.\n    default: Required.\n    type: list<list<cell>>\n---\n\nClass: **with aggregates**\n```text\n∀A,B ∈ segments: valueSum(A)=valueSum(B)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Region Sum example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nregion-sum r1c1-r1c2-r1c3 segments [[\"r1c1\",\"r1c2\"],[\"r1c3\"]]\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "segments": [
+          [
+            "r1c1",
+            "r1c2"
+          ],
+          [
+            "r1c3"
+          ]
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "remainder-cage",
+      "canonical": "remainder-cage",
+      "source": {
+        "file": "rules/remainder-cage.md",
+        "text": "---\nname: Remainder Cage\nurl: https://rules.sudoku-sleuth.com/remainder-cage.md\nkind: remainder-cage\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  modulus:\n    description: The divisor used to take remainders.\n    default: Required. modulus ≥ 1.\n    type: position\n  remainder:\n    description: The remainder required after division by the modulus.\n    default: Required.\n    type: position\n  distinct:\n    description: Whether repeated digits are forbidden.\n    default: Required.\n    type: boolean\n---\n\nClass: **with aggregates**\n```text\nmodulus>=1 ∧ rem(sum_D(cells),modulus)=remainder ∧ (distinct → distinct_D(cells))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Remainder Cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nremainder-cage r1c1-r1c2 modulus 3 remainder 1 distinct false\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "modulus": 3,
+        "remainder": 1,
+        "distinct": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "renban",
+      "canonical": "renban",
+      "source": {
+        "file": "rules/renban.md",
+        "text": "---\nname: Renban\nurl: https://rules.sudoku-sleuth.com/renban.md\nkind: renban\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required. L has no repeated cell.\n    type: path<cell>\n---\n\nClass: **with aggregates**\n```text\n|line|>0 ∧ distinctAt(line,λoccurrence:cell: V(occurrence)) ∧ max_V(line)-min_V(line)=|line|-1 ∧ ∀k∈[0,|line|): ∃c∈line: V(c)=min_V(line)+k\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Renban example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nrenban r1c1-r1c2-r1c3\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 1,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 1,
+            "r1c3": 4
+          }
+        }
+      ]
+    },
+    {
+      "kind": "rotational-sums",
+      "canonical": "rotational-sums",
+      "source": {
+        "file": "rules/rotational-sums.md",
+        "text": "---\nname: Rotational Sums\nurl: https://rules.sudoku-sleuth.com/rotational-sums.md\nkind: rotational-sums\nparameters:\n  sums:\n    description: The permitted or required totals.\n    default: Required.\n    type: list<number>\n---\n\nClass: **first-order**\n```text\n∀c ∈ C: D(c)+D(turn(c)) ∈ sums\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Rotational Sums example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nrotational-sums sums [10]\n```\n",
+      "parameters": {
+        "sums": [
+          10
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r9c9": 9
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r9c9": 9
+          }
+        }
+      ]
+    },
+    {
+      "kind": "run-sum",
+      "canonical": "run-sum",
+      "source": {
+        "file": "rules/run-sum.md",
+        "text": "---\nname: Run Sum\nurl: https://rules.sudoku-sleuth.com/run-sum.md\nkind: run-sum\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  sum:\n    description: The total the digits or values must add up to.\n    default: Required.\n    type: number\n---\n\nClass: **with aggregates**\n```text\ncountRun(cells)=sum\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Run Sum example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nrun-sum r1c1-r1c2-r1c3 sum 6\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "sum": 6
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 5
+          }
+        }
+      ]
+    },
+    {
+      "kind": "same-class",
+      "canonical": "same-class",
+      "source": {
+        "file": "rules/same-class.md",
+        "text": "---\nname: Same Class\nurl: https://rules.sudoku-sleuth.com/same-class.md\nkind: same-class\nparameters:\n  classes:\n    description: \"The digit classes to use: parity, remainder or alphabet thirds.\"\n    default: Required.\n    type: ClassSystem\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **first-order**\n```text\n(classes!=\"entropy\" ∨ (|𝔄|>0 ∧ |𝔄| mod 3=0)) ∧ ∃k∈classIds(classes): ∀c∈cells: digitClass(classes,D(c))=k\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Same Class example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nsame-class r1c1-r1c2 classes \"parity\"\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "classes": "parity"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "sandwich",
+      "canonical": "sandwich",
+      "source": {
+        "file": "rules/sandwich.md",
+        "text": "---\nname: Sandwich\nurl: https://rules.sudoku-sleuth.com/sandwich.md\nkind: sandwich\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  sum:\n    description: The total the digits or values must add up to.\n    default: Required.\n    type: number\n  endpointOccurrences:\n    description: Whether both endpoints must occur exactly once or at most once.\n    default: No extra occurrence condition.\n    type: enum{none,\"exactly-one\",\"at-most-one\"}\n  crusts:\n    description: The two crust digits that bound the sandwich.\n    default: Lowest and highest board symbols.\n    type: optional<list<digit>>\n---\n\nClass: **with aggregates**\n```text\n|𝔄|>0 ∧ (if present(crusts) then\n  ∀i,j∈{t∈[0,|cells|):D(cells[t])∈unwrap(crusts)}: i<j ∧ ¬(∃k∈{t∈[0,|cells|):D(cells[t])∈unwrap(crusts)}:k<j ∧ k!=i) → sum_D(betweenPositions(cells,i,j))=sum\nelse let lo=𝔄[0]; let hi=𝔄[|𝔄|-1];\n  (∀i,j∈[0,|cells|): firstOccurrence(cells,lo,i) ∧ firstOccurrence(cells,hi,j) → sum_D(betweenPositions(cells,i,j))=sum)\n  ∧ (endpointOccurrences=\"exactly-one\" → countWhere(cells,λc:cell:D(c)=lo)=1 ∧ countWhere(cells,λc:cell:D(c)=hi)=1)\n  ∧ (endpointOccurrences=\"at-most-one\" → countWhere(cells,λc:cell:D(c)=lo)<=1 ∧ countWhere(cells,λc:cell:D(c)=hi)<=1))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Sandwich example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nsandwich r1c1-r1c2-r1c3 sum 2 endpointOccurrences \"exactly-one\"\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "sum": 2,
+        "endpointOccurrences": "exactly-one"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 9
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3,
+            "r1c3": 9
+          }
+        }
+      ]
+    },
+    {
+      "kind": "scoped-move",
+      "canonical": "scoped-move",
+      "source": {
+        "file": "rules/scoped-move.md",
+        "text": "---\nname: Scoped Move\nurl: https://rules.sudoku-sleuth.com/scoped-move.md\nkind: scoped-move\nparameters:\n  move:\n    description: The chess move connecting the compared cells.\n    default: Required.\n    type: Move\n  relation:\n    description: 'The relationship to enforce: its operation and any required value, for example {\"op\":\"difference\",\"value\":1}.'\n    default: Required.\n    type: enum{same,consecutive}\n  digits:\n    description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.\n    default: Required.\n    type: list<digit>\n---\n\nClass: **first-order**\n```text\n∀a,b∈C: moveRelation(move,a,b) ∧ (D(a)∈digits ∨ D(b)∈digits) → ¬((relation=\"same\" ∧ D(a)=D(b)) ∨ (relation=\"consecutive\" ∧ |D(a)-D(b)|=1))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Scoped Move example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nscoped-move move \"knight\" relation \"same\" digits [1]\n```\n",
+      "parameters": {
+        "move": "knight",
+        "relation": "same",
+        "digits": [
+          1
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r2c3": 6
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r2c3": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "shifter-line",
+      "canonical": "shifter-line",
+      "source": {
+        "file": "rules/shifter-line.md",
+        "text": "---\nname: Shifter Line\nurl: https://rules.sudoku-sleuth.com/shifter-line.md\nkind: shifter-line\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n(∀c∈line:D(c)!=5)\n∧ ∀i,j∈[0,|line|): consecutive(line,i,j,false) →\n  let P=(odd(D(line[i]))↔odd(D(line[j]))); let Q=(high(D(line[i]))↔high(D(line[j])));\n  (sameRegion(line[i],line[j]) → P ∧ Q) ∧ (¬sameRegion(line[i],line[j]) → ¬(P↔Q))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Shifter Line example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nshifter-line r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "skyscraper",
+      "canonical": "skyscraper",
+      "source": {
+        "file": "rules/skyscraper.md",
+        "text": "---\nname: Skyscraper\nurl: https://rules.sudoku-sleuth.com/skyscraper.md\nkind: skyscraper\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  visible:\n    description: The number of digits visible from the clue.\n    default: Required.\n    type: position\n---\n\nClass: **with aggregates**\n```text\n|{i∈[0,|cells|): ∀j∈[0,i): D(cells[j])<D(cells[i])}|=visible\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Skyscraper example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nskyscraper r1c1-r1c2-r1c3 visible 2\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "visible": 2
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3,
+            "r1c3": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "slow-thermo",
+      "canonical": "slow-thermo",
+      "source": {
+        "file": "rules/slow-thermo.md",
+        "text": "---\nname: Slow Thermo\nurl: https://rules.sudoku-sleuth.com/slow-thermo.md\nkind: slow-thermo\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n∀i ∈ [0,|line|−1): D(line[i]) ≤ D(line[i+1])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Slow Thermo example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nslow-thermo r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "sudoku",
+      "canonical": "sudoku",
+      "source": {
+        "file": "rules/sudoku.md",
+        "text": "---\nname: Sudoku\nurl: https://rules.sudoku-sleuth.com/sudoku.md\nparameters:\n  board:\n    type: record{rows:position,cols:position}\n    description: The board dimensions and standard boxes; write 9x9.\n    default: Required.\n    syntax: {form: dimensions}\nkind: sudoku\n---\n\nClass: **with aggregates**\n```text\nrows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ distinct_D(house)) ∧ (∀c∈C: given(c) → D(c)=givenValue(c))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Sudoku example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\n```\n",
+      "parameters": {
+        "board": {
+          "rows": 9,
+          "cols": 9
+        }
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3,
+            "r1c4": 4,
+            "r1c5": 5,
+            "r1c6": 6,
+            "r1c7": 7,
+            "r1c8": 8,
+            "r1c9": 9,
+            "r2c1": 4,
+            "r2c2": 5,
+            "r2c3": 6,
+            "r2c4": 7,
+            "r2c5": 8,
+            "r2c6": 9,
+            "r2c7": 1,
+            "r2c8": 2,
+            "r2c9": 3,
+            "r3c1": 7,
+            "r3c2": 8,
+            "r3c3": 9,
+            "r3c4": 1,
+            "r3c5": 2,
+            "r3c6": 3,
+            "r3c7": 4,
+            "r3c8": 5,
+            "r3c9": 6,
+            "r4c1": 2,
+            "r4c2": 3,
+            "r4c3": 4,
+            "r4c4": 5,
+            "r4c5": 6,
+            "r4c6": 7,
+            "r4c7": 8,
+            "r4c8": 9,
+            "r4c9": 1,
+            "r5c1": 5,
+            "r5c2": 6,
+            "r5c3": 7,
+            "r5c4": 8,
+            "r5c5": 9,
+            "r5c6": 1,
+            "r5c7": 2,
+            "r5c8": 3,
+            "r5c9": 4,
+            "r6c1": 8,
+            "r6c2": 9,
+            "r6c3": 1,
+            "r6c4": 2,
+            "r6c5": 3,
+            "r6c6": 4,
+            "r6c7": 5,
+            "r6c8": 6,
+            "r6c9": 7,
+            "r7c1": 3,
+            "r7c2": 4,
+            "r7c3": 5,
+            "r7c4": 6,
+            "r7c5": 7,
+            "r7c6": 8,
+            "r7c7": 9,
+            "r7c8": 1,
+            "r7c9": 2,
+            "r8c1": 6,
+            "r8c2": 7,
+            "r8c3": 8,
+            "r8c4": 9,
+            "r8c5": 1,
+            "r8c6": 2,
+            "r8c7": 3,
+            "r8c8": 4,
+            "r8c9": 5,
+            "r9c1": 9,
+            "r9c2": 1,
+            "r9c3": 2,
+            "r9c4": 3,
+            "r9c5": 4,
+            "r9c6": 5,
+            "r9c7": 6,
+            "r9c8": 7,
+            "r9c9": 8
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r1c3": 3,
+            "r1c4": 4,
+            "r1c5": 5,
+            "r1c6": 6,
+            "r1c7": 7,
+            "r1c8": 8,
+            "r1c9": 8,
+            "r2c1": 4,
+            "r2c2": 5,
+            "r2c3": 6,
+            "r2c4": 7,
+            "r2c5": 8,
+            "r2c6": 9,
+            "r2c7": 1,
+            "r2c8": 2,
+            "r2c9": 3,
+            "r3c1": 7,
+            "r3c2": 8,
+            "r3c3": 9,
+            "r3c4": 1,
+            "r3c5": 2,
+            "r3c6": 3,
+            "r3c7": 4,
+            "r3c8": 5,
+            "r3c9": 6,
+            "r4c1": 2,
+            "r4c2": 3,
+            "r4c3": 4,
+            "r4c4": 5,
+            "r4c5": 6,
+            "r4c6": 7,
+            "r4c7": 8,
+            "r4c8": 9,
+            "r4c9": 1,
+            "r5c1": 5,
+            "r5c2": 6,
+            "r5c3": 7,
+            "r5c4": 8,
+            "r5c5": 9,
+            "r5c6": 1,
+            "r5c7": 2,
+            "r5c8": 3,
+            "r5c9": 4,
+            "r6c1": 8,
+            "r6c2": 9,
+            "r6c3": 1,
+            "r6c4": 2,
+            "r6c5": 3,
+            "r6c6": 4,
+            "r6c7": 5,
+            "r6c8": 6,
+            "r6c9": 7,
+            "r7c1": 3,
+            "r7c2": 4,
+            "r7c3": 5,
+            "r7c4": 6,
+            "r7c5": 7,
+            "r7c6": 8,
+            "r7c7": 9,
+            "r7c8": 1,
+            "r7c9": 2,
+            "r8c1": 6,
+            "r8c2": 7,
+            "r8c3": 8,
+            "r8c4": 9,
+            "r8c5": 1,
+            "r8c6": 2,
+            "r8c7": 3,
+            "r8c8": 4,
+            "r8c9": 5,
+            "r9c1": 9,
+            "r9c2": 1,
+            "r9c3": 2,
+            "r9c4": 3,
+            "r9c5": 4,
+            "r9c6": 5,
+            "r9c7": 6,
+            "r9c8": 7,
+            "r9c9": 8
+          }
+        }
+      ]
+    },
+    {
+      "kind": "sum-free-cage",
+      "canonical": "sum-free-cage",
+      "source": {
+        "file": "rules/sum-free-cage.md",
+        "text": "---\nname: Sum Free Cage\nurl: https://rules.sudoku-sleuth.com/sum-free-cage.md\nkind: sum-free-cage\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  modulus:\n    description: The divisor used to take remainders.\n    default: Required. modulus ≥ 1.\n    type: position\n---\n\nClass: **first-order**\n```text\nmodulus>=1 ∧ distinct_D(cells) ∧ ∀a,b,c∈cells: rem(D(a)+D(b),modulus)!=D(c)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Sum Free Cage example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nsum-free-cage r1c1-r1c2 modulus 10\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ],
+        "modulus": 10
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        }
+      ]
+    },
+    {
+      "kind": "summit",
+      "canonical": "summit",
+      "source": {
+        "file": "rules/summit.md",
+        "text": "---\nname: Summit\nurl: https://rules.sudoku-sleuth.com/summit.md\nkind: summit\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  loop:\n    description: Whether the line closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n---\n\nClass: **first-order**\n```text\n(∀i,j∈[0,|line|): consecutive(line,i,j,loop) → D(line[i])!=D(line[j]))\n∧ ∀i,j,k∈[0,|line|): next(line,i,j,loop) ∧ next(line,j,k,loop) →\n  ((D(line[j])∈{1,9} → (D(line[j])-D(line[i]))*(D(line[k])-D(line[j]))<0)\n  ∧ (D(line[j])∉{1,9} → (D(line[j])-D(line[i]))*(D(line[k])-D(line[j]))>0))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Summit example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nsummit r1c1-r1c2-r1c3\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 9,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 8,
+            "r1c3": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "tardis",
+      "canonical": "tardis",
+      "source": {
+        "file": "rules/tardis.md",
+        "text": "---\nname: Tardis\nurl: https://rules.sudoku-sleuth.com/tardis.md\nkind: tardis\nparameters:\n  cell:\n    description: The clue cell.\n    default: Required.\n    type: cell\n  neighbours:\n    description: The cells counted or compared around the clue.\n    default: Required. neighbours disjoint from {cell}.\n    type: set<cell>\n---\n\nClass: **first-order**\n```text\n∀c ∈ neighbours: D(cell)>D(c)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Tardis example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\ntardis cell \"r1c1\" neighbours [\"r1c2\"]\n```\n",
+      "parameters": {
+        "cell": "r1c1",
+        "neighbours": [
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 3,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3
+          }
+        }
+      ]
+    },
+    {
+      "kind": "thermo",
+      "canonical": "thermo",
+      "source": {
+        "file": "rules/thermo.md",
+        "text": "---\nname: Thermo\nurl: https://rules.sudoku-sleuth.com/thermo.md\nkind: thermo\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n∀i ∈ [0,|line|−1): V(line[i]) < V(line[i+1])\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Thermo example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nthermo r1c1-r1c2\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "unique",
+      "canonical": "unique",
+      "source": {
+        "file": "rules/unique.md",
+        "text": "---\nname: Unique\nurl: https://rules.sudoku-sleuth.com/unique.md\nkind: unique\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n---\n\nClass: **first-order**\n```text\ndistinct_D(cells)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Unique example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nunique r1c1-r1c2\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "value-modifier",
+      "canonical": "value-modifier",
+      "source": {
+        "file": "rules/value-modifier.md",
+        "text": "---\nname: Value Modifier\nurl: https://rules.sudoku-sleuth.com/value-modifier.md\nkind: value-modifier\nparameters:\n  name:\n    description: \"The modifier name: doubler or negator.\"\n    default: Required.\n    type: enum{doubler,negator}\n  factor:\n    description: The multiplier for a modified digit.\n    default: Required.\n    type: number\n  offset:\n    description: The amount added after multiplication.\n    default: Required.\n    type: number\n  exactly:\n    description: The cells in each group and the exact number that must be modified.\n    default: Required.\n    type: list<set<cell>>\n  count:\n    description: The number of cells or occurrences to count.\n    default: Required.\n    type: position\n  atMostOne:\n    description: The cells in each group that may contain at most one modified cell.\n    default: Required.\n    type: list<set<cell>>\n  distinct:\n    description: Whether modified cells must contain different digits.\n    default: Required.\n    type: boolean\n---\n\nClass: **existential**\n```text\n∃M:set<cell>: M⊆C ∧\n(∀G∈exactly: |G∩M|=count) ∧ (∀G∈atMostOne: |G∩M|<=1)\n∧ (distinct → distinct_D(M))\n∧ (∀c∈C: (c∈M → V(c)=factor*D(c)+offset) ∧ (c∉M → V(c)=D(c)))\n∧ (∀meaning∈ValuedRuleMeanings: meaning)\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Value Modifier example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard:\n  rows: 1\n  cols: 2\n  symbols:\n    - 1\n    - 2\n    - 3\n    - 4\n    - 5\n    - 6\n    - 7\n    - 8\n    - 9\n---\n\n```rules\nvalue-modifier name \"doubler\" factor 2 offset 0 exactly [[\"r1c1\"],[\"r1c2\"]] count 1 atMostOne [] distinct true\n```\n",
+      "parameters": {
+        "name": "doubler",
+        "factor": 2,
+        "offset": 0,
+        "exactly": [
+          [
+            "r1c1"
+          ],
+          [
+            "r1c2"
+          ]
+        ],
+        "count": 1,
+        "atMostOne": [],
+        "distinct": true
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1
+          }
+        }
+      ],
+      "board": {
+        "rows": 1,
+        "cols": 2,
+        "symbols": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "vault",
+      "canonical": "vault",
+      "source": {
+        "file": "rules/vault.md",
+        "text": "---\nname: Vault\nurl: https://rules.sudoku-sleuth.com/vault.md\nkind: vault\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: set<cell>\n  sum:\n    description: The total the digits or values must add up to.\n    default: No total imposed.\n    type: optional<number>\n  neighbours:\n    description: The cells counted or compared around the clue.\n    default: Required. neighbours disjoint from cells.\n    type: set<cell>\n---\n\nClass: **with aggregates**\n```text\n(∀a∈cells: ∀b∈neighbours: D(a)!=D(b)) ∧ (present(sum) → sum_D(cells)=unwrap(sum))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Vault example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nvault r1c1 neighbours [\"r1c2\"] sum 1\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1"
+        ],
+        "neighbours": [
+          "r1c2"
+        ],
+        "sum": 1
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 1
+          }
+        }
+      ]
+    },
+    {
+      "kind": "whisper",
+      "canonical": "whispers",
+      "source": {
+        "file": "rules/whisper.md",
+        "text": "---\nname: Whisper\nurl: https://rules.sudoku-sleuth.com/whisper.md\nkind: whisper\nalias_of: whispers\n---\n\n\n"
+      },
+      "example": "---\nformat: open-rules\ntitle: Whisper example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nwhispers r1c1-r1c2 gap 5\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "gap": 5,
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 6
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 5
+          }
+        }
+      ]
+    },
+    {
+      "kind": "whispers",
+      "canonical": "whispers",
+      "source": {
+        "file": "rules/whispers.md",
+        "text": "---\nname: Whisper\nurl: https://rules.sudoku-sleuth.com/whispers.md\nkind: whispers\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n  gap:\n    description: \"The least difference between neighbours: 5 for German whispers, 4 for Dutch whispers.\"\n    default: Required.\n    type: number\n  loop:\n    description: Whether the line closes, joining its last cell back to its first.\n    default: false (open path).\n    type: boolean\n---\n\nClass: **first-order**\n```text\n∀i,j∈[0,|line|): consecutive(line,i,j,loop) → |V(line[i])-V(line[j])|>=gap\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Whisper example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nwhispers r1c1-r1c2 gap 5\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2"
+        ],
+        "gap": 5,
+        "loop": false
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 6
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 5
+          }
+        }
+      ]
+    },
+    {
+      "kind": "window-classes",
+      "canonical": "window-classes",
+      "source": {
+        "file": "rules/window-classes.md",
+        "text": "---\nname: Window Classes\nurl: https://rules.sudoku-sleuth.com/window-classes.md\nkind: window-classes\nparameters:\n  classes:\n    description: \"The digit classes to use: parity, remainder or alphabet thirds.\"\n    default: Required.\n    type: ClassSystem\n---\n\nClass: **first-order**\n```text\n(classes!=\"entropy\" ∨ (|𝔄|>0 ∧ |𝔄| mod 3=0)) ∧ ∀r∈[0,rows-1): ∀k∈[0,cols-1): ∀j∈classIds(classes): ∃c∈window2(r,k): digitClass(classes,D(c))=j\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Window Classes example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nwindow-classes classes \"parity\"\n```\n",
+      "parameters": {
+        "classes": "parity"
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c1": 4,
+            "r2c2": 5
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 3,
+            "r2c1": 5,
+            "r2c2": 7
+          }
+        }
+      ]
+    },
+    {
+      "kind": "x-sum",
+      "canonical": "x-sum",
+      "source": {
+        "file": "rules/x-sum.md",
+        "text": "---\nname: X Sum\nurl: https://rules.sudoku-sleuth.com/x-sum.md\nkind: x-sum\nparameters:\n  cells:\n    description: The marked cells, for example r1c1-r1c2-r2c2.\n    default: Required.\n    type: list<cell>\n  sum:\n    description: The total the digits or values must add up to.\n    default: Required.\n    type: number\n  count:\n    description: The number of cells or occurrences to count.\n    default: First digit supplies the extent.\n    type: optional<position>\n---\n\nClass: **with aggregates**\n```text\n|cells|>0 ∧ let x=if present(count) then unwrap(count) else D(cells[0]); 1<=x<=|cells| ∧ sum_D(first(cells,x))=sum\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: X Sum example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nx-sum r1c1-r1c2-r1c3 sum 5\n```\n",
+      "parameters": {
+        "cells": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ],
+        "sum": 5
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 3,
+            "r1c3": 9
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 4,
+            "r1c3": 9
+          }
+        }
+      ]
+    },
+    {
+      "kind": "yin-yang",
+      "canonical": "yin-yang",
+      "source": {
+        "file": "rules/yin-yang.md",
+        "text": "---\nname: Yin Yang\nurl: https://rules.sudoku-sleuth.com/yin-yang.md\nkind: yin-yang\nparameters: {}\n---\n\nClass: **existential**\n```text\nconnected({c ∈ C: shaded(c)}) ∧ connected({c ∈ C: ¬shaded(c)})\n∧ ∀r ∈ [0,rows−1): ∀k ∈ [0,cols−1):\n  (∃a ∈ window2(r,k): shaded(a)) ∧ (∃b ∈ window2(r,k): ¬shaded(b))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Yin Yang example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard:\n  rows: 2\n  cols: 2\n  symbols:\n    - 1\n    - 2\n    - 3\n    - 4\n---\n\n```rules\nyin-yang\n```\n",
+      "parameters": {},
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c1": 3,
+            "r2c2": 4
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 1,
+            "r1c2": 2,
+            "r2c1": 3,
+            "r2c2": 4
+          }
+        }
+      ],
+      "board": {
+        "rows": 2,
+        "cols": 2,
+        "symbols": [
+          1,
+          2,
+          3,
+          4
+        ]
+      }
+    },
+    {
+      "kind": "zipper",
+      "canonical": "zipper",
+      "source": {
+        "file": "rules/zipper.md",
+        "text": "---\nname: Zipper\nurl: https://rules.sudoku-sleuth.com/zipper.md\nkind: zipper\nparameters:\n  line:\n    description: The cells in order, for example r1c1-r1c2-r1c3.\n    default: Required.\n    type: path<cell>\n---\n\nClass: **first-order**\n```text\n(∀i,j∈[0,|line|): i<⌊|line|/2⌋ ∧ j<⌊|line|/2⌋ → D(line[i])+D(line[|line|-1-i])=D(line[j])+D(line[|line|-1-j]))\n∧ (|line| mod 2=1 → ∀i∈[0,|line|): i<⌊|line|/2⌋ → |line|>0 ∧ 0<=⌊|line|/2⌋<|line| ∧ D(line[i])+D(line[|line|-1-i])=D(line[⌊|line|/2⌋]))\n\n```"
+      },
+      "example": "---\nformat: open-rules\ntitle: Zipper example\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n```rules\nsudoku 9x9\nzipper r1c1-r1c2-r1c3\n```\n",
+      "parameters": {
+        "line": [
+          "r1c1",
+          "r1c2",
+          "r1c3"
+        ]
+      },
+      "assignments": [
+        {
+          "expected": true,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 5,
+            "r1c3": 3
+          }
+        },
+        {
+          "expected": false,
+          "faces": {
+            "r1c1": 2,
+            "r1c2": 5,
+            "r1c3": 4
+          }
+        }
+      ]
+    }
+  ]
+}

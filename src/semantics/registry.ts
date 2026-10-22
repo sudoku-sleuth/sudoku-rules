@@ -3,6 +3,13 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  lookup: pending("Channel-dependent bounded lookup relations are not lowered."),
+  "aggregate-relation": pending("Selected aggregate operand expressions are not lowered."),
+  "difference-line": pending("Common or distinct edge differences and signed steps are not lowered."),
+  "split-pea": pending("Reversible decimal endpoint readings are not lowered."),
+  "prefix-sum": pending("Answer-dependent stopping prefixes are not lowered."),
+  "blocked-sight": pending("Blocked ray selections and their count or sum are not lowered."),
+  "sum-partition": pending("Covering intervals and partition cuts are not lowered."),
   decoration: lowered,
   sudoku: lowered,
   unique: lowered,

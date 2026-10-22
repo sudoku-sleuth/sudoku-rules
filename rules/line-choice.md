@@ -4,6 +4,7 @@ url: https://rules.sudoku-sleuth.com/line-choice.md
 kind: line-choice
 parameters:
   line:
+    empty_when: edges
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
@@ -23,11 +24,17 @@ parameters:
     description: Whether the line closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
+  edges:
+    type: optional<list<list<cell>>>
+    description: Explicit undirected edges of one connected network; each edge lists two different cells.
+    default: Absent; use the ordered line.
 ---
 
 # Line Choice
 
 The line satisfies between the stated minimum and maximum number of the listed line rules.
+
+With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
 ## Parameters
 
@@ -38,6 +45,7 @@ The line satisfies between the stated minimum and maximum number of the listed l
 | min | The least number of listed rules that must hold. | Required. |
 | max | The greatest number of listed rules or different digits allowed. | Required. |
 | loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
 
@@ -46,16 +54,17 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
+lineGeometry(line,edges,loop) ∧ let S=if present(edges) then graphVertices(unwrap(edges)) else {c∈C:c∈line};
 let selected=λoption:enum{renban,nabner,modular,entropic,parity}:
-  (option="renban" ∧ |line|>0 ∧ distinctAt(line,λoccurrence:cell: D(occurrence)) ∧ max_D(line)-min_D(line)=|line|-1)
-  ∨ (option="nabner" ∧ ∀i,j∈[0,|line|): i!=j → |D(line[i])-D(line[j])|!=1)
-  ∨ (option="modular" ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classMod3(D(c))))
-  ∨ (option="entropic" ∧ |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀s∈[0,|line|): start(line,3,s,loop) → distinctAt(window(line,3,s,loop),λc:cell: classEntropy(D(c))))
-  ∨ (option="parity" ∧ ∀s∈[0,|line|): start(line,2,s,loop) → distinctAt(window(line,2,s,loop),λc:cell: classParity(D(c))));
+  (option="renban" ∧ (if present(edges) then consecutiveValues(S,"D",false) else consecutiveValues(line,"D",false)))
+  ∨ (option="nabner" ∧ (if present(edges) then nonconsecutiveValues(S,"D",true,false) else nonconsecutiveValues(line,"D",true,false)))
+  ∨ (option="modular" ∧ (if present(edges) then modularMeaning(line,edges,loop,3,3) else ∀W∈lineWindows(line,edges,3,loop): distinctAt(W,λc:cell:classMod3(D(c)))))
+  ∨ (option="entropic" ∧ (if present(edges) then entropicMeaning(line,edges,loop) else |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀W∈lineWindows(line,edges,3,loop): distinctAt(W,λc:cell:classEntropy(D(c)))))
+  ∨ (option="parity" ∧ parityMeaning(line,edges,loop));
 min<=countWhere(kinds,selected)<=max
 ```
 
-Count the entries of kinds whose defining checks accept this path; min ≤ count ≤ max. nabner permits repeats here. Class windows use three-position choice windows; parity uses two-position windows. An open two-cell modular or entropic choice is therefore vacuous, unlike its standalone kind.
+Renban reads D; Nabner reads D and permits repeats. Ordered modular and entropic choices check three-position windows, so an open two-cell choice is vacuous. Explicit networks use the standalone component checks, including distinct classes when the component is smaller than the window. Negation applies to this entire counted choice.
 
 ## Example
 

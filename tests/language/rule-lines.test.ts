@@ -46,7 +46,7 @@ test("grammar follows renamed kinds, record fields and new enum members", async 
   expect(checkCaseReferences({ file: "bond.rules.md", text: source }, checked.value!.registry).diagnostics).toEqual([]);
   const novel = renamed.replace("type: PairRelation", "type: 'record{action:enum{offset},amount:optional<number>}'")
     .replace(/      tag: op\n      choices:[\s\S]*?(?=  cells:)/, "      tag: action\n      choices:\n        offset: {amount: integer}\n")
-    .replace("|cells|=2 ∧ pairRelation(relation,V(cells[0]),V(cells[1]))", '|cells|=2 ∧ relation.action="offset"');
+    .replace("|cells|=2 ∧ pairRelation(relation,read(cells[0],channel),read(cells[1],channel))", '|cells|=2 ∧ relation.action="offset"');
   const newPage = compilePage({ file: "offset.md", text: novel }, library.prelude);
   expect(newPage.diagnostics).toEqual([]);
   expect(parseDeclaredRuleLine({ file: "offset.rules.md", text: "r1c1-r1c2 offset 4" }, newPage.value!.line!).value).toEqual({ cells: ["r1c1", "r1c2"], relation: { action: "offset", amount: "4" } });

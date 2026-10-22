@@ -4,17 +4,21 @@ url: https://rules.sudoku-sleuth.com/pair.md
 kind: pair
 parameters:
   relation:
-    description: 'The relationship keyword and any required whole-number value, for example difference 1.'
+    description: The relationship keyword and any required whole-number value, for example difference 1.
     default: Required.
     type: PairRelation
     syntax:
       form: keywords
       tag: op
       choices:
-        difference: {value: integer}
-        at-least: {value: integer}
-        ratio: {value: integer}
-        sum: {value: integer}
+        difference:
+          value: integer
+        at-least:
+          value: integer
+        ratio:
+          value: integer
+        sum:
+          value: integer
         less: {}
         multiple: {}
         shift: {}
@@ -22,12 +26,20 @@ parameters:
     description: The two marked cells in order, for example r1c1-r1c2.
     default: Required.
     type: list<cell>
-    syntax: {form: cells, count: 2}
+    syntax:
+      form: cells
+      count: 2
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: V.
 ---
 
 # Pair
 
 The two values obey the stated relationship: a difference, ratio, total, multiple, inequality or shift.
+
+X clues use `sum 10`; V clues use `sum 5`. A numbered white dot uses `difference n`, and a numbered black dot uses `ratio n`. An unnumbered white or black dot uses 1 or 2 respectively, as defined by [Kropki](https://rules.sudoku-sleuth.com/kropki.md). These positive clues do not imply that every possible clue is drawn; use [Negative](https://rules.sudoku-sleuth.com/negative.md) for that condition.
 
 ## Parameters
 
@@ -35,6 +47,7 @@ The two values obey the stated relationship: a difference, ratio, total, multipl
 | --- | --- | --- |
 | relation | The relationship keyword and any required whole-number value, for example difference 1. | Required. |
 | cells | The two marked cells in order, for example r1c1-r1c2. | Required. |
+| channel | Read printed digits (D) or effective values (V). | V. |
 
 ## Rule lines
 
@@ -59,12 +72,10 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|cells|=2 ∧ pairRelation(relation,V(cells[0]),V(cells[1]))
+|cells|=2 ∧ pairRelation(relation,read(cells[0],channel),read(cells[1],channel))
 ```
 
-The two cell values obey the supplied relation. The shared predicates define each relation: difference, ratio, sum, inequality, multiple or shift.
-
-The shift relation is defined for integer values.
+The shared pair relation compares the selected channel.
 
 ## Example
 

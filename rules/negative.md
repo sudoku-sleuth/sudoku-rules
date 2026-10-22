@@ -23,7 +23,11 @@ parameters:
 
 # Negative
 
-Unmarked neighbouring pairs fail every listed relationship. The scope, direction and exceptions state exactly which pairs are covered.
+Orthogonally adjacent pairs outside the exception list fail every listed relationship. The scope, direction and exceptions state exactly which pairs are covered.
+
+Neighbouring means orthogonally adjacent. Without this declaration, missing dots or X/V clues imply nothing. For all white dots given, forbid `{"op":"difference","value":1}`; for black dots, forbid `{"op":"ratio","value":2}`; for X clues, forbid `{"op":"sum","value":10}`; for V clues, forbid `{"op":"sum","value":5}`. List the marked pairs in `except`. An empty exceptions list exempts no pairs.
+
+For relation-specific marking, use separate negative declarations and separate exception lists. A 1–2 pair satisfies both white and black relationships; exempting only black-marked pairs from a white negative does not exempt that pair. To apply both negatives only to completely unmarked pairs, put both relationships in one declaration and exempt every dotted pair. With no exceptions and no scope or direction limit, a difference-1 negative is the global non-consecutive rule. Negative reads printed digits; positive Pair and Kropki read effective values after modifiers.
 
 ## Parameters
 

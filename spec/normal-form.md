@@ -67,7 +67,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 
 ## Coverage by declaration kind
 
-`declarationRegistry` inventories all 82 published kinds, including aliases. Its entries declare a lowering path or a specific unsupported reason. Tests compare the inventory with every rule page; adding, removing or renaming a kind requires updating the registry. Actual instance coverage also accounts for composition, parameters and expansion limits.
+`declarationRegistry` inventories all published kinds, including aliases. Its entries declare a lowering path or a specific unsupported reason. Tests compare the inventory with every rule page; adding, removing or renaming a kind requires updating the registry. Actual instance coverage also accounts for composition, parameters and expansion limits.
 
 | Kind | Lowering |
 | --- | --- |
@@ -99,7 +99,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | primality | Every D exceeds one; adjacent positions alternate prime and composite classes. Optional closure. |
 | summit | Unequal adjacent D values; successive differences reverse sign at internal 1 or 9 and retain sign elsewhere. Includes cyclic triples on loops. |
 | shifter-line | Exclude 5. Within a primary region, adjacent D values share parity and polarity above/below 5; across regions exactly one relationship changes. |
-| region-sum | Equal V sums over explicit maximal region runs, checked in path order against primary board regions. Returning to a region starts a new run. Occurrence multiplicity is retained. |
+| region-sum | Equal V sums over explicit maximal region runs, checked against primary board regions. With combine true, visits to the same region share one total. Occurrence multiplicity is retained. |
 
 Every other kind is unsupported with the reason exported by `declarationRegistry`: absent-digits, arrow, between, cage-expressions, cage-pair, cage-shapes, constructed-regions, coordinate-arrows, counting-circles, diagonal-lines, doll-sum, double-arrow, equal-sums, equality-cage, extremum, flat-mates, greek-carpet, hidden-modular, index, index-line, layered-cage, limited-digits, line-choice, little-killer, lockout, look-and-say, magic-square, mean-lines, molecules, n-mate, numbered-room, ordered-block, pointing-arrow, pointing-thermo, pressure-gauge, product-cage, remainder-cage, rotational-sums, run-sum, same-class, sandwich, skyscraper, sum-free-cage, tardis, value-modifier, vault, window-classes, x-sum and yin-yang.
 
@@ -146,7 +146,7 @@ Loop closure follows the published shared predicates: only paths longer than two
 
 Entropic classes use the ordered alphabet, whose size must be divisible by three. Modular remainders are normalised even for negative digits. Summit always turns at numeric 1 and 9; shifter always excludes numeric 5. Missing primary regions leave region-sum and shifter coverage unresolved. Neither region geometry nor these lines supplies houses.
 
-Renban and Bremban expand to finite disjunctions of consecutive intervals drawn from the actual alphabet. Renban also requires pairwise distinctness. Region sums retain exact integral coefficient equations; comparison does not solve arbitrary systems of aggregate equations. Expansion limits leave the whole declaration uncovered, with its source and reason retained.
+Renban and Bremban expand to finite disjunctions of consecutive intervals drawn from the actual alphabet. Renban also requires pairwise distinctness. Region sums validate the ordered maximal runs in `segments`. With `combine true`, all path occurrences in each visited primary region form one sum; otherwise each run is a separate sum. They retain exact integral coefficient equations; comparison does not solve arbitrary systems of aggregate equations. Expansion limits leave the whole declaration uncovered, with its source and reason retained.
 
 ## Fog play state
 
@@ -172,3 +172,5 @@ sorted unique `cells`, optional `note` and `element`, and its `source`. Comparis
 ignores this field. A file containing only decorations has the true solution
 (`All` with no children). File-level negation does not negate decorations.
 Common `element` metadata is removed before mathematical lowering for all kinds.
+
+Extended geometry, selectors, channels and aggregate meanings retain whole-instance coverage. When a named extension has no finite lowering, the entire declaration is marked unsupported before any constraints are emitted, including under negation. Grammar acceptance and finite executable coverage are separate contracts.

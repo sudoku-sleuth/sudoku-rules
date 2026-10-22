@@ -13,6 +13,8 @@ parameters:
 
 Digits on the stated main or opposite diagonal are different.
 
+Here `direction "anti"` selects the top-right to bottom-left diagonal and still forbids repeats. It does not mean the variant called anti-diagonal, which limits the number of distinct digits. Declare both directions separately when both diagonals must be unique.
+
 ## Parameters
 
 | Parameter | Meaning | Default |

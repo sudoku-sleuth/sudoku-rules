@@ -11,6 +11,10 @@ parameters:
     description: The cells counted or compared around the clue.
     default: Required. neighbours disjoint from {cell}.
     type: set<cell>
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
 ---
 
 # Tardis
@@ -23,6 +27,7 @@ The marked digit is greater than every listed neighbour.
 | --- | --- | --- |
 | cell | The clue cell. | Required. |
 | neighbours | The cells counted or compared around the clue. | Required. neighbours disjoint from {cell}. |
+| channel | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
@@ -31,10 +36,10 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀c ∈ neighbours: D(cell)>D(c)
+extremumAt(cell,neighbours,"max",channel)
 ```
 
-The marked digit exceeds every listed neighbour digit.
+The marked number exceeds every supplied neighbour in the selected channel.
 
 ## Example
 

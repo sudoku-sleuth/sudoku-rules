@@ -90,6 +90,14 @@ Cells use r1c1 notation. Repeated rules have numbered IDs; singleton rules use t
 - [rotational-sums](https://rules.sudoku-sleuth.com/rotational-sums.md)
 - [magic-square](https://rules.sudoku-sleuth.com/magic-square.md)
 
+- [split-pea](https://rules.sudoku-sleuth.com/split-pea.md)
+- [difference-line](https://rules.sudoku-sleuth.com/difference-line.md)
+- [prefix-sum](https://rules.sudoku-sleuth.com/prefix-sum.md)
+- [blocked-sight](https://rules.sudoku-sleuth.com/blocked-sight.md)
+- [sum-partition](https://rules.sudoku-sleuth.com/sum-partition.md)
+- [aggregate-relation](https://rules.sudoku-sleuth.com/aggregate-relation.md)
+- [lookup](https://rules.sudoku-sleuth.com/lookup.md)
+
 A standard board is one line: [sudoku 9x9](https://rules.sudoku-sleuth.com/sudoku.md).
 
 The short names [whisper](https://rules.sudoku-sleuth.com/whisper.md) and [killer](https://rules.sudoku-sleuth.com/killer.md) refer to whispers and cage.

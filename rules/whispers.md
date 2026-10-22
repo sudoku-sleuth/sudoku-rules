@@ -4,6 +4,7 @@ url: https://rules.sudoku-sleuth.com/whispers.md
 kind: whispers
 parameters:
   line:
+    empty_when: edges
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
@@ -15,11 +16,19 @@ parameters:
     description: Whether the line closes, joining its last cell back to its first.
     default: false (open path).
     type: boolean
+  edges:
+    type: optional<list<list<cell>>>
+    description: Explicit undirected edges of one connected network; each edge lists two different cells.
+    default: Absent; use the ordered line.
 ---
 
 # Whisper
 
 Neighbouring values along the line differ by at least the stated gap.
+
+Whisper-n lines use `gap n`; German whispers normally use 5 and Dutch whispers 4. Consecutive means adjacent positions along the path. Digits may repeat at non-neighbouring positions when other rules allow.
+
+With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
 ## Parameters
 
@@ -28,18 +37,19 @@ Neighbouring values along the line differ by at least the stated gap.
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | gap | The least difference between neighbours: 5 for German whispers, 4 for Dutch whispers. | Required. |
 | loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀i,j∈[0,|line|): consecutive(line,i,j,loop) → |V(line[i])-V(line[j])|>=gap
+lineGeometry(line,edges,loop) ∧ ∀W∈lineWindows(line,edges,2,loop): |W|=2 → |V(W[0])-V(W[1])|>=gap
 ```
 
-Neighbouring path positions differ in value by at least gap. Include last/first when loop is true.
+Every drawn edge is compared, including branches and junctions.
 
 ## Example
 

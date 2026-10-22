@@ -21,6 +21,8 @@ parameters:
 
 The end digits differ by at least the stated gap. Every digit between them is below both ends or above both ends.
 
+Use `gap 4` for the usual lockout rule. The `line` excludes the two diamond cells in `ends`. Each diamond ends a segment: declare each segment separately when a drawing contains more diamonds. Interior digits may repeat when other rules allow; they cannot equal either endpoint.
+
 ## Parameters
 
 | Parameter | Meaning | Default |
@@ -36,10 +38,10 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|ends|=2 ∧ |D(ends[0])-D(ends[1])|>=gap ∧ ∀c∈line: D(c)<minimumPair(D(ends[0]),D(ends[1])) ∨ D(c)>maximumPair(D(ends[0]),D(ends[1]))
+|ends|=2 ∧ pairRelation(relationSpec("at-least",gap),D(ends[0]),D(ends[1])) ∧ ∀c∈line: ¬numericBetween(D(c),D(ends[0]),D(ends[1]),true)
 ```
 
-The endpoint digits differ by at least gap. Every interior digit is strictly below both ends or strictly above both ends.
+The end gap holds and every interior digit is outside the closed interval between the ends.
 
 ## Example
 

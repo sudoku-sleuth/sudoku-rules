@@ -3,6 +3,10 @@ name: Region Sum
 url: https://rules.sudoku-sleuth.com/region-sum.md
 kind: region-sum
 parameters:
+  combine:
+    description: Whether separate visits to the same region contribute to one regional total.
+    default: false (each visit is summed separately).
+    type: boolean
   line:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
@@ -11,18 +15,26 @@ parameters:
     description: The cells in each segment, listed in path order.
     default: Required.
     type: list<list<cell>>
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: V.
 ---
 
 # Region Sum
 
-Each listed segment of the line has the same total value. Crossing a region boundary begins a new segment.
+Region boundaries split the line into segments. By default, each segment has the same total value. With combine true, all visits to a region contribute to one total, equal across the regions visited.
+
+The board’s primary regions supply the boundaries: standard boxes on a normal Sudoku board, or the declared regions on an irregular board. List the maximal runs in `segments` in path order, including every return to a region. `combine false` keeps those visits separate; `combine true` adds their values together within each region. State the choice explicitly when a line re-enters a region. Digits may repeat when other rules allow; each occurrence on the supplied path contributes to its sum.
 
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
+| combine | Whether separate visits to the same region contribute to one regional total. | false (each visit is summed separately). |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | segments | The cells in each segment, listed in path order. | Required. |
+| channel | Read printed digits (D) or effective values (V). | V. |
 
 ## Maths
 
@@ -31,10 +43,12 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀A,B ∈ segments: valueSum(A)=valueSum(B)
+maximalRegionRuns(line,segments) ∧ if combine then
+  ∀R,S∈Regions: (∃c∈line:c∈R) ∧ (∃c∈line:c∈S) → aggregate(⟨c:c∈line,c∈R⟩,channel,"sum")=aggregate(⟨c:c∈line,c∈S⟩,channel,"sum")
+else ∀A,B∈segments: aggregate(A,channel,"sum")=aggregate(B,channel,"sum")
 ```
 
-Every explicit segment has the same sum of V values. Segments are ordered runs within one authored region; returning to a region begins a new segment.
+Segments must be exactly the ordered maximal primary-region runs, retaining every path occurrence. The selected channel is summed per visit or per visited region.
 
 ## Example
 
@@ -51,10 +65,18 @@ status: read
 
 ```rules
 sudoku 9x9
-region-sum r1c1-r1c2-r1c3 segments [["r1c1","r1c2"],["r1c3"]]
+region-sum r1c2-r1c3-r1c4 segments [["r1c2","r1c3"],["r1c4"]]
 ```
 ````
 
-Satisfies the rule: r1c1=1, r1c2=2, r1c3=3. Both listed segments total 3.
+Satisfies the rule: r1c2=1, r1c3=2, r1c4=3. Both listed segments total 3.
 
-Breaks the rule: r1c1=1, r1c2=2, r1c3=4. The listed segments have totals 3 and 4.
+Breaks the rule: r1c2=1, r1c3=2, r1c4=4. The listed segments have totals 3 and 4.
+
+### Returning to a region
+
+```rules
+region-sum r1c3-r1c4-r2c3 segments [["r1c3"],["r1c4"],["r2c3"]] combine true
+```
+
+Satisfies the rule: r1c3=1, r1c4=3, r2c3=2. The first box contributes 1+2 and the second contributes 3. Breaks the rule: r1c3=1, r1c4=4, r2c3=2 gives totals 3 and 4. With combine false, [3,3,3] satisfies the three separate segment sums but fails the combined totals of 6 and 3.

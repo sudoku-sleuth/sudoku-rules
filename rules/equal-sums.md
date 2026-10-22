@@ -7,6 +7,14 @@ parameters:
     description: The cells in each group, one list per group.
     default: Required.
     type: list<set<cell>>
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
+  repeats:
+    type: boolean
+    description: Whether numbers may repeat within each group.
+    default: true.
 ---
 
 # Equal Sums
@@ -18,6 +26,8 @@ Every listed group has the same total.
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | groups | The cells in each group, one list per group. | Required. |
+| channel | Read printed digits (D) or effective values (V). | D. |
+| repeats | Whether numbers may repeat within each group. | true. |
 
 ## Maths
 
@@ -26,10 +36,10 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀A,B ∈ groups: sum_D(A)=sum_D(B)
+(∀G∈groups:repeatPolicy(G,channel,repeats)) ∧ ∀A,B∈groups: aggregate(A,channel,"sum")=aggregate(B,channel,"sum")
 ```
 
-Every group has the same sum of D digits.
+All supplied operands have the same total in the selected channel.
 
 ## Example
 

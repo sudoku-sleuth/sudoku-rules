@@ -22,9 +22,10 @@ export function validatePage(metadata: Metadata, file: string) {
     if (metadata.kind !== slug) throw new Error(`${file}: kind must match filename`);
   }
   const alias = metadata.alias_of ?? metadata.aliasOf;
+  if (metadata.alias_bind !== undefined && alias === undefined) throw new Error(`${file}: alias_bind needs alias_of`);
   if (alias !== undefined && (typeof alias !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(alias) || alias === slug)) throw new Error(`${file}: alias target must be a different rule kind`);
   if (metadata.alias_of !== undefined && metadata.aliasOf !== undefined) throw new Error(`${file}: declare alias_of only once`);
-  if (alias !== undefined && (metadata.kind !== slug || metadata.parameters !== undefined)) throw new Error(`${file}: alias pages declare their own kind and no parameters`);
+  if (alias !== undefined && (metadata.kind !== slug || (metadata.parameters !== undefined && metadata.alias_bind === undefined))) throw new Error(`${file}: alias pages declare their own kind and no parameters`);
   if (typeof metadata.name !== "string" || !metadata.name.trim()) throw new Error(`${file}: name must be a nonempty string`);
   if (metadata.url !== `${origin}/${slug}.md`) throw new Error(`${file}: url must be ${origin}/${slug}.md`);
   return slug;

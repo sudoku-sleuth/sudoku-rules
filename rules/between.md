@@ -17,6 +17,8 @@ parameters:
 
 Every digit between the ends is strictly greater than the smaller end and strictly less than the larger end.
 
+The `line` lists only the cells between the two ends; `ends` lists the circles. Interior digits may repeat when other rules allow. They need not increase or decrease along the line.
+
 ## Parameters
 
 | Parameter | Meaning | Default |
@@ -31,10 +33,10 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-|ends|=2 ∧ ∀c∈line: minimumPair(D(ends[0]),D(ends[1]))<D(c)<maximumPair(D(ends[0]),D(ends[1]))
+|ends|=2 ∧ ∀c∈line: numericBetween(D(c),D(ends[0]),D(ends[1]),false)
 ```
 
-Every interior digit is strictly between the two endpoint digits. cells excludes the ends.
+Every interior digit lies strictly between the endpoint digits.
 
 ## Example
 

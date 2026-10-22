@@ -7,29 +7,43 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+  orientation:
+    type: Orientation
+    description: The increasing direction of the whole line.
+    default: forward.
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
+alias_of: thermo
+alias_bind:
+  line: line
+  strict: "false"
+  orientation: orientation
+  channel: channel
 ---
 
 # Slow Thermo
 
 Digits never decrease from the bulb to the tip. Equal neighbours are allowed.
 
+List the path from bulb to tip. The rule reads printed digits and permits repeats when other rules allow; a strict [Thermo](https://rules.sudoku-sleuth.com/thermo.md) instead compares effective values with a strict increase.
+
 ## Parameters
 
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| orientation | The increasing direction of the whole line. | forward. |
+| channel | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
-Class: **first-order**.
-
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀i ∈ [0,|line|−1): D(line[i]) ≤ D(line[i+1])
-```
+This is a shorthand for [thermo](thermo.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
-Digits never decrease along the path from its bulb.
+The shared monotonic predicate permits equal neighbours.
 
 ## Example
 

@@ -14,6 +14,8 @@ kind: sudoku
 
 Every row, column and standard 3×3 box contains the digits 1–9 exactly once.
 
+For 4×4 or 6×6 Sudoku, declare the board dimensions, allowed symbols and region geometry in the case header, then use [Unique](https://rules.sudoku-sleuth.com/unique.md) for every row, column and region. This kind specifically declares standard 9×9 Sudoku.
+
 ## Parameters
 
 - Board: write `sudoku 9x9`. It declares the 9×9 board, digits 1–9 and standard boxes together.

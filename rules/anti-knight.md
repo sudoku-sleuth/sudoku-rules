@@ -3,6 +3,13 @@ name: Anti Knight
 url: https://rules.sudoku-sleuth.com/anti-knight.md
 kind: anti-knight
 parameters: {}
+alias_of: scoped-move
+alias_bind:
+  move: '"knight"'
+  relation: '"same"'
+  digits: 𝔄
+  scope: C
+  channel: '"D"'
 ---
 
 # Anti Knight
@@ -16,13 +23,9 @@ Cells a chess knight move apart contain different digits.
 
 ## Maths
 
-Class: **first-order**.
-
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀a,b ∈ C: knight(a,b) → D(a)≠D(b)
-```
+This is a shorthand for [scoped-move](scoped-move.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
 For every in-board pair separated by (±1,±2) or (±2,±1): their digits differ.
 

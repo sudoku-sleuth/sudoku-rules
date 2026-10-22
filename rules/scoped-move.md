@@ -8,13 +8,21 @@ parameters:
     default: Required.
     type: Move
   relation:
-    description: 'The relationship to enforce: its operation and any required value, for example {"op":"difference","value":1}.'
-    default: Required.
     type: enum{same,consecutive}
+    description: "The prohibited relationship: equal values or values one apart."
+    default: Required.
   digits:
     description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
     default: Required.
     type: list<digit>
+  scope:
+    type: set<cell>
+    description: Compare only pairs whose two cells belong to this scope.
+    default: C (the whole board).
+  channel:
+    type: Channel
+    description: Read printed digits (D) or effective values (V).
+    default: D.
 ---
 
 # Scoped Move
@@ -26,8 +34,10 @@ For the listed digits and chess move, prohibit either equal digits or consecutiv
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 | move | The chess move connecting the compared cells. | Required. |
-| relation | The relationship to enforce: its operation and any required value, for example {"op":"difference","value":1}. | Required. |
+| relation | The prohibited relationship: equal values or values one apart. | Required. |
 | digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
+| scope | Compare only pairs whose two cells belong to this scope. | C (the whole board). |
+| channel | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
@@ -36,10 +46,10 @@ Class: **first-order**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∀a,b∈C: moveRelation(move,a,b) ∧ (D(a)∈digits ∨ D(b)∈digits) → ¬((relation="same" ∧ D(a)=D(b)) ∨ (relation="consecutive" ∧ |D(a)-D(b)|=1))
+scopedMove(move,relation,digits,scope,channel)
 ```
 
-For every pair at move, forbid equal digits (same) or difference 1 (consecutive) when either endpoint’s digit belongs to digits. bishop includes every distance on a diagonal.
+Either endpoint must have a listed face digit; both endpoints must be in scope. The selected channel supplies the compared numbers.
 
 ## Example
 
