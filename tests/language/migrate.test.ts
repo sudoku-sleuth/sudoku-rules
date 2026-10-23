@@ -199,10 +199,14 @@ test('removed rule aliases migrate to their retained names in plain and scoped s
   ['whisper','whispers',{line:[a,b],gap:5},'r1c1-r1c2 gap 5'],
   ['killer','cage',{cells:[a,b],total:3},'r1c1-r1c2 total 3'],
   ['killer-cage','cage',{cells:[a,b],total:3},'r1c1-r1c2 total 3'],
-  ['unique','extra-regions',{cells:[a,b]},'r1c1-r1c2'],
+  ['unique','regions',{cells:[a,b]},'r1c1-r1c2'],
+  ['extra-regions','regions',{cells:[a,b]},'r1c1-r1c2'],
+  ['parity','parity-line',{line:[a,b]},'r1c1-r1c2'],
+  ['parity-cells','odd-even-cells',{cells:[a,b],parity:'odd'},'r1c1-r1c2 parity "odd"'],
+  ['between','between-line',{line:[b],ends:[a,c]},'r1c2 ends ["r1c1","r1c3"]'],
  ] as const){
   expect(current.namedRules.has(kind)).toBe(false);
-  expect(migrationTable.find(r=>r.kind===kind)?.target).toBe(target);
+  if(kind!=='extra-regions')expect(migrationTable.find(r=>r.kind===kind)?.target).toBe(target);
   expect(migrateDeclaration({kind,parameters})[0].kind).toBe(target);
   for(const spelling of [kind,`https://rules.sudoku-sleuth.com/${kind}.md`])for(const suffix of ['', ' if distinct', ' element "paint"']){
    const source=exampleCase(`sudoku 9x9\nold: not ${spelling} ${line}${suffix} # retain`);

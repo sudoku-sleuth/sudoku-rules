@@ -41,7 +41,7 @@ for(const {kind,parameters} of samples)test(`folded block preserves ${kind}: ${J
 });
 test('all public declarations have a layer and migration prefers named rules',()=>{
  expect(Object.keys(libraryLayers).sort()).toEqual([...library.rules.keys()].sort());
- for(const [oldKind,target]of Object.entries({whisper:'whispers',killer:'cage',unique:'extra-regions'})){
+ for(const [oldKind,target]of Object.entries({whisper:'whispers',killer:'cage',unique:'regions'})){
   expect(library.namedRules.has(oldKind)).toBe(false);
   expect(library.registry.kindByUrl!.get(`https://rules.sudoku-sleuth.com/${oldKind}.md`)).toBe(target);
  }
@@ -52,8 +52,8 @@ test('predicates cannot be declared as case constraints',()=>{
  expect(checkCaseReferences({file:'vocabulary.rules.md',text},library.registry).diagnostics.map(d=>d.code)).toContain('E_KIND_UNKNOWN');
 });
 
-test('extra regions and the Sudoku rule supply house constraints to the case checker',()=>{
- for(const rules of ['extra-regions r1c1-r1c2','sudoku 9x9']){
+test('regions and the Sudoku rule supply house constraints to the case checker',()=>{
+ for(const rules of ['regions r1c1-r1c2','extra-regions r1c1-r1c2','sudoku 9x9']){
   const text=`---\nformat: open-rules\ntitle: Houses\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard: {rows: 9, cols: 9, symbols: [1,2,3,4,5,6,7,8,9], regions: [[r1c1,r1c2]]}\n---\n\n\`\`\`rules\n${rules}\n\`\`\`\n`;
   expect(checkCaseReferences({file:'houses.rules.md',text},library.registry).diagnostics.map(d=>d.code)).not.toContain('W_CASE_HOUSES');
  }
@@ -66,6 +66,6 @@ test('blocks own shared formulas or declare a general composition purpose',()=>{
   const users=headers.filter(rule=>rule.layer==='rule'&&rule.alias_of===m.kind);
   if(users.length<2)expect(String(m.composition??'').length).toBeGreaterThan(20);
  }
- const disguised=pages.map(p=>p.file==='rules/parity-cells.md'?{...p,text:p.text.replace('layer: rule','layer: block')}:p);
+ const disguised=pages.map(p=>p.file==='rules/odd-even-cells.md'?{...p,text:p.text.replace('layer: rule','layer: block')}:p);
  expect(compilePublicLibrary(disguised).diagnostics.some(d=>d.code==='E_ALIAS_TARGET'&&d.message.includes('owns a formula'))).toBe(true);
 });

@@ -54,7 +54,7 @@ const equation=(left:unknown[],right:unknown[],r:unknown=relation('difference',0
  * source files with instance IDs, negations, drawing elements or conditions.
  */
 export function migrateDeclaration(old: MigratingDeclaration): MigratingDeclaration[] {
- const kind=old.kind;
+ const kind=old.kind==='extra-regions'?'unique':old.kind;
  if(!Object.hasOwn(legacyDefaults,kind))throw new Error(`Unknown 0.3 rule kind: ${kind}`);
  const p=copy({...legacyDefaults[kind],...old.parameters}) as Record<string,unknown>;
  const output=(parameters:Record<string,unknown>,target=targets[kind]??kind)=>[{kind:target,parameters:{...parameters,...(p.element===undefined?{}:{element:p.element})}}];
@@ -178,6 +178,7 @@ function decoded(value:DeclarationValue):unknown {
 }
 /** Project an old parsed declaration, retaining exact keyword integers. */
 export function migrateParsedDeclaration(ast:DeclarationAST,kind=ast.kind.value,preserveKind=!!ast.condition || ast.parameters.some(p=>p.name.value==='element')):MigratingDeclaration[] {
+ if(kind==='extra-regions')kind='unique';
  const contract=legacyContracts.get(`https://rules.sudoku-sleuth.com/${kind==='killer-cage'?'cage':kind}.md`);
  const parameters=declarationParameters(ast,parameterGrammar(contract).primary);
  for(const p of ast.parameters)parameters[p.name.value]=decoded(p.value);
@@ -256,7 +257,7 @@ export function migrateCase(page:PageSource):Result<PageSource> {
    const canonicalKind=(kind:string)=>kind.startsWith('https://rules.sudoku-sleuth.com/')?kind.slice('https://rules.sudoku-sleuth.com/'.length,-3):kind;
    const parsed=parseDeclaration({file:page.file,text:line.trimEnd(),document:page.text,offset},kind=>{
     if(splitForms.has(kind))return {primary:'cells'};
-    const key=canonicalKind(kind)==='killer-cage'?'cage':canonicalKind(kind),url=`https://rules.sudoku-sleuth.com/${key}.md`,contract=legacyContracts.get(url);
+    const key=canonicalKind(kind)==='killer-cage'?'cage':canonicalKind(kind)==='extra-regions'?'unique':canonicalKind(kind),url=`https://rules.sudoku-sleuth.com/${key}.md`,contract=legacyContracts.get(url);
     return {...parameterGrammar(contract),line:legacyLines.get(url),opaque:!contract};
    });
    diagnostics.push(...parsed.diagnostics);
@@ -276,7 +277,7 @@ export function migrateCase(page:PageSource):Result<PageSource> {
      }else diagnostics.push(diagnostic('E_CASE_PARAMETERS',ast.span,'Cannot migrate the local Split Pea arguments without changing their meaning.'));
     }else if(localRenames.has(kind))changes.push({start:ast.kind.span.start.offset,end:ast.kind.span.end.offset,text:localRenames.get(kind)!});
     // A different library may publish an unrelated meaning under the same name.
-    if(Object.hasOwn(legacyDefaults,kind)&&(root==='https://rules.sudoku-sleuth.com/'||ast.kind.value.startsWith('https://rules.sudoku-sleuth.com/'))){
+    if((Object.hasOwn(legacyDefaults,kind)||kind==='extra-regions')&&(root==='https://rules.sudoku-sleuth.com/'||ast.kind.value.startsWith('https://rules.sudoku-sleuth.com/'))){
      const migrated=migrateParsedDeclaration(ast,kind);
      if(root!=='https://rules.sudoku-sleuth.com/')migrated[0].kind=`https://rules.sudoku-sleuth.com/${migrated[0].kind}.md`;
      const prefix=(ast.instance?JSON.stringify(ast.instance.value)+': ':'')+ast.negations.map(()=>'not ').join('');

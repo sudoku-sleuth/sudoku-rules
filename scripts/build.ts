@@ -15,7 +15,7 @@ const searchNames: Record<string, string[]> = {
   "close-whispers": ["shout-n"], index: ["159 indexing", "row indexing", "column indexing"],
   "window-classes": ["global entropy", "global modularity"], extremum: ["fortress", "minimum", "maximum"],
   "look-and-say": ["look-and-say diagonals"], "absent-digits": ["anti-quadruples"],
-  "extra-regions": ["unique", "disjoint groups"], "constructed-regions": ["chaos construction"],
+  regions: ["unique"], "constructed-regions": ["chaos construction"],
 };
 const shapes = ["Lines", "Edges", "Cells", "Cages", "Outside", "Regions", "Global"];
 function document(title: string, content: string, raw?: string, home = false) {

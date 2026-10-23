@@ -55,3 +55,25 @@ ${kind} ${a}-${b} loop false`,false),board);
  expect(modified.issues).toEqual([]);
  expect(modified.normalForm!.coverage.find(c=>c.kind===kind)!.status).toBe('unsupported');
 });
+
+for(const [oldKind,kind,syntax] of [
+ ['extra-regions','regions','r1c1-r1c2'],
+ ['parity','parity-line','r1c1-r1c2'],
+ ['parity-cells','odd-even-cells','r1c1-r1c2 parity "odd"'],
+ ['between','between-line','r1c2 ends ["r1c1","r1c3"]'],
+])test(`${kind} preserves its previous contract and normalisation`,()=>{
+ expect(library.aliases.get(oldKind)).toBe(kind);
+ expect(library.namedRules.has(oldKind)).toBe(false);
+ expect(library.namedRules.has(kind)).toBe(true);
+ expect(library.prelude.environment.terms[kind]).toBeUndefined();
+ const contract=(name:string)=>library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${name}.md`);
+ expect(contract(oldKind)).toEqual(contract(kind));
+ for(const spelling of [kind,oldKind,`https://rules.sudoku-sleuth.com/${oldKind}.md`])
+  expect(checkCaseReferences(page(`${spelling} ${syntax}`),library.registry).diagnostics).toEqual([]);
+ const board={rows:9,cols:9,alphabet:[1,2,3,4,5,6,7,8,9],activeCells:Array.from({length:81},(_,i)=>`r${Math.floor(i/9)+1}c${i%9+1}` as `r${number}c${number}`),regions:[]};
+ const old=normalise(page(`${oldKind} ${syntax}`),board),renamed=normalise(page(`${kind} ${syntax}`),board);
+ expect(renamed.status).not.toBe('invalid');
+ expect(renamed.issues).toEqual(old.issues);
+ expect(renamed.status).toBe(old.status);
+ expect(renamed.normalForm?.solution).toEqual(old.normalForm?.solution);
+});

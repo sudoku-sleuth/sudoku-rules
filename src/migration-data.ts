@@ -373,7 +373,7 @@ export const legacyDefaults: Record<string, Record<string, unknown>> = {
 };
 
 /** Removed public spellings retain their original contracts and defaults. */
-export const legacyRuleRenames: Record<string,string> = {'little-killer':'diagonal-sum',whisper:'whispers',killer:'cage','killer-cage':'cage',unique:'extra-regions'};
+export const legacyRuleRenames: Record<string,string> = {'little-killer':'diagonal-sum',whisper:'whispers',killer:'cage','killer-cage':'cage',unique:'regions','extra-regions':'regions',parity:'parity-line','parity-cells':'odd-even-cells',between:'between-line'};
 
 /** Complete removed-term migration table, archived from public 0.3 at 6d9e954. */
 export const legacyFormulaTerms: Record<string,{parameters:string[];parameterTypes:string[];formula:string;mode:'rewrite'|'local';reference?:string}> = {

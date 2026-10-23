@@ -8,7 +8,7 @@ export interface SharedParameter { role: "construct" | "read" | "conjoin"; type:
 export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string; allowEmpty?: boolean; shared?: SharedParameter }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
   "liar-cells": ["groups", "values"],
-  "whispers-5": ["loop"], "whispers-4": ["loop"], summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
+  "whispers-5": ["loop"], "whispers-4": ["loop"], summit: ["loop"], whispers: ["loop"], parity: ["loop"], "parity-line": ["loop"], modular: ["loop", "modulus"],
   entropic: ["loop"], primality: ["loop"], "line-choice": ["loop"],
   nabner: ["distinct"], cage: ["repeats"], sandwich: ["crusts"],
 };

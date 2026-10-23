@@ -21,6 +21,8 @@ For already decoded data, call `migrateDeclaration({kind, parameters})`. Values 
 
 ## Rule names and pair settings
 
+Extra Regions is now Regions (`regions`); Parity is now Parity Line (`parity-line`); Parity Cells is now Odd Even Cells (`odd-even-cells`); Between is now Between Line (`between-line`). The old kinds and published routes remain aliases and migrate with the same parameters and meaning. Regions also covers boxes, irregular regions and disjoint groups. Odd Even Cells is searchable as odd/even cells, parity cells and odd and even digits.
+
 Little Killer is now Diagonal Sum (`diagonal-sum`). The `little-killer` spelling, searches and published route remain aliases with the same parameters and meaning.
 
 Whispers retains its general `gap`. Prefer `whispers-5` for German Whispers and `whispers-4` for Dutch Whispers; these rules bind Difference Line with the gap fixed at 5 or 4. Existing Whispers declarations with either gap may stay unchanged. Pill, Pill Arrow and Arrow Pill name Arrow with a two- or three-cell decimal bulb.
@@ -39,7 +41,7 @@ XV and Kropki both read effective values V and require two cells. Neither has a 
 
 ## Removed rule spellings
 
-Whispers (`whispers`) is the retained rule for legacy `whisper`; Cage (`cage`) replaces legacy `killer` and `killer-cage`; Extra Regions (`extra-regions`) replaces legacy `unique`. The removed pages are no longer current rules. Migration binds each old contract and defaults before changing the kind, including URL references, IDs, negation, conditions and drawing elements. These renames preserve the original parameters and primary cell scope.
+Whispers (`whispers`) is the retained rule for legacy `whisper`; Cage (`cage`) replaces legacy `killer` and `killer-cage`; Regions (`regions`) replaces legacy `unique` and `extra-regions`. The removed pages are no longer current rules. Migration binds each old contract and defaults before changing the kind, including URL references, IDs, negation, conditions and drawing elements. These renames preserve the original parameters and primary cell scope.
 
 Outside and Quadruple remain separate: Outside accepts repeated cell occurrences, while Quadruple takes a cell set.
 
@@ -90,7 +92,7 @@ Migration chooses a familiar rule where one exists, otherwise a block with setti
 | `arrow` | `arrow` (rule; formula home `arrow`) | identical |
 | `assignment` | `assignment` (block; formula home `assignment`) | identical |
 | `battenburg` | `battenburg` (rule; formula home `battenburg`) | identical |
-| `between` | `between` (rule; formula home `endpoint-range`) | identical |
+| `between` | `between-line` (rule; formula home `endpoint-range`) | identical |
 | `blocked-sight` | `blocked-sight` (block; formula home `blocked-sight`) | identical |
 | `bremban` | `bremban` (rule; formula home `value-set`) | identical |
 | `cage` | `cage` (rule; formula home `aggregate-equation`) | identical |
@@ -154,8 +156,8 @@ Migration chooses a familiar rule where one exists, otherwise a block with setti
 | `pair` | `pair` (rule; formula home `aggregate-equation`) | identical |
 | `paired-roles` | `paired-roles` (block; formula home `paired-roles`) | identical |
 | `palindrome` | `palindrome` (rule; formula home `mirrored-pairs`) | identical |
-| `parity` | `parity` (rule; formula home `class-pattern`) | identical |
-| `parity-cells` | `parity-cells` (rule; formula home `class-pattern`) | identical |
+| `parity` | `parity-line` (rule; formula home `class-pattern`) | identical |
+| `parity-cells` | `odd-even-cells` (rule; formula home `class-pattern`) | identical |
 | `pointing-arrow` | `pointing-arrow` (rule; formula home `lookup`) | identical |
 | `pointing-thermo` | `pointing-thermo` (rule; formula home `lookup`) | identical |
 | `prefix-sum` | `prefix-sum` (rule; formula home `aggregate-equation`) | identical |
@@ -193,7 +195,7 @@ Migration chooses a familiar rule where one exists, otherwise a block with setti
 | `symbol-house` | `symbol-house` (block; formula home `symbol-house`) | identical |
 | `tardis` | `tardis` (rule; formula home `neighbour-extremum`) | identical |
 | `thermo` | `thermo` (rule; formula home `monotone-line`) | identical |
-| `unique` | `extra-regions` (rule; formula home `relation-scope`) | identical |
+| `unique` | `regions` (rule; formula home `relation-scope`) | identical |
 | `value-modifier` | `value-modifier` (block; formula home `value-modifier`) | identical |
 | `vault` | `vault` (rule; formula home `vault`) | identical |
 | `whisper` | `whispers` (rule; formula home `difference-line`) | identical |
