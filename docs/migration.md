@@ -200,3 +200,68 @@ Cage is the public rule name. Killer Cage and Killer remain aliases. Both legacy
 ## Liar rules
 
 Liar Cells (liar-cells) and Lying Clues (clue-count) are additional named rules. Liar Cells constrains the shared effective-value channel; Lying Clues counts complete false clues from an explicit owned list. They reuse the existing counting and distinctness functions. See the [lying-clue guide](design/lying-clues.md) for scope and channel conventions.
+
+<!-- formula-migration:start -->
+## Embedded custom formulas
+
+The migration table in src/migration-data.ts owns every removed callable term from the frozen 0.3 vocabulary, together with the folded uniform predicate. The table below is generated from it by bun scripts/library-report.ts.
+
+Rewrites preserve occurrence policy: distinct_D and distinct_V compare different cells in a set; distinctAt compares different positions, including repeated cells. Face sums and products bind their exact whole-number result as position; effective-value sums retain fractions. Shading reads the existing H set directly. The four nonempty minimum/maximum primitives remain available for archived extremum bodies.
+
+Where the table says local, migration substitutes the archived body into a fresh local let value. Its dependencies are migrated recursively. Helper arguments and enclosing formula variables cannot be captured by generated binders. Function-valued references become typed lambdas; the generic distinctness references use allDifferent. Parentheses retain the scope of conditionals, quantifiers, lambdas and lets.
+
+| Legacy callable | Action | Replacement or archived body |
+| --- | --- | --- |
+| `answer` | Embed local value | `D(c)` |
+| `at` | Embed local value | `L[i]` |
+| `bishop` | Rewrite | `moveRelation("bishop",a,b)` |
+| `boundedAssignment` | Embed local value | `(((((size >= 0) and (labels >= 0)) and (\|xs\| = size)) and (forall x∈xs: ((0 <= x) and (x < labels)))) and (bijective implies ((size = labels) and distinctAt(xs,(λx:position:x)))))` |
+| `composite` | Rewrite | `numericProperty(x,"composite",1)` |
+| `connectedCells` | Embed local value | `((\|S\| > 0) and (forall a,b∈S: (exists route:list<cell>: ((((((0 < \|route\|) and (\|route\| <= \|C\|)) and (route[0] = a)) and (route[(\|route\| - 1)] = b)) and (forall c∈route: (c in S))) and (forall t∈[0,(\|route\| - 1)): orth(route[t],route[(t + 1)]))))))` |
+| `consecutiveValues` | Rewrite | `valueSet(S,ch,repeats,"consecutive")` |
+| `distinct_D` | Rewrite | `∀a,b∈S: a!=b → D(a)!=D(b)` |
+| `distinct_f` | Rewrite | `∀a,b∈S: a!=b → f(a)!=f(b)` |
+| `distinct_V` | Rewrite | `∀a,b∈S: a!=b → V(a)!=V(b)` |
+| `distinctAt` | Rewrite | `∀i,j∈[0,\|L\|): i!=j → f(L[i])!=f(L[j])` |
+| `excludes` | Embed local value | `(forall d∈Q: (forall c∈S: (D(c) != d)))` |
+| `faceDigits` | Embed local value | `{d∈𝔄:(exists c∈S: (D(c) = d))}` |
+| `frequency` | Rewrite | `classCount(S,{n},ch)` |
+| `graphVertices` | Embed local value | `{c∈C:(exists e∈E: (c in e))}` |
+| `in` | Embed local value | `(c in R)` |
+| `indexHit` | Embed local value | `(let n=(read(source,indexChannel) + offset); ((⌊n⌋ = n) and (exists k∈[1,(\|L\| + 1)): ((k = n) and lookupRelated(L,k,target,ch,r)))))` |
+| `inverseIndex` | Embed local value | `(forall i∈[0,\|L\|): (let n=read(L[i],ch); ((⌊n⌋ = n) and (exists k∈[1,(\|L\| + 1)): ((k = n) and lookupEquals(L,k,(i + 1),ch))))))` |
+| `japaneseSums` | Embed local value | `((distinctAt(L,(λc:cell:cellIndex(c))) and (countWhere([0,\|L\|),(λi:position:markedStart(L,i,name))) = \|totals\|)) and (forall a∈[0,\|L\|): (forall b∈[(a + 1),(\|L\| + 1)): (markedRun(L,a,b,name) implies (let j=countWhere([0,a),(λi:position:markedStart(L,i,name))); ((((0 <= j) and (j < \|totals\|)) and repeatPolicy(⟨L[i]:i∈[a,b)⟩,ch,repeats)) and (aggregate(⟨L[i]:i∈[a,b)⟩,ch,"sum") = totals[j])))))))` |
+| `king` | Rewrite | `moveRelation("king",a,b)` |
+| `knight` | Rewrite | `moveRelation("knight",a,b)` |
+| `lookupEquals` | Embed local value | `lookupRelated(L,n,target,ch,relationSpec("difference",0))` |
+| `max_D` | Embed local value | `maximumDigit({D(c):c∈S})` |
+| `max_V` | Embed local value | `maximumValue({V(c):c∈S})` |
+| `maximumPosition` | Embed local value | `(if (a > b) then a else b)` |
+| `min_D` | Embed local value | `minimumDigit({D(c):c∈S})` |
+| `min_V` | Embed local value | `minimumValue({V(c):c∈S})` |
+| `minimumPosition` | Embed local value | `(if (a < b) then a else b)` |
+| `monotonic` | Embed local value | `((((direction = "forward") or (direction = "either")) and (forall i∈[0,(\|L\| - 1)): (if strict then (read(L[i],ch) < read(L[(i + 1)],ch)) else (read(L[i],ch) <= read(L[(i + 1)],ch))))) or (((direction = "reverse") or (direction = "either")) and (forall i∈[0,(\|L\| - 1)): (if strict then (read(L[i],ch) > read(L[(i + 1)],ch)) else (read(L[i],ch) >= read(L[(i + 1)],ch))))))` |
+| `nonconsecutiveValues` | Rewrite | `valueSet(S,ch,repeats and not separated,if separated then "separated" else "nonconsecutive")` |
+| `orderedRay` | Embed local value | `⟨boardCell((row(origin) + (t * dr)),(col(origin) + (t * dc))):t∈[0,(rows + cols)),(((((includeOrigin or (t > 0)) and (0 <= (row(origin) + (t * dr)))) and ((row(origin) + (t * dr)) < rows)) and (0 <= (col(origin) + (t * dc)))) and ((col(origin) + (t * dc)) < cols))⟩` |
+| `orth` | Rewrite | `moveRelation("orthogonal",a,b)` |
+| `prime` | Rewrite | `numericProperty(x,"prime",1)` |
+| `product_D` | Rewrite | `let result:position=⌊aggregate(S,"D","product")⌋; result` |
+| `properFactor` | Embed local value | `∃a,b∈ℤ: a>1 ∧ b>1 ∧ a*b=x` |
+| `relationOnScope` | Embed local value | `((forall p∈pairs: ((\|p\| = 2) and (forall c∈p: (c in S)))) and (forall p∈pairs: ((\|p\| = 2) implies pairRelation(r,read(p[0],ch),read(p[1],ch)))))` |
+| `sameProfile` | Embed local value | `(forall n∈({read(c,ch):c∈A} union {read(c,ch):c∈B}): (if multiset then (frequency(A,n,ch) = frequency(B,n,ch)) else ((frequency(A,n,ch) > 0) iff (frequency(B,n,ch) > 0))))` |
+| `sameRegion` | Embed local value | `(exists R∈Regions: ((a in R) and (b in R)))` |
+| `scopedMove` | Embed local value | `(forall a,b∈scope: ((moveRelation(m,a,b) and ((D(a) in digits) or (D(b) in digits))) implies not((if (relation = "same") then (read(a,ch) = read(b,ch)) else pairRelation(relationSpec("difference",1),read(a,ch),read(b,ch))))))` |
+| `sequenceMeaning` | Embed local value | `(((((\|L\| > 0) and (closed implies (\|L\| >= 3))) and ((mode = "recurrence") implies not(closed))) and ((mode = "transitions") implies (forall p∈allowed: (\|p\| = 2)))) and (if (mode = "recurrence") then (forall i∈[0,(\|L\| - 2)): (read(L[(i + 2)],ch) = ((a * read(L[i],ch)) + (b * read(L[(i + 1)],ch))))) else (forall i,j∈[0,\|L\|): (next(L,i,j,closed) implies (if (mode = "divisors") then divides(read(L[i],ch),read(L[j],ch)) else transitionAllowed(read(L[i],ch),read(L[j],ch),allowed))))))` |
+| `shaded` | Rewrite | `c∈H` |
+| `sum_D` | Rewrite | `let result:position=⌊aggregate(S,"D","sum")⌋; result` |
+| `sumLineMeaning` | Embed local value | `((\|L\| > 0) and (if (mode = "partition") then (if closed then (exists s∈[0,\|L\|): partitionSums(cyclicCut(L,s),total,ch,repeats)) else partitionSums(L,total,ch,repeats)) else (if closed then (forall i∈[0,\|L\|): (exists s∈[0,\|L\|): (exists k∈[1,(\|L\| + 1)): (((start(L,k,s,true) and (exists j∈[0,k): (rem((s + j),\|L\|) = i))) and repeatPolicy(window(L,k,s,true),ch,repeats)) and (aggregate(window(L,k,s,true),ch,"sum") = total))))) else (forall i∈[0,\|L\|): (exists a∈[0,\|L\|): (exists b∈[(a + 1),(\|L\| + 1)): (((a <= i) and (i < b)) and sumSegment(L,a,b,total,ch,repeats))))))))` |
+| `touch` | Rewrite | `moveRelation("diagonal",a,b)` |
+| `uniform` | Embed local value | `\|S\|>0 ∧ ((∀c∈S:shaded(c)) ∨ (∀c∈S:¬shaded(c)))` |
+| `valueSum` | Rewrite | `aggregate(S,"V","sum")` |
+
+## Local kind collisions
+
+A local definition that shares a library kind keeps its own meaning. Reviewed Split Pea formulas migrate to the library rule on positive decimal digit alphabets. A full path supplies line directly; a separate interior and two ends (or bulbs) become the first end, the interior occurrences in order, and the last end. The formula and parameter types must match a reviewed form; declarations retain IDs, negations, conditions, drawings and comments.
+
+Every other collision receives an unused local-<id> name, with a numeric suffix when needed. Both its definition and declarations are renamed. Battenburg with an exhaustive marks record and multicolour Japanese Sums retain their local formulas under this rule. Definitions with an unrecognised Split Pea meaning or a nondecimal alphabet also retain a renamed local definition.
+<!-- formula-migration:end -->

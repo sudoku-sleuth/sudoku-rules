@@ -13,12 +13,12 @@ export function formulaNotation(e:Expr):string {
   case 'member':return `${c[0]}.${e.value}`;
   case 'interval':return `[${c.join(',')}${e.inclusive?']':')'}`;
   case 'set':return `{${c.join(',')}}`;
-  case 'conditional':return `if ${c[0]} then ${c[1]} else ${c[2]}`;
-  case 'let':return `let ${b}=${c[0]}; ${c[1]}`;
-  case 'lambda':return `λ${(e.binders??[]).map(b=>`${b.name}:${b.type?typeName(b.type):'number'}`).join(',')}:${c[0]}`;
+  case 'conditional':return `(if ${c[0]} then ${c[1]} else ${c[2]})`;
+  case 'let':return `(let ${(e.binders??[]).map(b=>b.name+(b.type?':'+typeName(b.type):'')).join(',')}=${c[0]}; ${c[1]})`;
+  case 'lambda':return `(λ${(e.binders??[]).map(b=>`${b.name}:${b.type?typeName(b.type):'number'}`).join(',')}:${c[0]})`;
   case 'image':return `${e.value==='list'?'⟨':'{'}${c[1]}:${b}∈${c[0]}${c[2]?`,${c[2]}`:''}${e.value==='list'?'⟩':'}'}`;
   case 'comprehension':return e.value==='list'?`⟨${c[0]}:${b}∈${c[1]}${c[2]?`,${c[2]}`:''}⟩`:`{${b}∈${c[0]}:${c[1]}}`;
-  case 'quantifier':case 'aggregate':return `${e.value} ${e.hasDomain?b:(e.binders??[]).map(b=>`${b.name}:${b.type?typeName(b.type):'number'}`).join(',')}${e.hasDomain?`∈${c[0]}`:''}: ${c[e.hasDomain?1:0]}`;
+  case 'quantifier':case 'aggregate':return `(${e.value} ${e.hasDomain?b:(e.binders??[]).map(b=>`${b.name}:${b.type?typeName(b.type):'number'}`).join(',')}${e.hasDomain?`∈${c[0]}`:''}: ${c[e.hasDomain?1:0]})`;
  }
 }
 

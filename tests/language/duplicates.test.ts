@@ -1,3 +1,4 @@
+import {legacyFormulaTerms} from '../../src/migration-data';
 import {expect,test,afterAll,setDefaultTimeout} from 'bun:test';
 import {readdir} from 'node:fs/promises';
 import {compilePublicLibrary,readHeader,type Expr} from '../../src';
@@ -68,9 +69,10 @@ test('every block owns a formula and has two named users or a composition purpos
  }
 });
 
-test('every callable prelude name is reachable from a rule, feature or documented formula API',()=>{
+test('every callable prelude name is reachable from a rule, feature, migration or documented formula API',()=>{
  const used=new Set(['uniform','reified','conditionalMeaning','prefixSelection']);
  const visit=(n:Expr)=>{if(n.kind==='name')used.add(n.value!);n.children.forEach(visit);};
+ for(const term of Object.values(legacyFormulaTerms))visit(parseFormula(term.formula).value!);
  for(const rule of library.rules.values())rule.formulas.forEach(f=>visit(f.ast));
  for(const feature of library.features){visit(feature.formula.ast);feature.requires.forEach(r=>visit(r.formula));}
  let changed=true;while(changed){const count=used.size;for(const [name,term]of Object.entries(library.prelude.environment.terms))if(used.has(name)){if(term.body)visit(term.body);if(term.requires)visit(term.requires);}changed=used.size!==count;}

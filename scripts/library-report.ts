@@ -2,6 +2,7 @@ import {readdir} from 'node:fs/promises';
 import {compilePublicLibrary,readHeader} from '../src/documents';
 import {formulaBlocks} from '../src/library';
 import {migrationTable} from '../src/migrate';
+import {legacyFormulaTerms} from '../src/migration-data';
 const pages=await Promise.all((await readdir('rules')).filter(f=>f.endsWith('.md')).sort().map(async f=>({file:`rules/${f}`,text:await Bun.file(`rules/${f}`).text()})));
 const compiled=compilePublicLibrary(pages);if(!compiled.value)throw Error(JSON.stringify(compiled.diagnostics));
 const library=compiled.value;
@@ -72,6 +73,28 @@ The [migration guide](migration.md) lists all legacy declarations and their form
 const final=report;
 await save('docs/library.md',final);
 await save('rules/README.md',`---\ndocument: home\nname: Open Rules\nurl: https://rules.sudoku-sleuth.com/README.md\n---\n\n# Open Rules\n\nChoose a familiar rule and say where it applies. Shared building blocks combine mathematical predicates into reusable constraints. Rules with unique meanings define them directly.\n\n## Rules\n\n${rules.map(r=>`- [${r.m.name}](${r.m.url})`).join('\n')}\n\n## Building blocks\n\n${blocks.map(r=>`- [${r.m.name}](${r.m.url})`).join('\n')}\n\n## Shared definitions\n\n- [Predicates](https://rules.sudoku-sleuth.com/predicates.md)\n- [Syntax](https://rules.sudoku-sleuth.com/syntax.md)\n- [Fog](https://rules.sudoku-sleuth.com/fog.md)\n`);
-const migration=await Bun.file('docs/migration.md').text();
+const formulaGuide=`<!-- formula-migration:start -->
+## Embedded custom formulas
+
+The migration table in src/migration-data.ts owns every removed callable term from the frozen 0.3 vocabulary, together with the folded uniform predicate. The table below is generated from it by bun scripts/library-report.ts.
+
+Rewrites preserve occurrence policy: distinct_D and distinct_V compare different cells in a set; distinctAt compares different positions, including repeated cells. Face sums and products bind their exact whole-number result as position; effective-value sums retain fractions. Shading reads the existing H set directly. The four nonempty minimum/maximum primitives remain available for archived extremum bodies.
+
+Where the table says local, migration substitutes the archived body into a fresh local let value. Its dependencies are migrated recursively. Helper arguments and enclosing formula variables cannot be captured by generated binders. Function-valued references become typed lambdas; the generic distinctness references use allDifferent. Parentheses retain the scope of conditionals, quantifiers, lambdas and lets.
+
+| Legacy callable | Action | Replacement or archived body |
+| --- | --- | --- |
+${Object.entries(legacyFormulaTerms).sort(([a],[b])=>a.localeCompare(b)).map(([name,d])=>`| \`${name}\` | ${d.mode==='rewrite'?'Rewrite':'Embed local value'} | \`${esc(d.formula)}\` |`).join('\n')}
+
+## Local kind collisions
+
+A local definition that shares a library kind keeps its own meaning. Reviewed Split Pea formulas migrate to the library rule on positive decimal digit alphabets. A full path supplies line directly; a separate interior and two ends (or bulbs) become the first end, the interior occurrences in order, and the last end. The formula and parameter types must match a reviewed form; declarations retain IDs, negations, conditions, drawings and comments.
+
+Every other collision receives an unused local-<id> name, with a numeric suffix when needed. Both its definition and declarations are renamed. Battenburg with an exhaustive marks record and multicolour Japanese Sums retain their local formulas under this rule. Definitions with an unrecognised Split Pea meaning or a nondecimal alphabet also retain a renamed local definition.
+<!-- formula-migration:end -->
+`;
+let migration=await Bun.file('docs/migration.md').text();
+migration=migration.includes('<!-- formula-migration:start -->')?migration.replace(/<!-- formula-migration:start -->[\s\S]*?<!-- formula-migration:end -->\n?/,formulaGuide):migration+'\n'+formulaGuide;
+
 await save('docs/migration.md',migration.replace(/\| `[^`]+` \| `[^`]+` \([^\n]+/g,line=>{const kind=/^\| `([^`]+)`/.exec(line)![1];const e=migrationTable.find(e=>e.kind===kind);return e?`| \`${e.kind}\` | \`${e.target}\` (${e.form}; formula home \`${e.canonical}\`) | identical |`:line;}));
 console.log(JSON.stringify({predicates:Object.keys(library.prelude.environment.terms).length,blocks:blocks.length,rules:rules.length,ownBlocks,ownRules,histogram}));

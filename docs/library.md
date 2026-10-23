@@ -6,8 +6,8 @@ Predicates are mathematical functions and cannot be declared in a case file. Blo
 
 | Item | Count |
 | --- | ---: |
-| Callable predicates | 178 |
-| Vocabulary declarations | 200 |
+| Callable predicates | 182 |
+| Vocabulary declarations | 204 |
 | Blocks | 42 |
 | Rules | 85 |
 | Blocks owning formulas | 42 |

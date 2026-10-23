@@ -1,6 +1,8 @@
 import {expect,test} from 'bun:test';
 import {readdir} from 'node:fs/promises';
 import {compilePublicLibrary,checkCaseReferences,migrateCase,migrateDeclaration,migrateParsedDeclaration,printMigratedDeclaration,migrationTable,readHeader,type PageSource} from '../../src';
+import {readCustomDefinitions} from '../../src/custom-definitions';
+import {markdownBlocks} from '../../src/rules-blocks';
 import {caseExamples} from '../../scripts/lint-skill';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 const baseline:{revision:string;pages:PageSource[]}=await Bun.file('tests/fixtures/library-6d9e954.json').json();
@@ -246,4 +248,70 @@ test('lookup has no implicit origin and guards single-mode use',()=>{
  expect(defaults('lookup')).not.toHaveProperty('cell');
  const args={...defaults('lookup'),cells:['r1c2'],total:0};
  expect(fragmentVerdict(lookup.formulas[0].ast,current.prelude,lookup.parameters,{faces:{r1c1:1,r1c2:2},parameters:args})).toBe(false);
+});
+
+const customCase=(definition:unknown,lines='sudoku 9x9')=>exampleCase(lines)+`\n\`\`\`custom-rules\n${JSON.stringify([definition],null,2)}\n\`\`\`\n`;
+const customSnippets:{file:string;names:string[];definition:unknown}[]=await Bun.file('tests/fixtures/migration-custom-definitions.json').json();
+for(const snippet of customSnippets)test(`real custom formula migration: ${snippet.file} ${snippet.names.join(',')}`,()=>{
+ const page={file:snippet.file,text:customCase(snippet.definition)};
+ expect(readCustomDefinitions(page,markdownBlocks(page.text),old.registry.kinds,old.prelude).diagnostics).toEqual([]);
+ const migrated=migrateCase(page);expect(migrated.diagnostics).toEqual([]);
+ expect(readCustomDefinitions(migrated.value!,markdownBlocks(migrated.value!.text),current.registry.kinds,current.prelude).diagnostics).toEqual([]);
+ expect(migrateCase(migrated.value!).value!.text).toBe(migrated.value!.text);
+});
+test('removed term table covers the archived vocabulary and transitive bodies',async()=>{
+ const {legacyFormulaTerms}=await import('../../src/migration-data');
+ for(const term of old.prelude.declarations.filter(d=>d.body&&!current.prelude.environment.terms[d.name]))expect(legacyFormulaTerms).toHaveProperty(term.name);
+ const names=new Set(customSnippets.flatMap(s=>s.names));
+ for(const name of ['sum_D','distinct_D','distinctAt','shaded','faceDigits','valueSum','distinct_V','min_D','product_D'])expect(names.has(name)).toBe(true);
+});
+const localCollisions:{file:string;id:string;parameters:Record<string,unknown>;maths:string}[]=await Bun.file('tests/fixtures/migration-local-collisions.json').json();
+for(const definition of localCollisions)test(`real local collision migration: ${definition.file}`,()=>{
+ const {file,...metadata}=definition;
+ const extra=Object.keys(metadata.parameters).filter(p=>p!=='cells').map(p=>`${p} ${p==='ends'||p==='bulbs'?'["r1c1","r1c5"]':p==='marks'?'[{"r":0,"k":0}]':p==='strips'?'[["r1c1"]]':'[[{"colour":1,"total":1}]]'}`).join(' ');
+ const line=`owned: not not #${metadata.id} ${metadata.parameters.cells?'r1c2-r1c3-r1c4 ':''}${extra} # retained comment`;
+ const page={file,text:customCase(metadata,`sudoku 9x9\n${line}`)};
+ const migrated=migrateCase(page);expect(migrated.diagnostics).toEqual([]);
+ if(metadata.id==='split-pea'){
+  expect(migrated.value!.text).not.toContain('#split-pea');
+  expect(migrated.value!.text).toContain('"owned": not not split-pea');
+ }else expect(migrated.value!.text).toContain(`#local-${metadata.id}`);
+ expect(migrated.value!.text).toContain('# retained comment');
+ expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
+ expect(migrateCase(migrated.value!).value!.text).toBe(migrated.value!.text);
+});
+test('unknown collision meanings and nondecimal alphabets keep their local formulas',()=>{
+ const definition={id:'split-pea',name:'Different pea',parameters:{cells:{type:'path<cell>',description:'Ordered cells.'}},definition:'Every cell is one.',maths:'∀c∈cells:D(c)=1',example:'One satisfies; two breaks.'};
+ const migrated=migrateCase({file:'different-pea',text:customCase(definition,'sudoku 9x9\n#split-pea r1c1-r1c2')});
+ expect(migrated.value!.text).toContain('#local-split-pea');
+ expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
+ const matching=localCollisions.find(d=>d.id==='split-pea')!;
+ const nondecimal=customCase(matching,'sudoku 9x9').replace('symbols:[1,2,3,4,5,6,7,8,9]','symbols:[1,2,3,4,5,6,7,8,10]');
+ expect(migrateCase({file:'nondecimal',text:nondecimal}).value!.text).toContain('local-split-pea');
+});
+test('removed helpers passed as function values retain typed local bodies',()=>{
+ const definition={id:'prime-count',name:'Prime count',parameters:{cells:{type:'path<cell>',description:'Ordered cells.'}},definition:'At least one prime face digit.',maths:'countWhere({D(c)/1:c∈cells},prime)>0',class:'with aggregates',example:'Two satisfies; one breaks.'};
+ const page={file:'function-reference',text:customCase(definition,'sudoku 9x9\n#prime-count r1c1-r1c2')};
+ expect(checkCaseReferences(page,old.registry).diagnostics).toEqual([]);
+ const migrated=migrateCase(page);expect(migrated.diagnostics).toEqual([]);
+ expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
+ expect(migrated.value!.text).toContain('numericProperty');
+});
+
+test('formula printing retains binder types and expression scope',async()=>{
+ const {parseFormula}=await import('../../src/language/parser');
+ const {expressionKey}=await import('../../src/language/checker');
+ const {formulaNotation}=await import('../../src/formula-notation');
+ for(const formula of ['(if row(a)<row(b) then col(a) else col(b))<=col(c)', '(forall i∈[0,3): D(L[i])>0) and D(c)=1', '(let s:position=⌊aggregate(cells,"D","sum")⌋; s) mod 10=0', '(λc:cell:D(c))(a)=1']){
+  const ast=parseFormula(formula).value!;
+  const printed=parseFormula(formulaNotation(ast));expect(printed.diagnostics).toEqual([]);
+  expect(expressionKey(printed.value!)).toBe(expressionKey(ast));
+ }
+});
+test('legacy fragment collisions gain an explicit local id while retaining headings',()=>{
+ const definition={url:'#battenburg',name:'Custom square',parameters:{cells:{type:'path<cell>',description:'Ordered cells.'}},definition:'Every face digit is one.',maths:'∀c∈cells:D(c)=1',example:'One satisfies; two breaks.'};
+ const page={file:'legacy-fragment',text:exampleCase('#battenburg r1c1-r1c2')+'\n## Battenburg\n\n```custom-rules\n'+JSON.stringify([definition])+'\n```\n'};
+ const migrated=migrateCase(page);expect(migrated.diagnostics).toEqual([]);
+ expect(migrated.value!.text).toContain('## Battenburg');
+ expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
 });

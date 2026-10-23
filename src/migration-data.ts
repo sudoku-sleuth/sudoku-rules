@@ -375,28 +375,321 @@ export const legacyDefaults: Record<string, Record<string, unknown>> = {
 /** Removed public spellings retain their original contracts and defaults. */
 export const legacyRuleRenames: Record<string,string> = {whisper:'whispers',killer:'cage','killer-cage':'cage',unique:'extra-regions'};
 
-/** Bodies of removed 0.3 callable terms, used only to migrate embedded formulas. */
-export const legacyFormulaTerms: Record<string,{parameters:string[];formula:string}> = {
+/** Complete removed-term migration table, archived from public 0.3 at 6d9e954. */
+export const legacyFormulaTerms: Record<string,{parameters:string[];parameterTypes:string[];formula:string;mode:'rewrite'|'local';reference?:string}> = {
+  "prime": {
+    "parameters": [
+      "x"
+    ],
+    "formula": "numericProperty(x,\"prime\",1)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "number"
+    ]
+  },
+  "composite": {
+    "parameters": [
+      "x"
+    ],
+    "formula": "numericProperty(x,\"composite\",1)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "number"
+    ]
+  },
   "minimumPosition": {
     "parameters": [
       "a",
       "b"
     ],
-    "formula": "if (a < b) then a else b"
+    "formula": "(if (a < b) then a else b)",
+    "mode": "local",
+    "parameterTypes": [
+      "position",
+      "position"
+    ]
   },
   "maximumPosition": {
     "parameters": [
       "a",
       "b"
     ],
-    "formula": "if (a > b) then a else b"
+    "formula": "(if (a > b) then a else b)",
+    "mode": "local",
+    "parameterTypes": [
+      "position",
+      "position"
+    ]
+  },
+  "in": {
+    "parameters": [
+      "c",
+      "R"
+    ],
+    "formula": "(c in R)",
+    "mode": "local",
+    "parameterTypes": [
+      "cell",
+      "set<cell>"
+    ]
   },
   "sameRegion": {
     "parameters": [
       "a",
       "b"
     ],
-    "formula": "exists R∈Regions: ((a in R) and (b in R))"
+    "formula": "(exists R∈Regions: ((a in R) and (b in R)))",
+    "mode": "local",
+    "parameterTypes": [
+      "cell",
+      "cell"
+    ]
+  },
+  "orth": {
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "formula": "moveRelation(\"orthogonal\",a,b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "cell",
+      "cell"
+    ]
+  },
+  "touch": {
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "formula": "moveRelation(\"diagonal\",a,b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "cell",
+      "cell"
+    ]
+  },
+  "king": {
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "formula": "moveRelation(\"king\",a,b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "cell",
+      "cell"
+    ]
+  },
+  "knight": {
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "formula": "moveRelation(\"knight\",a,b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "cell",
+      "cell"
+    ]
+  },
+  "bishop": {
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "formula": "moveRelation(\"bishop\",a,b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "cell",
+      "cell"
+    ]
+  },
+  "at": {
+    "parameters": [
+      "L",
+      "i"
+    ],
+    "formula": "L[i]",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "position"
+    ]
+  },
+  "distinct_f": {
+    "parameters": [
+      "S",
+      "f"
+    ],
+    "formula": "∀a,b∈S: a!=b → f(a)!=f(b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "set<T>",
+      "fn(T)->number"
+    ],
+    "reference": "allDifferent"
+  },
+  "distinctAt": {
+    "parameters": [
+      "L",
+      "f"
+    ],
+    "formula": "∀i,j∈[0,|L|): i!=j → f(L[i])!=f(L[j])",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "list<T>",
+      "fn(T)->number"
+    ],
+    "reference": "allDifferent"
+  },
+  "distinct_D": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "∀a,b∈S: a!=b → D(a)!=D(b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "set<cell>"
+    ]
+  },
+  "distinct_V": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "∀a,b∈S: a!=b → V(a)!=V(b)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "set<cell>"
+    ]
+  },
+  "valueSum": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "aggregate(S,\"V\",\"sum\")",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "sum_D": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "let result:position=⌊aggregate(S,\"D\",\"sum\")⌋; result",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "product_D": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "let result:position=⌊aggregate(S,\"D\",\"product\")⌋; result",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "faceDigits": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "{d∈𝔄:(exists c∈S: (D(c) = d))}",
+    "mode": "local",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "min_D": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "minimumDigit({D(c):c∈S})",
+    "mode": "local",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "max_D": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "maximumDigit({D(c):c∈S})",
+    "mode": "local",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "min_V": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "minimumValue({V(c):c∈S})",
+    "mode": "local",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "max_V": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "maximumValue({V(c):c∈S})",
+    "mode": "local",
+    "parameterTypes": [
+      "collection<cell>"
+    ]
+  },
+  "connectedCells": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "((|S| > 0) and (forall a,b∈S: (exists route:list<cell>: ((((((0 < |route|) and (|route| <= |C|)) and (route[0] = a)) and (route[(|route| - 1)] = b)) and (forall c∈route: (c in S))) and (forall t∈[0,(|route| - 1)): orth(route[t],route[(t + 1)]))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "set<cell>"
+    ]
+  },
+  "shaded": {
+    "parameters": [
+      "c"
+    ],
+    "formula": "c∈H",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "cell"
+    ]
+  },
+  "excludes": {
+    "parameters": [
+      "S",
+      "Q"
+    ],
+    "formula": "(forall d∈Q: (forall c∈S: (D(c) != d)))",
+    "mode": "local",
+    "parameterTypes": [
+      "set<cell>",
+      "list<digit>"
+    ]
+  },
+  "relationOnScope": {
+    "parameters": [
+      "S",
+      "pairs",
+      "r",
+      "ch"
+    ],
+    "formula": "((forall p∈pairs: ((|p| = 2) and (forall c∈p: (c in S)))) and (forall p∈pairs: ((|p| = 2) implies pairRelation(r,read(p[0],ch),read(p[1],ch)))))",
+    "mode": "local",
+    "parameterTypes": [
+      "set<cell>",
+      "list<list<cell>>",
+      "PairRelation",
+      "Channel"
+    ]
   },
   "monotonic": {
     "parameters": [
@@ -405,13 +698,116 @@ export const legacyFormulaTerms: Record<string,{parameters:string[];formula:stri
       "direction",
       "ch"
     ],
-    "formula": "((((direction = \"forward\") or (direction = \"either\")) and forall i∈[0,(|L| - 1)): if strict then (read(L[i],ch) < read(L[(i + 1)],ch)) else (read(L[i],ch) <= read(L[(i + 1)],ch))) or (((direction = \"reverse\") or (direction = \"either\")) and forall i∈[0,(|L| - 1)): if strict then (read(L[i],ch) > read(L[(i + 1)],ch)) else (read(L[i],ch) >= read(L[(i + 1)],ch))))"
+    "formula": "((((direction = \"forward\") or (direction = \"either\")) and (forall i∈[0,(|L| - 1)): (if strict then (read(L[i],ch) < read(L[(i + 1)],ch)) else (read(L[i],ch) <= read(L[(i + 1)],ch))))) or (((direction = \"reverse\") or (direction = \"either\")) and (forall i∈[0,(|L| - 1)): (if strict then (read(L[i],ch) > read(L[(i + 1)],ch)) else (read(L[i],ch) >= read(L[(i + 1)],ch))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "boolean",
+      "Orientation",
+      "Channel"
+    ]
+  },
+  "consecutiveValues": {
+    "parameters": [
+      "S",
+      "ch",
+      "repeats"
+    ],
+    "formula": "valueSet(S,ch,repeats,\"consecutive\")",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "collection<cell>",
+      "Channel",
+      "boolean"
+    ]
+  },
+  "nonconsecutiveValues": {
+    "parameters": [
+      "S",
+      "ch",
+      "repeats",
+      "separated"
+    ],
+    "formula": "valueSet(S,ch,repeats and not separated,if separated then \"separated\" else \"nonconsecutive\")",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "collection<cell>",
+      "Channel",
+      "boolean",
+      "boolean"
+    ]
+  },
+  "scopedMove": {
+    "parameters": [
+      "m",
+      "relation",
+      "digits",
+      "scope",
+      "ch"
+    ],
+    "formula": "(forall a,b∈scope: ((moveRelation(m,a,b) and ((D(a) in digits) or (D(b) in digits))) implies not((if (relation = \"same\") then (read(a,ch) = read(b,ch)) else pairRelation(relationSpec(\"difference\",1),read(a,ch),read(b,ch))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "Move",
+      "enum{same,consecutive}",
+      "list<digit>",
+      "set<cell>",
+      "Channel"
+    ]
+  },
+  "lookupEquals": {
+    "parameters": [
+      "L",
+      "n",
+      "target",
+      "ch"
+    ],
+    "formula": "lookupRelated(L,n,target,ch,relationSpec(\"difference\",0))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "position",
+      "number",
+      "Channel"
+    ]
+  },
+  "inverseIndex": {
+    "parameters": [
+      "L",
+      "ch"
+    ],
+    "formula": "(forall i∈[0,|L|): (let n=read(L[i],ch); ((⌊n⌋ = n) and (exists k∈[1,(|L| + 1)): ((k = n) and lookupEquals(L,k,(i + 1),ch))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "Channel"
+    ]
   },
   "graphVertices": {
     "parameters": [
       "E"
     ],
-    "formula": "{c∈C:exists e∈E: (c in e)}"
+    "formula": "{c∈C:(exists e∈E: (c in e))}",
+    "mode": "local",
+    "parameterTypes": [
+      "list<list<cell>>"
+    ]
+  },
+  "orderedRay": {
+    "parameters": [
+      "origin",
+      "dr",
+      "dc",
+      "includeOrigin"
+    ],
+    "formula": "⟨boardCell((row(origin) + (t * dr)),(col(origin) + (t * dc))):t∈[0,(rows + cols)),(((((includeOrigin or (t > 0)) and (0 <= (row(origin) + (t * dr)))) and ((row(origin) + (t * dr)) < rows)) and (0 <= (col(origin) + (t * dc)))) and ((col(origin) + (t * dc)) < cols))⟩",
+    "mode": "local",
+    "parameterTypes": [
+      "cell",
+      "position",
+      "position",
+      "boolean"
+    ]
   },
   "sumLineMeaning": {
     "parameters": [
@@ -422,7 +818,16 @@ export const legacyFormulaTerms: Record<string,{parameters:string[];formula:stri
       "repeats",
       "closed"
     ],
-    "formula": "((|L| > 0) and if (mode = \"partition\") then if closed then exists s∈[0,|L|): partitionSums(cyclicCut(L,s),total,ch,repeats) else partitionSums(L,total,ch,repeats) else if closed then forall i∈[0,|L|): exists s∈[0,|L|): exists k∈[1,(|L| + 1)): (((start(L,k,s,true) and exists j∈[0,k): (rem((s + j),|L|) = i)) and repeatPolicy(window(L,k,s,true),ch,repeats)) and (aggregate(window(L,k,s,true),ch,\"sum\") = total)) else forall i∈[0,|L|): exists a∈[0,|L|): exists b∈[(a + 1),(|L| + 1)): (((a <= i) and (i < b)) and sumSegment(L,a,b,total,ch,repeats)))"
+    "formula": "((|L| > 0) and (if (mode = \"partition\") then (if closed then (exists s∈[0,|L|): partitionSums(cyclicCut(L,s),total,ch,repeats)) else partitionSums(L,total,ch,repeats)) else (if closed then (forall i∈[0,|L|): (exists s∈[0,|L|): (exists k∈[1,(|L| + 1)): (((start(L,k,s,true) and (exists j∈[0,k): (rem((s + j),|L|) = i))) and repeatPolicy(window(L,k,s,true),ch,repeats)) and (aggregate(window(L,k,s,true),ch,\"sum\") = total))))) else (forall i∈[0,|L|): (exists a∈[0,|L|): (exists b∈[(a + 1),(|L| + 1)): (((a <= i) and (i < b)) and sumSegment(L,a,b,total,ch,repeats))))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "number",
+      "enum{cover,partition}",
+      "Channel",
+      "boolean",
+      "boolean"
+    ]
   },
   "sequenceMeaning": {
     "parameters": [
@@ -434,7 +839,53 @@ export const legacyFormulaTerms: Record<string,{parameters:string[];formula:stri
       "b",
       "closed"
     ],
-    "formula": "(((((|L| > 0) and (closed implies (|L| >= 3))) and ((mode = \"recurrence\") implies not(closed))) and ((mode = \"transitions\") implies forall p∈allowed: (|p| = 2))) and if (mode = \"recurrence\") then forall i∈[0,(|L| - 2)): (read(L[(i + 2)],ch) = ((a * read(L[i],ch)) + (b * read(L[(i + 1)],ch)))) else forall i,j∈[0,|L|): (next(L,i,j,closed) implies if (mode = \"divisors\") then divides(read(L[i],ch),read(L[j],ch)) else transitionAllowed(read(L[i],ch),read(L[j],ch),allowed)))"
+    "formula": "(((((|L| > 0) and (closed implies (|L| >= 3))) and ((mode = \"recurrence\") implies not(closed))) and ((mode = \"transitions\") implies (forall p∈allowed: (|p| = 2)))) and (if (mode = \"recurrence\") then (forall i∈[0,(|L| - 2)): (read(L[(i + 2)],ch) = ((a * read(L[i],ch)) + (b * read(L[(i + 1)],ch))))) else (forall i,j∈[0,|L|): (next(L,i,j,closed) implies (if (mode = \"divisors\") then divides(read(L[i],ch),read(L[j],ch)) else transitionAllowed(read(L[i],ch),read(L[j],ch),allowed))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "Channel",
+      "enum{transitions,divisors,recurrence}",
+      "list<list<number>>",
+      "number",
+      "number",
+      "boolean"
+    ]
+  },
+  "indexHit": {
+    "parameters": [
+      "L",
+      "source",
+      "indexChannel",
+      "ch",
+      "offset",
+      "target",
+      "r"
+    ],
+    "formula": "(let n=(read(source,indexChannel) + offset); ((⌊n⌋ = n) and (exists k∈[1,(|L| + 1)): ((k = n) and lookupRelated(L,k,target,ch,r)))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "cell",
+      "Channel",
+      "Channel",
+      "position",
+      "number",
+      "PairRelation"
+    ]
+  },
+  "frequency": {
+    "parameters": [
+      "S",
+      "n",
+      "ch"
+    ],
+    "formula": "classCount(S,{n},ch)",
+    "mode": "rewrite",
+    "parameterTypes": [
+      "collection<cell>",
+      "number",
+      "Channel"
+    ]
   },
   "sameProfile": {
     "parameters": [
@@ -443,7 +894,14 @@ export const legacyFormulaTerms: Record<string,{parameters:string[];formula:stri
       "ch",
       "multiset"
     ],
-    "formula": "forall n∈({read(c,ch):c∈A} union {read(c,ch):c∈B}): if multiset then (frequency(A,n,ch) = frequency(B,n,ch)) else ((frequency(A,n,ch) > 0) iff (frequency(B,n,ch) > 0))"
+    "formula": "(forall n∈({read(c,ch):c∈A} union {read(c,ch):c∈B}): (if multiset then (frequency(A,n,ch) = frequency(B,n,ch)) else ((frequency(A,n,ch) > 0) iff (frequency(B,n,ch) > 0))))",
+    "mode": "local",
+    "parameterTypes": [
+      "collection<cell>",
+      "collection<cell>",
+      "Channel",
+      "boolean"
+    ]
   },
   "japaneseSums": {
     "parameters": [
@@ -453,7 +911,15 @@ export const legacyFormulaTerms: Record<string,{parameters:string[];formula:stri
       "ch",
       "repeats"
     ],
-    "formula": "((distinctAt(L,λc:cell:cellIndex(c)) and (countWhere([0,|L|),λi:position:markedStart(L,i,name)) = |totals|)) and forall a∈[0,|L|): forall b∈[(a + 1),(|L| + 1)): (markedRun(L,a,b,name) implies let j=countWhere([0,a),λi:position:markedStart(L,i,name)); ((((0 <= j) and (j < |totals|)) and repeatPolicy(⟨L[i]:i∈[a,b)⟩,ch,repeats)) and (aggregate(⟨L[i]:i∈[a,b)⟩,ch,\"sum\") = totals[j]))))"
+    "formula": "((distinctAt(L,(λc:cell:cellIndex(c))) and (countWhere([0,|L|),(λi:position:markedStart(L,i,name))) = |totals|)) and (forall a∈[0,|L|): (forall b∈[(a + 1),(|L| + 1)): (markedRun(L,a,b,name) implies (let j=countWhere([0,a),(λi:position:markedStart(L,i,name))); ((((0 <= j) and (j < |totals|)) and repeatPolicy(⟨L[i]:i∈[a,b)⟩,ch,repeats)) and (aggregate(⟨L[i]:i∈[a,b)⟩,ch,\"sum\") = totals[j])))))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<cell>",
+      "string",
+      "list<number>",
+      "Channel",
+      "boolean"
+    ]
   },
   "boundedAssignment": {
     "parameters": [
@@ -462,96 +928,95 @@ export const legacyFormulaTerms: Record<string,{parameters:string[];formula:stri
       "labels",
       "bijective"
     ],
-    "formula": "(((((size >= 0) and (labels >= 0)) and (|xs| = size)) and forall x∈xs: ((0 <= x) and (x < labels))) and (bijective implies ((size = labels) and distinctAt(xs,λx:position:x))))"
+    "formula": "(((((size >= 0) and (labels >= 0)) and (|xs| = size)) and (forall x∈xs: ((0 <= x) and (x < labels)))) and (bijective implies ((size = labels) and distinctAt(xs,(λx:position:x)))))",
+    "mode": "local",
+    "parameterTypes": [
+      "list<position>",
+      "position",
+      "position",
+      "boolean"
+    ]
   },
   "answer": {
     "parameters": [
       "c"
     ],
-    "formula": "D(c)"
-  }
-};
-
-Object.assign(legacyFormulaTerms, {
+    "formula": "D(c)",
+    "mode": "local",
+    "parameterTypes": [
+      "cell"
+    ]
+  },
+  "uniform": {
+    "parameters": [
+      "S"
+    ],
+    "formula": "|S|>0 ∧ ((∀c∈S:shaded(c)) ∨ (∀c∈S:¬shaded(c)))",
+    "mode": "local",
+    "parameterTypes": [
+      "set<cell>"
+    ]
+  },
   "properFactor": {
     "parameters": [
       "x"
     ],
-    "formula": "∃a,b ∈ ℤ: a>1 ∧ b>1 ∧ a*b=x"
-  },
-  "prime": {
-    "parameters": [
-      "x"
-    ],
-    "formula": "⌊x⌋=x ∧ x>1 ∧ ¬properFactor(x)"
-  },
-  "composite": {
-    "parameters": [
-      "x"
-    ],
-    "formula": "⌊x⌋=x ∧ x>1 ∧ properFactor(x)"
-  },
-  "orth": {
-    "parameters": [
-      "a",
-      "b"
-    ],
-    "formula": "|row(a)-row(b)|+|col(a)-col(b)|=1"
-  },
-  "touch": {
-    "parameters": [
-      "a",
-      "b"
-    ],
-    "formula": "|row(a)-row(b)|=1 ∧ |col(a)-col(b)|=1"
-  },
-  "king": {
-    "parameters": [
-      "a",
-      "b"
-    ],
-    "formula": "orth(a,b) ∨ touch(a,b)"
-  },
-  "knight": {
-    "parameters": [
-      "a",
-      "b"
-    ],
-    "formula": "(|row(a)-row(b)|=1 ∧ |col(a)-col(b)|=2) ∨ (|row(a)-row(b)|=2 ∧ |col(a)-col(b)|=1)"
-  },
-  "bishop": {
-    "parameters": [
-      "a",
-      "b"
-    ],
-    "formula": "a!=b ∧ |row(a)-row(b)|=|col(a)-col(b)|"
-  },
-  "consecutiveValues": {
-    "parameters": [
-      "S",
-      "ch",
-      "repeats"
-    ],
-    "formula": "|S|>0 ∧ repeatPolicy(S,ch,repeats) ∧ ∀a,b∈S: read(a,ch)<read(b,ch) → ∃k∈[1,|S|): read(b,ch)-read(a,ch)=k ∧ ∀j∈[0,k): ∃c∈S: read(c,ch)=read(a,ch)+j"
-  },
-  "nonconsecutiveValues": {
-    "parameters": [
-      "S",
-      "ch",
-      "repeats",
-      "separated"
-    ],
-    "formula": "repeatPolicy(S,ch,repeats ∧ ¬separated) ∧ ∀a,b∈S: a!=b → if separated then |read(a,ch)-read(b,ch)|>1 else |read(a,ch)-read(b,ch)|!=1"
-  },
-  "frequency": {
-    "parameters": [
-      "S",
-      "n",
-      "ch"
-    ],
-    "formula": "countWhere(S,λc:cell:read(c,ch)=n)"
+    "formula": "∃a,b∈ℤ: a>1 ∧ b>1 ∧ a*b=x",
+    "mode": "local",
+    "parameterTypes": [
+      "number"
+    ]
   }
-});
+};
 
 // Alternate legacy spelling shares the Cage input contract.
 legacyDefaults["killer-cage"] = legacyDefaults.cage;
+
+/** Reviewed local Split Pea meanings; other collisions retain a renamed local definition. */
+export const legacySplitPeaForms = [
+  {
+    "formula": "|ends|=2 \u2227 (sum_D(cells)=10*D(ends[0])+D(ends[1]) \u2228 sum_D(cells)=10*D(ends[1])+D(ends[0]))",
+    "parameters": {
+      "cells": "path<cell>",
+      "ends": "list<cell>"
+    },
+    "ends": "ends"
+  },
+  {
+    "formula": "|ends|=2 \u2227 (sum_D(cells)=10*D(ends[0])+D(ends[1]) \u2228 sum_D(cells)=10*D(ends[1])+D(ends[0]))",
+    "parameters": {
+      "cells": "list<cell>",
+      "ends": "list<cell>"
+    },
+    "ends": "ends"
+  },
+  {
+    "formula": "|bulbs|=2 \u2227 (sum_D(cells)=10*D(bulbs[0])+D(bulbs[1]) \u2228 sum_D(cells)=10*D(bulbs[1])+D(bulbs[0]))",
+    "parameters": {
+      "cells": "list<cell>",
+      "bulbs": "list<cell>"
+    },
+    "ends": "bulbs"
+  },
+  {
+    "formula": "|cells|>=3 \u2227 let a=D(cells[0]); let b=D(cells[|cells|-1]); let s=sum_D(betweenPositions(cells,0,|cells|-1)); s=10*a+b \u2228 s=10*b+a",
+    "parameters": {
+      "cells": "path<cell>"
+    },
+    "ends": null
+  },
+  {
+    "formula": "|cells|>=3 \u2227 (sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9)=10*D(cells[0])+D(cells[|cells|-1]) \u2228 sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9)=10*D(cells[|cells|-1])+D(cells[0]))",
+    "parameters": {
+      "cells": "path<cell>"
+    },
+    "ends": null
+  },
+  {
+    "formula": "|cells|>=2 \u2227 let a=D(cells[0]); let b=D(cells[|cells|-1]); let S=sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9); S=10*a+b \u2228 S=10*b+a",
+    "parameters": {
+      "cells": "path<cell>"
+    },
+    "ends": null
+  }
+];

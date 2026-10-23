@@ -1,5 +1,5 @@
 import {declarationLibrary} from './declaration-library.js';
-import {legacyRuleRenames,legacyDefaults,legacyFormulaTerms} from './migration-data.js';
+import {legacyRuleRenames,legacyDefaults,legacyFormulaTerms,legacySplitPeaForms} from './migration-data.js';
 import {libraryLayers,blockHomes as canonicalHomes} from './library-layers.js';
 
 /** Decoded declaration data, after parsing positional and keyword syntax. */
@@ -97,23 +97,50 @@ import {legacyContracts,legacyLines} from './migration-grammar.js';
 import {parseDeclaration,declarationParameters,type DeclarationAST,type DeclarationValue} from './declarations.js';
 import {parameterGrammar} from './case-values.js';
 import {markdownBlocks} from './rules-blocks.js';
-import {parseDocument,isSeq,isMap,isScalar} from 'yaml';
-import {parseFormula} from './language/parser.js';
+import {parseDocument,isSeq,isMap,isScalar,type YAMLMap} from 'yaml';
+import {parseFormula,parseType} from './language/parser.js';
 import {formulaNotation} from './formula-notation.js';
 import {substituteFormula,foldFormula} from './formula-substitution.js';
 import type {Expr} from './language/ast.js';
+import {expressionKey} from './language/checker.js';
 
 const legacyFormulaBodies = new Map(Object.entries(legacyFormulaTerms).map(([name,d])=>[name,{...d,body:parseFormula(d.formula).value!}]));
 /** Expand removed callable helpers in embedded custom-rule maths. */
 function migrateFormula(text:string):string {
  const parsed=parseFormula(text);if(!parsed.value)return text;
  let changed=false;
+ let serial=0;
+ const used=new Set(text.match(/[\p{L}\p{N}_]+/gu));
+ const fresh=()=>{let n:string;do{n=`migrationLocal${serial++}`;}while(used.has(n));used.add(n);return n;};
  const walk=(e:Expr):Expr=>{
-  const children=e.children.map(walk);
+  const children=e.children.map((child,i)=>e.kind==='call'&&i===0&&child.kind==='name'?child:walk(child));
   const d=e.kind==='call'&&children[0].kind==='name'?legacyFormulaBodies.get(children[0].value!):undefined;
   if(d&&d.parameters.length===children.length-1){
    changed=true;
-   return walk(substituteFormula(d.body,new Map(d.parameters.map((p,i)=>[p,children[i+1]]))));
+   // Reserve names from the complete caller, including its enclosing binders.
+   // substituteFormula otherwise only sees the helper and its arguments.
+   const bindings=new Map(d.parameters.map((p,i)=>[p,children[i+1]]));
+   for(const name of used)if(!bindings.has(name))bindings.set(name,{kind:'name',value:name,children:[],span:e.span});
+   const expanded=substituteFormula(d.body,bindings);
+   const reserve=(node:Expr)=>{for(const b of node.binders??[])used.add(b.name);node.children.forEach(reserve);};
+   reserve(expanded);
+   const body=walk(expanded);
+   if(d.mode==='rewrite')return body;
+   const name=fresh();
+   return {kind:'let',span:e.span,binders:[{name,span:e.span}],children:[body,{kind:'name',value:name,span:e.span,children:[]}]};
+  }
+  if(e.kind==='name'){
+   const definition=legacyFormulaBodies.get(e.value!);
+   if(definition){
+    changed=true;
+    if(definition.reference)return {...e,value:definition.reference};
+    const lambda:Expr={kind:'lambda',span:e.span,children:[definition.body],binders:definition.parameters.map((name,i)=>({name,span:e.span,type:parseType(definition.parameterTypes[i]).value!}))};
+    const reserved=new Map([...used].map(name=>[name,{kind:'name' as const,value:name,children:[],span:e.span}]));
+    const expanded=substituteFormula(lambda,reserved);
+    const reserve=(node:Expr)=>{for(const b of node.binders??[])used.add(b.name);node.children.forEach(reserve);};
+    reserve(expanded);
+    return walk(expanded);
+   }
   }
   return {...e,children};
  };
@@ -122,7 +149,7 @@ function migrateFormula(text:string):string {
 
 import {readHeader} from './documents.js';
 import type {PageSource} from './library.js';
-import type {Result} from './language/diagnostics.js';
+import {diagnostic,type Diagnostic,type Result} from './language/diagnostics.js';
 
 /** A JSON writer that retains keyword integers beyond Number's precision. */
 function encode(value:unknown):string {
@@ -174,23 +201,49 @@ export function migrateCase(page:PageSource):Result<PageSource> {
  const header=readHeader(page);if(!header.value)return {diagnostics:header.diagnostics};
  const root=String(header.value.metadata.library);
  const changes:{start:number;end:number;text:string}[]=[];
- const diagnostics=[];
+ const diagnostics:Diagnostic[]=[];
+ const localRenames=new Map<string,string>(),splitForms=new Map<string,typeof legacySplitPeaForms[number]>();
+ const occupied=new Set([...page.text.matchAll(/(?:id:\s*|#)([a-z0-9-]+)/g)].map(m=>m[1]));
+ const symbols=(header.value.metadata.board as {symbols?:unknown[]}|undefined)?.symbols??[1,2,3,4,5,6,7,8,9];
+ const decimalAlphabet=symbols.length>0&&symbols.every(n=>typeof n==='number'&&Number.isInteger(n)&&n>=1&&n<=9);
  if(root==='https://rules.sudoku-sleuth.com/')for(const block of markdownBlocks(page.text).filter(b=>b.language==='custom-rules')){
   const doc=parseDocument(block.text);
   if(doc.errors.length||!isSeq(doc.contents))continue;
-  for(const item of doc.contents.items)if(isMap(item)){
-   const maths=item.get('maths',true);
+  let changed=false;
+  for(const item of [...doc.contents.items])if(isMap(item)){
+   const mapping:YAMLMap=item;
+   const entry=item.toJSON() as {id?:string;url?:string;maths?:string;parameters?:Record<string,{type?:string}>};
+   const id=entry.id??(entry.url?.startsWith('#')?entry.url.slice(1):undefined);
+   if(id&&declarationLibrary.kinds.has(id)){
+    const ast=typeof entry.maths==='string'?parseFormula(entry.maths).value:undefined;
+    const form=id==='split-pea'&&decimalAlphabet&&ast?legacySplitPeaForms.find(f=>expressionKey(parseFormula(f.formula).value!)===expressionKey(ast)&&JSON.stringify(Object.keys(entry.parameters??{}).sort())===JSON.stringify(Object.keys(f.parameters).sort())&&Object.entries(f.parameters).every(([k,t])=>entry.parameters?.[k]?.type===t)):undefined;
+    if(form){
+     splitForms.set('#'+id,form);
+     doc.contents.items.splice(doc.contents.items.indexOf(item),1);changed=true;continue;
+    }
+    let renamed=`local-${id}`,serial=2;
+    while(occupied.has(renamed)||declarationLibrary.kinds.has(renamed))renamed=`local-${id}-${serial++}`;
+    occupied.add(renamed);localRenames.set('#'+id,'#'+renamed);
+    const idNode=mapping.get('id',true);if(isScalar(idNode))idNode.value=renamed;
+    const urlNode=mapping.get('url',true);if(entry.url?.startsWith('#')&&isScalar(urlNode))urlNode.value='#'+renamed;
+    // Replace a legacy fragment with an explicit id, retaining its heading.
+    if(!entry.id){mapping.delete('url');mapping.set('id',renamed);}
+    changed=true;
+   }
+   const maths=mapping.get('maths',true);
    if(isScalar(maths)&&typeof maths.value==='string'&&maths.range){
     const migrated=migrateFormula(maths.value);
-    if(migrated!==maths.value)changes.push({start:block.offset+maths.range[0],end:block.offset+maths.range[1],text:JSON.stringify(migrated)});
+    if(migrated!==maths.value){maths.value=migrated;changed=true;}
    }
   }
+  if(changed)changes.push({start:block.offset,end:block.offset+block.text.length,text:doc.toString()});
  }
  for(const block of markdownBlocks(page.text).filter(b=>b.language==='rules')){
   let offset=block.offset;
   for(const line of block.text.split(/(?<=\n)/)){
    const canonicalKind=(kind:string)=>kind.startsWith('https://rules.sudoku-sleuth.com/')?kind.slice('https://rules.sudoku-sleuth.com/'.length,-3):kind;
    const parsed=parseDeclaration({file:page.file,text:line.trimEnd(),document:page.text,offset},kind=>{
+    if(splitForms.has(kind))return {primary:'cells'};
     const key=canonicalKind(kind)==='killer-cage'?'cage':canonicalKind(kind),url=`https://rules.sudoku-sleuth.com/${key}.md`,contract=legacyContracts.get(url);
     return {...parameterGrammar(contract),line:legacyLines.get(url),opaque:!contract};
    });
@@ -198,6 +251,18 @@ export function migrateCase(page:PageSource):Result<PageSource> {
    const ast=parsed.value;
    if(ast){
     const kind=canonicalKind(ast.kind.value);
+    const split=splitForms.get(kind);
+    if(split){
+     const p=declarationParameters(ast,'cells');
+     for(const param of ast.parameters)p[param.name.value]=decoded(param.value);
+     const cells=p.cells as string[],ends=split.ends?p[split.ends] as string[]:undefined;
+     if(Array.isArray(cells)&&(!split.ends||Array.isArray(ends)&&ends.length===2)){
+      const line=ends?[ends[0],...cells,ends[1]]:cells;
+      const prefix=(ast.instance?JSON.stringify(ast.instance.value)+': ':'')+ast.negations.map(()=>'not ').join('');
+      const suffix=(ast.condition?` ${ast.condition.unless?'unless':'if'} ${ast.condition.predicate.value}`:'')+(ast.comment?` ${ast.comment.value}`:'');
+      changes.push({start:ast.span.start.offset,end:ast.span.end.offset,text:prefix+printMigratedDeclaration({kind:'split-pea',parameters:{line,...(p.element===undefined?{}:{element:p.element})}})+suffix});
+     }else diagnostics.push(diagnostic('E_CASE_PARAMETERS',ast.span,'Cannot migrate the local Split Pea arguments without changing their meaning.'));
+    }else if(localRenames.has(kind))changes.push({start:ast.kind.span.start.offset,end:ast.kind.span.end.offset,text:localRenames.get(kind)!});
     // A different library may publish an unrelated meaning under the same name.
     if(Object.hasOwn(legacyDefaults,kind)&&(root==='https://rules.sudoku-sleuth.com/'||ast.kind.value.startsWith('https://rules.sudoku-sleuth.com/'))){
      const migrated=migrateParsedDeclaration(ast,kind);
