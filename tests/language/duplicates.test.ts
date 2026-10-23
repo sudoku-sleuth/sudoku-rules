@@ -1,19 +1,21 @@
+import {compilePublicLibrary,publicPages,pageHeader,formulaInventory,overlapPairs} from '../helpers/library';
 import {legacyFormulaTerms} from '../../src/migration-data';
-import {expect,test,afterAll,setDefaultTimeout} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,readHeader,type Expr} from '../../src';
-import {formulaInventory,overlapPairs,formulaNotation} from '../../src/formula-similarity';
+import {expect,test} from 'bun:test';
+import {type Expr} from '../../src';
+import {formulaNotation} from '../../src/formula-similarity';
 import {overlapAllowlist} from '../../src/overlap-allowlist';
 import {parseFormula} from '../../src';
 
-setDefaultTimeout(60000);
 
-const pages=await Promise.all((await readdir('rules')).filter(f=>f.endsWith('.md')).map(async f=>({file:`rules/${f}`,text:await Bun.file(`rules/${f}`).text()})));
+const pages = publicPages;
 const library=compilePublicLibrary(pages).value!;
 const rows=formulaInventory(pages,3,library.rules,true);
+const headers = pages.map(page => pageHeader(page).value!.metadata);
+const ruleHeaders = headers.filter(m => m.layer === 'rule');
+const publicPairs = overlapPairs(rows);
 
 function guard(inventory: typeof rows,allowlist:Record<string,string>=overlapAllowlist){
- const pairs=overlapPairs(inventory),used=new Set<string>();
+ const pairs=inventory === rows ? publicPairs : overlapPairs(inventory),used=new Set<string>();
  for(const pair of pairs){
   expect(pair.exact,`Identical instantiated formula: ${pair.key}`).toBe(false);
   if(pair.sameBlock){expect(Object.keys(pair.settings!).length,`Identical block settings: ${pair.key}`).toBeGreaterThan(0);continue;}
@@ -24,7 +26,7 @@ function guard(inventory: typeof rows,allowlist:Record<string,string>=overlapAll
  }
  expect([...used].sort()).toEqual(Object.keys(allowlist).sort());
 }
-test('all layers reject exact and near duplicates without a current semantic reason',()=>guard(rows),60000);
+test('all layers reject exact and near duplicates without a current semantic reason',()=>guard(rows));
 
 test('the guard rejects real page copies with renamed parameters and altered comparisons',()=>{
  const original=pages.find(p=>p.file==='rules/endpoint-range.md')!;
@@ -54,12 +56,11 @@ test('the guard detects exact copies in every layer and cross-layer wrappers',()
 });
 
 test('every block owns a formula and has two named users or a composition purpose',()=>{
- for(const page of pages){
-  const m=readHeader(page).value!.metadata;
+ for(const m of headers){
   if(m.layer==='block'){
    expect(m.alias_of).toBeUndefined();
    expect(library.blocks.get(String(m.kind))!.formulas.length).toBeGreaterThan(0);
-   const users=pages.filter(p=>readHeader(p).value!.metadata.layer==='rule'&&readHeader(p).value!.metadata.alias_of===m.kind);
+   const users=ruleHeaders.filter(p=>p.alias_of===m.kind);
    expect(users.length>=2||typeof m.composition==='string'&&m.composition.trim().length>0,`Unshared block needs a composition purpose: ${m.kind}`).toBe(true);
   }
   if(m.layer==='rule'){
@@ -92,7 +93,7 @@ test('formula rendering preserves list images, intervals, arithmetic and binders
  }
 });
 
-afterAll(()=>{rows.length=0;});
+
 
 
 test('same-block settings are reported but identical instantiated rules still fail',()=>{

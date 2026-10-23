@@ -1,9 +1,10 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
-import { checkCaseReferences, compilePage, compilePublicLibrary, parseDeclaredRuleLine, ruleLineChecks, type Diagnostic } from "../../src";
+import { checkCaseReferences, compilePage, parseDeclaredRuleLine, ruleLineChecks, type Diagnostic } from "../../src";
 import { fragmentVerdict } from "./finite-fragment";
 import { caseExamples } from "../../scripts/lint-skill";
-const pages = await Promise.all((await readdir("rules")).filter(n => n.endsWith(".md")).map(async n => ({ file: `rules/${n}`, text: await Bun.file(`rules/${n}`).text() })));
+const pages = publicPages;
 const compiled = compilePublicLibrary(pages);
 if (!compiled.value) throw Error(JSON.stringify(compiled.diagnostics));
 const library = compiled.value;

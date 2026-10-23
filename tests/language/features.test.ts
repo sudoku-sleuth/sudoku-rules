@@ -1,8 +1,8 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import { expect, test } from "bun:test";
-import { readdir } from "node:fs/promises";
-import { checkCaseReferences, compilePublicLibrary, parsePrelude } from "../../src";
+import { checkCaseReferences, parsePrelude } from "../../src";
 
-const pages = await Promise.all((await readdir("rules")).filter(name => name.endsWith(".md")).map(async name => ({ file: `rules/${name}`, text: await Bun.file(`rules/${name}`).text() })));
+const pages = publicPages;
 const registry = compilePublicLibrary(pages).value!.registry;
 const header = (fog: string, body = "sudoku 9x9") => `---\nformat: open-rules\ntitle: Example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n${fog}---\n\n\`\`\`rules\n${body}\n\`\`\`\n`;
 const check = (fog: string, body?: string) => checkCaseReferences({ file: "case.rules.md", text: header(fog + (body === "# explicit board" ? "board: {rows: 5, cols: 5, symbols: [1,2,3,4,5]}\n" : ""), body) }, registry).diagnostics;

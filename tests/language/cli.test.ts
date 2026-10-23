@@ -1,10 +1,9 @@
+import {compilePrelude} from '../helpers/library';
 import { readdir } from "node:fs/promises";
-import { expect, test, setDefaultTimeout } from "bun:test";
-import { compileLibrary, compilePrelude } from "../../src/index";
+import { expect, test } from "bun:test";
+import { compileLibrary} from "../../src";
 import { lintFiles } from "../../src/cli";
 
-// These checks compile the complete public library.
-setDefaultTimeout(60000);
 
 const preludePage = { file: "spec/prelude.md", text: await Bun.file("tests/fixtures/typed-prelude.md").text() };
 test("library compilation is atomic and never returns a partially checked library", async () => {
@@ -73,12 +72,15 @@ test("default lint:spec checks the library and finds no case files", async () =>
   expect(stdout).toContain(`${count}/${count} pages checked;`);
   expect(stdout).toMatch(/; [1-9]\d* formula blocks/);
   expect(stdout).toContain("Cases: 0 headers/reference lists; 0 references; 0 deferred URLs");
-}, 60_000);
+});
 
+// Compute the complete CLI fixture once, alongside the shared library fixtures.
+// Keep the real subprocess boundary and assert its result below.
+const overlapProcess=Bun.spawn(['bun','src/cli.ts','overlap','--min','0.35','--json'],{stdout:'pipe',stderr:'pipe'});
+const [overlapStdout,overlapStderr,overlapExit]=await Promise.all([new Response(overlapProcess.stdout).text(),new Response(overlapProcess.stderr).text(),overlapProcess.exited]);
 test('overlap CLI reports layers, scores and formula subtrees and validates its threshold',async()=>{
- const process=Bun.spawn(['bun','src/cli.ts','overlap','--min','0.35','--json'],{stdout:'pipe',stderr:'pipe'});
- const [stdout,stderr]=await Promise.all([new Response(process.stdout).text(),new Response(process.stderr).text()]);
- expect(await process.exited).toBe(0);expect(stderr).toBe('');
+ const stdout=overlapStdout,stderr=overlapStderr;
+ expect(overlapExit).toBe(0);expect(stderr).toBe('');
  const report=JSON.parse(stdout);
  expect(report.counts.predicates).toBeGreaterThan(0);
  expect(report.pairs.some((p:{key:string;sameBlock:boolean;settings:object;shared:string})=>p.key==='rule:slow-thermo / rule:thermo'&&p.sameBlock&&p.shared&&Object.keys(p.settings).length>0)).toBe(true);
@@ -87,4 +89,4 @@ test('overlap CLI reports layers, scores and formula subtrees and validates its 
   const [,err]=await Promise.all([new Response(invalid.stdout).text(),new Response(invalid.stderr).text()]);
   expect(await invalid.exited).toBe(2);expect(err).toContain('Usage: openrules overlap');
  }
-},60000);
+});

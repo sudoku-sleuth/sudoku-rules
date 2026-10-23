@@ -1,8 +1,8 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,readHeader,checkCaseReferences,libraryLayers,migrationTable,type PageSource} from '../../src';
+import {readHeader,checkCaseReferences,libraryLayers,migrationTable} from '../../src';
 import {assertMigratedEquivalent} from './migration-equivalence';
-const pages:PageSource[]=await Promise.all((await readdir('rules')).filter(f=>f.endsWith('.md')).map(async f=>({file:`rules/${f}`,text:await Bun.file(`rules/${f}`).text()})));
+const pages = publicPages;
 const library=compilePublicLibrary(pages).value!;
 const a='r1c1',b='r1c3',c='r1c2';
 const empty={rows:1,cols:3,alphabet:[1,2,3],regions:[[a,c],[b]]};

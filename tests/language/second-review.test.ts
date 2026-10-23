@@ -1,11 +1,11 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,checkCaseReferences,checkFormula,parseFormula} from '../../src';
+import {checkCaseReferences,checkFormula,parseFormula} from '../../src';
 import {formulaBlocks} from '../../src/library';
 import {declarationLibrary} from '../../src/declaration-library';
 import {chosenAnswerPrimitives} from '../../src/shared-primitives';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
-const sources=await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+const sources = publicPages;
 const library=compilePublicLibrary(sources).value!;
 const a='r1c1',b='r1c2',c='r1c3';
 const faces={[a]:1,[b]:2,[c]:3};

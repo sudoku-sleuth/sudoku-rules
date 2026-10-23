@@ -1,15 +1,14 @@
+import {compilePublicLibrary} from '../helpers/library';
 import { readdir } from 'node:fs/promises';
 import { caseExamples } from '../../scripts/lint-skill';
-import { expect, test, setDefaultTimeout } from 'bun:test';
-import { checkCaseReferences, compilePublicLibrary, normalise, parseDeclaration, printDeclaration } from '../../src';
+import { expect, test } from 'bun:test';
+import { checkCaseReferences, normalise, parseDeclaration, printDeclaration } from '../../src';
 import { declarationLibrary } from '../../src/declaration-library';
 import { parameterGrammar } from '../../src/case-values';
 import { readSemanticFile } from '../../src/semantics/reader';
 import { caseBlocks } from '../../src/custom-definitions';
 import baseline from './legacy-readings.json';
 
-// Full-library compilation may exceed Bun's five-second default.
-setDefaultTimeout(60000);
 
 const source = (text: string) => ({file: 'review.rules.md', text});
 const file = (rules: string) => source(`---\nformat: open-rules\ntitle: Example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\n${rules}\n\`\`\`\n`);

@@ -1,10 +1,10 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {checkCaseReferences,compilePublicLibrary,normalise,compare,parseDeclaration,printDeclaration,type BoardContext} from '../../src';
+import {checkCaseReferences,normalise,compare,parseDeclaration,printDeclaration,type BoardContext} from '../../src';
 import {declarationLibrary} from '../../src/declaration-library';
 import {fragmentVerdict} from '../language/finite-fragment';
 import {caseExamples} from '../../scripts/lint-skill';
-const pages=await Promise.all((await readdir('rules')).filter(f=>f.endsWith('.md')).map(async f=>({file:`rules/${f}`,text:await Bun.file(`rules/${f}`).text()})));
+const pages = publicPages;
 const library=compilePublicLibrary(pages).value!;
 const page=library.rules.get('clue-count')!;
 const file=(rules:string)=>({file:'counts.rules.md',text:`---

@@ -1,13 +1,13 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {formulaNotation} from "../../src/formula-notation";
 import {substituteFormula,foldFormula} from "../../src/formula-substitution";
 import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
 import {expect,test,afterAll} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
+import {normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
 import {caseExamples} from '../../scripts/lint-skill';
 import {declaredDefault} from '../../src/case-values';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
-const sources=await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+const sources = publicPages;
 const compiled=compilePublicLibrary(sources);
 if(!compiled.value)throw Error(JSON.stringify(compiled.diagnostics));
 const library=compiled.value;

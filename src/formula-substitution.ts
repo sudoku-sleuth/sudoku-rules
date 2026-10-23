@@ -24,17 +24,25 @@ export function substituteFormula(expr:Expr,bindings:Map<string,Expr>):Expr {
 
 /** Reduce literal choices introduced by substituting a concrete helper argument. */
 export function foldFormula(expr:Expr):Expr {
- const children=expr.children.map(foldFormula),e={...expr,children};
- const boolean=(value:boolean):Expr=>({kind:'boolean',value:String(value),span:e.span,children:[]});
- if(e.kind==='binary'){
-  const [a,b]=children;
-  if(['=','!='].includes(e.value!)&&a.kind===b.kind&&['literal','boolean'].includes(a.kind))return boolean(e.value==='='?a.value===b.value:a.value!==b.value);
-  if(e.value==='and'||e.value==='or'){
-   if(a.kind==='boolean')return a.value===(e.value==='and'?'true':'false')?b:a;
-   if(b.kind==='boolean')return b.value===(e.value==='and'?'true':'false')?a:b;
+ const folded=new WeakMap<Expr,Expr>();
+ const fold=(expr:Expr):Expr=>{
+  const cached=folded.get(expr);if(cached)return cached;
+  const result=reduce(expr);folded.set(expr,result);return result;
+ };
+ const reduce=(expr:Expr):Expr=>{
+  const children=expr.children.map(fold),e=children.every((c,i)=>c===expr.children[i])?expr:{...expr,children};
+  const boolean=(value:boolean):Expr=>({kind:'boolean',value:String(value),span:e.span,children:[]});
+  if(e.kind==='binary'){
+   const [a,b]=children;
+   if(['=','!='].includes(e.value!)&&a.kind===b.kind&&['literal','boolean'].includes(a.kind))return boolean(e.value==='='?a.value===b.value:a.value!==b.value);
+   if(e.value==='and'||e.value==='or'){
+    if(a.kind==='boolean')return a.value===(e.value==='and'?'true':'false')?b:a;
+    if(b.kind==='boolean')return b.value===(e.value==='and'?'true':'false')?a:b;
+   }
   }
- }
- if(e.kind==='conditional'&&children[0].kind==='boolean')return children[children[0].value==='true'?1:2];
- if(e.kind==='unary'&&e.value==='not'&&children[0].kind==='boolean')return boolean(children[0].value!=='true');
- return e;
+  if(e.kind==='conditional'&&children[0].kind==='boolean')return children[children[0].value==='true'?1:2];
+  if(e.kind==='unary'&&e.value==='not'&&children[0].kind==='boolean')return boolean(children[0].value!=='true');
+  return e;
+ };
+ return fold(expr);
 }

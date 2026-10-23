@@ -1,5 +1,6 @@
+import {compilePublicLibrary} from '../helpers/library';
 import {expect} from 'bun:test';
-import {compilePublicLibrary,migrateDeclaration,type PageSource,type Expr} from '../../src';
+import {migrateDeclaration,type PageSource,type Expr} from '../../src';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 const snapshot:{pages:PageSource[]}=await Bun.file('tests/fixtures/library-6d9e954.json').json();
 const baseline=compilePublicLibrary(snapshot.pages).value!;

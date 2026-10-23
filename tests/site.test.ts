@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, expect, test, setDefaultTimeout } from "bun:test";
+import { afterAll, beforeAll, expect, test } from "bun:test";
 
 import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -8,8 +8,6 @@ import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
 
-// These tests build the whole library; allow for slower CI runners.
-setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");
 let temporary: string;
@@ -195,13 +193,14 @@ test("the full library has byte-identical public routes", async () => {
     expect(await readFile(join(built.output,slug,"index.html"),"utf8")).toContain(ownIcon);
   }
   const home=await readFile(join(built.output,"index.html"),"utf8");
+  const blocks = await readFile(join(built.output,"blocks/index.html"),"utf8");
   for(const name of await readdir("rules")) {
     if(!name.endsWith(".md"))continue;
     const slug=name.slice(0,-3);
     expect(await readFile(join(built.output,name))).toEqual(await readFile(join("rules",name)));
     expect(await Bun.file(join(built.output,slug,"index.html")).exists()).toBe(true);
     const {libraryLayers}=await import("../src/library-layers");
-    const catalogue=libraryLayers[slug]==="block"?await readFile(join(built.output,"blocks/index.html"),"utf8"):home;
+    const catalogue=libraryLayers[slug]==="block"?blocks:home;
     if(slug!=="index-count"&&slug!=="aggregate-relation")expect(catalogue).toContain(`href="/${slug}/"`);
   }
 });

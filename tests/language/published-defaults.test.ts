@@ -1,6 +1,6 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,type PageSource} from '../../src';
+import {type PageSource} from '../../src';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 interface Example {kind:string;canonical:string;source:PageSource;parameters:Record<string,unknown>;assignments:{expected:boolean;faces:Record<string,number>}[];board?:{rows:number;cols:number;symbols:number[]}}
 // Formula/header snapshots and example assignments from main at the recorded revision.
@@ -8,7 +8,7 @@ interface Example {kind:string;canonical:string;source:PageSource;parameters:Rec
 const fixture: {revision:string;prelude:PageSource;pages:Example[]}=await Bun.file('tests/fixtures/published-defaults.json').json();
 const old=compilePublicLibrary([fixture.prelude,...fixture.pages.map(p=>p.source)]);
 if(!old.value)throw Error(JSON.stringify(old.diagnostics));
-const current=compilePublicLibrary(await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})))).value!;
+const current=compilePublicLibrary(publicPages).value!;
 const defaults=(kind:string)=>Object.fromEntries(Object.entries(current.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([name,p])=>[name,p.default]));
 for(const example of fixture.pages)test(`published defaults: ${example.kind} matches main examples or the recorded Region Sum correction`,()=>{
  const before=old.value!.rules.get(example.canonical)!;

@@ -1,7 +1,8 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from "bun:test";
-import {compilePublicLibrary,type Expr}from"../../src";
+import {type Expr} from "../../src";
 import {fragmentVerdict,type Fragment}from"./finite-fragment";
-const sources=await Promise.all((await (await import('node:fs/promises')).readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+const sources = publicPages;
 const library=compilePublicLibrary(sources).value!;
 const prelude=library.prelude;
 const fragments: (Fragment&{name:string;rule:string;expected:boolean})[]=await Bun.file("tests/fixtures/meaning-review.json").json();

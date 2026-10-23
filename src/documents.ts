@@ -275,13 +275,14 @@ export interface PublicLibrary {
     features: CompiledFeature[];
     registry: RuleRegistry;
 }
-export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary> {
+// Batch callers can reuse source-keyed prelude checks through preludeCompiler.
+export function compilePublicLibrary(pages: PageSource[], preludeCompiler = compilePrelude): Result<PublicLibrary> {
     const headers = new Map(pages.map(page => [page.file, readHeader(page)]));
     const diagnostics = [...headers.values()].flatMap(result => result.diagnostics);
     const shared = pages.filter(page => headers.get(page.file)?.value?.metadata.document === "prelude");
     if (shared.length !== 1)
         return { diagnostics: [...diagnostics, diagnostic("E_SIGNATURE_REQUIRED", location(pages[0] ?? { file: "<library>", text: "" }, 0, 0), "Declare exactly one shared definitions page with document: prelude.")] };
-    const parsed = compilePrelude(shared[0]);
+    const parsed = preludeCompiler(shared[0]);
     diagnostics.push(...parsed.diagnostics);
     if (!parsed.value)
         return { diagnostics };
@@ -337,7 +338,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
                 }
                 else if (metadata.document === "feature" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"A setup feature page declares formulas only with domain: play-state; otherwise write its maths in a math block."));
                 if (metadata.document === "syntax" && formulaBlocks(page).length) {
-                    const checked = compilePrelude(page);
+                    const checked = preludeCompiler(page);
                     diagnostics.push(...checked.diagnostics);
                 }
             }

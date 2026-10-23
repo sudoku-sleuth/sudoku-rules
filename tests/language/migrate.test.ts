@@ -1,13 +1,14 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from 'bun:test';
 import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,checkCaseReferences,migrateCase,migrateDeclaration,migrateParsedDeclaration,printMigratedDeclaration,migrationTable,readHeader,type PageSource} from '../../src';
+import {checkCaseReferences,migrateCase,migrateDeclaration,migrateParsedDeclaration,printMigratedDeclaration,migrationTable,readHeader,type PageSource} from '../../src';
 import {readCustomDefinitions} from '../../src/custom-definitions';
 import {markdownBlocks} from '../../src/rules-blocks';
 import {caseExamples} from '../../scripts/lint-skill';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 const baseline:{revision:string;pages:PageSource[]}=await Bun.file('tests/fixtures/library-6d9e954.json').json();
 const old=compilePublicLibrary(baseline.pages).value!;
-const sources=await Promise.all((await readdir('rules')).filter(f=>f.endsWith('.md')).map(async f=>({file:`rules/${f}`,text:await Bun.file(`rules/${f}`).text()})));
+const sources = publicPages;
 const current=compilePublicLibrary(sources).value!;
 const defaults=(kind:string,lib=current)=>Object.fromEntries(Object.entries(lib.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([n,p])=>[n,p.default]));
 const exampleCase=(line:string)=>`---\nformat: open-rules\ntitle: Migration\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\nboard: {rows: 9, cols: 9, symbols:[1,2,3,4,5,6,7,8,9]}\n---\n\n\`\`\`rules\n${line}\n\`\`\`\n`;

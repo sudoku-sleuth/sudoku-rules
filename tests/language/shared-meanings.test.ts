@@ -1,12 +1,12 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {migrateDeclaration} from '../../src';
 import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
 import { expect, test, afterAll } from 'bun:test';
-import { readdir } from 'node:fs/promises';
 import { parse, stringify } from 'yaml';
-import { compilePublicLibrary, checkCaseReferences, normalise, parseFormula, checkFormula, type Expr } from '../../src';
+import { checkCaseReferences, normalise, parseFormula, checkFormula, type Expr } from '../../src';
 import { fragmentVerdict, type Fragment } from './finite-fragment';
 import { caseExamples } from '../../scripts/lint-skill';
-const sources = await Promise.all((await readdir('rules')).filter(n => n.endsWith('.md')).map(async n => ({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+const sources = publicPages;
 const compiled = compilePublicLibrary(sources);
 if (!compiled.value) throw Error(JSON.stringify(compiled.diagnostics));
 const library = compiled.value;
@@ -165,7 +165,7 @@ test('parameter-bound aliases typecheck bindings and keep their own grammar',()=
  }
  expect(library.registry.lines!.get('https://rules.sudoku-sleuth.com/kropki.md')!.parameter.name).toBe('colour');
  expect(library.registry.lines!.get('https://rules.sudoku-sleuth.com/pair.md')!.parameter.name).toBe('relation');
-},20000);
+});
 test('all changed and added examples use accepted public declarations',()=>{
  const changed=new Set(['outside','quadruple','pair','kropki','thermo','slow-thermo','scoped-move','anti-king','anti-knight','renban','nabner','bremban','modular','entropic','parity','line-choice','whispers','close-whispers','between','lockout','cage','little-killer','double-arrow','equal-sums','region-sum','arrow','extremum','tardis','index','numbered-room','index-line','pointing-arrow','skyscraper','split-pea','difference-line','prefix-sum','blocked-sight','sum-partition','aggregate-relation','lookup','shifter-line','summit','primality']);
  for(const source of sources.filter(p=>changed.has(p.file.slice(6,-3)))) for(const text of caseExamples(source.text))
@@ -243,7 +243,7 @@ test('shorthand parsing ignores prose class labels and binding errors point into
  expect(error.span.file).toBe(raw.file);
  expect(error.span.start.line).toBeGreaterThan(1);
  expect(invalid.text.slice(error.span.start.offset,error.span.end.offset)).toBe("'false'");
-},20000);
+});
 test('validNetwork uses the connected primitive rather than tuple enumeration',()=>{
  expect(library.prelude.environment.terms.connected.kind).toBe('primitive');
  const term=library.prelude.environment.terms.validNetwork;

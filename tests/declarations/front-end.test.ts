@@ -1,6 +1,6 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import { expect, test } from 'bun:test';
-import { readdir } from 'node:fs/promises';
-import { compilePublicLibrary, checkCaseReferences, lexDeclaration, parseDeclaration, parseDeclarationTail, printDeclaration, normalise } from '../../src';
+import { checkCaseReferences, lexDeclaration, parseDeclaration, parseDeclarationTail, printDeclaration, normalise } from '../../src';
 import { declarationLibrary } from '../../src/declaration-library';
 import { parameterGrammar } from '../../src/case-values';
 
@@ -53,7 +53,7 @@ test('blank lines, comments and fragments remain distinct',()=>{
  expect(parseDeclarationTail(source('r1c1-r3c3 gap 3 loop false # comment')).value!.cells!.value).toEqual(['r1c1','r3c3']);
 });
 test('published grammar contracts match the rule pages, including aliases',async()=>{
- const pages=await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+ const pages = publicPages;
  const compiled=compilePublicLibrary(pages);
  expect(compiled.diagnostics).toEqual([]);
  for(const [url,contract] of compiled.value!.registry.parameters!) expect(declarationLibrary.parameters!.get(url)).toEqual(contract);
