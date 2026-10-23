@@ -37,7 +37,7 @@ renban r2c2-r2c3-r2c4-r3c4-r4c4-r4c3-r4c2-r3c2
 For a whisper loop on the same square, preserve the closing adjacency too:
 
 ```rules
-whispers r2c2-r2c3-r2c4-r3c4-r4c4-r4c3-r4c2-r3c2 gap 5 loop true
+whispers-5 r2c2-r2c3-r2c4-r3c4-r4c4-r4c3-r4c2-r3c2 loop true
 ```
 
 Repeating the starting cell at the end is another way to express that whisper adjacency. Renban constrains the cell set; repeating a cell is unnecessary. Neither a hyphen nor `loop true` inserts omitted intermediate cells. Under F1, connected lines of the same colour are one continuous line. Under F2, a cell not drawn in that colour is not on the line. Do not ask about membership those facts settle. If the text conflicts with the drawing, flag the conflict instead of splitting the line to fit the text. Unsettled meanings, including different-colour joins, remain candidate readings under P1–P2.
@@ -59,7 +59,7 @@ For each forbidden relation, record its scope, direction and exceptions. Derive 
 Suppose all V marks (sum 5) are shown, a V joins r1c1–r1c2, and a white Kropki dot joins r3c1–r3c2:
 
 ```rules
-pair r1c1-r1c2 sum 5
+xv r1c1-r1c2 v
 kropki r3c1-r3c2 white
 negative relations [{"op":"sum","value":5}] except [["r1c1","r1c2"]]
 ```

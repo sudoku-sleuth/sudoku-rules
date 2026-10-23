@@ -10,7 +10,7 @@ export const lineFields: Record<string, string[]> = {
   entropic: ["loop"], palindrome: [], renban: [], bremban: [], nabner: ["distinct"],
   "region-sum": ["segments", "combine"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
 };
-export const valueLines = ["thermo", "whispers", "whisper", "palindrome", "renban", "region-sum"];
+export const valueLines = ["thermo", "whispers", "whisper", "whispers-4", "whispers-5", "palindrome", "renban", "region-sum"];
 const any = (children: Formula[]): Formula => ({ op: "Any", children });
 const parity = (x: number) => Math.abs(x % 2);
 /** Deterministic Miller–Rabin on the safe-integer domain. */

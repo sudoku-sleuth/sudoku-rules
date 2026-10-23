@@ -13,11 +13,29 @@ if (!migrated.value) throw new Error(JSON.stringify(migrated.diagnostics));
 const checked = checkCaseReferences(migrated.value, registry);
 ```
 
-`migrateCase` is a pure source transform. It reads neither files nor answers. It preserves the header, instance IDs, negation count, conditions, comments and other fenced blocks. External-library declarations remain as authored. Custom definitions retain their metadata; calls to the removed 0.3 helpers listed below are expanded from their archived formulas. Conditional declarations and declarations with an explicit drawing element retain their named declaration when available. Removed Index Count maps to Lookup in count mode with the same primary cells; Aggregate Relation has no primary cell scope. Run the current case checker on the returned source.
+`migrateCase` is a pure source transform. It reads neither files nor answers. It preserves the header, instance IDs, negation count, conditions, comments and other fenced blocks. External-library declarations remain as authored. Custom definitions retain their metadata; calls to the removed 0.3 helpers listed below are expanded from their archived formulas. Conditional declarations and declarations with an explicit drawing element retain their named declaration when available; Pair may select an equivalent XV or Kropki declaration while preserving those annotations. Removed Index Count maps to Lookup in count mode with the same primary cells; Aggregate Relation has no primary cell scope. Run the current case checker on the returned source.
 
 For already decoded data, call `migrateDeclaration({kind, parameters})`. Values are numbers, bigints, strings, booleans, arrays and records. It returns an array containing one declaration. `migrateParsedDeclaration(ast)` projects the old parser AST and preserves exact keyword integers. `printMigratedDeclaration` writes the result without rounding those integers. Use `migrateCase` for source files with instance IDs, negations, drawing elements or conditions.
 
-`migrationTable` is machine-readable: `kind` is the old name, `target` is the returned declaration kind, `canonical` owns its formula, `form` says rule or block, `parameterChanges` lists removed inputs when present, and `meaning` is identical. Board-dependent diagonals, indexing, lookup targets, negative scopes and anti-move scopes retain their bound declaration. Constructed Regions retains its local existential partition. Exact keyword integers outside JavaScript's safe range also retain the Pair rule form, so they never pass through a rounded JSON number. No answer-dependent expression is evaluated by the migration.
+`migrationTable` is machine-readable: `kind` is the old name, `target` is the default returned declaration kind (Pair chooses its target per declaration), `canonical` owns its formula, `form` says rule or block, `parameterChanges` lists removed inputs when present, and `meaning` is identical. Board-dependent diagonals, indexing, lookup targets, negative scopes and anti-move scopes retain their bound declaration. Constructed Regions retains its local existential partition. Exact keyword integers outside JavaScript's safe range also retain the Pair rule form, so they never pass through a rounded JSON number. No answer-dependent expression is evaluated by the migration.
+
+## Rule names and pair settings
+
+Little Killer is now Diagonal Sum (`diagonal-sum`). The `little-killer` spelling, searches and published route remain aliases with the same parameters and meaning.
+
+Whispers retains its general `gap`. Prefer `whispers-5` for German Whispers and `whispers-4` for Dutch Whispers; these rules bind Difference Line with the gap fixed at 5 or 4. Existing Whispers declarations with either gap may stay unchanged. Pill, Pill Arrow and Arrow Pill name Arrow with a two- or three-cell decimal bulb.
+
+Pair retains its name. Migration selects a name per declaration after binding defaults:
+
+| Pair settings | Result |
+| --- | --- |
+| `sum 10`, channel V | `xv … x` |
+| `sum 5`, channel V | `xv … v` |
+| `difference 1`, channel V | `kropki … white` |
+| `ratio 2`, channel V | `kropki … black` |
+| Other relations, channel D, or extra settings the target cannot express | Pair with its original settings |
+
+XV and Kropki both read effective values V and require two cells. Neither has a negative or “all given” parameter; those conditions use a separate Negative declaration. Migration preserves that declaration, its scope and exceptions, as well as each clue's IDs, negations, conditions, drawing elements and comments. An outer `not` negates the mapped clue; it does not impose “all given”. Pair declarations with extra relation fields or unsupported settings stay Pair. Kropki aliases are white dot, black dot and Kropki dots; XV aliases are X and V and XV clues. Negative, Anti King and Anti Knight keep their names.
 
 ## Removed rule spellings
 
@@ -112,7 +130,7 @@ Migration chooses a familiar rule where one exists, otherwise a block with setti
 | `layered-cage` | `layered-cage` (rule; formula home `layered-cage`) | identical |
 | `limited-digits` | `limited-digits` (rule; formula home `digit-profile`) | identical |
 | `line-choice` | `line-choice` (block; formula home `line-choice`) | identical |
-| `little-killer` | `little-killer` (rule; formula home `aggregate-equation`) | identical |
+| `little-killer` | `diagonal-sum` (rule; formula home `aggregate-equation`) | identical |
 | `local-sequence` | `local-sequence` (block; formula home `local-sequence`) | identical |
 | `lockout` | `lockout` (rule; formula home `endpoint-range`) | identical |
 | `look-and-say` | `look-and-say` (rule; formula home `digit-profile`) | identical |
@@ -195,7 +213,7 @@ Use valueSet(cells,channel,repeats,mode), with consecutive, nonconsecutive or se
 
 ## Cage aliases
 
-Cage is the public rule name. Killer Cage and Killer remain aliases. Both legacy kinds, killer and killer-cage, and their library URLs load the Cage contract and migrate to cage with the same defaults and conditions. Little Killer retains its name.
+Cage is the public rule name. Killer Cage and Killer remain aliases. Both legacy kinds, killer and killer-cage, and their library URLs load the Cage contract and migrate to cage with the same defaults and conditions. Little Killer is now Diagonal Sum; the old name and published route remain aliases.
 
 ## Liar rules
 

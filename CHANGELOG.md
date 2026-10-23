@@ -14,7 +14,12 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Changed
 
-- Rename Killer Cage to Cage. Killer Cage and Killer remain aliases; killer and killer-cage declarations load and migrate to Cage; the published killer URL remains available. Little Killer, Negative, Anti King and Anti Knight retain their names.
+- Little Killer is now Diagonal Sum. Little Killer remains an alias, including old declarations, searches and its published page route. This completes the remaining naming item in #26.
+- Add Whispers 5 (German Whispers) and Whispers 4 (Dutch Whispers), binding the same Difference Line block with fixed gaps. General Whispers declarations retain their supplied gap.
+- Add Pill, Pill Arrow and Arrow Pill as Arrow aliases for decimal bulbs; white dot, black dot and Kropki dots as Kropki aliases; and X and V and XV clues as XV aliases.
+- Migrate Pair per declaration to XV for sums of 10 or 5 and Kropki for difference 1 or ratio 2 when the target settings match exactly. Preserve other relations, channels, negative scopes and source annotations. Teach these names in the writing skill.
+
+- Rename Killer Cage to Cage. Killer Cage and Killer remain aliases; killer and killer-cage declarations load and migrate to Cage; the published killer URL remains available. Negative, Anti King and Anti Knight retain their names.
 - Use moveRelation for orthogonal steps, diagonal steps, king steps, knight moves and bishop lines. Numeric properties, value support and class counts use parameterised predicates in place of duplicated helpers.
 - Share aggregate equations, relation scopes, class patterns, digit profiles, lookups, value sets, aggregate groups, mirrored pairs, selected stretches, endpoint ranges and neighbour extrema through formula-owning blocks.
 - Make Quadruple's existing distinct-cell selection explicit in its binding; Outside retains supplied occurrences.

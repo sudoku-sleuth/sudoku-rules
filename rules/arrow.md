@@ -2,6 +2,7 @@
 name: Arrow
 url: https://rules.sudoku-sleuth.com/arrow.md
 kind: arrow
+aliases: [Pill, Pill Arrow, Arrow Pill]
 parameters:
   partial:
     type: boolean
@@ -21,6 +22,8 @@ layer: rule
 # Arrow
 
 An arrow’s shaft sums to its bulb. Complete one-cell arrows compare effective values (printed digits after declared value modifiers) on both sides; every other case compares printed digits. A bulb with several cells forms a decimal number from its printed digits, in the supplied order. Digits may repeat on complete and partial arrows unless another puzzle rule forbids it.
+
+Pill, Pill Arrow and Arrow Pill are names for Arrow with a two- or three-cell bulb read as a decimal number.
 
 For an ordinary horizontal bulb, list its cells left to right; for a vertical bulb, list them top to bottom. The supplied order determines the number, including for an unusually shaped bulb.
 

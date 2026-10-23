@@ -6,7 +6,7 @@ Never pick the liar cells, the false clues, or the kinds from a drawing or solve
 
 For independent real values use `liar-cells`; its defaults mean one liar in each
 standard house, distinct liar digits and distinct liar values in 1–9. Declare
-`sudoku 9x9` separately. Whispers, Kropki, pair sums (X is sum 10) and region sums
+`sudoku 9x9` separately. Whispers 5, Whispers 4, Kropki, XV and region sums
 already read V. Preserve both D and V in a worked answer. Affine changes such as
 doublers still use `value-modifier`. On other boards supply groups and values.
 

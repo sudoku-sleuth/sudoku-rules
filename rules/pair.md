@@ -48,7 +48,7 @@ layer: rule
 
 The two values obey the stated relationship: a difference, ratio, total, multiple, inequality or shift.
 
-X clues use `sum 10`; V clues use `sum 5`. A numbered white dot uses `difference n`, and a numbered black dot uses `ratio n`. An unnumbered white or black dot uses 1 or 2 respectively, as defined by [Kropki](https://rules.sudoku-sleuth.com/kropki.md). These positive clues do not imply that every possible clue is drawn; use [Negative](https://rules.sudoku-sleuth.com/negative.md) for that condition.
+Use [XV](xv.md) for X clues (sum 10) and V clues (sum 5). Use [Kropki](kropki.md) for difference 1 (white) or ratio 2 (black). Pair names every other pair relation and supports other numeric channels. A numbered white dot uses `difference n`, and a numbered black dot uses `ratio n`. An unnumbered white or black dot uses 1 or 2 respectively, as defined by [Kropki](https://rules.sudoku-sleuth.com/kropki.md). These positive clues do not imply that every possible clue is drawn; use [Negative](https://rules.sudoku-sleuth.com/negative.md) for that condition.
 
 ## Parameters
 
@@ -67,7 +67,7 @@ Write the two cells in order, then a relationship keyword. Values in rule lines 
 | `pair r1c1-r1c2 difference 2` | The values differ by exactly 2. |
 | `pair r1c1-r1c2 at-least 3` | The values differ by at least 3. |
 | `pair r1c1-r1c2 ratio 3` | One value is three times the other. |
-| `pair r1c1-r1c2 sum 10` | The values total 10. |
+| `pair r1c1-r1c2 sum 11` | The values total 11. |
 | `pair r1c1-r1c2 less` | The first value is less than the second. |
 | `pair r1c1-r1c2 multiple` | The larger is an integer multiple of the smaller; two zeros also satisfy it. |
 | `pair r1c1-r1c2 shift` | Both values are integers other than 5; they share exactly one of parity and being greater than 5. |
@@ -101,10 +101,10 @@ status: read
 
 ```rules
 sudoku 9x9
-pair r1c1-r1c2 sum 10
+pair r1c1-r1c2 sum 11
 ```
 ````
 
-Satisfies the rule: r1c1=3, r1c2=7. 3 and 7 add up to the stated total 10.
+Satisfies the rule: r1c1=3, r1c2=8. 3 and 8 add up to the stated total 11.
 
-Breaks the rule: r1c1=3, r1c2=8. 3 and 8 add up to 11 instead of 10.
+Breaks the rule: r1c1=3, r1c2=9. 3 and 9 add up to 12 instead of 11.

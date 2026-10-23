@@ -245,6 +245,18 @@ test("production catalogue separates familiar rules, blocks and predicates",asyn
  await buildSite('.',destination);
  const home=await readFile(join(destination,'index.html'),'utf8');
  const blocks=await readFile(join(destination,'blocks/index.html'),'utf8');
+ const aliases:Record<string,string[]>={
+  'diagonal-sum':['little killer'], 'whispers-5':['german whispers'], 'whispers-4':['dutch whispers'],
+  arrow:['pill','pill arrow','arrow pill'],kropki:['white dot','black dot','kropki dots'],xv:['x and v','xv clues'],
+ };
+ for(const [kind,names]of Object.entries(aliases)){
+  const search=home.match(new RegExp(`<tr data-rule data-search="([^"]+)"[^>]*><th scope="row"><a href="/${kind}/"`))?.[1];
+  expect(search).toBeDefined();
+  for(const name of names)expect(search).toContain(name);
+ }
+ const oldPage=await readFile(join(destination,'little-killer/index.html'),'utf8');
+ expect(oldPage).toContain('href="/diagonal-sum/"');
+ expect(await readFile(join(destination,'little-killer.md'),'utf8')).toBe(await readFile('rules/little-killer.md','utf8'));
  expect(home).toContain('href="/whispers/"');
  expect(home).toContain('href="/cage/"');
  expect(home).toContain('href="/extra-regions/"');

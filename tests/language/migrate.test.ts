@@ -316,3 +316,50 @@ test('legacy fragment collisions gain an explicit local id while retaining headi
  expect(migrated.value!.text).toContain('## Battenburg');
  expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
 });
+
+const namedPairs = [
+ {op:'sum',value:10,kind:'xv',setting:{mark:'x'},good:[4,6],bad:[4,5]},
+ {op:'sum',value:5,kind:'xv',setting:{mark:'v'},good:[2,3],bad:[2,4]},
+ {op:'difference',value:1,kind:'kropki',setting:{colour:'white'},good:[3,4],bad:[3,5]},
+ {op:'ratio',value:2,kind:'kropki',setting:{colour:'black'},good:[2,4],bad:[2,5]},
+];
+for(const sample of namedPairs)test(`Pair ${sample.op} ${sample.value} chooses ${sample.kind} with identical V meaning`,()=>{
+ const parameters={cells:[a,b],relation:{op:sample.op,value:sample.value}};
+ const result=migrateDeclaration({kind:'pair',parameters})[0];
+ expect(result).toEqual({kind:sample.kind,parameters:{cells:[a,b],...sample.setting}});
+ const before=old.rules.get('pair')!,after=current.rules.get(result.kind)!;
+ for(const [values,expected]of [[sample.good,true],[sample.bad,false]] as const){
+  // Face digits deliberately differ from V to detect an accidental channel change.
+  const fragment={faces:{[a]:8,[b]:9},values:{[a]:values[0],[b]:values[1]}};
+  expect(fragmentVerdict(before.formulas[0].ast,old.prelude,before.parameters,{...fragment,parameters:{...parameters,channel:'V'}})).toBe(expected);
+  expect(fragmentVerdict(after.formulas[0].ast,current.prelude,after.parameters,{...fragment,parameters:result.parameters})).toBe(expected);
+ }
+ const decoded={...parameters,element:'dot'};
+ expect(migrateDeclaration({kind:'pair',parameters:decoded})[0].parameters.element).toBe('dot');
+ const negative='all-given: negative relations [{"op":"'+sample.op+'","value":'+sample.value+'}] except [["r1c1","r1c2"]] within [["r1c1","r1c2","r1c3"]] direction "horizontal"';
+ for(const reference of ['pair','https://rules.sudoku-sleuth.com/pair.md']){
+  const source=exampleCase(`"clue": not not ${reference} r1c1-r1c2 ${sample.op} ${sample.value} element "dot" if uniform # keep\n${negative}`);
+  const result=migrateCase({file:'named-pairs.rules.md',text:source});
+  expect(result.diagnostics).toEqual([]);
+  expect(result.value!.text).toContain(`"clue": not not ${sample.kind}`);
+  expect(result.value!.text).toContain('element "dot" if uniform # keep');
+  expect(result.value!.text).toContain('"all-given": negative');
+  const checked=checkCaseReferences(result.value!,current.registry);
+  expect(checked.diagnostics).toEqual([]);
+  const negativeAst=checked.value!.declarations.find(d=>d.kind.value==='negative')!;
+  const original=checkCaseReferences({file:'before.rules.md',text:source},old.registry).value!.declarations.find(d=>d.kind.value==='negative')!;
+  expect(migrateParsedDeclaration(negativeAst)).toEqual(migrateParsedDeclaration(original));
+ }
+});
+
+test('Pair keeps other relations, D channels, arity guards and unexpressible settings',()=>{
+ for(const relation of [{op:'sum',value:7},{op:'difference',value:2},{op:'ratio',value:3},{op:'at-least',value:1},{op:'less'},{op:'multiple'},{op:'shift'},{op:'sum',value:9007199254740993n}]){
+  const parameters={cells:[a,b],relation};
+  expect(migrateDeclaration({kind:'pair',parameters})).toEqual([{kind:'pair',parameters:{...parameters,channel:'V'}}]);
+ }
+ for(const sample of namedPairs){
+  const base={cells:[a,b],relation:{op:sample.op,value:sample.value},channel:'V'};
+  for(const parameters of [{...base,channel:'D'},{...base,cells:[a]},{...base,negative:true},{...base,exhaustive:true},{...base,relation:{...base.relation,extra:1}}])
+   expect(migrateDeclaration({kind:'pair',parameters})).toEqual([{kind:'pair',parameters}]);
+ }
+});

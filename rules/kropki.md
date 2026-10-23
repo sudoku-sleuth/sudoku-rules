@@ -2,6 +2,7 @@
 name: Kropki
 url: https://rules.sudoku-sleuth.com/kropki.md
 kind: kropki
+aliases: [white dot, black dot, Kropki dots]
 parameters:
   colour:
     description: "The relationship: white means difference 1; black means ratio 2."
@@ -37,6 +38,8 @@ A white relation joins values one apart. A black relation joins values where one
 
 A white dot without a number means difference 1; a black dot without a number means ratio 2. For a numbered dot, use [Pair](https://rules.sudoku-sleuth.com/pair.md) with `difference n` or `ratio n`. An unmarked pair has no restriction from Kropki alone. State “all possible dots are given” with a separate [Negative](https://rules.sudoku-sleuth.com/negative.md) declaration.
 
+White dot, black dot and Kropki dots are also names for Kropki.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
@@ -51,7 +54,7 @@ Kropki is a named shorthand for [pair](pair.md):
 - `kropki r1c1-r1c2 white` means `pair r1c1-r1c2 difference 1`.
 - `kropki r1c1-r1c2 black` means `pair r1c1-r1c2 ratio 2`.
 
-Here `white` and `black` name relationships, not paint instructions. A dot's actual colour stays drawing metadata. For ratio 3, grey or brown dots, difference n, sum n and every other relationship, use [pair's keyword forms](pair.md). Case files state the relationship explicitly. Existing `colour "white"` and `colour "black"` spellings are also accepted.
+Here `white` and `black` name relationships, not paint instructions. A dot's actual colour stays drawing metadata. Use [XV](xv.md) for sums of 10 or 5. For other differences, ratios, sums and pair relations, use [Pair](pair.md) with the stated relationship. Case files state the relationship explicitly. Existing `colour "white"` and `colour "black"` spellings are also accepted.
 
 ## Definition
 

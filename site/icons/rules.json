@@ -87,5 +87,8 @@
   "window-classes": "rules/global/window-classes.svg",
   "prefix-sum": "rules/outside/x-sum.svg",
   "liar-cells": "rules/global/value-modifier.svg",
-  "clue-count": "rules/lines/line-choice.svg"
+  "clue-count": "rules/lines/line-choice.svg",
+  "diagonal-sum": "rules/outside/little-killer.svg",
+  "whispers-5": "rules/lines/whispers.svg",
+  "whispers-4": "rules/lines/whispers.svg"
 }
