@@ -8,7 +8,7 @@ The public site is [rules.sudoku-sleuth.com](https://rules.sudoku-sleuth.com/). 
 
 The library has three layers. [Predicates](rules/predicates.md) are mathematical functions, used only in formulas. Building blocks own the constraint formulas, typed parameters, defaults and examples. Named rules bind a shared block with explicit settings or own their formula directly. Case files declare familiar rules or use blocks directly for unusual puzzles.
 
-The [library tables](docs/library.md) list 86 named rules and 42 formula-owning blocks. Another 21 formulas live directly on rules, for 63 formula-owning definitions. The site gives blocks their own Building blocks section. Source pages remain in `rules/` with stable URLs and explicit `layer: rule` or `layer: block` headers.
+The [library tables](docs/library.md) list the named rules, building blocks and formula-owning definitions. The site gives blocks their own Building blocks section. Source pages remain in `rules/` with stable URLs and explicit `layer: rule` or `layer: block` headers.
 
 Use [the migration guide](docs/migration.md) for 0.3 declarations. `migrateCase` rewrites a source file; `migrateDeclaration` rewrites decoded data. `migrationTable` covers every old kind and binds old defaults before choosing a rule or block.
 
@@ -76,7 +76,7 @@ The portable entry exports `parseFormula`, `parsePrelude`, `checkFormula`, `comp
 
 Rejecting Markdown fixtures and their repairs live in `tests/invalid/` and `tests/valid/`. Tests assert every full diagnostic in `tests/invalid/expected.json`; update expectations only after reviewing a deliberate diagnostic change. The [integration report](docs/reports/library-integration.md) records the library migration, rejection corpus and checks.
 
-Exact alias pages declare their own `kind` and `alias_of: <target-kind>` (or `aliasOf`), with no parameters or formula. Bound shorthands also declare their input contract and an `alias_bind` expression for every target parameter; they declare no formula. Named rules declare `layer: rule` and either bind a `layer: block` page directly or own a formula. Blocks declare `layer: block`, own a formula, and express a shared meaning or a general composition tool. Bound declarations are rules, never blocks. Both alias routes are served, and their pages link to the target. The catalogue is `/`; its Markdown index is `/README.md`, declared with `document: home`. The `index` kind has `/index.md` and `/index/`. Only `cases` and `style` remain reserved.
+Exact alias pages declare their own `kind` and `alias_of: <target-kind>` (or `aliasOf`), with no parameters or formula. Bound shorthands also declare their input contract and an `alias_bind` expression for every target parameter; they declare no formula. Named rules declare `layer: rule` and either bind a `layer: block` page directly or own a formula. Blocks declare `layer: block`, own a formula, and express a shared meaning or a general composition tool. Bound declarations are rules, never blocks. An exact alias may target a named rule that binds a block. Both alias routes are served, and their pages link to the target. The catalogue is `/`; its Markdown index is `/README.md`, declared with `document: home`. The `index` kind has `/index.md` and `/index/`. Only `cases` and `style` remain reserved.
 
 Build output goes to `_site/`. Each rule produces `/<kind>.md` and `/<kind>/index.html`; shared definitions use the same layout. The generator also writes the index, local stylesheet, shape icons, font, search script, `.nojekyll`, and `CNAME`.
 
@@ -92,7 +92,7 @@ The homepage browses Lines, Edges, Cells, Cages, Outside, Regions and Global. Ro
 
 Rule formulas render as native MathML with the original notation retained in a text annotation. The Bureau mark, icons and display font are local assets; light and dark use the same layout with brand colour tokens. Rule symbols in `site/icons/rules/` are original Sudoku Sleuth artwork under the repository’s MIT licence. `site/icons/rules.json` maps page slugs to symbols; named rules keep their own symbol. Blocks carry no icon. The symbols inherit theme colours and are hidden from screen readers beside the rule name. Source Markdown and canonical URLs stay unchanged. `/writing/` provides the checker and AI skill instructions; `/contributing/` renders the contribution guide.
 
-The duplicate guard normalises and inlines the prelude to depth three. Identical own formulas fail; pairs at or above 0.50 subtree Jaccard similarity need an explicit reason. The allowlist is empty. A reachability check keeps the callable prelude free of unused names, including feature and documented custom-formula entry points.
+The duplicate guard normalises and inlines the prelude to depth three. Identical own formulas fail; pairs at or above 0.35 subtree Jaccard similarity need an explicit reason. `src/overlap-allowlist.ts` holds reasoned exceptions. A reachability check keeps the callable prelude free of unused names, including feature and documented custom-formula entry points.
 
 ## Propose a rule
 

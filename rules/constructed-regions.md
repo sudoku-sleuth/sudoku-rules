@@ -8,12 +8,14 @@ parameters:
     default: Required.
     type: position
   borders:
+    allow_empty: true
     description: Pairs of neighbouring cells that must belong to different regions.
-    default: Empty list.
+    default: Required.
     type: list<list<cell>>
   joins:
+    allow_empty: true
     description: Pairs of cells that must belong to the same region.
-    default: Empty list.
+    default: Required.
     type: list<list<cell>>
 alias_of: region-partition
 alias_bind:
@@ -35,13 +37,15 @@ Divide the board into connected regions of the stated size. Each region contains
 
 This is the local existential form of [Region Partition](region-partition.md) with scope C, sizes [size], distinct true, channel D, the same joins and borders, and no count or separation. Region Partition owns the general partition meaning; this page chooses a local partition rather than exposing a shared name.
 
+Empty `borders` or `joins` impose no separation or joining requirements. These inputs must be supplied explicitly.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
 | --- | --- | --- | --- |
 | size | `position` | The number of cells in each constructed region or cage. | Required. |
-| borders | `list<list<cell>>` | Pairs of neighbouring cells that must belong to different regions. | Empty list. |
-| joins | `list<list<cell>>` | Pairs of cells that must belong to the same region. | Empty list. |
+| borders | `list<list<cell>>` | Pairs of neighbouring cells that must belong to different regions. | Required. |
+| joins | `list<list<cell>>` | Pairs of cells that must belong to the same region. | Required. |
 
 ## Definition
 

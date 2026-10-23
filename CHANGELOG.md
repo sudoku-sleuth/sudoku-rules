@@ -14,17 +14,19 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Changed
 
-- Rename Killer Cage to Cage. Killer Cage and Killer remain aliases; killer and killer-cage declarations and URLs load and migrate to Cage. Little Killer, Negative, Anti King and Anti Knight retain their names.
+- Rename Killer Cage to Cage. Killer Cage and Killer remain aliases; killer and killer-cage declarations load and migrate to Cage; the published killer URL remains available. Little Killer, Negative, Anti King and Anti Knight retain their names.
 - Use moveRelation for orthogonal steps, diagonal steps, king steps, knight moves and bishop lines. Numeric properties, value support and class counts use parameterised predicates in place of duplicated helpers.
 - Share aggregate equations, relation scopes, class patterns, digit profiles, lookups, value sets, aggregate groups, mirrored pairs, selected stretches, endpoint ranges and neighbour extrema through formula-owning blocks.
-- Report rules binding the same block under “same block, different settings”, including their differing bindings or input domains. Identical instantiated formulas remain duplicate errors.
-- Retain Whispers and Extra Regions as the public names for legacy Whisper and Unique declarations.
+- Make Quadruple's existing distinct-cell selection explicit in its binding; Outside retains supplied occurrences.
+- Report rules binding the same block under “same block, different settings”, including their differing bindings. Identical instantiated formulas remain duplicate errors.
+- Retain Whispers and Extra Regions as the public names for legacy Whisper and Unique declarations. Preserve the published killer, whisper, unique, index-count and aggregate-relation routes as thin alias or migration pages.
 
 ### Breaking
 
 - Replace convenience formula helpers with aggregate, repeatPolicy, allDifferent, connected, marked, lookupRelated, queryHit and the parameterised predicate families described in the migration guide.
 - Remove unused Index strips and Value Modifier name parameters; migration drops both.
-- Default empty profile counts, negative exceptions and constructed-region borders and joins to empty collections.
+- Required collection inputs may use `allow_empty: true` with a documented empty meaning, while omission remains rejected.
+- Lookup no longer defaults `cell` to r1c1; single mode requires its presence, while count and query modes omit it. Digit Profile classes/counts, Constructed Regions borders/joins, Cage Shapes free and Negative except are required inputs. Empty collections must be supplied explicitly.
 
 ## Unreleased (0.3.0)
 

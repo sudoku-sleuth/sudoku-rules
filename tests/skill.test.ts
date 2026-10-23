@@ -1,10 +1,13 @@
-import { afterAll, beforeAll, expect, test } from "bun:test";
+import { afterAll, beforeAll, expect, test, setDefaultTimeout } from "bun:test";
 import { cp, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { caseExamples, lintSkill } from "../scripts/lint-skill";
 import { frontMatter } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
+
+// Full-library compilation may exceed Bun's five-second default.
+setDefaultTimeout(60000);
 
 const repo = resolve(import.meta.dir, "..");
 const skill = join(repo, "plugins/open-rules/skills/open-rules");

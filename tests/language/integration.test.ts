@@ -45,9 +45,9 @@ test("every production page compiles atomically with its declared public prelude
     const pages = await Promise.all(names.map(async (name) => ({ file: `rules/${name}`, text: await readFile(`rules/${name}`, "utf8") })));
     const result = compilePublicLibrary(pages);
     expect(result.diagnostics).toEqual([]);
-    expect([...result.value!.rules.keys()].sort()).toEqual(pages.flatMap(p=>/^kind: (.+)$/m.exec(p.text)?.[1]??[]).sort());
+    expect([...result.value!.rules.keys(),...result.value!.aliases.keys()].sort()).toEqual(pages.flatMap(p=>/^kind: (.+)$/m.exec(p.text)?.[1]??[]).sort());
     expect(result.value!.rules.size+result.value!.aliases.size+result.value!.documents).toBe(names.length);
-    expect([...result.value!.aliases]).toEqual([]);
+    expect([...result.value!.aliases.keys()].sort()).toEqual(pages.filter(p=>/^alias_of:/m.test(p.text)&&!/^alias_bind:/m.test(p.text)).map(p=>/^kind: (.+)$/m.exec(p.text)![1]).sort());
     const headers=pages.map(p=>readHeader(p).value!.metadata);
     expect([...result.value!.shorthands.keys()].sort()).toEqual(headers.filter(m=>m.alias_bind).map(m=>m.kind).sort());
     expect(result.value!.documents).toBe(headers.filter(m=>m.document).length);

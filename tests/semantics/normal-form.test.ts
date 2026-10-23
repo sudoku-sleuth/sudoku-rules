@@ -51,7 +51,7 @@ test("unique lowers set membership to every unordered inequality pair", () => {
   const result = different("unique r1c1-r1c2-r1c3", "unique r1c1-r1c2");
   expect(result.differences[0].primitive).toBe("Pair");
   expect(result.differences[0].cells).toEqual(["r1c1", "r1c3"]);
-  expect(result.differences[0].sources[0].span.start.line).toBe(12);
+  expect(result.differences[0].sources[0].span.start.line).toBe(file("unique r1c1-r1c2-r1c3").text.split("\n").indexOf("unique r1c1-r1c2-r1c3")+1);
 });
 
 test("sets, reversed pairs, duplicate positive clauses and line permutations are canonical", () => {
@@ -500,7 +500,7 @@ test("in-file custom fragment declarations retain semantic coverage, including w
       const coverage = result.normalForm!.coverage.filter(c => c.kind === "#weighted-triple");
       expect(coverage).toHaveLength(1);
       expect(coverage[0].status).toBe("unsupported");
-      expect(coverage[0].source.span.start.line).toBe(13);
+      expect(coverage[0].source.span.start.line).toBe(text.split(/\r?\n/).findIndex(line=>line.includes("#weighted-triple r"))+1);
     }
   }
 });

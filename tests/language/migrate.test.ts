@@ -1,6 +1,6 @@
 import {expect,test} from 'bun:test';
 import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,checkCaseReferences,migrateCase,migrateDeclaration,migrateParsedDeclaration,printMigratedDeclaration,migrationTable,type PageSource} from '../../src';
+import {compilePublicLibrary,checkCaseReferences,migrateCase,migrateDeclaration,migrateParsedDeclaration,printMigratedDeclaration,migrationTable,readHeader,type PageSource} from '../../src';
 import {caseExamples} from '../../scripts/lint-skill';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 const baseline:{revision:string;pages:PageSource[]}=await Bun.file('tests/fixtures/library-6d9e954.json').json();
@@ -15,6 +15,18 @@ test('migration table covers every legacy kind and supported spelling',()=>{
  expect(migrationTable.every(r=>r.meaning==='identical')).toBe(true);
  expect(()=>migrateDeclaration({kind:'not-published',parameters:{}})).toThrow();
 });
+
+test('every kind published at 6d9e954 still has a route',async()=>{
+ // The site suite verifies generated routes; this guards its complete published input set.
+ for(const page of baseline.pages){
+  const metadata=readHeader(page).value!.metadata;
+  if(typeof metadata.kind!=='string')continue;
+  const route=sources.find(p=>p.file===`rules/${metadata.kind}.md`);
+  expect(route,`Missing published route: ${metadata.kind}`).toBeDefined();
+  expect(readHeader(route!).value!.metadata.url).toBe(metadata.url);
+ }
+});
+
 for(const source of baseline.pages){
  const kind=/^kind: (.+)$/m.exec(source.text)?.[1];if(!kind)continue;
  test(`0.3 published example migrates, parses and checks: ${kind}`,()=>{
@@ -210,4 +222,28 @@ test('embedded legacy helper migration avoids capturing a custom parameter named
  expect(migrated.diagnostics).toEqual([]);
  expect(migrated.value!.text).not.toContain('monotonic(');
  expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
+});
+
+test('explicit required inputs reject omission and accept supplied empty collections',()=>{
+ for(const [kind,args,required] of [
+  ['digit-profile',{cells:['r1c1'],classes:[],counts:[]},['classes','counts']],
+  ['constructed-regions',{size:1,borders:[],joins:[]},['borders','joins']],
+  ['cage-shapes',{size:1,hidden:[{clue:'r1c1',sum:1,known:['r1c1']}],free:[]},['free']],
+  ['negative',{relations:[{op:'difference',value:1}],except:[]},['except']],
+ ] as [string,Record<string,unknown>,string[]][]){
+  const line=(p:Record<string,unknown>)=>kind+' '+Object.entries(p).map(([k,v])=>`${k} ${JSON.stringify(v)}`).join(' ');
+  expect(checkCaseReferences({file:'required.rules.md',text:exampleCase(line(args))},current.registry).diagnostics).toEqual([]);
+  for(const parameter of required){
+   const missing={...args};delete missing[parameter];
+   const result=checkCaseReferences({file:'required.rules.md',text:exampleCase(line(missing))},current.registry);
+   expect(result.diagnostics.some(d=>d.code==='E_CASE_PARAMETERS'&&d.message.includes(parameter))).toBe(true);
+  }
+ }
+});
+
+test('lookup has no implicit origin and guards single-mode use',()=>{
+ const lookup=current.rules.get('lookup')!;
+ expect(defaults('lookup')).not.toHaveProperty('cell');
+ const args={...defaults('lookup'),cells:['r1c2'],total:0};
+ expect(fragmentVerdict(lookup.formulas[0].ast,current.prelude,lookup.parameters,{faces:{r1c1:1,r1c2:2},parameters:args})).toBe(false);
 });

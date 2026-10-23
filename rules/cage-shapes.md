@@ -12,8 +12,9 @@ parameters:
     default: Required.
     type: list<record{clue:cell,sum:number,known:set<cell>}>
   free:
+    allow_empty: true
     description: Cells excluded from all hidden cages.
-    default: Empty set.
+    default: Required.
     type: set<cell>
 layer: rule
 ---
@@ -22,13 +23,15 @@ layer: rule
 
 Construct the hidden cages around their clues. Each cage has the stated size, includes its known cells, avoids free cells, and contains different digits adding to its total. Cages are connected and do not overlap.
 
+An empty `free` set excludes no cells. These inputs must be supplied explicitly.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
 | --- | --- | --- | --- |
 | size | `position` | The number of cells in each constructed region or cage. | Required. |
 | hidden | `list<record{clue:cell,sum:number,known:set<cell>}>` | Each hidden cage: its clue cell, total and known member cells. | Required. |
-| free | `set<cell>` | Cells excluded from all hidden cages. | Empty set. |
+| free | `set<cell>` | Cells excluded from all hidden cages. | Required. |
 
 ## Maths
 

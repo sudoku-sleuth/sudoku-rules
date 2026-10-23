@@ -35,7 +35,7 @@ layer: rule
 
 Cage digits add up to the stated total value. Digits are different unless repeats are allowed. A cage without a total supplies the repeat rule alone.
 
-Also known as Killer Cage or Killer. Legacy `killer` and `killer-cage` declarations load and migrate to `cage`.
+Also known as Killer Cage or Killer. The published [killer route](killer.md) points here. Legacy `killer` and `killer-cage` declarations load and migrate to `cage`.
 
 Omit `total` for a cage with no printed sum. A blank clue is not a total of zero. Use `total 0` only when zero is the required total. With `repeats true` and no total, this declaration adds no restriction.
 

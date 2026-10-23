@@ -3,7 +3,7 @@ format: open-rules
 title: Region Sum Lies
 setter: Marty Sears
 source: https://sudokupad.app/b03tzwpko3 (Logic Masters https://logic-masters.de/Raetselportal/Raetsel/zeigen.php?id=000VEJ)
-case: https://sudoku-sleuth.com/cases/region-sum-lies
+case: ""
 library: https://rules.sudoku-sleuth.com/
 status: read
 ---

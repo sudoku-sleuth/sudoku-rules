@@ -5,7 +5,7 @@ import { diagnostic, type Diagnostic, type Span } from "./language/diagnostics.j
 export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
 export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
 export interface SharedParameter { role: "construct" | "read" | "conjoin"; type: "route" | "network" | "partition" | "selection" | "choice" | "assignment" | "value" | "symbol" }
-export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string; shared?: SharedParameter }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
+export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string; allowEmpty?: boolean; shared?: SharedParameter }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
   "liar-cells": ["groups", "values"],
   summit: ["loop"], whispers: ["loop"], parity: ["loop"], modular: ["loop", "modulus"],
@@ -141,7 +141,7 @@ export function checkParameterAST(ast: DeclarationTail, span: Span, contract: Ca
     if (name === "kind" && typeof data[name] !== "string") return bad("A custom kind must be text.", node?.span);
     const problem = parameter.type ? valueProblem(data[name], parameter.type, contract.types, board) : undefined;
     if (problem) return bad(`${name} ${problem}.`, node && parameter.type ? problemSpan(node, data[name], parameter.type, contract.types, board) : span);
-    if (parameter.required && Array.isArray(data[name]) && !(data[name] as unknown[]).length && !(parameter.emptyWhen && data[parameter.emptyWhen] !== undefined)) return bad(`${name} must not be empty.`, node?.span);
+    if (parameter.required && !parameter.allowEmpty && Array.isArray(data[name]) && !(data[name] as unknown[]).length && !(parameter.emptyWhen && data[parameter.emptyWhen] !== undefined)) return bad(`${name} must not be empty.`, node?.span);
   }
   return [];
 }

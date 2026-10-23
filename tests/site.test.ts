@@ -181,6 +181,13 @@ test("index rule and alias routes coexist with the home catalogue", async () => 
 
 test("the full library has byte-identical public routes", async () => {
   const built=await buildSite(".",join(temporary,"production-site"));
+  const baseline=await Bun.file("tests/fixtures/library-6d9e954.json").json();
+  for(const page of baseline.pages){
+    const slug=/^kind: (.+)$/m.exec(page.text)?.[1];
+    if(!slug)continue;
+    expect(await Bun.file(join(built.output,`${slug}.md`)).exists(),`Published Markdown route: ${slug}`).toBe(true);
+    expect(await Bun.file(join(built.output,slug,"index.html")).exists(),`Published HTML route: ${slug}`).toBe(true);
+  }
   expect(built.pages).toBe((await readdir("rules")).filter(n => n.endsWith(".md")).length);
   const icons: Record<string,string> = JSON.parse(await readFile("site/icons/rules.json","utf8"));
   for (const slug of ["kropki","bremban","slow-thermo","quadruple","anti-king","anti-knight"]) {
@@ -195,7 +202,7 @@ test("the full library has byte-identical public routes", async () => {
     expect(await Bun.file(join(built.output,slug,"index.html")).exists()).toBe(true);
     const {libraryLayers}=await import("../src/library-layers");
     const catalogue=libraryLayers[slug]==="block"?await readFile(join(built.output,"blocks/index.html"),"utf8"):home;
-    expect(catalogue).toContain(`href="/${slug}/"`);
+    if(slug!=="index-count"&&slug!=="aggregate-relation")expect(catalogue).toContain(`href="/${slug}/"`);
   }
 });
 
@@ -242,7 +249,7 @@ test("production catalogue separates familiar rules, blocks and predicates",asyn
  expect(home).toContain('href="/whispers/"');
  expect(home).toContain('href="/cage/"');
  expect(home).toContain('href="/extra-regions/"');
- for(const removed of ['whisper','killer','unique'])expect(home).not.toContain(`href="/${removed}/"`);
+ for(const alias of ['whisper','killer','unique'])expect(home).toContain(`href="/${alias}/"`);
  expect(home).toContain('href="/blocks/"');
  expect(home).not.toContain('href="/aggregate-equation/"');
  expect(home).not.toContain('href="/assignment/"');

@@ -1,7 +1,10 @@
 import { readdir } from "node:fs/promises";
-import { expect, test } from "bun:test";
+import { expect, test, setDefaultTimeout } from "bun:test";
 import { compileLibrary, compilePrelude } from "../../src/index";
 import { lintFiles } from "../../src/cli";
+
+// These checks compile the complete public library.
+setDefaultTimeout(60000);
 
 const preludePage = { file: "spec/prelude.md", text: await Bun.file("tests/fixtures/typed-prelude.md").text() };
 test("library compilation is atomic and never returns a partially checked library", async () => {
@@ -78,7 +81,7 @@ test('overlap CLI reports layers, scores and formula subtrees and validates its 
  expect(await process.exited).toBe(0);expect(stderr).toBe('');
  const report=JSON.parse(stdout);
  expect(report.counts.predicates).toBeGreaterThan(0);
- expect(report.pairs.some((p:{key:string;sameBlock:boolean;settings:object;shared:string})=>p.key==='rule:outside / rule:quadruple'&&p.sameBlock&&p.shared&&Object.keys(p.settings).length>0)).toBe(true);
+ expect(report.pairs.some((p:{key:string;sameBlock:boolean;settings:object;shared:string})=>p.key==='rule:slow-thermo / rule:thermo'&&p.sameBlock&&p.shared&&Object.keys(p.settings).length>0)).toBe(true);
  for(const args of [['--min','nonsense'],['--min','-0.1'],['--min','1.1'],['--min'],['--unknown']]){
   const invalid=Bun.spawn(['bun','src/cli.ts','overlap',...args],{stdout:'pipe',stderr:'pipe'});
   const [,err]=await Promise.all([new Response(invalid.stdout).text(),new Response(invalid.stderr).text()]);

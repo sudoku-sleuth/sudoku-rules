@@ -3,6 +3,8 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  "index-count": pending("Legacy Index Count has moved to Lookup; bounded count lookups are not lowered."),
+  "aggregate-relation": pending("Legacy Aggregate Relation has moved to Aggregate Equation; general aggregate comparisons are not lowered."),
   "clue-count": pending("Counts of owned complete clue truths are not lowered."),
   "liar-cells": pending("Shared liar-cell choices and independent effective-value assignments are not lowered."),
   "mirrored-pairs": pending("The declarable block has no dedicated finite lowering."),

@@ -9,13 +9,15 @@ parameters:
     description: The occurrences to count.
     default: Required.
   classes:
+    allow_empty: true
     type: list<list<number>>
     description: Arbitrary numeric classes; a class may overlap another.
-    default: Empty list.
+    default: Required.
   counts:
+    allow_empty: true
     type: list<position>
     description: Required count for each class, in the same order.
-    default: Empty list.
+    default: Required.
   exhaustive:
     type: boolean
     description: Require every read number to belong to at least one class.
@@ -70,13 +72,15 @@ Class counts use `comparison exact` or `comparison "at-least"`. `maximumDistinct
 
 With `sumFree`, sums of any two read values, including a value with itself, must have a remainder outside the support. The modulus is a positive integer and all read values are integers.
 
+Empty `classes` and `counts` add no class-frequency condition; other profile settings still apply. These inputs must be supplied explicitly.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
 | --- | --- | --- | --- |
 | cells | `list<cell>` | The occurrences to count. | Required. |
-| classes | `list<list<number>>` | Arbitrary numeric classes; a class may overlap another. | Empty list. |
-| counts | `list<position>` | Required count for each class, in the same order. | Empty list. |
+| classes | `list<list<number>>` | Arbitrary numeric classes; a class may overlap another. | Required. |
+| counts | `list<position>` | Required count for each class, in the same order. | Required. |
 | exhaustive | `boolean` | Require every read number to belong to at least one class. | false. |
 | channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 | selfCount | `boolean` | Require every occurring number to equal its own frequency. | false. |

@@ -13,9 +13,9 @@ parameters:
     description: The cells in lookup order, starting at position one.
     default: Empty list.
   cell:
-    type: cell
+    type: optional<cell>
     description: The cell whose number gives the lookup position.
-    default: boardCell(1,1).
+    default: Absent; required in single mode.
   indexChannel:
     type: Channel
     description: The channel supplying the position.
@@ -73,7 +73,7 @@ layer: block
 
 # Lookup
 
-Look up one-based positions in ordered cell lists and count successful relations. Single and count modes read indices from source cells; queries mode accepts explicit indices and targets. Repeated sources and queries count separately. Fractional and out-of-range indices miss. Targets may be fixed numbers, another cell, or each source itself.
+Look up one-based positions in ordered cell lists and count successful relations. Single and count modes read indices from source cells; queries mode accepts explicit indices and targets. Single mode needs `cell`; count and queries modes use their own sources and queries. Repeated sources and queries count separately. Fractional and out-of-range indices miss. Targets may be fixed numbers, another cell, or each source itself.
 
 ## Parameters
 
@@ -81,7 +81,7 @@ Look up one-based positions in ordered cell lists and count successful relations
 | --- | --- | --- | --- |
 | mode | `enum{single,count,queries}` | One dynamic source, a list of dynamic sources, or explicit queries. | single. |
 | cells | `list<cell>` | The cells in lookup order, starting at position one. | Empty list. |
-| cell | `cell` | The cell whose number gives the lookup position. | boardCell(1,1). |
+| cell | `optional<cell>` | The cell whose number gives the lookup position. | Absent; required in single mode. |
 | indexChannel | `Channel` | The channel supplying the position. | D. |
 | channel | `Channel` | The channel supplying the looked-up and target numbers. | D. |
 | offset | `position` | Add this offset to the index number before looking up the position. | 0 |
@@ -103,7 +103,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let activeQueries=if mode="queries" then queries else ⟨lookupQuery(cells,read(s,indexChannel)+offset,if present(target) then unwrap(target) else if present(targetCell) then read(unwrap(targetCell),channel) else read(s,channel),channel,relation):s∈(if mode="single" then ⟨cell:i∈[0,1)⟩ else sources)⟩; (nonempty → |increasing|>0) ∧ (∀i∈[0,|increasing|-1): D(increasing[i])<D(increasing[i+1])) ∧ total=countWhere(activeQueries,λq:LookupQuery:(if reverseRelation then ⌊q.index⌋=q.index ∧ (∃k∈[1,|q.cells|+1): k=q.index ∧ pairRelation(q.relation,q.target,read(lookup(q.cells,k),q.channel))) else queryHit(q)) ∧ (firstMatch → ∀i∈[0,|q.cells|): i<q.index-1 → ¬pairRelation(q.relation,read(q.cells[i],q.channel),q.target)))
+(mode="single" → present(cell)) ∧ let activeQueries=if mode="queries" then queries else ⟨lookupQuery(cells,read(s,indexChannel)+offset,if present(target) then unwrap(target) else if present(targetCell) then read(unwrap(targetCell),channel) else read(s,channel),channel,relation):s∈(if mode="single" then ⟨unwrap(cell):i∈[0,1),present(cell)⟩ else sources)⟩; (nonempty → |increasing|>0) ∧ (∀i∈[0,|increasing|-1): D(increasing[i])<D(increasing[i+1])) ∧ total=countWhere(activeQueries,λq:LookupQuery:(if reverseRelation then ⌊q.index⌋=q.index ∧ (∃k∈[1,|q.cells|+1): k=q.index ∧ pairRelation(q.relation,q.target,read(lookup(q.cells,k),q.channel))) else queryHit(q)) ∧ (firstMatch → ∀i∈[0,|q.cells|): i<q.index-1 → ¬pairRelation(q.relation,read(q.cells[i],q.channel),q.target)))
 ```
 
 ## Example

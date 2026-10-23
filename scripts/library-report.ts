@@ -55,7 +55,7 @@ ${blocks.map(r=>`| ${link(r)} | ${meaning(r)} | ${users(r.m.kind).map(link).join
 
 ## Overlap comparison
 
-The comparison expands predicate bodies to depth three, substitutes lets, normalises bound names and sorts commutative operations. Primitive identities and parameter domains are preserved. Rules binding the same block appear under “same block, different settings”, with the differing bindings or input domains. These pairs do not require allowlist entries. Identical instantiated formulas fail even when they bind the same block. Other pairs at or above 0.35 subtree similarity require a current cross-meaning reason; stale reasons fail. A block cannot simply wrap one predicate.
+The comparison expands predicate bodies to depth three, substitutes lets, normalises bound names and sorts commutative operations. Primitive identities and separate free parameters are preserved. Parameter types alone do not distinguish exact formulas. Rules binding the same block appear under “same block, different settings”, with the differing bindings. These pairs do not require allowlist entries. Identical instantiated formulas fail even when they bind the same block. Other pairs at or above 0.35 subtree similarity require a current cross-meaning reason; stale reasons fail. A block cannot simply wrap one predicate.
 
 Run \`bun run openrules overlap [--min 0.35] [--json]\`. See [overlap](overlap.md) for the shared families and retained distinctions.
 

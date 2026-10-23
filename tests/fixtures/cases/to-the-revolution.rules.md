@@ -3,7 +3,7 @@ format: open-rules
 title: To the Revolution
 setter: John Laurens
 source: https://sudokupad.app/ojcyzzd3zw
-case: https://sudoku-sleuth.com/cases/to-the-revolution
+case: ""
 library: https://rules.sudoku-sleuth.com/
 status: read
 givens: r4c8=1

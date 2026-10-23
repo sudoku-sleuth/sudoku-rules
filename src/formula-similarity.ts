@@ -1,3 +1,4 @@
+import {foldFormula} from './formula-substitution.js';
 import {readHeader} from './documents.js';
 import {createHash} from "node:crypto";
 import {formulaBlocks,type PageSource,type CompiledPage} from './library.js';
@@ -44,20 +45,25 @@ export function formulaInventory(pages:PageSource[],depth=3,compiled?:Map<string
  const associative=new Set(['and','or','+','*']), commutative=new Set([...associative,'=','!=','iff']);
  const make=(kind:string,name:string,layer:Layer,asts:Expr[],ownsFormula:boolean,domains:Record<string,unknown>={}):FormulaRow=>{
   const notation=new Map<string,Expr>(),sizes=new Map<string,number>();
-  function canon(e:Expr,scope=new Map<string,string>(),counter={n:0}):{key:string;size:number}{
-   if(e.kind==='name'){const key=scope.get(e.value!)??(symbols.has(e.value!)?`n:${e.value}`:`P:${JSON.stringify(domains[e.value!])??''}`);return {key,size:key.length};}
+  // Exact identity tracks separate input slots, independent of their types.
+  // Similarity retains domain-shaped subtrees to compare related families.
+  const parameters=new Map(Object.keys(domains).map((name,i)=>[name,`P:${i}`]));
+  function canon(e:Expr,scope=new Map<string,string>(),counter={n:0},identities=false):{key:string;size:number}{
+   if(e.kind==='name'){const key=scope.get(e.value!)??(symbols.has(e.value!)?`n:${e.value}`:identities?(parameters.get(e.value!)??`free:${e.value}`):`P:${JSON.stringify(domains[e.value!])??''}`);return {key,size:key.length};}
    const local=new Map(scope);for(const b of e.binders??[])local.set(b.name,`b${counter.n++}`);
    const op=e.value??'',flattened:Expr[]=[];
    const flatten=(node:Expr)=>{if(e.kind==='binary'&&node.kind==='binary'&&node.value===op&&associative.has(op))node.children.forEach(flatten);else flattened.push(node);};
-   e.children.forEach(flatten);const children=flattened.map(c=>canon(c,local,counter));if(e.kind==='binary'&&commutative.has(op))children.sort((a,b)=>a.key.localeCompare(b.key));
+   e.children.forEach(flatten);const children=flattened.map(c=>canon(c,local,counter,identities));if(e.kind==='binary'&&commutative.has(op))children.sort((a,b)=>a.key.localeCompare(b.key));
    const head=`${e.kind}${op?':'+op:''}`;
    const size=head.length+2+Math.max(0,children.length-1)+children.reduce((n,c)=>n+c.size,0);
    // Fingerprint the structure rather than retaining exponentially repeated
    // expanded strings. Scores still use the same set of nontrivial subtrees.
    const key=createHash('sha256').update(`${head}(${children.map(c=>c.key).join(',')})`).digest('hex');
-   if(size>12){notation.set(key,e);sizes.set(key,size);}return {key,size};
+   if(!identities&&size>12){notation.set(key,e);sizes.set(key,size);}return {key,size};
   }
-  const normal=asts.map(e=>canon(inline(e,depth)).key).sort().join(' ∧∧ ');
+  const expanded=asts.map(e=>inline(e,depth));
+  expanded.forEach(e=>canon(e));
+  const normal=expanded.map(e=>canon(foldFormula(e),new Map(),{n:0},true).key).sort().join(' ∧∧ ');
   const root=asts.length===1?asts[0]:undefined;
   const wrapper=root?.kind==='call'&&root.children[0].kind==='name'?root.children[0].value:undefined;
   return {kind,name,layer,ownsFormula,normal,subtrees:new Set(notation.keys()),notation,sizes,wrapper};
@@ -68,10 +74,10 @@ export function formulaInventory(pages:PageSource[],depth=3,compiled?:Map<string
   const metadata=readHeader(p).value!.metadata;
   const domains=Object.fromEntries(Object.entries(metadata.parameters??{}).map(([name,p])=>[name,parseType((p as {type:string}).type).value]));
   const row=make(kind,name,/^layer: block$/m.test(p.text)?'block':'rule',asts,!/^alias_of:/m.test(p.text),domains);
-  if(typeof metadata.alias_of==='string'&&metadata.alias_bind){row.block=metadata.alias_of;row.settings={...metadata.alias_bind as Record<string,string>,parameterDomains:JSON.stringify(compiled?.get(kind)?.parameters.map(p=>p.type)??[])};}
+  if(typeof metadata.alias_of==='string'&&metadata.alias_bind){row.block=metadata.alias_of;row.settings={...metadata.alias_bind as Record<string,string>};}
   return row;
  });
- if(includePredicates)for(const [name,d]of definitions)rows.push(make(name,name,'predicate',[d.body],true));
+ if(includePredicates)for(const [name,d]of definitions)rows.push(make(name,name,'predicate',[d.body],true,Object.fromEntries(d.params.map(p=>[p,undefined]))));
  return rows;
 }
 export function similarity(a:Set<string>,b:Set<string>){let shared=0;for(const s of a)if(b.has(s))shared++;return shared/(a.size+b.size-shared||1);}
@@ -88,7 +94,7 @@ export function overlapPairs(rows:FormulaRow[],min=0.35){
   if(score<min)continue;
   const shared=[...a.subtrees].filter(s=>b.subtrees.has(s)).sort((x,y)=>a.sizes.get(y)!-a.sizes.get(x)!||x.localeCompare(y))[0];
   const sameBlock=!exact&&a.layer==='rule'&&b.layer==='rule'&&!!a.block&&a.block===b.block;
-  const settings=sameBlock?Object.fromEntries([...new Set([...Object.keys(a.settings??{}),...Object.keys(b.settings??{})])].sort().filter(k=>a.settings?.[k]!==b.settings?.[k]).map(k=>[k,{a:a.settings?.[k],b:b.settings?.[k]}])):undefined;
+  const settings=sameBlock?Object.fromEntries([...new Set([...Object.keys(a.settings??{}),...Object.keys(b.settings??{})])].sort().filter(k=>k!=='parameterDomains'&&a.settings?.[k]!==b.settings?.[k]).map(k=>[k,{a:a.settings?.[k],b:b.settings?.[k]}])):undefined;
   pairs.push({sameBlock,block:sameBlock?a.block:undefined,settings,key:overlapKey(a,b),a:{layer:a.layer,kind:a.kind,name:a.name},b:{layer:b.layer,kind:b.kind,name:b.name},score,exact,wrapper,shared:shared?formulaNotation(a.notation.get(shared)!):wrapper?`${a.layer==='block'?a.wrapper:b.wrapper}(…)`:''});
  }
  return pairs.sort((a,b)=>b.score-a.score||a.key.localeCompare(b.key));

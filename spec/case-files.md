@@ -217,3 +217,5 @@ Shared constructors use `name`. Readers use `route`, `network`, `partitionRef`,
 use PrefixSelection objects; published `channel` parameters use Channel values.
 An empty Region Partition name selects a local existential partition, without a
 shared binding; Constructed Regions binds this form.
+
+A required collection parameter may declare `allow_empty: true` when its page documents the empty collection meaning. The input must still be supplied; the checker accepts an explicitly empty collection.

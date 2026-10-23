@@ -3,7 +3,7 @@ format: open-rules
 title: German Whisper Lies
 setter: Marty Sears
 source: https://sudokupad.app/0vi2mlpdqn
-case: https://sudoku-sleuth.com/cases/german-whisper-lies
+case: ""
 library: https://rules.sudoku-sleuth.com/
 status: read
 ---

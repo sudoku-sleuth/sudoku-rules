@@ -55,7 +55,7 @@ test('owned contracts reject malformed clues, scopes, references, arguments and 
     const result=check(bad);
     expect(result.value).toBeUndefined();
     expect(result.diagnostics.every(d=>d.code==='E_CASE_PARAMETERS')).toBe(true);
-    expect(result.diagnostics[0].span.start.line).toBe(13);
+    expect(result.diagnostics[0].span.start.line).toBe(file(bad).text.split("\n").indexOf(bad.split("\n")[0])+1);
   }
   expect(check(line([clue('a')],'exactly',2)).diagnostics).toEqual([]);
   expect(check(line([clue('outer','clue-count',{clues:[clue('inner')],comparison:'at-most',count:1})])).diagnostics).toEqual([]);

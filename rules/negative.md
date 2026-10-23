@@ -8,8 +8,9 @@ parameters:
     default: Required.
     type: list<PairRelation>
   except:
+    allow_empty: true
     description: The cell pairs exempt from the negative rule.
-    default: Empty list.
+    default: Required.
     type: list<list<cell>>
   within:
     description: Groups limiting the pairs covered by the rule.
@@ -41,12 +42,14 @@ Neighbouring means orthogonally adjacent. Without this declaration, missing dots
 
 For relation-specific marking, use separate negative declarations and separate exception lists. A 1–2 pair satisfies both white and black relationships; exempting only black-marked pairs from a white negative does not exempt that pair. To apply both negatives only to completely unmarked pairs, put both relationships in one declaration and exempt every dotted pair. With no exceptions and no scope or direction limit, a difference-1 negative is the global non-consecutive rule. Negative reads printed digits; positive Pair and Kropki read effective values after modifiers.
 
+An empty `except` list exempts no pairs. These inputs must be supplied explicitly.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
 | --- | --- | --- | --- |
 | relations | `list<PairRelation>` | The relationships to forbid, each with its operation and any required value. | Required. |
-| except | `list<list<cell>>` | The cell pairs exempt from the negative rule. | Empty list. |
+| except | `list<list<cell>>` | The cell pairs exempt from the negative rule. | Required. |
 | within | `optional<list<set<cell>>>` | Groups limiting the pairs covered by the rule. | Absent; no inferred value. |
 | direction | `optional<enum{horizontal,vertical}>` | The chosen diagonal or neighbour orientation, as named in the definition. | Absent; no inferred value. |
 

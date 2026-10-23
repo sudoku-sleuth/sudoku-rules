@@ -1,14 +1,14 @@
 # Library overlap
 
-The comparison expands predicate bodies to depth three, substitutes lets, normalises bound names, flattens associative operations and sorts commutative operations. Primitive identities and the domains of free parameters remain distinct. Subtree Jaccard similarity identifies related formulas; it does not establish equal meaning.
+The comparison expands predicate bodies to depth three, substitutes lets, normalises bound names, flattens associative operations and sorts commutative operations. Primitive identities and separate free parameters remain distinct. Parameter types alone do not distinguish exact formulas. Subtree Jaccard similarity identifies related formulas; it does not establish equal meaning.
 
 Run `bun run openrules overlap --min 0.35` for names, layers, scores and shared formula subtrees. Add `--json` for structured pairs, settings and reasons.
 
 ## Shared blocks
 
-Two named rules binding the same block are related by design. The CLI lists them under “same block, different settings”, including differing binding expressions or parameter domains. These pairs are excluded from the overlap threshold. An identical instantiated formula always fails, including two rules binding the same block.
+Two named rules binding the same block are related by design. The CLI lists them under “same block, different settings”, including differing binding expressions. These pairs are excluded from the overlap threshold. An identical instantiated formula always fails, including two rules binding the same block.
 
-Outside retains repeated cell occurrences; Quadruple takes a cell set. Their input domains distinguish their formulas even when their binding expressions match.
+Outside retains repeated cell occurrences; Quadruple takes a cell set. Quadruple explicitly selects each cell once in its binding; Outside preserves the supplied occurrences.
 
 | Block | Rules | Differing settings |
 | --- | --- | --- |

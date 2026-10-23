@@ -301,6 +301,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
                 return [parameter.name, {type: parameter.type, required: /^Required\b/.test(String(declaration.default)),
                     ...declaredDefault(declaration.default, parameter.type, parsed.value!.environment.types ?? {}),
                     ...(object(declaration.shared) ? {shared: declaration.shared as unknown as import("./case-values.js").SharedParameter} : {}),
+                    ...(declaration.allow_empty === true ? {allowEmpty: true} : {}),
                     ...(typeof declaration.empty_when === "string" ? {emptyWhen: declaration.empty_when} : {})}];
             }),
         ]);
@@ -392,7 +393,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         if (compiled.value && typeof metadata.kind === "string") register(metadata.kind, metadata, compiled.value);
     }
     for (const [kind, target] of [...aliases, ...[...shorthands].map(([kind, s]) => [kind, s.target] as const)]) {
-        if (!rules.has(target) || aliases.has(target) || shorthands.has(target)) {
+        if (!rules.has(target) || aliases.has(target) || (shorthands.has(kind) && shorthands.has(target))) {
             const page = pages.find(page => headers.get(page.file)?.value?.metadata.kind === kind)!;
             diagnostics.push(diagnostic("E_ALIAS_TARGET", headers.get(page.file)!.value!.field(headers.get(page.file)!.value!.metadata.alias_of !== undefined ? "alias_of" : "aliasOf"), `The alias ${kind} must point to an existing rule definition; ${target} is missing, invalid or another alias.`));
         }
@@ -407,6 +408,10 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             if (declaration) registry.lines!.set(metadata.url, declaration);
             const parameters = typeof targetUrl === "string" ? registry.parameters!.get(targetUrl) : undefined;
             if (parameters) registry.parameters!.set(metadata.url, parameters);
+            if (target && targetUrl) {
+                registry.kindByUrl!.set(metadata.url, target);
+                registry.sharedNames!.set(metadata.kind, registry.sharedNames!.get(target) ?? {});
+            }
         }
     }
     // Legacy spellings load through migration contracts, without adding rule pages

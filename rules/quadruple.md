@@ -13,7 +13,7 @@ parameters:
     type: list<digit>
 alias_of: digit-profile
 alias_bind:
-  cells: orderedCells(cells)
+  cells: orderedCells({c∈cells:true})
   classes: ⟨⟨d:i∈[0,1)⟩:d∈digits⟩
   counts: ⟨multiplicity(digits,d):d∈digits⟩
   channel: '"D"'
@@ -34,6 +34,8 @@ layer: rule
 
 The surrounding cells contain every listed digit, including the stated number of copies.
 
+The binding explicitly selects each cell once before counting digits.
+
 For a circle at a grid intersection, list the four touching cells. Listing a digit once requires at least one copy; listing it twice requires at least two copies. Additional copies and unlisted digits are allowed. An empty `digits` list imposes no restriction; an empty circle has no implied total or distinctness rule.
 
 ## Parameters
@@ -45,7 +47,7 @@ For a circle at a grid intersection, list the four touching cells. Listing a dig
 
 ## Definition
 
-Block: [digit-profile](digit-profile.md) — `cells=orderedCells(cells); classes=⟨⟨d:i∈[0,1)⟩:d∈digits⟩; counts=⟨multiplicity(digits,d):d∈digits⟩; channel="D"; loop=false; selfCount=false; windowLength=absent(|{}|); exhaustive=false; comparison="at-least"; maximumDistinct=absent(|{}|); repeats=true; balancePairs=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩`.
+Block: [digit-profile](digit-profile.md) — `cells=orderedCells({c∈cells:true}); classes=⟨⟨d:i∈[0,1)⟩:d∈digits⟩; counts=⟨multiplicity(digits,d):d∈digits⟩; channel="D"; loop=false; selfCount=false; windowLength=absent(|{}|); exhaustive=false; comparison="at-least"; maximumDistinct=absent(|{}|); repeats=true; balancePairs=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 

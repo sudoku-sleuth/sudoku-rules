@@ -16,7 +16,7 @@ alias_of: lookup
 alias_bind:
   mode: '"queries"'
   cells: orderedCells({})
-  cell: boardCell(1,1)
+  cell: absent(boardCell(1,1))
   sources: orderedCells({})
   indexChannel: '"D"'
   channel: '"D"'
