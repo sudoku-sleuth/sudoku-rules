@@ -5,38 +5,42 @@ kind: selection
 shape: Cells
 parameters:
   name:
-    shared: {role: construct, type: selection}
+    shared:
+      role: construct
+      type: selection
     type: string
-    description: "The shared selection name; H means board shading."
-    default: "Required."
+    description: The shared selection name; H means board shading.
+    default: Required.
   scope:
     type: set<cell>
-    description: "The cells eligible for selection."
-    default: "Required."
+    description: The cells eligible for selection.
+    default: Required.
   include:
     type: set<cell>
-    description: "Cells that must be selected."
-    default: "Empty list."
+    description: Cells that must be selected.
+    default: Empty list.
   exclude:
     type: set<cell>
-    description: "Cells that must be unselected."
-    default: "Empty list."
+    description: Cells that must be unselected.
+    default: Empty list.
   minimum:
     type: position
-    description: "Minimum selected size."
+    description: Minimum selected size.
     default: "0."
   maximum:
     type: optional<position>
-    description: "Maximum selected size."
-    default: "Absent; no upper bound."
+    description: Maximum selected size.
+    default: Absent; no upper bound.
   groups:
     type: list<set<cell>>
-    description: "Groups with an exact selection count."
-    default: "Empty list."
+    description: Groups with an exact selection count.
+    default: Empty list.
   count:
     type: position
-    description: "Selected cells required in each group."
+    description: Selected cells required in each group.
     default: "1."
+layer: block
+composition: Shared subsets for other constraints to consume.
 ---
 
 # Selection
@@ -45,16 +49,16 @@ Choose one shared set of marked cells inside the scope. Include and exclude fixe
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | The shared selection name; H means board shading. | Required. |
-| scope | The cells eligible for selection. | Required. |
-| include | Cells that must be selected. | Empty list. |
-| exclude | Cells that must be unselected. | Empty list. |
-| minimum | Minimum selected size. | 0. |
-| maximum | Maximum selected size. | Absent; no upper bound. |
-| groups | Groups with an exact selection count. | Empty list. |
-| count | Selected cells required in each group. | 1. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| name | `string` | The shared selection name; H means board shading. | Required. |
+| scope | `set<cell>` | The cells eligible for selection. | Required. |
+| include | `set<cell>` | Cells that must be selected. | Empty list. |
+| exclude | `set<cell>` | Cells that must be unselected. | Empty list. |
+| minimum | `position` | Minimum selected size. | 0. |
+| maximum | `optional<position>` | Maximum selected size. | Absent; no upper bound. |
+| groups | `list<set<cell>>` | Groups with an exact selection count. | Empty list. |
+| count | `position` | Selected cells required in each group. | 1. |
 
 ## Maths
 

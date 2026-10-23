@@ -1,6 +1,6 @@
 # Library integration
 
-12 October 2026. Public library migration on the owner-provided checkout. Files edited only; no Git operations, publication or deployment. Production case source files were read without modification.
+A snapshot of the public library migration on 12 October 2026.
 
 This 12 October integration snapshot is superseded for rule meanings by the [13 October review corrections](meaning-review.md).
 

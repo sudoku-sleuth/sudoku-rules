@@ -71,6 +71,8 @@ export function pageEnvironment(page: PageSource, environment: Environment, feat
     if (!identifier.value || identifier.value !== name) { diagnostics.push(diagnostic("E_FORMULA_SYNTAX", span, `The parameter name ${name} cannot be used in formulas; start it with a letter, use only letters, digits or underscores, and avoid formula keywords.`)); continue; }
     const emptyWhen = parameter && typeof parameter === "object" && "empty_when" in parameter ? parameter.empty_when : undefined;
     if (emptyWhen !== undefined && (typeof emptyWhen !== "string" || emptyWhen === name || !Object.hasOwn(parameters, emptyWhen))) diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", span, "empty_when must name another parameter on this page."));
+    const allowEmpty = parameter && typeof parameter === "object" && "allow_empty" in parameter ? parameter.allow_empty : undefined;
+    if (allowEmpty !== undefined && typeof allowEmpty !== "boolean") diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", span, "allow_empty must be a boolean."));
     const shared = parameter && typeof parameter === "object" && "shared" in parameter ? parameter.shared : undefined;
     if (shared !== undefined && (!shared || typeof shared !== "object" || !("role" in shared) || !("type" in shared) || !["construct","read","conjoin"].includes(String(shared.role)) || !["route","network","partition","selection","choice","assignment","value","symbol"].includes(String(shared.type)))) diagnostics.push(diagnostic("E_SIGNATURE_REQUIRED", span, "shared must declare a construct, read or conjoin role and a shared answer type."));
     const rawType = parameter && typeof parameter === "object" && "type" in parameter ? parameter.type : undefined;

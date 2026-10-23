@@ -7,6 +7,15 @@ parameters:
     description: The permitted or required totals.
     default: Required.
     type: list<number>
+layer: rule
+alias_of: mirrored-pairs
+alias_bind:
+  line: orderedCells({})
+  geometry: '"rotation"'
+  mode: '"allowed-sum"'
+  channel: '"D"'
+  sums: sums
+  centre: '"ignore"'
 ---
 
 # Rotational Sums
@@ -15,19 +24,17 @@ Each digit and the digit opposite it after a half turn add up to one of the list
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| sums | The permitted or required totals. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| sums | `list<number>` | The permitted or required totals. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [mirrored-pairs](mirrored-pairs.md) — `line=orderedCells({}); geometry="rotation"; mode="allowed-sum"; channel="D"; sums=sums; centre="ignore"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀c ∈ C: D(c)+D(turn(c)) ∈ sums
-```
+
 
 Each cell digit and its half-turn counterpart sum to one of sums. The centre pairs with itself.
 

@@ -11,7 +11,24 @@ parameters:
     description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
     default: Required.
     type: list<digit>
+alias_of: digit-profile
+alias_bind:
+  cells: orderedCells(cells)
+  classes: ⟨⟨d:i∈[0,1)⟩:d∈digits⟩
+  counts: ⟨multiplicity(digits,d):d∈digits⟩
+  channel: '"D"'
+  loop: "false"
+  selfCount: "false"
+  windowLength: absent(|{}|)
+  exhaustive: "false"
+  comparison: '"at-least"'
+  maximumDistinct: absent(|{}|)
+  repeats: "true"
+  balancePairs: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  sumFree: absent(|{}|)
+layer: rule
 ---
+
 
 # Outside
 
@@ -19,20 +36,20 @@ The listed cells contain every stated digit, including its stated number of copi
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells. Lists retain repeated positions; sets contain each cell once. | Required. |
-| digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `collection<cell>` | The marked cells. Lists retain repeated positions; sets contain each cell once. | Required. |
+| digits | `list<digit>` | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Defined by [digit-profile](digit-profile.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀d∈digits: countWhere(cells,λc:cell: D(c)=d)>=multiplicity(digits,d)
-```
+This is a bound shorthand for [digit-profile](digit-profile.md). Its header supplies every parameter of that rule.
 
 Each required digit occurs at least as often as it is listed.
 

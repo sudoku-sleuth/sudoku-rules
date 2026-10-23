@@ -5,47 +5,53 @@ kind: mapped-values
 shape: Global
 parameters:
   selectionRef:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "Selection name; H means board shading."
-    default: "Required."
+    description: Selection name; H means board shading.
+    default: Required.
   scope:
     type: set<cell>
-    description: "Cells where the selected transformation applies."
-    default: "Required."
+    description: Cells where the selected transformation applies.
+    default: Required.
   values:
-    shared: {role: conjoin, type: value}
+    shared:
+      role: conjoin
+      type: value
     type: string
-    description: "Output channel; V or an independent name."
+    description: Output channel; V or an independent name.
     default: '"V".'
   mode:
     type: enum{affine,map,free}
-    description: "Transformation of selected digits."
-    default: "affine."
+    description: Transformation of selected digits.
+    default: affine.
   factor:
     type: number
-    description: "Affine multiplier."
+    description: Affine multiplier.
     default: "1."
   offset:
     type: number
-    description: "Affine offset."
+    description: Affine offset.
     default: "0."
   mapping:
     type: list<ValueMap>
-    description: "Explicit digit and value records."
-    default: "Empty list."
+    description: Explicit digit and value records.
+    default: Empty list.
   allowed:
     type: list<number>
-    description: "Allowed selected values in free mode."
-    default: "Empty list."
+    description: Allowed selected values in free mode.
+    default: Empty list.
   different:
     type: boolean
-    description: "Require selected values to differ from face digits."
-    default: "false."
+    description: Require selected values to differ from face digits.
+    default: false.
   outside:
     type: enum{identity,free}
-    description: "Policy for cells outside scope."
-    default: "free."
+    description: Policy for cells outside scope.
+    default: free.
+layer: block
+composition: Compose numeric channels with shared selections.
 ---
 
 # Mapped Values
@@ -54,18 +60,18 @@ Constrain one numeric channel using a shared selection inside scope. Selected ce
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| selectionRef | Selection name; H means board shading. | Required. |
-| scope | Cells where the selected transformation applies. | Required. |
-| values | Output channel; V or an independent name. | "V". |
-| mode | Transformation of selected digits. | affine. |
-| factor | Affine multiplier. | 1. |
-| offset | Affine offset. | 0. |
-| mapping | Explicit digit and value records. | Empty list. |
-| allowed | Allowed selected values in free mode. | Empty list. |
-| different | Require selected values to differ from face digits. | false. |
-| outside | Policy for cells outside scope. | free. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| selectionRef | `string` | Selection name; H means board shading. | Required. |
+| scope | `set<cell>` | Cells where the selected transformation applies. | Required. |
+| values | `string` | Output channel; V or an independent name. | "V". |
+| mode | `enum{affine,map,free}` | Transformation of selected digits. | affine. |
+| factor | `number` | Affine multiplier. | 1. |
+| offset | `number` | Affine offset. | 0. |
+| mapping | `list<ValueMap>` | Explicit digit and value records. | Empty list. |
+| allowed | `list<number>` | Allowed selected values in free mode. | Empty list. |
+| different | `boolean` | Require selected values to differ from face digits. | false. |
+| outside | `enum{identity,free}` | Policy for cells outside scope. | free. |
 
 ## Maths
 
@@ -74,7 +80,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-values!="D" ∧ validValueMap(mapping) ∧ ∀c∈C: let v=channelValue(values,c); if c∈scope then (if marked(selectionRef,c) then (if mode="affine" then v=factor*D(c)+offset else if mode="map" then mappedValue(D(c),v,mapping) else v∈allowed) ∧ (different → v!=D(c)) else v=D(c)) else (outside="identity" → v=D(c))
+values!="D" ∧ validValueMap(mapping) ∧ ∀c∈C: let v=channelValue(values,c); if c∈scope then (if marked(selectionRef,c) then (if mode="affine" then v=affineValue(c,factor,offset) else if mode="map" then mappedValue(D(c),v,mapping) else v∈allowed) ∧ (different → v!=D(c)) else v=D(c)) else (outside="identity" → v=D(c))
 ```
 
 ## Example

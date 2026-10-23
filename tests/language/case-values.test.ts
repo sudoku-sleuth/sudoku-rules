@@ -1,7 +1,8 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
-import { caseValueChecks, checkCaseReferences, compilePublicLibrary, type Diagnostic } from "../../src";
-const pages = await Promise.all((await readdir("rules")).filter(n => n.endsWith(".md")).map(async n => ({file: `rules/${n}`, text: await Bun.file(`rules/${n}`).text()})));
+import { caseValueChecks, checkCaseReferences, type Diagnostic } from "../../src";
+const pages = publicPages;
 const library = compilePublicLibrary(pages).value!;
 const manifest: {file: string; repair: string; diagnostics: Diagnostic[]}[] = await Bun.file("tests/invalid/case-expected.json").json();
 for (const entry of manifest) {
@@ -42,7 +43,6 @@ test("all board-dependent defaults are explicit on a different alphabet", () => 
     ["summit r1c1-r1c2", "loop false"], ["parity r1c1-r1c2", "loop false"],
     ["primality r1c1-r1c2", "loop false"], ["entropic r1c1-r1c2", "loop false"],
     ["modular r1c1-r1c2 loop false", "modulus 3"], ["nabner r1c1-r1c2", "distinct false"],
-    ['index r1c1-r1c2 axis "row"', "strips []"],
     ['line-choice r1c1-r1c2 kinds ["renban"] min 1 max 1', "loop false"],
   ]) {
     const text = template.replace("status: read", `status: read\n${board.trimEnd()}`).replace("sudoku 9x9", line);

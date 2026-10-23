@@ -15,6 +15,7 @@ parameters:
     description: Every digit at or below this number must be an electron.
     default: Required.
     type: digit
+layer: rule
 ---
 
 # Molecules
@@ -23,11 +24,11 @@ Electron digits around each atom add up to its stated total. All cells at or bel
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| atoms | The electron cells touching each atom, one list per atom. | Required. |
-| sum | The total the digits or values must add up to. | Required. |
-| electronMax | Every digit at or below this number must be an electron. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| atoms | `list<set<cell>>` | The electron cells touching each atom, one list per atom. | Required. |
+| sum | `number` | The total the digits or values must add up to. | Required. |
+| electronMax | `digit` | Every digit at or below this number must be an electron. | Required. |
 
 ## Maths
 
@@ -38,7 +39,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ```text
 ∃E:set<cell>: E⊆allCells(atoms)
   ∧ (∀c∈allCells(atoms): D(c)<=electronMax → c∈E)
-  ∧ (∀A∈atoms: sum_D(A∩E)=sum)
+  ∧ (∀A∈atoms: aggregate(A∩E,"D","sum")=sum)
 ```
 
 There is one Boolean electron choice per cell shared by every atom touching it. Cells with D(c) ≤ electronMax are electrons. Each atom’s electron digits sum to sum; higher digits may be electrons or not.

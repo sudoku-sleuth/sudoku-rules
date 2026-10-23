@@ -32,7 +32,16 @@ parameters:
     type: number
     description: The required selected total.
     default: Required.
+alias_of: aggregate-equation
+alias_bind:
+  left: ⟨weightedOperand(prefixOperand(cells,channel,stop,target,crusts,include),1,1):termIndex∈[0,1)⟩
+  right: ⟨weightedOperand(aggregateOperand(⟨c:c∈orderedCells(C),false⟩,"D","count",true),total,0):termIndex∈[0,1)⟩
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: relationSpec("difference",0)
+layer: rule
 ---
+
 
 # Prefix Sum
 
@@ -40,26 +49,25 @@ Read from the clue up to the first stopping cell. Stop at a target number in the
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The ordered ray from the clue. | Required. |
-| stop | Stop at the first target number, supplied given, or listed crust digit. | Required. |
-| target | The target number; required for target mode. | Absent. |
-| crusts | The crust digits; the first encountered crust stops the prefix. | Empty list. |
-| include | Include the stopping cell in the total. | false. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| total | The required selected total. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The ordered ray from the clue. | Required. |
+| stop | `enum{target,given,crust}` | Stop at the first target number, supplied given, or listed crust digit. | Required. |
+| target | `optional<number>` | The target number; required for target mode. | Absent. |
+| crusts | `list<digit>` | The crust digits; the first encountered crust stops the prefix. | Empty list. |
+| include | `boolean` | Include the stopping cell in the total. | false. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| total | `number` | The required selected total. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Defined by [aggregate-equation](aggregate-equation.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](predicates.md) define the notation and every named predicate.
 
-```text
-let stopAt=λc:cell: prefixStop(c,stop,target,crusts,channel);
-(∃c∈cells:stopAt(c)) ∧ aggregate(blockedPrefix(cells,stopAt,include),channel,"sum")=total
-```
+This is a bound shorthand for [aggregate-equation](aggregate-equation.md). Its header supplies every parameter of that rule.
 
 ## Example
 

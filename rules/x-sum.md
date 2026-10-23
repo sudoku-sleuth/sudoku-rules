@@ -15,6 +15,16 @@ parameters:
     description: The number of cells or occurrences to count.
     default: First digit supplies the extent.
     type: optional<position>
+layer: rule
+alias_of: selected-stretch
+alias_bind:
+  cells: cells
+  selection: '"prefix"'
+  sum: sum
+  count: count
+  sums: ⟨n:n∈[0,0)⟩
+  crusts: absent(⟨d:d∈𝔄⟩)
+  endpointOccurrences: '"none"'
 ---
 
 # X Sum
@@ -23,21 +33,19 @@ The first digit gives how many cells to count from the clue. Those digits add up
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| sum | The total the digits or values must add up to. | Required. |
-| count | The number of cells or occurrences to count. | First digit supplies the extent. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| sum | `number` | The total the digits or values must add up to. | Required. |
+| count | `optional<position>` | The number of cells or occurrences to count. | First digit supplies the extent. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [selected-stretch](selected-stretch.md) — `cells=cells; selection="prefix"; sum=sum; count=count; sums=⟨n:n∈[0,0)⟩; crusts=absent(⟨d:d∈𝔄⟩); endpointOccurrences="none"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|cells|>0 ∧ let x=if present(count) then unwrap(count) else D(cells[0]); 1<=x<=|cells| ∧ sum_D(first(cells,x))=sum
-```
+
 
 Use count when supplied, otherwise the nearest digit, as the number of cells to read. It must name a nonempty prefix within cells. The prefix digits sum to sum.
 

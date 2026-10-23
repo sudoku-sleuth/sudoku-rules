@@ -2,6 +2,32 @@
 
 Each release lists what changed. A change that breaks a published export, front-matter key or diagnostic code is marked Breaking.
 
+## 1.0.0
+
+### Added
+
+- Liar Cells assigns independent real values, counts liars in supplied groups and controls written-digit and real-value distinctness separately.
+- Lying Clues counts complete false clues in an explicit scope, using exactly, at-least or at-most. Nested clues retain their contracts, defaults and shared answer channels.
+- German Whisper Lies and Region Sum Lies provide sourced examples of shared real-value assignments.
+- Separate catalogues for familiar rules, reusable blocks and mathematical predicates, with icons for every named rule.
+- Source and decoded declaration migration, including IDs, negation, conditions, drawing elements and embedded formulas.
+
+### Changed
+
+- Rename Killer Cage to Cage. Killer Cage and Killer remain aliases; killer and killer-cage declarations load and migrate to Cage; the published killer URL remains available. Little Killer, Negative, Anti King and Anti Knight retain their names.
+- Use moveRelation for orthogonal steps, diagonal steps, king steps, knight moves and bishop lines. Numeric properties, value support and class counts use parameterised predicates in place of duplicated helpers.
+- Share aggregate equations, relation scopes, class patterns, digit profiles, lookups, value sets, aggregate groups, mirrored pairs, selected stretches, endpoint ranges and neighbour extrema through formula-owning blocks.
+- Make Quadruple's existing distinct-cell selection explicit in its binding; Outside retains supplied occurrences.
+- Report rules binding the same block under “same block, different settings”, including their differing bindings. Identical instantiated formulas remain duplicate errors.
+- Retain Whispers and Extra Regions as the public names for legacy Whisper and Unique declarations. Preserve the published killer, whisper, unique, index-count and aggregate-relation routes as thin alias or migration pages.
+
+### Breaking
+
+- Replace convenience formula helpers with aggregate, repeatPolicy, allDifferent, connected, marked, lookupRelated, queryHit and the parameterised predicate families described in the migration guide.
+- Remove unused Index strips and Value Modifier name parameters; migration drops both.
+- Required collection inputs may use `allow_empty: true` with a documented empty meaning, while omission remains rejected.
+- Lookup no longer defaults `cell` to r1c1; single mode requires its presence, while count and query modes omit it. Digit Profile classes/counts, Constructed Regions borders/joins, Cage Shapes free and Negative except are required inputs. Empty collections must be supplied explicitly.
+
 ## Unreleased (0.3.0)
 
 ### Added

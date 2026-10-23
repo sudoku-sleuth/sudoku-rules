@@ -1,0 +1,268 @@
+[
+  {
+    "file": "f-b41/cases/two-colour-theorem.rules.md",
+    "names": [
+      "shaded"
+    ],
+    "definition": {
+      "id": "colour-sight",
+      "name": "Same-colour sight counts",
+      "class": "with aggregates",
+      "parameters": {
+        "cells": {
+          "type": "set<cell>",
+          "description": "cells supplied for this condition."
+        }
+      },
+      "definition": "Each caged face digit counts its own cell and the same-colour cells visible orthogonally. A different-colour cell blocks the ray.",
+      "maths": "∀a∈cells: D(a)=countWhere(C,λb:cell: (row(a)=row(b) ∨ col(a)=col(b)) ∧ (∀z∈C: ((row(z)=row(a) ∧ row(a)=row(b) ∧ minimumPair(col(a),col(b))<=col(z)<=maximumPair(col(a),col(b))) ∨ (col(z)=col(a) ∧ col(a)=col(b) ∧ minimumPair(row(a),row(b))<=row(z)<=maximumPair(row(a),row(b)))) → (shaded(z) ↔ shaded(a))))",
+      "example": "Satisfies: a corner sees only itself when both orthogonal neighbours have the other colour, and contains 1. Breaks: same colours with corner digit 2."
+    }
+  },
+  {
+    "file": "f-b41/cases/unknown-little-killers.rules.md",
+    "names": [
+      "sum_D"
+    ],
+    "definition": {
+      "id": "masked-diagonal-total",
+      "name": "Masked diagonal total",
+      "class": "with aggregates",
+      "parameters": {
+        "cells": {
+          "type": "list<cell>",
+          "description": "Cells on the indicated diagonal, in ray order.",
+          "default": "Required."
+        },
+        "places": {
+          "type": "position",
+          "description": "Number of independently unknown decimal digits in the clue: one or two.",
+          "default": "Required."
+        }
+      },
+      "definition": "Each question mark is an independent digit 0–9. The diagonal sum has the displayed number of decimal places; a two-digit total has a nonzero leading digit.",
+      "maths": "(places=1 ∧ 0<=sum_D(cells)<=9) ∨ (places=2 ∧ 10<=sum_D(cells)<=99)",
+      "example": "Satisfies: one-place ray digits 2,3 total 5; two-place ray 5,6 totals 11. Breaks: one-place 5,6 totals 11; two-place 2,3 totals 5."
+    }
+  },
+  {
+    "file": "f-b41/cases/under-the-influence.rules.md",
+    "names": [
+      "distinct_D"
+    ],
+    "definition": {
+      "id": "influencer-values",
+      "name": "Influencer values",
+      "parameters": {},
+      "definition": "Choose nine influencer cells, one per row, column and box, with distinct face digits. Every cell value is its own digit plus the face digits of all orthogonally adjacent influencers. The same V channel supplies every cage and region-sum clue.",
+      "maths": "∃M:set<cell>: M⊆C ∧ |M|=9 ∧ distinct_D(M) ∧ (∀G∈standardHouses(): |G∩M|=1) ∧ (∀c∈C: V(c)=D(c)+sum_D({m∈M:orth(c,m)})) ∧ (∀meaning∈ValuedRuleMeanings: meaning)",
+      "example": "Satisfies: on a 9×9 board let the face digit at zero-based (r,c) be 1+rem(3*r+floor(r/3)+c,9). Choose M={r1c1,r2c4,r3c7,r4c2,r5c5,r6c8,r7c3,r8c6,r9c9}; its digits are 1,7,4,3,9,6,5,2,8. Set every V to its face digit plus orthogonally adjacent M digits, with no additional valued meanings in this isolated example. In particular V(r1c2)=3. Breaks with the same faces and M: V(r1c2)=2, violating its required influencer addition.",
+      "class": "existential"
+    }
+  },
+  {
+    "file": "f-b41/cases/unnatural-selection.rules.md",
+    "names": [
+      "faceDigits"
+    ],
+    "definition": {
+      "id": "abnormal-multiplicities",
+      "name": "Abnormal digit multiplicities",
+      "class": "with aggregates",
+      "parameters": {},
+      "definition": "Each digit 1–9 occurs nine times on the board. Each supplied box contains exactly three different digits, each occurring three times. No row or column uniqueness applies.",
+      "maths": "(∀d∈𝔄: countWhere(C,λc:cell: D(c)=d)=9) ∧ (∀R∈Regions: |faceDigits(R)|=3 ∧ ∀d∈faceDigits(R): countWhere(R,λc:cell: D(c)=d)=3)",
+      "example": "Satisfies: arrange each of the digit triples {1,2,3}, {4,5,6}, {7,8,9} in three boxes, with each digit three times per box. Breaks: a box containing digits 1–9 once each."
+    }
+  },
+  {
+    "file": "f-b41/cases/up-to-n-funk.rules.md",
+    "names": [
+      "distinctAt"
+    ],
+    "definition": {
+      "id": "up-to-number",
+      "name": "Up to N prefix",
+      "class": "with aggregates",
+      "parameters": {
+        "cells": {
+          "type": "list<cell>",
+          "description": "Full row or column in order from its outside clue.",
+          "default": "Required."
+        },
+        "target": {
+          "type": "digit",
+          "description": "The numbered row or column N, using the Sudoku board numbering.",
+          "default": "Required."
+        },
+        "low": {
+          "type": "number",
+          "description": "Inclusive lower bound on the prefix sum.",
+          "default": "Required."
+        },
+        "upper": {
+          "type": "number",
+          "description": "Inclusive upper bound on the prefix sum.",
+          "default": "Required."
+        },
+        "flavour": {
+          "type": "enum{plain,renban,nabner}",
+          "description": "Optional extra condition on the prefix digits.",
+          "default": "Required."
+        },
+        "oddTotal": {
+          "type": "boolean",
+          "description": "Whether the prefix sum is odd.",
+          "default": "Required."
+        }
+      },
+      "definition": "Locate digit N in the numbered row or column, viewed from the clue. Add face digits strictly before it, excluding N. The sum is within low..upper. Pink requires a nonempty consecutive distinct prefix; yellow forbids consecutive digits anywhere in the prefix. oddTotal requires an odd sum.",
+      "maths": "∃k∈[0,|cells|): D(cells[k])=target ∧ (∀i∈[0,k): D(cells[i])!=target) ∧ low<=sum_D(first(cells,k))<=upper ∧ (oddTotal → odd(sum_D(first(cells,k)))) ∧ (flavour=\"renban\" → k>0 ∧ distinctAt(first(cells,k),λc:cell: D(c)) ∧ ∃a∈𝔄: ∀i∈[0,k): a<=D(cells[i])<a+k) ∧ (flavour=\"nabner\" → ∀i,j∈[0,k): i!=j → |D(cells[i])-D(cells[j])|!=1)",
+      "example": "Satisfies: target 3, ordered digits 2,1,3,4: prefix sum 3, renban. Breaks: same digits with required prefix sum 4."
+    }
+  },
+  {
+    "file": "f-b41/cases/up-to-nosferatu.rules.md",
+    "names": [
+      "valueSum"
+    ],
+    "definition": {
+      "id": "up-to-value",
+      "name": "Up to first target value",
+      "parameters": {
+        "cells": {
+          "type": "list<cell>",
+          "description": "Ray from the outside clue, in order.",
+          "default": "Required."
+        },
+        "target": {
+          "type": "number",
+          "description": "Row or column number on the active board.",
+          "default": "Required."
+        },
+        "total": {
+          "type": "number",
+          "description": "Outside clue total.",
+          "default": "Required."
+        }
+      },
+      "definition": "The target value must occur. Sum effective values strictly before its first occurrence.",
+      "maths": "|cells|>0 ∧ ∃i∈[0,|cells|): V(cells[i])=target ∧ (∀j∈[0,i): V(cells[j])!=target) ∧ valueSum(first(cells,i))=total",
+      "example": "Satisfies: values [3,0,2,7], target 2, total 3. Breaks: same ray and target with total 5, because the target itself is excluded.",
+      "class": "with aggregates"
+    }
+  },
+  {
+    "file": "f-b23/cases/high-rise-window-washer.rules.md",
+    "names": [
+      "min_D"
+    ],
+    "definition": {
+      "id": "branched-renban",
+      "name": "Branched renban group",
+      "class": "with aggregates",
+      "parameters": {
+        "cells": {
+          "type": "set<cell>",
+          "description": "Every cell on the connected purple figure, with no duplicate cell.",
+          "default": "Required."
+        }
+      },
+      "definition": "The cells of the connected purple figure have distinct consecutive digits, in any order.",
+      "maths": "|cells|>0 ∧ distinct_D(cells) ∧ max_D(cells)-min_D(cells)=|cells|-1",
+      "example": "Satisfies: six cells with digits 3,1,6,2,5,4. Breaks: six cells with digits 3,1,7,2,5,4, since 6 is missing."
+    }
+  },
+  {
+    "file": "f-b23/cases/herr-kartoffelkopf-potatohead.rules.md",
+    "names": [
+      "distinct_V"
+    ],
+    "definition": {
+      "id": "renban-figure",
+      "name": "Renban figure",
+      "parameters": {
+        "cells": {
+          "type": "set<cell>",
+          "description": "Every cell on the connected grey hat, including both strokes."
+        }
+      },
+      "definition": "The values on this connected figure are a non-repeating consecutive set in any order.",
+      "maths": "|cells|>0 ∧ distinct_V(cells) ∧ max_V(cells)-min_V(cells)=|cells|-1 ∧ (∀k∈[0,|cells|): ∃c∈cells: V(c)=min_V(cells)+k)",
+      "example": "Pass on eight cells: digits 1–8 in any order. Break: replace 8 with a second 7; distinctness fails.",
+      "class": "with aggregates"
+    }
+  },
+  {
+    "file": "f-b15/cases/counterproductive.rules.md",
+    "names": [
+      "product_D"
+    ],
+    "definition": {
+      "id": "product-frequency",
+      "name": "Cage product frequency",
+      "parameters": {
+        "groups": {
+          "type": "list<set<cell>>",
+          "description": "All 36 drawn cages; each list entry counts as one cage."
+        }
+      },
+      "definition": "Each cage's product equals the number of cages with that same product. A singleton's product is its digit. No distinctness condition is added.",
+      "maths": "∀G∈groups: product_D(G)=countWhere(groups,λT:set<cell>: product_D(T)=product_D(G))",
+      "example": "Satisfies: three singleton cages with digits 3,3,3; each product 3 occurs in three cages. Breaks: digits 3,3,2; product 3 occurs only twice.",
+      "class": "with aggregates"
+    }
+  },
+  {
+    "file": "f-b01/cases/yysl-region-sums.rules.md",
+    "names": [],
+    "definition": {
+      "id": "digit-colour-visibility",
+      "name": "Digit gives same-colour visibility",
+      "parameters": {
+        "origin": {
+          "type": "cell",
+          "description": "A caged cell."
+        }
+      },
+      "definition": "The caged digit counts same-colour cells visible orthogonally from it including itself once. The other colour blocks sight.",
+      "maths": "let seen={b∈C: (row(b)=row(origin) ∨ col(b)=col(origin)) ∧ ∀a∈C: ((row(b)=row(origin) ∧ row(a)=row(origin) ∧ minimumPosition(col(b),col(origin))<=col(a)<=maximumPosition(col(b),col(origin))) ∨ (col(b)=col(origin) ∧ col(a)=col(origin) ∧ minimumPosition(row(b),row(origin))<=row(a)<=maximumPosition(row(b),row(origin)))) → (shaded(a) ↔ shaded(origin))}; D(origin)=|seen|",
+      "example": "Satisfies: origin digit 3 sees itself and two other same-colour cells. Breaks: digit 4 for that same visibility.",
+      "class": "with aggregates"
+    }
+  },
+  {
+    "file": "f-b02/cases/rat-run-39-together-apart.rules.md",
+    "names": [],
+    "definition": {
+      "id": "rat-maze",
+      "name": "Two rat paths",
+      "parameters": {
+        "active": {
+          "type": "set<cell>",
+          "description": "Real board cells."
+        },
+        "edges": {
+          "type": "list<record{a:cell,b:cell}>",
+          "description": "Allowed undirected geometric moves after accounting for all visible maze walls, corner spots and empty-2x2 diagonal space."
+        },
+        "starts": {
+          "type": "list<cell>",
+          "description": "Two supplied rat cells in drawing order."
+        },
+        "goals": {
+          "type": "set<cell>",
+          "description": "Two supplied cupcake cells."
+        },
+        "buttons": {
+          "type": "set<cell>",
+          "description": "All coloured circular buttons on the active board, excluding copies in the control panel."
+        }
+      },
+      "definition": "Two simple disjoint paths connect the rats to different cupcakes along allowed edges. Paths never cross themselves or one another. Adjacent visited digits are not consecutive. Every coloured board button is visited; its digit counts steps to the first later cell outside its current 3x3 box.",
+      "maths": "|starts|=2 ∧ |goals|=2 ∧ ∃p:list<cell>,q:list<cell>: 0<|p|<=|active| ∧ 0<|q|<=|active| ∧ p[0]=starts[0] ∧ q[0]=starts[1] ∧ p[|p|-1]∈goals ∧ q[|q|-1]∈goals ∧ p[|p|-1]!=q[|q|-1] ∧ (∀a∈p: a∈active ∧ a∉q) ∧ (∀a∈q:a∈active) ∧ (∀route∈{p,q}: (∀i,j∈[0,|route|): i!=j → route[i]!=route[j]) ∧ (∀i∈[0,|route|-1): (∃e∈edges:(route[i]=e.a ∧ route[i+1]=e.b) ∨ (route[i]=e.b ∧ route[i+1]=e.a)) ∧ |D(route[i])-D(route[i+1])|!=1)) ∧ (∀button∈buttons:button∈p ∨ button∈q) ∧ (∀route∈{p,q}:∀i∈[0,|route|):route[i]∈buttons → ∃j∈[0,|route|): j>i ∧ j-i=D(route[i]) ∧ ¬sameRegion(route[i],route[j]) ∧ (∀k∈[0,|route|):i<=k<j → sameRegion(route[i],route[k]))) ∧ (∀a,b∈{p,q}:∀i∈[0,|a|-1):∀j∈[0,|b|-1): (a=b ∧ i=j) ∨ row(a[i])+row(a[i+1])!=row(b[j])+row(b[j+1]) ∨ col(a[i])+col(a[i+1])!=col(b[j])+col(b[j+1]))",
+      "example": "Satisfies the path component: starts r1c1/r2c1 and goals r1c2/r2c2, with those two allowed edges, give disjoint two-cell paths; digits 1,4 on each route are nonconsecutive. Buttons empty in this demonstration. For hot/cold, one route is wholly hot and the other cold. Breaks: send both rats to the same goal or traverse an edge not in edges.",
+      "class": "existential"
+    }
+  }
+]

@@ -17,3 +17,7 @@ export * from "./semantics/index.js";
 export { compare } from "./compare.js";
 
 export * from "./declarations.js";
+
+export * from "./migrate.js";
+
+export {libraryLayers,blockHomes} from "./library-layers.js";

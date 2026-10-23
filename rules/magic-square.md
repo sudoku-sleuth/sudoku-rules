@@ -7,6 +7,7 @@ parameters:
     description: The nine cells of each candidate magic square, in row order.
     default: Required.
     type: list<list<cell>>
+layer: rule
 ---
 
 # Magic Square
@@ -15,9 +16,9 @@ At least one listed square contains 1 to 9 once each. Its rows, columns and both
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| places | The nine cells of each candidate magic square, in row order. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| places | `list<list<cell>>` | The nine cells of each candidate magic square, in row order. | Required. |
 
 ## Maths
 
@@ -26,7 +27,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-∃P∈places: |P|=9 ∧ distinctAt(P,λoccurrence:cell: D(occurrence)) ∧ (∀c∈P: D(c)∈[1,10)) ∧ (∀T∈magicLines(P): sum_D(T)=15)
+∃P∈places: |P|=9 ∧ allDifferent(P,λoccurrence:cell: D(occurrence)) ∧ (∀c∈P: D(c)∈[1,10)) ∧ (∀T∈magicLines(P): aggregate(T,"D","sum")=15)
 ```
 
 At least one place holds all digits 1..9 once and has sum 15 in its three rows, three columns and two diagonals.

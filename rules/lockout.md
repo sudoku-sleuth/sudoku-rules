@@ -15,6 +15,13 @@ parameters:
     description: The least difference between the two end digits.
     default: Required.
     type: number
+layer: rule
+alias_of: endpoint-range
+alias_bind:
+  ends: ends
+  line: line
+  outside: "true"
+  gap: gap
 ---
 
 # Lockout
@@ -25,21 +32,19 @@ Use `gap 4` for the usual lockout rule. The `line` excludes the two diamond cell
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| ends | The two end cells, in their stated order. | Required. |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| gap | The least difference between the two end digits. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| ends | `list<cell>` | The two end cells, in their stated order. | Required. |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| gap | `number` | The least difference between the two end digits. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [endpoint-range](endpoint-range.md) — `ends=ends; line=line; outside=true; gap=gap`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|ends|=2 ∧ pairRelation(relationSpec("at-least",gap),D(ends[0]),D(ends[1])) ∧ ∀c∈line: ¬numericBetween(D(c),D(ends[0]),D(ends[1]),true)
-```
+
 
 The end gap holds and every interior digit is outside the closed interval between the ends.
 

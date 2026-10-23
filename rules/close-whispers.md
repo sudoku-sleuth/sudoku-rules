@@ -20,7 +20,19 @@ parameters:
     type: optional<list<list<cell>>>
     description: Explicit undirected edges of one connected network; each edge lists two different cells.
     default: Absent; use the ordered line.
+alias_of: difference-line
+alias_bind:
+  line: line
+  edges: edges
+  loop: "false"
+  mode: '"at-most"'
+  channel: channel
+  diamonds: "{}"
+  gap: gap
+  turnDigits: "{}"
+layer: rule
 ---
+
 
 # Close Whispers
 
@@ -32,22 +44,22 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| gap | The greatest difference allowed between neighbours. | Required. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| gap | `number` | The greatest difference allowed between neighbours. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| edges | `optional<list<list<cell>>>` | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [difference-line](difference-line.md) — `line=line; edges=edges; loop=false; mode="at-most"; channel=channel; diamonds={}; gap=gap`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-lineGeometry(line,edges,false) ∧ ∀W∈lineWindows(line,edges,2,false): |W|=2 → |read(W[0],channel)-read(W[1],channel)|<=gap
-```
+This is a bound shorthand for [difference-line](difference-line.md). Its header supplies every parameter of that rule.
 
 Every drawn edge is compared, including branches and junctions.
 

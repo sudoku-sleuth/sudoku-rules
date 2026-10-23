@@ -15,7 +15,16 @@ parameters:
     description: Whether repeated digits are forbidden.
     default: Required.
     type: boolean
+alias_of: aggregate-equation
+alias_bind:
+  left: ⟨weightedOperand(aggregateOperand(orderedCells(cells),"D","product",¬distinct),1,1):termIndex∈[0,1)⟩
+  right: ⟨weightedOperand(aggregateOperand(⟨c:c∈orderedCells(C),false⟩,"D","count",true),product,0):termIndex∈[0,1)⟩
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: relationSpec("difference",0)
+layer: rule
 ---
+
 
 # Product Cage
 
@@ -23,21 +32,21 @@ Multiplying the cage digits gives the stated product. The distinct parameter for
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| product | The total obtained by multiplying the digits. | Required. |
-| distinct | Whether repeated digits are forbidden. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| product | `number` | The total obtained by multiplying the digits. | Required. |
+| distinct | `boolean` | Whether repeated digits are forbidden. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [aggregate-equation](aggregate-equation.md) — `left=⟨weightedOperand(aggregateOperand(orderedCells(cells),"D","product",¬distinct),1,1):termIndex∈[0,1)⟩; right=⟨weightedOperand(aggregateOperand(⟨c:c∈orderedCells(C),false⟩,"D","count",true),product,0):termIndex∈[0,1)⟩; leftOperation="sum"; rightOperation="sum"; relation=relationSpec("difference",0)`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-product_D(cells)=product ∧ (distinct → distinct_D(cells))
-```
+This is a bound shorthand for [aggregate-equation](aggregate-equation.md). Its header supplies every parameter of that rule.
 
 The cage digits multiply to product. If distinct, the digits also differ.
 

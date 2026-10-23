@@ -19,6 +19,18 @@ parameters:
     description: Whether repeated digits are forbidden.
     default: Required.
     type: boolean
+layer: rule
+alias_of: number-property
+alias_bind:
+  operand: aggregateOperand(orderedCells(cells),"D","sum",¬distinct)
+  property: '"divisible"'
+  argument: modulus
+  reverse: "false"
+  remainder: some(remainder)
+  alternating: "false"
+  line: orderedCells({})
+  edges: absent(⟨orderedCells(C):n∈[0,0)⟩)
+  loop: "false"
 ---
 
 # Remainder Cage
@@ -27,22 +39,20 @@ The cage total has the stated remainder after division by the modulus. The disti
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| modulus | The divisor used to take remainders. | Required. modulus ≥ 1. |
-| remainder | The remainder required after division by the modulus. | Required. |
-| distinct | Whether repeated digits are forbidden. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| modulus | `position` | The divisor used to take remainders. | Required. modulus ≥ 1. |
+| remainder | `position` | The remainder required after division by the modulus. | Required. |
+| distinct | `boolean` | Whether repeated digits are forbidden. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [number-property](number-property.md) — `operand=aggregateOperand(orderedCells(cells),"D","sum",¬distinct); property="divisible"; argument=modulus; reverse=false; remainder=some(remainder); alternating=false; line=orderedCells({}); edges=absent(⟨orderedCells(C):n∈[0,0)⟩); loop=false`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-modulus>=1 ∧ rem(sum_D(cells),modulus)=remainder ∧ (distinct → distinct_D(cells))
-```
+
 
 The normalised remainder of the digit sum modulo modulus equals remainder. If distinct, the digits also differ.
 

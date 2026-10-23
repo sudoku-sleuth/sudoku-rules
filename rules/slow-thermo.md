@@ -15,12 +15,13 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
-alias_of: thermo
+alias_of: monotone-line
 alias_bind:
   line: line
   strict: "false"
   orientation: orientation
   channel: channel
+layer: rule
 ---
 
 # Slow Thermo
@@ -31,19 +32,20 @@ List the path from bulb to tip. The rule reads printed digits and permits repeat
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| orientation | The increasing direction of the whole line. | forward. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| orientation | `Orientation` | The increasing direction of the whole line. | forward. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
-## Maths
+## Definition
+
+Block: [monotone-line](monotone-line.md) — `line=line; strict=false; orientation=orientation; channel=channel`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-This is a shorthand for [thermo](thermo.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
-The shared monotonic predicate permits equal neighbours.
+The shared Monotone Line block permits equal neighbours.
 
 ## Example
 

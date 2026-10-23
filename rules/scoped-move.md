@@ -23,7 +23,19 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+alias_of: relation-scope
+alias_bind:
+  cells: scope
+  relations: ⟨relationSpec("difference",if relation="same" then 0 else 1):i∈[0,1)⟩
+  mode: '"incident"'
+  move: move
+  anchors: "{c∈scope:D(c)∈digits}"
+  except: ⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩
+  negative: "true"
+  channel: channel
+layer: rule
 ---
+
 
 # Scoped Move
 
@@ -31,23 +43,23 @@ For the listed digits and chess move, prohibit either equal digits or consecutiv
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| move | The chess move connecting the compared cells. | Required. |
-| relation | The prohibited relationship: equal values or values one apart. | Required. |
-| digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
-| scope | Compare only pairs whose two cells belong to this scope. | C (the whole board). |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| move | `Move` | The chess move connecting the compared cells. | Required. |
+| relation | `enum{same,consecutive}` | The prohibited relationship: equal values or values one apart. | Required. |
+| digits | `list<digit>` | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
+| scope | `set<cell>` | Compare only pairs whose two cells belong to this scope. | C (the whole board). |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Defined by [relation-scope](relation-scope.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-scopedMove(move,relation,digits,scope,channel)
-```
+This is a bound shorthand for [relation-scope](relation-scope.md). Its header binds every canonical parameter.
 
 Either endpoint must have a listed face digit; both endpoints must be in scope. The selected channel supplies the compared numbers.
 

@@ -19,6 +19,16 @@ parameters:
     description: The two crust digits that bound the sandwich.
     default: Lowest and highest board symbols.
     type: optional<list<digit>>
+layer: rule
+alias_of: selected-stretch
+alias_bind:
+  cells: cells
+  selection: '"crusts"'
+  sum: sum
+  count: absent(|{}|)
+  sums: ⟨n:n∈[0,0)⟩
+  crusts: crusts
+  endpointOccurrences: endpointOccurrences
 ---
 
 # Sandwich
@@ -29,27 +39,20 @@ On a standard 1–9 board the usual crusts are 1 and 9. The crust digits are exc
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| sum | The total the digits or values must add up to. | Required. |
-| endpointOccurrences | Whether both endpoints must occur exactly once or at most once. | No extra occurrence condition. |
-| crusts | The two crust digits that bound the sandwich. | Lowest and highest board symbols. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| sum | `number` | The total the digits or values must add up to. | Required. |
+| endpointOccurrences | `enum{none,"exactly-one","at-most-one"}` | Whether both endpoints must occur exactly once or at most once. | No extra occurrence condition. |
+| crusts | `optional<list<digit>>` | The two crust digits that bound the sandwich. | Lowest and highest board symbols. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [selected-stretch](selected-stretch.md) — `cells=cells; selection="crusts"; sum=sum; count=absent(|{}|); sums=⟨n:n∈[0,0)⟩; crusts=crusts; endpointOccurrences=endpointOccurrences`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|𝔄|>0 ∧ (if present(crusts) then
-  ∀i,j∈{t∈[0,|cells|):D(cells[t])∈unwrap(crusts)}: i<j ∧ ¬(∃k∈{t∈[0,|cells|):D(cells[t])∈unwrap(crusts)}:k<j ∧ k!=i) → sum_D(betweenPositions(cells,i,j))=sum
-else let lo=𝔄[0]; let hi=𝔄[|𝔄|-1];
-  (∀i,j∈[0,|cells|): firstOccurrence(cells,lo,i) ∧ firstOccurrence(cells,hi,j) → sum_D(betweenPositions(cells,i,j))=sum)
-  ∧ (endpointOccurrences="exactly-one" → countWhere(cells,λc:cell:D(c)=lo)=1 ∧ countWhere(cells,λc:cell:D(c)=hi)=1)
-  ∧ (endpointOccurrences="at-most-one" → countWhere(cells,λc:cell:D(c)=lo)<=1 ∧ countWhere(cells,λc:cell:D(c)=hi)<=1))
-```
+
 
 For custom crusts, sum digits strictly between the first two crust occurrences from the clue. Otherwise use the first lowest/highest symbols and require the between-sum only when both occur. exactly-one requires both once; at-most-one forbids repeated endpoints but allows missing endpoints.
 

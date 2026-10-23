@@ -33,7 +33,16 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: V.
+alias_of: aggregate-equation
+alias_bind:
+  left: ⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,|cells|),i=0⟩,channel,"sum",true),1,1):termIndex∈[0,1)⟩
+  right: ⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,|cells|),i=1⟩,channel,"sum",true),1,1):termIndex∈[0,1)⟩
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: if |cells|=2 then relation else relationSpec("difference",-1)
+layer: rule
 ---
+
 
 # Pair
 
@@ -43,11 +52,11 @@ X clues use `sum 10`; V clues use `sum 5`. A numbered white dot uses `difference
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| relation | The relationship keyword and any required whole-number value, for example difference 1. | Required. |
-| cells | The two marked cells in order, for example r1c1-r1c2. | Required. |
-| channel | Read printed digits (D) or effective values (V). | V. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| relation | `PairRelation` | The relationship keyword and any required whole-number value, for example difference 1. | Required. |
+| cells | `list<cell>` | The two marked cells in order, for example r1c1-r1c2. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | V. |
 
 ## Rule lines
 
@@ -65,15 +74,15 @@ Write the two cells in order, then a relationship keyword. Values in rule lines 
 
 A dot's colour is drawing metadata. State its relationship with `pair`, whether the dot is grey, brown or another colour. [Kropki](kropki.md) names the two usual relationships: white is `difference 1`, black is `ratio 2`. The former `relation {"op":...}` form is replaced by these keywords.
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Defined by [aggregate-equation](aggregate-equation.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|cells|=2 ∧ pairRelation(relation,read(cells[0],channel),read(cells[1],channel))
-```
+This is a bound shorthand for [aggregate-equation](aggregate-equation.md). Its header supplies every parameter of that rule.
 
 The shared pair relation compares the selected channel.
 

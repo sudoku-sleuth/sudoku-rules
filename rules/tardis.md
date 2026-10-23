@@ -15,6 +15,16 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: rule
+alias_of: neighbour-extremum
+alias_bind:
+  type: '"max"'
+  cells: "{cell}"
+  exhaustive: "false"
+  neighbourhood: '"orthogonal"'
+  boundary: "false"
+  channel: channel
+  neighbours: some(neighbours)
 ---
 
 # Tardis
@@ -23,21 +33,19 @@ The marked digit is greater than every listed neighbour.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cell | The clue cell. | Required. |
-| neighbours | The cells counted or compared around the clue. | Required. neighbours disjoint from {cell}. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cell | `cell` | The clue cell. | Required. |
+| neighbours | `set<cell>` | The cells counted or compared around the clue. | Required. neighbours disjoint from {cell}. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [neighbour-extremum](neighbour-extremum.md) — `type="max"; cells={cell}; exhaustive=false; neighbourhood="orthogonal"; boundary=false; channel=channel; neighbours=some(neighbours)`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-extremumAt(cell,neighbours,"max",channel)
-```
+
 
 The marked number exceeds every supplied neighbour in the selected channel.
 

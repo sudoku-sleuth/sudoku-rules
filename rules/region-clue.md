@@ -5,7 +5,9 @@ kind: region-clue
 shape: Regions
 parameters:
   partitionRef:
-    shared: {role: read, type: partition}
+    shared:
+      role: read
+      type: partition
     type: string
     description: The shared region collection name.
     default: Required.
@@ -33,6 +35,8 @@ parameters:
     type: list<record{cells:list<cell>,total:position}>
     description: Ordered rays and their required count of changes between regions.
     default: Empty list.
+layer: block
+composition: Aggregate clues over shared constructed regions.
 ---
 
 # Region Clue
@@ -41,15 +45,15 @@ Each marker compares its region aggregate with target when supplied. Without tar
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| partitionRef | The shared region collection name. | Required. |
-| markers | Cells whose containing region is constrained. | Required. |
-| operation | Aggregate over each containing region. | sum. |
-| target | Fixed aggregate target. | Absent; read the marker number. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| perRegion | Require this many marker occurrences in every region. | Absent; no marker count condition. |
-| rays | Ordered rays and their required count of changes between regions. | Empty list. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| partitionRef | `string` | The shared region collection name. | Required. |
+| markers | `list<cell>` | Cells whose containing region is constrained. | Required. |
+| operation | `enum{sum,product,count}` | Aggregate over each containing region. | sum. |
+| target | `optional<number>` | Fixed aggregate target. | Absent; read the marker number. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| perRegion | `optional<position>` | Require this many marker occurrences in every region. | Absent; no marker count condition. |
+| rays | `list<record{cells:list<cell>,total:position}>` | Ordered rays and their required count of changes between regions. | Empty list. |
 
 ## Maths
 

@@ -5,30 +5,34 @@ kind: cell-entries
 shape: Cells
 parameters:
   name:
-    shared: {role: construct, type: symbol}
+    shared:
+      role: construct
+      type: symbol
     type: string
-    description: "Shared symbol channel name."
-    default: "Required."
+    description: Shared symbol channel name.
+    default: Required.
   scope:
     type: set<cell>
-    description: "Cells whose entries are constrained."
-    default: "Required."
+    description: Cells whose entries are constrained.
+    default: Required.
   minimum:
     type: position
-    description: "Minimum entries per cell."
+    description: Minimum entries per cell.
     default: "1."
   maximum:
     type: position
-    description: "Maximum entries per cell."
+    description: Maximum entries per cell.
     default: "1."
   distinct:
     type: boolean
-    description: "Require distinct symbols within each cell."
-    default: "true."
+    description: Require distinct symbols within each cell.
+    default: true.
   faceMode:
     type: enum{independent,sum,first}
-    description: "Relationship to the face digit D."
-    default: "independent."
+    description: Relationship to the face digit D.
+    default: independent.
+layer: block
+composition: Shared symbol lists with configurable size and multiplicity.
 ---
 
 # Cell Entries
@@ -37,14 +41,14 @@ Give every cell in scope a list of symbols from the board alphabet, with the sta
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | Shared symbol channel name. | Required. |
-| scope | Cells whose entries are constrained. | Required. |
-| minimum | Minimum entries per cell. | 1. |
-| maximum | Maximum entries per cell. | 1. |
-| distinct | Require distinct symbols within each cell. | true. |
-| faceMode | Relationship to the face digit D. | independent. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| name | `string` | Shared symbol channel name. | Required. |
+| scope | `set<cell>` | Cells whose entries are constrained. | Required. |
+| minimum | `position` | Minimum entries per cell. | 1. |
+| maximum | `position` | Maximum entries per cell. | 1. |
+| distinct | `boolean` | Require distinct symbols within each cell. | true. |
+| faceMode | `enum{independent,sum,first}` | Relationship to the face digit D. | independent. |
 
 ## Maths
 
@@ -53,7 +57,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-name!="D" ∧ name!="V" ∧ minimum>=0 ∧ maximum>=minimum ∧ ∀c∈scope: let xs=symbolAnswer(name,c); minimum<=|xs| ∧ |xs|<=maximum ∧ (∀d∈xs:d∈𝔄) ∧ (distinct → distinctAt(xs,λd:digit:d)) ∧ (faceMode="sum" → D(c)=Σ_{d∈xs}d) ∧ (faceMode="first" → |xs|>0 ∧ D(c)=xs[0])
+name!="D" ∧ name!="V" ∧ minimum>=0 ∧ maximum>=minimum ∧ ∀c∈scope: let xs=symbolAnswer(name,c); minimum<=|xs| ∧ |xs|<=maximum ∧ (∀d∈xs:d∈𝔄) ∧ (distinct → allDifferent(xs,λd:digit:d)) ∧ (faceMode="sum" → D(c)=Σ_{d∈xs}d) ∧ (faceMode="first" → |xs|>0 ∧ D(c)=xs[0])
 ```
 
 ## Example

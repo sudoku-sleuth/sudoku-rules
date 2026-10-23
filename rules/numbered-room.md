@@ -11,7 +11,27 @@ parameters:
     description: The specified digit.
     default: Required.
     type: digit
+alias_of: lookup
+alias_bind:
+  mode: '"queries"'
+  cells: orderedCells({})
+  cell: absent(boardCell(1,1))
+  sources: orderedCells({})
+  indexChannel: '"D"'
+  channel: '"D"'
+  offset: "0"
+  target: absent(0)
+  targetCell: absent(boardCell(1,1))
+  relation: relationSpec("difference",0)
+  queries: ⟨lookupQuery(cells,D(cells[i]),digit,"D",relationSpec("difference",0)):i∈[0,|cells|),i=0⟩
+  total: "1"
+  firstMatch: "false"
+  reverseRelation: "false"
+  increasing: orderedCells({})
+  nonempty: "false"
+layer: rule
 ---
+
 
 # Numbered Room
 
@@ -19,20 +39,20 @@ Count from the clue by the first digit. The cell reached contains the stated dig
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| digit | The specified digit. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| digit | `digit` | The specified digit. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [lookup](lookup.md) — `queries=⟨lookupQuery(cells,D(cells[i]),digit,"D",relationSpec("difference",0)):i∈[0,|cells|),i=0⟩; total=1; firstMatch=false; reverseRelation=false; increasing=orderedCells({}); nonempty=false`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|cells|>0 ∧ lookupEquals(cells,D(cells[0]),digit,"D")
-```
+This is a bound shorthand for [lookup](lookup.md). Its header binds every canonical parameter.
 
 The first digit selects a bounded one-based position containing the clue digit.
 

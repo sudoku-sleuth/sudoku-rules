@@ -28,7 +28,17 @@ parameters:
     type: optional<PrefixSelection>
     description: A prefix ending at the first target, given or listed crust; include chooses whether to keep that cell.
     default: Absent; use the whole cell set or network.
+alias_of: value-set
+alias_bind:
+  line: line
+  edges: edges
+  selection: selection
+  channel: channel
+  repeats: ¬distinct
+  mode: if separated then "separated" else "nonconsecutive"
+layer: rule
 ---
+
 
 # Nabner
 
@@ -40,25 +50,24 @@ With `selection`, apply the rule to a stopping prefix of the ordered line. The p
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| selection | A stopping prefix, with its target or crust digits and inclusion policy. | Absent; use the whole cell set or network. |
-| line | All cells of the line or cell set; order does not affect comparisons. | Required. |
-| distinct | Whether repeated digits are forbidden. | false (repeats allowed). |
-| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| separated | Require a difference greater than one instead of merely forbidding a difference of one. | false. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `list<cell>` | All cells of the line or cell set; order does not affect comparisons. | Required. |
+| distinct | `boolean` | Whether repeated digits are forbidden. | false (repeats allowed). |
+| edges | `optional<list<list<cell>>>` | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| separated | `boolean` | Require a difference greater than one instead of merely forbidding a difference of one. | false. |
+| selection | `optional<PrefixSelection>` | A prefix ending at the first target, given or listed crust; include chooses whether to keep that cell. | Absent; use the whole cell set or network. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [value-set](value-set.md) — `line=line; edges=edges; selection=selection; channel=channel; repeats=¬distinct; mode=if separated then "separated" else "nonconsecutive"; sumFree=absent(|{}|)`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-if present(selection) then ¬present(edges) ∧ selectionValid(line,unwrap(selection),channel) ∧ nonconsecutiveValues(selectedPrefix(line,unwrap(selection),channel),channel,¬distinct,separated)
-else lineGeometry(line,edges,false) ∧ (if present(edges) then nonconsecutiveValues(graphVertices(unwrap(edges)),channel,¬distinct,separated) else nonconsecutiveValues(line,channel,¬distinct,separated))
-```
+This is a bound shorthand for [value-set](value-set.md). Its header supplies every parameter of that rule.
 
 Every pair in the whole cell set or network component is compared. distinct controls repeats. separated distinguishes a strict gap greater than one on fractional effective values.
 

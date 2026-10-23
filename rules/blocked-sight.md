@@ -5,9 +5,9 @@ kind: blocked-sight
 shape: Outside
 parameters:
   cell:
-    type: cell
+    type: optional<cell>
     description: The sight origin.
-    default: Required.
+    default: Absent; required for origin-dependent modes.
   rays:
     type: list<list<cell>>
     description: Ordered rays, nearest first, each excluding the origin.
@@ -52,6 +52,12 @@ parameters:
     type: list<cell>
     description: The cells whose numbers supply the target sum.
     default: Empty list; use the origin number.
+  occurrences:
+    type: boolean
+    description: Count ray occurrences instead of deduplicated cells.
+    default: false.
+layer: block
+composition: Arbitrary rays, listed or value blockers, counts or totals, and origin/blocker inclusion.
 ---
 
 # Blocked Sight
@@ -62,30 +68,31 @@ A cell appearing on several rays contributes once. Rays exclude the origin; reco
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cell | The sight origin. | Required. |
-| rays | Ordered rays, nearest first, each excluding the origin. | Required. |
-| blockers | Fixed blockers for listed mode. | Empty set. |
-| includeBlocker | Include the first blocker. | false. |
-| includeOrigin | Include the origin once across all rays. | false. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| offset | Add this offset to the count or sum. | 0. |
-| output | Count selected cells or sum their numbers. | Required. |
-| records | Keep only record highs within each unblocked ray. | false. |
-| total | A fixed target, replacing the origin or target-cell total. | Absent; use targetCells or the origin number. |
-| blocking | Block at listed cells, different parity, different shading colour, a different primary region, greater or at-least numbers, or numbers unequal to the origin. | listed. |
-| targetCells | The cells whose numbers supply the target sum. | Empty list; use the origin number. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cell | `optional<cell>` | The sight origin. | Absent; required for origin-dependent modes. |
+| rays | `list<list<cell>>` | Ordered rays, nearest first, each excluding the origin. | Required. |
+| blockers | `set<cell>` | Fixed blockers for listed mode. | Empty set. |
+| includeBlocker | `boolean` | Include the first blocker. | false. |
+| includeOrigin | `boolean` | Include the origin once across all rays. | false. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| offset | `number` | Add this offset to the count or sum. | 0. |
+| output | `enum{count,sum}` | Count selected cells or sum their numbers. | Required. |
+| records | `boolean` | Keep only record highs within each unblocked ray. | false. |
+| total | `optional<number>` | A fixed target, replacing the origin or target-cell total. | Absent; use targetCells or the origin number. |
+| blocking | `SightBlock` | Block at listed cells, different parity, different shading colour, a different primary region, greater or at-least numbers, or numbers unequal to the origin. | listed. |
+| targetCells | `list<cell>` | The cells whose numbers supply the target sum. | Empty list; use the origin number. |
+| occurrences | `boolean` | Count ray occurrences instead of deduplicated cells. | false. |
 
 ## Maths
 
-Class: **with aggregates**.
+Class: **existential**.
 
 The [shared predicates](predicates.md) define the notation and every named predicate.
 
 ```text
-(∀ray∈rays:cell∉ray) ∧ (blocking="different-parity" → ∀c∈C: ⌊read(c,channel)⌋=read(c,channel)) ∧ let selected={c∈C: (includeOrigin ∧ c=cell) ∨ ∃ray∈rays: let prefix=blockedPrefix(ray,λb:cell:sightBlock(cell,b,blocking,blockers,channel),includeBlocker); if records then c∈visibleRecords(prefix,channel) else c∈prefix};
-aggregate(selected,channel,output)+offset=(if present(total) then unwrap(total) else if |targetCells|>0 then aggregate(targetCells,channel,"sum") else read(cell,channel))
+if occurrences then records ∧ blocking="listed" ∧ |blockers|=0 ∧ ¬includeOrigin ∧ present(total) ∧ Σ_{ray∈rays} |visibleRecords(ray,channel)|+offset=unwrap(total) else present(cell) ∧ ((∀ray∈rays:unwrap(cell)∉ray) ∧ (blocking="different-parity" → ∀c∈C: ⌊read(c,channel)⌋=read(c,channel)) ∧ let selected={c∈C: (includeOrigin ∧ c=unwrap(cell)) ∨ ∃ray∈rays: let prefix=blockedPrefix(ray,λb:cell:sightBlock(unwrap(cell),b,blocking,blockers,channel),includeBlocker); if records then c∈visibleRecords(prefix,channel) else c∈prefix};
+aggregate(selected,channel,output)+offset=(if present(total) then unwrap(total) else if |targetCells|>0 then aggregate(targetCells,channel,"sum") else read(unwrap(cell),channel)))
 ```
 
 ## Example

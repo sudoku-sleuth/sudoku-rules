@@ -5,26 +5,30 @@ kind: marking-relation
 shape: Edges
 parameters:
   selectionRef:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "The shared selection name; H means board shading."
-    default: "Required."
+    description: The shared selection name; H means board shading.
+    default: Required.
   pairs:
     type: list<list<cell>>
-    description: "Ordered cell pairs."
-    default: "Empty list."
+    description: Ordered cell pairs.
+    default: Empty list.
   relation:
     type: enum{same,different,"implies"}
-    description: "Relationship between pair marks."
-    default: "different."
+    description: Relationship between pair marks.
+    default: different.
   line:
     type: list<cell>
-    description: "Occurrences along which to count mark changes."
-    default: "Empty list."
+    description: Occurrences along which to count mark changes.
+    default: Empty list.
   transitions:
     type: optional<position>
-    description: "Required number of changes."
-    default: "Absent; no count condition."
+    description: Required number of changes.
+    default: Absent; no count condition.
+layer: block
+composition: Relations over arbitrary shared cell markings.
 ---
 
 # Marking Relation
@@ -33,13 +37,13 @@ Each ordered pair has the stated relationship between its two marks. Same and di
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| selectionRef | The shared selection name; H means board shading. | Required. |
-| pairs | Ordered cell pairs. | Empty list. |
-| relation | Relationship between pair marks. | different. |
-| line | Occurrences along which to count mark changes. | Empty list. |
-| transitions | Required number of changes. | Absent; no count condition. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| selectionRef | `string` | The shared selection name; H means board shading. | Required. |
+| pairs | `list<list<cell>>` | Ordered cell pairs. | Empty list. |
+| relation | `enum{same,different,"implies"}` | Relationship between pair marks. | different. |
+| line | `list<cell>` | Occurrences along which to count mark changes. | Empty list. |
+| transitions | `optional<position>` | Required number of changes. | Absent; no count condition. |
 
 ## Maths
 

@@ -1,5 +1,6 @@
+import {compilePrelude} from '../helpers/library';
 import { expect, test } from "bun:test";
-import { arithmetic, checkExpression, checkFormula, checkPrelude, compare, compilePage, compilePrelude, diagnostic, exact, floor, formulaBlocks, location, parseFormula, parsePrelude, parseType, printExact, rational, type Environment, type Expr } from "../../src/index";
+import { arithmetic, checkExpression, checkFormula, checkPrelude, compare, compilePage, diagnostic, exact, floor, formulaBlocks, location, parseFormula, parsePrelude, parseType, printExact, rational, type Environment, type Expr } from "../../src";
 
 const prelude = compilePrelude({ file: "spec/prelude.md", text: await Bun.file("tests/fixtures/typed-prelude.md").text() });
 if (!prelude.value) throw new Error(JSON.stringify(prelude.diagnostics));

@@ -6,25 +6,28 @@ shape: Outside
 parameters:
   line:
     type: list<cell>
-    description: "Cells in clue order."
-    default: "Required."
+    description: Cells in clue order.
+    default: Required.
   selectionRef:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "The selection name; H means board shading."
+    description: The selection name; H means board shading.
     default: '"H".'
   totals:
     type: list<number>
-    description: "One total per maximal marked run."
-    default: "Required."
+    description: One total per maximal marked run.
+    default: Required.
   channel:
     type: Channel
-    description: "Read face digits D or effective values V."
-    default: "D."
+    description: Read face digits D or effective values V.
+    default: D.
   repeats:
     type: boolean
-    description: "Allow equal numbers within a run."
-    default: "true."
+    description: Allow equal numbers within a run.
+    default: true.
+layer: rule
 ---
 
 # Japanese Sums
@@ -33,13 +36,13 @@ Read the maximal nonempty runs of marked cells in the supplied order. Their sums
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | Cells in clue order. | Required. |
-| selectionRef | The selection name; H means board shading. | "H". |
-| totals | One total per maximal marked run. | Required. |
-| channel | Read face digits D or effective values V. | D. |
-| repeats | Allow equal numbers within a run. | true. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `list<cell>` | Cells in clue order. | Required. |
+| selectionRef | `string` | The selection name; H means board shading. | "H". |
+| totals | `list<number>` | One total per maximal marked run. | Required. |
+| channel | `Channel` | Read face digits D or effective values V. | D. |
+| repeats | `boolean` | Allow equal numbers within a run. | true. |
 
 ## Maths
 
@@ -48,7 +51,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-japaneseSums(line,selectionRef,totals,channel,repeats)
+((allDifferent(line,λc:cell:cellIndex(c)) and (countWhere([0,|line|),λi:position:markedStart(line,i,selectionRef)) = |totals|)) and forall a∈[0,|line|): forall b∈[(a + 1),(|line| + 1)): (markedRun(line,a,b,selectionRef) implies let j=countWhere([0,a),λi:position:markedStart(line,i,selectionRef)); ((((0 <= j) and (j < |totals|)) and repeatPolicy(⟨line[i]:i∈[a,b)⟩,channel,repeats)) and (aggregate(⟨line[i]:i∈[a,b)⟩,channel,"sum") = totals[j]))))
 ```
 
 ## Example

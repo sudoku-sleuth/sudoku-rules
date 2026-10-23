@@ -1,19 +1,26 @@
-import { expect, test } from 'bun:test';
-import { readdir } from 'node:fs/promises';
+import {compilePublicLibrary,publicPages} from '../helpers/library';
+import {migrateDeclaration} from '../../src';
+import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
+import { expect, test, afterAll } from 'bun:test';
 import { parse, stringify } from 'yaml';
-import { compilePublicLibrary, checkCaseReferences, normalise, parseFormula, checkFormula, type Expr } from '../../src';
+import { checkCaseReferences, normalise, parseFormula, checkFormula, type Expr } from '../../src';
 import { fragmentVerdict, type Fragment } from './finite-fragment';
 import { caseExamples } from '../../scripts/lint-skill';
-const sources = await Promise.all((await readdir('rules')).filter(n => n.endsWith('.md')).map(async n => ({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+const sources = publicPages;
 const compiled = compilePublicLibrary(sources);
 if (!compiled.value) throw Error(JSON.stringify(compiled.diagnostics));
 const library = compiled.value;
 const a='r1c1', b='r1c2', c='r1c3', d='r1c4', e='r1c5';
 function verdict(kind:string,parameters:Record<string,unknown>,faces:Record<string,number>,extra:Partial<Fragment>={},negated=false) {
+ const historical=kind;
+ const historicalParameters=parameters;
+ if(!library.rules.has(kind)){const migrated=migrateDeclaration({kind,parameters})[0];kind=migrated.kind;parameters=migrated.parameters;}
  const page=library.rules.get(kind)!;
  const ast=page.formulas[0].ast;
  const formula:Expr=negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast;
- return fragmentVerdict(formula,library.prelude,page.parameters,{faces,parameters:{...Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,"default")).map(([name,p])=>[name,p.default])),...parameters},...extra});
+ const fragment={faces,parameters:{...Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,"default")).map(([name,p])=>[name,p.default])),...parameters},...extra};
+ assertMigratedEquivalent(library,historical,{...fragment,parameters:historical===kind?fragment.parameters:historicalParameters},negated);
+ return fragmentVerdict(formula,library.prelude,page.parameters,fragment);
 }
 const line=[a,b,c], edges=[[a,b],[b,c],[b,d]];
 test('either-end thermo chooses one orientation for the whole path',()=>{
@@ -213,19 +220,22 @@ test('registry derives fixed defaults from page declarations',()=>{
  expect(fixed('close-whispers','channel')).toBe('D');
  expect(fixed('zipper','centre')).toBe('when-odd');
  expect(fixed('region-sum','combine')).toBe(false);
- for(const kind of ['killer','whisper'])expect(library.aliases.has(kind)).toBe(true);
+ for(const [kind,target]of [['killer','cage'],['whisper','whispers']]){
+  expect(library.shorthands.has(kind)).toBe(false);
+  expect(library.registry.kindByUrl!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)).toBe(target);
+ }
  for(const kind of ['kropki','slow-thermo','anti-king','anti-knight','bremban','quadruple']) {
   expect(library.aliases.has(kind)).toBe(false);
   expect(library.shorthands.get(kind)!.bindings).toBeDefined();
   expect(library.rules.get(kind)!.formulas.length).toBe(1);
  }
- expect(library.shorthands.get('kropki')!.bindings.channel).toBe('"V"');
+ expect(library.shorthands.get('kropki')!.bindings.left).toContain('"V"');
 });
 test('shorthand parsing ignores prose class labels and binding errors point into YAML',()=>{
  const raw=sources.find(p=>p.file==='rules/kropki.md')!;
  const withProse={...raw,text:raw.text+'\nClass: **invented prose**.\n'};
  expect(compilePublicLibrary(sources.map(p=>p===raw?withProse:p)).diagnostics).toEqual([]);
- const invalid={...raw,text:raw.text.replace('channel: \'"V"\'','channel: \'false\'')};
+ const invalid={...raw,text:raw.text.replace('leftOperation: \'"sum"\'','leftOperation: \'false\'')};
  expect(invalid.text).not.toBe(raw.text);
  const result=compilePublicLibrary(sources.map(p=>p===raw?invalid:p));
  expect(result.value).toBeUndefined();
@@ -249,3 +259,14 @@ test('connected retains orthogonal cell-collection meaning alongside explicit ed
  expect(fragmentVerdict(checked.value!.ast,library.prelude,[],{faces:{[a]:1,[b]:2},parameters:{}})).toBe(true);
  expect(fragmentVerdict(checked.value!.ast,library.prelude,[],{faces:{[a]:1,[c]:2},parameters:{}})).toBe(false);
 });
+test('XV is a bound sum shorthand with its own setter syntax',()=>{
+ for(const [mark,total]of [['x',10],['v',5]] as const){
+  const source=sources.find(p=>p.file==='rules/xv.md')!;
+  const text=caseExamples(source.text)[0].replace('r1c1-r1c2 x',`r1c1-r1c2 ${mark}`);
+  expect(checkCaseReferences({file:source.file,text},library.registry).diagnostics).toEqual([]);
+  expect(verdict('xv',{cells:[a,b],mark},{[a]:1,[b]:total-1})).toBe(true);
+  expect(verdict('xv',{cells:[a,b],mark},{[a]:1,[b]:total-2})).toBe(false);
+ }
+});
+
+afterAll(()=>expect(['blocked-sight','difference-line','sum-partition','split-pea','aggregate-relation','prefix-sum','lookup'].filter(k=>!replayedKinds.has(k))).toEqual([]));

@@ -19,7 +19,7 @@ parameters:
   minimum:
     type: position
     description: Minimum subset size.
-    default: '1.'
+    default: "1."
   maximum:
     type: optional<position>
     description: Maximum subset size.
@@ -28,6 +28,8 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: block
+composition: Existential subset selection with total and size bounds.
 ---
 
 # Subset Total
@@ -36,14 +38,14 @@ A nonempty subset of the cells has the stated total and size bounds. With `forbi
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | Cells from which to select a nonempty subset. | Required. |
-| total | The selected sum. | Required. |
-| forbid | Require the absence of such a subset. | false. |
-| minimum | Minimum subset size. | 1. |
-| maximum | Maximum subset size. | Absent; use the whole scope size. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | Cells from which to select a nonempty subset. | Required. |
+| total | `number` | The selected sum. | Required. |
+| forbid | `boolean` | Require the absence of such a subset. | false. |
+| minimum | `position` | Minimum subset size. | 1. |
+| maximum | `optional<position>` | Maximum subset size. | Absent; use the whole scope size. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 

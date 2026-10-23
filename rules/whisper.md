@@ -7,4 +7,4 @@ alias_of: whispers
 
 # Whisper
 
-Whisper is an alias for [whispers](https://rules.sudoku-sleuth.com/whispers.md). It uses the same parameters and meaning.
+Whisper uses the parameters and meaning of [Whispers](whispers.md).

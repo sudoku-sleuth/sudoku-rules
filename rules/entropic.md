@@ -16,7 +16,22 @@ parameters:
     type: optional<list<list<cell>>>
     description: Explicit undirected edges of one connected network; each edge lists two different cells.
     default: Absent; use the ordered line.
+alias_of: class-pattern
+alias_bind:
+  line: line
+  edges: edges
+  loop: loop
+  classification: '"entropy"'
+  modulus: "3"
+  length: "3"
+  geometry: '"line"'
+  mode: '"distinct"'
+  fixedClass: absent(|{}|)
+  channel: '"D"'
+layer: rule
 ---
+
+
 
 # Entropic
 
@@ -30,21 +45,21 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| loop | Whether the path closes, joining its last cell back to its first. | false (open path). |
-| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| loop | `boolean` | Whether the path closes, joining its last cell back to its first. | false (open path). |
+| edges | `optional<list<list<cell>>>` | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [class-pattern](class-pattern.md) — `line=line; edges=edges; loop=loop; classification="entropy"; modulus=3; length=3; geometry="line"; mode="distinct"; fixedClass=absent(|{}|); channel="D"`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-entropicMeaning(line,edges,loop)
-```
+This is a bound shorthand for [class-pattern](class-pattern.md). Its header supplies every parameter of that rule.
 
 Every three-cell window uses different alphabet thirds. An open two-cell line uses different thirds. Network windows include every junction traversal.
 

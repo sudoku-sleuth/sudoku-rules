@@ -16,14 +16,17 @@ parameters:
     type: optional<PrefixSelection>
     description: A stopping prefix of the ordered list.
     default: Absent; use the whole cell set.
-alias_of: renban
+alias_of: value-set
 alias_bind:
   line: line
   edges: edges
   channel: '"D"'
   repeats: "true"
   selection: selection
+  mode: '"consecutive"'
+layer: rule
 ---
+
 
 # Bremban
 
@@ -33,13 +36,15 @@ The marked cells can also be a cage. Declare its sum separately with [Cage](http
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| edges | Explicit connected network. | Absent; use the listed cells. |
-| selection | A stopping prefix. | Absent; use the whole cell set. |
-| line | The marked cells; order does not affect the consecutive set. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The marked cells; order does not affect the consecutive set. | Required. |
+| edges | `optional<list<list<cell>>>` | The edges of a connected network. | Absent; use the listed cells. |
+| selection | `optional<PrefixSelection>` | A stopping prefix of the ordered list. | Absent; use the whole cell set. |
 
-## Maths
+## Definition
+
+Block: [value-set](value-set.md) — `line=line; edges=edges; channel="D"; repeats=true; selection=selection; mode="consecutive"; sumFree=absent(|{}|)`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 

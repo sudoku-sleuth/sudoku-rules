@@ -5,7 +5,9 @@ kind: region-partition
 shape: Regions
 parameters:
   name:
-    shared: {role: construct, type: partition}
+    shared:
+      role: construct
+      type: partition
     type: string
     description: The shared region collection name.
     default: '"". Choose a local partition.'
@@ -41,6 +43,8 @@ parameters:
     type: optional<Move>
     description: Forbid this move between different regions.
     default: Absent; regions may touch.
+layer: block
+composition: Named connected partitions with sizes, joins and borders.
 ---
 
 # Region Partition
@@ -53,17 +57,17 @@ The scope must be nonempty. An empty name chooses a local existential partition;
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | The shared region collection name; empty chooses a local partition. | "". |
-| scope | Cells covered exactly once. | Required. |
-| sizes | Allowed region sizes. | Empty list; any positive size. |
-| count | Required number of regions. | Absent; no count condition. |
-| distinct | Require different numbers in each region. | false. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| joins | Cell pairs required to share a region. | Empty list. |
-| borders | Cell pairs required to occupy different regions. | Empty list. |
-| separation | Forbid this move between different regions. | Absent; regions may touch. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| name | `string` | The shared region collection name. | "". Choose a local partition. |
+| scope | `set<cell>` | Cells covered exactly once. | Required. |
+| sizes | `list<position>` | Allowed region sizes. | Empty list; any positive size. |
+| count | `optional<position>` | Required number of regions. | Absent; no count condition. |
+| distinct | `boolean` | Require different numbers in each region. | false. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| joins | `list<list<cell>>` | Cell pairs required to share a region. | Empty list. |
+| borders | `list<list<cell>>` | Cell pairs required to occupy different regions. | Empty list. |
+| separation | `optional<Move>` | Forbid this move between different regions. | Absent; regions may touch. |
 
 ## Maths
 

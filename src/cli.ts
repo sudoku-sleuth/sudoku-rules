@@ -3,6 +3,7 @@ import { readFile, readdir, realpath, stat } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { checkCaseReferences, compilePublicLibrary, compilePage, compilePrelude, formulaBlocks, type PageSource, type Diagnostic } from "./index.js";
+import { libraryOverlap } from "./overlap.js";
 import { declarationLibrary } from "./declaration-library.js";
 export interface LintReport {
     phase: "formula";
@@ -103,12 +104,40 @@ export async function lintFiles(target: string, preludeFile?: string): Promise<L
     return report;
 }
 export async function main(args: string[]): Promise<number> {
+    if (args[0] === "overlap") {
+        let min = 0.35;
+        for (let i = 1; i < args.length; i++) {
+            if (args[i] === "--json") continue;
+            if (args[i] === "--min" && args[i+1] !== undefined) {
+                min = Number(args[++i]);
+                if (Number.isFinite(min) && min >= 0 && min <= 1) continue;
+            }
+            console.error("Usage: openrules overlap [--min 0.35] [--json]");
+            return 2;
+        }
+        try {
+            const report = await libraryOverlap(resolve(dirname(fileURLToPath(import.meta.url)), "../rules"), min);
+            if (args.includes("--json")) console.log(JSON.stringify(report, null, 2));
+            else {
+                console.log(`Overlap (depth ${report.depth}, minimum ${report.min}): ${JSON.stringify(report.counts)}`);
+                console.log("Overlap across meanings:");
+                for (const p of report.pairs.filter(p=>!p.sameBlock)) console.log(`${p.a.layer} ${p.a.name} / ${p.b.layer} ${p.b.name}: ${p.score.toFixed(4)}${p.exact ? " exact" : p.wrapper ? " wrapper" : ""}\n  ${p.shared}${p.reason ? `\n  ${p.reason}` : ""}`);
+                console.log("Same block, different settings:");
+                for(const p of report.pairs.filter(p=>p.sameBlock))console.log(`${p.a.name} / ${p.b.name} (${p.block}): ${JSON.stringify(p.settings)}`);
+            }
+            return 0;
+        } catch (error) {
+            console.error(error instanceof Error ? error.message : String(error));
+            return 2;
+        }
+    }
+
     if (args[0] === "--help" || args[0] === "help") {
-        console.log("Usage: openrules lint <file-or-directory> [--prelude file] [--json]\nSlice 1 checks formula syntax, signatures, names, types and exact constant arithmetic. Case headers and known rule references are checked when a library is available. Case boards, givens, typed parameters and embedded definition references are checked. Custom formulas are checked. URL loading and example evaluation are separate phases.");
+        console.log("Usage: openrules lint <file-or-directory> [--prelude file] [--json]\n       openrules overlap [--min 0.35] [--json]\nSlice 1 checks formula syntax, signatures, names, types and exact constant arithmetic. Case headers and known rule references are checked when a library is available. Case boards, givens, typed parameters and embedded definition references are checked. Custom formulas are checked. URL loading and example evaluation are separate phases.");
         return 0;
     }
     if (args[0] !== "lint" || !args[1] || args.slice(2).some((arg, index, rest) => arg !== "--json" && arg !== "--prelude" && rest[index - 1] !== "--prelude") || args.includes("--prelude") && !args[args.indexOf("--prelude") + 1]) {
-        console.error("Usage: openrules lint <file-or-directory> [--prelude file] [--json]");
+        console.error("Usage: openrules lint <file-or-directory> [--prelude file] [--json]\n       openrules overlap [--min 0.35] [--json]");
         return 2;
     }
     try {

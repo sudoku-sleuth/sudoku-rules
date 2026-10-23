@@ -1,3 +1,4 @@
+import {legacyRuleRenames} from "../../src/migration-data";
 import { expect, test } from "bun:test";
 import { readdir, readFile } from "node:fs/promises";
 import { compare, normalise, visibleCells, declarationRegistry, exact, readHeader, type BoardContext, type Cell, type Formula, type Normalisation } from "../../src";
@@ -32,14 +33,13 @@ function accepts(form: ReturnType<typeof complete>, answer: Record<string, numbe
     form.board.givens.every(g => answer[g.cell] === g.digit) && evaluate(form.solution, answer);
 }
 
-test("registry inventories every published kind, including aliases, with a specific reason", async () => {
+test("registry covers current pages and removed migration spellings with a specific reason", async () => {
   const kinds: string[] = [];
   for (const name of await readdir("rules")) if (name.endsWith(".md")) {
     const page = readHeader({ file: name, text: await readFile(`rules/${name}`, "utf8") }).value!;
     if (typeof page.metadata.kind === "string") kinds.push(page.metadata.kind);
   }
-  expect(Object.keys(declarationRegistry).sort()).toEqual(kinds.sort());
-  expect(kinds.length).toBe(120);
+  expect(Object.keys(declarationRegistry).sort()).toEqual([...new Set([...kinds,...Object.keys(legacyRuleRenames)])].sort());
   for (const entry of Object.values(declarationRegistry)) if (entry.status === "unsupported") expect(entry.reason.length).toBeGreaterThan(20);
 });
 
@@ -51,7 +51,7 @@ test("unique lowers set membership to every unordered inequality pair", () => {
   const result = different("unique r1c1-r1c2-r1c3", "unique r1c1-r1c2");
   expect(result.differences[0].primitive).toBe("Pair");
   expect(result.differences[0].cells).toEqual(["r1c1", "r1c3"]);
-  expect(result.differences[0].sources[0].span.start.line).toBe(12);
+  expect(result.differences[0].sources[0].span.start.line).toBe(file("unique r1c1-r1c2-r1c3").text.split("\n").indexOf("unique r1c1-r1c2-r1c3")+1);
 });
 
 test("sets, reversed pairs, duplicate positive clauses and line permutations are canonical", () => {
@@ -113,7 +113,7 @@ test("parity reads V=D only with established identity and uses actual digits", (
     expect(evaluate(f.solution, { r1c1: even[0] })).toBe(true);
     expect(evaluate(f.solution, { r1c1: alphabet.find(d => d % 2 !== 0)! })).toBe(false);
   }
-  const mixed = nf('value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false\nparity-cells r1c1 parity "odd"');
+  const mixed = nf('value-modifier factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false\nparity-cells r1c1 parity "odd"');
   expect(mixed.status).toBe("partial");
   expect(mixed.normalForm!.coverage.find(c => c.kind === "parity-cells")!.reason).toContain("Effective-value domain");
   expect(compare(mixed, mixed).status).toBe("unresolved");
@@ -346,6 +346,7 @@ test("every unsupported kind reports its registered reason when encountered", ()
     const value = (type: Type): unknown => {
       if (contract.types[type.name]) return value(contract.types[type.name]);
       if (type.name === 'enum') return type.members![0];
+      if (type.name === 'clause') return {id:'dot',rule:'kropki',args:{cells:['r1c1','r1c2'],colour:'black'}};
       if (type.name === 'expression') return {op:'number',value:1};
       if (type.name === 'cell') return 'r1c1';
       if (type.name === 'boolean') return false;
@@ -499,7 +500,7 @@ test("in-file custom fragment declarations retain semantic coverage, including w
       const coverage = result.normalForm!.coverage.filter(c => c.kind === "#weighted-triple");
       expect(coverage).toHaveLength(1);
       expect(coverage[0].status).toBe("unsupported");
-      expect(coverage[0].source.span.start.line).toBe(13);
+      expect(coverage[0].source.span.start.line).toBe(text.split(/\r?\n/).findIndex(line=>line.includes("#weighted-triple r"))+1);
     }
   }
 });
@@ -555,7 +556,7 @@ test("pair keywords have exact tables on zero, signed and nonstandard alphabets"
 
 test("effective pair values stay uncovered when modifiers or custom definitions are unresolved", () => {
   for (const rule of ['pair r1c1-r1c2 sum 4','kropki r1c1-r1c2 black']) {
-    const result = nf(`value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false\n${rule}`);
+    const result = nf(`value-modifier factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false\n${rule}`);
     expect(result.status).toBe('partial');
     expect(result.normalForm!.coverage.find(c => c.kind === rule.split(' ')[0])!.status).toBe('unsupported');
     expect(compare(result,result).status).toBe('unresolved');

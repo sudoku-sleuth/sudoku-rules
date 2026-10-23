@@ -11,6 +11,19 @@ parameters:
     description: The marked cells, for example r1c1-r1c2-r2c2.
     default: Required.
     type: set<cell>
+layer: rule
+alias_of: class-pattern
+alias_bind:
+  line: orderedCells(cells)
+  edges: absent(⟨orderedCells(C):n∈[0,0)⟩)
+  loop: "false"
+  classification: '"residue"'
+  modulus: "2"
+  length: "2"
+  geometry: '"cells"'
+  mode: '"same"'
+  fixedClass: some(if parity="odd" then |{0}| else |{}|)
+  channel: '"V"'
 ---
 
 # Parity Cells
@@ -19,20 +32,18 @@ Values in the marked cells have the stated parity: odd or even.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| parity | The required parity: odd or even. | Required. |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| parity | `enum{odd,even}` | The required parity: odd or even. | Required. |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [class-pattern](class-pattern.md) — `line=orderedCells(cells); edges=absent(⟨orderedCells(C):n∈[0,0)⟩); loop=false; classification="residue"; modulus=2; length=2; geometry="cells"; mode="same"; fixedClass=some(if parity="odd" then |{0}| else |{}|); channel="V"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀c∈cells: ⌊V(c)⌋=V(c) ∧ (parity="odd" → odd(V(c))) ∧ (parity="even" → rem(V(c),2)=0)
-```
+
 
 Every V value has parity named by parity: odd has absolute remainder 1, even remainder 0 modulo 2.
 

@@ -11,6 +11,13 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+layer: rule
+alias_of: endpoint-range
+alias_bind:
+  ends: ends
+  line: line
+  outside: "false"
+  gap: "0"
 ---
 
 # Between
@@ -21,20 +28,18 @@ The `line` lists only the cells between the two ends; `ends` lists the circles. 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| ends | The two end cells, in their stated order. | Required. |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| ends | `list<cell>` | The two end cells, in their stated order. | Required. |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [endpoint-range](endpoint-range.md) — `ends=ends; line=line; outside=false; gap=0`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|ends|=2 ∧ ∀c∈line: numericBetween(D(c),D(ends[0]),D(ends[1]),false)
-```
+
 
 Every interior digit lies strictly between the endpoint digits.
 

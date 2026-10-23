@@ -1,5 +1,5 @@
 ---
-name: Absent digits
+name: Absent Digits
 url: https://rules.sudoku-sleuth.com/absent-digits.md
 kind: absent-digits
 parameters:
@@ -11,28 +11,46 @@ parameters:
     description: The digits that must be absent, for example [2,4].
     default: Required.
     type: list<digit>
+alias_of: digit-profile
+alias_bind:
+  cells: orderedCells(cells)
+  classes: ⟨⟨d:d∈digits⟩:i∈[0,1)⟩
+  counts: ⟨|{}|:i∈[0,1)⟩
+  exhaustive: "false"
+  channel: '"D"'
+  selfCount: "false"
+  windowLength: absent(|{}|)
+  loop: "false"
+  comparison: '"exact"'
+  maximumDistinct: absent(|{}|)
+  repeats: "true"
+  balancePairs: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  sumFree: absent(|{}|)
+layer: rule
 ---
 
-# Absent digits
+
+
+# Absent Digits
 
 None of the listed digits appears in the marked cells.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2. | Required. |
-| digits | The digits that must be absent, for example [2,4]. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2. | Required. |
+| digits | `list<digit>` | The digits that must be absent, for example [2,4]. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Defined by [digit-profile](digit-profile.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-excludes(cells,digits)
-```
+This is a bound shorthand for [digit-profile](digit-profile.md). Its header supplies every parameter of that rule.
 
 None of the listed face digits appears in the marked cells.
 This general authoring-library rule represents absence directly, independently of clue type or shading.
@@ -42,7 +60,7 @@ This general authoring-library rule represents absence directly, independently o
 ````markdown
 ---
 format: open-rules
-title: Absent digits example
+title: Absent Digits example
 setter: Example
 source: ""
 case: ""

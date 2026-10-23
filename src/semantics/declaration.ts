@@ -19,7 +19,8 @@ export function semanticParameters(ast: DeclarationAST): Record<string, unknown>
 
 export function semanticDeclaration(ast: DeclarationAST) {
   const reference=ast.kind.value, root='https://rules.sudoku-sleuth.com/';
-  const kind=reference.startsWith(root)?reference.slice(root.length,-3):reference;
+  const spelling=reference.startsWith(root)?reference.slice(root.length,-3):reference;
+  const kind=spelling==='killer-cage'?'cage':spelling;
   const parameters=semanticParameters(ast);
   const namedCells=ast.parameters.find(p=>['cells','line'].includes(p.name.value));
   if(namedCells) delete parameters[namedCells.name.value];

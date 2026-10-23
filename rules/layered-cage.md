@@ -11,6 +11,7 @@ parameters:
     description: The digits treated as the upper layer.
     default: Required.
     type: set<digit>
+layer: rule
 ---
 
 # Layered Cage
@@ -19,10 +20,10 @@ Each occupied row of the cage contains only upper digits or only other digits. E
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| upper | The digits treated as the upper layer. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| upper | `set<digit>` | The digits treated as the upper layer. | Required. |
 
 ## Maths
 

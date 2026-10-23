@@ -14,7 +14,7 @@ export function compileBoundAlias(page: PageSource, bindings: unknown, target: C
   // Compile the shorthand's own grammar without introducing a second definition.
   const stub = compilePageContract(page, prelude);
   if (!stub.value) return stub;
-  const environment = {...prelude.environment, symbols: {...prelude.environment.symbols, ...Object.fromEntries(stub.value.parameters.map(p => [p.name,p.type]))}};
+  const environment = {...prelude.environment, symbols: {...prelude.environment.symbols, ...Object.fromEntries(stub.value.parameters.map(p => [p.name,p.type]))}, play: new Set([...(prelude.environment.play ?? [])].filter(name => !stub.value!.parameters.some(p => p.name === name)))};
   const parsed = target.parameters.map(p => {
     const parsed = parseFormula(values[p.name] as string, {file:page.file});
     const span = bindingSpan(p.name);
@@ -30,7 +30,7 @@ export function compileBoundAlias(page: PageSource, bindings: unknown, target: C
   target.formulas.forEach(f => collect(f.ast));
   let serial = 0;
   for (const name of names.keys()) { let fresh: string; do { fresh = `boundAlias${serial++}`; } while (environment.symbols[fresh] || environment.terms[fresh]); names.set(name,fresh); }
-  const rename = (node: Expr): Expr => ({...node, ...(node.kind === 'name' && names.has(node.value!) ? {value:names.get(node.value!)} : {}), binders:node.binders?.map(b => ({...b,name:names.get(b.name)!})), children:node.children.map(rename)});
+  const rename = (node: Expr): Expr => ({...node, ...(node.kind === 'name' && names.has(node.value!) ? {value:names.get(node.value!)} : {}), binders:node.binders?.map(b => ({...b,sourceName:b.sourceName??b.name,name:names.get(b.name)!})), children:node.children.map(rename)});
   const formulas = [];
   for (const formula of target.formulas) {
     let ast = rename(formula.ast);

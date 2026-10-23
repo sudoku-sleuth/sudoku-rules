@@ -1,10 +1,11 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
-import { checkCaseReferences, compilePublicLibrary } from "../../src";
+import { checkCaseReferences} from "../../src";
 import { order, visibleCells, type FogFixture } from "./evaluate";
 
 const names = (await readdir("tests/fog")).filter(name => name.endsWith(".json")).sort();
-const pages = await Promise.all((await readdir("rules")).filter(name => name.endsWith(".md")).map(async name => ({ file: `rules/${name}`, text: await Bun.file(`rules/${name}`).text() })));
+const pages = publicPages;
 const library = compilePublicLibrary(pages);
 const fog = library.value!.features.find(feature => feature.header === "fog")!;
 

@@ -1,9 +1,9 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import { expect, test } from "bun:test";
-import { readdir } from "node:fs/promises";
-import { compilePublicLibrary, checkCaseReferences } from "../../src";
+import { checkCaseReferences } from "../../src";
 import { fragmentVerdict } from "../language/finite-fragment";
 
-const sources = await Promise.all((await readdir("rules")).filter(n => n.endsWith(".md")).map(async n => ({ file: `rules/${n}`, text: await Bun.file(`rules/${n}`).text() })));
+const sources = publicPages;
 const compiled = compilePublicLibrary(sources);
 expect(compiled.diagnostics).toEqual([]);
 const library = compiled.value!;

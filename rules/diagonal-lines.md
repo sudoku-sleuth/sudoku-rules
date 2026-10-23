@@ -11,6 +11,7 @@ parameters:
     description: The shortest diagonal covered by the rule.
     default: Required.
     type: number
+layer: rule
 ---
 
 # Diagonal Lines
@@ -19,10 +20,10 @@ Each sufficiently long diagonal either stays in one digit class or repeats compl
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| classes | The digit classes to use: parity, remainder or alphabet thirds. | Required. |
-| minLength | The shortest diagonal covered by the rule. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| classes | `ClassSystem` | The digit classes to use: parity, remainder or alphabet thirds. | Required. |
+| minLength | `number` | The shortest diagonal covered by the rule. | Required. |
 
 ## Maths
 
@@ -35,7 +36,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∧ ∀L∈boardDiagonals(): |L|>=maximumPair(3,minLength) →
   ((∃k∈classIds(classes): ∀c∈L: digitClass(classes,D(c))=k)
    ∨ (∀s∈[0,|L|-|classIds(classes)|+1):
-     distinctAt(window(L,|classIds(classes)|,s,false),λc:cell: digitClass(classes,D(c)))))
+     allDifferent(window(L,|classIds(classes)|,s,false),λc:cell: digitClass(classes,D(c)))))
 ```
 
 Every board diagonal of length at least max(3,minLength) is constant in class or has every class once in each window of class-count positions.

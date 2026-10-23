@@ -58,19 +58,23 @@ Adding a rule page supplies its grammar through these declarations. Run
 `src/declaration-library.ts`. `lint:declarations` checks that these contracts match
 the pages. Runtime parsing performs no filesystem access or URL loading.
 
-## Canonical definitions and bound shorthands
+## Predicates, blocks and rules
 
-`alias_of: target` retains the target's parameter contract. A parameter-bound shorthand also declares its own `parameters` and an `alias_bind` mapping. Bind every target parameter exactly once to a formula expression over the shorthand's inputs and shared prelude. Targets are canonical definitions; alias chains are rejected. Shorthands do not declare another formula.
+Predicates (`document: prelude`) supply functions and vocabulary, have no kind, and cannot be declared in a case file. Blocks (`layer: block`) are declarable typed constraints. Blocks define their meaning on predicates and serve multiple rules or general case-file composition. Named rules (`layer: rule`) either bind one block using `alias_of` and `alias_bind`, with their own setter-facing input contract, or own a formula directly. Bound declarations are never blocks. A public block with fewer than two named-rule users records its general composition purpose in a `composition` header field. Alias chains are rejected.
+
+`alias_of: target` retains the target's parameter contract. A bound declaration also declares its own `parameters` and an `alias_bind` mapping. Bind every target parameter exactly once to a formula expression over the declaration's inputs and shared prelude. Targets are canonical definitions; alias chains are rejected. Bindings do not declare another formula.
 
 ```yaml
-alias_of: pair
+layer: rule
+alias_of: monotone-line
 alias_bind:
-  cells: cells
-  relation: 'relationSpec(if colour="white" then "difference" else "ratio", if colour="white" then 1 else 2)'
-  channel: '"V"'
+  line: line
+  strict: 'false'
+  orientation: orientation
+  channel: channel
 ```
 
-Compilation checks binding types against the canonical parameter types, renames canonical locals to prevent capture, and checks the instantiated formula. The shorthand retains its own rule-line syntax. The public library's rules map includes compiled bound instantiations; its `shorthands` map records each canonical `target` and its `bindings`. The `aliases` map contains only exact renames, which retain the target contract. Look up a kind in `rules` first (including compiled shorthands); if absent, resolve it once through `aliases` and look up that canonical rule. Never follow a shorthand as a plain alias: doing so discards its bindings. Registry parameter contracts expose fixed page defaults as `default`; absent or board-dependent defaults remain omitted.
+Compilation checks binding types against the canonical parameter types, renames canonical locals to prevent capture, and checks the instantiated formula. The bound declaration retains its own rule-line syntax. The public library's `blocks` and `namedRules` maps expose the two declarable layers. Its historical `rules` map contains every declarable kind, including compiled bound instantiations; its `shorthands` map records each canonical `target` and its `bindings`. The `aliases` map contains only exact renames, which retain the target contract. Look up a kind in `rules` first (including compiled bindings); if absent, resolve it once through `aliases` and look up that canonical rule. Never follow a bound declaration as a plain alias: doing so discards its bindings. Registry parameter contracts expose fixed page defaults as `default`; absent or board-dependent defaults remain omitted.
 
 A required collection parameter can declare `empty_when: edges`. An empty authored list is then accepted when that other declared parameter is supplied. This permits `modular line [] edges ...` while keeping ordinary line declarations nonempty. The rule's formula validates the edges and their connectedness. Conditions still require a nonempty primary cell list; negation applies to the complete instance.
 
@@ -150,6 +154,52 @@ Unresolved or missing shared names are diagnosed at the supplying case parameter
 Shared selection references use `selectionRef`; Symbol House uses `symbols`
 and Mapped Values uses `values` for channel names. Published `selection`
 parameters remain PrefixSelection objects and `channel` parameters remain
-Channel values. Constructors, including Value Modifier, use `name`.
+Channel values. Shared-object constructors use `name`. Value Modifier owns a local existential mask and has no name parameter.
 Route Group requires at least two different names in `routes`. Cell Entries
 rejects the reserved names D and V.
+
+
+## Major-version migration
+
+The [1.0 migration](../docs/migration.md) rewrites every published 0.3 kind without splitting its whole-instance meaning. Blocks take explicit channels and occurrence policies; named rules retain their input contracts and former defaults. Migration chooses a named rule where one exists, otherwise a block with settings. Conditional source lines keep their bound declaration so the condition still reads the original primary cells. `migrationTable` records the output kind, canonical definition, form and meaning status for each old kind.
+
+`LookupQuery` carries cells, a one-based numeric index, target, channel and pair relation. Each query is counted separately. `AggregateOperand` carries occurrence order, channel, aggregate operation, repeat policy and optional slice/prefix selection. A zero coefficient does not disable operand validity.
+
+## Liar cells
+
+`liar-cells [groups [["r1c1",...],...]] [count 1] [values [1,...,9]]
+[distinctDigits true] [distinctValues true]` uses the existing named form.
+All arguments are named; there is no primary cell list. Defaults belong to the
+rule meaning and are not inserted by parsing or canonical writing. On a
+nonstandard board, omitted `groups` or `values` produces `E_CASE_PARAMETERS`.
+Nested group cells receive the usual bounds checks; counts use `position`,
+values use `list<number>`, and the two distinctness flags use `boolean`.
+No new token, condition or drawing metadata is introduced. `element` remains
+metadata; neither decoration nor a local `#id` identifies which cells lie.
+
+## False-clue counts
+
+`clue-count clues [{"id":"dot-a","rule":"kropki","args":{"cells":["r1c1","r1c2"],"colour":"black"}},...] comparison "exactly" count 1`
+counts complete false predicates. `comparison` also accepts `"at-least"` and
+`"at-most"`; count is a nonnegative integer. The nonempty clue list is one exact
+scope. Repeat the declaration per line or box; list all relevant marks for a
+grid-wide count. Segments or edges count separately only when explicitly listed.
+
+The scalar `clause` type carries owned `id`, `rule`, `args` records. IDs must be
+nonempty and unique within each list. Different IDs preserve repeated meanings
+as separate clues. Resolve each referenced published or case-local contract and
+check named arguments, defaults and board bounds before accepting the owner.
+Unknown external contracts are errors here, rather than deferred truths.
+Drawing metadata belongs in args. Decorations are not counted clues. Nested
+counts are checked recursively, to depth 32; IDs are local to each list. No
+instance truth lookup or executable formula string is introduced.
+
+`clueHolds` evaluates the complete instantiated predicate on the shared answer.
+The owner does not assert its children positively. Negation, including file-level
+`negate: all`, complements the owner once, without negating its children. Private
+existential witnesses keep their clause's quantifiers; D, V and other global
+answer channels remain shared. Counts precede formula deduplication. A count
+larger than the scope is accepted: exactly/at-least are unsatisfiable and at-most
+is vacuous. Conditions still require a primary cell list; a count owner has none.
+Finite semantic comparison leaves the whole owner uncovered.
+

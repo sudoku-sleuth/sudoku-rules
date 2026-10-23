@@ -11,6 +11,25 @@ parameters:
     description: The cells along the ray, nearest first.
     default: Required.
     type: list<cell>
+layer: rule
+alias_of: lookup
+alias_bind:
+  mode: '"queries"'
+  cells: orderedCells({})
+  cell: absent(boardCell(1,1))
+  sources: orderedCells({})
+  indexChannel: '"D"'
+  channel: '"D"'
+  offset: "0"
+  target: absent(0)
+  targetCell: absent(boardCell(1,1))
+  relation: relationSpec("difference",0)
+  queries: ⟨lookupQuery(ray,D(line[|line|-1]),D(line[0]),"D",relationSpec("difference",0)):i∈[0,1),|line|>0⟩
+  total: "1"
+  firstMatch: "false"
+  reverseRelation: "false"
+  increasing: line
+  nonempty: "true"
 ---
 
 # Pointing Thermo
@@ -19,21 +38,18 @@ Digits strictly increase from bulb to tip. Count outward along the ray by the ti
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| ray | The cells along the ray, nearest first. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| ray | `list<cell>` | The cells along the ray, nearest first. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [lookup](lookup.md) — `queries=⟨lookupQuery(ray,D(line[|line|-1]),D(line[0]),"D",relationSpec("difference",0)):i∈[0,1),|line|>0⟩; total=1; firstMatch=false; reverseRelation=false; increasing=line; nonempty=true`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|line|>0 ∧ (∀i∈[0,|line|-1): D(line[i])<D(line[i+1]))
-∧ let x=D(line[|line|-1]); 1<=x<=|ray| ∧ D(ray[x-1])=D(line[0])
-```
+
 
 Digits strictly increase along cells. The tip digit names a one-based position on ray whose digit equals the bulb digit. The named position must be within the ray.
 

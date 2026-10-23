@@ -11,30 +11,46 @@ parameters:
     description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
     default: Required.
     type: list<digit>
-alias_of: outside
+alias_of: digit-profile
 alias_bind:
-  cells: cells
-  digits: digits
+  cells: orderedCells({c∈cells:true})
+  classes: ⟨⟨d:i∈[0,1)⟩:d∈digits⟩
+  counts: ⟨multiplicity(digits,d):d∈digits⟩
+  channel: '"D"'
+  loop: "false"
+  selfCount: "false"
+  windowLength: absent(|{}|)
+  exhaustive: "false"
+  comparison: '"at-least"'
+  maximumDistinct: absent(|{}|)
+  repeats: "true"
+  balancePairs: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  sumFree: absent(|{}|)
+layer: rule
 ---
+
 
 # Quadruple
 
 The surrounding cells contain every listed digit, including the stated number of copies.
 
+The binding explicitly selects each cell once before counting digits.
+
 For a circle at a grid intersection, list the four touching cells. Listing a digit once requires at least one copy; listing it twice requires at least two copies. Additional copies and unlisted digits are allowed. An empty `digits` list imposes no restriction; an empty circle has no implied total or distinctness rule.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| digits | `list<digit>` | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
 
-## Maths
+## Definition
+
+Block: [digit-profile](digit-profile.md) — `cells=orderedCells({c∈cells:true}); classes=⟨⟨d:i∈[0,1)⟩:d∈digits⟩; counts=⟨multiplicity(digits,d):d∈digits⟩; channel="D"; loop=false; selfCount=false; windowLength=absent(|{}|); exhaustive=false; comparison="at-least"; maximumDistinct=absent(|{}|); repeats=true; balancePairs=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-This is a shorthand for [outside](outside.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
 For every listed digit d, its occurrences among cells are at least its multiplicity in digits. Extra copies and unlisted digits are allowed by this check.
 

@@ -15,6 +15,7 @@ parameters:
     description: The shaft cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+layer: rule
 ---
 
 # Arrow
@@ -29,11 +30,11 @@ When several shafts leave the same bulb, declare each shaft separately with the 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| partial | Whether the declaration supplies only a shaft fragment, for example under fog. | false (complete arrow). |
-| bulb | The bulb cells in decimal reading order, normally left to right or top to bottom. | Required. |
-| line | The shaft cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| partial | `boolean` | Whether the declaration supplies only a shaft fragment, for example under fog. | false (complete arrow). |
+| bulb | `list<cell>` | The bulb cells in decimal reading order, normally left to right or top to bottom. | Required. |
+| line | `path<cell>` | The shaft cells in order, for example r1c1-r1c2-r1c3. | Required. |
 
 ## Maths
 

@@ -1,10 +1,10 @@
 ---
-name: Killer cage
+name: Killer Cage
 url: https://rules.sudoku-sleuth.com/killer.md
 kind: killer
 alias_of: cage
 ---
 
-# Killer cage
+# Killer Cage
 
-Killer cage is an alias for [cage](https://rules.sudoku-sleuth.com/cage.md). It uses the same parameters and meaning.
+Killer Cage uses the parameters and meaning of [Cage](cage.md).

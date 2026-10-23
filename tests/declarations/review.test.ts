@@ -1,12 +1,14 @@
+import {compilePublicLibrary} from '../helpers/library';
 import { readdir } from 'node:fs/promises';
 import { caseExamples } from '../../scripts/lint-skill';
 import { expect, test } from 'bun:test';
-import { checkCaseReferences, compilePublicLibrary, normalise, parseDeclaration, printDeclaration } from '../../src';
+import { checkCaseReferences, normalise, parseDeclaration, printDeclaration } from '../../src';
 import { declarationLibrary } from '../../src/declaration-library';
 import { parameterGrammar } from '../../src/case-values';
 import { readSemanticFile } from '../../src/semantics/reader';
 import { caseBlocks } from '../../src/custom-definitions';
 import baseline from './legacy-readings.json';
+
 
 const source = (text: string) => ({file: 'review.rules.md', text});
 const file = (rules: string) => source(`---\nformat: open-rules\ntitle: Example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n---\n\n\`\`\`rules\n${rules}\n\`\`\`\n`);
@@ -45,7 +47,8 @@ test('1: unsupported semantics still checks the same parameter contracts', () =>
 });
 test('2: keyword forms include every additional declared parameter', async () => {
  const prelude = {file:'predicates.md', text:await Bun.file('rules/predicates.md').text()};
- const pair = {file:'pair.md', text:(await Bun.file('rules/pair.md').text()).replace('parameters:\n','parameters:\n  extra:\n    description: An extra value.\n    default: Required.\n    type: number\n')};
+ const baseline=await Bun.file('tests/fixtures/library-6d9e954.json').json();
+ const pair = {file:'pair.md', text:(baseline.pages.find((p:{file:string})=>p.file==='rules/pair.md').text).replace('parameters:\n','parameters:\n  extra:\n    description: An extra value.\n    default: Required.\n    type: number\n')};
  const compiled = compilePublicLibrary([prelude, pair]);
  expect(compiled.diagnostics).toEqual([]);
  const run = (tail: string) => checkCaseReferences(file(`sudoku 9x9\npair r1c1-r1c2 sum 3${tail}`), {...compiled.value!.registry, kinds:declarationLibrary.kinds, urls:declarationLibrary.urls});

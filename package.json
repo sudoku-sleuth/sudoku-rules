@@ -1,10 +1,12 @@
 {
   "name": "@sudoku-sleuth/open-rules",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "The Open Rules formula language and linter for Sudoku rule definitions.",
   "files": [
     "dist",
     "spec",
+    "docs",
+    "CHANGELOG.md",
     "rules",
     "LICENSE",
     "README.md"
@@ -37,14 +39,15 @@
     "lint:yaml": "bun scripts/lint-yaml.ts",
     "lint:spec": "bun scripts/lint-spec.ts",
     "lint:skill": "bun scripts/lint-skill.ts",
-    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill && bun run lint:declarations",
+    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill && bun run lint:declarations && bun run lint:library",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "build:package": "bun scripts/build-package.ts",
     "openrules": "bun src/cli.ts",
     "build": "bun scripts/build.ts",
     "generate:declarations": "bun scripts/declaration-library.ts",
-    "lint:declarations": "bun scripts/declaration-library.ts --check"
+    "lint:declarations": "bun scripts/declaration-library.ts --check",
+    "lint:library": "bun scripts/library-report.ts --check"
   },
   "dependencies": {
     "yaml": "2.9.1"

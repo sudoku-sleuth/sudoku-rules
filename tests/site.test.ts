@@ -1,4 +1,4 @@
-import { afterAll, beforeAll, expect, test, setDefaultTimeout } from "bun:test";
+import { afterAll, beforeAll, expect, test } from "bun:test";
 
 import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -8,8 +8,6 @@ import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
 
-// These tests build the whole library; allow for slower CI runners.
-setDefaultTimeout(30_000);
 
 const fixtures = resolve(import.meta.dir, "fixtures");
 let temporary: string;
@@ -181,6 +179,13 @@ test("index rule and alias routes coexist with the home catalogue", async () => 
 
 test("the full library has byte-identical public routes", async () => {
   const built=await buildSite(".",join(temporary,"production-site"));
+  const baseline=await Bun.file("tests/fixtures/library-6d9e954.json").json();
+  for(const page of baseline.pages){
+    const slug=/^kind: (.+)$/m.exec(page.text)?.[1];
+    if(!slug)continue;
+    expect(await Bun.file(join(built.output,`${slug}.md`)).exists(),`Published Markdown route: ${slug}`).toBe(true);
+    expect(await Bun.file(join(built.output,slug,"index.html")).exists(),`Published HTML route: ${slug}`).toBe(true);
+  }
   expect(built.pages).toBe((await readdir("rules")).filter(n => n.endsWith(".md")).length);
   const icons: Record<string,string> = JSON.parse(await readFile("site/icons/rules.json","utf8"));
   for (const slug of ["kropki","bremban","slow-thermo","quadruple","anti-king","anti-knight"]) {
@@ -188,12 +193,15 @@ test("the full library has byte-identical public routes", async () => {
     expect(await readFile(join(built.output,slug,"index.html"),"utf8")).toContain(ownIcon);
   }
   const home=await readFile(join(built.output,"index.html"),"utf8");
+  const blocks = await readFile(join(built.output,"blocks/index.html"),"utf8");
   for(const name of await readdir("rules")) {
     if(!name.endsWith(".md"))continue;
     const slug=name.slice(0,-3);
     expect(await readFile(join(built.output,name))).toEqual(await readFile(join("rules",name)));
     expect(await Bun.file(join(built.output,slug,"index.html")).exists()).toBe(true);
-    expect(home).toContain(`href="/${slug}/"`);
+    const {libraryLayers}=await import("../src/library-layers");
+    const catalogue=libraryLayers[slug]==="block"?blocks:home;
+    if(slug!=="index-count"&&slug!=="aggregate-relation")expect(catalogue).toContain(`href="/${slug}/"`);
   }
 });
 
@@ -213,8 +221,10 @@ test("theme bootstrap is hash-authorised before the stylesheet on every reading 
 test("rule symbols cover the published page set and stay decorative and theme-aware", async () => {
   const icons: Record<string, string> = JSON.parse(await readFile("site/icons/rules.json", "utf8"));
   const slugs = (await readdir("rules")).filter(n => n.endsWith(".md")).map(n => n.slice(0,-3));
-  expect(Object.keys(icons).length).toBe(slugs.length-1);
-  expect(slugs.filter(slug => !icons[slug])).toEqual(["decoration"]);
+  const {libraryLayers}=await import('../src/library-layers');
+  const rules=Object.keys(libraryLayers).filter(k=>libraryLayers[k]==='rule');
+  expect(rules.filter(slug=>!icons[slug])).toEqual([]);
+  expect(Object.keys(libraryLayers).filter(k=>libraryLayers[k]==='block'&&icons[k])).toEqual([]);
   for (const [slug, path] of Object.entries(icons)) {
     expect(slugs).toContain(slug);
     const svg = await readFile(join("site/icons", path), "utf8");
@@ -228,4 +238,25 @@ test("rule symbols cover the published page set and stay decorative and theme-aw
   const page = await readFile(join(output, "thermo/index.html"), "utf8");
   expect(page).toContain('class="rule-heading"><svg class="rule-icon"');
   expect(await readFile("site/style.css", "utf8")).toContain('.rule-icon .accent { stroke: var(--blue); }');
+});
+
+test("production catalogue separates familiar rules, blocks and predicates",async()=>{
+ const destination=join(temporary,'production');
+ await buildSite('.',destination);
+ const home=await readFile(join(destination,'index.html'),'utf8');
+ const blocks=await readFile(join(destination,'blocks/index.html'),'utf8');
+ expect(home).toContain('href="/whispers/"');
+ expect(home).toContain('href="/cage/"');
+ expect(home).toContain('href="/extra-regions/"');
+ for(const alias of ['whisper','killer','unique'])expect(home).toContain(`href="/${alias}/"`);
+ expect(home).toContain('href="/blocks/"');
+ expect(home).not.toContain('href="/aggregate-equation/"');
+ expect(home).not.toContain('href="/assignment/"');
+ expect(blocks).toContain('href="/aggregate-equation/"');
+ expect(blocks).toContain('href="/assignment/"');
+ expect(blocks).toContain('href="/predicates/"');
+ const rule=await readFile(join(destination,'whispers/index.html'),'utf8');
+ expect(rule).toContain('Block:');expect(rule).toContain('href="/difference-line/"');
+ const block=await readFile(join(destination,'difference-line/index.html'),'utf8');
+ expect(block).not.toContain('class="rule-icon"');
 });

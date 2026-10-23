@@ -24,23 +24,24 @@ parameters:
     type: PairRelation
     description: Relation on the expression results.
     default: difference 0 (equal).
+layer: block
 ---
 
 # Aggregate Equation
 
 Compare two arithmetic expressions built from aggregate operands. Each term multiplies an operand raised to a nonnegative integer power by its coefficient. Each side sums or multiplies its terms. A constant is a count operand on an empty list raised to power zero, multiplied by that constant. Empty sums are zero; empty products are one. Operand slices, prefixes, repeated occurrences and channels retain their shared meanings.
 
-[Aggregate Relation](aggregate-relation.md) is the shorthand with one term per side, coefficients and powers 1, sum on each side and the same relation.
+[Aggregate Relation](aggregate-equation.md) is the shorthand with one term per side, coefficients and powers 1, sum on each side and the same relation.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| left | Weighted, nonnegative integer powers of aggregate operands. | Required. |
-| right | The right expression. | Required. |
-| leftOperation | Combine left terms by sum or product. | sum. |
-| rightOperation | Combine right terms by sum or product. | sum. |
-| relation | Relation on the expression results. | difference 0 (equal). |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| left | `list<WeightedOperand>` | Weighted, nonnegative integer powers of aggregate operands. | Required. |
+| right | `list<WeightedOperand>` | The right expression. | Required. |
+| leftOperation | `enum{sum,product}` | Combine left terms by sum or product. | sum. |
+| rightOperation | `enum{sum,product}` | Combine right terms by sum or product. | sum. |
+| relation | `PairRelation` | Relation on the expression results. | difference 0 (equal). |
 
 ## Maths
 

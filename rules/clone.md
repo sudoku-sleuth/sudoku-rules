@@ -7,7 +7,19 @@ parameters:
     description: The marked cells, for example r1c1-r1c2-r2c2.
     default: Required.
     type: set<cell>
+alias_of: relation-scope
+alias_bind:
+  cells: cells
+  relations: ⟨relationSpec("difference",0):i∈[0,1)⟩
+  mode: '"all"'
+  move: '"orthogonal"'
+  anchors: "{}"
+  except: ⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩
+  negative: "false"
+  channel: '"D"'
+layer: rule
 ---
+
 
 # Clone
 
@@ -17,19 +29,19 @@ For cloned areas, write one declaration for each corresponding position across t
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Defined by [relation-scope](relation-scope.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀a,b ∈ cells: D(a)=D(b)
-```
+This is a bound shorthand for [relation-scope](relation-scope.md). Its header supplies every parameter of that rule.
 
 Every cell in the group contains the same digit.
 

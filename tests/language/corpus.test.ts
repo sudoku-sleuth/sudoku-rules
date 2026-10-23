@@ -1,6 +1,7 @@
+import {compilePrelude} from '../helpers/library';
 import { expect, test } from "bun:test";
 import { readdir } from "node:fs/promises";
-import { compileFeature, compilePage, compilePrelude, languageChecks, type Diagnostic } from "../../src/index";
+import { compileFeature, compilePage, languageChecks, type Diagnostic } from "../../src";
 
 interface Fixture { file: string; repair: string; mode: "page" | "prelude" | "public" | "feature"; code: string; diagnostics: Diagnostic[] }
 const manifest: Fixture[] = await Bun.file("tests/invalid/expected.json").json();

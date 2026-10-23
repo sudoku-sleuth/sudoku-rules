@@ -7,6 +7,7 @@ parameters:
     description: The base and tip cells of each arrow, one ordered pair per arrow.
     default: Required.
     type: list<list<cell>>
+layer: rule
 ---
 
 # Coordinate Arrows
@@ -15,9 +16,9 @@ The base and tip digits give the row and column of a cell, counted from 1. That 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| arrows | The base and tip cells of each arrow, one ordered pair per arrow. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| arrows | `list<list<cell>>` | The base and tip cells of each arrow, one ordered pair per arrow. | Required. |
 
 ## Maths
 

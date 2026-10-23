@@ -36,6 +36,8 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: block
+composition: Counts of arbitrary neighbour relations.
 ---
 
 # Neighbour Count
@@ -44,16 +46,16 @@ Count neighbours satisfying at least one relation with the origin. Each neighbou
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cell | The origin and first number in each comparison. | Required. |
-| scope | The bounded neighbour scope. | Required. |
-| move | Neighbour geometry. | orthogonal. |
-| includeSelf | Include the origin when it belongs to scope. | false. |
-| relations | Inclusive alternatives from origin to neighbour. | Required. |
-| total | Fixed count; otherwise read the origin. | Absent; use the origin number. |
-| exhaustive | Require every neighbour to match. | false. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cell | `cell` | The origin and first number in each comparison. | Required. |
+| scope | `set<cell>` | The bounded neighbour scope. | Required. |
+| move | `Move` | Neighbour geometry. | orthogonal. |
+| includeSelf | `boolean` | Include the origin when it belongs to scope. | false. |
+| relations | `list<PairRelation>` | Inclusive alternatives from origin to neighbour. | Required. |
+| total | `optional<position>` | Fixed count; otherwise read the origin. | Absent; use the origin number. |
+| exhaustive | `boolean` | Require every neighbour to match. | false. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 

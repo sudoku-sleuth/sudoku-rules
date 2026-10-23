@@ -15,6 +15,7 @@ parameters:
     description: The digit immediately below the marked digit.
     default: Required.
     type: digit
+layer: rule
 ---
 
 # Flat Mates
@@ -23,11 +24,11 @@ Every occurrence of the marked digit has the stated above digit immediately abov
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| digit | The specified digit. | Required. |
-| above | The digit immediately above the marked digit. | Required. |
-| below | The digit immediately below the marked digit. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| digit | `digit` | The specified digit. | Required. |
+| above | `digit` | The digit immediately above the marked digit. | Required. |
+| below | `digit` | The digit immediately below the marked digit. | Required. |
 
 ## Maths
 

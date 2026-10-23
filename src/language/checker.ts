@@ -8,7 +8,7 @@ export interface Environment { symbols: Record<string, Type>; terms: Record<stri
 export interface CheckedPrelude { environment: Environment; declarations: TypedDeclaration[] }
 const numeric = (type: Type) => ["number", "digit", "value", "position"].includes(type.name);
 const collections = ["path", "set", "list", "collection"];
-const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "string", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression"];
+const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "string", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression", "clause"];
 function same(a: Type, b: Type): boolean { return typeName(a) === typeName(b); }
 function assignable(actual: Type, expected: Type): boolean {
   if (same(actual, expected)) return true;
@@ -73,12 +73,19 @@ function inequality(node: Expr): Linear | undefined {
   if (result) result.strict = ["<", ">"].includes(node.value!);
   return result;
 }
-function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {remaining: 2000}): boolean {
+function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {remaining: 2000, keys: new WeakMap<Expr, string>()}): boolean {
   if (--work.remaining < 0 || depth > 8) return false;
+  // A proof revisits the same immutable fact nodes in many branches. Keep keys
+  // only for this proof, so callers may edit and check an AST again afterwards.
+  const exprKey = (node: Expr): string => {
+    let key = work.keys.get(node);
+    if (key === undefined) { key = expressionKey(node); work.keys.set(node, key); }
+    return key;
+  };
   if (goal.kind === "binary" && goal.value === "and") return goal.children.every(child => prove(child, facts, env, depth + 1, work));
-  if (facts.some(fact => expressionKey(fact) === expressionKey(goal))) return true;
-  const factKeys = new Set(facts.map(expressionKey));
-  if (facts.some(fact=>fact.kind==="boolean" && fact.value==="false" || fact.kind==="unary" && fact.value==="not" && factKeys.has(expressionKey(fact.children[0])))) return true;
+  const factKeys = new Set(facts.map(exprKey));
+  if (factKeys.has(exprKey(goal))) return true;
+  if (facts.some(fact=>fact.kind==="boolean" && fact.value==="false" || fact.kind==="unary" && fact.value==="not" && factKeys.has(exprKey(fact.children[0])))) return true;
   if (goal.kind === "boolean") return goal.value === "true";
   if (goal.kind === "unary" && goal.value === "not" && goal.children[0].kind === "boolean") return goal.children[0].value === "false";
   if (goal.kind === "binary" && goal.value === "or") return goal.children.some(child=>prove(child,facts,env,depth+1,work));
@@ -87,10 +94,10 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {r
     const term=env.terms[goal.children[0].value!];
     if (term?.body && term.result.name==="boolean" && prove(substitute(term.body,Object.fromEntries(term.parameters.map((p,i)=>[p.name,goal.children[i+1]]))),facts,env,depth+1,work)) return true;
   }
-  if (goal.kind === "binary" && goal.value === "=" && goal.children[0].kind === "unary" && goal.children[0].value === "floor" && expressionKey(goal.children[0].children[0]) === expressionKey(goal.children[1])) {
+  if (goal.kind === "binary" && goal.value === "=" && goal.children[0].kind === "unary" && goal.children[0].value === "floor" && exprKey(goal.children[0].children[0]) === exprKey(goal.children[1])) {
     if (integerSyntax(goal.children[1], env)) return true;
     for (const fact of facts) {
-      if (fact.kind !== "binary" || fact.value !== "in" || expressionKey(fact.children[0]) !== expressionKey(goal.children[1])) continue;
+      if (fact.kind !== "binary" || fact.value !== "in" || exprKey(fact.children[0]) !== exprKey(goal.children[1])) continue;
       const domain = fact.children[1] as TypedExpr;
       if (domain.type && collections.includes(domain.type.name) && ["position", "digit"].includes(domain.type.args?.[0].name ?? "")) return true;
     }
@@ -111,9 +118,9 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {r
       return term?.body && numeric(term.result) ? substitute(term.body,Object.fromEntries(term.parameters.map((p,i)=>[p.name,node.children[i+1]]))) : node;
     };
     const left = unfold(a), right = unfold(b);
-    if (left.kind==="binary" && left.value==="mod" && ["<",">"].includes(goal.value!) && expressionKey(left.children[1])===expressionKey(right)) return true;
+    if (left.kind==="binary" && left.value==="mod" && ["<",">"].includes(goal.value!) && exprKey(left.children[1])===exprKey(right)) return true;
     if (right.kind==="binary" && right.value==="mod" && ["<=",">="].includes(goal.value!) && left.kind==="number" && left.value==="0") return true;
-    if (expressionKey(left)!==expressionKey(a) || expressionKey(right)!==expressionKey(b)) {
+    if (exprKey(left)!==exprKey(a) || exprKey(right)!==exprKey(b)) {
       if (prove(binary([">",">="].includes(goal.value!) ? (goal.value===">"?"<":"<=") : goal.value!,left,right),facts,env,depth+1,work)) return true;
     }
   }
@@ -129,6 +136,7 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {r
   if (wanted) {
     if (!wanted.coefficients.size) return wanted.strict ? wanted.constant < 0n : wanted.constant <= 0n;
     const key = (term: Linear) => JSON.stringify([...term.coefficients].sort(([a], [b]) => a.localeCompare(b)).map(([k, v]) => [k, String(v)]));
+    const wantedKey = key(wanted);
     const knownInequalities: Linear[] = [];
     for (const fact of facts) {
       const alternatives = fact.kind === "binary" && fact.value === "=" ? [binary("<=", fact.children[0], fact.children[1]), binary(">=", fact.children[0], fact.children[1])] : [fact];
@@ -138,7 +146,7 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {r
           knownInequalities.push(given);
           if (given.strict && alternative.children.every(child => integerSyntax(child,env))) knownInequalities.push({...given,constant:given.constant+1n,strict:false});
         }
-        if (given && key(given) === key(wanted)) {
+        if (given && key(given) === wantedKey) {
           if (given.constant > wanted.constant || given.constant === wanted.constant && (given.strict || !wanted.strict)) return true;
           if (given.strict && !wanted.strict && given.constant + 1n >= wanted.constant && alternative.children.every(child => integerSyntax(child, env)) && goal.children.every(child => integerSyntax(child, env))) return true;
         }
@@ -152,7 +160,7 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {r
       for (const [atom,value] of coefficients) if (!value) coefficients.delete(atom);
       const combined = {coefficients,constant:a.constant+b.constant,strict:a.strict||b.strict};
       if (!combined.coefficients.size && (combined.constant>0n || combined.constant===0n && combined.strict)) return true;
-      if (key(combined)===key(wanted) && (combined.constant>wanted.constant || combined.constant===wanted.constant && (combined.strict||!wanted.strict))) return true;
+      if (key(combined)===wantedKey && (combined.constant>wanted.constant || combined.constant===wanted.constant && (combined.strict||!wanted.strict))) return true;
     }
   }
   if (goal.kind === "binary" && goal.value === "!=" && goal.children[1].kind === "number" && goal.children[1].value === "0") {
@@ -176,8 +184,8 @@ function prove(goal: Expr, facts: Expr[], env: Environment, depth = 0, work = {r
       expanded.push(...factsFrom(substitute(term.body, Object.fromEntries(term.parameters.map((parameter, i) => [parameter.name, fact.children[i + 1]])))));
     }
   }
-  const known = new Set(facts.map(expressionKey));
-  const added = expanded.filter(fact => !known.has(expressionKey(fact)));
+  const known = new Set(facts.map(exprKey));
+  const added = expanded.filter(fact => !known.has(exprKey(fact)));
   return added.length ? prove(goal, [...facts, ...added], env, depth + 1, work) : false;
 }
 const nameNode = (name: string, span: Span): Expr => ({ kind: "name", value: name, span, children: [] });

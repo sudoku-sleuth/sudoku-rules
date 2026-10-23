@@ -4,14 +4,18 @@ url: https://rules.sudoku-sleuth.com/lookup.md
 kind: lookup
 shape: Cells
 parameters:
+  mode:
+    type: enum{single,count,queries}
+    description: One dynamic source, a list of dynamic sources, or explicit queries.
+    default: single.
   cells:
     type: list<cell>
     description: The cells in lookup order, starting at position one.
-    default: Required.
+    default: Empty list.
   cell:
-    type: cell
+    type: optional<cell>
     description: The cell whose number gives the lookup position.
-    default: Required.
+    default: Absent; required in single mode.
   indexChannel:
     type: Channel
     description: The channel supplying the position.
@@ -23,7 +27,7 @@ parameters:
   offset:
     type: position
     description: Add this offset to the index number before looking up the position.
-    default: 0.
+    default: 0
   target:
     type: optional<number>
     description: A fixed comparison target, taking precedence over targetCell.
@@ -36,38 +40,70 @@ parameters:
     type: PairRelation
     description: The relation from the looked-up number to the target number.
     default: difference 0 (equal).
+  sources:
+    type: list<cell>
+    description: Source occurrences in count mode.
+    default: Empty list.
+  queries:
+    type: list<LookupQuery>
+    description: Ordered lookups, each with its own cells, one-based index, target, channel and relation.
+    default: Empty list.
+  total:
+    type: position
+    description: Required number of successful queries.
+    default: "1."
+  firstMatch:
+    type: boolean
+    description: Exclude earlier matching targets in each query.
+    default: false.
+  increasing:
+    type: list<cell>
+    description: A source path required to increase in printed digits.
+    default: Empty list.
+  reverseRelation:
+    type: boolean
+    description: Compare the query target with the looked-up value.
+    default: false.
+  nonempty:
+    type: boolean
+    description: Require an increasing source path to be nonempty.
+    default: false.
+layer: block
 ---
 
 # Lookup
 
-A number gives a position in an ordered cell list. The number at that position obeys the stated relation with a fixed target, another cell, or the index cell itself.
-
-Positions start at one. Add `offset` before looking up the position. The result must be a whole number within the list. `indexChannel` supplies the position; `channel` supplies the compared numbers. Both read printed digits by default.
-
-[Index](index.md), [Index Line](index-line.md), [Numbered Room](numbered-room.md) and [Pointing Arrow](pointing-arrow.md) use the same bounded lookup with their own strips and targets.
+Look up one-based positions in ordered cell lists and count successful relations. Single and count modes read indices from source cells; queries mode accepts explicit indices and targets. Single mode needs `cell`; count and queries modes use their own sources and queries. Repeated sources and queries count separately. Fractional and out-of-range indices miss. Targets may be fixed numbers, another cell, or each source itself.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The lookup cells in order. | Required. |
-| cell | The index cell. | Required. |
-| indexChannel | Channel supplying the position. | D. |
-| channel | Channel supplying compared numbers. | D. |
-| offset | Offset added to the index. | 0. |
-| target | Fixed comparison target. | Absent; use targetCell or the index cell. |
-| targetCell | Cell supplying the target. | Absent; use the index cell. |
-| relation | Shared relation from lookup result to target. | difference 0 (equal). |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| mode | `enum{single,count,queries}` | One dynamic source, a list of dynamic sources, or explicit queries. | single. |
+| cells | `list<cell>` | The cells in lookup order, starting at position one. | Empty list. |
+| cell | `optional<cell>` | The cell whose number gives the lookup position. | Absent; required in single mode. |
+| indexChannel | `Channel` | The channel supplying the position. | D. |
+| channel | `Channel` | The channel supplying the looked-up and target numbers. | D. |
+| offset | `position` | Add this offset to the index number before looking up the position. | 0 |
+| target | `optional<number>` | A fixed comparison target, taking precedence over targetCell. | Absent; use targetCell or the index cell. |
+| targetCell | `optional<cell>` | The cell supplying the comparison target. | Absent; use the index cell. |
+| relation | `PairRelation` | The relation from the looked-up number to the target number. | difference 0 (equal). |
+| sources | `list<cell>` | Source occurrences in count mode. | Empty list. |
+| queries | `list<LookupQuery>` | Ordered lookups, each with its own cells, one-based index, target, channel and relation. | Empty list. |
+| total | `position` | Required number of successful queries. | 1. |
+| firstMatch | `boolean` | Exclude earlier matching targets in each query. | false. |
+| increasing | `list<cell>` | A source path required to increase in printed digits. | Empty list. |
+| reverseRelation | `boolean` | Compare the query target with the looked-up value. | false. |
+| nonempty | `boolean` | Require an increasing source path to be nonempty. | false. |
 
 ## Maths
 
-Class: **first-order**.
+Class: **with aggregates**.
 
-The [shared predicates](predicates.md) define bounded lookup and each pair relation.
+The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-let n=read(cell,indexChannel)+offset;
-⌊n⌋=n ∧ ∃k∈[1,|cells|+1): k=n ∧ lookupRelated(cells,k,if present(target) then unwrap(target) else if present(targetCell) then read(unwrap(targetCell),channel) else read(cell,channel),channel,relation)
+(mode="single" → present(cell)) ∧ let activeQueries=if mode="queries" then queries else ⟨lookupQuery(cells,read(s,indexChannel)+offset,if present(target) then unwrap(target) else if present(targetCell) then read(unwrap(targetCell),channel) else read(s,channel),channel,relation):s∈(if mode="single" then ⟨unwrap(cell):i∈[0,1),present(cell)⟩ else sources)⟩; (nonempty → |increasing|>0) ∧ (∀i∈[0,|increasing|-1): D(increasing[i])<D(increasing[i+1])) ∧ total=countWhere(activeQueries,λq:LookupQuery:(if reverseRelation then ⌊q.index⌋=q.index ∧ (∃k∈[1,|q.cells|+1): k=q.index ∧ pairRelation(q.relation,q.target,read(lookup(q.cells,k),q.channel))) else queryHit(q)) ∧ (firstMatch → ∀i∈[0,|q.cells|): i<q.index-1 → ¬pairRelation(q.relation,read(q.cells[i],q.channel),q.target)))
 ```
 
 ## Example

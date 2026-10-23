@@ -16,6 +16,18 @@ parameters:
     type: optional<list<list<cell>>>
     description: All edges of one connected network.
     default: Absent; use the ordered line.
+layer: rule
+alias_of: number-property
+alias_bind:
+  operand: aggregateOperand(orderedCells(line),"D","sum",true)
+  property: '"prime"'
+  argument: "2"
+  reverse: "false"
+  remainder: absent(0)
+  alternating: "true"
+  line: line
+  edges: edges
+  loop: loop
 ---
 
 # Primality
@@ -26,22 +38,19 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
-| edges | All edges of one connected network. | Absent; use the ordered line. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| loop | `boolean` | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| edges | `optional<list<list<cell>>>` | All edges of one connected network. | Absent; use the ordered line. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [number-property](number-property.md) — `operand=aggregateOperand(orderedCells(line),"D","sum",true); property="prime"; argument=2; reverse=false; remainder=absent(0); alternating=true; line=line; edges=edges; loop=loop`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-lineGeometry(line,edges,loop) ∧ (∀c∈line:D(c)>1) ∧ (present(edges) → ∀c∈graphVertices(unwrap(edges)):D(c)>1)
-∧ ∀W∈lineWindows(line,edges,2,loop): |W|=2 → ¬(prime(D(W[0]))↔prime(D(W[1])))
-```
+
 
 Every digit is greater than one. Neighbouring path positions alternate prime and composite digits. Include last/first when loop is true.
 

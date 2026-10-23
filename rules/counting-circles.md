@@ -9,15 +9,24 @@ parameters:
     type: set<cell>
 alias_of: digit-profile
 alias_bind:
-  cells: 'orderedCells(cells)'
-  classes: '⟨⟨0:i∈[0,0)⟩:j∈[0,0)⟩'
-  counts: '⟨|C|:i∈[0,0)⟩'
-  exhaustive: 'false'
+  cells: orderedCells(cells)
+  classes: ⟨⟨0:i∈[0,0)⟩:j∈[0,0)⟩
+  counts: ⟨|C|:i∈[0,0)⟩
+  exhaustive: "false"
   channel: '"D"'
-  selfCount: 'true'
-  windowLength: 'absent(|C|)'
-  loop: 'false'
+  selfCount: "true"
+  windowLength: absent(|C|)
+  loop: "false"
+  comparison: '"exact"'
+  maximumDistinct: absent(|{}|)
+  repeats: "true"
+  balancePairs: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  sumFree: absent(|{}|)
+layer: rule
 ---
+
+
+
 
 # Counting Circles
 
@@ -27,13 +36,14 @@ This is [Digit Profile](digit-profile.md) with cells listed once, channel D, sel
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 
-## Maths
+## Definition
 
-This is a shorthand for [digit-profile](digit-profile.md). Its header binds the general rule parameters.
+Block: [digit-profile](digit-profile.md) — `cells=orderedCells(cells); classes=⟨⟨0:i∈[0,0)⟩:j∈[0,0)⟩; counts=⟨|C|:i∈[0,0)⟩; exhaustive=false; channel="D"; selfCount=true; windowLength=absent(|C|); loop=false; comparison="exact"; maximumDistinct=absent(|{}|); repeats=true; balancePairs=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩`.
+
 
 ## Example
 

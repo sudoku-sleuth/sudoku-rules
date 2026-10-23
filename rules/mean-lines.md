@@ -7,7 +7,17 @@ parameters:
     description: The cells in each line, in order.
     default: Required.
     type: list<list<cell>>
+alias_of: aggregate-groups
+alias_bind:
+  groups: lines
+  operation: '"mean"'
+  channel: '"D"'
+  repeats: "true"
+  line: absent(orderedCells(C))
+  combine: "false"
+layer: rule
 ---
+
 
 # Mean Lines
 
@@ -15,19 +25,19 @@ Every listed line has the same average digit.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| lines | The cells in each line, in order. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| lines | `list<list<cell>>` | The cells in each line, in order. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [aggregate-groups](aggregate-groups.md) — `groups=lines; operation="mean"; channel="D"; repeats=true; line=absent(orderedCells(C)); combine=false`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀A,B ∈ lines: |B| × sum_D(A) = |A| × sum_D(B)
-```
+This is a bound shorthand for [aggregate-groups](aggregate-groups.md). Its header supplies every parameter of that rule.
 
 Every listed line has the same average digit. Each line contains at least one cell.
 

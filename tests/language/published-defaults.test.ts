@@ -1,6 +1,6 @@
+import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {expect,test} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,type PageSource} from '../../src';
+import {type PageSource} from '../../src';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 interface Example {kind:string;canonical:string;source:PageSource;parameters:Record<string,unknown>;assignments:{expected:boolean;faces:Record<string,number>}[];board?:{rows:number;cols:number;symbols:number[]}}
 // Formula/header snapshots and example assignments from main at the recorded revision.
@@ -8,11 +8,12 @@ interface Example {kind:string;canonical:string;source:PageSource;parameters:Rec
 const fixture: {revision:string;prelude:PageSource;pages:Example[]}=await Bun.file('tests/fixtures/published-defaults.json').json();
 const old=compilePublicLibrary([fixture.prelude,...fixture.pages.map(p=>p.source)]);
 if(!old.value)throw Error(JSON.stringify(old.diagnostics));
-const current=compilePublicLibrary(await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})))).value!;
+const current=compilePublicLibrary(publicPages).value!;
 const defaults=(kind:string)=>Object.fromEntries(Object.entries(current.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([name,p])=>[name,p.default]));
 for(const example of fixture.pages)test(`published defaults: ${example.kind} matches main examples or the recorded Region Sum correction`,()=>{
  const before=old.value!.rules.get(example.canonical)!;
- const after=current.rules.get(current.aliases.get(example.kind)??example.kind)!;
+ const kind=current.registry.kindByUrl!.get(`https://rules.sudoku-sleuth.com/${example.kind}.md`)!;
+ const after=current.rules.get(current.aliases.get(kind)??kind)!;
  expect(example.assignments.length).toBe(2);
  for(const assignment of example.assignments){
   const cells=Object.keys(assignment.faces);
@@ -34,7 +35,7 @@ for(const example of fixture.pages)test(`published defaults: ${example.kind} mat
 
 
   const baseline=fragmentVerdict(before.formulas[0].ast,old.value!.prelude,before.parameters,fragment);
-  const actual=fragmentVerdict(after.formulas[0].ast,current.prelude,after.parameters,{...fragment,parameters:{...defaults(example.kind),...fragment.parameters}});
+  const actual=fragmentVerdict(after.formulas[0].ast,current.prelude,after.parameters,{...fragment,parameters:{...defaults(kind),...fragment.parameters}});
   expect(baseline).toBe(assignment.expected);
   // Main's Region Sum example split r1c1-r1c2-r1c3 inside one box.
   // The documented formula tightening now rejects that non-maximal split,

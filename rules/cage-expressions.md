@@ -11,6 +11,7 @@ parameters:
     description: Whether different letters must have different values.
     default: Required.
     type: boolean
+layer: rule
 ---
 
 # Cage Expressions
@@ -19,10 +20,10 @@ Each cage total equals its expression. Letters stand for whole numbers and keep 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cages | The cells in each cage and its expression or relation, as stated in the definition. | Required. |
-| distinct | Whether different letters must have different values. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cages | `list<record{cells:set<cell>,expression:expression}>` | The cells in each cage and its expression or relation, as stated in the definition. | Required. |
+| distinct | `boolean` | Whether different letters must have different values. | Required. |
 
 ## Maths
 
@@ -33,7 +34,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ```text
 ∃letterValues:list<position>:
   |letterValues|=letterCount({g.expression:g∈cages}) ∧
-  (∀g∈cages: defined(g.expression,letterValues) ∧ eval(g.expression,letterValues)=sum_D(g.cells))
+  (∀g∈cages: defined(g.expression,letterValues) ∧ eval(g.expression,letterValues)=aggregate(g.cells,"D","sum"))
   ∧ (distinct → ∀i,j∈[0,|letterValues|): i!=j → letterValues[i]!=letterValues[j])
 ```
 

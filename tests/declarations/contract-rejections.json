@@ -324,7 +324,7 @@
     {
       "code": "W_CASE_HOUSES",
       "check": "W_CASE_HOUSES",
-      "message": "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board).",
+      "message": "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with extra-regions (or use sudoku 9x9 on a standard board).",
       "span": {
         "file": "tests/invalid/cases/missing-houses.rules.md",
         "start": {
@@ -469,66 +469,9 @@
   "tests/valid/cases/custom-off-board.rules.md": [],
   "tests/valid/cases/duplicate-definition.rules.md": [],
   "tests/valid/cases/missing-houses.rules.md": [],
-  "rules/constructed-regions.md#example-0": [
-    {
-      "code": "E_CASE_PARAMETERS",
-      "check": "E_CASE_PARAMETERS",
-      "message": "borders must not be empty.",
-      "span": {
-        "file": "rules/constructed-regions.md#example-0",
-        "start": {
-          "offset": 260,
-          "line": 19,
-          "column": 36
-        },
-        "end": {
-          "offset": 262,
-          "line": 19,
-          "column": 38
-        }
-      }
-    }
-  ],
-  "rules/cage-shapes.md#example-0": [
-    {
-      "code": "E_CASE_PARAMETERS",
-      "check": "E_CASE_PARAMETERS",
-      "message": "free must not be empty.",
-      "span": {
-        "file": "rules/cage-shapes.md#example-0",
-        "start": {
-          "offset": 298,
-          "line": 19,
-          "column": 82
-        },
-        "end": {
-          "offset": 300,
-          "line": 19,
-          "column": 84
-        }
-      }
-    }
-  ],
-  "rules/negative.md#example-0": [
-    {
-      "code": "E_CASE_PARAMETERS",
-      "check": "E_CASE_PARAMETERS",
-      "message": "except must not be empty.",
-      "span": {
-        "file": "rules/negative.md#example-0",
-        "start": {
-          "offset": 221,
-          "line": 13,
-          "column": 59
-        },
-        "end": {
-          "offset": 223,
-          "line": 13,
-          "column": 61
-        }
-      }
-    }
-  ],
+  "rules/constructed-regions.md#example-0": [],
+  "rules/cage-shapes.md#example-0": [],
+  "rules/negative.md#example-0": [],
   "plugins/open-rules/skills/open-rules/references/examples.md#example-0": [],
   "plugins/open-rules/skills/open-rules/references/examples.md#example-1": [],
   "plugins/open-rules/skills/open-rules/references/examples.md#example-2": [
@@ -551,5 +494,25 @@
       }
     }
   ],
-  "tests/invalid/cases/unknown-definition-field.rules.md": []
+  "tests/invalid/cases/unknown-definition-field.rules.md": [],
+  "rules/value-modifier.md#example-0": [
+    {
+      "code": "E_CASE_PARAMETERS",
+      "check": "E_CASE_PARAMETERS",
+      "message": "Unknown parameter name; use the parameters on the rule page.",
+      "span": {
+        "file": "rules/value-modifier.md#example-0",
+        "start": {
+          "offset": 283,
+          "line": 25,
+          "column": 16
+        },
+        "end": {
+          "offset": 287,
+          "line": 25,
+          "column": 20
+        }
+      }
+    }
+  ]
 }

@@ -5,22 +5,26 @@ kind: symbol-house
 shape: Regions
 parameters:
   symbols:
-    shared: {role: read, type: symbol}
+    shared:
+      role: read
+      type: symbol
     type: string
-    description: "Symbol channel name; D reads one face digit per cell."
+    description: Symbol channel name; D reads one face digit per cell.
     default: '"D".'
   houses:
     type: list<set<cell>>
-    description: "Groups whose symbol multiplicities are constrained."
-    default: "Required."
+    description: Groups whose symbol multiplicities are constrained.
+    default: Required.
   digits:
     type: list<digit>
-    description: "Distinct symbols to count."
-    default: "Required."
+    description: Distinct symbols to count.
+    default: Required.
   counts:
     type: list<position>
-    description: "Exact counts in the same order as digits."
-    default: "Required."
+    description: Exact counts in the same order as digits.
+    default: Required.
+layer: block
+composition: Multiplicity constraints over arbitrary symbol channels and houses.
 ---
 
 # Symbol House
@@ -29,12 +33,12 @@ Each supplied house has exactly the stated multiplicity of each listed symbol ac
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| symbols | Symbol channel name; D reads one face digit per cell. | "D". |
-| houses | Groups whose symbol multiplicities are constrained. | Required. |
-| digits | Distinct symbols to count. | Required. |
-| counts | Exact counts in the same order as digits. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| symbols | `string` | Symbol channel name; D reads one face digit per cell. | "D". |
+| houses | `list<set<cell>>` | Groups whose symbol multiplicities are constrained. | Required. |
+| digits | `list<digit>` | Distinct symbols to count. | Required. |
+| counts | `list<position>` | Exact counts in the same order as digits. | Required. |
 
 ## Maths
 
@@ -43,7 +47,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-|digits|=|counts| ∧ distinctAt(digits,λd:digit:d) ∧ (∀d∈digits:d∈𝔄) ∧ (∀n∈counts:n>=0) ∧ ∀G∈houses: (∀c∈G:∀d∈cellSymbols(symbols,c):d∈digits) ∧ (∀i∈[0,|digits|): 0<=i ∧ i<|counts| ∧ (Σ_{c∈G}countWhere(cellSymbols(symbols,c),λd:digit:d=digits[i]))=counts[i])
+|digits|=|counts| ∧ allDifferent(digits,λd:digit:d) ∧ (∀d∈digits:d∈𝔄) ∧ (∀n∈counts:n>=0) ∧ ∀G∈houses: (∀c∈G:∀d∈cellSymbols(symbols,c):d∈digits) ∧ (∀i∈[0,|digits|): 0<=i ∧ i<|counts| ∧ (Σ_{c∈G}countWhere(cellSymbols(symbols,c),λd:digit:d=digits[i]))=counts[i])
 ```
 
 ## Example

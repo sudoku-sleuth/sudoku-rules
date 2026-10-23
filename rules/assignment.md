@@ -5,22 +5,26 @@ kind: assignment
 shape: Global
 parameters:
   name:
-    shared: {role: construct, type: assignment}
+    shared:
+      role: construct
+      type: assignment
     type: string
-    description: "The shared assignment name."
-    default: "Required."
+    description: The shared assignment name.
+    default: Required.
   size:
     type: position
-    description: "Number of ordered slots."
-    default: "Required."
+    description: Number of ordered slots.
+    default: Required.
   labels:
     type: position
-    description: "Number of available labels."
-    default: "Required."
+    description: Number of available labels.
+    default: Required.
   bijective:
     type: boolean
-    description: "Require a bijection between slots and labels."
-    default: "false."
+    description: Require a bijection between slots and labels.
+    default: false.
+layer: block
+composition: Shared label assignments over arbitrary ordered slots.
 ---
 
 # Assignment
@@ -29,12 +33,12 @@ Assign a zero-based label to each ordered slot. The named list has exactly size 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | The shared assignment name. | Required. |
-| size | Number of ordered slots. | Required. |
-| labels | Number of available labels. | Required. |
-| bijective | Require a bijection between slots and labels. | false. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| name | `string` | The shared assignment name. | Required. |
+| size | `position` | Number of ordered slots. | Required. |
+| labels | `position` | Number of available labels. | Required. |
+| bijective | `boolean` | Require a bijection between slots and labels. | false. |
 
 ## Maths
 
@@ -43,7 +47,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-boundedAssignment(assignmentAnswer(name),size,labels,bijective)
+(((((size >= 0) and (labels >= 0)) and (|assignmentAnswer(name)| = size)) and forall x∈assignmentAnswer(name): ((0 <= x) and (x < labels))) and (bijective implies ((size = labels) and allDifferent(assignmentAnswer(name),λx:position:x))))
 ```
 
 ## Example

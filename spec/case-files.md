@@ -155,7 +155,7 @@ route-clue route "trail" relations [{"op":"difference","value":1}]
 All three lines constrain one ordered route. Independent route existentials
 would allow the total and step clues to choose different routes. A custom
 formula can reuse `routeAnswer("trail")` with existing shared predicates, such
-as `consecutiveValues(routeAnswer("trail"),"D",false)`. Network and partition
+as `valueSet(routeAnswer("trail"),"D",false,"consecutive")`. Network and partition
 readers compose in the same way. The primary Regions input remains separate
 from every named constructed partition.
 
@@ -217,3 +217,5 @@ Shared constructors use `name`. Readers use `route`, `network`, `partitionRef`,
 use PrefixSelection objects; published `channel` parameters use Channel values.
 An empty Region Partition name selects a local existential partition, without a
 shared binding; Constructed Regions binds this form.
+
+A required collection parameter may declare `allow_empty: true` when its page documents the empty collection meaning. The input must still be supplied; the checker accepts an explicitly empty collection.

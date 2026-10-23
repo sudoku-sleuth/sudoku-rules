@@ -1,3 +1,4 @@
+import {legacyRuleRenames} from "./migration-data.js";
 import { checkSharedAnswers } from './shared-answers.js';
 import { compileBoundAlias } from './bound-alias.js';
 import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
@@ -146,7 +147,10 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
             else if (url && registry.urls.has(url.href)) {
                 const positive = declaration.negations.length % 2 === 0;
                 const house = new URL(url.href).pathname.split("/").at(-1);
-                if (positive && !declaration.condition && (house === "unique.md" || house === "sudoku.md" && standard(declaration))) hasHouse = true;
+                const data=declarationParameters(declaration);
+                const relations=data.relations as {op?:string;value?:unknown}[]|undefined;
+                const relationHouse=house === "relation-scope.md" && data.mode === "all" && data.negative === true && (!data.channel || data.channel === "D") && (!data.except || Array.isArray(data.except) && data.except.length===0) && relations?.length===1 && relations[0].op==="difference" && (relations[0].value===0 || relations[0].value===0n);
+                if (positive && !declaration.condition && (house === "unique.md" || house === "extra-regions.md" || relationHouse || house === "sudoku.md" && standard(declaration))) hasHouse = true;
                 references.push({kind, url: url.href, span});
                 if (registry.parameters?.has(url.href)) {
                     errors.push(...checkParameterAST(declaration, span, registry.parameters.get(url.href)!, board.board));
@@ -158,18 +162,10 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
             } else errors.push(diagnostic("E_KIND_UNKNOWN", span, `${kind} has no definition in this library; use a declared kind or a full URL for another rule.`));
         }
     }
-    errors.push(...checkSharedAnswers(declarations.flatMap(declaration => {
-        const reference = references.find(r => r.span === declaration.kind.span);
-        if (!reference) return [];
-        const custom = resolveCustom(reference.kind) ?? resolveCustom(reference.url);
-        return [{declaration, kind: custom ? "" : registry.kindByUrl?.get(reference.url) ?? reference.kind,
-            contract: custom ? customParameterContract(custom) : registry.parameters?.get(reference.url), custom}];
-    }), registry.prelude ?? defaultCasePrelude()));
     const explicitBoard = object(metadata.board) ? metadata.board : {};
     const hasRegions = [metadata.regions, explicitBoard.regions].some(regions => Array.isArray(regions) && regions.length > 0);
     if (registry.parameters && hasRegions && !hasHouse)
-        errors.push(diagnostic("W_CASE_HOUSES", field(explicitBoard.regions !== undefined ? "board" : "regions"), "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with unique (or use sudoku 9x9 on a standard board)."));
-    for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
+        errors.push(diagnostic("W_CASE_HOUSES", field(explicitBoard.regions !== undefined ? "board" : "regions"), "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with extra-regions (or use sudoku 9x9 on a standard board)."));
     if (registry.features?.length) {
         const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};
         const written = parsedLines.map(({declaration})=>dimensions(declaration)).find(Boolean);
@@ -180,11 +176,62 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     if (!found)
         errors.push(diagnostic("E_RULES_REQUIRED", location(page, offset, offset), "Add a fenced rules block containing the puzzle's rule references."));
     const publishedKind = (ast: DeclarationAST) => references.find(r => r.span.start.offset === ast.kind.span.start.offset)?.url;
+    const ownedClues: Parameters<typeof checkSharedAnswers>[0] = [];
+    const validateClues = (ast: DeclarationAST, depth = 0): void => {
+        if (depth > 32) { errors.push(diagnostic("E_CASE_PARAMETERS", ast.span, "Clue counts may nest at most 32 levels.")); return; }
+        const count = ast.parameters.find(p => p.name.value === "count");
+        if (typeof count?.value.value === "number" && count.value.value < 0)
+            errors.push(diagnostic("E_CASE_PARAMETERS", count.value.span, "A false-clue count must be nonnegative."));
+        const clues = ast.parameters.find(p => p.name.value === "clues")?.value;
+        const ids = new Set<string>();
+        for (const node of clues?.children ?? []) {
+            if (!object(node.value) || typeof node.value.rule !== "string" || !object(node.value.args)) continue;
+            const record = node.value;
+            if (ids.has(String(record.id))) errors.push(diagnostic("E_CASE_PARAMETERS", node.span, "Use distinct clue IDs within each count."));
+            ids.add(String(record.id));
+            const reference = record.rule as string;
+            const local = resolveCustom(reference);
+            let url: string | undefined;
+            try { url = root ? new URL(reference.endsWith(".md") || /^https?:/.test(reference) ? reference : `${reference}.md`, root).href : undefined; } catch {}
+            const definition = local ?? (url ? resolveCustom(url) : undefined);
+            const contract = definition ? customParameterContract(definition) : url ? registry.parameters?.get(url) : undefined;
+            if (!contract) { errors.push(diagnostic("E_CASE_PARAMETERS", node.span, `Resolve the complete rule contract for ${reference} before counting it.`)); continue; }
+            if (url === "https://rules.sudoku-sleuth.com/decoration.md") { errors.push(diagnostic("E_CASE_PARAMETERS", node.span, "Decoration is not a counted clue.")); continue; }
+            if (definition) usedCustom.add(definition.url);
+            const args = node.fields?.find(f => f.name.value === "args")?.value;
+            const nested: DeclarationAST = {kind:{value:reference,span:node.span}, negations:[], span:node.span,
+                parameters:(args?.fields ?? []).map(f => ({name:f.name,value:f.value,span:f.span}))};
+            errors.push(...checkParameterAST(nested, node.span, contract, board.board));
+            ownedClues.push({declaration:nested,kind:definition?'':registry.kindByUrl?.get(url!)??reference,contract,custom:definition});
+            const line = url ? registry.lines?.get(url) : undefined;
+            if (line) {
+                const data = record.args as Record<string, unknown>;
+                const cells = data[line.cells.name];
+                const parameter = line.parameter;
+                const selection = data[parameter.name];
+                const keyword = parameter.tag && object(selection) ? selection[parameter.tag] : selection;
+                const operands = typeof keyword === "string" ? parameter.keywords[keyword] : undefined;
+                if (!Array.isArray(cells) || cells.length !== line.cells.count || !operands ||
+                    operands.some(o => !object(selection) || !Number.isInteger(selection[o.field])))
+                    errors.push(diagnostic("E_CASE_PARAMETERS", node.span, "Use the referenced rule's cell count and whole-number keyword operands."));
+            }
+            if (url === "https://rules.sudoku-sleuth.com/clue-count.md") validateClues(nested, depth + 1);
+        }
+    };
+    for (const ast of declarations) if (publishedKind(ast) === "https://rules.sudoku-sleuth.com/clue-count.md") validateClues(ast);
+    errors.push(...checkSharedAnswers([...ownedClues,...declarations.flatMap(declaration => {
+        const reference = references.find(r => r.span === declaration.kind.span);
+        if (!reference) return [];
+        const custom = resolveCustom(reference.kind) ?? resolveCustom(reference.url);
+        return [{declaration, kind: custom ? "" : registry.kindByUrl?.get(reference.url) ?? reference.kind,
+            contract: custom ? customParameterContract(custom) : registry.parameters?.get(reference.url), custom}];
+    })], registry.prelude ?? defaultCasePrelude()));
     const decorations = declarations.filter(ast => publishedKind(ast) === "https://rules.sudoku-sleuth.com/decoration.md");
     for (const ast of decorations) {
         if (ast.negations.length || ast.condition)
             errors.push(diagnostic("E_CASE_PARAMETERS", ast.condition?.span ?? ast.negations[0].span, "Decoration carries no rule; omit negation and conditions."));
     }
+    for (const [url, definition] of custom.definitions) if (!usedCustom.has(url)) errors.push(diagnostic("E_CUSTOM_DEFINITION", definition.span, `Reference ${url} from a rules declaration or remove its unused definition.`));
     const warnings: Diagnostic[] = [];
     for (const decoration of decorations) {
         const data = declarationParameters(decoration, "cells");
@@ -220,19 +267,22 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
 export interface PublicLibrary {
     prelude: CheckedPrelude;
     rules: Map<string, CompiledPage>;
+    blocks: Map<string, CompiledPage>;
+    namedRules: Map<string, CompiledPage>;
     aliases: Map<string, string>;
     shorthands: Map<string, {target: string; bindings: Record<string, string>}>;
     documents: number;
     features: CompiledFeature[];
     registry: RuleRegistry;
 }
-export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary> {
+// Batch callers can reuse source-keyed prelude checks through preludeCompiler.
+export function compilePublicLibrary(pages: PageSource[], preludeCompiler = compilePrelude): Result<PublicLibrary> {
     const headers = new Map(pages.map(page => [page.file, readHeader(page)]));
     const diagnostics = [...headers.values()].flatMap(result => result.diagnostics);
     const shared = pages.filter(page => headers.get(page.file)?.value?.metadata.document === "prelude");
     if (shared.length !== 1)
         return { diagnostics: [...diagnostics, diagnostic("E_SIGNATURE_REQUIRED", location(pages[0] ?? { file: "<library>", text: "" }, 0, 0), "Declare exactly one shared definitions page with document: prelude.")] };
-    const parsed = compilePrelude(shared[0]);
+    const parsed = preludeCompiler(shared[0]);
     diagnostics.push(...parsed.diagnostics);
     if (!parsed.value)
         return { diagnostics };
@@ -252,6 +302,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
                 return [parameter.name, {type: parameter.type, required: /^Required\b/.test(String(declaration.default)),
                     ...declaredDefault(declaration.default, parameter.type, parsed.value!.environment.types ?? {}),
                     ...(object(declaration.shared) ? {shared: declaration.shared as unknown as import("./case-values.js").SharedParameter} : {}),
+                    ...(declaration.allow_empty === true ? {allowEmpty: true} : {}),
                     ...(typeof declaration.empty_when === "string" ? {emptyWhen: declaration.empty_when} : {})}];
             }),
         ]);
@@ -287,7 +338,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
                 }
                 else if (metadata.document === "feature" && formulaBlocks(page).length) diagnostics.push(diagnostic("E_FORMULA_SYNTAX",field("document"),"A setup feature page declares formulas only with domain: play-state; otherwise write its maths in a math block."));
                 if (metadata.document === "syntax" && formulaBlocks(page).length) {
-                    const checked = compilePrelude(page);
+                    const checked = preludeCompiler(page);
                     diagnostics.push(...checked.diagnostics);
                 }
             }
@@ -303,7 +354,11 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         registry.kinds.add(kind);
         if (typeof metadata.url === "string")
             registry.urls.add(metadata.url);
+        if (metadata.layer !== undefined && !["block", "rule"].includes(String(metadata.layer)))
+            diagnostics.push(diagnostic("E_HEADER_TYPE", field("layer"), "A declarable page has layer: block or layer: rule."));
         const alias = metadata.alias_of ?? metadata.aliasOf;
+        if (metadata.layer === "block" && alias !== undefined)
+            diagnostics.push(diagnostic("E_ALIAS_TARGET", field("layer"), "A building block owns a formula; use layer: rule for a bound declaration."));
         if (metadata.alias_bind !== undefined && alias === undefined)
             diagnostics.push(diagnostic("E_ALIAS_TARGET", field("alias_bind"), "alias_bind needs alias_of naming a canonical rule."));
         if (alias !== undefined) {
@@ -325,6 +380,11 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
     for (const page of pages) {
         const metadata = headers.get(page.file)?.value?.metadata;
         if (!metadata || metadata.alias_bind === undefined) continue;
+        if (metadata.layer === "rule") {
+            const targetPage = pages.find(p => headers.get(p.file)?.value?.metadata.kind === metadata.alias_of);
+            if (targetPage && headers.get(targetPage.file)?.value?.metadata.layer !== "block")
+                diagnostics.push(diagnostic("E_ALIAS_TARGET", headers.get(page.file)!.value!.field("alias_of"), "A named rule must bind a building block directly."));
+        }
         const target = rules.get(String(metadata.alias_of ?? metadata.aliasOf));
         if (!target) continue;
         const header = headers.get(page.file)!.value!;
@@ -334,7 +394,7 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
         if (compiled.value && typeof metadata.kind === "string") register(metadata.kind, metadata, compiled.value);
     }
     for (const [kind, target] of [...aliases, ...[...shorthands].map(([kind, s]) => [kind, s.target] as const)]) {
-        if (!rules.has(target) || aliases.has(target) || shorthands.has(target)) {
+        if (!rules.has(target) || aliases.has(target) || (shorthands.has(kind) && shorthands.has(target))) {
             const page = pages.find(page => headers.get(page.file)?.value?.metadata.kind === kind)!;
             diagnostics.push(diagnostic("E_ALIAS_TARGET", headers.get(page.file)!.value!.field(headers.get(page.file)!.value!.metadata.alias_of !== undefined ? "alias_of" : "aliasOf"), `The alias ${kind} must point to an existing rule definition; ${target} is missing, invalid or another alias.`));
         }
@@ -349,7 +409,27 @@ export function compilePublicLibrary(pages: PageSource[]): Result<PublicLibrary>
             if (declaration) registry.lines!.set(metadata.url, declaration);
             const parameters = typeof targetUrl === "string" ? registry.parameters!.get(targetUrl) : undefined;
             if (parameters) registry.parameters!.set(metadata.url, parameters);
+            if (target && targetUrl) {
+                registry.kindByUrl!.set(metadata.url, target);
+                registry.sharedNames!.set(metadata.kind, registry.sharedNames!.get(target) ?? {});
+            }
         }
     }
-    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, aliases, shorthands, documents, features, registry }, diagnostics: [] };
+    // Legacy spellings load through migration contracts, without adding rule pages
+    // or formula definitions to the current library.
+    for (const [oldKind,target] of Object.entries(legacyRuleRenames)) {
+        if (registry.kinds.has(oldKind) || !registry.kinds.has(target)) continue;
+        const oldUrl = `https://rules.sudoku-sleuth.com/${oldKind}.md`;
+        const targetUrl = `https://rules.sudoku-sleuth.com/${target}.md`;
+        const contract = registry.parameters!.get(targetUrl);
+        if (!contract) continue;
+        registry.kinds.add(oldKind);
+        registry.urls.add(oldUrl);
+        registry.kindByUrl!.set(oldUrl,target);
+        registry.parameters!.set(oldUrl,contract);
+        const line = registry.lines!.get(targetUrl);
+        if (line) registry.lines!.set(oldUrl,line);
+        registry.sharedNames!.set(oldKind,registry.sharedNames!.get(target) ?? {});
+    }
+    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, blocks: new Map([...rules].filter(([kind]) => pages.some(p => {const m=headers.get(p.file)?.value?.metadata;return m?.kind===kind && m.layer==="block";}))), namedRules: new Map([...rules].filter(([kind]) => pages.some(p => {const m=headers.get(p.file)?.value?.metadata;return m?.kind===kind && m.layer==="rule";}))), aliases, shorthands, documents, features, registry }, diagnostics: [] };
 }

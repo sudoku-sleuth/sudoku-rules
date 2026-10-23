@@ -134,7 +134,7 @@ export function ruleShape(metadata: Metadata) {
   const keys = Object.keys(parameters ?? {});
   const kind = String(metadata.kind);
   if (["pair", "kropki", "negative"].includes(kind)) return "Edges";
-  if (["constructed-regions", "unique"].includes(kind)) return "Regions";
+  if (["constructed-regions", "unique", "extra-regions"].includes(kind)) return "Regions";
   if (["arrow", "double-arrow", "coordinate-arrows", "hidden-modular", "run-sum"].includes(kind)) return "Lines";
   if (["little-killer", "sandwich", "x-sum", "skyscraper", "numbered-room", "outside", "ordered-block", "doll-sum", "pointing-arrow"].includes(kind)) return "Outside";
   if (["sudoku", "anti-king", "anti-knight", "diagonal", "diagonal-lines", "flat-mates", "index", "magic-square", "rotational-sums", "scoped-move", "value-modifier", "window-classes", "yin-yang"].includes(kind)) return "Global";
@@ -155,7 +155,7 @@ export function validateAliases(pages: {slug: string; metadata: Metadata; body: 
     const target = page.metadata.alias_of ?? page.metadata.aliasOf;
     if (target === undefined) continue;
     const definition = bySlug.get(String(target));
-    if (!definition?.metadata.kind || definition.metadata.alias_of !== undefined || definition.metadata.aliasOf !== undefined) throw new Error(`${page.slug}: alias target ${target} must be an existing definition, not an alias`);
+    if (!definition?.metadata.kind || (definition.metadata.alias_of !== undefined || definition.metadata.aliasOf !== undefined) && definition.metadata.alias_bind === undefined) throw new Error(`${page.slug}: alias target ${target} must be an existing definition, not an alias`);
     if (/^\s*```(?:text|openrules)\s*$/m.test(page.body)) throw new Error(`${page.slug}: alias pages must not redefine a formula`);
   }
 }

@@ -3,6 +3,21 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  "index-count": pending("Legacy Index Count has moved to Lookup; bounded count lookups are not lowered."),
+  "aggregate-relation": pending("Legacy Aggregate Relation has moved to Aggregate Equation; general aggregate comparisons are not lowered."),
+  "clue-count": pending("Counts of owned complete clue truths are not lowered."),
+  "liar-cells": pending("Shared liar-cell choices and independent effective-value assignments are not lowered."),
+  "mirrored-pairs": pending("The declarable block has no dedicated finite lowering."),
+  "endpoint-range": pending("The declarable block has no dedicated finite lowering."),
+  "selected-stretch": pending("The declarable block has no dedicated finite lowering."),
+  "monotone-line": pending("The declarable block has no dedicated finite lowering."),
+  "extra-regions": pending("The declarable block has no dedicated finite lowering."),
+  "neighbour-extremum": pending("The declarable block has no dedicated finite lowering."),
+
+  xv: pending("The XV mark shorthand has no dedicated finite lowering."),
+  "value-set": pending("Whole-set consecutive and nonconsecutive value conditions are not lowered."),
+  "class-pattern": pending("General class windows on ordered lines and networks are not lowered."),
+  "aggregate-groups": pending("Aggregate group comparisons are not lowered."),
   "selection": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "marking-relation": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "battenburg": pending("Shared selections, assignments and symbol or value channels are not lowered."),
@@ -16,7 +31,6 @@ export const declarationRegistry = {
   "symbol-house": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "relation-scope": pending("Scoped alternative relations and incident-edge selection are not lowered."),
   "local-sequence": pending("Directed transitions, divisor sequences and recurrences are not lowered."),
-  "index-count": pending("Counts of bounded answer-dependent index hits are not lowered."),
   "coordinate-count": pending("Counts of transformed coordinate hits are not lowered."),
   "aggregate-equation": pending("Weighted powers and products of selected aggregates are not lowered."),
   "subset-total": pending("Existence or exclusion of bounded subset totals are not lowered."),
@@ -35,7 +49,6 @@ export const declarationRegistry = {
   "region-clue": pending("Clues on a shared region partition are not lowered."),
 
   lookup: pending("Channel-dependent bounded lookup relations are not lowered."),
-  "aggregate-relation": pending("Selected aggregate operand expressions are not lowered."),
   "difference-line": pending("Common or distinct edge differences and signed steps are not lowered."),
   "split-pea": pending("Reversible decimal endpoint readings are not lowered."),
   "prefix-sum": pending("Answer-dependent stopping prefixes are not lowered."),
@@ -54,6 +67,7 @@ export const declarationRegistry = {
   "absent-digits": pending("Forbidden digit membership is not lowered."),
   cage: lowered,
   killer: lowered,
+  "killer-cage": lowered,
   "cage-shapes": pending("Hidden connected cage witnesses are not lowered."),
   "close-whispers": lowered,
   "flat-mates": pending("Guarded neighbours above and below are not lowered."),

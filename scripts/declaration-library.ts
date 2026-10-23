@@ -1,5 +1,5 @@
 import { readdir } from 'node:fs/promises';
-import { compilePublicLibrary } from '../src/documents';
+import { readHeader, compilePublicLibrary } from '../src/documents';
 const pages=await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).sort().map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
 const compiled=compilePublicLibrary(pages);
 if(!compiled.value) throw Error(JSON.stringify(compiled.diagnostics));
@@ -12,3 +12,10 @@ if(process.argv.includes('--check')) {
  if(await Bun.file('src/declaration-library.ts').text()!==output) {console.error('Declaration library is stale; run bun scripts/declaration-library.ts.');process.exit(1);}
 } else await Bun.write('src/declaration-library.ts',output);
 console.log(`${registry.kinds.size} declaration contracts ${process.argv.includes('--check')?'verified':'generated'}`);
+
+const headers=pages.map(page=>readHeader(page).value!.metadata).filter(m=>typeof m.kind==='string');
+const layers=Object.fromEntries(headers.map(m=>[m.kind,m.layer]));
+const homes=Object.fromEntries(headers.map(m=>[m.kind,m.alias_of??m.kind]));
+const layerOutput=`// Generated from public page headers by scripts/declaration-library.ts.\nexport const libraryLayers: Record<string, 'block'|'rule'> = ${JSON.stringify(layers,null,2)};\nexport const blockHomes: Record<string,string> = ${JSON.stringify(homes,null,2)};\n`;
+if(process.argv.includes('--check')) {if(await Bun.file('src/library-layers.ts').text()!==layerOutput)throw Error('Run bun run generate:declarations to update library layers.');}
+else await Bun.write('src/library-layers.ts',layerOutput);

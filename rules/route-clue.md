@@ -5,7 +5,9 @@ kind: route-clue
 shape: Lines
 parameters:
   route:
-    shared: {role: read, type: route}
+    shared:
+      role: read
+      type: route
     type: string
     description: The shared route name.
     default: Required.
@@ -32,7 +34,9 @@ parameters:
   length:
     type: position
     description: Window length, independent of class count.
-    default: '3.'
+    default: "3."
+layer: block
+composition: Numeric clues over shared constructed routes.
 ---
 
 # Route Clue
@@ -41,15 +45,15 @@ Apply numeric clues to a shared route. Every step satisfies an inclusive relatio
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| route | The shared route name. | Required. |
-| channel | Channel supplying route numbers. | D. |
-| relations | Inclusive alternatives required on every directed step. | Empty list; no step relation. |
-| total | Required sum of visited numbers. | Absent; no sum condition. |
-| distinct | Require all visited numbers to differ. | false. |
-| classes | Each full window must contain one number from each listed class. | Absent; no class windows. |
-| length | Window length, independent of class count. | 3. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| route | `string` | The shared route name. | Required. |
+| channel | `Channel` | Channel supplying route numbers. | D. |
+| relations | `list<PairRelation>` | Inclusive alternatives required on every directed step. | Empty list; no step relation. |
+| total | `optional<number>` | Required sum of visited numbers. | Absent; no sum condition. |
+| distinct | `boolean` | Require all visited numbers to differ. | false. |
+| classes | `optional<list<list<number>>>` | Each full window must contain one number from each listed class. | Absent; no class windows. |
+| length | `position` | Window length, independent of class count. | 3. |
 
 ## Maths
 

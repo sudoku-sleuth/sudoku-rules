@@ -3,10 +3,6 @@ name: Value Modifier
 url: https://rules.sudoku-sleuth.com/value-modifier.md
 kind: value-modifier
 parameters:
-  name:
-    description: "The modifier name: doubler or negator."
-    default: Required.
-    type: enum{doubler,negator}
   factor:
     description: The multiplier for a modified digit.
     default: Required.
@@ -32,6 +28,8 @@ parameters:
     description: Whether modified cells must contain different digits.
     default: Required.
     type: boolean
+layer: block
+composition: Compose modified value channels with configurable group counts.
 ---
 
 # Value Modifier
@@ -40,15 +38,14 @@ Choose modified cells according to the stated group counts. Their values are the
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | The modifier name: doubler or negator. | Required. |
-| factor | The multiplier for a modified digit. | Required. |
-| offset | The amount added after multiplication. | Required. |
-| exactly | The cells in each group and the exact number that must be modified. | Required. |
-| count | The number of cells or occurrences to count. | Required. |
-| atMostOne | The cells in each group that may contain at most one modified cell. | Required. |
-| distinct | Whether modified cells must contain different digits. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| factor | `number` | The multiplier for a modified digit. | Required. |
+| offset | `number` | The amount added after multiplication. | Required. |
+| exactly | `list<set<cell>>` | The cells in each group and the exact number that must be modified. | Required. |
+| count | `position` | The number of cells or occurrences to count. | Required. |
+| atMostOne | `list<set<cell>>` | The cells in each group that may contain at most one modified cell. | Required. |
+| distinct | `boolean` | Whether modified cells must contain different digits. | Required. |
 
 ## Maths
 
@@ -59,8 +56,8 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ```text
 ∃M:set<cell>: M⊆C ∧
 (∀G∈exactly: |G∩M|=count) ∧ (∀G∈atMostOne: |G∩M|<=1)
-∧ (distinct → distinct_D(M))
-∧ (∀c∈C: (c∈M → V(c)=factor*D(c)+offset) ∧ (c∉M → V(c)=D(c)))
+∧ (distinct → repeatPolicy(M,"D",false))
+∧ (∀c∈C: (c∈M → V(c)=affineValue(c,factor,offset)) ∧ (c∉M → V(c)=D(c)))
 ∧ (∀meaning∈ValuedRuleMeanings: meaning)
 ```
 
@@ -93,7 +90,7 @@ board:
 ---
 
 ```rules
-value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"],["r1c2"]] count 1 atMostOne [] distinct true
+value-modifier factor 2 offset 0 exactly [["r1c1"],["r1c2"]] count 1 atMostOne [] distinct true
 ```
 ````
 

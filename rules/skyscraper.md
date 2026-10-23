@@ -15,6 +15,22 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: rule
+alias_of: blocked-sight
+alias_bind:
+  cell: absent(boardCell(1,1))
+  rays: ⟨cells:i∈[0,1)⟩
+  blockers: "{}"
+  includeBlocker: "false"
+  includeOrigin: "false"
+  channel: channel
+  offset: "0"
+  output: '"count"'
+  records: "true"
+  total: some(visible)
+  blocking: '"listed"'
+  targetCells: orderedCells({})
+  occurrences: "true"
 ---
 
 # Skyscraper
@@ -23,21 +39,19 @@ Read from the clue. A digit is visible when it is greater than every digit befor
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| visible | The number of digits visible from the clue. | Required. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| visible | `position` | The number of digits visible from the clue. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [blocked-sight](blocked-sight.md) — `cell=absent(boardCell(1,1)); rays=⟨cells:i∈[0,1)⟩; blockers={}; includeBlocker=false; includeOrigin=false; channel=channel; offset=0; output="count"; records=true; total=some(visible); blocking="listed"; targetCells=orderedCells({}); occurrences=true`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|visibleRecords(cells,channel)|=visible
-```
+
 
 Record-high visibility counts a number only when it exceeds every earlier number.
 

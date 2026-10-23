@@ -7,7 +7,21 @@ parameters:
     description: "The digit classes to use: parity, remainder or alphabet thirds."
     default: Required.
     type: ClassSystem
+alias_of: class-pattern
+alias_bind:
+  line: ⟨c:c∈orderedCells(C),false⟩
+  edges: absent(⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩)
+  loop: "false"
+  classification: if classes="entropy" then "entropy" else "residue"
+  modulus: if classes="parity" then 2 else 3
+  length: "3"
+  geometry: '"squares"'
+  mode: '"cover"'
+  fixedClass: absent(|{}|)
+  channel: '"D"'
+layer: rule
 ---
+
 
 # Window Classes
 
@@ -17,19 +31,19 @@ Use `classes "entropy"` for global entropy and `classes "mod3"` for global modul
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| classes | The digit classes to use: parity, remainder or alphabet thirds. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| classes | `ClassSystem` | The digit classes to use: parity, remainder or alphabet thirds. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Defined by [class-pattern](class-pattern.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-(classes!="entropy" ∨ (|𝔄|>0 ∧ |𝔄| mod 3=0)) ∧ ∀r∈[0,rows-1): ∀k∈[0,cols-1): ∀j∈classIds(classes): ∃c∈window2(r,k): digitClass(classes,D(c))=j
-```
+This is a bound shorthand for [class-pattern](class-pattern.md).
 
 Every 2×2 board window contains all classes named by classes at least once.
 

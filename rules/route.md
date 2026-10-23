@@ -5,7 +5,9 @@ kind: route
 shape: Lines
 parameters:
   name:
-    shared: {role: construct, type: route}
+    shared:
+      role: construct
+      type: route
     type: string
     description: The shared route name.
     default: Required.
@@ -28,7 +30,7 @@ parameters:
   minimum:
     type: position
     description: Minimum number of visited cells.
-    default: '1.'
+    default: "1."
   maximum:
     type: optional<position>
     description: Maximum number of visited cells.
@@ -61,6 +63,8 @@ parameters:
     type: boolean
     description: Allow crossings between straight steps of any length.
     default: false.
+layer: block
+composition: Named path construction with configurable steps and endpoints.
 ---
 
 # Route
@@ -71,22 +75,22 @@ A long step passing through a visited cell is allowed by `crossings false` when 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | The shared route name. | Required. |
-| scope | Cells the route may use. | Required. |
-| move | Allowed step geometry. | orthogonal. |
-| loop | Require a simple closed cycle. | false. |
-| cover | Visit every cell in scope. | false. |
-| minimum | Minimum number of visited cells. | 1. |
-| maximum | Maximum number of visited cells. | Absent; use scope size. |
-| startCell | Required first cell of an open route. | Absent; either endpoint. |
-| endCell | Required last cell of an open route. | Absent; either endpoint. |
-| through | Cells that must be visited. | Empty set. |
-| requiredEdges | Undirected edges the route must use. | Empty list. |
-| forbiddenEdges | Undirected edges the route must avoid. | Empty list. |
-| noTouch | Forbid this move between nonconsecutive route cells. | Absent; no additional touch condition. |
-| crossings | Allow crossings between straight steps of any length. | false. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| name | `string` | The shared route name. | Required. |
+| scope | `set<cell>` | Cells the route may use. | Required. |
+| move | `Move` | Allowed step geometry. | orthogonal. |
+| loop | `boolean` | Require a simple closed cycle. | false. |
+| cover | `boolean` | Visit every cell in scope. | false. |
+| minimum | `position` | Minimum number of visited cells. | 1. |
+| maximum | `optional<position>` | Maximum number of visited cells. | Absent; use scope size. |
+| startCell | `optional<cell>` | Required first cell of an open route. | Absent; either endpoint. |
+| endCell | `optional<cell>` | Required last cell of an open route. | Absent; either endpoint. |
+| through | `set<cell>` | Cells that must be visited. | Empty set. |
+| requiredEdges | `list<list<cell>>` | Undirected edges the route must use. | Empty list. |
+| forbiddenEdges | `list<list<cell>>` | Undirected edges the route must avoid. | Empty list. |
+| noTouch | `optional<Move>` | Forbid this move between nonconsecutive route cells. | Absent; no additional touch condition. |
+| crossings | `boolean` | Allow crossings between straight steps of any length. | false. |
 
 ## Maths
 

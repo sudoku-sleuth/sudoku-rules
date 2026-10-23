@@ -11,7 +11,16 @@ parameters:
     description: The cells in each cage and its expression or relation, as stated in the definition.
     default: Required.
     type: list<set<cell>>
+alias_of: aggregate-equation
+alias_bind:
+  left: ⟨weightedOperand(aggregateOperand(if |cages|=2 then orderedCells(cages[0]) else ⟨c:c∈orderedCells(C),false⟩,"D","sum",true),1,1):termIndex∈[0,1)⟩
+  right: ⟨weightedOperand(aggregateOperand(if |cages|=2 then orderedCells(cages[1]) else ⟨c:c∈orderedCells(C),false⟩,"D","sum",true),1,1):termIndex∈[0,1)⟩
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: if |cages|=2 then relation else relationSpec("difference",-1)
+layer: rule
 ---
+
 
 # Cage Pair
 
@@ -19,20 +28,20 @@ The totals of the two cages obey the stated relationship.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| relation | The relationship to enforce: its operation and any required value, for example {"op":"difference","value":1}. | Required. |
-| cages | The cells in each cage and its expression or relation, as stated in the definition. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| relation | `PairRelation` | The relationship to enforce: its operation and any required value, for example {"op":"difference","value":1}. | Required. |
+| cages | `list<set<cell>>` | The cells in each cage and its expression or relation, as stated in the definition. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Defined by [aggregate-equation](aggregate-equation.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|cages|=2 ∧ pairRelation(relation,sum_D(cages[0]),sum_D(cages[1]))
-```
+This is a bound shorthand for [aggregate-equation](aggregate-equation.md). Its header supplies every parameter of that rule.
 
 The supplied relation holds between the two cage digit totals. Repeat policy belongs to separate cage rules.
 

@@ -1,20 +1,26 @@
-import {expect,test} from 'bun:test';
-import {readdir} from 'node:fs/promises';
-import {compilePublicLibrary,normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
+import {compilePublicLibrary,publicPages} from '../helpers/library';
+import {formulaNotation} from "../../src/formula-notation";
+import {substituteFormula,foldFormula} from "../../src/formula-substitution";
+import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
+import {expect,test,afterAll} from 'bun:test';
+import {normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
 import {caseExamples} from '../../scripts/lint-skill';
 import {declaredDefault} from '../../src/case-values';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
-const sources=await Promise.all((await readdir('rules')).filter(n=>n.endsWith('.md')).map(async n=>({file:`rules/${n}`,text:await Bun.file(`rules/${n}`).text()})));
+const sources = publicPages;
 const compiled=compilePublicLibrary(sources);
 if(!compiled.value)throw Error(JSON.stringify(compiled.diagnostics));
 const library=compiled.value;
+const assignmentMath=formulaNotation(foldFormula(substituteFormula(library.blocks.get('assignment')!.formulas[0].ast,new Map(Object.entries({name:'"colours"',size:'2',labels:'2',bijective:'true'}).map(([name,text])=>[name,parseFormula(text).value!]))))).replaceAll('assignmentAnswer("colours")','xs');
 const a='r1c1',b='r1c2',c='r1c3',d='r2c1',e='r2c2';
 const faces={[a]:1,[b]:2,[c]:3,[d]:4,[e]:5};
 function verdict(kind:string,parameters:Record<string,unknown>,extra:Partial<Fragment>={},negated=false){
  const page=library.rules.get(kind)!;
  const defaults=Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([n,p])=>[n,p.default]));
  const ast=page.formulas[0].ast;
- return fragmentVerdict(negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast,library.prelude,page.parameters,{faces,parameters:{...defaults,...parameters},...extra});
+ const fragment={faces,parameters:{...defaults,...parameters},...extra};
+ assertMigratedEquivalent(library,kind,fragment,negated);
+ return fragmentVerdict(negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast,library.prelude,page.parameters,fragment);
 }
 function formula(text:string,extra:Partial<Fragment>={}){
  const parsed=parseFormula(text);expect(parsed.diagnostics).toEqual([]);
@@ -137,7 +143,7 @@ test('assignments guard size, bounds, injectivity and tiny bijections',()=>{
  expect(verdict('assignment',{...p,size:0,labels:0},{assignmentAnswers:{colours:[]}})).toBe(true);
  expect(verdict('assignment',{...p,size:1,labels:1},{assignmentAnswers:{colours:[0]}})).toBe(true);
  expect(verdict('assignment',{...p,size:1},{assignmentAnswers:{colours:[0]}})).toBe(false);
- expect(formula('let xs=assignmentAnswer("colours"); boundedAssignment(xs,2,2,true) ∧ xs[0]=1 ∧ xs[1]=0',{assignmentAnswers:{colours:[1,0]}})).toBe(true);
+ expect(formula(`let xs=assignmentAnswer("colours"); (${assignmentMath}) ∧ xs[0]=1 ∧ xs[1]=0`,{assignmentAnswers:{colours:[1,0]}})).toBe(true);
 });
 test('multiple entries preserve alphabet, occurrences, empty cells and independent faces',()=>{
  const p={name:'pencil',scope:[a],minimum:2,maximum:2};
@@ -191,7 +197,7 @@ test('string defaults are explicit decoded JSON in portable contracts',()=>{
  expect(library.registry.parameters!.get('https://rules.sudoku-sleuth.com/symbol-house.md')!.parameters.symbols.default).toBe('D');
 });
 test('documented assignment relation selection compiles and uses the shared choice',()=>{
- expect(formula('let xs=assignmentAnswer("colours"); boundedAssignment(xs,2,2,true) ∧ ∀i∈[0,2): pairRelation(relationSpec(if xs[i]=0 then "sum" else "difference",1),D(boardCell(0,i)),D(boardCell(1,i)))',{assignmentAnswers:{colours:[1,0]}})).toBe(false);
+ expect(formula(`let xs=assignmentAnswer("colours"); (${assignmentMath}) ∧ ∀i∈[0,2): pairRelation(relationSpec(if xs[i]=0 then "sum" else "difference",1),D(boardCell(0,i)),D(boardCell(1,i)))`,{assignmentAnswers:{colours:[1,0]}})).toBe(false);
 });
 
 test('review: step 4 readers need one constructor and custom reification owns each truth label once',()=>{
@@ -203,10 +209,13 @@ test('review: step 4 readers need one constructor and custom reification owns ea
  expect(checkCaseReferences({file:'choice.rules.md',text:choice},library.registry).diagnostics).toEqual([]);
  expect(checkCaseReferences({file:'choice.rules.md',text:choice.replace('#line-truth firstLine','#line-truth firstLine').replace('reified(choiceAnswer("second")','reified(choiceAnswer("first")')},library.registry).diagnostics.some(d=>d.message.includes('found 2'))).toBe(true);
 });
-test('review: custom readers and wrapper calls cannot introduce unconstructed names',()=>{
+test('review: custom readers cannot introduce unconstructed names',()=>{
  const base=caseExamples(sources.find(s=>s.file==='rules/choice-count.md')!.text)[0];
- const text=base.replace('reified(choiceAnswer("first"),monotonic(firstLine,true,"forward","D"))','reified(choiceAnswer("first"),monotonic(routeAnswer("ghost"),true,"forward","D"))');
+ const rewriteMaths=(formula:string)=>base.replace(/  maths: '[^\n]+'/,`  maths: '${formula} ∧ reified(choiceAnswer("second"),valueSet(secondLine,"D",false,"consecutive"))'`);
+ const text=rewriteMaths('reified(choiceAnswer("first"),|routeAnswer("ghost")|>0)');
  expect(checkCaseReferences({file:'custom.rules.md',text},library.registry).diagnostics.some(d=>d.message.includes('route "ghost" needs exactly one constructor'))).toBe(true);
- const mask=base.replace('reified(choiceAnswer("first"),monotonic(firstLine,true,"forward","D"))','reified(choiceAnswer("first"),marked("ghost",boardCell(0,0)))');
+ const mask=rewriteMaths('reified(choiceAnswer("first"),marked("ghost",boardCell(0,0)))');
  expect(checkCaseReferences({file:'custom.rules.md',text:mask},library.registry).diagnostics.some(d=>d.message.includes('selection "ghost" needs exactly one constructor'))).toBe(true);
 });
+
+afterAll(()=>expect(additions.filter(k=>!replayedKinds.has(k))).toEqual([]));

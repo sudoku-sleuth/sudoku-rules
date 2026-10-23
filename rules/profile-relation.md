@@ -20,6 +20,8 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: block
+composition: Compare arbitrary numeric sets or multisets.
 ---
 
 # Profile Relation
@@ -28,12 +30,12 @@ The two groups contain the same numbers. Multiset comparison requires the same n
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| left | Left cell occurrences. | Required. |
-| right | Right cell occurrences. | Required. |
-| multiset | Compare multiplicities as well as membership. | true. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| left | `list<cell>` | Left cell occurrences. | Required. |
+| right | `list<cell>` | Right cell occurrences. | Required. |
+| multiset | `boolean` | Compare multiplicities as well as membership. | true. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
@@ -42,7 +44,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-sameProfile(left,right,channel,multiset)
+forall n∈({read(c,channel):c∈left} union {read(c,channel):c∈right}): if multiset then (classCount(left,{n},channel) = classCount(right,{n},channel)) else ((classCount(left,{n},channel) > 0) iff (classCount(right,{n},channel) > 0))
 ```
 
 ## Example

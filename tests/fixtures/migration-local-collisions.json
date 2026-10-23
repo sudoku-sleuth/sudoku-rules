@@ -1,0 +1,196 @@
+[
+  {
+    "id": "split-pea",
+    "name": "Split pea segment",
+    "parameters": {
+      "cells": {
+        "type": "path<cell>",
+        "description": "Interior cells, excluding both bounding circles.",
+        "default": "Required."
+      },
+      "ends": {
+        "type": "list<cell>",
+        "description": "Exactly two bounding circle cells.",
+        "default": "Required."
+      }
+    },
+    "definition": "The interior digit sum equals either decimal concatenation of the two bounding circle digits. No distinctness condition is added.",
+    "maths": "|ends|=2 \u2227 (sum_D(cells)=10*D(ends[0])+D(ends[1]) \u2228 sum_D(cells)=10*D(ends[1])+D(ends[0]))",
+    "example": "Satisfies: circle digits 3,1 and interior 3,4,6 total 13. Breaks: the same circles and interior 3,4,5 total 12.",
+    "class": "with aggregates",
+    "file": "f-b25/cases/last-resort.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea",
+    "parameters": {
+      "cells": {
+        "type": "list<cell>",
+        "description": "Interior positions of one line between two circles."
+      },
+      "ends": {
+        "type": "list<cell>",
+        "description": "The two circles, in either orientation."
+      }
+    },
+    "definition": "Interior digits sum to the two-digit decimal number made from the endpoints in either order.",
+    "maths": "|ends|=2 \u2227 (sum_D(cells)=10*D(ends[0])+D(ends[1]) \u2228 sum_D(cells)=10*D(ends[1])+D(ends[0]))",
+    "example": "Satisfies: interior 3,4,6 and endpoints 3,1 give sum 13. Breaks: interior 3,4,5 gives 12, neither 13 nor 31.",
+    "class": "with aggregates",
+    "file": "f-b07/cases/pea-ano-forte.rules.md"
+  },
+  {
+    "id": "japanese-sums",
+    "name": "Japanese sums",
+    "parameters": {
+      "strips": {
+        "type": "list<list<cell>>",
+        "description": "All rows from left and columns from top, including empty clue lists."
+      },
+      "clues": {
+        "type": "list<list<record{colour:position,total:optional<number>}>>",
+        "description": "Ordered runs for each strip; colours 1 blue, 2 purple, 3 orange; omitted total is ?. No unlisted runs."
+      }
+    },
+    "definition": "Choose one global colour per cell (0 unshaded, 1 blue, 2 purple, 3 orange). Each strip has exactly the listed nonempty maximal runs in clue order. A run has its clue colour and known digit sum. Runs of the same colour need at least one unshaded cell between; differing colours can touch. All coloured cells belong to a listed run in each strip.",
+    "maths": "|strips|=|clues| \u2227 \u2203B:set<cell>: \u2203U:set<cell>: \u2203O:set<cell>: B\u2286C \u2227 U\u2286C \u2227 O\u2286C \u2227 B\u2229U=\u2205 \u2227 B\u2229O=\u2205 \u2227 U\u2229O=\u2205 \u2227 let colour=\u03bbc:cell: if c\u2208B then 1 else if c\u2208U then 2 else if c\u2208O then 3 else 0; \u2200i\u2208[0,|strips|): \u2203starts:list<position>: \u2203ends:list<position>: |starts|=|clues[i]| \u2227 |ends|=|clues[i]| \u2227 (\u2200j\u2208[0,|clues[i]|): 0<=starts[j]<ends[j]<=|strips[i]| \u2227 (\u2200t\u2208[0,|strips[i]|): starts[j]<=t \u2227 t<ends[j] \u2192 colour(strips[i][t])=clues[i][j].colour) \u2227 (present(clues[i][j].total) \u2192 sum_D(\u27e8strips[i][t]:t\u2208[0,|strips[i]|),starts[j]<=t \u2227 t<ends[j]\u27e9)=unwrap(clues[i][j].total))) \u2227 (\u2200j\u2208[0,|clues[i]|-1): ends[j]<=starts[j+1] \u2227 (clues[i][j].colour=clues[i][j+1].colour \u2192 ends[j]<starts[j+1])) \u2227 (\u2200t\u2208[0,|strips[i]|): colour(strips[i][t])!=0 \u2194 \u2203j\u2208[0,|clues[i]|): starts[j]<=t \u2227 t<ends[j])",
+    "example": "Satisfies a strip: blue digits [1,2], blank, blue [4] for blue clues 3,4. Breaks: blue [1,2,4] with no blank for those two blue clues. Blue [1,2] followed immediately by purple [4] is allowed for blue 3, purple 4.",
+    "class": "existential",
+    "file": "f-b38/cases/the-constable.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea sum",
+    "parameters": {
+      "cells": {
+        "type": "list<cell>",
+        "description": "Interior positions in traversal order, excluding every attached circle. Repeated positions retain their occurrences."
+      },
+      "bulbs": {
+        "type": "list<cell>",
+        "description": "The two bounding circles; either may supply the tens digit."
+      }
+    },
+    "definition": "The interior face digits total one of the two decimal numbers formed by the bounding circle digits. No distinctness condition is added.",
+    "maths": "|bulbs|=2 \u2227 (sum_D(cells)=10*D(bulbs[0])+D(bulbs[1]) \u2228 sum_D(cells)=10*D(bulbs[1])+D(bulbs[0]))",
+    "example": "Satisfies: circle digits 3 and 1 with interior 3,4,6 total 13. Breaks: the same circle digits with interior 3,4,7 total 14, neither 13 nor 31.",
+    "class": "with aggregates",
+    "file": "f-b36/cases/split-peas-tessellation.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea sum",
+    "parameters": {
+      "cells": {
+        "type": "list<cell>",
+        "description": "Interior positions in traversal order, excluding every attached circle. Repeated positions retain their occurrences."
+      },
+      "bulbs": {
+        "type": "list<cell>",
+        "description": "The two bounding circles; either may supply the tens digit."
+      }
+    },
+    "definition": "The interior face digits total one of the two decimal numbers formed by the bounding circle digits. No distinctness condition is added.",
+    "maths": "|bulbs|=2 \u2227 (sum_D(cells)=10*D(bulbs[0])+D(bulbs[1]) \u2228 sum_D(cells)=10*D(bulbs[1])+D(bulbs[0]))",
+    "example": "Satisfies: circle digits 3 and 1 with interior 3,4,6 total 13. Breaks: the same circle digits with interior 3,4,7 total 14, neither 13 nor 31.",
+    "class": "with aggregates",
+    "file": "f-b36/cases/splindex-peas.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea",
+    "parameters": {
+      "cells": {
+        "type": "path<cell>",
+        "description": "Peach line in order, including its two green endpoint circles.",
+        "default": "Required."
+      }
+    },
+    "definition": "Interior digits sum to the two-digit decimal number formed by the endpoint circle digits in either order.",
+    "maths": "|cells|>=3 \u2227 let a=D(cells[0]); let b=D(cells[|cells|-1]); let s=sum_D(betweenPositions(cells,0,|cells|-1)); s=10*a+b \u2228 s=10*b+a",
+    "example": "Satisfies: endpoints 1 and 2, interior [3,9] sum to 12. Breaks: endpoints 1 and 2, interior [3,8] sum to 11, neither 12 nor 21.",
+    "class": "with aggregates",
+    "file": "f-b18/cases/entropea.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea",
+    "parameters": {
+      "cells": {
+        "type": "path<cell>",
+        "description": "cells as described in the definition.",
+        "default": "Required."
+      },
+      "ends": {
+        "type": "list<cell>",
+        "description": "ends as described in the definition.",
+        "default": "Required."
+      }
+    },
+    "definition": "The cells strictly between two drawn circles sum to either decimal concatenation of the two circled face digits. End order may reverse; neither circle is in cells.",
+    "maths": "|ends|=2 \u2227 (sum_D(cells)=10*D(ends[0])+D(ends[1]) \u2228 sum_D(cells)=10*D(ends[1])+D(ends[0]))",
+    "example": "Satisfies: ends [3,1], cells [3,4,6], total 13. Breaks: ends [3,1], cells [3,4,7], total 14.",
+    "class": "with aggregates",
+    "file": "f-b44/cases/zip-pea.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea line",
+    "parameters": {
+      "cells": {
+        "type": "path<cell>",
+        "description": "Ordered path including its two circled ends."
+      }
+    },
+    "definition": "The digits strictly inside the two circles sum to a two-digit concatenation of the circled digits, in either order.",
+    "maths": "|cells|>=3 \u2227 (sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9)=10*D(cells[0])+D(cells[|cells|-1]) \u2228 sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9)=10*D(cells[|cells|-1])+D(cells[0]))",
+    "example": "Satisfies: ends 1 and 3, interior 3,4,6 total 13. Breaks: same ends, interior 3,4,5 total 12.",
+    "class": "with aggregates",
+    "file": "f-b04/cases/a-pea-ory-of-everything.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea line",
+    "parameters": {
+      "cells": {
+        "type": "path<cell>",
+        "description": "Ordered path including its two circled ends."
+      }
+    },
+    "definition": "The digits strictly inside the two circles sum to a two-digit concatenation of the circled digits, in either order.",
+    "maths": "|cells|>=3 \u2227 (sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9)=10*D(cells[0])+D(cells[|cells|-1]) \u2228 sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9)=10*D(cells[|cells|-1])+D(cells[0]))",
+    "example": "Satisfies: ends 1 and 3, interior 3,4,6 total 13. Breaks: same ends, interior 3,4,5 total 12.",
+    "class": "with aggregates",
+    "file": "f-b04/cases/bicycle-station.rules.md"
+  },
+  {
+    "id": "split-pea",
+    "name": "Split pea",
+    "parameters": {
+      "cells": {
+        "type": "path<cell>",
+        "description": "Path between successive circles, including both ends."
+      }
+    },
+    "definition": "Interior face digits sum to the two endpoint digits concatenated in either order.",
+    "maths": "|cells|>=2 \u2227 let a=D(cells[0]); let b=D(cells[|cells|-1]); let S=sum_D(\u27e8cells[i]:i\u2208[1,|cells|-1)\u27e9); S=10*a+b \u2228 S=10*b+a",
+    "class": "with aggregates",
+    "example": "Satisfies: 3,3,4,6,1 with interior total 13. Breaks: 3,3,4,5,1 with interior total 12.",
+    "file": "f-b02/cases/omni-peas.rules.md"
+  },
+  {
+    "id": "battenburg",
+    "name": "Exhaustive Battenburg",
+    "class": "first-order",
+    "parameters": {
+      "marks": {
+        "type": "list<record{r:position,k:position}>",
+        "description": "Zero-based top-left positions of marked two-by-two windows."
+      }
+    },
+    "definition": "A two-by-two window is marked exactly when its diagonals have the same parity and its orthogonal neighbours have opposite parity.",
+    "maths": "\u2200r\u2208[0,rows-1): \u2200k\u2208[0,cols-1): ((rem(D(boardCell(r,k)),2)=rem(D(boardCell(r+1,k+1)),2) \u2227 rem(D(boardCell(r+1,k)),2)=rem(D(boardCell(r,k+1)),2) \u2227 rem(D(boardCell(r,k)),2)!=rem(D(boardCell(r,k+1)),2)) \u2194 \u2203m\u2208marks: m.r=r \u2227 m.k=k)",
+    "example": "Satisfies a marked window: rows [1,2],[4,3]. Breaks an unmarked window: the same digits form a forbidden unmarked checkerboard.",
+    "file": "f-b05/cases/batten-burger.rules.md"
+  }
+]

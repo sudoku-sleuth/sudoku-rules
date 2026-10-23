@@ -8,6 +8,7 @@ parameters:
     type: path<cell>
     description: The full path including both endpoint circles.
     default: Required.
+layer: rule
 ---
 
 # Split Pea
@@ -16,9 +17,9 @@ The interior digits sum to the two endpoint digits read as a decimal number in e
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The full path including both endpoint circles. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The full path including both endpoint circles. | Required. |
 
 ## Maths
 

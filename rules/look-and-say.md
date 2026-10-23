@@ -11,7 +11,25 @@ parameters:
     type: list<record{digit:digit,count:position}>
     description: Each digit and the exact number of times it must appear.
     default: Required.
+alias_of: digit-profile
+alias_bind:
+  cells: orderedCells(cells)
+  classes: ⟨⟨p.digit:i∈[0,1)⟩:p∈counts⟩
+  counts: ⟨p.count:p∈counts⟩
+  exhaustive: "false"
+  channel: '"D"'
+  selfCount: "false"
+  windowLength: absent(|{}|)
+  loop: "false"
+  comparison: '"exact"'
+  maximumDistinct: absent(|{}|)
+  repeats: "true"
+  balancePairs: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  sumFree: absent(|{}|)
+layer: rule
 ---
+
+
 
 # Look And Say
 
@@ -21,20 +39,20 @@ The marked cells may be a cage, a diagonal or another stated group. Read a print
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| counts | Each digit and the exact number of times it must appear. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| counts | `list<record{digit:digit,count:position}>` | Each digit and the exact number of times it must appear. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [digit-profile](digit-profile.md) — `cells=orderedCells(cells); classes=⟨⟨p.digit:i∈[0,1)⟩:p∈counts⟩; counts=⟨p.count:p∈counts⟩; exhaustive=false; channel="D"; selfCount=false; windowLength=absent(|{}|); loop=false; comparison="exact"; maximumDistinct=absent(|{}|); repeats=true; balancePairs=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀p∈counts: countWhere(cells,λc:cell: D(c)=p.digit)=p.count
-```
+This is a bound shorthand for [digit-profile](digit-profile.md). Its header supplies every parameter of that rule.
 
 For each {digit,count}, that digit occurs in exactly count cells. Unlisted digits are unconstrained.
 

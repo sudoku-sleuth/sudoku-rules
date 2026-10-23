@@ -19,6 +19,15 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: V.
+layer: rule
+alias_of: aggregate-groups
+alias_bind:
+  groups: segments
+  operation: '"sum"'
+  channel: channel
+  repeats: "true"
+  line: some(line)
+  combine: combine
 ---
 
 # Region Sum
@@ -29,24 +38,20 @@ The board’s primary regions supply the boundaries: standard boxes on a normal 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| combine | Whether separate visits to the same region contribute to one regional total. | false (each visit is summed separately). |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| segments | The cells in each segment, listed in path order. | Required. |
-| channel | Read printed digits (D) or effective values (V). | V. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| combine | `boolean` | Whether separate visits to the same region contribute to one regional total. | false (each visit is summed separately). |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| segments | `list<list<cell>>` | The cells in each segment, listed in path order. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | V. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [aggregate-groups](aggregate-groups.md) — `groups=segments; operation="sum"; channel=channel; repeats=true; line=some(line); combine=combine`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-maximalRegionRuns(line,segments) ∧ if combine then
-  ∀R,S∈Regions: (∃c∈line:c∈R) ∧ (∃c∈line:c∈S) → aggregate(⟨c:c∈line,c∈R⟩,channel,"sum")=aggregate(⟨c:c∈line,c∈S⟩,channel,"sum")
-else ∀A,B∈segments: aggregate(A,channel,"sum")=aggregate(B,channel,"sum")
-```
+
 
 Segments must be exactly the ordered maximal primary-region runs, retaining every path occurrence. The selected channel is summed per visit or per visited region.
 

@@ -5,7 +5,9 @@ kind: region-shape
 shape: Regions
 parameters:
   partitionRef:
-    shared: {role: read, type: partition}
+    shared:
+      role: read
+      type: partition
     type: string
     description: The shared region collection name.
     default: Required.
@@ -29,6 +31,8 @@ parameters:
     type: optional<list<RegionCentre>>
     description: Doubled zero-based galaxy centre coordinates.
     default: Absent; no symmetry condition.
+layer: block
+composition: Shape templates and symmetries over shared regions.
 ---
 
 # Region Shape
@@ -37,14 +41,14 @@ Constrain a shared region collection by template shape, template counts or half-
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| partitionRef | The shared region collection name. | Required. |
-| shapes | Allowed template shapes. | Empty list; no template condition. |
-| rotations | Allow quarter-turn rotations of templates. | true. |
-| reflections | Allow reflected templates. | true. |
-| uses | Exact number of regions congruent to each template, in order. | Absent; templates may be reused. |
-| centres | Doubled zero-based galaxy centre coordinates. | Absent; no symmetry condition. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| partitionRef | `string` | The shared region collection name. | Required. |
+| shapes | `list<set<cell>>` | Allowed template shapes. | Empty list; no template condition. |
+| rotations | `boolean` | Allow quarter-turn rotations of templates. | true. |
+| reflections | `boolean` | Allow reflected templates. | true. |
+| uses | `optional<list<position>>` | Exact number of regions congruent to each template, in order. | Absent; templates may be reused. |
+| centres | `optional<list<RegionCentre>>` | Doubled zero-based galaxy centre coordinates. | Absent; no symmetry condition. |
 
 ## Maths
 
