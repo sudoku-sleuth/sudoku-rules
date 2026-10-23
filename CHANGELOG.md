@@ -14,6 +14,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Changed
 
+- Rename Extra Regions to Regions (`regions`), Parity to Parity Line (`parity-line`), Parity Cells to Odd Even Cells (`odd-even-cells`) and Between to Between Line (`between-line`). Retain the old kinds, published routes and icons; migrate declarations with the same parameters and meanings. Add searchable aliases for boxes, irregular regions, disjoint groups and odd/even cells.
+
 - Little Killer is now Diagonal Sum. Little Killer remains an alias, including old declarations, searches and its published page route. This completes the remaining naming item in #26.
 - Add Whispers 5 (German Whispers) and Whispers 4 (Dutch Whispers), binding the same Difference Line block with fixed gaps. General Whispers declarations retain their supplied gap.
 - Add Pill, Pill Arrow and Arrow Pill as Arrow aliases for decimal bulbs; white dot, black dot and Kropki dots as Kropki aliases; and X and V and XV clues as XV aliases.
@@ -24,7 +26,7 @@ Each release lists what changed. A change that breaks a published export, front-
 - Share aggregate equations, relation scopes, class patterns, digit profiles, lookups, value sets, aggregate groups, mirrored pairs, selected stretches, endpoint ranges and neighbour extrema through formula-owning blocks.
 - Make Quadruple's existing distinct-cell selection explicit in its binding; Outside retains supplied occurrences.
 - Report rules binding the same block under “same block, different settings”, including their differing bindings. Identical instantiated formulas remain duplicate errors.
-- Retain Whispers and Extra Regions as the public names for legacy Whisper and Unique declarations. Preserve the published killer, whisper, unique, index-count and aggregate-relation routes as thin alias or migration pages.
+- Retain Whispers and Regions as the public names for legacy Whisper and Unique declarations. Preserve the published killer, whisper, unique, index-count and aggregate-relation routes as thin alias or migration pages.
 
 ### Breaking
 

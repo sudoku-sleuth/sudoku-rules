@@ -246,6 +246,8 @@ test("production catalogue separates familiar rules, blocks and predicates",asyn
  const home=await readFile(join(destination,'index.html'),'utf8');
  const blocks=await readFile(join(destination,'blocks/index.html'),'utf8');
  const aliases:Record<string,string[]>={
+  regions:['regions','boxes','irregular regions','extra regions','disjoint','disjoint groups'],
+  'parity-line':['parity'], 'odd-even-cells':['odd/even cells','parity cells','odd and even digits'], 'between-line':['between'],
   'diagonal-sum':['little killer'], 'whispers-5':['german whispers'], 'whispers-4':['dutch whispers'],
   arrow:['pill','pill arrow','arrow pill'],kropki:['white dot','black dot','kropki dots'],xv:['x and v','xv clues'],
  };
@@ -254,12 +256,18 @@ test("production catalogue separates familiar rules, blocks and predicates",asyn
   expect(search).toBeDefined();
   for(const name of names)expect(search).toContain(name);
  }
+ for(const [oldKind,kind] of Object.entries({'extra-regions':'regions',parity:'parity-line','parity-cells':'odd-even-cells',between:'between-line'})){
+  expect(await readFile(join(destination,`${oldKind}/index.html`),'utf8')).toContain(`href="/${kind}/"`);
+  expect(await readFile(join(destination,`${oldKind}.md`),'utf8')).toBe(await readFile(`rules/${oldKind}.md`,'utf8'));
+  const icons=JSON.parse(await readFile('site/icons/rules.json','utf8'));
+  expect(icons[kind]).toBe(icons[oldKind]);
+ }
  const oldPage=await readFile(join(destination,'little-killer/index.html'),'utf8');
  expect(oldPage).toContain('href="/diagonal-sum/"');
  expect(await readFile(join(destination,'little-killer.md'),'utf8')).toBe(await readFile('rules/little-killer.md','utf8'));
  expect(home).toContain('href="/whispers/"');
  expect(home).toContain('href="/cage/"');
- expect(home).toContain('href="/extra-regions/"');
+ expect(home).toContain('href="/regions/"');
  for(const alias of ['whisper','killer','unique'])expect(home).toContain(`href="/${alias}/"`);
  expect(home).toContain('href="/blocks/"');
  expect(home).not.toContain('href="/aggregate-equation/"');

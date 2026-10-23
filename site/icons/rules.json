@@ -90,5 +90,9 @@
   "clue-count": "rules/lines/line-choice.svg",
   "diagonal-sum": "rules/outside/little-killer.svg",
   "whispers-5": "rules/lines/whispers.svg",
-  "whispers-4": "rules/lines/whispers.svg"
+  "whispers-4": "rules/lines/whispers.svg",
+  "regions": "rules/regions/unique.svg",
+  "parity-line": "rules/lines/parity.svg",
+  "odd-even-cells": "rules/cells/parity-cells.svg",
+  "between-line": "rules/lines/between.svg"
 }

@@ -14,9 +14,9 @@ On a standard board, write `sudoku 9x9` once in the rules block. This supplies d
 
 For a different board, omit `sudoku 9x9` and supply explicit YAML `board` fields: `rows`, `cols`, `symbols`, `givens`, and `regions`. Regions are lists of rXcY cell lists. Givens can be a grid string or a list such as `[{cell: r1c1, digit: 1}]`. Do not infer an alphabet or region layout. Declare givens in exactly one place, either top-level `givens` or `board.givens`, and give each cell at most one digit.
 
-Board dimensions, symbols and region membership describe the board; they do not impose uniqueness. For normal Sudoku on an explicit board, declare `extra-regions` for every row, column and region. On a 6×6 board with six regions, that is 18 declarations. Do not write `sudoku 6x6`: the published kind supports only `9x9`. See the complete six-symbol example in [examples.md](examples.md). If the setter rejects normal Sudoku, declare only the house constraints actually stated.
+Board dimensions, symbols and region membership describe the board; they do not impose uniqueness. For normal Sudoku on an explicit board, declare `regions` for every row, column and region. On a 6×6 board with six regions, that is 18 declarations. Do not write `sudoku 6x6`: the published kind supports only `9x9`. See the complete six-symbol example in [examples.md](examples.md). If the setter rejects normal Sudoku, declare only the house constraints actually stated.
 
-For any dimensions or ordered alphabet other than 9×9 with 1–9, state `loop` on summit, whispers, parity, modular, entropic, primality and line-choice; modular `modulus`; nabner `distinct`; cage `repeats`; sandwich `crusts`; and index `strips`. Write the intended values explicitly, such as `loop false`, `repeats false`, or `crusts [1,6]`. Preserve empty `strips []` when there are no authored strips.
+For any dimensions or ordered alphabet other than 9×9 with 1–9, state `loop` on summit, whispers, parity-line, modular, entropic, primality and line-choice; modular `modulus`; nabner `distinct`; cage `repeats`; sandwich `crusts`; and index `strips`. Write the intended values explicitly, such as `loop false`, `repeats false`, or `crusts [1,6]`. Preserve empty `strips []` when there are no authored strips.
 
 ## Coordinates and declarations
 
@@ -46,7 +46,7 @@ arrow r2c2-r2c3 bulb ["r2c1"]
 equal-sums groups [["r1c1","r1c2"],["r2c1"]]
 ```
 
-The short names `whisper` and `killer` alias `whispers` and `cage`. Prefer the canonical names. Use `diagonal-sum` for Little Killer. Prefer `whispers-5` (German Whispers) and `whispers-4` (Dutch Whispers); their gap is fixed. General `whispers` retains an explicit `gap`, including existing gaps of 5 and 4. Pill, Pill Arrow and Arrow Pill use `arrow` with two or three bulb cells in decimal reading order. A named `line` aliases `cells` on supported cell-list rules; a primary path is the usual spelling. For other named fields, check the published page and its worked syntax; do not invent a parameter spelling from the drawing.
+The short names `whisper` and `killer` alias `whispers` and `cage`. Prefer the canonical names. Use `regions`, `parity-line`, `odd-even-cells` and `between-line` instead of `extra-regions`, `parity`, `parity-cells` and `between`; the old kinds remain aliases. Use `diagonal-sum` for Little Killer. Prefer `whispers-5` (German Whispers) and `whispers-4` (Dutch Whispers); their gap is fixed. General `whispers` retains an explicit `gap`, including existing gaps of 5 and 4. Pill, Pill Arrow and Arrow Pill use `arrow` with two or three bulb cells in decimal reading order. A named `line` aliases `cells` on supported cell-list rules; a primary path is the usual spelling. For other named fields, check the published page and its worked syntax; do not invent a parameter spelling from the drawing.
 
 ## Pair relationships and Kropki
 

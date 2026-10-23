@@ -150,7 +150,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
                 const data=declarationParameters(declaration);
                 const relations=data.relations as {op?:string;value?:unknown}[]|undefined;
                 const relationHouse=house === "relation-scope.md" && data.mode === "all" && data.negative === true && (!data.channel || data.channel === "D") && (!data.except || Array.isArray(data.except) && data.except.length===0) && relations?.length===1 && relations[0].op==="difference" && (relations[0].value===0 || relations[0].value===0n);
-                if (positive && !declaration.condition && (house === "unique.md" || house === "extra-regions.md" || relationHouse || house === "sudoku.md" && standard(declaration))) hasHouse = true;
+                if (positive && !declaration.condition && (house === "unique.md" || house === "extra-regions.md" || house === "regions.md" || relationHouse || house === "sudoku.md" && standard(declaration))) hasHouse = true;
                 references.push({kind, url: url.href, span});
                 if (registry.parameters?.has(url.href)) {
                     errors.push(...checkParameterAST(declaration, span, registry.parameters.get(url.href)!, board.board));
@@ -165,7 +165,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     const explicitBoard = object(metadata.board) ? metadata.board : {};
     const hasRegions = [metadata.regions, explicitBoard.regions].some(regions => Array.isArray(regions) && regions.length > 0);
     if (registry.parameters && hasRegions && !hasHouse)
-        errors.push(diagnostic("W_CASE_HOUSES", field(explicitBoard.regions !== undefined ? "board" : "regions"), "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with extra-regions (or use sudoku 9x9 on a standard board)."));
+        errors.push(diagnostic("W_CASE_HOUSES", field(explicitBoard.regions !== undefined ? "board" : "regions"), "Regions describe membership only; no house constraint is declared. If normal Sudoku applies, declare every row, column and region with regions (or use sudoku 9x9 on a standard board)."));
     if (registry.features?.length) {
         const declared = metadata.board && typeof metadata.board === "object" ? metadata.board as Record<string, unknown> : {};
         const written = parsedLines.map(({declaration})=>dimensions(declaration)).find(Boolean);
