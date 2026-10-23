@@ -15,7 +15,7 @@ function verdict(kind:string,parameters:Record<string,unknown>,faces:Record<stri
  const historical=kind;
  const historicalParameters=parameters;
  if(!library.rules.has(kind)){const migrated=migrateDeclaration({kind,parameters})[0];kind=migrated.kind;parameters=migrated.parameters;}
- const page=library.rules.get(kind)!;
+ const page=library.rules.get(library.aliases.get(kind)??kind)!;
  const ast=page.formulas[0].ast;
  const formula:Expr=negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast;
  const fragment={faces,parameters:{...Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,"default")).map(([name,p])=>[name,p.default])),...parameters},...extra};
@@ -167,7 +167,7 @@ test('parameter-bound aliases typecheck bindings and keep their own grammar',()=
  expect(library.registry.lines!.get('https://rules.sudoku-sleuth.com/pair.md')!.parameter.name).toBe('relation');
 });
 test('all changed and added examples use accepted public declarations',()=>{
- const changed=new Set(['outside','quadruple','pair','kropki','thermo','slow-thermo','scoped-move','anti-king','anti-knight','renban','nabner','bremban','modular','entropic','parity','line-choice','whispers','close-whispers','between','lockout','cage','little-killer','double-arrow','equal-sums','region-sum','arrow','extremum','tardis','index','numbered-room','index-line','pointing-arrow','skyscraper','split-pea','difference-line','prefix-sum','blocked-sight','sum-partition','aggregate-relation','lookup','shifter-line','summit','primality']);
+ const changed=new Set(['outside','quadruple','pair','kropki','thermo','slow-thermo','scoped-move','anti-king','anti-knight','renban','nabner','bremban','modular','entropic','parity','line-choice','whispers','close-whispers','between','lockout','cage','diagonal-sum','whispers-4','whispers-5','little-killer','double-arrow','equal-sums','region-sum','arrow','extremum','tardis','index','numbered-room','index-line','pointing-arrow','skyscraper','split-pea','difference-line','prefix-sum','blocked-sight','sum-partition','aggregate-relation','lookup','shifter-line','summit','primality']);
  for(const source of sources.filter(p=>changed.has(p.file.slice(6,-3)))) for(const text of caseExamples(source.text))
   expect(checkCaseReferences({file:source.file+'#example',text},library.registry).diagnostics.filter(d=>d.code!=='W_DECORATION_OVERLAP')).toEqual([]);
 });
@@ -227,7 +227,7 @@ test('registry derives fixed defaults from page declarations',()=>{
  for(const kind of ['kropki','slow-thermo','anti-king','anti-knight','bremban','quadruple']) {
   expect(library.aliases.has(kind)).toBe(false);
   expect(library.shorthands.get(kind)!.bindings).toBeDefined();
-  expect(library.rules.get(kind)!.formulas.length).toBe(1);
+  expect(library.rules.get(library.aliases.get(kind)??kind)!.formulas.length).toBe(1);
  }
  expect(library.shorthands.get('kropki')!.bindings.left).toContain('"V"');
 });

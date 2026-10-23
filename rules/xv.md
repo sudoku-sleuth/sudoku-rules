@@ -2,6 +2,7 @@
 name: XV
 url: https://rules.sudoku-sleuth.com/xv.md
 kind: xv
+aliases: [X and V, XV clues]
 shape: Edges
 parameters:
   cells:
@@ -36,6 +37,8 @@ layer: rule
 An X joins two values that sum to ten. A V joins two values that sum to five.
 
 Use `x` or `v` after the two cells. For another sum, use [pair](pair.md). An unmarked pair has no XV restriction. Use [negative](negative.md) to state that all possible marks are given.
+
+X and V and XV clues are also names for XV.
 
 ## Parameters
 

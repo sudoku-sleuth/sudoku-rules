@@ -66,7 +66,7 @@ Liar Cells owns independent real-value assignments with group counts and separat
 
 ## Names and migration
 
-Cage retains Killer Cage and Killer as aliases; legacy \`killer\` and \`killer-cage\` declarations load and migrate to \`cage\`. Whisper migrates to Whispers and Unique to Extra Regions. Little Killer, Negative, Anti King and Anti Knight retain their names. Every named rule has an icon mapping.
+Cage retains Killer Cage and Killer as aliases; legacy \`killer\` and \`killer-cage\` declarations load and migrate to \`cage\`. Whisper migrates to Whispers and Unique to Extra Regions. Diagonal Sum retains Little Killer as an alias and preserves its published route. Whispers keeps its general gap; Whispers 5 (German Whispers) and Whispers 4 (Dutch Whispers) fix the gap at 5 and 4. Arrow also covers Pill, Pill Arrow and Arrow Pill. Kropki also goes by white dot, black dot and Kropki dots; XV by X and V and XV clues. Pair keeps its name: migration chooses XV for sums of 10 or 5 and Kropki for difference 1 or ratio 2 only when their effective-value settings match exactly. Other pair relations and channels remain Pair. Negative, Anti King and Anti Knight retain their names. Every named rule has an icon mapping.
 
 The [migration guide](migration.md) lists all legacy declarations and their formula homes. The geometric move, numeric-property, value-support and class-count families use parameterised predicates; archived helper bodies support embedded custom-formula migration.
 `;

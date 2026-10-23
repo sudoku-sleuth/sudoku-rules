@@ -9,7 +9,7 @@ parameters:
     default: Required.
     type: path<cell>
   gap:
-    description: "The least difference between neighbours: 5 for German whispers, 4 for Dutch whispers."
+    description: "The least difference between neighbouring values."
     default: Required.
     type: number
   loop:
@@ -38,7 +38,7 @@ layer: rule
 
 Neighbouring values along the line differ by at least the stated gap.
 
-Whisper-n lines use `gap n`; German whispers normally use 5 and Dutch whispers 4. Consecutive means adjacent positions along the path. Digits may repeat at non-neighbouring positions when other rules allow.
+For a gap of 5, use [Whispers 5](whispers-5.md), also called German Whispers. For a gap of 4, use [Whispers 4](whispers-4.md), also called Dutch Whispers. Other gaps use `whispers` with `gap n`. Consecutive means adjacent positions along the path. Digits may repeat at non-neighbouring positions when other rules allow.
 
 With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
@@ -47,7 +47,7 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 | Parameter | Type | Meaning | Default |
 | --- | --- | --- | --- |
 | line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| gap | `number` | The least difference between neighbours: 5 for German whispers, 4 for Dutch whispers. | Required. |
+| gap | `number` | The least difference between neighbouring values. | Required. |
 | loop | `boolean` | Whether the line closes, joining its last cell back to its first. | false (open path). |
 | edges | `optional<list<list<cell>>>` | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 

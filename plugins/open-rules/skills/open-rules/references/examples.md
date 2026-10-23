@@ -72,11 +72,11 @@ status: read
 
 ```rules
 sudoku 9x9
-whispers_1: whispers r2c1-r2c2 gap 5
-whispers_2: whispers r4c1-r4c2 gap 5
+whispers_1: whispers-5 r2c1-r2c2
+whispers_2: whispers-5 r4c1-r4c2
 pair_1: pair r6c1-r6c2 ratio 3
 pair_2: pair r7c1-r7c2 difference 2
-pair_3: pair r8c1-r8c2 sum 10
+pair_3: xv r8c1-r8c2 x
 kropki r9c1-r9c2 white
 ```
 

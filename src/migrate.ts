@@ -59,6 +59,18 @@ export function migrateDeclaration(old: MigratingDeclaration): MigratingDeclarat
  const p=copy({...legacyDefaults[kind],...old.parameters}) as Record<string,unknown>;
  const output=(parameters:Record<string,unknown>,target=targets[kind]??kind)=>[{kind:target,parameters:{...parameters,...(p.element===undefined?{}:{element:p.element})}}];
  if(legacyRuleRenames[kind])return output(p,legacyRuleRenames[kind]);
+ if(kind==='pair') {
+  // XV and Kropki read V and have no negative or exhaustive parameter.
+  // Only discard inputs that their contracts express exactly.
+  const r=p.relation as Record<string,unknown>;
+  const exact=Object.keys(p).every(k=>['cells','relation','channel','element'].includes(k))
+   && Object.keys(r).every(k=>['op','value'].includes(k)) && p.channel==='V'
+   && Array.isArray(p.cells) && p.cells.length===2;
+  const is=(n:number)=>r.value===n || r.value===BigInt(n);
+  if(exact && r.op==='sum' && (is(10) || is(5)))return output({cells:p.cells,mark:is(10)?'x':'v'},'xv');
+  if(exact && ((r.op==='difference' && is(1)) || (r.op==='ratio' && is(2))))return output({cells:p.cells,colour:r.op==='difference'?'white':'black'},'kropki');
+  return output(p,'pair');
+ }
  if(libraryLayers[kind]==='rule' && kind!=='index')return output(p,kind);
  const cells=()=>unique(p.cells);
  const profile=(xs:unknown,classes:unknown=[],counts:unknown=[],extra:Record<string,unknown>={})=>output({cells:xs,classes,counts,exhaustive:false,channel:'D',selfCount:false,loop:false,comparison:'exact',repeats:true,...extra});
@@ -169,7 +181,7 @@ export function migrateParsedDeclaration(ast:DeclarationAST,kind=ast.kind.value,
  const contract=legacyContracts.get(`https://rules.sudoku-sleuth.com/${kind==='killer-cage'?'cage':kind}.md`);
  const parameters=declarationParameters(ast,parameterGrammar(contract).primary);
  for(const p of ast.parameters)parameters[p.name.value]=decoded(p.value);
- if(preserveKind && libraryLayers[kind]){
+ if(preserveKind && libraryLayers[kind] && kind!=='pair'){
   const preserved={...copy(legacyDefaults[kind]) as Record<string,unknown>,...parameters};
   if(kind==='index')delete preserved.strips;
   if(kind==='value-modifier')delete preserved.name;
