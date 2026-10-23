@@ -5,18 +5,22 @@ kind: choice-count
 shape: Global
 parameters:
   choices:
-    shared: {role: read, type: choice}
+    shared:
+      role: read
+      type: choice
     type: list<string>
-    description: "Distinct shared truth labels."
-    default: "Required."
+    description: Distinct shared truth labels.
+    default: Required.
   minimum:
     type: position
-    description: "Minimum true labels."
+    description: Minimum true labels.
     default: "0."
   maximum:
     type: optional<position>
-    description: "Maximum true labels."
-    default: "Absent; no upper bound."
+    description: Maximum true labels.
+    default: Absent; no upper bound.
+layer: block
+composition: Boolean composition over arbitrary labelled constraints.
 ---
 
 # Choice Count
@@ -25,11 +29,11 @@ Count true labels in one shared Boolean assignment. Names must be distinct, so a
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| choices | Distinct shared truth labels. | Required. |
-| minimum | Minimum true labels. | 0. |
-| maximum | Maximum true labels. | Absent; no upper bound. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| choices | `list<string>` | Distinct shared truth labels. | Required. |
+| minimum | `position` | Minimum true labels. | 0. |
+| maximum | `optional<position>` | Maximum true labels. | Absent; no upper bound. |
 
 ## Maths
 
@@ -74,7 +78,7 @@ choice-count choices ["first","second"] minimum 1 maximum 1
       type: list<cell>
       description: Cells of the consecutive-set clue.
   definition: Each truth label equals the complete meaning of its clue.
-  maths: 'reified(choiceAnswer("first"),monotonic(firstLine,true,"forward","D")) ∧ reified(choiceAnswer("second"),consecutiveValues(secondLine,"D",false))'
+  maths: '(reified(choiceAnswer("first"),forall i∈[0,(|firstLine| - 1)): (read(firstLine[i],"D") < read(firstLine[(i + 1)],"D"))) and reified(choiceAnswer("second"),valueSet(secondLine,"D",false,"consecutive")))'
   example: Digits 1,2 make the increasing clue true; digits 1,3 make the consecutive-set clue false.
 ```
 ````

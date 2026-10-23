@@ -11,6 +11,7 @@ parameters:
     description: The corresponding cells on the unrolled path, in order.
     default: Required.
     type: list<cell>
+layer: rule
 ---
 
 # Greek Carpet
@@ -21,10 +22,10 @@ This uses the same position-by-position equality as cloned regions. The Greek ca
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The rolled path in order from its corresponding starting end. | Required. |
-| unrolled | The corresponding cells on the unrolled path, in order. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The rolled path in order from its corresponding starting end. | Required. |
+| unrolled | `list<cell>` | The corresponding cells on the unrolled path, in order. | Required. |
 
 ## Maths
 

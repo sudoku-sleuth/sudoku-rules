@@ -25,7 +25,7 @@ parameters:
     description: Cells incident to covered edges.
     default: Empty set.
   except:
-    type: list<list<cell>>
+    type: collection<list<cell>>
     description: Undirected pairs exempt from the condition.
     default: Empty list.
   negative:
@@ -36,6 +36,7 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: block
 ---
 
 # Relation Scope
@@ -44,16 +45,16 @@ Every selected pair satisfies at least one listed relation. With `negative true`
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The bounded cell scope. | Required. |
-| relations | Inclusive alternatives for each selected pair. | Required. |
-| mode | Select all pairs, move neighbours, or move neighbours incident to anchors. | moves. |
-| move | The neighbour move. | orthogonal. |
-| anchors | Cells incident to covered edges. | Empty set. |
-| except | Undirected pairs exempt from the condition. | Empty list. |
-| negative | Forbid every alternative on selected pairs. | false. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The bounded cell scope. | Required. |
+| relations | `list<PairRelation>` | Inclusive alternatives for each selected pair. | Required. |
+| mode | `enum{all,moves,incident}` | Select all pairs, move neighbours, or move neighbours incident to anchors. | moves. |
+| move | `Move` | The neighbour move. | orthogonal. |
+| anchors | `set<cell>` | Cells incident to covered edges. | Empty set. |
+| except | `collection<list<cell>>` | Undirected pairs exempt from the condition. | Empty list. |
+| negative | `boolean` | Forbid every alternative on selected pairs. | false. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 

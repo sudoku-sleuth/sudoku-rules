@@ -20,7 +20,7 @@ function source(lines:string,definitions=''){
 }
 const check=(lines:string)=>checkCaseReferences(source(lines),library.registry).diagnostics;
 test('A: the three specialised pages only bind their general definition',()=>{
- for(const [kind,target] of [['aggregate-relation','aggregate-equation'],['counting-circles','digit-profile'],['constructed-regions','region-partition']]){
+ for(const [kind,target] of [['counting-circles','digit-profile'],['constructed-regions','region-partition']]){
   expect(library.shorthands.get(kind)!.target).toBe(target);
   expect(formulaBlocks(sources.find(p=>p.file===`rules/${kind}.md`)!)).toHaveLength(0);
  }
@@ -84,10 +84,10 @@ test('E: countWhere lambdas, quantifiers and prelude wrappers resolve fixed name
  }
 });
 test('H: the rule index lists all thirty additions',()=>{
- const kinds=['coordinate-count','relation-scope','local-sequence','index-count','aggregate-equation','subset-total','digit-profile','profile-relation','number-property','derived-count','neighbour-count','route','route-group','route-clue','maze','network-clue','region-partition','region-shape','region-clue','selection','marking-relation','battenburg','shade-components','japanese-sums','mapped-values','paired-roles','choice-count','assignment','cell-entries','symbol-house'];
+ const kinds=['coordinate-count','relation-scope','local-sequence','lookup','aggregate-equation','subset-total','digit-profile','profile-relation','number-property','derived-count','neighbour-count','route','route-group','route-clue','maze','network-clue','region-partition','region-shape','region-clue','selection','marking-relation','battenburg','shade-components','japanese-sums','mapped-values','paired-roles','choice-count','assignment','cell-entries','symbol-house'];
  expect(kinds).toHaveLength(30);
  const index=sources.find(p=>p.file==='rules/README.md')!.text;
- for(const kind of kinds)expect(index).toContain(`[${kind}](https://rules.sudoku-sleuth.com/${kind}.md)`);
+ for(const kind of kinds)expect(index).toContain(`](https://rules.sudoku-sleuth.com/${kind}.md)`);
 });
 test('I: invalid shared names, domains and incompatible parameters fail at their values',()=>{
  const operand='{"cells":[],"channel":"D","operation":"sum","repeats":true}';

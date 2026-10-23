@@ -19,6 +19,13 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: V.
+layer: rule
+alias_of: monotone-line
+alias_bind:
+  line: line
+  strict: strict
+  orientation: orientation
+  channel: channel
 ---
 
 # Thermo
@@ -27,22 +34,20 @@ Values increase from bulb to tip. By default every step is strict and reads effe
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| strict | Whether each step must strictly increase. | true. |
-| orientation | Read forwards, backwards, or choose either direction for the whole line. | forward. |
-| channel | Read printed digits (D) or effective values (V). | V. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| strict | `boolean` | Whether each step must strictly increase. | true. |
+| orientation | `Orientation` | Read forwards, backwards, or choose either direction for the whole line. | forward. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | V. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [monotone-line](monotone-line.md) — `line=line; strict=strict; orientation=orientation; channel=channel`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-monotonic(line,strict,orientation,channel)
-```
+
 
 One orientation applies to the entire line; either chooses a single increasing direction.
 

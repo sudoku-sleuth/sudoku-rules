@@ -28,6 +28,8 @@ parameters:
     type: boolean
     description: Whether intervals may cross the last-to-first join.
     default: false.
+layer: block
+composition: Partition ordered lists into configurable target-total segments.
 ---
 
 # Sum Partition
@@ -36,14 +38,14 @@ A target-sum segment is a nonempty consecutive interval of the line. Cover mode 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| loop | Allow intervals to cross the last-to-first join. | false. |
-| line | The ordered line. | Required. |
-| total | The sum required for every segment. | Required. |
-| mode | Cover every position with a target-sum interval, or partition the whole line into disjoint target-sum intervals. | Required. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| repeats | Whether numbers may repeat inside a segment. | true. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The ordered line. | Required. |
+| total | `number` | The sum required for every segment. | Required. |
+| mode | `enum{cover,partition}` | Cover every position with a target-sum interval, or partition the whole line into disjoint target-sum intervals. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| repeats | `boolean` | Whether numbers may repeat inside a segment. | true. |
+| loop | `boolean` | Whether intervals may cross the last-to-first join. | false. |
 
 ## Maths
 
@@ -52,7 +54,7 @@ Class: **existential**.
 The [shared predicates](predicates.md) define the notation and every named predicate.
 
 ```text
-sumLineMeaning(line,total,mode,channel,repeats,loop)
+((|line| > 0) and if (mode = "partition") then if loop then exists s∈[0,|line|): partitionSums(cyclicCut(line,s),total,channel,repeats) else partitionSums(line,total,channel,repeats) else if loop then forall i∈[0,|line|): exists s∈[0,|line|): exists k∈[1,(|line| + 1)): (((start(line,k,s,true) and exists j∈[0,k): (rem((s + j),|line|) = i)) and repeatPolicy(window(line,k,s,true),channel,repeats)) and (aggregate(window(line,k,s,true),channel,"sum") = total)) else forall i∈[0,|line|): exists a∈[0,|line|): exists b∈[(a + 1),(|line| + 1)): (((a <= i) and (i < b)) and sumSegment(line,a,b,total,channel,repeats)))
 ```
 
 ## Example

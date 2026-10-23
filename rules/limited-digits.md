@@ -11,7 +11,24 @@ parameters:
     description: The greatest number of listed rules or different digits allowed.
     default: Required.
     type: number
+alias_of: digit-profile
+alias_bind:
+  cells: line
+  classes: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  counts: ⟨i:i∈[0,0)⟩
+  channel: '"D"'
+  loop: "false"
+  selfCount: "false"
+  windowLength: absent(|{}|)
+  exhaustive: "false"
+  comparison: '"exact"'
+  maximumDistinct: some(max)
+  repeats: "true"
+  balancePairs: ⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩
+  sumFree: absent(|{}|)
+layer: rule
 ---
+
 
 # Limited Digits
 
@@ -21,20 +38,20 @@ The limit is an upper bound. For exactly n distinct digits, also negate a second
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| max | The greatest number of listed rules or different digits allowed. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| max | `number` | The greatest number of listed rules or different digits allowed. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Defined by [digit-profile](digit-profile.md) with the settings in `alias_bind`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|faceDigits(line)| ≤ max
-```
+This is a bound shorthand for [digit-profile](digit-profile.md). Its header supplies every parameter of that rule.
 
 The number of distinct D values in cells is at most max.
 

@@ -1,7 +1,7 @@
 import type { Span } from "./diagnostics.js";
 
 export interface Type { name: string; args?: Type[]; result?: Type; fields?: Record<string, Type>; members?: string[] }
-export interface Binder { name: string; span: Span; type?: Type }
+export interface Binder { name: string; sourceName?: string; span: Span; type?: Type }
 export interface Expr {
   kind: "number" | "literal" | "boolean" | "name" | "unary" | "binary" | "call" | "index" | "member" | "interval" | "set" | "comprehension" | "image" | "quantifier" | "aggregate" | "lambda" | "conditional" | "let";
   span: Span;

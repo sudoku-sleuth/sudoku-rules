@@ -2,6 +2,30 @@
 
 Each release lists what changed. A change that breaks a published export, front-matter key or diagnostic code is marked Breaking.
 
+## 1.0.0
+
+### Added
+
+- Liar Cells assigns independent real values, counts liars in supplied groups and controls written-digit and real-value distinctness separately.
+- Lying Clues counts complete false clues in an explicit scope, using exactly, at-least or at-most. Nested clues retain their contracts, defaults and shared answer channels.
+- German Whisper Lies and Region Sum Lies provide sourced examples of shared real-value assignments.
+- Separate catalogues for familiar rules, reusable blocks and mathematical predicates, with icons for every named rule.
+- Source and decoded declaration migration, including IDs, negation, conditions, drawing elements and embedded formulas.
+
+### Changed
+
+- Rename Killer Cage to Cage. Killer Cage and Killer remain aliases; killer and killer-cage declarations and URLs load and migrate to Cage. Little Killer, Negative, Anti King and Anti Knight retain their names.
+- Use moveRelation for orthogonal steps, diagonal steps, king steps, knight moves and bishop lines. Numeric properties, value support and class counts use parameterised predicates in place of duplicated helpers.
+- Share aggregate equations, relation scopes, class patterns, digit profiles, lookups, value sets, aggregate groups, mirrored pairs, selected stretches, endpoint ranges and neighbour extrema through formula-owning blocks.
+- Report rules binding the same block under “same block, different settings”, including their differing bindings or input domains. Identical instantiated formulas remain duplicate errors.
+- Retain Whispers and Extra Regions as the public names for legacy Whisper and Unique declarations.
+
+### Breaking
+
+- Replace convenience formula helpers with aggregate, repeatPolicy, allDifferent, connected, marked, lookupRelated, queryHit and the parameterised predicate families described in the migration guide.
+- Remove unused Index strips and Value Modifier name parameters; migration drops both.
+- Default empty profile counts, negative exceptions and constructed-region borders and joins to empty collections.
+
 ## Unreleased (0.3.0)
 
 ### Added

@@ -11,6 +11,15 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+layer: rule
+alias_of: mirrored-pairs
+alias_bind:
+  line: line
+  geometry: '"line"'
+  mode: '"equal-sum"'
+  channel: '"D"'
+  sums: ⟨n:n∈[0,0)⟩
+  centre: centre
 ---
 
 # Zipper
@@ -21,22 +30,18 @@ Pairs equally far from the centre have the same sum. By default, on an odd-lengt
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| centre | How the centre constrains pair sums and line length. | when-odd. |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| centre | `enum{"when-odd",ignore,required}` | Whether pair sums equal the centre on odd lines, ignore it, or require an odd-length line with a centre. | when-odd. |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [mirrored-pairs](mirrored-pairs.md) — `line=line; geometry="line"; mode="equal-sum"; channel="D"; sums=⟨n:n∈[0,0)⟩; centre=centre`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-(∀i,j∈[0,|line|): i<⌊|line|/2⌋ ∧ j<⌊|line|/2⌋ → D(line[i])+D(line[|line|-1-i])=D(line[j])+D(line[|line|-1-j]))
-∧ (centre="required" → |line| mod 2=1)
-∧ (centre!="ignore" ∧ |line| mod 2=1 → ∀i∈[0,|line|): i<⌊|line|/2⌋ → |line|>0 ∧ 0<=⌊|line|/2⌋<|line| ∧ D(line[i])+D(line[|line|-1-i])=D(line[⌊|line|/2⌋]))
-```
+
 
 All mirrored pairs cells[i],cells[length−1−i] have the same sum. For odd length, each pair sums to the centre digit unless centre is ignore. The required mode also requires odd length.
 

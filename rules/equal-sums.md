@@ -15,7 +15,17 @@ parameters:
     type: boolean
     description: Whether numbers may repeat within each group.
     default: true.
+alias_of: aggregate-groups
+alias_bind:
+  groups: ⟨orderedCells(S):S∈groups⟩
+  operation: '"sum"'
+  channel: channel
+  repeats: repeats
+  line: absent(orderedCells(C))
+  combine: "false"
+layer: rule
 ---
+
 
 # Equal Sums
 
@@ -23,21 +33,21 @@ Every listed group has the same total.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| groups | The cells in each group, one list per group. | Required. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| repeats | Whether numbers may repeat within each group. | true. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| groups | `list<set<cell>>` | The cells in each group, one list per group. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| repeats | `boolean` | Whether numbers may repeat within each group. | true. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [aggregate-groups](aggregate-groups.md) — `groups=⟨orderedCells(S):S∈groups⟩; operation="sum"; channel=channel; repeats=repeats; line=absent(orderedCells(C)); combine=false`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-(∀G∈groups:repeatPolicy(G,channel,repeats)) ∧ ∀A,B∈groups: aggregate(A,channel,"sum")=aggregate(B,channel,"sum")
-```
+This is a bound shorthand for [aggregate-groups](aggregate-groups.md). Its header supplies every parameter of that rule.
 
 All supplied operands have the same total in the selected channel.
 

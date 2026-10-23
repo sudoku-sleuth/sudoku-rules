@@ -8,7 +8,7 @@ export interface Environment { symbols: Record<string, Type>; terms: Record<stri
 export interface CheckedPrelude { environment: Environment; declarations: TypedDeclaration[] }
 const numeric = (type: Type) => ["number", "digit", "value", "position"].includes(type.name);
 const collections = ["path", "set", "list", "collection"];
-const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "string", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression"];
+const builtInTypes = ["cell", "digit", "value", "position", "number", "boolean", "string", "path", "set", "list", "optional", "fn", "record", "enum", "collection", "expression", "clause"];
 function same(a: Type, b: Type): boolean { return typeName(a) === typeName(b); }
 function assignable(actual: Type, expected: Type): boolean {
   if (same(actual, expected)) return true;

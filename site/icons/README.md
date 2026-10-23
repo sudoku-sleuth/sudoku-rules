@@ -4,12 +4,6 @@ The rule SVGs in `rules/` are original Sudoku Sleuth artwork, distributed under
 this repository’s [MIT licence](../../LICENSE). Shape navigation icons remain
 at the top level.
 
-`rules.json` maps page slugs to SVG paths relative to this directory. Rule IDs
-use their page slugs. Aliases render their canonical rule’s symbol. The SVGs
-are inlined beside names, hidden from screen readers and coloured with
-`currentColor` and the site’s theme tokens.
+`rules.json` maps named-rule and reference-page slugs to the 86 owned SVG assets. Each named rule keeps its familiar symbol; Extra Regions reuses the house symbol and XV the pair symbol. Blocks need no icon.
 
-The set covers rule pages, including shorthands, and setup/reference pages
-(`README`, `fog`, `predicates`, `syntax`). Every SVG maps to an existing page.
-`decoration` has no rule symbol; its name remains visible. The `killer` and
-`whisper` assets match their canonical `cage` and `whispers` symbols.
+The SVGs are inlined beside names, hidden from screen readers and coloured with `currentColor` and the site theme tokens. The `killer` and `whisper` assets match `cage` and `whispers`.

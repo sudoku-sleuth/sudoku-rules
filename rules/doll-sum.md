@@ -11,6 +11,16 @@ parameters:
     description: The permitted or required totals.
     default: Required.
     type: list<number>
+layer: rule
+alias_of: selected-stretch
+alias_bind:
+  cells: cells
+  selection: '"balanced"'
+  sum: "0"
+  count: absent(|{}|)
+  sums: sums
+  crusts: absent(⟨d:d∈𝔄⟩)
+  endpointOccurrences: '"none"'
 ---
 
 # Doll Sum
@@ -19,21 +29,18 @@ For each listed total, two digits sum to that total and all digits strictly betw
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| sums | The permitted or required totals. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| sums | `list<number>` | The permitted or required totals. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [selected-stretch](selected-stretch.md) — `cells=cells; selection="balanced"; sum=0; count=absent(|{}|); sums=sums; crusts=absent(⟨d:d∈𝔄⟩); endpointOccurrences="none"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀s∈sums: ∃i,j∈[0,|cells|): i<j ∧ D(cells[i])+D(cells[j])=s
-  ∧ sum_D(betweenPositions(cells,i,j))=s
-```
+
 
 For every listed sum, there are two positions whose endpoint digits sum to it. The digits strictly between those positions also sum to it.
 

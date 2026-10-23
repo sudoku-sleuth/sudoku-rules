@@ -15,23 +15,23 @@ parameters:
   rowBase:
     type: number
     description: Zero-based row before adding the transformed index.
-    default: 0.
+    default: 0
   colBase:
     type: number
     description: Zero-based column before adding the transformed index.
-    default: 0.
+    default: 0
   rowFactor:
     type: number
     description: Multiply the offset index by this row coefficient.
-    default: 0.
+    default: 0
   colFactor:
     type: number
     description: Multiply the offset index by this column coefficient.
-    default: 1.
+    default: 1
   offset:
     type: number
     description: Add this integer before applying the coordinate coefficients.
-    default: -1.
+    default: -1
   indexChannel:
     type: Channel
     description: Channel supplying the coordinate index.
@@ -52,6 +52,8 @@ parameters:
     type: position
     description: Required number of successful source occurrences.
     default: Required.
+layer: block
+composition: Configurable coordinate transforms and destination counts.
 ---
 
 # Coordinate Count
@@ -64,18 +66,20 @@ The defaults index across the first row using one-based source numbers. Negative
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| sources | Source occurrences. | Required. |
-| scope | Allowed destinations. | Required. |
-| rowBase, colBase | Zero-based base coordinate. | 0, 0. |
-| rowFactor, colFactor | Coefficients of the offset index. | 0, 1. |
-| offset | Integer added before scaling. | -1. |
-| indexChannel | Index channel. | D. |
-| channel | Destination channel. | D. |
-| target | Destination comparison target. | Required. |
-| relation | Destination-to-target relation. | difference 0 (equal). |
-| total | Required hit count. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| sources | `list<cell>` | Source occurrences supplying coordinate indices. | Required. |
+| scope | `set<cell>` | Allowed destination cells. | Required. |
+| rowBase | `number` | Zero-based row before adding the transformed index. | 0 |
+| colBase | `number` | Zero-based column before adding the transformed index. | 0 |
+| rowFactor | `number` | Multiply the offset index by this row coefficient. | 0 |
+| colFactor | `number` | Multiply the offset index by this column coefficient. | 1 |
+| offset | `number` | Add this integer before applying the coordinate coefficients. | -1 |
+| indexChannel | `Channel` | Channel supplying the coordinate index. | D. |
+| channel | `Channel` | Channel supplying destination numbers. | D. |
+| target | `number` | The destination comparison target. | Required. |
+| relation | `PairRelation` | Relation from the destination number to the target. | difference 0 (equal). |
+| total | `position` | Required number of successful source occurrences. | Required. |
 
 ## Maths
 
@@ -84,7 +88,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define coordinate hits and shared pair relations.
 
 ```text
-⌊rowBase⌋=rowBase ∧ ⌊colBase⌋=colBase ∧ ⌊rowFactor⌋=rowFactor ∧ ⌊colFactor⌋=colFactor ∧ ⌊offset⌋=offset ∧ total=countWhere(sources,λs:cell:coordinateHit(s,scope,rowBase,colBase,rowFactor,colFactor,offset,indexChannel,channel,target,relation))
+integerCoordinates(rowBase,colBase,rowFactor,colFactor,offset) ∧ total=countWhere(sources,λs:cell:coordinateHit(s,scope,rowBase,colBase,rowFactor,colFactor,offset,indexChannel,channel,target,relation))
 ```
 
 ## Example

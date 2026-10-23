@@ -3,6 +3,7 @@ name: Yin Yang
 url: https://rules.sudoku-sleuth.com/yin-yang.md
 kind: yin-yang
 parameters: {}
+layer: rule
 ---
 
 # Yin Yang
@@ -20,9 +21,9 @@ Class: **existential**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-connectedCells({c ∈ C: shaded(c)}) ∧ connectedCells({c ∈ C: ¬shaded(c)})
+connected({c ∈ C: marked("H",c)}) ∧ connected({c ∈ C: ¬marked("H",c)})
 ∧ ∀r ∈ [0,rows−1): ∀k ∈ [0,cols−1):
-  (∃a ∈ window2(r,k): shaded(a)) ∧ (∃b ∈ window2(r,k): ¬shaded(b))
+  (∃a ∈ window2(r,k): marked("H",a)) ∧ (∃b ∈ window2(r,k): ¬marked("H",b))
 ```
 
 Both colours are nonempty and orthogonally connected; every 2×2 contains both colours.

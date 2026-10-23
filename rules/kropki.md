@@ -20,12 +20,16 @@ parameters:
     syntax:
       form: cells
       count: 2
-alias_of: pair
+alias_of: aggregate-equation
 alias_bind:
-  cells: cells
-  relation: relationSpec(if colour="white" then "difference" else "ratio",if colour="white" then 1 else 2)
-  channel: '"V"'
+  left: ⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,|cells|),i=0⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩
+  right: ⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,|cells|),i=1⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: if |cells|=2 then relationSpec(if colour="white" then "difference" else "ratio",if colour="white" then 1 else 2) else relationSpec("difference",-1)
+layer: rule
 ---
+
 
 # Kropki
 
@@ -35,10 +39,10 @@ A white dot without a number means difference 1; a black dot without a number me
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| colour | The relationship: white means difference 1; black means ratio 2. | Required. |
-| cells | The two marked cells in order, for example r1c1-r1c2. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| colour | `enum{white,black}` | The relationship: white means difference 1; black means ratio 2. | Required. |
+| cells | `list<cell>` | The two marked cells in order, for example r1c1-r1c2. | Required. |
 
 ## Rule lines
 
@@ -49,11 +53,12 @@ Kropki is a named shorthand for [pair](pair.md):
 
 Here `white` and `black` name relationships, not paint instructions. A dot's actual colour stays drawing metadata. For ratio 3, grey or brown dots, difference n, sum n and every other relationship, use [pair's keyword forms](pair.md). Case files state the relationship explicitly. Existing `colour "white"` and `colour "black"` spellings are also accepted.
 
-## Maths
+## Definition
+
+Block: [aggregate-equation](aggregate-equation.md) — `left=⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,|cells|),i=0⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩; right=⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,|cells|),i=1⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩; leftOperation="sum"; rightOperation="sum"; relation=if |cells|=2 then relationSpec(if colour="white" then "difference" else "ratio",if colour="white" then 1 else 2) else relationSpec("difference",-1)`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-This is a shorthand for [pair](pair.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
 A white dot joins values differing by 1; a black dot joins values where one is double the other. The colour parameter names the relationship.
 

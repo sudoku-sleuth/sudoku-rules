@@ -77,7 +77,7 @@
       "exit": 0,
       "output": [
         "$ bun scripts/build.ts",
-        "Built 85 pages and 3892 cases \u2192 /Users/afifim/Development/SudokuSleuth/.codex/worktrees/sudoku-rules-public/_site"
+        "Built 85 pages and 3892 cases \u2192 _site"
       ]
     },
     {

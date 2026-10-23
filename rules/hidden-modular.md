@@ -11,6 +11,7 @@ parameters:
     description: "How to choose the span: to-max, between-ends or first-x."
     default: Required.
     type: enum{"to-max","between-ends","first-x"}
+layer: rule
 ---
 
 # Hidden Modular
@@ -19,10 +20,10 @@ Choose the span by its stated extent. Every three consecutive digits in that spa
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| extent | How to choose the span: to-max, between-ends or first-x. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| extent | `enum{"to-max","between-ends","first-x"}` | How to choose the span: to-max, between-ends or first-x. | Required. |
 
 ## Maths
 
@@ -34,9 +35,9 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 |𝔄|>0 ∧ ∃a,b∈[0,|cells|):
   a<=b ∧ ((extent="to-max" ∧ a=0 ∧ firstOccurrence(cells,𝔄[|𝔄|-1],b))
     ∨ (extent="between-ends" ∧ ∃i,j∈[0,|cells|): firstOccurrence(cells,𝔄[0],i)
-       ∧ firstOccurrence(cells,𝔄[|𝔄|-1],j) ∧ a=minimumPosition(i,j) ∧ b=maximumPosition(i,j))
+       ∧ firstOccurrence(cells,𝔄[|𝔄|-1],j) ∧ a=⌊minimumPair(i,j)⌋ ∧ b=⌊maximumPair(i,j)⌋)
     ∨ (extent="first-x" ∧ a=0 ∧ |cells|>0 ∧ 1<=D(cells[0])<=|cells| ∧ b=D(cells[0])-1))
-  ∧ ∀s∈[a,b-1): distinctAt(window(cells,3,s,false),λc:cell: classMod3(D(c)))
+  ∧ ∀s∈[a,b-1): allDifferent(window(cells,3,s,false),λc:cell: classMod3(D(c)))
 ```
 
 Choose the span from the clue through the maximum (to-max), between minimum and maximum inclusive (between-ends), or the first D(cells[0]) positions (first-x). Every triple in that span has three distinct remainders modulo 3.

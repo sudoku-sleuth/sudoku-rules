@@ -7,7 +7,19 @@ parameters:
     description: The chosen diagonal or neighbour orientation, as named in the definition.
     default: Required.
     type: enum{main,anti}
+alias_of: relation-scope
+alias_bind:
+  cells: diagonal(direction)
+  relations: ⟨relationSpec("difference",0):i∈[0,1)⟩
+  mode: '"all"'
+  move: '"orthogonal"'
+  anchors: "{}"
+  except: ⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩
+  negative: "true"
+  channel: '"D"'
+layer: rule
 ---
+
 
 # Diagonal
 
@@ -17,19 +29,19 @@ Here `direction "anti"` selects the top-right to bottom-left diagonal and still 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| direction | The chosen diagonal or neighbour orientation, as named in the definition. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| direction | `enum{main,anti}` | The chosen diagonal or neighbour orientation, as named in the definition. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [relation-scope](relation-scope.md) — `cells=diagonal(direction); relations=⟨relationSpec("difference",0):i∈[0,1)⟩; mode="all"; move="orthogonal"; anchors={}; except=⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩; negative=true; channel="D"`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-distinct_D(diagonal(direction))
-```
+This is a bound shorthand for [relation-scope](relation-scope.md). Its header supplies every parameter of that rule.
 
 All D digits on the chosen main diagonal are distinct. main runs top-left to bottom-right; anti runs top-right to bottom-left for min(rows,cols) cells.
 

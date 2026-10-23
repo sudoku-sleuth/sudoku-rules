@@ -2653,18 +2653,18 @@
       {
         "code": "E_TYPE",
         "check": "E_TYPE",
-        "message": "line (parameter S of distinct_f) must be a set whose items are each the declared type T; it is a connected ordered list whose items are each a cell.",
+        "message": "this function (parameter f of allDifferent) must be a function taking the declared type T and returning a number; it is a function taking a cell and returning a true-or-false condition.",
         "span": {
           "file": "rules/list-distinct-requires-positions.md",
           "start": {
-            "offset": 174,
+            "offset": 185,
             "line": 11,
-            "column": 12
+            "column": 19
           },
           "end": {
-            "offset": 178,
+            "offset": 197,
             "line": 11,
-            "column": 16
+            "column": 31
           }
         }
       }
@@ -2679,18 +2679,18 @@
       {
         "code": "E_TYPE",
         "check": "E_TYPE",
-        "message": "line (parameter S of distinct_D) must be a set whose items are each a cell; it is a connected ordered list whose items are each a cell.",
+        "message": "D(boardCell(0, 0)) (parameter L of allDifferent) must be a group whose items are each the declared type T; it is a face digit.",
         "span": {
           "file": "rules/set-distinct-rejects-list.md",
           "start": {
-            "offset": 174,
+            "offset": 180,
             "line": 11,
-            "column": 12
+            "column": 14
           },
           "end": {
-            "offset": 178,
+            "offset": 197,
             "line": 11,
-            "column": 16
+            "column": 31
           }
         }
       }

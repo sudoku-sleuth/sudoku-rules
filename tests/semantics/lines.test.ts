@@ -142,7 +142,7 @@ test("ill-typed fields are rejected before conditions, negation and coverage", (
   }
   for (const kind of ["thermo","whispers","palindrome","renban","region-sum"]) {
     const tail = kind === "whispers" ? " gap 5" : kind === "region-sum" ? ` segments [["${a}","${b}"]]` : "";
-    const n = nf(`value-modifier name "doubler" factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct true\n${kind} ${a}-${b}${tail}`);
+    const n = nf(`value-modifier factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct true\n${kind} ${a}-${b}${tail}`);
     expect(n.status).toBe("partial"); expect(n.normalForm!.coverage.find(c => c.kind === kind)!.status).toBe("unsupported");
     expect(compare(n,n).status).toBe("unresolved");
   }

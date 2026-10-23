@@ -15,6 +15,7 @@ parameters:
     description: The cells counted or compared around the clue.
     default: Required.
     type: set<cell>
+layer: rule
 ---
 
 # Pressure Gauge
@@ -23,11 +24,11 @@ The marked digit counts its listed neighbours that are greater than it for a low
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| type | Low counts larger neighbours; high counts smaller neighbours. | Required. |
-| cell | The clue cell. | Required. |
-| neighbours | The cells counted or compared around the clue. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| type | `enum{low,high}` | Low counts larger neighbours; high counts smaller neighbours. | Required. |
+| cell | `cell` | The clue cell. | Required. |
+| neighbours | `set<cell>` | The cells counted or compared around the clue. | Required. |
 
 ## Maths
 

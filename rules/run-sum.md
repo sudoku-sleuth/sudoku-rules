@@ -11,6 +11,16 @@ parameters:
     description: The total the digits or values must add up to.
     default: Required.
     type: number
+layer: rule
+alias_of: selected-stretch
+alias_bind:
+  cells: cells
+  selection: '"consecutive"'
+  sum: sum
+  count: absent(|{}|)
+  sums: ⟨n:n∈[0,0)⟩
+  crusts: absent(⟨d:d∈𝔄⟩)
+  endpointOccurrences: '"none"'
 ---
 
 # Run Sum
@@ -19,20 +29,18 @@ Count each digit once when a neighbour along the line differs by 1. These digits
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| sum | The total the digits or values must add up to. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| sum | `number` | The total the digits or values must add up to. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [selected-stretch](selected-stretch.md) — `cells=cells; selection="consecutive"; sum=sum; count=absent(|{}|); sums=⟨n:n∈[0,0)⟩; crusts=absent(⟨d:d∈𝔄⟩); endpointOccurrences="none"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-countRun(cells)=sum
-```
+
 
 Sum each position once when at least one neighbouring position on the line differs by exactly 1. This sum equals sum.
 

@@ -82,7 +82,7 @@ Meaning(not R unless P) ↔ ¬P(S) → ¬R
 
 The condition applies the named shared predicate to that rule's cells; it takes no independent cell argument.
 A rule without a nonempty primary cell list cannot carry a condition.
-Only one trailing condition is allowed. The condition keywords uniform and connected call the corresponding shared unary Boolean terms on a cell set. The distinct condition uses distinct_D for a cell set and distinctAt with D for an ordered list, comparing different positions. Unknown predicates and terms needing additional arguments are errors.
+Only one trailing condition is allowed. The condition keywords uniform and connected call the corresponding shared unary Boolean terms on a cell set. The distinct condition uses `allDifferent` with D, retaining set membership or ordered list occurrences. Unknown predicates and terms needing additional arguments are errors.
 Invalid parameters, missing definitions and off-board cells remain errors under negation or an inactive condition.
 
 `uniform` reads the single shared shading answer declared by `yin-yang`.

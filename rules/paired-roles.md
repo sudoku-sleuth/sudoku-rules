@@ -5,32 +5,40 @@ kind: paired-roles
 shape: Global
 parameters:
   left:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "Left selection name."
-    default: "Required."
+    description: Left selection name.
+    default: Required.
   right:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "Right selection name."
-    default: "Required."
+    description: Right selection name.
+    default: Required.
   name:
-    shared: {role: construct, type: network}
+    shared:
+      role: construct
+      type: network
     type: string
-    description: "Shared network name containing undirected pairs."
-    default: "Required."
+    description: Shared network name containing undirected pairs.
+    default: Required.
   scope:
     type: set<cell>
-    description: "Cells covered by the two roles."
-    default: "Required."
+    description: Cells covered by the two roles.
+    default: Required.
   relation:
     type: PairRelation
-    description: "Numeric relation from left to right."
-    default: "Required."
+    description: Numeric relation from left to right.
+    default: Required.
   channel:
     type: Channel
-    description: "Read face digits D or effective values V."
-    default: "D."
+    description: Read face digits D or effective values V.
+    default: D.
+layer: block
+composition: Bijections between shared cell roles.
 ---
 
 # Paired Roles
@@ -39,14 +47,14 @@ Pair each cell in the left role with exactly one cell in the right role, coverin
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| left | Left selection name. | Required. |
-| right | Right selection name. | Required. |
-| name | Shared network name containing undirected pairs. | Required. |
-| scope | Cells covered by the two roles. | Required. |
-| relation | Numeric relation from left to right. | Required. |
-| channel | Read face digits D or effective values V. | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| left | `string` | Left selection name. | Required. |
+| right | `string` | Right selection name. | Required. |
+| name | `string` | Shared network name containing undirected pairs. | Required. |
+| scope | `set<cell>` | Cells covered by the two roles. | Required. |
+| relation | `PairRelation` | Numeric relation from left to right. | Required. |
+| channel | `Channel` | Read face digits D or effective values V. | D. |
 
 ## Maths
 

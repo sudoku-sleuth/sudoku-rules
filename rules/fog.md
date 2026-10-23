@@ -37,10 +37,10 @@ Cells use `r1c1`, like every cell field in the format. Readers also accept 0-bas
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| initiallyLit | The cells clear at the start; [] for a fully covered grid. | [] (no cell clear at the start). |
-| links | The setter's links, each a trigger set and a set of cells it lights. Absent means neighbourhood reveal; present, even [], means links only. | Absent; neighbourhood reveal. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| initiallyLit | `set<cell>` | The cells clear at the start; [] for a fully covered grid. | [] (no cell clear at the start). |
+| links | `optional<list<FogLink>>` | The setter's links. Absent means neighbourhood reveal; present, even [], means links only. | Absent; neighbourhood reveal. |
 
 ## Maths
 

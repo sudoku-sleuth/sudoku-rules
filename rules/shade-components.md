@@ -5,27 +5,33 @@ kind: shade-components
 shape: Regions
 parameters:
   selectionRef:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "The selection name; H means board shading."
-    default: "Required."
+    description: The selection name; H means board shading.
+    default: Required.
   name:
-    shared: {role: construct, type: partition}
+    shared:
+      role: construct
+      type: partition
     type: string
-    description: "The shared partition name for the components."
-    default: "Required."
+    description: The shared partition name for the components.
+    default: Required.
   scope:
     type: set<cell>
-    description: "The scope in which components are computed."
-    default: "Required."
+    description: The scope in which components are computed.
+    default: Required.
   selected:
     type: boolean
-    description: "Use selected cells; false uses the complement in scope."
-    default: "true."
+    description: Use selected cells; false uses the complement in scope.
+    default: true.
   count:
     type: optional<position>
-    description: "Required component count."
-    default: "Absent; no count condition."
+    description: Required component count.
+    default: Absent; no count condition.
+layer: block
+composition: Derive shared connected components from a selection or its complement.
 ---
 
 # Shade Components
@@ -34,13 +40,13 @@ The named partition is exactly the maximal orthogonally connected components of 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| selectionRef | The selection name; H means board shading. | Required. |
-| name | The shared partition name for the components. | Required. |
-| scope | The scope in which components are computed. | Required. |
-| selected | Use selected cells; false uses the complement in scope. | true. |
-| count | Required component count. | Absent; no count condition. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| selectionRef | `string` | The selection name; H means board shading. | Required. |
+| name | `string` | The shared partition name for the components. | Required. |
+| scope | `set<cell>` | The scope in which components are computed. | Required. |
+| selected | `boolean` | Use selected cells; false uses the complement in scope. | true. |
+| count | `optional<position>` | Required component count. | Absent; no count condition. |
 
 ## Maths
 

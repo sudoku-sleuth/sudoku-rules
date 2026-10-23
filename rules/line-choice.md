@@ -28,6 +28,8 @@ parameters:
     type: optional<list<list<cell>>>
     description: Explicit undirected edges of one connected network; each edge lists two different cells.
     default: Absent; use the ordered line.
+layer: block
+composition: Compose arbitrary line-rule alternatives with cardinality bounds.
 ---
 
 # Line Choice
@@ -38,14 +40,14 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| kinds | The line rules available to choose from. | Required. |
-| min | The least number of listed rules that must hold. | Required. |
-| max | The greatest number of listed rules or different digits allowed. | Required. |
-| loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
-| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| kinds | `list<enum{renban,nabner,modular,entropic,parity}>` | The line rules available to choose from. | Required. |
+| min | `number` | The least number of listed rules that must hold. | Required. |
+| max | `number` | The greatest number of listed rules or different digits allowed. | Required. |
+| loop | `boolean` | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| edges | `optional<list<list<cell>>>` | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
 
 ## Maths
 
@@ -54,12 +56,12 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-lineGeometry(line,edges,loop) ∧ let S=if present(edges) then graphVertices(unwrap(edges)) else {c∈C:c∈line};
+lineGeometry(line,edges,loop) ∧ let S=if present(edges) then allCells(unwrap(edges)) else {c∈C:c∈line};
 let selected=λoption:enum{renban,nabner,modular,entropic,parity}:
-  (option="renban" ∧ (if present(edges) then consecutiveValues(S,"D",false) else consecutiveValues(line,"D",false)))
-  ∨ (option="nabner" ∧ (if present(edges) then nonconsecutiveValues(S,"D",true,false) else nonconsecutiveValues(line,"D",true,false)))
-  ∨ (option="modular" ∧ (if present(edges) then modularMeaning(line,edges,loop,3,3) else ∀W∈lineWindows(line,edges,3,loop): distinctAt(W,λc:cell:classMod3(D(c)))))
-  ∨ (option="entropic" ∧ (if present(edges) then entropicMeaning(line,edges,loop) else |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀W∈lineWindows(line,edges,3,loop): distinctAt(W,λc:cell:classEntropy(D(c)))))
+  (option="renban" ∧ (if present(edges) then valueSet(S,"D",false,"consecutive") else valueSet(line,"D",false,"consecutive")))
+  ∨ (option="nabner" ∧ (if present(edges) then valueSet(S,"D",true,if false then "separated" else "nonconsecutive") else valueSet(line,"D",true,if false then "separated" else "nonconsecutive")))
+  ∨ (option="modular" ∧ (if present(edges) then modularMeaning(line,edges,loop,3,3) else ∀W∈lineWindows(line,edges,3,loop): allDifferent(W,λc:cell:classMod3(D(c)))))
+  ∨ (option="entropic" ∧ (if present(edges) then entropicMeaning(line,edges,loop) else |𝔄|>0 ∧ |𝔄| mod 3=0 ∧ ∀W∈lineWindows(line,edges,3,loop): allDifferent(W,λc:cell:classEntropy(D(c)))))
   ∨ (option="parity" ∧ parityMeaning(line,edges,loop));
 min<=countWhere(kinds,selected)<=max
 ```

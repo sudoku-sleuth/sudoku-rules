@@ -6,7 +6,7 @@ parameters:
   line:
     type: path<cell>
 ---
-Class: **first-order**.
+Class: **with aggregates**.
 ```text
-distinct_f(line,λc:cell:D(c))
+allDifferent(line,λc:cell:true)
 ```

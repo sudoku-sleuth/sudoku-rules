@@ -11,6 +11,7 @@ parameters:
     description: The allowed or required digits, listed explicitly; repeats in the list count where the rule says so.
     default: Required.
     type: list<digit>
+layer: rule
 ---
 
 # Ordered Block
@@ -19,10 +20,10 @@ The listed digits appear as a consecutive block of cells, in exactly that order.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| digits | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `list<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| digits | `list<digit>` | The allowed or required digits, listed explicitly; repeats in the list count where the rule says so. | Required. |
 
 ## Maths
 

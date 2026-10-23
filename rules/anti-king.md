@@ -3,14 +3,19 @@ name: Anti King
 url: https://rules.sudoku-sleuth.com/anti-king.md
 kind: anti-king
 parameters: {}
-alias_of: scoped-move
+alias_of: relation-scope
 alias_bind:
+  cells: C
+  relations: ⟨relationSpec("difference",0):i∈[0,1)⟩
+  mode: '"incident"'
   move: '"king"'
-  relation: '"same"'
-  digits: 𝔄
-  scope: C
+  anchors: "{c∈C:D(c)∈𝔄}"
+  except: ⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩
+  negative: "true"
   channel: '"D"'
+layer: rule
 ---
+
 
 # Anti King
 
@@ -21,11 +26,12 @@ Cells a chess king move apart contain different digits.
 | Parameter | Meaning | Default |
 | --- | --- | --- |
 
-## Maths
+## Definition
+
+Block: [relation-scope](relation-scope.md) — `cells=C; relations=⟨relationSpec("difference",0):i∈[0,1)⟩; mode="incident"; move="king"; anchors={c∈C:D(c)∈𝔄}; except=⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩; negative=true; channel="D"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-This is a shorthand for [scoped-move](scoped-move.md). Its header binds the canonical parameters; its own parameters retain the defaults listed above.
 
 For every distinct pair at Chebyshev distance 1: their digits differ.
 

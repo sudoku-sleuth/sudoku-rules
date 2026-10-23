@@ -13,8 +13,9 @@ parameters:
     type: list<record{clue:cell,sum:number,known:set<cell>}>
   free:
     description: Cells excluded from all hidden cages.
-    default: Required.
+    default: Empty set.
     type: set<cell>
+layer: rule
 ---
 
 # Cage Shapes
@@ -23,11 +24,11 @@ Construct the hidden cages around their clues. Each cage has the stated size, in
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| size | The number of cells in each constructed region or cage. | Required. |
-| hidden | Each hidden cage: its clue cell, total and known member cells. | Required. |
-| free | Cells excluded from all hidden cages. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| size | `position` | The number of cells in each constructed region or cage. | Required. |
+| hidden | `list<record{clue:cell,sum:number,known:set<cell>}>` | Each hidden cage: its clue cell, total and known member cells. | Required. |
+| free | `set<cell>` | Cells excluded from all hidden cages. | Empty set. |
 
 ## Maths
 
@@ -39,9 +40,9 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 ∃chosen:list<set<cell>>:
   |chosen|=|hidden|
   ∧ (∀i∈[0,|hidden|): let h=hidden[i]; let cageSet=chosen[i];
-    |cageSet|=size ∧ cageSet⊆C ∧ connectedCells(cageSet) ∧ h.known⊆cageSet
+    |cageSet|=size ∧ cageSet⊆C ∧ connected(cageSet) ∧ h.known⊆cageSet
     ∧ cageSet∩free=∅ ∧ h.clue∈cageSet ∧ (∀c∈cageSet: cellIndex(h.clue)<=cellIndex(c))
-    ∧ distinct_D(cageSet) ∧ sum_D(cageSet)=h.sum)
+    ∧ repeatPolicy(cageSet,"D",false) ∧ aggregate(cageSet,"D","sum")=h.sum)
   ∧ (∀i,j∈[0,|hidden|): i!=j → chosen[i]∩chosen[j]=∅)
 ```
 

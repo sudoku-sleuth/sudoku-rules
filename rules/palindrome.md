@@ -7,6 +7,15 @@ parameters:
     description: The cells in order, for example r1c1-r1c2-r1c3.
     default: Required.
     type: path<cell>
+layer: rule
+alias_of: mirrored-pairs
+alias_bind:
+  line: line
+  geometry: '"line"'
+  mode: '"equal"'
+  channel: '"V"'
+  sums: ⟨n:n∈[0,0)⟩
+  centre: '"ignore"'
 ---
 
 # Palindrome
@@ -17,19 +26,17 @@ Compare positions equally far from the two ends. Digits may repeat, including in
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [mirrored-pairs](mirrored-pairs.md) — `line=line; geometry="line"; mode="equal"; channel="V"; sums=⟨n:n∈[0,0)⟩; centre="ignore"`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀i ∈ [0,|line|): V(line[i]) = V(line[mirror(line,i)])
-```
+
 
 Positions at equal distances from opposite ends have equal values.
 

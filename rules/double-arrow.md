@@ -19,7 +19,16 @@ parameters:
     type: boolean
     description: Whether numbers may repeat in the listed ends and interior.
     default: true.
+alias_of: aggregate-equation
+alias_bind:
+  left: ⟨if termIndex=0 then weightedOperand(aggregateOperand(line,channel,"sum",true),1,1) else weightedOperand(aggregateOperand(⟨if i<|ends| then ends[i] else line[i-|ends|]:i∈[0,|ends|+|line|)⟩,channel,"count",repeats),0,1):termIndex∈[0,2)⟩
+  right: ⟨weightedOperand(aggregateOperand(ends,channel,"sum",true),1,1):termIndex∈[0,1)⟩
+  leftOperation: '"sum"'
+  rightOperation: '"sum"'
+  relation: if |ends|=2 then relationSpec("difference",0) else relationSpec("difference",-1)
+layer: rule
 ---
+
 
 # Double Arrow
 
@@ -29,22 +38,22 @@ List the two circled cells in `ends` and only the intervening cells in `line`. T
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| ends | The two end cells, in their stated order. | Required. |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| channel | Read printed digits (D) or effective values (V). | D. |
-| repeats | Whether numbers may repeat in the listed ends and interior. | true. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| ends | `list<cell>` | The two end cells, in their stated order. | Required. |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| repeats | `boolean` | Whether numbers may repeat in the listed ends and interior. | true. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [aggregate-equation](aggregate-equation.md) — `left=⟨if termIndex=0 then weightedOperand(aggregateOperand(line,channel,"sum",true),1,1) else weightedOperand(aggregateOperand(⟨if i<|ends| then ends[i] else line[i-|ends|]:i∈[0,|ends|+|line|)⟩,channel,"count",repeats),0,1):termIndex∈[0,2)⟩; right=⟨weightedOperand(aggregateOperand(ends,channel,"sum",true),1,1):termIndex∈[0,1)⟩; leftOperation="sum"; rightOperation="sum"; relation=if |ends|=2 then relationSpec("difference",0) else relationSpec("difference",-1)`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-|ends|=2 ∧ repeatPolicy(ends,channel,repeats) ∧ repeatPolicy(line,channel,repeats) ∧ (¬repeats → ∀a∈ends: ∀b∈line: read(a,channel)!=read(b,channel)) ∧ aggregate(line,channel,"sum")=aggregate(ends,channel,"sum")
-```
+This is a bound shorthand for [aggregate-equation](aggregate-equation.md). Its header supplies every parameter of that rule.
 
 The interior total equals the total of the two ends. Both operands read the selected channel.
 

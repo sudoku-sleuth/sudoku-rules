@@ -1,0 +1,202 @@
+# Upgrade from 0.3 to 1.0
+
+The 1.0 library preserves the solution meaning of the previous library. No valid old parameter set deliberately changes meaning. Defaults are bound before rewriting; a declaration remains one declaration, including under negation.
+
+## Rewrite a case
+
+```ts
+import { migrateCase, checkCaseReferences, compilePublicLibrary } from '@sudoku-sleuth/open-rules';
+
+const migrated = migrateCase({ file: 'example.rules.md', text: oldText });
+if (!migrated.value) throw new Error(JSON.stringify(migrated.diagnostics));
+// registry is compiled from the current public rule pages.
+const checked = checkCaseReferences(migrated.value, registry);
+```
+
+`migrateCase` is a pure source transform. It reads neither files nor answers. It preserves the header, instance IDs, negation count, conditions, comments and other fenced blocks. External-library declarations remain as authored. Custom definitions retain their metadata; calls to the removed 0.3 helpers listed below are expanded from their archived formulas. Conditional declarations and declarations with an explicit drawing element retain their named declaration when available. Removed Index Count maps to Lookup in count mode with the same primary cells; Aggregate Relation has no primary cell scope. Run the current case checker on the returned source.
+
+For already decoded data, call `migrateDeclaration({kind, parameters})`. Values are numbers, bigints, strings, booleans, arrays and records. It returns an array containing one declaration. `migrateParsedDeclaration(ast)` projects the old parser AST and preserves exact keyword integers. `printMigratedDeclaration` writes the result without rounding those integers. Use `migrateCase` for source files with instance IDs, negations, drawing elements or conditions.
+
+`migrationTable` is machine-readable: `kind` is the old name, `target` is the returned declaration kind, `canonical` owns its formula, `form` says rule or block, `parameterChanges` lists removed inputs when present, and `meaning` is identical. Board-dependent diagonals, indexing, lookup targets, negative scopes and anti-move scopes retain their bound declaration. Constructed Regions retains its local existential partition. Exact keyword integers outside JavaScript's safe range also retain the Pair rule form, so they never pass through a rounded JSON number. No answer-dependent expression is evaluated by the migration.
+
+## Removed rule spellings
+
+Whispers (`whispers`) is the retained rule for legacy `whisper`; Cage (`cage`) replaces legacy `killer` and `killer-cage`; Extra Regions (`extra-regions`) replaces legacy `unique`. The removed pages are no longer current rules. Migration binds each old contract and defaults before changing the kind, including URL references, IDs, negation, conditions and drawing elements. These renames preserve the original parameters and primary cell scope.
+
+Outside and Quadruple remain separate: Outside accepts repeated cell occurrences, while Quadruple takes a cell set.
+
+## Bindings and guards
+
+- Cage uses a zero-coefficient D-count operand for face-digit distinctness independently of the total's channel. An absent total contributes zero on each side.
+- Double Arrow validates repeats over all end and shaft occurrences together. Pair, Cage Pair and Double Arrow retain rejecting arity guards, using an impossible negative absolute difference instead of an unsafe index.
+- Product Cage uses D and inverts distinct into repeats. Bremban permits repeats. Kropki and XV read V.
+- Class Pattern preserves open two-cell checks, cyclic windows and short-network component checks. Modulus and window length remain independent. Same Class reads the supplied set; Window Classes covers every board square.
+- Profiles preserve list occurrences, set membership, repeated class records, lower-bound clue multiplicities and exact counts. Quadruple's set contract differs from Outside's occurrence-collection contract.
+- Lookup counts query occurrences. Every query carries a bounded one-based index, its own target, channel and relation; noninteger indices miss.
+- Complete and partial Arrow, Region Sum's maximal runs, Zipper's centre policy, local modifier witnesses and shared route/region ownership retain their separate conditions.
+
+## Collection defaults
+
+These six formerly required parameters now default to empty collections: Digit Profile classes and counts; Negative except; Cage Shapes free; Constructed Regions borders and joins. This also accepts the previously rejected empty collections in the published Negative, Cage Shapes and Constructed Regions examples. Existing valid parameter sets keep their meaning.
+
+## Removed inert parameters
+
+Index no longer takes `strips`; Value Modifier no longer takes `name`. Neither input appeared in its old formula. The migration drops both inputs, preserving their meaning. `migrationTable.parameterChanges` records these removals.
+
+## Formula API changes
+
+The clean break removes these callable names: minimumDigit, maximumDigit, minimumValue, maximumValue, in, at, distinct_f, distinctAt, distinct_D, distinct_V, valueSum, sum_D, product_D, faceDigits, min_D, max_D, min_V, max_V, connectedCells, shaded, excludes, relationOnScope, scopedMove, lookupEquals, inverseIndex, orderedRay and indexHit.
+
+Use aggregate(S,ch,operation), repeatPolicy(S,ch,repeats), allDifferent(S,f), connected(S), marked(name,c), lookupRelated and queryHit. For occurrence-aware distinctness, pass a list or path; for member distinctness, pass a set. orderedCells now accepts any cell collection, preserving list occurrences and ordering set members by board index. graphEdge accepts any collection of edge records. classWindows adds an explicit exact/at-least comparison argument.
+
+The declaration migrators rewrite published rule declarations. They expand removed helpers with archived migration bodies in embedded custom-rule maths. Other removed callable names need a manual update to the new typed vocabulary. The previous prelude, rule contracts and formulas remain available as migration fixtures.
+
+The library removes the single-owner helpers boundedAssignment, sequenceMeaning, monotonic, sameProfile, sumLineMeaning, valueSetMeaning and japaneseSums; their formulas now live on Assignment, Local Sequence, Monotone Line, Profile Relation, Sum Partition, Value Set and Japanese Sums respectively. Inline the formula from the owning page in custom formula programs. Use allCells for either grouped sets or edge lists, samePartition(Regions,a,b) for authored region membership, and D(c) for the answer digit. Use ⌊minimumPair(a,b)⌋ or ⌊maximumPair(a,b)⌋ when integer endpoints are needed; minimumPosition and maximumPosition are removed.
+
+## Finite normalisation
+
+`declarationRegistry` records lowering coverage. Class Pattern, Value Set, Aggregate Groups and Lookup Count have formula definitions but no finite-primitive lowering. Existing setter shorthands retain their prior lowering entries. A migrated general declaration can therefore have an unsupported normalisation status even when its formula is equivalent. Bounded formula conformance covers every old kind independently of that normaliser.
+
+## Every old kind
+
+Migration chooses a familiar rule where one exists, otherwise a block with settings. Each row names its formula-owning block.
+
+| Old kind | New declaration and block | Meaning |
+| --- | --- | --- |
+| `absent-digits` | `absent-digits` (rule; formula home `digit-profile`) | identical |
+| `aggregate-equation` | `aggregate-equation` (block; formula home `aggregate-equation`) | identical |
+| `aggregate-relation` | `aggregate-equation` (block; formula home `aggregate-equation`) | identical |
+| `allowed-digits` | `allowed-digits` (rule; formula home `digit-profile`) | identical |
+| `anti-king` | `anti-king` (rule; formula home `relation-scope`) | identical |
+| `anti-knight` | `anti-knight` (rule; formula home `relation-scope`) | identical |
+| `arrow` | `arrow` (rule; formula home `arrow`) | identical |
+| `assignment` | `assignment` (block; formula home `assignment`) | identical |
+| `battenburg` | `battenburg` (rule; formula home `battenburg`) | identical |
+| `between` | `between` (rule; formula home `endpoint-range`) | identical |
+| `blocked-sight` | `blocked-sight` (block; formula home `blocked-sight`) | identical |
+| `bremban` | `bremban` (rule; formula home `value-set`) | identical |
+| `cage` | `cage` (rule; formula home `aggregate-equation`) | identical |
+| `cage-expressions` | `cage-expressions` (rule; formula home `cage-expressions`) | identical |
+| `cage-pair` | `cage-pair` (rule; formula home `aggregate-equation`) | identical |
+| `cage-shapes` | `cage-shapes` (rule; formula home `cage-shapes`) | identical |
+| `cell-entries` | `cell-entries` (block; formula home `cell-entries`) | identical |
+| `choice-count` | `choice-count` (block; formula home `choice-count`) | identical |
+| `clone` | `clone` (rule; formula home `relation-scope`) | identical |
+| `close-whispers` | `close-whispers` (rule; formula home `difference-line`) | identical |
+| `constructed-regions` | `constructed-regions` (rule; formula home `region-partition`) | identical |
+| `coordinate-arrows` | `coordinate-arrows` (rule; formula home `coordinate-arrows`) | identical |
+| `coordinate-count` | `coordinate-count` (block; formula home `coordinate-count`) | identical |
+| `counting-circles` | `counting-circles` (rule; formula home `digit-profile`) | identical |
+| `decoration` | `decoration` (block; formula home `decoration`) | identical |
+| `derived-count` | `derived-count` (block; formula home `derived-count`) | identical |
+| `diagonal` | `diagonal` (rule; formula home `relation-scope`) | identical |
+| `diagonal-lines` | `diagonal-lines` (rule; formula home `diagonal-lines`) | identical |
+| `difference-line` | `difference-line` (block; formula home `difference-line`) | identical |
+| `digit-profile` | `digit-profile` (block; formula home `digit-profile`) | identical |
+| `doll-sum` | `doll-sum` (rule; formula home `selected-stretch`) | identical |
+| `double-arrow` | `double-arrow` (rule; formula home `aggregate-equation`) | identical |
+| `entropic` | `entropic` (rule; formula home `class-pattern`) | identical |
+| `equal-sums` | `equal-sums` (rule; formula home `aggregate-groups`) | identical |
+| `equality-cage` | `equality-cage` (rule; formula home `digit-profile`) | identical |
+| `extremum` | `extremum` (rule; formula home `neighbour-extremum`) | identical |
+| `flat-mates` | `flat-mates` (rule; formula home `flat-mates`) | identical |
+| `greek-carpet` | `greek-carpet` (rule; formula home `greek-carpet`) | identical |
+| `hidden-modular` | `hidden-modular` (rule; formula home `hidden-modular`) | identical |
+| `index` | `index` (rule; formula home `lookup`) | identical |
+| `index-count` | `lookup` (block; formula home `lookup`) | identical |
+| `index-line` | `index-line` (rule; formula home `lookup`) | identical |
+| `japanese-sums` | `japanese-sums` (rule; formula home `japanese-sums`) | identical |
+| `killer` | `cage` (rule; formula home `aggregate-equation`) | identical |
+| `killer-cage` | `cage` (rule; formula home `aggregate-equation`) | identical |
+| `kropki` | `kropki` (rule; formula home `aggregate-equation`) | identical |
+| `layered-cage` | `layered-cage` (rule; formula home `layered-cage`) | identical |
+| `limited-digits` | `limited-digits` (rule; formula home `digit-profile`) | identical |
+| `line-choice` | `line-choice` (block; formula home `line-choice`) | identical |
+| `little-killer` | `little-killer` (rule; formula home `aggregate-equation`) | identical |
+| `local-sequence` | `local-sequence` (block; formula home `local-sequence`) | identical |
+| `lockout` | `lockout` (rule; formula home `endpoint-range`) | identical |
+| `look-and-say` | `look-and-say` (rule; formula home `digit-profile`) | identical |
+| `lookup` | `lookup` (block; formula home `lookup`) | identical |
+| `magic-square` | `magic-square` (rule; formula home `magic-square`) | identical |
+| `mapped-values` | `mapped-values` (block; formula home `mapped-values`) | identical |
+| `marking-relation` | `marking-relation` (block; formula home `marking-relation`) | identical |
+| `maze` | `maze` (block; formula home `maze`) | identical |
+| `mean-lines` | `mean-lines` (rule; formula home `aggregate-groups`) | identical |
+| `modular` | `modular` (rule; formula home `class-pattern`) | identical |
+| `molecules` | `molecules` (rule; formula home `molecules`) | identical |
+| `n-mate` | `n-mate` (rule; formula home `n-mate`) | identical |
+| `nabner` | `nabner` (rule; formula home `value-set`) | identical |
+| `negative` | `negative` (rule; formula home `relation-scope`) | identical |
+| `neighbour-count` | `neighbour-count` (block; formula home `neighbour-count`) | identical |
+| `network-clue` | `network-clue` (block; formula home `network-clue`) | identical |
+| `number-property` | `number-property` (block; formula home `number-property`) | identical |
+| `numbered-room` | `numbered-room` (rule; formula home `lookup`) | identical |
+| `ordered-block` | `ordered-block` (rule; formula home `ordered-block`) | identical |
+| `outside` | `outside` (rule; formula home `digit-profile`) | identical |
+| `pair` | `pair` (rule; formula home `aggregate-equation`) | identical |
+| `paired-roles` | `paired-roles` (block; formula home `paired-roles`) | identical |
+| `palindrome` | `palindrome` (rule; formula home `mirrored-pairs`) | identical |
+| `parity` | `parity` (rule; formula home `class-pattern`) | identical |
+| `parity-cells` | `parity-cells` (rule; formula home `class-pattern`) | identical |
+| `pointing-arrow` | `pointing-arrow` (rule; formula home `lookup`) | identical |
+| `pointing-thermo` | `pointing-thermo` (rule; formula home `lookup`) | identical |
+| `prefix-sum` | `prefix-sum` (rule; formula home `aggregate-equation`) | identical |
+| `pressure-gauge` | `pressure-gauge` (rule; formula home `pressure-gauge`) | identical |
+| `primality` | `primality` (rule; formula home `number-property`) | identical |
+| `product-cage` | `product-cage` (rule; formula home `aggregate-equation`) | identical |
+| `profile-relation` | `profile-relation` (block; formula home `profile-relation`) | identical |
+| `quadruple` | `quadruple` (rule; formula home `digit-profile`) | identical |
+| `region-clue` | `region-clue` (block; formula home `region-clue`) | identical |
+| `region-partition` | `region-partition` (block; formula home `region-partition`) | identical |
+| `region-shape` | `region-shape` (block; formula home `region-shape`) | identical |
+| `region-sum` | `region-sum` (rule; formula home `aggregate-groups`) | identical |
+| `relation-scope` | `relation-scope` (block; formula home `relation-scope`) | identical |
+| `remainder-cage` | `remainder-cage` (rule; formula home `number-property`) | identical |
+| `renban` | `renban` (rule; formula home `value-set`) | identical |
+| `rotational-sums` | `rotational-sums` (rule; formula home `mirrored-pairs`) | identical |
+| `route` | `route` (block; formula home `route`) | identical |
+| `route-clue` | `route-clue` (block; formula home `route-clue`) | identical |
+| `route-group` | `route-group` (block; formula home `route-group`) | identical |
+| `run-sum` | `run-sum` (rule; formula home `selected-stretch`) | identical |
+| `same-class` | `same-class` (rule; formula home `class-pattern`) | identical |
+| `sandwich` | `sandwich` (rule; formula home `selected-stretch`) | identical |
+| `scoped-move` | `scoped-move` (rule; formula home `relation-scope`) | identical |
+| `selection` | `selection` (block; formula home `selection`) | identical |
+| `shade-components` | `shade-components` (block; formula home `shade-components`) | identical |
+| `shifter-line` | `shifter-line` (rule; formula home `shifter-line`) | identical |
+| `skyscraper` | `skyscraper` (rule; formula home `blocked-sight`) | identical |
+| `slow-thermo` | `slow-thermo` (rule; formula home `monotone-line`) | identical |
+| `split-pea` | `split-pea` (rule; formula home `split-pea`) | identical |
+| `subset-total` | `subset-total` (block; formula home `subset-total`) | identical |
+| `sudoku` | `sudoku` (rule; formula home `sudoku`) | identical |
+| `sum-free-cage` | `sum-free-cage` (rule; formula home `digit-profile`) | identical |
+| `sum-partition` | `sum-partition` (block; formula home `sum-partition`) | identical |
+| `summit` | `summit` (rule; formula home `difference-line`) | identical |
+| `symbol-house` | `symbol-house` (block; formula home `symbol-house`) | identical |
+| `tardis` | `tardis` (rule; formula home `neighbour-extremum`) | identical |
+| `thermo` | `thermo` (rule; formula home `monotone-line`) | identical |
+| `unique` | `extra-regions` (rule; formula home `relation-scope`) | identical |
+| `value-modifier` | `value-modifier` (block; formula home `value-modifier`) | identical |
+| `vault` | `vault` (rule; formula home `vault`) | identical |
+| `whisper` | `whispers` (rule; formula home `difference-line`) | identical |
+| `whispers` | `whispers` (rule; formula home `difference-line`) | identical |
+| `window-classes` | `window-classes` (rule; formula home `class-pattern`) | identical |
+| `x-sum` | `x-sum` (rule; formula home `selected-stretch`) | identical |
+| `yin-yang` | `yin-yang` (rule; formula home `yin-yang`) | identical |
+| `zipper` | `zipper` (rule; formula home `mirrored-pairs`) | identical |
+
+## Parameterised predicates
+
+Use moveRelation(move,a,b) for orthogonal steps, diagonal steps, king steps, knight moves and bishop lines. It replaces orth, touch, king, knight and bishop. The diagonal setting is a single diagonal step; bishop accepts any nonzero diagonal displacement.
+
+Use numericProperty(n,"prime",1) or numericProperty(n,"composite",1) for primality. Both require an integer greater than one; the composite setting requires a proper factor and the prime setting excludes one. The old properFactor, prime and composite helpers are removed.
+
+Use valueSet(cells,channel,repeats,mode), with consecutive, nonconsecutive or separated support, in place of consecutiveValues and nonconsecutiveValues. The repeat and separation settings preserve their occurrence policies. Use classCount(cells,{number},channel) instead of frequency; classCount accepts any collection of numeric class members. migrateCase expands the archived bodies of these removed helpers in embedded formulas.
+
+## Cage aliases
+
+Cage is the public rule name. Killer Cage and Killer remain aliases. Both legacy kinds, killer and killer-cage, and their library URLs load the Cage contract and migrate to cage with the same defaults and conditions. Little Killer retains its name.
+
+## Liar rules
+
+Liar Cells (liar-cells) and Lying Clues (clue-count) are additional named rules. Liar Cells constrains the shared effective-value channel; Lying Clues counts complete false clues from an explicit owned list. They reuse the existing counting and distinctness functions. See the [lying-clue guide](design/lying-clues.md) for scope and channel conventions.

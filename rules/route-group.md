@@ -5,7 +5,9 @@ kind: route-group
 shape: Lines
 parameters:
   routes:
-    shared: {role: read, type: route}
+    shared:
+      role: read
+      type: route
     type: list<string>
     description: Shared route names, each listed once.
     default: Required.
@@ -25,6 +27,8 @@ parameters:
     type: optional<set<cell>>
     description: Require the union of routes to equal this cell set.
     default: Absent; no covering condition.
+layer: block
+composition: Relations between arbitrary named routes.
 ---
 
 # Route Group
@@ -35,13 +39,13 @@ A long step passing through a visited cell is allowed by `crossings false` when 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| routes | Shared route names, each listed once. | Required. |
-| disjoint | Require different routes to share no cells. | true. |
-| noTouch | Forbid this move between cells of different routes. | Absent; no extra separation. |
-| crossings | Allow crossings between straight steps of any length of different routes. | false. |
-| cover | Require the union of routes to equal this cell set. | Absent; no covering condition. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| routes | `list<string>` | Shared route names, each listed once. | Required. |
+| disjoint | `boolean` | Require different routes to share no cells. | true. |
+| noTouch | `optional<Move>` | Forbid this move between cells of different routes. | Absent; no extra separation. |
+| crossings | `boolean` | Allow crossings between straight steps of any length of different routes. | false. |
+| cover | `optional<set<cell>>` | Require the union of routes to equal this cell set. | Absent; no covering condition. |
 
 ## Maths
 

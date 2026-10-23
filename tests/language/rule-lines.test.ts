@@ -38,7 +38,8 @@ test("integer operands retain every digit beyond floating-point precision", () =
 });
 test("grammar follows renamed kinds, record fields and new enum members", async () => {
   const shared = pages.find(p => p.file === "rules/predicates.md")!;
-  const original = pages.find(p => p.file === "rules/pair.md")!.text;
+  const baseline=await Bun.file('tests/fixtures/library-6d9e954.json').json();
+  const original = baseline.pages.find((p:{file:string})=>p.file==='rules/pair.md').text;
   const renamed = original.replaceAll("kind: pair", "kind: bond").replaceAll("https://rules.sudoku-sleuth.com/pair.md", "https://other.example/bond.md");
   const checked = compilePublicLibrary([shared, { file: "bond.md", text: renamed }]);
   expect(checked.diagnostics).toEqual([]);

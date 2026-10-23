@@ -6,15 +6,17 @@ parameters:
     type: record{rows:position,cols:position}
     description: The board dimensions and standard boxes; write 9x9.
     default: Required.
-    syntax: {form: dimensions}
+    syntax:
+      form: dimensions
 kind: sudoku
+layer: rule
 ---
 
 # Sudoku
 
 Every row, column and standard 3×3 box contains the digits 1–9 exactly once.
 
-For 4×4 or 6×6 Sudoku, declare the board dimensions, allowed symbols and region geometry in the case header, then use [Unique](https://rules.sudoku-sleuth.com/unique.md) for every row, column and region. This kind specifically declares standard 9×9 Sudoku.
+For 4×4 or 6×6 Sudoku, declare the board dimensions, allowed symbols and region geometry in the case header, then use [Extra Regions](https://rules.sudoku-sleuth.com/extra-regions.md) for every row, column and region. This kind specifically declares standard 9×9 Sudoku.
 
 ## Parameters
 
@@ -28,7 +30,7 @@ Class: **with aggregates**.
 [Shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define D and distinct. H ranges over the rows, columns and standard boxes.
 
 ```text
-rows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ distinct_D(house)) ∧ (∀c∈C: given(c) → D(c)=givenValue(c))
+rows=9 ∧ cols=9 ∧ board.rows=rows ∧ board.cols=cols ∧ (∀c∈C:D(c)∈[1,10)) ∧ (∀house∈standardHouses(): |house|=9 ∧ repeatPolicy(house,"D",false)) ∧ (∀c∈C: given(c) → D(c)=givenValue(c))
 ```
 
 Every house contains nine different digits from 1 to 9. A given cell holds its given digit.

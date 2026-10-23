@@ -36,6 +36,8 @@ Read the whole source sentence and drawing before asking; apply F1 and F2 and fl
 
 If no published kind expresses the rule exactly, embed a custom definition and its formula over the shared terms. Never substitute the nearest kind. Follow [syntax.md](references/syntax.md): use a case-local id unless the setter has an address, or retain a setter-chosen external URL, with a complete `custom-rules` definition in the case. Keep that definition when also proposing the rule for the library.
 
+For cells with independent real values and counts of false clues, read [lying.md](references/lying.md).
+
 ## Write a case file
 
 1. Collect the title, setter credit, source link, and rules wording. Use empty `source` and `case` strings when no URLs were supplied. `case` is the case's public page URL, when one exists.

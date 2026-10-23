@@ -27,6 +27,20 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+  neighbours:
+    type: optional<set<cell>>
+    description: Explicit comparison neighbours, replacing move-selected neighbours.
+    default: Absent.
+layer: rule
+alias_of: neighbour-extremum
+alias_bind:
+  type: type
+  cells: cells
+  exhaustive: exhaustive
+  neighbourhood: neighbourhood
+  boundary: boundary
+  channel: channel
+  neighbours: neighbours
 ---
 
 # Extremum
@@ -37,25 +51,23 @@ Neighbours here are orthogonally adjacent cells outside the entire marked set. W
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| type | The mode named in the definition, such as min or max. | Required. |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| exhaustive | Whether every occurrence is marked, so unmarked cells obey the opposite condition. | Required. |
-| neighbourhood | The move defining neighbours. | orthogonal. |
-| boundary | Compare marked cells only with neighbours outside the marked set. | true. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| type | `enum{min,max}` | The mode named in the definition, such as min or max. | Required. |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| exhaustive | `boolean` | Whether every occurrence is marked, so unmarked cells obey the opposite condition. | Required. |
+| neighbourhood | `Move` | The move defining neighbours. | orthogonal. |
+| boundary | `boolean` | Compare marked cells only with neighbours outside the marked set. | true. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| neighbours | `optional<set<cell>>` | Explicit comparison neighbours, replacing move-selected neighbours. | Absent. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [neighbour-extremum](neighbour-extremum.md) — `type=type; cells=cells; exhaustive=exhaustive; neighbourhood=neighbourhood; boundary=boundary; channel=channel; neighbours=neighbours`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-(∀a∈cells: extremumAt(a,{b∈C:moveRelation(neighbourhood,a,b) ∧ (¬boundary ∨ b∉cells)},type,channel))
-∧ (exhaustive → ∀a∈C: a∉cells → ∃b∈C: moveRelation(neighbourhood,a,b) ∧ extremumAt(b,{a},type,channel))
-```
+
 
 Marked extrema compare the selected neighbours, excluding the marked set when boundary is true. Exhaustive marking retains the requirement for a strictly lower or higher neighbour at each unmarked cell.
 

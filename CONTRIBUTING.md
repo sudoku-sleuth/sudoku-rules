@@ -2,7 +2,7 @@
 
 Propose changes through a pull request. Published rule meanings are fixed. Clarify wording without changing the accepted assignments; introduce a new kind when the meaning changes. A published meaning that is plainly wrong is corrected in place and marked Breaking in the changelog.
 
-## Rule pages
+## Rules and building blocks
 
 Add `rules/<kind>.md` using lowercase letters and digits, with single hyphens between segments. The slugs `cases` and `style` are reserved; `index` is a rule route, while the catalogue lives at `/`. Start with YAML front matter:
 
@@ -11,6 +11,7 @@ Add `rules/<kind>.md` using lowercase letters and digits, with single hyphens be
 name: Rule name
 url: https://rules.sudoku-sleuth.com/<kind>.md
 kind: <kind>
+layer: block
 parameters:
   line:
     type: path<cell>
@@ -19,7 +20,9 @@ parameters:
 ---
 ```
 
-Use the approved page order:
+For a named rule, use `layer: rule`, `alias_of: <block-kind>` and an `alias_bind` expression for every block parameter. Keep the rule's familiar name, plain-English meaning, icon and examples on that page. Its Definition section contains one block binding; its formula lives on the block. A rule without a wider family owns its formula directly on the rule page; omit alias_of and alias_bind. Blocks must share a meaning across at least two rules or supply a general case-file composition tool. Bound declarations are never blocks.
+
+For a formula-owning block, use the page order:
 
 1. Heading and a short statement of the meaning.
 2. `## Parameters`, with a table of parameter, meaning, and default.

@@ -19,11 +19,11 @@ parameters:
   a:
     type: number
     description: Coefficient of the earlier recurrence term.
-    default: '1.'
+    default: "1."
   b:
     type: number
     description: Coefficient of the later recurrence term.
-    default: '1.'
+    default: "1."
   loop:
     type: boolean
     description: Include the closing transition; recurrence uses an open line.
@@ -32,6 +32,8 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+layer: block
+composition: Explicit transition tables, divisibility and linear recurrences.
 ---
 
 # Local Sequence
@@ -40,15 +42,15 @@ Successive numbers follow the chosen sequence. Transitions use explicit ordered 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The ordered cells. | Required. |
-| mode | Allowed directed pairs, successive divisibility, or a two-term linear recurrence. | Required. |
-| allowed | Allowed ordered number pairs. | Empty list. |
-| a | Coefficient of the earlier recurrence term. | 1. |
-| b | Coefficient of the later recurrence term. | 1. |
-| loop | Include the closing transition; recurrence uses an open line. | false. |
-| channel | Read printed digits (D) or effective values (V). | D. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The ordered cells. | Required. |
+| mode | `enum{transitions,divisors,recurrence}` | Allowed directed pairs, successive divisibility, or a two-term linear recurrence. | Required. |
+| allowed | `list<list<number>>` | Allowed ordered number pairs. | Empty list. |
+| a | `number` | Coefficient of the earlier recurrence term. | 1. |
+| b | `number` | Coefficient of the later recurrence term. | 1. |
+| loop | `boolean` | Include the closing transition; recurrence uses an open line. | false. |
+| channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
 
 ## Maths
 
@@ -57,7 +59,7 @@ Class: **first-order**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-sequenceMeaning(line,channel,mode,allowed,a,b,loop)
+(((((|line| > 0) and (loop implies (|line| >= 3))) and ((mode = "recurrence") implies not(loop))) and ((mode = "transitions") implies forall p∈allowed: (|p| = 2))) and if (mode = "recurrence") then forall i∈[0,(|line| - 2)): (read(line[(i + 2)],channel) = ((a * read(line[i],channel)) + (b * read(line[(i + 1)],channel)))) else forall i,j∈[0,|line|): (next(line,i,j,loop) implies if (mode = "divisors") then divides(read(line[i],channel),read(line[j],channel)) else transitionAllowed(read(line[i],channel),read(line[j],channel),allowed)))
 ```
 
 ## Example

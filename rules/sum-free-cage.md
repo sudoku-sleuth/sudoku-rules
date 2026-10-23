@@ -11,6 +11,22 @@ parameters:
     description: The divisor used to take remainders.
     default: Required. modulus ≥ 1.
     type: position
+layer: rule
+alias_of: digit-profile
+alias_bind:
+  cells: orderedCells(cells)
+  classes: ⟨⟨d:d∈𝔄⟩:i∈[0,0)⟩
+  counts: ⟨i:i∈[0,0)⟩
+  exhaustive: "false"
+  channel: '"D"'
+  selfCount: "false"
+  windowLength: absent(|{}|)
+  loop: "false"
+  comparison: '"exact"'
+  maximumDistinct: absent(0)
+  repeats: "false"
+  balancePairs: ⟨⟨d:d∈𝔄⟩:i∈[0,0)⟩
+  sumFree: some(modulus)
 ---
 
 # Sum Free Cage
@@ -19,22 +35,14 @@ Cage digits are different. Adding any two cage digits, including a digit to itse
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| modulus | The divisor used to take remainders. | Required. modulus ≥ 1. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| modulus | `position` | The divisor used to take remainders. | Required. modulus ≥ 1. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
-
-The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
-
-```text
-modulus>=1 ∧ distinct_D(cells) ∧ ∀a,b,c∈cells: rem(D(a)+D(b),modulus)!=D(c)
-```
-
-Digits are distinct. For every pair of digits a,b in the cage (including a=b), normalised (a+b) modulo modulus is absent from its digit set.
+Block: [digit-profile](digit-profile.md), with ordered cage cells, channel `D`, no repeats and `sumFree=some(modulus)`; all other profile checks use their defaults.
 
 ## Example
 

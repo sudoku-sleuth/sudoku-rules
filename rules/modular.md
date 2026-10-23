@@ -24,7 +24,22 @@ parameters:
     type: position
     description: The number of consecutive cells in each window, independent of the modulus.
     default: 3; length ≥ 2.
+alias_of: class-pattern
+alias_bind:
+  line: line
+  edges: edges
+  loop: loop
+  classification: '"residue"'
+  modulus: modulus
+  length: length
+  geometry: '"line"'
+  mode: '"distinct"'
+  fixedClass: absent(|{}|)
+  channel: '"D"'
+layer: rule
 ---
+
+
 
 # Modular
 
@@ -36,23 +51,23 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| line | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
-| loop | Whether the line closes, joining its last cell back to its first. | false (open path). |
-| modulus | The divisor used to take remainders. | 3; modulus ≥ 1. |
-| edges | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
-| length | The number of consecutive cells in each window, independent of the modulus. | 3; length ≥ 2. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
+| loop | `boolean` | Whether the line closes, joining its last cell back to its first. | false (open path). |
+| modulus | `position` | The divisor used to take remainders. | 3; modulus ≥ 1. |
+| edges | `optional<list<list<cell>>>` | Explicit undirected edges of one connected network; each edge lists two different cells. | Absent; use the ordered line. |
+| length | `position` | The number of consecutive cells in each window, independent of the modulus. | 3; length ≥ 2. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [class-pattern](class-pattern.md) — `line=line; edges=edges; loop=loop; classification="residue"; modulus=modulus; length=length; geometry="line"; mode="distinct"; fixedClass=absent(|{}|); channel="D"`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-modularMeaning(line,edges,loop,modulus,length)
-```
+This is a bound shorthand for [class-pattern](class-pattern.md). Its header supplies every parameter of that rule.
 
 Every window has distinct remainders. An open two-cell list retains its different-remainders condition.
 

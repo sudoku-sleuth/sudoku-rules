@@ -3,10 +3,6 @@ name: Index
 url: https://rules.sudoku-sleuth.com/index.md
 kind: index
 parameters:
-  strips:
-    description: The marked cells in each straight strip.
-    default: No authored strips.
-    type: list<list<cell>>
   axis:
     description: "The indexing direction: row or column."
     default: Required.
@@ -15,7 +11,27 @@ parameters:
     description: The marked cells, for example r1c1-r1c2-r2c2.
     default: Required.
     type: set<cell>
+alias_of: lookup
+alias_bind:
+  mode: '"queries"'
+  cells: orderedCells({})
+  cell: boardCell(1,1)
+  sources: orderedCells({})
+  indexChannel: '"D"'
+  channel: '"D"'
+  offset: "0"
+  target: absent(0)
+  targetCell: absent(boardCell(1,1))
+  relation: relationSpec("difference",0)
+  queries: ⟨lookupQuery(if axis="column" then ⟨boardCell(row(c),k):k∈[0,cols)⟩ else ⟨boardCell(r,col(c)):r∈[0,rows)⟩,D(c),if axis="column" then col(c)+1 else row(c)+1,"D",relationSpec("difference",0)):c∈orderedCells(cells)⟩
+  total: "|cells|"
+  firstMatch: "false"
+  reverseRelation: "false"
+  increasing: orderedCells({})
+  nonempty: "false"
+layer: rule
 ---
+
 
 # Index
 
@@ -25,21 +41,20 @@ With `axis "column"`, a marked cell in column k contains the column position of 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| strips | The marked cells in each straight strip. | No authored strips. |
-| axis | The indexing direction: row or column. | Required. |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| axis | `enum{row,column}` | The indexing direction: row or column. | Required. |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
 
-## Maths
+## Definition
 
-Class: **with aggregates**.
+Block: [lookup](lookup.md) — `queries=⟨lookupQuery(if axis="column" then ⟨boardCell(row(c),k):k∈[0,cols)⟩ else ⟨boardCell(r,col(c)):r∈[0,rows)⟩,D(c),if axis="column" then col(c)+1 else row(c)+1,"D",relationSpec("difference",0)):c∈orderedCells(cells)⟩; total=|cells|; firstMatch=false; reverseRelation=false; increasing=orderedCells({}); nonempty=false`.
+
+
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-∀c∈cells: if axis="column" then lookupEquals(⟨boardCell(row(c),k):k∈[0,cols)⟩,D(c),col(c)+1,"D") else lookupEquals(⟨boardCell(r,col(c)):r∈[0,rows)⟩,D(c),row(c)+1,"D")
-```
+This is a bound shorthand for [lookup](lookup.md). Its header binds every canonical parameter.
 
 The shared bounded lookup uses a one-based position in the selected row or column.
 

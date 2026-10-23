@@ -9,23 +9,24 @@ parameters:
     type: position
   borders:
     description: Pairs of neighbouring cells that must belong to different regions.
-    default: Required.
+    default: Empty list.
     type: list<list<cell>>
   joins:
     description: Pairs of cells that must belong to the same region.
-    default: Required.
+    default: Empty list.
     type: list<list<cell>>
 alias_of: region-partition
 alias_bind:
   name: '""'
-  scope: 'C'
-  sizes: '⟨size:i∈[0,1)⟩'
-  count: 'absent(|C|)'
-  distinct: 'true'
+  scope: C
+  sizes: ⟨size:i∈[0,1)⟩
+  count: absent(|C|)
+  distinct: "true"
   channel: '"D"'
-  joins: 'joins'
-  borders: 'borders'
-  separation: 'absent("orthogonal")'
+  joins: joins
+  borders: borders
+  separation: absent("orthogonal")
+layer: rule
 ---
 
 # Constructed Regions
@@ -36,15 +37,16 @@ This is the local existential form of [Region Partition](region-partition.md) wi
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| size | The number of cells in each constructed region or cage. | Required. |
-| borders | Pairs of neighbouring cells that must belong to different regions. | Required. |
-| joins | Pairs of cells that must belong to the same region. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| size | `position` | The number of cells in each constructed region or cage. | Required. |
+| borders | `list<list<cell>>` | Pairs of neighbouring cells that must belong to different regions. | Empty list. |
+| joins | `list<list<cell>>` | Pairs of cells that must belong to the same region. | Empty list. |
 
-## Maths
+## Definition
 
-This is a shorthand for [region-partition](region-partition.md). Its header binds the general rule parameters.
+Block: [region-partition](region-partition.md) — `name=""; scope=C; sizes=⟨size:i∈[0,1)⟩; count=absent(|C|); distinct=true; channel="D"; joins=joins; borders=borders; separation=absent("orthogonal")`.
+
 
 ## Example
 

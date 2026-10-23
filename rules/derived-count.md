@@ -15,7 +15,7 @@ parameters:
   target:
     type: number
     description: Comparison target; unused in distinct mode.
-    default: '0.'
+    default: "0."
   relation:
     type: PairRelation
     description: Relation from each result to the target in matches mode.
@@ -24,6 +24,8 @@ parameters:
     type: position
     description: Required count or rank.
     default: Required.
+layer: block
+composition: Count or rank results of arbitrary operand-pair computations.
 ---
 
 # Derived Count
@@ -34,13 +36,13 @@ In distinct mode, omit target and relation.
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| quantities | Ordered aggregate pairs and their sum, product, absolute difference or directed ratio. | Required. |
-| mode | Count matches, distinct results, or one plus the number of smaller results. | matches. |
-| target | Comparison target; unused in distinct mode. | 0. |
-| relation | Relation from each result to the target in matches mode. | difference 0 (equal). |
-| total | Required count or rank. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| quantities | `list<DerivedQuantity>` | Ordered aggregate pairs and their sum, product, absolute difference or directed ratio. | Required. |
+| mode | `enum{matches,distinct,rank}` | Count matches, distinct results, or one plus the number of smaller results. | matches. |
+| target | `number` | Comparison target; unused in distinct mode. | 0. |
+| relation | `PairRelation` | Relation from each result to the target in matches mode. | difference 0 (equal). |
+| total | `position` | Required count or rank. | Required. |
 
 ## Maths
 

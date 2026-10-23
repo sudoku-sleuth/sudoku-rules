@@ -15,6 +15,7 @@ parameters:
     description: The cells in the cage.
     default: Required.
     type: set<cell>
+layer: rule
 ---
 
 # N Mate
@@ -23,11 +24,11 @@ Count along the ray by the clue digit. That target digit plus the clue equals th
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cell | The clue cell. | Required. |
-| ray | The cells along the ray, nearest first. | Required. |
-| cage | The cells in the cage. | Required. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cell | `cell` | The clue cell. | Required. |
+| ray | `list<cell>` | The cells along the ray, nearest first. | Required. |
+| cage | `set<cell>` | The cells in the cage. | Required. |
 
 ## Maths
 
@@ -36,7 +37,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-let n=D(cell); 1<=n<=|ray| ∧ n+D(ray[n-1])=sum_D(cage) ∧ distinct_D(cage)
+let n=D(cell); 1<=n<=|ray| ∧ n+D(ray[n-1])=aggregate(cage,"D","sum") ∧ repeatPolicy(cage,"D",false)
 ```
 
 The marked digit names a one-based position within ray. The marked and target digits sum to the cage total. Cage digits are distinct.

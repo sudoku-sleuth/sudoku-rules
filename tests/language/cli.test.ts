@@ -71,3 +71,17 @@ test("default lint:spec checks the library and finds no case files", async () =>
   expect(stdout).toMatch(/; [1-9]\d* formula blocks/);
   expect(stdout).toContain("Cases: 0 headers/reference lists; 0 references; 0 deferred URLs");
 }, 60_000);
+
+test('overlap CLI reports layers, scores and formula subtrees and validates its threshold',async()=>{
+ const process=Bun.spawn(['bun','src/cli.ts','overlap','--min','0.35','--json'],{stdout:'pipe',stderr:'pipe'});
+ const [stdout,stderr]=await Promise.all([new Response(process.stdout).text(),new Response(process.stderr).text()]);
+ expect(await process.exited).toBe(0);expect(stderr).toBe('');
+ const report=JSON.parse(stdout);
+ expect(report.counts.predicates).toBeGreaterThan(0);
+ expect(report.pairs.some((p:{key:string;sameBlock:boolean;settings:object;shared:string})=>p.key==='rule:outside / rule:quadruple'&&p.sameBlock&&p.shared&&Object.keys(p.settings).length>0)).toBe(true);
+ for(const args of [['--min','nonsense'],['--min','-0.1'],['--min','1.1'],['--min'],['--unknown']]){
+  const invalid=Bun.spawn(['bun','src/cli.ts','overlap',...args],{stdout:'pipe',stderr:'pipe'});
+  const [,err]=await Promise.all([new Response(invalid.stdout).text(),new Response(invalid.stderr).text()]);
+  expect(await invalid.exited).toBe(2);expect(err).toContain('Usage: openrules overlap');
+ }
+},60000);

@@ -1,4 +1,6 @@
-import {expect,test} from 'bun:test';
+import {migrateDeclaration} from '../../src';
+import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
+import {expect,test,afterAll} from 'bun:test';
 import {readdir} from 'node:fs/promises';
 import {compilePublicLibrary,normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
 import {caseExamples} from '../../scripts/lint-skill';
@@ -10,11 +12,16 @@ const library=compiled.value;
 const a='r1c1',b='r1c2',c='r1c3',d='r2c1',e='r2c2';
 const faces={[a]:1,[b]:2,[c]:3,[d]:4,[e]:5};
 function verdict(kind:string,parameters:Record<string,unknown>,extra:Partial<Fragment>={},negated=false){
+ const historical=kind;
+ const historicalParameters=parameters;
+ if(!library.rules.has(kind)){const migrated=migrateDeclaration({kind,parameters})[0];kind=migrated.kind;parameters=migrated.parameters;}
  const page=library.rules.get(kind)!;
  const defaults=Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([n,p])=>[n,p.default]));
  const ast=page.formulas[0].ast;
  if(kind==='route') extra={...extra,routeClosures:{[String(parameters.name)]:parameters.loop===true,...extra.routeClosures}};
- return fragmentVerdict(negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast,library.prelude,page.parameters,{faces,parameters:{...defaults,...parameters},...extra});
+ const fragment={faces,parameters:{...defaults,...parameters},...extra};
+ assertMigratedEquivalent(library,historical,{...fragment,parameters:historical===kind?fragment.parameters:historicalParameters},negated);
+ return fragmentVerdict(negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast,library.prelude,page.parameters,fragment);
 }
 function formula(text:string,extra:Partial<Fragment>={}){
  const parsed=parseFormula(text);expect(parsed.diagnostics).toEqual([]);
@@ -26,7 +33,7 @@ const quantity=(left:string[],right:string[],operation='difference')=>({left:ope
 const difference={op:'difference',value:1};
 const additions=['coordinate-count','relation-scope','local-sequence','index-count','aggregate-equation','subset-total','digit-profile','profile-relation','number-property','derived-count','neighbour-count','route','route-group','route-clue','maze','network-clue','region-partition','region-shape','region-clue'];
 for(const kind of additions)test(`${kind}: public example is accepted by the declaration contracts`,()=>{
- const source=sources.find(s=>s.file===`rules/${kind}.md`)!;
+ const source=sources.find(s=>s.file===`rules/${kind==='index-count'?'lookup':kind}.md`)!;
  const examples=caseExamples(source.text);expect(examples.length).toBeGreaterThan(0);
  for(const example of examples)expect(checkCaseReferences({file:source.file,text:example},library.registry).diagnostics).toEqual([]);
 });
@@ -242,8 +249,8 @@ test('shape reflections can be allowed without admitting a half-turn rotation',(
 });
 test('new declarations retain whole-instance unsupported comparison coverage under negation',()=>{
  const board={rows:9,cols:9,alphabet:[1,2,3,4,5,6,7,8,9],activeCells:Array.from({length:81},(_,i)=>`r${Math.floor(i/9)+1}c${i%9+1}` as `r${number}c${number}`)};
- for(const kind of additions){
-  const text=caseExamples(sources.find(s=>s.file===`rules/${kind}.md`)!.text)[0].replace(`\n${kind} `,`\nnot ${kind} `);
+ for(const kind of additions.filter(k=>library.rules.has(k))){
+  const text=caseExamples(sources.find(s=>s.file===`rules/${kind==='index-count'?'lookup':kind}.md`)!.text)[0].replace(`\n${kind} `,`\nnot ${kind} `);
   const result=normalise({file:'synthetic.rules.md',text},board);
   expect(result.issues).toEqual([]);
   expect(result.status).toBe('partial');
@@ -338,3 +345,5 @@ test('review 7: route constructors forbid crossing long bishop and knight steps 
   expect(verdict('route',{...params,crossings:true},extra)).toBe(true);
  }
 });
+
+afterAll(()=>expect(additions.filter(k=>!replayedKinds.has(k))).toEqual([]));

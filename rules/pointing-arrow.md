@@ -19,6 +19,25 @@ parameters:
     description: The cell whose digit the target must match.
     default: Absent; source target requires it.
     type: optional<cell>
+layer: rule
+alias_of: lookup
+alias_bind:
+  mode: '"queries"'
+  cells: orderedCells({})
+  cell: boardCell(1,1)
+  sources: orderedCells({})
+  indexChannel: '"D"'
+  channel: '"D"'
+  offset: "0"
+  target: absent(0)
+  targetCell: absent(boardCell(1,1))
+  relation: relationSpec("difference",0)
+  queries: ⟨lookupQuery(ray,D(cell),if target="source" ∧ present(source) then D(unwrap(source)) else if target="first-five" then 5 else D(cell),"D",relationSpec(if target="less" ∨ target="greater" then "less" else "difference",0)):i∈[0,1),target!="source" ∨ present(source)⟩
+  total: "1"
+  firstMatch: target="first-five"
+  reverseRelation: target="greater"
+  increasing: orderedCells({})
+  nonempty: "false"
 ---
 
 # Pointing Arrow
@@ -27,25 +46,20 @@ Count along the ray by the marked digit to find its target. The mode states whet
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cell | The clue cell. | Required. |
-| ray | The cells along the ray, nearest first. | Required. |
-| target | The target relationship: greater, less, source or first-five. | Required. |
-| source | The cell whose digit the target must match. | Absent; source target requires it. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cell | `cell` | The clue cell. | Required. |
+| ray | `list<cell>` | The cells along the ray, nearest first. | Required. |
+| target | `enum{greater,less,source,"first-five"}` | The target relationship: greater, less, source or first-five. | Required. |
+| source | `optional<cell>` | The cell whose digit the target must match. | Absent; source target requires it. |
 
-## Maths
+## Definition
 
-Class: **first-order**.
+Block: [lookup](lookup.md) — `queries=⟨lookupQuery(ray,D(cell),if target="source" ∧ present(source) then D(unwrap(source)) else if target="first-five" then 5 else D(cell),"D",relationSpec(if target="less" ∨ target="greater" then "less" else "difference",0)):i∈[0,1),target!="source" ∨ present(source)⟩; total=1; firstMatch=target="first-five"; reverseRelation=target="greater"; increasing=orderedCells({}); nonempty=false`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
-```text
-let n=D(cell); 1<=n<=|ray| ∧ let t=D(lookup(ray,n));
-(target="greater" → t>n) ∧ (target="less" → t<n)
-∧ (target="source" → present(source) ∧ t=D(unwrap(source)))
-∧ (target="first-five" → t=5 ∧ ∀i∈[0,n-1): D(ray[i])!=5)
-```
+
 
 The shared bounded lookup reads the target. first-five also excludes earlier fives.
 

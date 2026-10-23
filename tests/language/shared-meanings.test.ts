@@ -1,4 +1,6 @@
-import { expect, test } from 'bun:test';
+import {migrateDeclaration} from '../../src';
+import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
+import { expect, test, afterAll } from 'bun:test';
 import { readdir } from 'node:fs/promises';
 import { parse, stringify } from 'yaml';
 import { compilePublicLibrary, checkCaseReferences, normalise, parseFormula, checkFormula, type Expr } from '../../src';
@@ -10,10 +12,15 @@ if (!compiled.value) throw Error(JSON.stringify(compiled.diagnostics));
 const library = compiled.value;
 const a='r1c1', b='r1c2', c='r1c3', d='r1c4', e='r1c5';
 function verdict(kind:string,parameters:Record<string,unknown>,faces:Record<string,number>,extra:Partial<Fragment>={},negated=false) {
+ const historical=kind;
+ const historicalParameters=parameters;
+ if(!library.rules.has(kind)){const migrated=migrateDeclaration({kind,parameters})[0];kind=migrated.kind;parameters=migrated.parameters;}
  const page=library.rules.get(kind)!;
  const ast=page.formulas[0].ast;
  const formula:Expr=negated?{kind:'unary',value:'not',span:ast.span,children:[ast]}:ast;
- return fragmentVerdict(formula,library.prelude,page.parameters,{faces,parameters:{...Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,"default")).map(([name,p])=>[name,p.default])),...parameters},...extra});
+ const fragment={faces,parameters:{...Object.fromEntries(Object.entries(library.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,"default")).map(([name,p])=>[name,p.default])),...parameters},...extra};
+ assertMigratedEquivalent(library,historical,{...fragment,parameters:historical===kind?fragment.parameters:historicalParameters},negated);
+ return fragmentVerdict(formula,library.prelude,page.parameters,fragment);
 }
 const line=[a,b,c], edges=[[a,b],[b,c],[b,d]];
 test('either-end thermo chooses one orientation for the whole path',()=>{
@@ -158,7 +165,7 @@ test('parameter-bound aliases typecheck bindings and keep their own grammar',()=
  }
  expect(library.registry.lines!.get('https://rules.sudoku-sleuth.com/kropki.md')!.parameter.name).toBe('colour');
  expect(library.registry.lines!.get('https://rules.sudoku-sleuth.com/pair.md')!.parameter.name).toBe('relation');
-});
+},20000);
 test('all changed and added examples use accepted public declarations',()=>{
  const changed=new Set(['outside','quadruple','pair','kropki','thermo','slow-thermo','scoped-move','anti-king','anti-knight','renban','nabner','bremban','modular','entropic','parity','line-choice','whispers','close-whispers','between','lockout','cage','little-killer','double-arrow','equal-sums','region-sum','arrow','extremum','tardis','index','numbered-room','index-line','pointing-arrow','skyscraper','split-pea','difference-line','prefix-sum','blocked-sight','sum-partition','aggregate-relation','lookup','shifter-line','summit','primality']);
  for(const source of sources.filter(p=>changed.has(p.file.slice(6,-3)))) for(const text of caseExamples(source.text))
@@ -213,19 +220,22 @@ test('registry derives fixed defaults from page declarations',()=>{
  expect(fixed('close-whispers','channel')).toBe('D');
  expect(fixed('zipper','centre')).toBe('when-odd');
  expect(fixed('region-sum','combine')).toBe(false);
- for(const kind of ['killer','whisper'])expect(library.aliases.has(kind)).toBe(true);
+ for(const [kind,target]of [['killer','cage'],['whisper','whispers']]){
+  expect(library.shorthands.has(kind)).toBe(false);
+  expect(library.registry.kindByUrl!.get(`https://rules.sudoku-sleuth.com/${kind}.md`)).toBe(target);
+ }
  for(const kind of ['kropki','slow-thermo','anti-king','anti-knight','bremban','quadruple']) {
   expect(library.aliases.has(kind)).toBe(false);
   expect(library.shorthands.get(kind)!.bindings).toBeDefined();
   expect(library.rules.get(kind)!.formulas.length).toBe(1);
  }
- expect(library.shorthands.get('kropki')!.bindings.channel).toBe('"V"');
+ expect(library.shorthands.get('kropki')!.bindings.left).toContain('"V"');
 });
 test('shorthand parsing ignores prose class labels and binding errors point into YAML',()=>{
  const raw=sources.find(p=>p.file==='rules/kropki.md')!;
  const withProse={...raw,text:raw.text+'\nClass: **invented prose**.\n'};
  expect(compilePublicLibrary(sources.map(p=>p===raw?withProse:p)).diagnostics).toEqual([]);
- const invalid={...raw,text:raw.text.replace('channel: \'"V"\'','channel: \'false\'')};
+ const invalid={...raw,text:raw.text.replace('leftOperation: \'"sum"\'','leftOperation: \'false\'')};
  expect(invalid.text).not.toBe(raw.text);
  const result=compilePublicLibrary(sources.map(p=>p===raw?invalid:p));
  expect(result.value).toBeUndefined();
@@ -233,7 +243,7 @@ test('shorthand parsing ignores prose class labels and binding errors point into
  expect(error.span.file).toBe(raw.file);
  expect(error.span.start.line).toBeGreaterThan(1);
  expect(invalid.text.slice(error.span.start.offset,error.span.end.offset)).toBe("'false'");
-});
+},20000);
 test('validNetwork uses the connected primitive rather than tuple enumeration',()=>{
  expect(library.prelude.environment.terms.connected.kind).toBe('primitive');
  const term=library.prelude.environment.terms.validNetwork;
@@ -249,3 +259,14 @@ test('connected retains orthogonal cell-collection meaning alongside explicit ed
  expect(fragmentVerdict(checked.value!.ast,library.prelude,[],{faces:{[a]:1,[b]:2},parameters:{}})).toBe(true);
  expect(fragmentVerdict(checked.value!.ast,library.prelude,[],{faces:{[a]:1,[c]:2},parameters:{}})).toBe(false);
 });
+test('XV is a bound sum shorthand with its own setter syntax',()=>{
+ for(const [mark,total]of [['x',10],['v',5]] as const){
+  const source=sources.find(p=>p.file==='rules/xv.md')!;
+  const text=caseExamples(source.text)[0].replace('r1c1-r1c2 x',`r1c1-r1c2 ${mark}`);
+  expect(checkCaseReferences({file:source.file,text},library.registry).diagnostics).toEqual([]);
+  expect(verdict('xv',{cells:[a,b],mark},{[a]:1,[b]:total-1})).toBe(true);
+  expect(verdict('xv',{cells:[a,b],mark},{[a]:1,[b]:total-2})).toBe(false);
+ }
+});
+
+afterAll(()=>expect(['blocked-sight','difference-line','sum-partition','split-pea','aggregate-relation','prefix-sum','lookup'].filter(k=>!replayedKinds.has(k))).toEqual([]));

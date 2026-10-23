@@ -15,6 +15,7 @@ parameters:
     description: The cells counted or compared around the clue.
     default: Required. neighbours disjoint from cells.
     type: set<cell>
+layer: rule
 ---
 
 # Vault
@@ -23,11 +24,11 @@ No digit inside the vault appears in its listed neighbours. A stated sum fixes i
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| cells | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
-| sum | The total the digits or values must add up to. | No total imposed. |
-| neighbours | The cells counted or compared around the clue. | Required. neighbours disjoint from cells. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| cells | `set<cell>` | The marked cells, for example r1c1-r1c2-r2c2. | Required. |
+| sum | `optional<number>` | The total the digits or values must add up to. | No total imposed. |
+| neighbours | `set<cell>` | The cells counted or compared around the clue. | Required. neighbours disjoint from cells. |
 
 ## Maths
 
@@ -36,7 +37,7 @@ Class: **with aggregates**.
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 ```text
-(∀a∈cells: ∀b∈neighbours: D(a)!=D(b)) ∧ (present(sum) → sum_D(cells)=unwrap(sum))
+(∀a∈cells: ∀b∈neighbours: D(a)!=D(b)) ∧ (present(sum) → aggregate(cells,"D","sum")=unwrap(sum))
 ```
 
 No digit in cells occurs in neighbours. If sum is present, the cell digits sum to it. Repetition inside the vault is otherwise allowed.

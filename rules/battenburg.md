@@ -6,20 +6,22 @@ shape: Global
 parameters:
   marks:
     type: list<record{r:position,k:position}>
-    description: "Zero-based top-left coordinates of marked squares."
-    default: "Required."
+    description: Zero-based top-left coordinates of marked squares.
+    default: Required.
   scope:
     type: set<cell>
-    description: "Cells on which squares may lie."
-    default: "Required."
+    description: Cells on which squares may lie.
+    default: Required.
   mode:
     type: enum{parity,selection}
-    description: "The two-class source."
-    default: "parity."
+    description: The two-class source.
+    default: parity.
   selectionRef:
-    shared: {role: read, type: selection}
+    shared:
+      role: read
+      type: selection
     type: string
-    description: "Selection name used in selection mode."
+    description: Selection name used in selection mode.
     default: '"H".'
   positive:
     type: boolean
@@ -27,8 +29,9 @@ parameters:
     default: true.
   exhaustive:
     type: boolean
-    description: "Forbid the pattern on unmarked squares inside scope."
-    default: "false."
+    description: Forbid the pattern on unmarked squares inside scope.
+    default: false.
+layer: rule
 ---
 
 # Battenburg
@@ -37,14 +40,14 @@ By default, every marked 2×2 square alternates between two classes across each 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| marks | Zero-based top-left coordinates of marked squares. | Required. |
-| scope | Cells on which squares may lie. | Required. |
-| mode | The two-class source. | parity. |
-| selectionRef | Selection name used in selection mode. | "H". |
-| positive | Require marked squares to alternate. | true. |
-| exhaustive | Forbid the pattern on unmarked squares inside scope. | false. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| marks | `list<record{r:position,k:position}>` | Zero-based top-left coordinates of marked squares. | Required. |
+| scope | `set<cell>` | Cells on which squares may lie. | Required. |
+| mode | `enum{parity,selection}` | The two-class source. | parity. |
+| selectionRef | `string` | Selection name used in selection mode. | "H". |
+| positive | `boolean` | Require marked squares to alternate. | true. |
+| exhaustive | `boolean` | Forbid the pattern on unmarked squares inside scope. | false. |
 
 ## Maths
 

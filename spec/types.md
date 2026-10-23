@@ -20,3 +20,12 @@ Guard proofs may unfold checked definitions, combine exact inequalities, and tig
 `string` is text, supplied as a JSON string in declaration values. Decoration notes and common drawing element IDs use this type.
 
 An enum whose members are a subset of another enum can be passed to that wider enum. A conditional between enum choices has the union of its branch members. Each branch still has to satisfy the receiving parameter type.
+
+
+The 1.0 callable vocabulary uses `allDifferent(collection, projection)` for occurrence-aware distinctness, `aggregate` for numeric folds, `connected` for reachability and `marked` for selection membership. Lists preserve repeated positions; sets remove repeated members before those terms run. `orderedCells` preserves list order and orders set members by board cell index. `some` and `absent` construct typed optionals. Data constructors such as `aggregateOperand`, `prefixOperand`, `weightedOperand` and `lookupQuery` construct records without adding a condition. Their validity predicates own the conditions.
+
+## Library layers
+
+The prelude declares mathematical functions and vocabulary types. Declarable blocks own formulas over those functions. A named rule binds a block with typed settings or owns its formula when its meaning is unique. Both blocks and rules use the same parameter checker and case-file declaration grammar.
+
+`clause` is an owned clue record with a nonempty `id`, a `rule` reference and named `args`. The case checker resolves its complete referenced contract. See [false-clue counts](declarations.md#false-clue-counts).

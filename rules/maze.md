@@ -5,7 +5,9 @@ kind: maze
 shape: Lines
 parameters:
   name:
-    shared: {role: construct, type: network}
+    shared:
+      role: construct
+      type: network
     type: string
     description: The shared network name.
     default: Required.
@@ -37,6 +39,8 @@ parameters:
     type: optional<position>
     description: Maximum number of incident edges per vertex.
     default: Absent; no degree bound.
+layer: block
+composition: Named network construction with configurable topology.
 ---
 
 # Maze
@@ -45,16 +49,16 @@ Construct a connected named network on exactly the scoped cells. Edges join two 
 
 ## Parameters
 
-| Parameter | Meaning | Default |
-| --- | --- | --- |
-| name | The shared network name. | Required. |
-| scope | The exact nonempty vertex set. | Required. |
-| move | Allowed edge geometry. | orthogonal. |
-| tree | Require a connected acyclic network. | true. |
-| requiredEdges | Undirected edges that must be present. | Empty list. |
-| forbiddenEdges | Undirected edges that must be absent. | Empty list. |
-| leaves | The exact cells with degree one. | Absent; no leaf condition. |
-| maximumDegree | Maximum number of incident edges per vertex. | Absent; no degree bound. |
+| Parameter | Type | Meaning | Default |
+| --- | --- | --- | --- |
+| name | `string` | The shared network name. | Required. |
+| scope | `set<cell>` | The exact nonempty vertex set. | Required. |
+| move | `Move` | Allowed edge geometry. | orthogonal. |
+| tree | `boolean` | Require a connected acyclic network. | true. |
+| requiredEdges | `list<list<cell>>` | Undirected edges that must be present. | Empty list. |
+| forbiddenEdges | `list<list<cell>>` | Undirected edges that must be absent. | Empty list. |
+| leaves | `optional<set<cell>>` | The exact cells with degree one. | Absent; no leaf condition. |
+| maximumDegree | `optional<position>` | Maximum number of incident edges per vertex. | Absent; no degree bound. |
 
 ## Maths
 
