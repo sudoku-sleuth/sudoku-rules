@@ -9,12 +9,14 @@ for (const button of document.querySelectorAll('[data-copy], [data-copy-link]'))
   catch { notice('Select the wording or declaration and copy it with your keyboard.'); }
 });
 const tabs = [...document.querySelectorAll('[data-audience]')];
-const panel = document.querySelector('#audience-panel');
-const setterPanel = panel?.innerHTML;
+const panels = [...document.querySelectorAll('#audience-panel [role="tabpanel"]')];
 function selectAudience(tab) {
   for (const item of tabs) { item.setAttribute('aria-selected', String(item === tab)); item.tabIndex = item === tab ? 0 : -1; }
-  panel.setAttribute('aria-labelledby',tab.id);
-  panel.innerHTML = tab.dataset.audience === 'setter' ? setterPanel : tab.dataset.audience === 'solver' ? '<div class="audience-story"><h2>Know what every mark means.</h2><p>Find familiar names, clear wording, and examples that show how each rule works.</p><a href="/rules/">Explore the rules →</a></div>' : '<div class="audience-story"><h2>Build on a shared language.</h2><p>Read typed declarations, use the formula compiler, and report useful diagnostics in your tools.</p><a href="/build/">Build with Open Rules →</a></div>';
+  for (const panel of panels) {
+    const selected = panel.id === tab.getAttribute('aria-controls');
+    panel.setAttribute('aria-hidden', String(!selected));
+    panel.inert = !selected;
+  }
 }
 for (const [i,tab] of tabs.entries()) {
   tab.addEventListener('click',()=>selectAudience(tab));
