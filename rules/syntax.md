@@ -42,6 +42,20 @@ On non-standard dimensions or alphabets, state board-dependent parameters
 explicitly, including whispers `loop`, cage `repeats` and sandwich `crusts`.
 The case-file contract lists all such parameters, board fields and given forms.
 
+## Declaration metadata
+
+Add `meta` with a JSON object to record knowledge and drawing details:
+
+```rules
+amber: thermo r1c1-r1c2 meta {"stated":false,"name":"Amber trail","strips":[["r1c1","r1c2"]]}
+```
+
+`stated` records whether the rule is known from setter wording. `name` is display
+text; `strips` groups cells for drawing. All three fields are optional. Place
+metadata before a trailing condition. Rule parameters still describe the rule's
+mathematics. The [metadata reference](../spec/case-files.md#rule-parameters)
+defines the fields. Fog setup and reveal links keep their existing meaning.
+
 ## Pair relationships and Kropki
 
 The parameter declarations on [pair](pair.md) define its keyword grammar. Write two cells, the relationship keyword, then a whole-number value where needed:

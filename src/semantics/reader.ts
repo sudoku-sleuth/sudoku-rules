@@ -34,7 +34,7 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFil
     lines: declarationLibrary.lines,
     parameters: declarationLibrary.parameters,
   }, board);
-  result.issues.push(...referenceCheck.diagnostics.filter(d => d.code !== "W_DECORATION_OVERLAP"));
+  result.issues.push(...referenceCheck.diagnostics.filter(d => !d.code.startsWith("W_")));
   if (result.issues.length) return result;
   if (metadata.negate !== undefined && metadata.negate !== "all") result.issues.push({ code: "E_SEMANTIC_HEADER", message: "negate must be all when supplied.", span: field("negate") });
   // Board data is supplied through the typed API, never silently ignored in a header.

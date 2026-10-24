@@ -37,6 +37,8 @@ export interface DeclarationAST {
     cells?: DeclarationValue;
     arguments?: DeclarationValue[];
     parameters: DeclarationParameter[];
+    /** Knowledge and drawing data, separate from mathematical inputs. */
+    meta?: DeclarationValue;
     condition?: {
         unless: boolean;
         predicate: DeclarationName;
@@ -275,7 +277,7 @@ export function parseDeclaration(source: Source, grammar: DeclarationGrammar | (
     });
 }
 function throwDiagnostic(d: import('./language/diagnostics.js').Diagnostic): never { fail(d.code, d.span, d.message, d.detail); }
-export type DeclarationTail = Pick<DeclarationAST, 'cells' | 'parameters' | 'condition' | 'comment' | 'arguments'>;
+export type DeclarationTail = Pick<DeclarationAST, 'cells' | 'parameters' | 'condition' | 'comment' | 'arguments' | 'meta'>;
 export function parseDeclarationTail(source: Source, grammar: DeclarationGrammar = {}): Result<DeclarationTail> {
     const lexed = lexDeclaration(source, grammar.line ? 'E_LINE_SYNTAX' : 'E_CASE_PARAMETERS');
     return lexed.value ? parseDeclarationTailTokens(lexed.value, grammar) : { diagnostics: lexed.diagnostics };
@@ -374,6 +376,11 @@ function parseDeclarationTailTokens(all: DeclarationToken[], grammar: Declaratio
                     text = grammar.primary;
                 if (text === 'sum' && grammar.primary === 'cells' && grammar.total)
                     text = 'total';
+                if (text === 'meta') {
+                    if (result.meta) fail('E_CASE_PARAMETERS', name.span, 'Declare meta once.');
+                    result.meta = valueNode(value, 'E_CASE_PARAMETERS');
+                    continue;
+                }
                 add(text, valueNode(value, 'E_CASE_PARAMETERS'), { file: name.span.file, start: name.span.start, end: value.span.end }, name.span);
             }
         }
@@ -424,6 +431,7 @@ export function printDeclaration(ast: DeclarationAST, grammar: DeclarationGramma
         else
             parts.push(/^[a-z][a-z0-9-]*$/i.test(p.name.value) && !['if', 'unless'].includes(p.name.value) ? p.name.value : JSON.stringify(p.name.value), printValue(p.value));
     }
+    if (ast.meta) parts.push('meta', printValue(ast.meta));
     if (ast.condition)
         parts.push(ast.condition.unless ? 'unless' : 'if', ast.condition.predicate.value);
     if (ast.comment)

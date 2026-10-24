@@ -17,6 +17,7 @@ parameters:
     default: true.
 alias_of: aggregate-groups
 alias_bind:
+  loop: "false"
   groups: ⟨orderedCells(S):S∈groups⟩
   operation: '"sum"'
   channel: channel
@@ -41,7 +42,7 @@ Every listed group has the same total.
 
 ## Definition
 
-Block: [aggregate-groups](aggregate-groups.md) — `groups=⟨orderedCells(S):S∈groups⟩; operation="sum"; channel=channel; repeats=repeats; line=absent(orderedCells(C)); combine=false`.
+Block: [aggregate-groups](aggregate-groups.md) — `groups=⟨orderedCells(S):S∈groups⟩; operation="sum"; channel=channel; repeats=repeats; line=absent(orderedCells(C)); loop=false; combine=false`.
 
 
 

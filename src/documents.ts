@@ -129,7 +129,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
     // A hand-built registry can check references without providing parameter contracts.
     if (registry.parameters) errors.push(...board.diagnostics);
     errors.push(...parseErrors);
-    let hasHouse = false;
+    let hasHouse = !!(object(metadata.board) && Array.isArray(metadata.board.houses) && metadata.board.houses.length);
     const found = ruleBlocks.length > 0;
     for (const {declaration} of parsedLines) {
         declarations.push(declaration);
@@ -262,7 +262,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
                     `Constraining declaration at ${other.span.file}:${other.span.start.line}:${other.span.start.column}.`));
         }
     }
-    return errors.length ? { diagnostics: [...errors, ...warnings] } : { value: { declarations, references, deferred }, diagnostics: warnings };
+    return errors.some(d => !d.code.startsWith("W_")) ? { diagnostics: [...errors, ...warnings] } : { value: { declarations, references, deferred }, diagnostics: [...errors, ...warnings] };
 }
 export interface PublicLibrary {
     prelude: CheckedPrelude;

@@ -11,7 +11,7 @@ list of unresolved reasons in `flags`.
 Declare a standard board once with `sudoku 9x9` in a fenced `rules` block. It supplies
 the ordered alphabet 1–9 and standard boxes. For another board, supply a `board`
 mapping with positive integer `rows` and `cols`, a nonempty list of distinct finite
-numeric `symbols`, and optional `givens` and `regions`. Board fields are closed:
+numeric `symbols`, and optional `activeCells`, `givens`, `regions` and `houses`. Board fields are closed:
 unknown names are errors. A board declared alongside `sudoku 9x9` must match it.
 
 Givens appear in exactly one place: top-level `givens` or `board.givens`. A given is
@@ -20,15 +20,37 @@ Accepted forms are a list of `{cell: r1c1, digit: 1}` objects, a string of
 `r1c1=1 r2c2=2` pairs, or a grid string with one character per cell and `.` for an
 empty cell. Given objects have only `cell` and `digit`.
 
+`activeCells` is a nonempty list of distinct canvas cells. When absent, every
+cell in the rectangle is active. Only active cells belong to the puzzle; rule
+parameters, givens, primary regions and houses must reference active cells.
+A given grid string still uses canvas row-major order, with `.` in padding.
+
 Regions are lists of cell lists. Use `board.regions` without the standard Sudoku
 declaration. With `sudoku 9x9`, top-level `regions` adds regions to the standard
-boxes; `board.regions` must be empty or absent.
+boxes; `board.regions` must be empty or absent. Nonempty `board.regions` must
+partition every active cell exactly once. `board.houses` supplies additional
+nonempty cell sets with unconditional face-digit distinctness. Houses may overlap
+and cover only part of the active board; they do not enter the primary partition
+or change region boundaries. Houses are board constraints, unaffected by `negate`.
+
+```yaml
+board:
+  rows: 4
+  cols: 4
+  symbols: [1, 2]
+  activeCells: [r2c2, r2c3, r3c2, r3c3]
+  regions: [[r2c2, r2c3], [r3c2, r3c3]]
+  houses: [[r2c2, r3c2], [r3c2, r3c3]]
+```
 
 Dimensions and region membership do not impose house uniqueness. When normal Sudoku
 applies to an explicit board, declare `unique` for every row, column and region.
 The published `sudoku` kind supports only `9x9`. `W_CASE_HOUSES` reports a nonempty
 region list without any positive, unconditional `unique` or `sudoku 9x9` declaration.
-It checks absence, not completeness or custom formula meaning.
+A nonempty `board.houses` list also counts as an explicit house declaration.
+The warning checks absence, not completeness or custom formula meaning. Reference
+checking and compilation return a usable value alongside advisory warnings;
+errors prevent compilation. All diagnostics remain in the result.
 
 ## Rule parameters
 
@@ -39,6 +61,30 @@ refer to that primary parameter; cage `sum` also accepts the page's `total` name
 Values are JSON, single rXcY cells, or explicitly listed cell paths. Parameters
 cannot be repeated through different spellings. Every required input must be
 present, and a required collection must be nonempty.
+
+Declaration metadata uses `meta` followed by one JSON object, before any
+condition. Its optional fields are `stated` (Boolean: the rule is known from
+setter wording), `name` (display text), and `strips` (lists of active cells grouped
+for drawing). Unknown fields and invalid types are errors. Omission of `stated`
+records no knowledge decision. Empty metadata and empty drawing groups are
+accepted. Metadata is retained in the declaration AST and compiled rule's `meta`,
+separate from mathematical parameters. Normalisation excludes it from solution
+and play identity; evaluation ignores it. It does not define or modify fog setup,
+reveal links, or visibility. Hosts retain their existing knowledge policy.
+
+```rules
+amber: thermo r2c2-r2c3 meta {"stated":false,"name":"Amber trail","strips":[["r2c2","r2c3"]]}
+```
+
+For a closed Region Sum line, set `loop true` and list its cells once around the
+loop. `segments` lists maximal primary-region visits from any crossing in cyclic
+path order. The closing visit joins the tail and head of the authored line.
+`loop false` keeps the open-line contract and repeated occurrences. This flag is
+also available on Aggregate Groups when `line` is supplied.
+
+Display-only modifier names use `meta.name`; drawing-only index groups use
+`meta.strips`. Mathematical parameters such as shared object `name` remain on
+their rule contracts.
 
 Only parameters declared by the rule page are accepted. The page's typed signature
 checks booleans, finite numbers, whole-number positions and digits, enums,
@@ -57,7 +103,6 @@ parameters explicitly, including values that would otherwise be defaults:
 | nabner | `distinct` |
 | cage | `repeats` |
 | sandwich | `crusts` |
-| index | `strips` |
 
 For example, a six-symbol board can use `whispers r1c1-r1c2 gap 3 loop false`,
 `cage r2c1-r2c2 total 5 repeats false`, and
@@ -213,7 +258,7 @@ all-different houses are not intended.
 Shared constructors use `name`. Readers use `route`, `network`, `partitionRef`,
 `selectionRef`, `symbols` or `values` for the corresponding reference. Route Group takes
 `routes`; Choice Count takes `choices`. `line` always supplies cells, and
-`pairs` supplies cell pairs. Value Modifier keeps `name` for its modifier kind. Published `selection` parameters
+`pairs` supplies cell pairs. Value Modifier uses `meta.name` for its display name. Published `selection` parameters
 use PrefixSelection objects; published `channel` parameters use Channel values.
 An empty Region Partition name selects a local existential partition, without a
 shared binding; Constructed Regions binds this form.

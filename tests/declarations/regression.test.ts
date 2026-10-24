@@ -15,7 +15,9 @@ for(const entry of baseline) {
  test(`legacy declaration reading: ${entry.file}`,()=>{
    const actual=shape(readSemanticFile(entry));
    if(Object.hasOwn(rejections, entry.file)) {
-    expect(actual.issues).toEqual(rejections[entry.file as keyof typeof rejections]);
+    const expected = rejections[entry.file as keyof typeof rejections];
+    expect(actual.issues).toEqual(expected.filter(d => !d.code.startsWith('W_')));
+    if (expected.length && expected.every(d => d.code.startsWith('W_'))) expect(actual.instances.length).toBeGreaterThan(0);
     if (!actual.issues.length && !entry.reading.issues.length) {
      // The old reader omitted some named parameters; retain its instance provenance checks.
      const provenance = (instances: typeof actual.instances) => instances.map(({parameters,...instance}) => ({...instance, source: {...instance.source, ...instance.kind.startsWith('#') ? {scope: entry.file, custom: true} : {}}}));

@@ -32,7 +32,9 @@ const result = compare(a, b);
 | uncovered | Unsupported declarations from each side, each with its own specific reason and source. |
 | issues | Located input errors. |
 
-Unequal forms establish a structural difference. They do not prove different sets of full-board solutions. This API does not search for witnesses or evaluate arbitrary answers. No `different` verdict is emitted without that later proof step. Equal partial forms stay unresolved, including two identical unsupported declarations. Metadata such as title, setter, source, status, prose and drawings belongs to a separate envelope comparison. It is excluded from mathematical identity. Fog setup has a separate canonical play identity. Whole-file agreement requires both solution and play identities to agree.
+Unequal forms establish a structural difference. They do not prove different sets of full-board solutions. This API does not search for witnesses or evaluate arbitrary answers. No `different` verdict is emitted without that later proof step. Equal partial forms stay unresolved, including two identical unsupported declarations. Metadata such as title, setter, source, status, prose and drawings belongs to a separate envelope comparison. It is excluded from mathematical identity. Declaration `meta.stated`, `meta.name` and
+`meta.strips` are retained by the declaration reader but excluded from solution
+and play identity. They leave fog setup and visibility unchanged. Fog setup has a separate canonical play identity. Whole-file agreement requires both solution and play identities to agree.
 
 The package's existing `compare(Rational, Rational)` overload continues to return -1, 0 or 1.
 

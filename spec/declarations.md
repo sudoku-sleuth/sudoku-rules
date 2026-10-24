@@ -7,7 +7,9 @@ context. The formula grammar remains in [grammar.ebnf](grammar.ebnf).
 `lexDeclaration` produces typed tokens with source spans. `parseDeclaration`
 builds a `DeclarationAST` containing the reference, optional instance ID, every
 negation marker, primary cells, named parameters, values and optional condition
-and comment. JSON arrays, record fields and field names have individual spans.
+and comment. Optional `meta` is a separate `DeclarationValue`, never a parameter.
+Its checked fields are specified in [case-files.md](case-files.md). The printer
+preserves it, including explicit `stated: false`, before a condition. JSON arrays, record fields and field names have individual spans.
 Offsets use UTF-16 code units; line and column numbers start at one, and columns
 count Unicode code points. `Source.document` and `Source.offset` locate a line
 inside its complete case file, including CRLF documents.

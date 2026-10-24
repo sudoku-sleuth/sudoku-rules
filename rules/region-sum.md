@@ -3,6 +3,10 @@ name: Region Sum
 url: https://rules.sudoku-sleuth.com/region-sum.md
 kind: region-sum
 parameters:
+  loop:
+    type: boolean
+    description: Close the line without repeating its first cell.
+    default: false.
   combine:
     description: Whether separate visits to the same region contribute to one regional total.
     default: false (each visit is summed separately).
@@ -22,6 +26,7 @@ parameters:
 layer: rule
 alias_of: aggregate-groups
 alias_bind:
+  loop: loop
   groups: segments
   operation: '"sum"'
   channel: channel
@@ -40,6 +45,7 @@ The board’s primary regions supply the boundaries: standard boxes on a normal 
 
 | Parameter | Type | Meaning | Default |
 | --- | --- | --- | --- |
+| loop | `boolean` | Close the line without repeating its first cell. | false. |
 | combine | `boolean` | Whether separate visits to the same region contribute to one regional total. | false (each visit is summed separately). |
 | line | `path<cell>` | The cells in order, for example r1c1-r1c2-r1c3. | Required. |
 | segments | `list<list<cell>>` | The cells in each segment, listed in path order. | Required. |
@@ -47,11 +53,13 @@ The board’s primary regions supply the boundaries: standard boxes on a normal 
 
 ## Definition
 
-Block: [aggregate-groups](aggregate-groups.md) — `groups=segments; operation="sum"; channel=channel; repeats=true; line=some(line); combine=combine`.
+Block: [aggregate-groups](aggregate-groups.md) — `groups=segments; loop=loop; operation="sum"; channel=channel; repeats=true; line=some(line); combine=combine`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 
 
+
+With `loop true`, the line may start anywhere. List its cells once around the loop; do not append the starting cell. List `segments` from a region crossing, preserving the cyclic order, and join the last and first partial visits into one run. A loop inside one region has one segment. The default `loop false` retains open-line visits.
 
 Segments must be exactly the ordered maximal primary-region runs, retaining every path occurrence. The selected channel is summed per visit or per visited region.
 

@@ -6,9 +6,10 @@ const pages = publicPages;
 const library = compilePublicLibrary(pages).value!;
 const manifest: {file: string; repair: string; diagnostics: Diagnostic[]}[] = await Bun.file("tests/invalid/case-expected.json").json();
 for (const entry of manifest) {
-  test(`case values reject ${entry.file} with exact diagnostics and spans`, async () => {
+  test(`case values check ${entry.file} with exact diagnostics and spans`, async () => {
     const result = checkCaseReferences({file: entry.file, text: await Bun.file(entry.file).text()}, library.registry);
-    expect(result.value).toBeUndefined();
+    if (entry.diagnostics.some(d => !d.code.startsWith("W_"))) expect(result.value).toBeUndefined();
+    else expect(result.value).toBeDefined();
     expect(result.diagnostics).toEqual(entry.diagnostics);
   });
   test(`case values accept ${entry.repair}`, async () => {

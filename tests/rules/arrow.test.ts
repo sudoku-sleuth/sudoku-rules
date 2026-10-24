@@ -118,7 +118,7 @@ test("region-sum formula combines return visits without counting unvisited regio
   function regional(digits: number[], combine: boolean) {
     return fragmentVerdict(rule.formulas[0].ast, library.prelude, rule.parameters, {
       faces: Object.fromEntries(line.map((cell, i) => [cell, digits[i]])), regions,
-      parameters: {line, segments: line.map(c => [c]), combine},
+      parameters: {line, segments: line.map(c => [c]), combine, loop:false},
     });
   }
   expect(regional([1,3,2], true)).toBe(true);

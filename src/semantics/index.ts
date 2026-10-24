@@ -20,8 +20,8 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   let board;
   try { board = canonicalBoard(context); }
   catch (error) { issues.push({ code: "E_SEMANTIC_BOARD", message: (error as Error).message, span: here }); return { status: "invalid", issues }; }
-  const read = readSemanticFile(file, {rows: board.rows, cols: board.cols, symbols: board.alphabet,
-    standard: board.rows === 9 && board.cols === 9 && board.alphabet.join(',') === '1,2,3,4,5,6,7,8,9'});
+  const read = readSemanticFile(file, {rows: board.rows, cols: board.cols, symbols: board.alphabet, activeCells: board.activeCells,
+    standard: board.rows === 9 && board.cols === 9 && board.activeCells.length === 81 && board.alphabet.join(',') === '1,2,3,4,5,6,7,8,9'});
   issues.push(...read.issues);
   read.issues = issues;
   const boardSources = read.extras.filter(e => ["header:board", "header:givens", "header:regions"].includes(e.kind)).map(e => e.source);

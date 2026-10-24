@@ -24,6 +24,10 @@ parameters:
     type: optional<list<cell>>
     description: Validate groups as maximal primary-region runs of this line.
     default: Absent.
+  loop:
+    type: boolean
+    description: Close the supplied line, joining its last and first positions.
+    default: false.
   combine:
     type: boolean
     description: Combine separate visits to each primary region.
@@ -53,7 +57,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-if present(line) then maximalRegionRuns(unwrap(line),groups) ∧ (if combine then equalAggregates({⟨c:c∈unwrap(line),c∈R⟩:R∈{S∈Regions:∃d∈unwrap(line):d∈S}},channel,operation,repeats) else equalAggregates(groups,channel,operation,repeats)) else equalAggregates(groups,channel,operation,repeats)
+if present(line) then regionRuns(unwrap(line),groups,loop) ∧ (if combine then equalAggregates({⟨c:c∈unwrap(line),c∈R⟩:R∈{S∈Regions:∃d∈unwrap(line):d∈S}},channel,operation,repeats) else equalAggregates(groups,channel,operation,repeats)) else equalAggregates(groups,channel,operation,repeats)
 ```
 
 ## Example
