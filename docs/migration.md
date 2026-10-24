@@ -1,5 +1,7 @@
 # Upgrade from 0.3 to 1.0
 
+For new files, start with the [rule guide](../RULES.md). See [Blocks](../BLOCKS.md) for shared constraints and the [developer guide](../DEVELOPMENT.md) for package commands.
+
 The 1.0 library preserves the solution meaning of the previous library. No valid old parameter set deliberately changes meaning. Defaults are bound before rewriting; a declaration remains one declaration, including under negation.
 
 ## Rewrite a case
