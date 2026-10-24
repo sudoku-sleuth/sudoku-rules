@@ -71,7 +71,7 @@ test('actual formula counts separately identified equal meanings, all modes, zer
     const faces={r1c1:1,r1c2:second};
     const falseCount=second===2?0:2;
     const verdict=fragmentVerdict(page.formulas[0].ast,library.prelude,page.parameters,{faces,
-      parameters:{clues,comparison,count},clueTruth:q=>fragmentVerdict(dot.formulas[0].ast,library.prelude,dot.parameters,{faces,parameters:(q as ReturnType<typeof clue>).args})});
+      parameters:{clues,comparison,count},clueTruth:q=>fragmentVerdict(dot.formulas[0].ast,library.prelude,dot.parameters,{faces,parameters:{white:[],black:[],allGiven:[],...(q as ReturnType<typeof clue>).args}})});
     expect(verdict).toBe(comparison==='exactly'?falseCount===count:comparison==='at-most'?falseCount<=count:falseCount>=count);
   }
 });
@@ -100,12 +100,12 @@ test('a false whole line and false edges give different counts on the same share
   const values={r1c1:1,r1c2:2,r1c3:9};
   const clues=[clue('first','whispers',{line:['r1c1','r1c2'],gap:5,loop:false}),clue('second','whispers',{line:['r1c2','r1c3'],gap:5,loop:false})];
   const whole=[clue('whole','whispers',{line:['r1c1','r1c2','r1c3'],gap:5,loop:false})];
-  const truth=(q:unknown)=>fragmentVerdict(whisper.formulas[0].ast,library.prelude,whisper.parameters,{faces,values,parameters:(q as ReturnType<typeof clue>).args});
+  const truth=(q:unknown)=>fragmentVerdict(whisper.formulas[0].ast,library.prelude,whisper.parameters,{faces,values,parameters:{white:[],black:[],allGiven:[],...(q as ReturnType<typeof clue>).args}});
   const verdict=(items:unknown[],count:number)=>fragmentVerdict(page.formulas[0].ast,library.prelude,page.parameters,{faces,values,parameters:{clues:items,comparison:'exactly',count},clueTruth:truth});
   expect(verdict(clues,1)).toBe(true);
   expect(verdict(whole,1)).toBe(true);
   // With face values both edges fail, while the whole line is still just one failed clue.
-  const faceTruth=(q:unknown)=>fragmentVerdict(whisper.formulas[0].ast,library.prelude,whisper.parameters,{faces,parameters:(q as ReturnType<typeof clue>).args});
+  const faceTruth=(q:unknown)=>fragmentVerdict(whisper.formulas[0].ast,library.prelude,whisper.parameters,{faces,parameters:{white:[],black:[],allGiven:[],...(q as ReturnType<typeof clue>).args}});
   expect(fragmentVerdict(page.formulas[0].ast,library.prelude,page.parameters,{faces,parameters:{clues,comparison:'exactly',count:2},clueTruth:faceTruth})).toBe(true);
   expect(fragmentVerdict(page.formulas[0].ast,library.prelude,page.parameters,{faces,parameters:{clues:whole,comparison:'exactly',count:2},clueTruth:faceTruth})).toBe(false);
 });

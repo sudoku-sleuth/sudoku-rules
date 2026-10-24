@@ -73,7 +73,7 @@ test("Kropki shorthand and pair formulas agree on every standard digit pair", ()
     const parameters = parseDeclaredRuleLine({ file: "dots.rules.md", text: `r1c1-r1c2 ${colour}` }, kropki.line!).value!;
     const pairParameters = parseDeclaredRuleLine({ file: "pair.rules.md", text: `r1c1-r1c2 ${colour === "white" ? "difference 1" : "ratio 2"}` }, pair.line!).value!;
     const faces = { r1c1: a, r1c2: b };
-    expect(fragmentVerdict(kropki.formulas[0].ast, library.prelude, kropki.parameters, { faces, parameters })).toBe(fragmentVerdict(pair.formulas[0].ast, library.prelude, pair.parameters, { faces, parameters: pairParameters }));
+    expect(fragmentVerdict(kropki.formulas[0].ast, library.prelude, kropki.parameters, { faces, parameters: {white:[],black:[],allGiven:[],...parameters} })).toBe(fragmentVerdict(pair.formulas[0].ast, library.prelude, pair.parameters, { faces, parameters: pairParameters }));
   }
 });
 test("pair and Kropki page examples pass the declared grammar", () => {

@@ -59,12 +59,11 @@ For each forbidden relation, record its scope, direction and exceptions. Derive 
 Suppose all V marks (sum 5) are shown, a V joins r1c1–r1c2, and a white Kropki dot joins r3c1–r3c2:
 
 ```rules
-xv r1c1-r1c2 v
+xv v [r1c1-r1c2] allGiven ["v"]
 kropki r3c1-r3c2 white
-negative relations [{"op":"sum","value":5}] except [["r1c1","r1c2"]]
 ```
 
-Adding r3c1–r3c2 to `except` would wrongly exempt the white-only edge from the missing-V rule. Digits 4 and 5 satisfy its white dot and missing-V condition; 2 and 3 satisfy the white dot but violate the missing-V condition. If all X marks are also shown, compile their sum-10 exceptions separately unless the setter explicitly gives X and V a shared exemption policy. The same reasoning applies to white/black dot negatives: follow the stated policy for each relation rather than assuming every mark exempts every relation.
+The white-only edge is still subject to the missing-V rule; it does not belong in the V list. Digits 4 and 5 satisfy its white dot and missing-V condition; 2 and 3 satisfy the white dot but violate the missing-V condition. If all X marks are also shown, add their pairs to `x` and select `allGiven ["x","v"]`. White and black dot lists follow the same kind-specific policy. Use explicit Negative declarations when the setter supplies another scope or exemption policy.
 
 ## Negate each named instance (F3)
 

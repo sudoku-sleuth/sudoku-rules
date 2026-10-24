@@ -22,7 +22,9 @@ markdown-url = ("https://" | "http://"), url-body, ".md";
 arguments = named-form | keyword-form | dimensions-form;
 named-form = [ cells ], { space, parameter-name, space, value };
 parameter-name = identifier | json-string;
-value = json-value | cell | cells;
+value = json-value | cell | cells | cell-list;
+cell-list = "[", [ value, { ",", value } ], "]";
+(* Inside lists, compact paths use hyphens; commas separate list items. *)
 cells = cell, { ("-" | ","), cell };
 cell = "r", positive-integer, "c", positive-integer;
 keyword-form = cells, space, [ declared-name, space ], declared-keyword,

@@ -105,7 +105,7 @@ It returns the same parameter record and diagnostic codes as before.
 `printDeclaration(ast)` writes a canonical declaration. It preserves reference
 spelling, decoded instance IDs, negation count, cell order and multiplicity,
 parameter order, conditions and comments. Cells use hyphens; strings and structured
-values use JSON; instance IDs use the bare form above when accepted and JSON quotes otherwise; reserved parameter names stay quoted; keyword integers use their canonical decimal spelling. Optional
+values use JSON, with compact cell paths also accepted inside lists (for example `[r1c1-r1c2,r2c1-r2c2]`); instance IDs use the bare form above when accepted and JSON quotes otherwise; reserved parameter names stay quoted; keyword integers use their canonical decimal spelling. Optional
 grammar input also supports ASTs constructed by callers. Parsing canonical text
 with the same page grammar preserves the AST's meaning and writing it again
 produces the same text. JSON numbers must be finite at every depth. Source spans and raw spellings belong to each input text.

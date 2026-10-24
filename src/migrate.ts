@@ -60,7 +60,7 @@ export function migrateDeclaration(old: MigratingDeclaration): MigratingDeclarat
  const output=(parameters:Record<string,unknown>,target=targets[kind]??kind)=>[{kind:target,parameters:{...parameters,...(p.element===undefined?{}:{element:p.element})}}];
  if(legacyRuleRenames[kind])return output(p,legacyRuleRenames[kind]);
  if(kind==='pair') {
-  // XV and Kropki read V and have no negative or exhaustive parameter.
+  // Single-pair XV and Kropki read V. Grouped all-given settings need case context.
   // Only discard inputs that their contracts express exactly.
   const r=p.relation as Record<string,unknown>;
   const exact=Object.keys(p).every(k=>['cells','relation','channel','element'].includes(k))
@@ -190,18 +190,49 @@ export function migrateParsedDeclaration(ast:DeclarationAST,kind=ast.kind.value,
  }
  return migrateDeclaration({kind,parameters});
 }
-/** Print named JSON parameters, independent of optional setter keyword forms. */
+/** Print familiar rule names, compact cells and nondefault parameters. */
 export function printMigratedDeclaration(declaration:MigratingDeclaration):string {
- const p={...declaration.parameters},parts=[declaration.kind];
- const address=declaration.kind.startsWith('https://rules.sudoku-sleuth.com/')?declaration.kind:`https://rules.sudoku-sleuth.com/${declaration.kind}.md`;
+ const p={...declaration.parameters};
+ let kind=declaration.kind;
+ if(kind==='marked-pairs'){
+  const names=['x','v','white','black'];
+  const used=names.filter(k=>Array.isArray(p[k])&&(p[k] as unknown[]).length || Array.isArray(p.allGiven)&&p.allGiven.includes(k));
+  if(used.length&&used.every(k=>k==='x'||k==='v'))kind='xv';
+  else if(used.length&&used.every(k=>k==='white'||k==='black'))kind='kropki';
+ }
+ const parts=[kind];
+ if(declaration.kind==='sudoku' && encode(p.board)==='{"rows":9,"cols":9}'){
+  parts.push('9x9');delete p.board;
+ }
+ if(declaration.kind==='diagonal-sum' && Array.isArray(p.cells)){
+  parts.push(p.cells.join('-'),'sum',encode(p.sum));delete p.cells;delete p.sum;
+  if(p.channel==='D')delete p.channel;
+  if(p.repeats===true)delete p.repeats;
+ }
+ const address=kind.startsWith('https://rules.sudoku-sleuth.com/')?kind:`https://rules.sudoku-sleuth.com/${kind}.md`;
+ const contract=declarationLibrary.parameters?.get(address);
  const line=declarationLibrary.lines?.get(address);
- if(line){
+ for(const [name,value]of Object.entries(p)){
+  const parameter=contract?.parameters[name];
+  if(contract?.explicit?.includes(name))continue;
+  if(line&&name===line.parameter.name&&Array.isArray(p[line.cells.name])&&(p[line.cells.name] as unknown[]).length)continue;
+  if(parameter&&Object.hasOwn(parameter,'default')&&encode(value)===encode(parameter.default))delete p[name];
+ }
+ if(line&&Array.isArray(p[line.cells.name])&&(p[line.cells.name] as unknown[]).length){
   parts.push((p[line.cells.name] as string[]).join('-'));delete p[line.cells.name];
-  const value=p[line.parameter.name],record=value as Record<string,unknown>;
+  const value=p[line.parameter.name]??contract?.parameters[line.parameter.name].default,record=value as Record<string,unknown>;
   const keyword=String(line.parameter.tag?record[line.parameter.tag]:value);
   parts.push(keyword,...line.parameter.keywords[keyword].map(field=>encode(record[field.field])));delete p[line.parameter.name];
  }
- parts.push(...Object.entries(p).filter(([,v])=>v!==undefined).flatMap(([k,v])=>[k,encode(v)]));
+ const valueText=(value:unknown):string=>{
+  if(Array.isArray(value)){
+   if(value.length>1&&value.every(c=>typeof c==='string'&&/^r[1-9]\d*c[1-9]\d*$/.test(c)))return value.join('-');
+   return `[${value.map(valueText).join(',')}]`;
+  }
+  if(typeof value==='string'&&/^r[1-9]\d*c[1-9]\d*$/.test(value))return value;
+  return encode(value);
+ };
+ parts.push(...Object.entries(p).filter(([,v])=>v!==undefined).flatMap(([k,v])=>[k,valueText(v)]));
  return parts.join(' ');
 }
 /**
@@ -257,8 +288,8 @@ export function migrateCase(page:PageSource):Result<PageSource> {
    const canonicalKind=(kind:string)=>kind.startsWith('https://rules.sudoku-sleuth.com/')?kind.slice('https://rules.sudoku-sleuth.com/'.length,-3):kind;
    const parsed=parseDeclaration({file:page.file,text:line.trimEnd(),document:page.text,offset},kind=>{
     if(splitForms.has(kind))return {primary:'cells'};
-    const key=canonicalKind(kind)==='killer-cage'?'cage':canonicalKind(kind)==='extra-regions'?'unique':canonicalKind(kind),url=`https://rules.sudoku-sleuth.com/${key}.md`,contract=legacyContracts.get(url);
-    return {...parameterGrammar(contract),line:legacyLines.get(url),opaque:!contract};
+    const key=canonicalKind(kind)==='killer-cage'?'cage':canonicalKind(kind)==='extra-regions'?'unique':canonicalKind(kind),url=`https://rules.sudoku-sleuth.com/${key}.md`,contract=legacyContracts.get(url)??declarationLibrary.parameters?.get(url);
+    return {...parameterGrammar(key==='xv'||key==='kropki'?declarationLibrary.parameters?.get(url):contract),line:legacyLines.get(url),opaque:!contract};
    });
    diagnostics.push(...parsed.diagnostics);
    const ast=parsed.value;
@@ -271,7 +302,7 @@ export function migrateCase(page:PageSource):Result<PageSource> {
      const cells=p.cells as string[],ends=split.ends?p[split.ends] as string[]:undefined;
      if(Array.isArray(cells)&&(!split.ends||Array.isArray(ends)&&ends.length===2)){
       const line=ends?[ends[0],...cells,ends[1]]:cells;
-      const prefix=(ast.instance?JSON.stringify(ast.instance.value)+': ':'')+ast.negations.map(()=>'not ').join('');
+      const prefix=(ast.instance?page.text.slice(ast.instance.span.start.offset,ast.instance.span.end.offset)+' ':'')+ast.negations.map(()=>'not ').join('');
       const suffix=(ast.condition?` ${ast.condition.unless?'unless':'if'} ${ast.condition.predicate.value}`:'')+(ast.comment?` ${ast.comment.value}`:'');
       changes.push({start:ast.span.start.offset,end:ast.span.end.offset,text:prefix+printMigratedDeclaration({kind:'split-pea',parameters:{line,...(p.element===undefined?{}:{element:p.element})}})+suffix});
      }else diagnostics.push(diagnostic('E_CASE_PARAMETERS',ast.span,'Cannot migrate the local Split Pea arguments without changing their meaning.'));
@@ -280,15 +311,91 @@ export function migrateCase(page:PageSource):Result<PageSource> {
     if((Object.hasOwn(legacyDefaults,kind)||kind==='extra-regions')&&(root==='https://rules.sudoku-sleuth.com/'||ast.kind.value.startsWith('https://rules.sudoku-sleuth.com/'))){
      const migrated=migrateParsedDeclaration(ast,kind);
      if(root!=='https://rules.sudoku-sleuth.com/')migrated[0].kind=`https://rules.sudoku-sleuth.com/${migrated[0].kind}.md`;
-     const prefix=(ast.instance?JSON.stringify(ast.instance.value)+': ':'')+ast.negations.map(()=>'not ').join('');
+     const prefix=(ast.instance?page.text.slice(ast.instance.span.start.offset,ast.instance.span.end.offset)+' ':'')+ast.negations.map(()=>'not ').join('');
      const suffix=(ast.condition?` ${ast.condition.unless?'unless':'if'} ${ast.condition.predicate.value}`:'')+(ast.comment?` ${ast.comment.value}`:'');
      changes.push({start:ast.span.start.offset,end:ast.span.end.offset,text:prefix+printMigratedDeclaration(migrated[0])+suffix});
+    }else if(kind==='marked-pairs'&&root==='https://rules.sudoku-sleuth.com/'){
+     const parameters=declarationParameters(ast);
+     for(const parameter of ast.parameters)parameters[parameter.name.value]=decoded(parameter.value);
+     const prefix=(ast.instance?page.text.slice(ast.instance.span.start.offset,ast.instance.span.end.offset)+' ':'')+ast.negations.map(()=>'not ').join('');
+     const suffix=(ast.condition?` ${ast.condition.unless?'unless':'if'} ${ast.condition.predicate.value}`:'')+(ast.comment?` ${ast.comment.value}`:'');
+     changes.push({start:ast.span.start.offset,end:ast.span.end.offset,text:prefix+printMigratedDeclaration({kind,parameters})+suffix});
     }
    }
    offset+=line.length;
   }
  }
  if(diagnostics.length)return {diagnostics};
+ let text=page.text;for(const c of changes.sort((a,b)=>b.start-a.start))text=text.slice(0,c.start)+c.text+text.slice(c.end);
+ return root==='https://rules.sudoku-sleuth.com/' && !header.value.metadata.negate ? migrateAllGiven({...page,text}) : {value:{...page,text},diagnostics:[]};
+}
+
+/** Recognise whole-case marking conventions after individual legacy lines migrate. */
+function migrateAllGiven(page:PageSource):Result<PageSource> {
+ const entries:{ast:DeclarationAST;kind:string;p:Record<string,unknown>}[]=[];
+ for(const block of markdownBlocks(page.text).filter(b=>b.language==='rules')){
+  let offset=block.offset;
+  for(const line of block.text.split(/(?<=\n)/)){
+   const parsed=parseDeclaration({file:page.file,text:line.trimEnd(),document:page.text,offset},kind=>{
+    const url=kind.startsWith('https://')?kind:`https://rules.sudoku-sleuth.com/${kind}.md`;
+    return {...parameterGrammar(declarationLibrary.parameters?.get(url)),line:declarationLibrary.lines?.get(url),opaque:!declarationLibrary.urls.has(url)};
+   });
+   const ast=parsed.value;
+   if(ast){
+    const kind=ast.kind.value.replace(/^https:\/\/rules\.sudoku-sleuth\.com\//,'').replace(/\.md$/,'');
+    const p=declarationParameters(ast,'cells');for(const param of ast.parameters)p[param.name.value]=decoded(param.value);
+    entries.push({ast,kind,p});
+   }
+   offset+=line.length;
+  }
+ }
+ // Generated import IDs carry no setter meaning, but any use elsewhere keeps them alive.
+ const disposableId=(e:typeof entries[number])=>{
+  const id=e.ast.instance;if(!id)return true;
+  const families=e.kind==='xv'?['pair','xv']:e.kind==='kropki'?['pair','kropki']:[e.kind];
+  if(!families.some(kind=>new RegExp(`^${kind}-\\d+$`).test(id.value)))return false;
+  const outside=page.text.slice(0,id.span.start.offset)+page.text.slice(id.span.end.offset);
+  const escaped=id.value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return !new RegExp(`(?<![\\p{L}\\p{M}0-9_.-])${escaped}(?![\\p{L}\\p{M}0-9_.-])`,'u').test(outside);
+ };
+ const plain=(e:typeof entries[number])=>disposableId(e)&&!e.ast.negations.length&&!e.ast.condition&&e.p.element===undefined;
+ const labelChanges=entries.filter(e=>e.ast.instance&&disposableId(e)).map(e=>({start:e.ast.instance!.span.start.offset,end:e.ast.instance!.span.end.offset,text:''}));
+ const names=['x','v','white','black'] as const;
+ type Mark=typeof names[number];
+ const marks:Record<Mark,string[][]>={x:[],v:[],white:[],black:[]};
+ const marked=new Map<typeof entries[number],Mark>();
+ for(const e of entries)if(plain(e)&&Array.isArray(e.p.cells)&&e.p.cells.length===2){
+  const name=e.kind==='xv'?e.p.mark:e.kind==='kropki'?e.p.colour:undefined;
+  if(names.includes(name as Mark)){marks[name as Mark].push(e.p.cells as string[]);marked.set(e,name as Mark);}
+ }
+ const key=(pairs:unknown)=>Array.isArray(pairs)&&pairs.every(p=>Array.isArray(p)&&p.length===2&&p.every(c=>typeof c==='string'))?JSON.stringify([...new Set(pairs.map(p=>JSON.stringify([...p].sort())))].sort()):undefined;
+ const relationKind=(r:unknown):Mark|undefined=>{
+  if(!r||typeof r!=='object')return;
+  const p=r as Record<string,unknown>;if(Object.keys(p).some(k=>!['op','value'].includes(k)))return;
+  return names.find(n=>p.op===(n==='x'||n==='v'?'sum':n==='white'?'difference':'ratio')&&(p.value===(n==='x'?10:n==='v'?5:n==='white'?1:2)||p.value===BigInt(n==='x'?10:n==='v'?5:n==='white'?1:2)));
+ };
+ const selected=new Set<Mark>(),removed=new Set<typeof entries[number]>(),diagnostics:Diagnostic[]=[];
+ for(const e of entries)if(e.kind==='negative'&&plain(e)&&Object.keys(e.p).every(k=>['relations','except'].includes(k))&&Array.isArray(e.p.relations)&&e.p.relations.length){
+  const kinds=e.p.relations.map(relationKind),known=kinds.filter((k):k is Mark=>k!==undefined&&marks[k].length>0);
+  if(!known.length)continue;
+  if(key(e.p.except)!==key(known.flatMap(k=>marks[k])))continue;
+  if(kinds.some(k=>k===undefined||!marks[k].length)){
+   diagnostics.push(diagnostic('E_CASE_PARAMETERS',e.ast.span,'Cannot migrate combined Negative: a relation has no marks of its own. Separate global rules and confirm each kind’s exceptions.'));continue;
+  }
+  known.forEach(k=>selected.add(k));removed.add(e);
+ }
+ if(diagnostics.length)return {diagnostics};
+ for(const [e,k]of marked)if(selected.has(k))removed.add(e);
+ const parameters:Record<string,unknown>=Object.fromEntries(names.filter(k=>selected.has(k)).map(k=>[k,marks[k]]));
+ if(selected.size)parameters.allGiven=names.filter(k=>selected.has(k));
+ const changes=[...removed].sort((a,b)=>a.ast.span.start.offset-b.ast.span.start.offset).map(e=>({start:e.ast.span.start.offset,end:e.ast.span.end.offset,text:e.ast.comment?.value??''}));
+ if(changes.length)changes[0].text=printMigratedDeclaration({kind:'marked-pairs',parameters})+(changes[0].text?' '+changes[0].text:'');
+ // Remove emptied declaration lines while retaining comments and unrelated spacing.
+ for(const c of changes)if(!c.text){
+  if(page.text.slice(c.end,c.end+2)==='\r\n')c.end+=2;
+  else if(page.text[c.end]==='\n')c.end++;
+ }
+ changes.push(...labelChanges.filter(c=>!changes.some(other=>c.start>=other.start&&c.end<=other.end)).map(c=>({...c,end:c.end+(page.text[c.end]===' '?1:0)})));
  let text=page.text;for(const c of changes.sort((a,b)=>b.start-a.start))text=text.slice(0,c.start)+c.text+text.slice(c.end);
  return {value:{...page,text},diagnostics:[]};
 }

@@ -109,7 +109,7 @@ export function checkBoard(metadata: Record<string, unknown>, standardCount: num
 
 export function parameterGrammar(contract?: CaseParameters): DeclarationGrammar {
   const parameters = contract?.parameters ?? {};
-  return {primary: Object.hasOwn(parameters, "cells") ? "cells" : Object.hasOwn(parameters, "line") ? "line" : undefined, total: Object.hasOwn(parameters, "total"), positional: contract?.positional};
+  return {primary: Object.hasOwn(parameters, "cells") ? "cells" : Object.hasOwn(parameters, "line") ? "line" : undefined, total: Object.hasOwn(parameters, "total"), positional: contract?.positional, optionalLine: parameters.cells?.required === false};
 }
 export function checkParameterAST(ast: DeclarationTail, span: Span, contract: CaseParameters, board: CaseBoard): Diagnostic[] {
   const bad = (message: string, at = span) => [diagnostic("E_CASE_PARAMETERS", at, message)];

@@ -229,13 +229,13 @@ test('registry derives fixed defaults from page declarations',()=>{
   expect(library.shorthands.get(kind)!.bindings).toBeDefined();
   expect(library.rules.get(library.aliases.get(kind)??kind)!.formulas.length).toBe(1);
  }
- expect(library.shorthands.get('kropki')!.bindings.left).toContain('"V"');
+ expect(library.shorthands.get('kropki')!.bindings.white).toContain('colour="white"');
 });
 test('shorthand parsing ignores prose class labels and binding errors point into YAML',()=>{
  const raw=sources.find(p=>p.file==='rules/kropki.md')!;
  const withProse={...raw,text:raw.text+'\nClass: **invented prose**.\n'};
  expect(compilePublicLibrary(sources.map(p=>p===raw?withProse:p)).diagnostics).toEqual([]);
- const invalid={...raw,text:raw.text.replace('leftOperation: \'"sum"\'','leftOperation: \'false\'')};
+ const invalid={...raw,text:raw.text.replace("allGiven: allGiven","allGiven: 'false'")};
  expect(invalid.text).not.toBe(raw.text);
  const result=compilePublicLibrary(sources.map(p=>p===raw?invalid:p));
  expect(result.value).toBeUndefined();
