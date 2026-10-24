@@ -31,6 +31,9 @@ alias_bind:
   line: orderedCells({})
   edges: absent(⟨orderedCells(C):n∈[0,0)⟩)
   loop: "false"
+  operands: "absent(⟨aggregateOperand(orderedCells(cells),\"D\",\"sum\",true):i∈[0,0)⟩)"
+  allowed: "absent(⟨n:n∈[0,0)⟩)"
+  distinct: "false"
 ---
 
 # Remainder Cage
@@ -48,7 +51,7 @@ The cage total has the stated remainder after division by the modulus. The disti
 
 ## Definition
 
-Block: [number-property](number-property.md) — `operand=aggregateOperand(orderedCells(cells),"D","sum",¬distinct); property="divisible"; argument=modulus; reverse=false; remainder=some(remainder); alternating=false; line=orderedCells({}); edges=absent(⟨orderedCells(C):n∈[0,0)⟩); loop=false`.
+Block: [number-property](number-property.md) — `operand=aggregateOperand(orderedCells(cells),"D","sum",¬distinct); property="divisible"; argument=modulus; reverse=false; remainder=some(remainder); alternating=false; line=orderedCells({}); edges=absent(⟨orderedCells(C):n∈[0,0)⟩); loop=false; operands=absent(⟨aggregateOperand(orderedCells(cells),"D","sum",true):i∈[0,0)⟩); allowed=absent(⟨n:n∈[0,0)⟩); distinct=false`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 

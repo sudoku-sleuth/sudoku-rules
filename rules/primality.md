@@ -28,6 +28,9 @@ alias_bind:
   line: line
   edges: edges
   loop: loop
+  operands: "absent(⟨aggregateOperand(line,\"D\",\"sum\",true):i∈[0,0)⟩)"
+  allowed: "absent(⟨n:n∈[0,0)⟩)"
+  distinct: "false"
 ---
 
 # Primality
@@ -46,7 +49,7 @@ With explicit `edges`, supply one connected network and write `line []` when no 
 
 ## Definition
 
-Block: [number-property](number-property.md) — `operand=aggregateOperand(orderedCells(line),"D","sum",true); property="prime"; argument=2; reverse=false; remainder=absent(0); alternating=true; line=line; edges=edges; loop=loop`.
+Block: [number-property](number-property.md) — `operand=aggregateOperand(orderedCells(line),"D","sum",true); property="prime"; argument=2; reverse=false; remainder=absent(0); alternating=true; line=line; edges=edges; loop=loop; operands=absent(⟨aggregateOperand(line,"D","sum",true):i∈[0,0)⟩); allowed=absent(⟨n:n∈[0,0)⟩); distinct=false`.
 
 The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define the notation and every named predicate.
 

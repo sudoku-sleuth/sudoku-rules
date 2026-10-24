@@ -20,6 +20,14 @@ parameters:
     type: Channel
     description: Read printed digits (D) or effective values (V).
     default: D.
+  groups:
+    type: optional<list<list<cell>>>
+    description: Groups to compare pairwise in shared-support mode; absent uses left and right.
+    default: Absent.
+  maximumShared:
+    type: optional<position>
+    description: Bound the number of distinct shared values instead of requiring equal profiles.
+    default: Absent.
 layer: block
 composition: Compare arbitrary numeric sets or multisets.
 ---
@@ -27,6 +35,8 @@ composition: Compare arbitrary numeric sets or multisets.
 # Profile Relation
 
 The two groups contain the same numbers. Multiset comparison requires the same number of occurrences of each number. Set comparison ignores multiplicities. Each side may list a cell more than once.
+
+With `maximumShared`, every pair of supplied groups shares at most that many distinct values. Repeated occurrences count once. Without `groups`, compare left and right. This mode ignores `multiset`; with `maximumShared` absent, the original profile comparison applies.
 
 ## Parameters
 
@@ -36,6 +46,8 @@ The two groups contain the same numbers. Multiset comparison requires the same n
 | right | `list<cell>` | Right cell occurrences. | Required. |
 | multiset | `boolean` | Compare multiplicities as well as membership. | true. |
 | channel | `Channel` | Read printed digits (D) or effective values (V). | D. |
+| groups | `optional<list<list<cell>>>` | Groups to compare pairwise in shared-support mode; absent uses left and right. | Absent. |
+| maximumShared | `optional<position>` | Bound the number of distinct shared values instead of requiring equal profiles. | Absent. |
 
 ## Maths
 
@@ -44,7 +56,7 @@ Class: **with aggregates**.
 The [shared predicates](predicates.md) define the notation and operations.
 
 ```text
-forall n∈({read(c,channel):c∈left} union {read(c,channel):c∈right}): if multiset then (classCount(left,{n},channel) = classCount(right,{n},channel)) else ((classCount(left,{n},channel) > 0) iff (classCount(right,{n},channel) > 0))
+if present(maximumShared) then unwrap(maximumShared)>=0 ∧ let inputs=if present(groups) then unwrap(groups) else ⟨if i=0 then left else right:i∈[0,2)⟩; ∀i,j∈[0,|inputs|): i<j → |{read(c,channel):c∈inputs[i]}∩{read(c,channel):c∈inputs[j]}|<=unwrap(maximumShared) else forall n∈({read(c,channel):c∈left} union {read(c,channel):c∈right}): if multiset then (classCount(left,{n},channel) = classCount(right,{n},channel)) else ((classCount(left,{n},channel) > 0) iff (classCount(right,{n},channel) > 0))
 ```
 
 ## Example
