@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Unique Primes, Stingy Cages and Ziffer Lines bind Number Property, Profile Relation and Mirrored Pairs. Optional operand collections, allowed results, result distinctness, shared-support bounds and centre-clued differences extend those blocks while preserving existing defaults.
+
 - Portable case compilation and rule evaluation with source-linked conflicts, three-valued partial assignments, shading conditions, shared answer channels and complete-answer checking.
 - Exact candidate support over bounded rule scopes, with explicit size and formula-resource refusals.
 - Executable public examples, alias examples, candidate properties and per-rule timing reports. Document the API and finite evaluation domains in `docs/evaluator.md`.

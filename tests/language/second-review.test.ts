@@ -33,7 +33,7 @@ test('B/F: shared-name contracts are page-derived, exported, and keyed by kind',
  expect(declarationLibrary.sharedNames).toEqual(library.registry.sharedNames);
  for(const [kind,params] of library.registry.sharedNames!){
   for(const [name,shared] of Object.entries(params)){
-   if(shared.role==='construct')expect(name).toBe('name');
+   if(shared.role==='construct')expect(kind==='crossed-paths' ? ['horizontal','vertical'] : ['name']).toContain(name);
    if(shared.role==='read')expect(name).not.toBe('name');
   }
  }

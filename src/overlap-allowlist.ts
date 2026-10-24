@@ -1,5 +1,6 @@
 /** Distinct meanings sharing depth-3 structure; the guard rejects stale entries. */
 export const overlapAllowlist: Record<string,string> = {
+  "rule:shaded-successors / rule:treasures": "Shaded Successors exhaustively marks cells one greater than a king-neighbour in their own region; Treasures bounds every orthogonal neighbour of every five by four, without marking or region conditions.",
   "predicate:moveRelation / predicate:selectedPair": "moveRelation selects a geometric move; selectedPair additionally selects all, incident or scoped pairs.",
   "predicate:connectedRegionPartition / predicate:partition": "partition requires disjoint nonempty coverage; connectedRegionPartition also requires connected regions.",
   "predicate:marked / predicate:selectedCells": "selectedCells constructs the set of marked cells; marked tests membership of one cell.",

@@ -3,6 +3,25 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  "unique-primes": pending("Distinct allowed prime decimal operands are evaluated from their formula."),
+  "stingy-cages": pending("Pairwise support intersection bounds are evaluated from their formula."),
+  "ziffer-lines": pending("Centre-clued mirrored differences are evaluated from their formula."),
+  "high-low-lines": pending("Whole-line choice between overlapping digit ranges is evaluated from its formula."),
+  "islands": pending("Shared island components, connected water and water sight are evaluated from its formula."),
+  "super-indexing": pending("Cyclic row-column-digit coordinate lookups are evaluated from its formula."),
+  "cage-totals": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
+  "bipolar-quadruples": pending("Distinct clue-symbol presence counts are evaluated from its formula."),
+  "counting-diagonals": pending("Counts of diagonals containing each digit are evaluated from its formula."),
+  "domino-trails": pending("Induced trail topology and shared domino partitions are evaluated from its formula."),
+  "shaded-successors": pending("Exhaustive same-region king-neighbour shading is evaluated from its formula."),
+  "treasures": pending("Digit-selected orthogonal neighbour bounds are evaluated from its formula."),
+  "minmax-cages": pending("Nonempty distinct-digit extrema totals are evaluated from its formula."),
+  "opposite-colour-arrows": pending("Unblocked opposite-colour cell counts are evaluated from its formula."),
+  "wheels": pending("Circular digit rotations without reflection are evaluated from its formula."),
+  "hdr-thermos": pending("Local shading-signed thermometer digits are evaluated from its formula."),
+  "sum-difference-lines": pending("Interchangeable endpoint sum and interior range roles are evaluated from its formula."),
+  "crossed-paths": pending("Shared disjoint routes with indexed digits and coordinates are evaluated from its formula."),
+
   "index-count": pending("Legacy Index Count has moved to Lookup; bounded count lookups are not lowered."),
   "aggregate-relation": pending("Legacy Aggregate Relation has moved to Aggregate Equation; general aggregate comparisons are not lowered."),
   "clue-count": pending("Counts of owned complete clue truths are not lowered."),

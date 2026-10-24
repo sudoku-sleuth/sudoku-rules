@@ -358,7 +358,7 @@ test("every unsupported kind reports its registered reason when encountered", ()
     const line = declarationLibrary.lines!.get(url);
     const keyword = line && Object.keys(line.parameter.keywords)[0];
     const tail = line ? `${Array.from({length:line.cells.count},(_,i)=>`r1c${i+1}`).join('-')} ${keyword} ${line.parameter.keywords[keyword!].map(()=>1).join(' ')}` : '';
-    const named = Object.entries(contract.parameters).filter(([name,p])=>p.required && name !== line?.cells.name && name !== line?.parameter.name).map(([name,p])=>`${name} ${JSON.stringify(kind==='paired-roles' && name==='right' ? 'other' : kind==='route-group' && name==='routes' ? ['synthetic','other'] : value(p.type!))}`).join(' ');
+    const named = Object.entries(contract.parameters).filter(([name,p])=>p.required && name !== line?.cells.name && name !== line?.parameter.name).map(([name,p])=>`${name} ${JSON.stringify((kind==='paired-roles' && name==='right' || kind==='crossed-paths' && name==='vertical') ? 'other' : kind==='route-group' && name==='routes' ? ['synthetic','other'] : value(p.type!))}`).join(' ');
     const setup: Record<string,string> = {
       'mapped-values':'selection name "synthetic" scope ["r1c1"]',
       'marking-relation':'selection name "synthetic" scope ["r1c1"]',

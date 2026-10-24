@@ -1,4 +1,5 @@
 import {expect,test} from 'bun:test';
+import {newRuleExamples} from '../helpers/new-rule-examples';
 import {evaluatorLibrary} from '../../src/evaluator-library';
 import {publicPages} from '../helpers/library';
 import {caseExamples} from '../../scripts/lint-skill';
@@ -43,6 +44,7 @@ const overrides:Record<string, [{digits?:Record<string,number>} & Partial<Assign
  'japanese-sums':[{shading:{r1c1:true,r1c2:true,r1c3:false}},{shading:{r1c1:true,r1c2:false,r1c3:false}}],
  'yin-yang':[{shading:{r1c1:true,r1c2:true,r2c1:false,r2c2:false}},{shading:{r1c1:true,r1c2:false,r2c1:false,r2c2:true}}],
 };
+Object.assign(overrides,newRuleExamples);
 const registered=new Set<string>();
 for(const source of publicPages){
  const kind=/^kind: (.+)$/m.exec(source.text)?.[1];if(!kind)continue;
