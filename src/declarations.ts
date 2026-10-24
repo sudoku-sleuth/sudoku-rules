@@ -394,7 +394,8 @@ export function declarationParameters(ast: DeclarationTail, primary = 'cells'): 
         data[parameter.name.value] = parameter.value.value;
     return data;
 }
-/** Canonical text retains authored negation count, cell order and exact keyword integers. */
+/** Canonical text retains optional authored labels, negation count, cell order and exact keyword integers.
+ * Positional semantic identities are provenance only and are never printed as labels. */
 export function printDeclaration(ast: DeclarationAST, grammar: DeclarationGrammar = {}): string {
     const parts: string[] = [];
     if (ast.instance)

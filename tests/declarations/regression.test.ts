@@ -5,7 +5,7 @@ import { parameterGrammar } from '../../src/case-values';
 import { parseDeclaration, printDeclaration, type DeclarationAST } from '../../src/declarations';
 import baseline from './legacy-readings.json';
 import rejections from './contract-rejections.json';
-const shape = (reading: ReturnType<typeof readSemanticFile>) => ({...reading,instances:reading.instances.map(({ast,...instance})=>instance)});
+const shape = (reading: ReturnType<typeof readSemanticFile>) => ({...reading,instances:reading.instances.map(({ast,...instance})=>{ const {position,...source}=instance.source; return {...instance,source}; })});
 const grammar = (kind:string) => {
  const url=kind.startsWith('http')?kind:`https://rules.sudoku-sleuth.com/${kind}.md`;
  return {...parameterGrammar(declarationLibrary.parameters?.get(url)),line:declarationLibrary.lines?.get(url)};

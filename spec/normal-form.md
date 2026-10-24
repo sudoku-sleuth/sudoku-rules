@@ -63,7 +63,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | Any(children) | Disjunction; empty Any is false. |
 | Not(child) | Boolean complement of the complete child formula. |
 
-`D` is the face digit. `V` is the effective value and equals D when no modifier or unresolved definition can change that channel. The normaliser rewrites effective-value thermos, whispers, palindromes, renban and region sums, as well as parity-cell, pair and Kropki restrictions from V to D only after establishing this identity. It does not construct effective-value tables for an unknown domain. General arithmetic, quantified witnesses, opaque custom terms and collections with computed selection have no lowering in this version; their declarations remain uncovered. Digits, counts and moduli in this finite fragment are safe integers. Whisper gaps accept finite numeric bounds; integral differences are compared to their exact ceiling or floor. The formula compiler's separate exact rational arithmetic remains unchanged.
+`D` is the face digit. `V` is the effective value and equals D when no modifier or unresolved definition can change that channel. The normaliser rewrites effective-value thermos, whispers, palindromes, renban and region sums, as well as parity-cell, pair, XV, Kropki and Marked Pairs restrictions from V to D only after establishing this identity. It does not construct effective-value tables for an unknown domain. General arithmetic, quantified witnesses, opaque custom terms and collections with computed selection have no lowering in this version; their declarations remain uncovered. Digits, counts and moduli in this finite fragment are safe integers. Whisper gaps accept finite numeric bounds; integral differences are compared to their exact ceiling or floor. The formula compiler's separate exact rational arithmetic remains unchanged.
 
 ## Coverage by declaration kind
 
@@ -81,7 +81,9 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | allowed-digits | Membership at every path cell. Repeated visits do not multiply membership constraints. |
 | parity-cells | Membership in the odd/even part of the actual alphabet when V=D; negative odd digits and zero retain their numeric parity. |
 | pair | Exact table for difference, at-least, ratio, sum, less, multiple and shift over the actual alphabet. Keywords retain cell direction; swapping axes transposes the table. Arithmetic uses exact integers. |
-| kropki | White is difference 1; black is ratio 2, including the allowed zero/zero pair. Named colour parameters are also accepted. |
+| kropki | Single or grouped white (difference 1) and black (ratio 2) marks, including zero/zero for ratio. Selected allGiven kinds forbid their own relation on orthogonal edges outside their own mark list. |
+| xv | Single or grouped X (sum 10) and V (sum 5) marks, with independent allGiven restrictions. |
+| marked-pairs | Grouped X, V, white and black marks with independent allGiven restrictions. |
 | quadruple | At-least counts of each listed digit over the cell set. Duplicate listed digits increase the required count. |
 | outside | At-least counts over cell occurrences. Order is immaterial; repeated positions still count. |
 | negative | Each listed relation is forbidden on orthogonal face-digit pairs in its direction and within scope, excluding exactly its declared exception pairs. |
@@ -107,7 +109,7 @@ Foreign definitions and their dependencies are unresolved. URL spelling never gr
 
 ## Composition and rewrites
 
-Supported declarations validate parameters and active cells before composition. Parameter types and enum values are checked without coercion. Invalid parameters remain errors under negation or false conditions. Distinct declarations of the same kind require distinct instance IDs. Identical repeated lines preserve their meaning and source spans; an ID reused for a different declaration is rejected. An explicit `not` complements the complete base formula. Two prefixes cancel. `negate: all` adds one complement per base declaration before applying conditions.
+Supported declarations validate parameters and active cells before composition. Parameter types and enum values are checked without coercion. Invalid parameters remain errors under negation or false conditions. Instance IDs are optional, including when a kind repeats. Each unlabelled declaration has a one-based `source.position` in document declaration order, across rules fences and counting labelled declarations too. This positional identity is stable for the same declaration order and separate from mathematical identity; it is never printed as a label. Identical repeated lines preserve their meaning and source spans; an explicit ID reused for a different declaration is rejected. An explicit `not` complements the complete base formula. Two prefixes cancel. `negate: all` adds one complement per base declaration before applying conditions.
 
 `R if P` lowers to Any(Not(P), R); `R unless P` to Any(P, R), after base negation. `distinct` uses the primary collection's declared semantics, including repeated path positions. `connected` evaluates fixed orthogonal geometry. Conditions require a nonempty primary cell list. `uniform` awaits shared shading coverage.
 
@@ -137,6 +139,8 @@ Quadruple cell collections remove duplicate positions. Outside cell collections 
 Negative declarations require `relations` and `except`. Validated relation records are deduplicated by operator and value before pair expansion and resource accounting. Absent `within` covers all orthogonal edges; `within []` covers none. A nonempty scope covers an edge only when both endpoints belong to a common listed group. Direction restricts those edges to horizontal or vertical. Exception pairs are unordered sets of exactly two positions; lists and groups are validated against active cells. Asymmetric relations use row-major endpoint order before canonical pair transposition.
 
 Exceptions belong to each negative declaration. A pair carrying a white clue does not exempt a black negative, and a V clue does not exempt an X negative. Separate declarations preserve independent exception lists. A declaration listing several relations explicitly shares its own exceptions across those relations. The API never infers exceptions from other declarations or drawings.
+
+XV, Kropki and Marked Pairs lower their positive marks on V and each selected `allGiven` restriction as a separate Negative on D, exempting only the pairs of that kind in the same declaration. A single primary pair is appended to its chosen kind before lowering. Empty selected lists prohibit that relation on every active orthogonal edge. Negation complements the complete bundle. If effective values are unresolved, the whole declaration remains uncovered.
 
 ## Paths, windows and regions
 

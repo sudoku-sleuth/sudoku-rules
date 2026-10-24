@@ -43,9 +43,11 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFil
     kind: `header:${key}`, source: { kind: `header:${key}`, span: field(key) },
     reason: key === "board" || key === "givens" ? "Supply board data through BoardContext; header board data is not decoded." : `The ${key} header's semantic meaning is not lowered.`,
   });
-  const counts = new Map<string, Instance[]>(), ids = new Map<string, string>();
+  const ids = new Map<string, string>();
+  let position = 0;
   for (const ast of referenceCheck.value?.declarations ?? []) {
     const span = ast.span;
+    position++;
     const problem = (message: string) => result.issues.push({code:"E_SEMANTIC_LINE",message,span});
     const instance = ast.instance ? ast.instance.value : undefined;
     const negated = (metadata.negate === "all") !== (ast.negations.length % 2 === 1);
@@ -61,17 +63,13 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFil
       if (ids.has(instance) && ids.get(instance) !== identity) problem(`The instance ID ${instance} names different declarations.`);
       ids.set(instance, identity);
     }
-    const source: SemanticSource = {span,kind,...(resolved?.custom ? {custom: true, ...(resolved.scope ? {scope: resolved.scope} : {})} : {}),...(instance !== undefined?{instance}:{})};
+    const source: SemanticSource = {span,kind,...(resolved?.custom ? {custom: true, ...(resolved.scope ? {scope: resolved.scope} : {})} : {}),...(instance !== undefined?{instance}:{position})};
     const parsed: Instance = {ast,kind,negated,parameters:Object.create(null),source};
     if(ast.cells) parsed.cells=ast.cells.value as Cell[];
     if(ast.condition) parsed.condition={unless:ast.condition.unless,predicate:ast.condition.predicate.value};
     const unsupported = !Object.hasOwn(declarationRegistry,kind) || declarationRegistry[kind as keyof typeof declarationRegistry].status === "unsupported";
     if (!unsupported) parsed.parameters=semanticParameters(ast);
     result.instances.push(parsed);
-    const prior=counts.get(kind)??[];prior.push(parsed);counts.set(kind,prior);
-  }
-  for (const group of counts.values()) if (group.some(i => i.source.instance === undefined) && new Set(group.map(i => instanceIdentity(i.ast, i.kind, i.negated))).size > 1) {
-    result.issues.push({ code: "E_SEMANTIC_LINE", message: "Repeated kinds need distinct instance IDs.", span: group.find(i => i.source.instance === undefined)!.source.span });
   }
   return result;
 }

@@ -217,7 +217,7 @@ test("mixed coverage, foreign definitions and play setup never yield whole-file 
 });
 
 test("invalid parameters and board data remain errors under false conditions and negation", () => {
-  for (const text of ['not unique r5c1-r1c1 if connected', 'not parity-cells r1c1 parity "red"', 'allowed-digits r1c1 digits [0]', 'unique r1c1 wrong true', 'unique r1c1\nunique r1c2', 'same: unique r1c1\nsame: clone r1c2', 'anti-knight if distinct', 'unique r1c1 digits [1', 'not unique r0c1 if connected']) expect(nf(text).status).toBe("invalid");
+  for (const text of ['not unique r5c1-r1c1 if connected', 'not parity-cells r1c1 parity "red"', 'allowed-digits r1c1 digits [0]', 'unique r1c1 wrong true', 'same: unique r1c1\nsame: clone r1c2', 'anti-knight if distinct', 'unique r1c1 digits [1', 'not unique r0c1 if connected']) expect(nf(text).status).toBe("invalid");
   for (const context of [
     { ...board(), alphabet: [1, 1] }, { ...board(), activeCells: ["r5c1"] as Cell[] },
     { ...board(), givens: [{ cell: "r1c1" as Cell, digit: 0 }] },
