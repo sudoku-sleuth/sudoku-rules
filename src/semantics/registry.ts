@@ -15,6 +15,7 @@ export const declarationRegistry = {
   "regions": pending("The declarable block has no dedicated finite lowering."),
   "neighbour-extremum": pending("The declarable block has no dedicated finite lowering."),
 
+  "marked-pairs": pending("Grouped clue marks and all-given restrictions have no dedicated finite lowering."),
   xv: pending("The XV mark shorthand has no dedicated finite lowering."),
   "value-set": pending("Whole-set consecutive and nonconsecutive value conditions are not lowered."),
   "class-pattern": pending("General class windows on ordered lines and networks are not lowered."),

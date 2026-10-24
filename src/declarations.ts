@@ -46,6 +46,7 @@ export interface DeclarationAST {
     span: Span;
 }
 export interface DeclarationGrammar {
+    optionalLine?: boolean;
     line?: LineDeclaration;
     positional?: {
         name: string;
@@ -149,7 +150,10 @@ function valueNode(token: DeclarationToken, code: DiagnosticCode, depth = 0): De
     }
     let value: unknown;
     try {
-        value = JSON.parse(raw);
+        // Cell paths may appear inside structured lists as well as at top level.
+        const structured = raw.replace(/"(?:\\.|[^"\\])*"|r[1-9]\d*c[1-9]\d*(?:-r[1-9]\d*c[1-9]\d*)*/g, token =>
+            token.startsWith('"') ? token : token.includes('-') ? JSON.stringify(token.split('-')) : JSON.stringify(token));
+        value = JSON.parse(structured);
     }
     catch {
         fail(code, token.span, 'Write each parameter value as JSON or a cell in r1c1 form; close every string and bracket.');
@@ -187,7 +191,7 @@ function valueNode(token: DeclarationToken, code: DiagnosticCode, depth = 0): De
                     nesting--;
             }
             const text = raw.slice(start, i).trimEnd();
-            return valueNode({ kind: cell.test(text) ? 'cell' : text[0] === '"' ? 'string' : 'json', text, span: subspan(token, start, start + text.length) }, code, depth + 1);
+            return valueNode({ kind: cell.test(text) ? 'cell' : path.test(text) ? 'path' : text[0] === '"' ? 'string' : 'json', text, span: subspan(token, start, start + text.length) }, code, depth + 1);
         };
         whitespace();
         if (Array.isArray(value)) {
@@ -286,7 +290,7 @@ function parseDeclarationTailTokens(all: DeclarationToken[], grammar: Declaratio
         const result: DeclarationTail = { parameters: [], ...(comment ? { comment: nameOf(comment) } : {}) };
         const add = (name: string, value: DeclarationValue, span: Span, nameSpan = span) => result.parameters.push({ name: { value: name, span: nameSpan }, value, span });
         const line = grammar.line;
-        if (line) {
+        if (line && (!grammar.optionalLine || path.test(tokens[i]?.text ?? ''))) {
             const t = tokens[i], cells = t?.text.split(/[-,]/) ?? [];
             if (cells.length !== line.cells.count || cells.some(c => !cell.test(c)))
                 fail('E_LINE_SYNTAX', here(), `Write ${line.cells.count} cells for ${line.cells.name}, joined by hyphens, such as r1c1-r1c2.`);

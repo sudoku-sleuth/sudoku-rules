@@ -117,6 +117,7 @@ Choose a familiar rule and say where it applies. Shared building blocks combine 
 - [Local Sequence](https://rules.sudoku-sleuth.com/local-sequence.md)
 - [Lookup](https://rules.sudoku-sleuth.com/lookup.md)
 - [Mapped Values](https://rules.sudoku-sleuth.com/mapped-values.md)
+- [Marked Pairs](https://rules.sudoku-sleuth.com/marked-pairs.md)
 - [Marking Relation](https://rules.sudoku-sleuth.com/marking-relation.md)
 - [Maze](https://rules.sudoku-sleuth.com/maze.md)
 - [Mirrored Pairs](https://rules.sudoku-sleuth.com/mirrored-pairs.md)

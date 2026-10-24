@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Marked Pairs shares XV and Kropki meanings, with `allGiven` selecting all Xs, Vs, white dots or black dots and deriving exceptions from each kind’s own marks. Case migration recognises exact marking negatives, including unreferenced generated pair/negative IDs, and flags combined exceptions involving a relation without its own marks. Migrated declarations use XV or Kropki for one family and Marked Pairs for mixed families, compact cell-pair lists and nondefault parameters. Authored and referenced labels retain their quoting; unreferenced generated labels are removed.
+
 - Liar Cells assigns independent real values, counts liars in supplied groups and controls written-digit and real-value distinctness separately.
 - Lying Clues counts complete false clues in an explicit scope, using exactly, at-least or at-most. Nested clues retain their contracts, defaults and shared answer channels.
 - German Whisper Lies and Region Sum Lies provide sourced examples of shared real-value assignments.

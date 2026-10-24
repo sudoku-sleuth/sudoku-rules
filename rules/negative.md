@@ -38,11 +38,11 @@ layer: rule
 
 Orthogonally adjacent pairs outside the exception list fail every listed relationship. The scope, direction and exceptions state exactly which pairs are covered.
 
-Neighbouring means orthogonally adjacent. Without this declaration, missing dots or X/V clues imply nothing. For all white dots given, forbid `{"op":"difference","value":1}`; for black dots, forbid `{"op":"ratio","value":2}`; for X clues, forbid `{"op":"sum","value":10}`; for V clues, forbid `{"op":"sum","value":5}`. List the marked pairs in `except`. An empty exceptions list exempts no pairs.
+Neighbouring means orthogonally adjacent. Without an all-given setting or an explicit Negative, missing dots and X/V clues imply nothing. For all possible Xs, Vs, white dots or black dots given, collect the marks in [Marked Pairs](marked-pairs.md) and select their kinds with `allGiven`. Each kind exempts only its own marks.
 
-For relation-specific marking, use separate negative declarations and separate exception lists. A 1–2 pair satisfies both white and black relationships; exempting only black-marked pairs from a white negative does not exempt that pair. To apply both negatives only to completely unmarked pairs, put both relationships in one declaration and exempt every dotted pair. With no exceptions and no scope or direction limit, a difference-1 negative is the global non-consecutive rule. Negative reads printed digits; positive Pair and Kropki read effective values after modifiers.
+Use Negative for other forbidden relationships, explicit exception sets, limited scopes or directions. Every exception exempts its pair from every relationship in that declaration. Separate declarations give different relationships different exceptions. A difference-1 Negative with no exceptions or scope limits is global orthogonal nonconsecutive: even a V marked 2+3 fails it. An X does not exempt an edge from a sum-5 Negative; an X pair already sums to ten and needs no sum-5 exemption.
 
-An empty `except` list exempts no pairs. These inputs must be supplied explicitly.
+Negative reads printed digits D; positive Pair, XV and Kropki read effective values V. An empty `except` list exempts no pairs. Supply `relations` and `except` explicitly.
 
 ## Parameters
 
@@ -63,7 +63,7 @@ The [shared predicates](https://rules.sudoku-sleuth.com/predicates.md) define th
 
 This is a bound shorthand for [relation-scope](relation-scope.md). Its header binds every canonical parameter.
 
-Every orthogonally neighbouring pair in scope and outside except fails every listed relationHolds check over D digits. within limits pairs to a common listed group; direction limits their orientation. Either dot colour exempts the pair from both Kropki negatives when both share except.
+Every orthogonally neighbouring pair in scope and outside except fails every listed relationHolds check over D digits. within limits pairs to a common listed group; direction limits their orientation. Each explicit exception applies to every relationship listed in that Negative.
 
 The shift relation is defined for integer values.
 
@@ -82,7 +82,7 @@ status: read
 
 ```rules
 sudoku 9x9
-negative relations [{"op":"difference","value":1}] except [] within [["r1c1","r1c2"]]
+negative relations [{"op":"difference","value":1}] except [] within [r1c1-r1c2]
 ```
 ````
 

@@ -57,6 +57,7 @@ export const libraryLayers: Record<string, 'block'|'rule'> = {
   "lookup": "block",
   "magic-square": "rule",
   "mapped-values": "block",
+  "marked-pairs": "block",
   "marking-relation": "block",
   "maze": "block",
   "mean-lines": "rule",
@@ -182,7 +183,7 @@ export const blockHomes: Record<string,string> = {
   "index": "lookup",
   "japanese-sums": "japanese-sums",
   "killer": "cage",
-  "kropki": "aggregate-equation",
+  "kropki": "marked-pairs",
   "layered-cage": "layered-cage",
   "liar-cells": "liar-cells",
   "limited-digits": "digit-profile",
@@ -194,6 +195,7 @@ export const blockHomes: Record<string,string> = {
   "lookup": "lookup",
   "magic-square": "magic-square",
   "mapped-values": "mapped-values",
+  "marked-pairs": "marked-pairs",
   "marking-relation": "marking-relation",
   "maze": "maze",
   "mean-lines": "aggregate-groups",
@@ -267,7 +269,7 @@ export const blockHomes: Record<string,string> = {
   "whispers": "difference-line",
   "window-classes": "class-pattern",
   "x-sum": "selected-stretch",
-  "xv": "aggregate-equation",
+  "xv": "marked-pairs",
   "yin-yang": "yin-yang",
   "zipper": "mirrored-pairs"
 };

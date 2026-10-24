@@ -213,7 +213,7 @@ test('removed rule aliases migrate to their retained names in plain and scoped s
    expect(checkCaseReferences({file:'legacy-alias.rules.md',text:source},current.registry).diagnostics).toEqual([]);
    const migrated=migrateCase({file:'removed-alias.rules.md',text:source});
    expect(migrated.diagnostics).toEqual([]);
-   expect(migrated.value!.text).toContain('"old": not ');
+   expect(migrated.value!.text).toContain('old: not ');
    expect(migrated.value!.text).toContain(target);
    expect(migrated.value!.text).toContain('# retain');
    expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
@@ -279,7 +279,7 @@ for(const definition of localCollisions)test(`real local collision migration: ${
  const migrated=migrateCase(page);expect(migrated.diagnostics).toEqual([]);
  if(metadata.id==='split-pea'){
   expect(migrated.value!.text).not.toContain('#split-pea');
-  expect(migrated.value!.text).toContain('"owned": not not split-pea');
+  expect(migrated.value!.text).toContain('owned: not not split-pea');
  }else expect(migrated.value!.text).toContain(`#local-${metadata.id}`);
  expect(migrated.value!.text).toContain('# retained comment');
  expect(checkCaseReferences(migrated.value!,current.registry).diagnostics).toEqual([]);
@@ -336,7 +336,7 @@ for(const sample of namedPairs)test(`Pair ${sample.op} ${sample.value} chooses $
   // Face digits deliberately differ from V to detect an accidental channel change.
   const fragment={faces:{[a]:8,[b]:9},values:{[a]:values[0],[b]:values[1]}};
   expect(fragmentVerdict(before.formulas[0].ast,old.prelude,before.parameters,{...fragment,parameters:{...parameters,channel:'V'}})).toBe(expected);
-  expect(fragmentVerdict(after.formulas[0].ast,current.prelude,after.parameters,{...fragment,parameters:result.parameters})).toBe(expected);
+  expect(fragmentVerdict(after.formulas[0].ast,current.prelude,after.parameters,{...fragment,parameters:{...Object.fromEntries(Object.entries(current.registry.parameters!.get(`https://rules.sudoku-sleuth.com/${result.kind}.md`)!.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([k,p])=>[k,p.default])),...result.parameters}})).toBe(expected);
  }
  const decoded={...parameters,element:'dot'};
  expect(migrateDeclaration({kind:'pair',parameters:decoded})[0].parameters.element).toBe('dot');
@@ -347,7 +347,7 @@ for(const sample of namedPairs)test(`Pair ${sample.op} ${sample.value} chooses $
   expect(result.diagnostics).toEqual([]);
   expect(result.value!.text).toContain(`"clue": not not ${sample.kind}`);
   expect(result.value!.text).toContain('element "dot" if uniform # keep');
-  expect(result.value!.text).toContain('"all-given": negative');
+  expect(result.value!.text).toContain('all-given: negative');
   const checked=checkCaseReferences(result.value!,current.registry);
   expect(checked.diagnostics).toEqual([]);
   const negativeAst=checked.value!.declarations.find(d=>d.kind.value==='negative')!;

@@ -8,11 +8,11 @@ Predicates are mathematical functions and cannot be declared in a case file. Blo
 | --- | ---: |
 | Callable predicates | 182 |
 | Vocabulary declarations | 204 |
-| Blocks | 42 |
+| Blocks | 43 |
 | Rules | 87 |
-| Blocks owning formulas | 42 |
+| Blocks owning formulas | 43 |
 | Rules owning formulas | 23 |
-| Formula-owning definitions | 65 |
+| Formula-owning definitions | 66 |
 
 Blocks by number of named rules binding them:
 
@@ -20,13 +20,13 @@ Blocks by number of named rules binding them:
 | ---: | ---: |
 | 0 | 26 |
 | 1 | 2 |
-| 2 | 4 |
+| 2 | 5 |
 | 3 | 3 |
 | 4 | 1 |
 | 5 | 2 |
 | 6 | 1 |
-| 7 | 1 |
-| 9 | 2 |
+| 7 | 2 |
+| 9 | 1 |
 
 ## Rules
 
@@ -64,7 +64,7 @@ Blocks by number of named rules binding them:
 | [Index](../rules/index.md) | Each marked digit gives a position along its row or column. The cell at that position contains the marked cell’s column number for column indexing, or row number for row indexing. | [lookup](../rules/lookup.md): `mode="queries"; cells=orderedCells({}); cell=absent(boardCell(1,1)); sources=orderedCells({}); indexChannel="D"; channel="D"; offset=0; target=absent(0); targetCell=absent(boardCell(1,1)); relation=relationSpec("difference",0); queries=⟨lookupQuery(if axis="column" then ⟨boardCell(row(c),k):k∈[0,cols)⟩ else ⟨boardCell(r,col(c)):r∈[0,rows)⟩,D(c),if axis="column" then col(c)+1 else row(c)+1,"D",relationSpec("difference",0)):c∈orderedCells(cells)⟩; total=\|cells\|; firstMatch=false; reverseRelation=false; increasing=orderedCells({}); nonempty=false` | yes |
 | [Index Line](../rules/index-line.md) | Count positions from the marked end, starting at 1. A digit X in position N means the digit in position X is N. | [lookup](../rules/lookup.md): `mode="queries"; cells=orderedCells({}); cell=absent(boardCell(1,1)); sources=orderedCells({}); indexChannel="D"; channel="D"; offset=0; target=absent(0); targetCell=absent(boardCell(1,1)); relation=relationSpec("difference",0); queries=⟨lookupQuery(line,D(line[i]),i+1,"D",relationSpec("difference",0)):i∈[0,\|line\|)⟩; total=\|line\|; firstMatch=false; reverseRelation=false; increasing=orderedCells({}); nonempty=false` | yes |
 | [Japanese Sums](../rules/japanese-sums.md) | Read the maximal nonempty runs of marked cells in the supplied order. Their sums equal the clue list in that order. Every run has exactly one clue, including a run whose sum is zero. Unmarked cells separate runs and contribute nothing. Repeated cells are rejected; the list itself supplies order, without imposing adjacency. | Own formula on rule page | yes |
-| [Kropki](../rules/kropki.md) | A white relation joins values one apart. A black relation joins values where one is twice the other. | [aggregate-equation](../rules/aggregate-equation.md): `left=⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,\|cells\|),i=0⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩; right=⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,\|cells\|),i=1⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩; leftOperation="sum"; rightOperation="sum"; relation=if \|cells\|=2 then relationSpec(if colour="white" then "difference" else "ratio",if colour="white" then 1 else 2) else relationSpec("difference",-1)` | yes |
+| [Kropki](../rules/kropki.md) | A white relation joins values one apart. A black relation joins values where one is twice the other. | [marked-pairs](../rules/marked-pairs.md): `x=⟨cells:i∈[0,0)⟩; v=⟨cells:i∈[0,0)⟩; white=if \|cells\|>0 ∧ colour="white" then ⟨if i<\|white\| then white[i] else cells:i∈[0,\|white\|+1)⟩ else white; black=if \|cells\|>0 ∧ colour="black" then ⟨if i<\|black\| then black[i] else cells:i∈[0,\|black\|+1)⟩ else black; allGiven=allGiven` | yes |
 | [Layered Cage](../rules/layered-cage.md) | Each occupied row of the cage contains only upper digits or only other digits. Every upper row is above every other row. | Own formula on rule page | yes |
 | [Liar Cells](../rules/liar-cells.md) | A liar cell has a real value different from its written digit. Every other cell's value equals its digit. Choose the liar cells so that each group contains the stated count. Liar digits and real values are each distinct when their respective options are enabled. | Own formula on rule page | yes |
 | [Limited Digits](../rules/limited-digits.md) | The marked cells contain at most the stated number of different digits. | [digit-profile](../rules/digit-profile.md): `cells=line; classes=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩; counts=⟨i:i∈[0,0)⟩; channel="D"; loop=false; selfCount=false; windowLength=absent(\|{}\|); exhaustive=false; comparison="exact"; maximumDistinct=some(max); repeats=true; balancePairs=⟨⟨n:n∈[0,0)⟩:i∈[0,0)⟩; sumFree=absent(\|{}\|)` | yes |
@@ -116,7 +116,7 @@ Blocks by number of named rules binding them:
 | [Whispers 5](../rules/whispers-5.md) | Neighbouring values along the line differ by at least 5. | [difference-line](../rules/difference-line.md): `line=line; edges=edges; loop=loop; mode="at-least"; channel="V"; diamonds={}; gap=5; turnDigits={}` | yes |
 | [Window Classes](../rules/window-classes.md) | Every two-by-two window contains every stated digit class. | [class-pattern](../rules/class-pattern.md): `line=⟨c:c∈orderedCells(C),false⟩; edges=absent(⟨⟨c:c∈orderedCells(C),false⟩:i∈[0,0)⟩); loop=false; classification=if classes="entropy" then "entropy" else "residue"; modulus=if classes="parity" then 2 else 3; length=3; geometry="squares"; mode="cover"; fixedClass=absent(\|{}\|); channel="D"` | yes |
 | [X Sum](../rules/x-sum.md) | The first digit gives how many cells to count from the clue. Those digits add up to its total. A stated count replaces the first digit. | [selected-stretch](../rules/selected-stretch.md): `cells=cells; selection="prefix"; sum=sum; count=count; sums=⟨n:n∈[0,0)⟩; crusts=absent(⟨d:d∈𝔄⟩); endpointOccurrences="none"` | yes |
-| [XV](../rules/xv.md) | An X joins two values that sum to ten. A V joins two values that sum to five. | [aggregate-equation](../rules/aggregate-equation.md): `left=⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,\|cells\|),i=0⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩; right=⟨weightedOperand(aggregateOperand(⟨cells[i]:i∈[0,\|cells\|),i=1⟩,"V","sum",true),1,1):termIndex∈[0,1)⟩; leftOperation="sum"; rightOperation="sum"; relation=if \|cells\|=2 then relationSpec("sum",if mark="x" then 10 else 5) else relationSpec("difference",-1)` | yes |
+| [XV](../rules/xv.md) | An X joins two values that sum to ten. A V joins two values that sum to five. | [marked-pairs](../rules/marked-pairs.md): `x=if \|cells\|>0 ∧ mark="x" then ⟨if i<\|x\| then x[i] else cells:i∈[0,\|x\|+1)⟩ else x; v=if \|cells\|>0 ∧ mark="v" then ⟨if i<\|v\| then v[i] else cells:i∈[0,\|v\|+1)⟩ else v; white=⟨cells:i∈[0,0)⟩; black=⟨cells:i∈[0,0)⟩; allGiven=allGiven` | yes |
 | [Yin Yang](../rules/yin-yang.md) | Shade the board so each colour forms one connected group and every 2×2 contains both colours. | Own formula on rule page | yes |
 | [Zipper](../rules/zipper.md) | Pairs equally far from the centre have the same sum. By default, on an odd-length line that sum is the centre digit. | [mirrored-pairs](../rules/mirrored-pairs.md): `line=line; geometry="line"; mode="equal-sum"; channel="D"; sums=⟨n:n∈[0,0)⟩; centre=centre` | yes |
 
@@ -126,7 +126,7 @@ Every block owns a formula. Used by lists named rules binding it directly. A blo
 
 | Name | Meaning | Used by | General composition purpose when needed |
 | --- | --- | --- | --- |
-| [Aggregate Equation](../rules/aggregate-equation.md) | Compare two arithmetic expressions built from aggregate operands. Each term multiplies an operand raised to a nonnegative integer power by its coefficient. Each side sums or multiplies its terms. A constant is a count operand on an empty list raised to power zero, multiplied by that constant. Empty sums are zero; empty products are one. Operand slices, prefixes, repeated occurrences and channels retain their shared meanings. | [Cage](../rules/cage.md), [Cage Pair](../rules/cage-pair.md), [Diagonal Sum](../rules/diagonal-sum.md), [Double Arrow](../rules/double-arrow.md), [Kropki](../rules/kropki.md), [Pair](../rules/pair.md), [Prefix Sum](../rules/prefix-sum.md), [Product Cage](../rules/product-cage.md), [XV](../rules/xv.md) | Shared by multiple named rules |
+| [Aggregate Equation](../rules/aggregate-equation.md) | Compare two arithmetic expressions built from aggregate operands. Each term multiplies an operand raised to a nonnegative integer power by its coefficient. Each side sums or multiplies its terms. A constant is a count operand on an empty list raised to power zero, multiplied by that constant. Empty sums are zero; empty products are one. Operand slices, prefixes, repeated occurrences and channels retain their shared meanings. | [Cage](../rules/cage.md), [Cage Pair](../rules/cage-pair.md), [Diagonal Sum](../rules/diagonal-sum.md), [Double Arrow](../rules/double-arrow.md), [Pair](../rules/pair.md), [Prefix Sum](../rules/prefix-sum.md), [Product Cage](../rules/product-cage.md) | Shared by multiple named rules |
 | [Aggregate Groups](../rules/aggregate-groups.md) | All groups have equal aggregate results. Empty groups contribute zero to sums and one to products. Mean comparisons use cross multiplication, so an empty group places no condition on other groups. | [Equal Sums](../rules/equal-sums.md), [Mean Lines](../rules/mean-lines.md), [Region Sum](../rules/region-sum.md) | Shared by multiple named rules |
 | [Assignment](../rules/assignment.md) | Assign a zero-based label to each ordered slot. The named list has exactly size entries, all in [0,labels). Bijective mode uses every label exactly once. Custom formulas read this same assignment to apply each chosen meaning; labels identify meanings rather than implying a numeric relation. | None | Shared label assignments over arbitrary ordered slots. |
 | [Blocked Sight](../rules/blocked-sight.md) | Each ray stops at its first blocker. Blockers may be listed cells or depend on numbers, shading colour or primary regions. Count the selected cells or add their numbers, then add the offset. The origin can be included once. Compare the result with a fixed total, a target-cell sum, or the origin number. Record-high sight keeps numbers greater than every earlier number on that ray. | [Skyscraper](../rules/skyscraper.md) | Arbitrary rays, listed or value blockers, counts or totals, and origin/blocker inclusion. |
@@ -143,6 +143,7 @@ Every block owns a formula. Used by lists named rules binding it directly. A blo
 | [Local Sequence](../rules/local-sequence.md) | Successive numbers follow the chosen sequence. Transitions use explicit ordered pairs. Divisors requires each number to be a nonzero integer divisor of the next. Recurrence requires each number after the first two to equal `a` times the earlier number plus `b` times the later one. A closed sequence has at least three cells. A one- or two-cell recurrence has no three-cell condition. | None | Explicit transition tables, divisibility and linear recurrences. |
 | [Lookup](../rules/lookup.md) | Look up one-based positions in ordered cell lists and count successful relations. Single and count modes read indices from source cells; queries mode accepts explicit indices and targets. Single mode needs `cell`; count and queries modes use their own sources and queries. Repeated sources and queries count separately. Fractional and out-of-range indices miss. Targets may be fixed numbers, another cell, or each source itself. | [Index](../rules/index.md), [Index Line](../rules/index-line.md), [Numbered Room](../rules/numbered-room.md), [Pointing Arrow](../rules/pointing-arrow.md), [Pointing Thermo](../rules/pointing-thermo.md) | Shared by multiple named rules |
 | [Mapped Values](../rules/mapped-values.md) | Constrain one numeric channel using a shared selection inside scope. Selected cells use an affine transformation, an explicit digit-to-value map, or a free value from the allowed list. Unselected cells in scope keep their digits. Outside scope, identity requires the face digit and free imposes no condition. Each digit has at most one map entry; every selected digit must have an entry in map mode. Declarations sharing V or any named channel conjoin on the same values, with no constructor uniqueness requirement. All equations must hold together. The default outside free leaves other scopes unconstrained. Named channels are read through channelValue in formulas; the reserved channel V is the effective value used by existing valued rules. Channel D cannot be written. | None | Compose numeric channels with shared selections. |
+| [Marked Pairs](../rules/marked-pairs.md) | X pairs sum to ten, V pairs sum to five, white pairs differ by one and black pairs have ratio two. `allGiven` forbids each selected relationship on every orthogonally adjacent pair without that kind of mark. | [Kropki](../rules/kropki.md), [XV](../rules/xv.md) | Shared by multiple named rules |
 | [Marking Relation](../rules/marking-relation.md) | Each ordered pair has the stated relationship between its two marks. Same and different are symmetric; implies runs from the first cell to the second. Optional transition counting counts changes along the supplied list, including repeated visits. It does not connect the list geometrically. | None | Relations over arbitrary shared cell markings. |
 | [Maze](../rules/maze.md) | Construct a connected named network on exactly the scoped cells. Edges join two different cells by the chosen move, and no undirected edge is repeated. A tree has no cycle and gives a unique route between each pair of vertices. With tree false, cycles are allowed. A one-cell tree has no edges and no degree-one leaves. | None | Named network construction with configurable topology. |
 | [Mirrored Pairs](../rules/mirrored-pairs.md) | Compare opposite positions along a line or a half-turned board by equality, a common pair sum, or allowed pair sums. | [Palindrome](../rules/palindrome.md), [Rotational Sums](../rules/rotational-sums.md), [Zipper](../rules/zipper.md) | Shared by multiple named rules |
@@ -178,6 +179,10 @@ Run `bun run openrules overlap [--min 0.35] [--json]`. See [overlap](overlap.md)
 ## Liar rules
 
 Liar Cells owns independent real-value assignments with group counts and separate face-digit and real-value distinctness. Lying Clues owns an explicit list of complete clues and counts false meanings with exactly, at-least or at-most. Both are named rules with their own formulas. Their independent meanings do not introduce a shared block. The existing countWhere and allDifferent predicates express their counts and distinctness; clueHolds supplies complete owned-clue truth on the same answer.
+
+## All-given marks
+
+[Marked Pairs](../rules/marked-pairs.md) is the shared block for XV and Kropki. Use grouped XV for X and V marks, grouped Kropki for dots, and Marked Pairs for mixed families. Write compact pairs such as `xv x [r1c1-r1c2] allGiven ["x","v"]`. Select kinds with `allGiven ["x","v"]`, `["white","black"]` or a single kind. Each selected relation is forbidden on orthogonal edges outside its own marks. Independent rules retain their full scope. Positive marks read V; all-given restrictions read D.
 
 ## Names and migration
 

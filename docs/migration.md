@@ -13,7 +13,7 @@ if (!migrated.value) throw new Error(JSON.stringify(migrated.diagnostics));
 const checked = checkCaseReferences(migrated.value, registry);
 ```
 
-`migrateCase` is a pure source transform. It reads neither files nor answers. It preserves the header, instance IDs, negation count, conditions, comments and other fenced blocks. External-library declarations remain as authored. Custom definitions retain their metadata; calls to the removed 0.3 helpers listed below are expanded from their archived formulas. Conditional declarations and declarations with an explicit drawing element retain their named declaration when available; Pair may select an equivalent XV or Kropki declaration while preserving those annotations. Removed Index Count maps to Lookup in count mode with the same primary cells; Aggregate Relation has no primary cell scope. Run the current case checker on the returned source.
+`migrateCase` is a pure source transform. It reads neither files nor answers. It preserves the header, meaningful or referenced instance IDs, negation count, conditions, comments and other fenced blocks. External-library declarations remain as authored. Custom definitions retain their metadata; calls to the removed 0.3 helpers listed below are expanded from their archived formulas. Conditional declarations and declarations with an explicit drawing element retain their named declaration when available; Pair may select an equivalent XV or Kropki declaration while preserving those annotations. Removed Index Count maps to Lookup in count mode with the same primary cells; Aggregate Relation has no primary cell scope. Run the current case checker on the returned source.
 
 For already decoded data, call `migrateDeclaration({kind, parameters})`. Values are numbers, bigints, strings, booleans, arrays and records. It returns an array containing one declaration. `migrateParsedDeclaration(ast)` projects the old parser AST and preserves exact keyword integers. `printMigratedDeclaration` writes the result without rounding those integers. Use `migrateCase` for source files with instance IDs, negations, drawing elements or conditions.
 
@@ -37,7 +37,7 @@ Pair retains its name. Migration selects a name per declaration after binding de
 | `ratio 2`, channel V | `kropki … black` |
 | Other relations, channel D, or extra settings the target cannot express | Pair with its original settings |
 
-XV and Kropki both read effective values V and require two cells. Neither has a negative or “all given” parameter; those conditions use a separate Negative declaration. Migration preserves that declaration, its scope and exceptions, as well as each clue's IDs, negations, conditions, drawing elements and comments. An outer `not` negates the mapped clue; it does not impose “all given”. Pair declarations with extra relation fields or unsupported settings stay Pair. Kropki aliases are white dot, black dot and Kropki dots; XV aliases are X and V and XV clues. Negative, Anti King and Anti Knight keep their names.
+XV and Kropki read effective values V; each mark joins two cells. Their shared Marked Pairs block provides `allGiven` for complete marking conventions. Case migration groups exact marking negatives as described below; other negatives retain their scopes and exceptions. Meaningful and referenced IDs, negations, conditions, drawing elements and comments are preserved. An outer `not` negates the mapped clue; it does not impose “all given”. Pair declarations with extra relation fields or unsupported settings stay Pair. Kropki aliases are white dot, black dot and Kropki dots; XV aliases are X and V and XV clues. Negative, Anti King and Anti Knight keep their names.
 
 ## Removed rule spellings
 
@@ -128,7 +128,7 @@ Migration chooses a familiar rule where one exists, otherwise a block with setti
 | `japanese-sums` | `japanese-sums` (rule; formula home `japanese-sums`) | identical |
 | `killer` | `cage` (rule; formula home `aggregate-equation`) | identical |
 | `killer-cage` | `cage` (rule; formula home `aggregate-equation`) | identical |
-| `kropki` | `kropki` (rule; formula home `aggregate-equation`) | identical |
+| `kropki` | `kropki` (rule; formula home `marked-pairs`) | identical |
 | `layered-cage` | `layered-cage` (rule; formula home `layered-cage`) | identical |
 | `limited-digits` | `limited-digits` (rule; formula home `digit-profile`) | identical |
 | `line-choice` | `line-choice` (block; formula home `line-choice`) | identical |
@@ -285,3 +285,19 @@ A local definition that shares a library kind keeps its own meaning. Reviewed Sp
 
 Every other collision receives an unused local-<id> name, with a numeric suffix when needed. Both its definition and declarations are renamed. Battenburg with an exhaustive marks record and multicolour Japanese Sums retain their local formulas under this rule. Definitions with an unrecognised Split Pea meaning or a nondecimal alphabet also retain a renamed local definition.
 <!-- formula-migration:end -->
+
+## All-given XV and Kropki
+
+Collect X and V marks under XV, and white and black dots under Kropki:
+
+```rules
+xv x [r1c1-r1c2] v [r2c1-r2c2] allGiven ["x","v"]
+```
+
+`allGiven ["x"]` selects only Xs; `["v"]` only Vs; `["white","black"]` all dots; `["white"]` or `["black"]` only that dot kind. Supply the corresponding lists in the same block. Other declarations do not supply exceptions.
+
+Case migration replaces an unscoped Negative for sum 10, sum 5, difference 1 or ratio 2 when its undirected exception set equals exactly that kind’s marked pairs. It collects those positive XV or Kropki declarations into grouped XV or Kropki. Mixed families use Marked Pairs. Pair declarations qualify after individual migration only when their effective-value settings match XV or Kropki. Reversed pairs, repeated exceptions and order do not affect set equality. A relation without marks is left Negative when declared alone, including global nonconsecutive.
+
+A combined Negative whose exceptions equal the union of its kinds’ marks is split by kind into the block’s separate lists and `allGiven` choices. This makes each kind’s exemptions specific to that kind. If that combined list also includes a relation without its own marks, migration reports a diagnostic for review; it does not silently exempt marked edges from a global rule. Confirm the intended exceptions before splitting those declarations.
+
+Other Negative declarations remain Negative, including restricted scopes or directions and nonmatching exception sets. Declarations carrying meaningful or referenced IDs, negation, conditions or drawing elements stay in place. Unreferenced generated IDs (`pair-1`, `xv-1`, `kropki-1`, `negative-5`) are dropped, as are generated labels such as `sudoku-1`, `anti-knight-1` and `arrow-1`. Parameters equal to their defaults are omitted unless the board contract requires them explicitly. Authored bare or quoted labels are retained on declarations that stay in place. Standard Sudoku prints as `sudoku 9x9`. Comments are retained. Files using whole-case negation or a different library are not grouped. Decoded single-declaration migration cannot infer a file’s marks; use case migration for this transformation.
