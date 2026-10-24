@@ -1,13 +1,27 @@
 import { afterAll, beforeAll, expect, test } from "bun:test";
 
-import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { mkdtemp, readFile, readdir, rm, writeFile, mkdir, symlink, stat } from "node:fs/promises";
+import { join, resolve, dirname } from "node:path";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { buildSite } from "../scripts/build";
 import { frontMatter, renderMarkdown, ruleShape, summary } from "../scripts/content";
 import { lintYaml } from "../scripts/lint-yaml";
 
+
+
+async function checkSiteLinks(root: string) {
+  root=resolve(root); const files:string[]=[];
+  async function walk(dir:string){for(const item of await readdir(dir,{withFileTypes:true})){const p=join(dir,item.name);if(item.isDirectory())await walk(p);else if(item.name.endsWith('.html'))files.push(p);}}
+  await walk(root); const failures=new Set<string>();let count=0;
+  for(const file of files){const html=await readFile(file,'utf8');for(const m of html.matchAll(/(?:href|src)="([^"]+)"/g)){
+    const href=m[1].replaceAll('&amp;','&');if(/^(?:https?:|mailto:|data:)/.test(href))continue;
+    const [path,hash]=href.split('#'); const target=path?resolve(path.startsWith('/')?root:dirname(file),'.'+(path.startsWith('/')?path:'/'+path)):file;
+    let destination=target;try{if((await stat(destination)).isDirectory())destination=join(destination,'index.html');await stat(destination);}catch{failures.add(`${file.slice(root.length)} → ${href}`);continue;}
+    if(hash&&destination.endsWith('.html')){const text=await readFile(destination,'utf8');if(!text.includes(`id="${decodeURIComponent(hash)}"`))failures.add(`${file.slice(root.length)} → ${href} (missing fragment)`);}
+    count++;
+  }}return {pages:files.length,links:count,failures:[...failures]};
+}
 
 const fixtures = resolve(import.meta.dir, "fixtures");
 let temporary: string;
@@ -31,7 +45,8 @@ test("each rule and the shared definitions have an HTML page", async () => {
     const html = await readFile(join(output, slug, "index.html"), "utf8");
     expect(html).toContain("<h1 id=");
     expect(html).toContain(`href="/${slug}.md"`);
-    expect(html).not.toContain("<script src=");
+    expect(html).not.toContain('<script src="/library.js"');
+    expect(html).toContain('<script src="/interactions.js" defer>');
   }
   const thermo = await readFile(join(output, "thermo/index.html"), "utf8");
   expect(thermo).toContain("∀i ∈");
@@ -242,7 +257,7 @@ test("rule symbols cover the published page set and stay decorative and theme-aw
 
 test("production catalogue separates familiar rules, blocks and predicates",async()=>{
  const destination=join(temporary,'production');
- await buildSite('.',destination);
+ const built=await buildSite('.',destination);
  const home=await readFile(join(destination,'index.html'),'utf8');
  const blocks=await readFile(join(destination,'blocks/index.html'),'utf8');
  const aliases:Record<string,string[]>={
@@ -262,6 +277,10 @@ test("production catalogue separates familiar rules, blocks and predicates",asyn
   const icons=JSON.parse(await readFile('site/icons/rules.json','utf8'));
   expect(icons[kind]).toBe(icons[oldKind]);
  }
+ const links=await checkSiteLinks(destination);
+ expect(links.failures).toEqual([]);
+ expect(links.pages).toBeGreaterThan(built.pages);
+ for(const route of ["rules","write","invent","build","how-it-works","predicate-guide"]) expect(await Bun.file(join(destination,route,"index.html")).exists()).toBe(true);
  const oldPage=await readFile(join(destination,'little-killer/index.html'),'utf8');
  expect(oldPage).toContain('href="/diagonal-sum/"');
  expect(await readFile(join(destination,'little-killer.md'),'utf8')).toBe(await readFile('rules/little-killer.md','utf8'));
@@ -279,4 +298,24 @@ test("production catalogue separates familiar rules, blocks and predicates",asyn
  expect(rule).toContain('Block:');expect(rule).toContain('href="/difference-line/"');
  const block=await readFile(join(destination,'difference-line/index.html'),'utf8');
  expect(block).not.toContain('class="rule-icon"');
+});
+
+
+test("catalogue totals and shape counts follow library additions at build time", async () => {
+  const source=join(temporary,"growing-library");
+  const destination=join(temporary,"growing-site");
+  await mkdir(join(source,"rules"),{recursive:true});
+  for(const kinds of [["first"],["first","second"]]) {
+    for(const kind of kinds) await writeFile(join(source,`rules/${kind}.md`),`---\nname: ${kind}\nkind: ${kind}\nlayer: rule\nshape: Lines\nurl: https://rules.sudoku-sleuth.com/${kind}.md\n---\n# ${kind}\n\nAn example line.\n`);
+    await buildSite(source,destination);
+    const home=await readFile(join(destination,"index.html"),"utf8");
+    const catalogue=await readFile(join(destination,"rules/index.html"),"utf8");
+    expect(home).toContain(`Browse the library of ${kinds.length} rules.`);
+    for(const html of [home,catalogue]) {
+      expect(html).toContain(`Browse all ${kinds.length} rules`);
+      expect(html).toContain(`Lines<small>${kinds.length}</small>`);
+      expect(html).toContain("Cells<small>0</small>");
+    }
+    expect(catalogue).toContain(`${kinds.length} familiar meanings.`);
+  }
 });

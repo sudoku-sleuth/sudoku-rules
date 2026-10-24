@@ -113,6 +113,12 @@ export function renderMarkdown(body: string, pageNames: Set<string> = new Set())
   renderer.link = function ({ href, title, tokens }) {
     const label = this.parser.parseInline(tokens);
     if (/[\s\u0000-\u001f\u007f]/.test(href) || href.startsWith("//") || (/^[\w+.-]+:/.test(href) && !/^(https?:\/\/|mailto:)/i.test(href))) return label;
+    const guideRoutes: Record<string,string> = {"README.md":"/how-it-works/", "SYNTAX.md":"/write/", "TOOLS.md":"/build/", "DEVELOPMENT.md":"/build/", "RULES.md":"/rule-guide/", "BLOCKS.md":"/blocks/", "PREDICATES.md":"/predicate-guide/", "CONTRIBUTING.md":"/contributing/", "docs/migration.md":"/migration/"};
+    href = href.replace(/^\.\.\//, "");
+    if(href === "LICENSE") href = "https://github.com/sudoku-sleuth/sudoku-rules/blob/main/LICENSE";
+    const [guidePath, fragment] = href.split("#");
+    if (guideRoutes[guidePath]) href = guideRoutes[guidePath] + (fragment ? `#${fragment}` : "");
+    else if (/^(docs|plugins|src|site|scripts|design)\//.test(href)) href = `https://github.com/sudoku-sleuth/sudoku-rules/blob/main/${href}`;
     // Keep raw links in source untouched; HTML readers navigate rendered pages.
     const local = href.replace(`${origin}/`, "").replace(/^\/?rules\//, "").replace(/^\//, "");
     const match = /^([a-z0-9-]+)\.md(#[\w-]+)?$/.exec(local);
