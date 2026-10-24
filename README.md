@@ -55,7 +55,7 @@ bun run build:package
 bun run build
 ```
 
-`bun run lint` checks YAML, formulas, skills, generated declaration contracts and library tables. Regenerate tables with `bun scripts/library-report.ts` after changing public page metadata. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Case parameters are checked against the published signatures, including required inputs, nested types and cell bounds. Board data, givens, embedded custom references and custom formulas are checked, including parameter signatures, names, types, guards and logical class. See [the case-file contract](spec/case-files.md). External URLs without embedded definitions are deferred; fetching and example verdicts remain pending.
+`bun run lint` checks YAML, formulas, skills, generated declaration contracts and library tables. Regenerate tables with `bun scripts/library-report.ts` after changing public page metadata. `lint:yaml` parses front matter, rejects duplicate keys, and checks page slugs, required metadata, and canonical rule URLs; pass a file path to check one file. `lint:spec` now parses rule formulas, resolves declarations and checks types against `rules/predicates.md`. `lint:skill` checks skill metadata/references and runs the lint entry points on its case examples. Case headers and references to known kinds are checked too. Declared pair and Kropki keyword parameters are checked. Case parameters are checked against the published signatures, including required inputs, nested types and cell bounds. Board data, givens, embedded custom references and custom formulas are checked, including parameter signatures, names, types, guards and logical class. See [the case-file contract](spec/case-files.md). External URLs without embedded definitions are deferred.
 
 ## Formula package
 
@@ -69,6 +69,8 @@ bun run openrules lint /path/to/rule.md --prelude rules/predicates.md
 ```
 
 Exit codes: `0` for accepted formula pages, `1` for located diagnostics, `2` for usage or file errors. Diagnostics carry a stable code, a setter-facing message and start/end source positions; technical details are separate. Every parameter needs an explicit front matter `type`, such as `path<cell>`. Expressions use the [grammar](spec/grammar.ebnf), [types](spec/types.md) and [shared declarations](rules/predicates.md). Case headers and known references are checked now; rule parameters, boards and embedded custom definitions are checked using the [case-file contract](spec/case-files.md). Fetching and example verdicts are separate phases.
+
+`compileCase`, `evaluate`, `allowed` and `checkAnswer` compile declarations, evaluate partial assignments, find bounded candidate support and check complete answers. See [the evaluator API](docs/evaluator.md) for answer channels, scopes and finite-domain bounds.
 
 Semantic comparison exports `normalise(file, board)` and `compare(a, b)`. They lower supported declarations to a versioned logical tree with board context, source links and per-declaration coverage. See the [normal-form specification](spec/normal-form.md) for the API, primitive meanings and coverage by kind.
 

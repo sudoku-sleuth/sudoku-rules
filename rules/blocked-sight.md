@@ -110,10 +110,10 @@ status: read
 
 ```rules
 sudoku 9x9
-blocked-sight cell "r1c1" rays [["r1c2","r1c3"]] blockers ["r1c3"] output "count" total 1
+blocked-sight cell "r1c1" rays [["r1c2","r1c3"]] blockers ["r1c3"] output "count"
 ```
 ````
 
-Satisfies the rule: The first ray cell is seen; its next cell blocks sight, giving count 1.
+Satisfies the rule: r1c1=1. The first ray cell is seen; its next cell blocks sight, giving count 1.
 
-Breaks the rule: With includeBlocker true, those two cells give count 2.
+Breaks the rule: r1c1=2. The sight count is 1, which differs from the origin digit 2.
