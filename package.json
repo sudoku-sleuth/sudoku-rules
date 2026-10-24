@@ -39,7 +39,7 @@
     "lint:yaml": "bun scripts/lint-yaml.ts",
     "lint:spec": "bun scripts/lint-spec.ts",
     "lint:skill": "bun scripts/lint-skill.ts",
-    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill && bun run lint:declarations && bun run lint:library",
+    "lint": "bun run lint:yaml && bun run lint:spec && bun run lint:skill && bun run lint:declarations && bun run lint:library && bun scripts/evaluator-library.ts --check",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "build:package": "bun scripts/build-package.ts",

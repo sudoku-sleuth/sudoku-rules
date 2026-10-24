@@ -78,4 +78,4 @@ sum-partition r1c1-r1c2-r1c3 total 5 mode "cover"
 
 Satisfies the rule: Digits 2,3,2: overlapping intervals 2+3 and 3+2 cover the line.
 
-Breaks the rule: The same line cannot partition into disjoint intervals of total 5.
+Breaks the rule: Digits 2,2,2 have no interval totalling 5.

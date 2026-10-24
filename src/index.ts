@@ -21,3 +21,5 @@ export * from "./declarations.js";
 export * from "./migrate.js";
 
 export {libraryLayers,blockHomes} from "./library-layers.js";
+
+export * from "./evaluator/index.js";

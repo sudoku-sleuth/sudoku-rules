@@ -2,6 +2,14 @@
 
 Each release lists what changed. A change that breaks a published export, front-matter key or diagnostic code is marked Breaking.
 
+## 1.1.0
+
+### Added
+
+- Portable case compilation and rule evaluation with source-linked conflicts, three-valued partial assignments, shading conditions, shared answer channels and complete-answer checking.
+- Exact candidate support over bounded rule scopes, with explicit size and formula-resource refusals.
+- Executable public examples, alias examples, candidate properties and per-rule timing reports. Document the API and finite evaluation domains in `docs/evaluator.md`.
+
 ## 1.0.0
 
 ### Added
