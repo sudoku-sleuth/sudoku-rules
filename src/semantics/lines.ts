@@ -8,7 +8,7 @@ export const lineFields: Record<string, string[]> = {
   thermo: [], "slow-thermo": [], whispers: ["gap", "loop"], whisper: ["gap", "loop"],
   "close-whispers": ["gap"], parity: ["loop"], modular: ["modulus", "loop"],
   entropic: ["loop"], palindrome: [], renban: [], bremban: [], nabner: ["distinct"],
-  "region-sum": ["segments", "combine"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
+  "region-sum": ["segments", "combine", "loop"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
 };
 export const valueLines = ["thermo", "whispers", "whisper", "whispers-4", "whispers-5", "palindrome", "renban", "region-sum"];
 const any = (children: Formula[]): Formula => ({ op: "Any", children });
@@ -110,8 +110,18 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
   } else if (kind === "region-sum") {
     const segments = p.segments as Cell[][];
     const runs: Cell[][] = [];
-    for (const c of path) { const last = runs.at(-1); if (last && region(last[0]) === region(c)) last.push(c); else runs.push([c]); }
-    if (key(runs) !== key(segments)) throw Error("segments must match the ordered maximal region runs of the path, retaining every occurrence.");
+    let ordered = path;
+    if (p.loop) {
+      const crossing = path.findIndex((c,i) => region(c) !== region(path[(i+path.length-1)%path.length]));
+      if (crossing > 0) ordered = [...path.slice(crossing), ...path.slice(0,crossing)];
+    }
+    for (const c of ordered) { const last = runs.at(-1); if (last && region(last[0]) === region(c)) last.push(c); else runs.push([c]); }
+    const matches = p.loop
+      ? runs.length === 1
+        ? segments.length === 1 && path.some((_,i) => key([...path.slice(i),...path.slice(0,i)]) === key(segments[0]))
+        : runs.some((_,i) => key([...runs.slice(i),...runs.slice(0,i)]) === key(segments))
+      : key(runs) === key(segments);
+    if (!matches) throw Error("segments must match the ordered maximal region runs of the path, retaining every occurrence.");
     const groups = p.combine ? board.regions.map(r => path.filter(c => r.includes(c))).filter(r => r.length) : segments;
     const sums = [...new Map(groups.map(s => [key([...s].sort()), [...s].sort() as Cell[]])).values()].sort((a,b) => key(a).localeCompare(key(b),"en"));
     for (let i = 1; i < sums.length; i++) nodes.push({ op: "SumEqual", channel: "D", left: sums[0], right: sums[i] });

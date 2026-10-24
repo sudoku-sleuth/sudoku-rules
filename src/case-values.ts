@@ -3,7 +3,7 @@ import type { Type } from "./language/ast.js";
 import { diagnostic, type Diagnostic, type Span } from "./language/diagnostics.js";
 
 export const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === "object" && !Array.isArray(v);
-export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean }
+export interface CaseBoard { rows?: number; cols?: number; symbols?: number[]; standard: boolean; activeCells?: string[] }
 export interface SharedParameter { role: "construct" | "read" | "conjoin"; type: "route" | "network" | "partition" | "selection" | "choice" | "assignment" | "value" | "symbol" }
 export interface CaseParameters { parameters: Record<string, { type?: Type; required: boolean; default?: unknown; emptyWhen?: string; allowEmpty?: boolean; shared?: SharedParameter }>; types: Record<string, Type>; explicit?: string[]; positional?: DeclarationGrammar["positional"] }
 export const explicitBoardParameters: Record<string, string[]> = {
@@ -18,7 +18,7 @@ const cellPattern = /^r([1-9]\d*)c([1-9]\d*)$/;
 export function cellValid(value: unknown, board: CaseBoard): boolean {
   if (typeof value !== "string") return false;
   const m = cellPattern.exec(value);
-  return !!m && (board.rows === undefined || Number(m[1]) <= board.rows) && (board.cols === undefined || Number(m[2]) <= board.cols);
+  return !!m && (!board.activeCells || board.activeCells.includes(value)) && (board.rows === undefined || Number(m[1]) <= board.rows) && (board.cols === undefined || Number(m[2]) <= board.cols);
 }
 
 /** Decode case JSON against the same signatures used by the formula compiler. */
@@ -68,7 +68,7 @@ export function checkBoard(metadata: Record<string, unknown>, standardCount: num
   if (raw !== undefined) {
     if (!object(raw)) add("board", "Write board as rows, cols, symbols, givens and regions.");
     else {
-      for (const key of Object.keys(raw)) if (!["rows", "cols", "symbols", "givens", "regions"].includes(key)) add("board", `Unknown board field ${key}.`);
+      for (const key of Object.keys(raw)) if (!["rows", "cols", "symbols", "givens", "regions", "activeCells", "houses"].includes(key)) add("board", `Unknown board field ${key}.`);
       for (const key of ["rows", "cols"] as const) {
         if (!Number.isSafeInteger(raw[key]) || Number(raw[key]) < 1) add("board", `board.${key} must be a positive whole number.`);
         else board[key] = Number(raw[key]);
@@ -81,6 +81,13 @@ export function checkBoard(metadata: Record<string, unknown>, standardCount: num
   if (!standard && raw === undefined) add("board", "Declare a board or sudoku 9x9.");
   board.standard = board.rows === 9 && board.cols === 9 && board.symbols?.join(",") === "1,2,3,4,5,6,7,8,9";
   const explicit = object(raw) ? raw : {};
+  if (explicit.activeCells !== undefined) {
+    const active = explicit.activeCells;
+    if (!Array.isArray(active) || !active.length || active.length > 1024 || new Set(active).size !== active.length || active.some(c => !cellValid(c, board))) add("board", "board.activeCells must contain 1–1024 distinct in-canvas cells.");
+    else board.activeCells = active as string[];
+    if (standard && (!Array.isArray(active) || active.length !== 81)) add("board", "sudoku 9x9 requires every cell to be active.");
+  }
+  board.standard &&= !board.activeCells || board.activeCells.length === 81;
   if (metadata.givens !== undefined && explicit.givens !== undefined) add("givens", "Declare givens once, in the header or in board.givens.");
   for (const [name, givens] of [["givens", metadata.givens], ["board", explicit.givens]] as const) {
     if (givens === undefined) continue;
@@ -103,7 +110,12 @@ export function checkBoard(metadata: Record<string, unknown>, standardCount: num
   }
   if (!standard && metadata.regions !== undefined) add("regions", "Use board.regions when sudoku 9x9 is absent.");
   if (standard && Array.isArray(explicit.regions) && explicit.regions.length) add("board", "sudoku 9x9 supplies boxes; list extra regions at the top level.");
-  for (const [name, regions] of [["regions", metadata.regions], ["board", explicit.regions]] as const) if (regions !== undefined && (!Array.isArray(regions) || regions.some(r => !Array.isArray(r) || r.some(c => !cellValid(c, board))))) add(name, "Regions must be lists of in-board cells.");
+  for (const [name, regions] of [["regions", metadata.regions], ["board", explicit.regions], ["board", explicit.houses]] as const) if (regions !== undefined && (!Array.isArray(regions) || regions.some(r => !Array.isArray(r) || r.some(c => !cellValid(c, board))))) add(name, "Regions must be lists of in-board cells.");
+  if (!standard && Array.isArray(explicit.regions) && explicit.regions.every(r => Array.isArray(r) && r.every(c => cellValid(c, board)))) {
+    const regions = explicit.regions as string[][], cells = regions.flat();
+    if (regions.some(r => !r.length) || new Set(cells).size !== cells.length || (regions.length && cells.length !== (board.activeCells?.length ?? board.rows! * board.cols!))) add("board", "Primary regions must partition the active cells exactly once.");
+  }
+  if (Array.isArray(explicit.houses) && explicit.houses.some(h => Array.isArray(h) && (!h.length || new Set(h).size !== h.length))) add("board", "Each board house must be a nonempty set of distinct active cells.");
   return { board, diagnostics };
 }
 
@@ -113,6 +125,11 @@ export function parameterGrammar(contract?: CaseParameters): DeclarationGrammar 
 }
 export function checkParameterAST(ast: DeclarationTail, span: Span, contract: CaseParameters, board: CaseBoard): Diagnostic[] {
   const bad = (message: string, at = span) => [diagnostic("E_CASE_PARAMETERS", at, message)];
+  if (ast.meta) {
+    const type: Type = {name:"record", fields:{stated:{name:"optional",args:[{name:"boolean"}]}, name:{name:"optional",args:[{name:"string"}]}, strips:{name:"optional",args:[{name:"list",args:[{name:"list",args:[{name:"cell"}]}]}]}}};
+    const problem = valueProblem(ast.meta.value, type, {}, board);
+    if (problem) return bad(`meta ${problem}.`, problemSpan(ast.meta, ast.meta.value, type, {}, board));
+  }
   const parameters = contract.parameters, primary = parameterGrammar(contract).primary;
   if(ast.cells && !primary) return bad("This rule has no primary cell list; name each parameter.", ast.cells.span);
   const data = declarationParameters(ast, primary);

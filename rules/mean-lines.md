@@ -9,6 +9,7 @@ parameters:
     type: list<list<cell>>
 alias_of: aggregate-groups
 alias_bind:
+  loop: "false"
   groups: lines
   operation: '"mean"'
   channel: '"D"'
@@ -31,7 +32,7 @@ Every listed line has the same average digit.
 
 ## Definition
 
-Block: [aggregate-groups](aggregate-groups.md) — `groups=lines; operation="mean"; channel="D"; repeats=true; line=absent(orderedCells(C)); combine=false`.
+Block: [aggregate-groups](aggregate-groups.md) — `groups=lines; operation="mean"; channel="D"; repeats=true; line=absent(orderedCells(C)); loop=false; combine=false`.
 
 
 

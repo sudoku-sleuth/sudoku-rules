@@ -28,6 +28,7 @@ export interface Assignment {
 }
 interface Definition {page:CompiledPage; contract:CaseParameters; name:string}
 export interface CompiledRule {
+ meta?: {stated?:boolean; name?:string; strips?:Cell[][]};
  id?: string; label?: string; name: string; span: Span; scope: Cell[];
  /** Checked formula and resolved inputs. Treat compiled data as immutable. */
  page: CompiledPage; parameters: Record<string,unknown>; board: CanonicalBoard;
@@ -81,20 +82,21 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
  const header=readHeader(file);if(!header.value)return {diagnostics:header.diagnostics};
  const checked=checkCaseReferences(file,declarationLibrary);
  const errors=checked.diagnostics.filter(d=>!d.code.startsWith('W_'));
- if(!checked.value||errors.length)return {diagnostics:errors};
+ if(!checked.value||errors.length)return {diagnostics:checked.diagnostics};
+ const warnings=checked.diagnostics.filter(d=>d.code.startsWith('W_'));
  const metadata=header.value.metadata;
- if(metadata.negate!==undefined&&metadata.negate!=='all')return {diagnostics:[diagnostic('E_HEADER_TYPE',header.value.field('negate'),'negate must be all when supplied.')]};
+ if(metadata.negate!==undefined&&metadata.negate!=='all')return {diagnostics:[diagnostic('E_HEADER_TYPE',header.value.field('negate'),'negate must be all when supplied.'),...warnings]};
  const standard=checked.value.references.some(r=>declarationLibrary.kindByUrl?.get(r.url)==='sudoku');
  const dimensions=checkBoard(metadata,standard?1:0,header.value.field);
- if(dimensions.diagnostics.length)return {diagnostics:dimensions.diagnostics};
+ if(dimensions.diagnostics.length)return {diagnostics:[...dimensions.diagnostics,...warnings]};
  const b=dimensions.board;
  const raw=(metadata.board??{}) as Record<string,unknown>;
  const regions=(standard?standardHouses().slice(18):raw.regions??[]) as Cell[][];
  let board:CanonicalBoard;
- try {board=canonicalBoard({rows:b.rows!,cols:b.cols!,alphabet:b.symbols!,activeCells:Array.from({length:b.rows!*b.cols!},(_,i)=>`r${Math.floor(i/b.cols!)+1}c${i%b.cols!+1}` as Cell),regions});}catch(error){return {diagnostics:[diagnostic('E_CASE_BOARD',header.value.field('board'),(error as Error).message)]};}
+ try {board=canonicalBoard({rows:b.rows!,cols:b.cols!,alphabet:b.symbols!,houses:(raw.houses as Cell[][]|undefined)?.map(cells=>({cells})),activeCells:(b.activeCells as Cell[]|undefined)??Array.from({length:b.rows!*b.cols!},(_,i)=>`r${Math.floor(i/b.cols!)+1}c${i%b.cols!+1}` as Cell),regions});}catch(error){return {diagnostics:[diagnostic('E_CASE_BOARD',header.value.field('board'),(error as Error).message),...warnings]};}
  board.activeCells.sort((a,b)=>{const [r,k]=a.slice(1).split('c').map(Number),[s,l]=b.slice(1).split('c').map(Number);return r-s||k-l;});
  const given=metadata.givens??raw.givens;
- if(typeof given==='string')board.givens=given.includes('=')?given.trim().split(/\s+/).map(p=>{const [cell,digit]=p.split('=');return {cell:cell as Cell,digit:Number(digit)};}):[...given].flatMap((d,i)=>d==='.'?[]:[{cell:board.activeCells[i],digit:Number(d)}]);
+ if(typeof given==='string')board.givens=given.includes('=')?given.trim().split(/\s+/).map(p=>{const [cell,digit]=p.split('=');return {cell:cell as Cell,digit:Number(digit)};}):[...given].flatMap((d,i)=>d==='.'?[]:[{cell:`r${Math.floor(i/b.cols!)+1}c${i%b.cols!+1}` as Cell,digit:Number(d)}]);
  else if(Array.isArray(given))board.givens=given as CanonicalBoard['givens'];
  const custom=readCustomDefinitions(file,caseBlocks(file),declarationLibrary.kinds,defaultCasePrelude(),declarationLibrary.urls);
  const rules:CompiledRule[]=[];
@@ -130,12 +132,13 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
   if(!ref.custom&&definition.name==='regions')finite={op:'Distinct',channel:'D',collection:'set',cells:parameters.cells as Cell[]};
   const scope=finite?supports(finite):!ref.custom&&localAggregates.has(kind)?inputCells(parameters.cells):referencesBoard(page)?board.activeCells:[...new Set(inputCells(parameters))];
   const condition=ast.condition?{unless:ast.condition.unless,predicate:ast.condition.predicate.value,cells:(ast.cells?.value??parameters.line??parameters.cells??[]) as Cell[]}:undefined;
-  rules.push({id:ast.instance?.value,label:ast.instance?.value,name:kind,span:ast.span,scope:[...new Set([...scope,...condition?.cells??[]])],page,parameters,board,negated:kind==='decoration'?false:(metadata.negate==='all')!==(ast.negations.length%2===1),condition,finite,valueBindings,libraryKind:ref.custom?undefined:kind,definitions,caseRules:rules});
+  rules.push({meta:ast.meta?.value as CompiledRule["meta"],id:ast.instance?.value,label:ast.instance?.value,name:kind,span:ast.span,scope:[...new Set([...scope,...condition?.cells??[]])],page,parameters,board,negated:kind==='decoration'?false:(metadata.negate==='all')!==(ast.negations.length%2===1),condition,finite,valueBindings,libraryKind:ref.custom?undefined:kind,definitions,caseRules:rules});
  }
  const headerRule=(name:string,finite:Formula,span:Span):void=>{rules.push({name,span,scope:supports(finite),page:{file:file.file,parameters:[],formulas:[]},parameters:{},board,finite,negated:false,valueBindings:false,definitions,caseRules:rules});};
+ if(board.houses.length)headerRule('houses',{op:'All',children:board.houses.map(cells=>({op:'Distinct',channel:'D',collection:'set',cells}))},header.value.field('board'));
  if(board.givens.length)headerRule('givens',{op:'All',children:board.givens.map(g=>({op:'Allowed',channel:'D',cell:g.cell,values:[g.digit]}))},header.value.field(metadata.givens!==undefined?'givens':'board'));
  if(Array.isArray(metadata.regions))headerRule('regions',{op:'All',children:(metadata.regions as Cell[][]).map(cells=>({op:'Distinct',channel:'D',collection:'set',cells}))},header.value.field('regions'));
- return errors.length?{diagnostics:errors}:{value:{rules,board},diagnostics:[]};
+ return errors.length?{diagnostics:[...errors,...warnings]}:{value:{rules,board},diagnostics:warnings};
 }
 const localAggregates=new Set(['cage','killer','little-killer','diagonal-sum']);
 function applyBoardDefaults(parameters:Record<string,unknown>,kind:string,board:CanonicalBoard):void{

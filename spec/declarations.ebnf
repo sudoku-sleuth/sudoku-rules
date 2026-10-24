@@ -1,7 +1,8 @@
 (* One physical line in a rules fence. Space is horizontal whitespace.
    JSON follows RFC 8259. Markers and comments apply only outside JSON. *)
 declaration = [ instance-id, ":", space ], { "not", space }, reference,
-              [ space, arguments ], [ space, condition ], [ space, comment ];
+              [ space, arguments ], [ space, metadata ], [ space, condition ], [ space, comment ];
+metadata = "meta", space, json-object; (* stated?, name?, strips?; see case-files.md *)
 instance-id = bare-instance-id | json-string;
 bare-instance-id = (letter | digit), { letter | mark | digit | "_" | "-" | "." };
 mark = ? Unicode category M ? ;
