@@ -101,9 +101,9 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
     }
     try {
       let formula = lower(instance.ast, board);
-      const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : ([...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki"].includes(kind)) && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
+      const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : ([...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind)) && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
       if (reason) { cover("unsupported", reason); continue; }
-      if (([...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki"].includes(kind))) {
+      if (([...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind))) {
         const before = key(formula);
         const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? { ...f, child: convert(f.child) } : f;
         formula = convert(formula);

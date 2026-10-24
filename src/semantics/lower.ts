@@ -14,7 +14,8 @@ function digitList(raw: unknown, board: CanonicalBoard): number[] {
 }
 const fields: Record<string, string[]> = {
   ...lineFields,
-  pair: ["relation"], kropki: ["colour"], quadruple: ["digits"], outside: ["digits"],
+  pair: ["relation"], kropki: ["colour", "white", "black", "allGiven"],
+  xv: ["mark", "x", "v", "allGiven"], "marked-pairs": ["x", "v", "white", "black", "allGiven"], quadruple: ["digits"], outside: ["digits"],
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
@@ -48,9 +49,9 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     throw Error(`${kind} has no parameter ${name}.`);
   }
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "kropki", "quadruple", "outside"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length) throw Error(`${kind} needs a nonempty cell list.`);
-  if (!needsCells && instance.cells) throw Error(`${kind} does not take a cell list.`);
+  if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${kind} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
@@ -58,10 +59,10 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   };
   if (instance.condition && !cells.length) throw Error("A condition needs a nonempty primary cell list.");
   switch (kind) {
-    case "pair": case "kropki": {
+    case "xv": case "kropki": case "marked-pairs": return lowerMarks(kind, p, instance.cells, board);
+    case "pair": {
       if (instance.cells!.length !== 2) throw Error(`${kind} requires exactly two cell positions.`);
-      if (kind === "kropki" && (typeof p.colour !== "string" || !["white", "black"].includes(p.colour))) throw Error("Choose white or black.");
-      const r = relation(kind === "pair" ? p.relation : { op: p.colour === "white" ? "difference" : "ratio", value: p.colour === "white" ? 1 : 2 });
+      const r = relation(p.relation);
       return { ...pair(board, instance.cells![0], instance.cells![1], (a,b) => holds(r,a,b)), channel: "V" } as Formula;
     }
     case "quadruple": case "outside": {
@@ -69,29 +70,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
       const positions = kind === "quadruple" ? cells : [...instance.cells!].sort();
       return all([...new Set(digits)].map(digit => ({ op: "CountAtLeast", channel: "D", cells: positions, digit, count: digits.filter(d => d === digit).length })));
     }
-    case "negative": {
-      if (!Array.isArray(p.relations)) throw Error("Supply a list of relations.");
-      const relations = [...new Map(p.relations.map(raw => { const r = relation(raw); return [key([r.op, r.value]), r]; })).values()];
-      const cellGroups = (raw: unknown): Cell[][] => {
-        if (!Array.isArray(raw) || raw.some(g => !Array.isArray(g) || g.some(c => !board.activeCells.includes(c)))) throw Error("Supply lists of active board cells.");
-        return raw;
-      };
-      const except = cellGroups(p.except);
-      if (except.some(g => g.length !== 2)) throw Error("Every exception needs exactly two cells.");
-      const within = p.within === undefined ? undefined : cellGroups(p.within);
-      if (p.direction !== undefined && (typeof p.direction !== "string" || !["horizontal", "vertical"].includes(p.direction))) throw Error("Choose horizontal or vertical.");
-      const nodes: Formula[] = [];
-      const ordered = [...board.activeCells].sort((a,b) => { const [ar,ac] = coordinates(a), [br,bc] = coordinates(b); return ar-br || ac-bc; });
-      ordered.forEach((a,i) => ordered.slice(i+1).forEach(b => {
-        const [ar,ac] = coordinates(a), [br,bc] = coordinates(b);
-        if (Math.abs(ar-br)+Math.abs(ac-bc) !== 1 || p.direction === "horizontal" && ar !== br || p.direction === "vertical" && ac !== bc || within && !within.some(g => g.includes(a) && g.includes(b)) || except.some(g => g.includes(a) && g.includes(b))) return;
-        for (const r of relations) {
-          if ((nodes.length+1)*board.alphabet.length**2 > 1_000_000) throw new UnsupportedSemantics("Finite negative expansion exceeds 1,000,000 value combinations.");
-          nodes.push(pair(board,a,b,(x,y) => !holds(r,x,y)));
-        }
-      }));
-      return all(nodes);
-    }
+    case "negative": return lowerNegative(p, board);
     case "sudoku": {
       if (p.size !== "9x9") throw Error("The sudoku definition requires 9x9; supply nonstandard board houses through BoardContext and unique declarations.");
       if (board.rows !== 9 || board.cols !== 9 || board.activeCells.length !== 81 || board.alphabet.join() !== "1,2,3,4,5,6,7,8,9") throw Error("sudoku 9x9 requires a complete 9x9 board with ordered alphabet 1–9.");
@@ -140,6 +119,68 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     }
   }
 }
+/** Negative scope is shared by explicit negatives and each all-given mark kind. */
+function lowerNegative(p: Record<string, unknown>, board: CanonicalBoard): Formula {
+  if (!Array.isArray(p.relations)) throw Error("Supply a list of relations.");
+  const relations = [...new Map(p.relations.map(raw => { const r = relation(raw); return [key([r.op, r.value]), r]; })).values()];
+  const cellGroups = (raw: unknown): Cell[][] => {
+    if (!Array.isArray(raw) || raw.some(g => !Array.isArray(g) || g.some(c => !board.activeCells.includes(c)))) throw Error("Supply lists of active board cells.");
+    return raw;
+  };
+  const except = cellGroups(p.except);
+  if (except.some(g => g.length !== 2)) throw Error("Every exception needs exactly two cells.");
+  const within = p.within === undefined ? undefined : cellGroups(p.within);
+  if (p.direction !== undefined && (typeof p.direction !== "string" || !["horizontal", "vertical"].includes(p.direction))) throw Error("Choose horizontal or vertical.");
+  const nodes: Formula[] = [];
+  const ordered = [...board.activeCells].sort((a,b) => { const [ar,ac] = coordinates(a), [br,bc] = coordinates(b); return ar-br || ac-bc; });
+  ordered.forEach((a,i) => ordered.slice(i+1).forEach(b => {
+    const [ar,ac] = coordinates(a), [br,bc] = coordinates(b);
+    if (Math.abs(ar-br)+Math.abs(ac-bc) !== 1 || p.direction === "horizontal" && ar !== br || p.direction === "vertical" && ac !== bc || within && !within.some(g => g.includes(a) && g.includes(b)) || except.some(g => g.includes(a) && g.includes(b))) return;
+    for (const r of relations) {
+      if ((nodes.length+1)*board.alphabet.length**2 > 1_000_000) throw new UnsupportedSemantics("Finite negative expansion exceeds 1,000,000 value combinations.");
+      nodes.push(pair(board,a,b,(x,y) => !holds(r,x,y)));
+    }
+  }));
+  return all(nodes);
+}
+
+function lowerMarks(kind: string, p: Record<string, unknown>, cells: Cell[] | undefined, board: CanonicalBoard): Formula {
+  const names = kind === "xv" ? ["x", "v"] : kind === "kropki" ? ["white", "black"] : ["x", "v", "white", "black"];
+  const specs = {x: {op: "sum", value: 10}, v: {op: "sum", value: 5}, white: {op: "difference", value: 1}, black: {op: "ratio", value: 2}} as const;
+  const marks = new Map<string, Cell[][]>();
+  for (const name of names) {
+    const raw = p[name] ?? [];
+    if (!Array.isArray(raw) || raw.some(g => !Array.isArray(g) || g.length !== 2 || g.some(c => !board.activeCells.includes(c)))) throw Error("Every mark needs exactly two active board cells.");
+    marks.set(name, [...raw]);
+  }
+  if (cells?.length) {
+    if (cells.length !== 2) throw Error(`${kind} requires exactly two cell positions.`);
+    const name = kind === "xv" ? p.mark ?? "x" : p.colour ?? "white";
+    if (typeof name !== "string" || !names.includes(name)) throw Error("Choose a mark kind from this family.");
+    marks.get(name)!.push(cells);
+  }
+  const selected = p.allGiven ?? [];
+  if (!Array.isArray(selected) || selected.some(name => !names.includes(name))) throw Error("Choose allGiven kinds from this family.");
+  const nodes: Formula[] = [];
+  let expansion = 0;
+  for (const [name, pairs] of marks) {
+    const r = relation(specs[name as keyof typeof specs]);
+    for (const [a,b] of new Map(pairs.map(g => [key([...g].sort()), g])).values()) {
+      expansion += board.alphabet.length ** 2;
+      if (expansion > 1_000_000) throw new UnsupportedSemantics("Finite marked-pair expansion exceeds 1,000,000 value combinations.");
+      nodes.push({...pair(board, a, b, (x,y) => holds(r,x,y)), channel: "V"} as Formula);
+    }
+    if (selected.includes(name)) {
+      const negative = lowerNegative({relations: [specs[name as keyof typeof specs]], except: pairs}, board);
+      // Negative emits one full alphabet table for each covered orthogonal edge.
+      expansion += (negative.op === "All" ? negative.children.length : 0) * board.alphabet.length ** 2;
+      if (expansion > 1_000_000) throw new UnsupportedSemantics("Finite marked-pair expansion exceeds 1,000,000 value combinations.");
+      nodes.push(negative);
+    }
+  }
+  return all(nodes);
+}
+
 export function condition(ast: DeclarationAST, base: Formula, board: CanonicalBoard, negated = ast.negations.length % 2 === 1): Formula {
   const instance={...semanticDeclaration(ast),negated};
   if (instance.negated) base = { op: "Not", child: base };

@@ -25,6 +25,11 @@ or `2e3`. Other characters, a leading underscore, hyphen or dot, and whitespace
 also require JSON quotes. Rule kinds such as `thermo` remain valid IDs; parameter
 and reference syntax are independent. ID values are case-sensitive and retain
 their exact Unicode spelling without normalization.
+Instance IDs are optional even when several declarations use the same kind.
+Unlabelled declarations use their document declaration position as semantic
+provenance; the printer preserves omitted labels. Explicit IDs reused for
+different declarations are rejected by the semantic reader.
+
 Whitespace separates declaration tokens, including a quoted value and its condition. Strings and JSON containers may contain `#`,
 `not`, `if` and `unless` as values.
 
