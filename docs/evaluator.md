@@ -31,37 +31,37 @@ Without a value-binding declaration, effective values default to face digits. A 
 
 ## Compilation
 
-`compileCase(file): Result<CompiledCase>` returns diagnostics or `{rules, board}`. Each compiled rule contains `id` and `label` when declared, `name`, `span`, and `scope`. Header givens and extra houses have their own source-linked rules. Primary regions describe geometry; extra header regions assert distinctness. Decoration has the constant meaning true.
+`compileCase(file): Result<CompiledCase>` returns diagnostics or `{rules, board}`. Each compiled rule contains `id` and `label` when declared, `name`, `span`, and `scope`. Header givens and extra houses have their own source-linked rules. An unresolved declaration or a missing executable meaning produces a diagnostic. Unsupported finite lowering retains the checked general formula; it does not discard the declaration. Primary regions describe geometry; extra header regions assert distinctness. Decoration has the constant meaning true.
 
-Scope is a safe set of cells a rule can read. Finite lowering supplies local supports for supported houses, pair relations and lines. General formulas that use board collections, computed coordinates or shared answers retain a conservative board-wide scope. Treat compiled objects as immutable and compile again after changing declarations.
+Scope is a safe set of cells a rule can read. Finite lowering supplies local supports for supported houses, pair relations and lines. Cage, Killer and Diagonal Sum (Little Killer) use their declared cell collections; their constant totals do not add board cells. General formulas that use board collections, computed coordinates or shared answers retain a conservative board-wide scope. Treat compiled objects as immutable and compile again after changing declarations.
 
 `not` negates the complete declaration. A condition wraps that result as an implication: `if uniform` activates it when the primary cells have one shading colour; `unless uniform` activates it when they do not. `distinct` reads face digits and `connected` reads orthogonal geometry. An inactive condition holds without evaluating its consequent.
 
 ## Verdicts
 
-`evaluate(rule, assignment)` returns `{status: 'holds' | 'broken' | 'undecided', cells?: Cell[]}`. Boolean connectives and quantifiers propagate missing information. Small unknown digit scopes are also refined by exhaustive completion when scope size times alphabet combinations is at most 10,000. Larger scopes use three-valued formula evaluation, so undecided also covers facts requiring further search. Missing auxiliary answers remain undecided.
+`evaluate(rule, assignment)` returns `{status: 'holds' | 'broken' | 'undecided', cells?: Cell[]}`. Boolean connectives and quantifiers propagate missing information. Small unknown digit and shading scopes are refined by exhaustive completion when scope size times digit combinations times shading combinations is at most 10,000. Each unknown shade contributes two combinations. A local membership read of `H` needs only that cell’s shade; reading the whole set needs complete shading. Larger scopes use three-valued formula evaluation, so undecided also covers facts requiring further search. Missing auxiliary answers remain undecided.
 
-A broken verdict identifies the cells read by its failing formula. Distinctness reports a repeated pair; conjunctions and universal quantifiers retain a failing clause or occurrence. Disjunctions and negated whole formulas can require a larger witness. A witness need not be a globally minimum conflict set.
+A broken verdict returns a fresh `cells` array containing assigned digits or shades that witness the conflict. Empty cells are omitted. Distinctness, conjunctions and universal quantifiers collect their failing children or occurrences. Refinement reports the original assigned cells that jointly rule out every completion. Negation uses the cells supporting the positive formula’s truth. A witness need not be a minimum conflict set; a contradiction independent of assignments can have an empty witness.
 
 Sudoku houses, anti-move constraints and supported global relations use decomposed house or pair checks. Evaluation does not solve the whole grid.
 
-`checkAnswer(compiled, answer)` requires every board digit and all auxiliary answers used by the formulas. It returns `{holds, broken: [{rule, cells}]}`. Missing answers throw `MissingValue` or `RangeError`; a computational refusal throws `EvaluationLimit`. These are exported error classes. An incomplete computation never returns a solved answer.
+`checkAnswer(compiled, answer)` requires every board digit and all auxiliary answers used by the formulas. It returns `{holds, broken: [{rule, cells}]}`. Incomplete digits, out-of-alphabet digits, missing auxiliary answers and computational refusals return `holds: false`. Rules proved broken appear in `broken`; undecided rules prevent a solved answer without being listed as broken. Out-of-alphabet digits produce a broken evaluation with the affected cells.
 
 ## Candidate support and bounds
 
-`allowed(rule, assignment, candidates)` returns `Map<Cell, Set<Digit>>` for empty scope cells. Each retained digit participates in at least one satisfying completion of that rule's entire scope, using the supplied auxiliary answers. It ignores other declarations. Missing candidate sets use the board alphabet; an explicitly empty set supplies no candidates.
+`allowed(rule, assignment, candidates)` returns `Map<Cell, Set<Digit>>` for empty scope cells. Each digit with a satisfying completion of the rule’s scope is retained. When every completion can be decided, the result is exact. An undecided completion also supports its digits, so missing auxiliary answers cannot cause pruning. It ignores other declarations. Missing candidate sets use the board alphabet; an explicitly empty set supplies no candidates.
 
-The work bound is:
+The Cartesian preflight bound is:
 
 ```text
 max(1, scope.length) × product(candidate count for each empty scope cell) ≤ 100,000
 ```
 
-Above it, `allowed` returns the string `'too-large'` before searching. It enumerates only scope cells, never cells outside scope. Missing auxiliary information throws `MissingValue`. Formula resource refusals return `'too-large'` rather than partial candidate sets.
+Above it, `allowed` returns the string `'too-large'` before searching. It enumerates only scope cells, never cells outside scope. Missing auxiliary information retains candidate support. Resource refusals return `'too-large'` and discard partial candidate sets.
 
-The interpreter bounds each formula to 2,000,000 expression steps. Intervals and cell-list expansions have at most 100,000 members. Finite set domains have at most 16 eligible members; finite record and bounded-list domains have at most 100,000 entries; partitions have at most 8 cells. Hidden cages prune by their required members and use the same step budget. Arrow remainders use positive integer alphabets and totals at most 100,000. Owned-clue and valued-rule calls nest at most 32 times. Boards follow the normal-form board contract: at most 1,024 cells and an alphabet of at most 64 distinct safe integers.
+Each `evaluate` or `allowed` call has one shared budget of 100,000 steps (`ALLOWED_WORK_LIMIT`). Interpreter expressions, finite checks, completion visits, and nested owned-clue or valued-rule calls spend from that budget. Refinement and successive candidate completions do not reset it. Exhaustion returns `undecided` from `evaluate` and `too-large` from `allowed`. These are step bounds, not elapsed-time guarantees. Intervals and cell-list expansions have at most 100,000 members. Finite set domains have at most 16 eligible members; finite record and bounded-list domains have at most 100,000 entries; partitions have at most 8 cells. Hidden cages prune by their required members and use the same step budget. Arrow remainders use positive integer alphabets and totals at most 100,000. Owned-clue and valued-rule calls nest at most 32 times. Boards follow the normal-form board contract: at most 1,024 cells and an alphabet of at most 64 distinct safe integers.
 
-General integer domains, unrestricted list witnesses and arbitrary integer expression equations have no complete finite enumeration. `evaluate` throws `EvaluationLimit` for those domains. Specific exact implementations handle divisibility, primality, integer powers, sum partitions and direct letter-equality cage expressions. Compilation retains checked unrestricted formulas; callers handle explicit evaluation refusals. No bounded sample stands in for an unbounded domain.
+General integer domains, unrestricted list witnesses and arbitrary integer expression equations have no complete finite enumeration. `evaluate` returns `undecided` for those domains; `allowed` returns `too-large`. Specific exact implementations handle divisibility, primality, integer powers, sum partitions and direct letter-equality cage expressions. Compilation retains checked unrestricted formulas; the public APIs return the safe refusal verdicts above. No bounded sample stands in for an unbounded domain.
 
 ## Maintain definitions
 

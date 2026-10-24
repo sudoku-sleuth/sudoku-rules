@@ -1,7 +1,7 @@
 import {expect,test} from 'bun:test';
 import {publicPages} from '../helpers/library';
 import {caseExamples} from '../../scripts/lint-skill';
-import {compileCase,evaluate,EvaluationLimit,readHeader,type Assignment} from '../../src';
+import {compileCase,evaluate,readHeader,type Assignment} from '../../src';
 import {stringify} from 'yaml';
 
 test('report evaluate cost per public rule on a 9x9 board',()=>{
@@ -21,8 +21,7 @@ test('report evaluate cost per public rule on a 9x9 board',()=>{
   const assignment:Assignment={digits};
   let result='';const start=performance.now();
   for(let i=0;i<5;i++){
-   try{result=evaluate(rule,assignment).status;}
-   catch(error){if(!(error instanceof EvaluationLimit))throw error;result='refused';}
+   result=evaluate(rule,assignment).status;
   }
   rows.push({rule:kind,milliseconds:(performance.now()-start)/5,result});
  }

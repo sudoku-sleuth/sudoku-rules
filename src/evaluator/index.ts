@@ -6,14 +6,14 @@ import { declarationParameters, type DeclarationAST, type DeclarationValue } fro
 import { checkBoard, declaredDefault, parameterGrammar, type CaseParameters } from '../case-values.js';
 import { pageEnvironment, type CompiledPage, type PageSource } from '../library.js';
 import { stringify } from 'yaml';
-import {compare as compareExact} from '../language/exact.js';
+import {arithmetic,exact,compare as compareExact} from '../language/exact.js';
 import { checkFormula } from '../language/checker.js';
 import { parseFormula } from '../language/parser.js';
 import { diagnostic, LanguageError, type Result, type Span } from '../language/diagnostics.js';
 import type { Cell, Formula, CanonicalBoard } from '../semantics/types.js';
 import { canonicalBoard, standardHouses } from '../semantics/board.js';
 import { lower } from '../semantics/lower.js';
-import { formulaVerdict, MissingValue, EvaluationLimit, numericInput, type Fragment } from './interpreter.js';
+import { formulaVerdict, MissingValue, EvaluationLimit, numericInput, type Fragment, type StepBudget } from './interpreter.js';
 export { EvaluationLimit, MissingValue, type NumericInput } from './interpreter.js';
 export type Digit = number;
 /** Auxiliary maps are shared answer witnesses, keyed by their declared names. */
@@ -108,12 +108,14 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
   if(formula?.value&&env.value){
    const contract=customParameterContract(local);
    for(const p of env.value.parameters){const raw=local.parameters[p.name];if(raw&&typeof raw==='object'&&'default' in raw)Object.assign(contract.parameters[p.name],declaredDefault(raw.default,p.type,contract.types));}
-   const definition={name:local.id??local.url,page:{file:file.file,parameters:env.value.parameters,formulas:[formula.value]},contract};definitions.set(local.url,definition);if(typeof local.metadata.url==='string')definitions.set(local.metadata.url,definition);}
+   const definition={name:local.id??local.url,page:{file:file.file,parameters:env.value.parameters,formulas:[formula.value]},contract};definitions.set(local.url,definition);if(typeof local.metadata.url==='string')definitions.set(local.metadata.url,definition);
+  }else errors.push(...env.diagnostics,...parsed.diagnostics,...formula?.diagnostics??[]);
  }
+ errors.push(...custom.diagnostics);
  const valueBindings=checked.value.references.some(r=>['value-modifier','mapped-values','liar-cells'].includes(r.kind));
  for(const ast of checked.value.declarations){
   const ref=checked.value.references.find(r=>r.span.start.offset===ast.kind.span.start.offset);
-  if(!ref)continue;
+  if(!ref){errors.push(diagnostic('E_CUSTOM_DEFINITION',ast.span,'No resolved reference for this declaration.'));continue;}
   const kind=declarationLibrary.kindByUrl?.get(ref.url)??ref.kind;
   const definition=definitions.get(ref.url);
   if(!definition){errors.push(diagnostic('E_CUSTOM_DEFINITION',ast.span,`Supply the definition for ${ref.url}; compilation performs no URL loading.`));continue;}
@@ -122,9 +124,11 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
   applyBoardDefaults(parameters,kind,board);
   let finite:Formula|undefined;
   // Lowering explicitly refuses settings outside its supported fragment.
-  try {finite=lower(ast,board);}catch{ /* The checked AST is the general path. */ }
+  try {finite=lower(ast,board);}catch(error){
+   if(!page.formulas.length){errors.push(diagnostic('E_CUSTOM_DEFINITION',ast.span,`No executable meaning: ${(error as Error).message}`));continue;}
+  }
   if(!ref.custom&&definition.name==='regions')finite={op:'Distinct',channel:'D',collection:'set',cells:parameters.cells as Cell[]};
-  const scope=finite?supports(finite):referencesBoard(page)?board.activeCells:[...new Set(inputCells(parameters))];
+  const scope=finite?supports(finite):!ref.custom&&localAggregates.has(kind)?inputCells(parameters.cells):referencesBoard(page)?board.activeCells:[...new Set(inputCells(parameters))];
   const condition=ast.condition?{unless:ast.condition.unless,predicate:ast.condition.predicate.value,cells:(ast.cells?.value??parameters.line??parameters.cells??[]) as Cell[]}:undefined;
   rules.push({id:ast.instance?.value,label:ast.instance?.value,name:kind,span:ast.span,scope:[...new Set([...scope,...condition?.cells??[]])],page,parameters,board,negated:kind==='decoration'?false:(metadata.negate==='all')!==(ast.negations.length%2===1),condition,finite,valueBindings,libraryKind:ref.custom?undefined:kind,definitions,caseRules:rules});
  }
@@ -133,6 +137,7 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
  if(Array.isArray(metadata.regions))headerRule('regions',{op:'All',children:(metadata.regions as Cell[][]).map(cells=>({op:'Distinct',channel:'D',collection:'set',cells}))},header.value.field('regions'));
  return errors.length?{diagnostics:errors}:{value:{rules,board},diagnostics:[]};
 }
+const localAggregates=new Set(['cage','killer','little-killer','diagonal-sum']);
 function applyBoardDefaults(parameters:Record<string,unknown>,kind:string,board:CanonicalBoard):void{
  if(kind==='liar-cells'){parameters.groups??=standardHouses();parameters.values??=[1,2,3,4,5,6,7,8,9];}
  if(kind==='scoped-move')parameters.scope??=board.activeCells;
@@ -142,82 +147,146 @@ function readsEffective(page:CompiledPage):boolean{
  const seen=new Set<string>();const visit=(n:import('../language/ast.js').Expr):boolean=>{if(n.kind==='name'){if(n.value==='effective')return true;const term=defaultCasePrelude().environment.terms[n.value!];if(term?.body&&!seen.has(term.name)){seen.add(term.name);if(visit(term.body))return true;}}return n.children.some(visit);};return page.formulas.some(f=>visit(f.ast));
 }
 const readsFiniteValue=(f:Formula):boolean=>'channel' in f?f.channel==='V':f.op==='Not'?readsFiniteValue(f.child):f.children.some(readsFiniteValue);
-const inverse=(e:Evaluation):Evaluation=>({status:e.status==='holds'?'broken':e.status==='broken'?'holds':'undecided',...(e.status==='holds'?{cells:e.cells}: {})});
-function finiteVerdict(f:Formula,assignment:Assignment,alphabet?:readonly number[]):Evaluation{
+const inverse=(e:Evaluation):Evaluation=>({status:e.status==='holds'?'broken':e.status==='broken'?'holds':'undecided',...(e.cells?{cells:[...e.cells]}: {})});
+function finiteVerdict(f:Formula,assignment:Assignment,alphabet?:readonly number[],budget:StepBudget={remaining:ALLOWED_WORK_LIMIT}):Evaluation{
+ spend(budget);
  // This fast path is used only for face channels or identity effective values.
  const digits=record(assignment.digits);
  const read=(c:Cell,_channel:string)=>digits[c];
- const result=(truth:boolean,cells:Cell[]):Evaluation=>truth?{status:'holds'}:{status:'broken',cells:[...new Set(cells)]};
+ const result=(truth:boolean,cells:Cell[]):Evaluation=>({status:truth?'holds':'broken',cells:[...new Set(cells.filter(c=>digits[c]!==undefined))]});
  if(f.op==='All'||f.op==='Any'){
-  let unknown=false;const failures:Cell[]=[];
-  for(const child of f.children){const e=finiteVerdict(child,assignment,alphabet);if(f.op==='All'&&e.status==='broken')return e;if(f.op==='Any'&&e.status==='holds')return e;unknown ||= e.status==='undecided';failures.push(...e.cells??[]);}
-  return unknown?{status:'undecided'}:result(f.op==='All',failures);
+  let unknown=false,failed=false;const failures:Cell[]=[],proof:Cell[]=[];
+  for(const child of f.children){const e=finiteVerdict(child,assignment,alphabet,budget);if(f.op==='Any'&&e.status==='holds')return e;unknown ||= e.status==='undecided';if(e.status==='broken'){failed=true;failures.push(...e.cells??[]);}else proof.push(...e.cells??[]);}
+  if(f.op==='All'&&failed)return result(false,failures);
+  return unknown?{status:'undecided'}:result(f.op==='All',f.op==='All'?proof:failures);
  }
- if(f.op==='Not'){const e=inverse(finiteVerdict(f.child,assignment,alphabet));return e.status==='broken'?{...e,cells:supports(f.child)}:e;}
+ if(f.op==='Not')return inverse(finiteVerdict(f.child,assignment,alphabet,budget));
  if(f.op==='Distinct'){
   const cells=f.collection==='set'?[...new Set(f.cells)]:f.cells;
   if(f.collection==='list'&&new Set(cells).size<cells.length){const c=cells.find((c,i)=>cells.indexOf(c)!==i)!;return result(false,[c]);}
   if(alphabet&&cells.length>alphabet.length)return result(false,cells.slice(0,alphabet.length+1));
-  for(let i=0;i<cells.length;i++)for(let j=i+1;j<cells.length;j++)if(read(cells[i],f.channel)!==undefined&&read(cells[i],f.channel)===read(cells[j],f.channel))return result(false,[cells[i],cells[j]]);
-  return cells.some(c=>read(c,f.channel)===undefined)?{status:'undecided'}:result(true,[]);
+  const clashes:Cell[]=[];for(let i=0;i<cells.length;i++)for(let j=i+1;j<cells.length;j++){spend(budget);if(read(cells[i],f.channel)!==undefined&&read(cells[i],f.channel)===read(cells[j],f.channel))clashes.push(cells[i],cells[j]);}if(clashes.length)return result(false,clashes);
+  return cells.some(c=>read(c,f.channel)===undefined)?{status:'undecided'}:result(true,cells);
  }
  if(f.op==='Pair'){
   const [a,b]=f.cells.map(c=>read(c,f.channel));
-  const possible=f.table.filter(([x,y])=>(a===undefined||a===x)&&(b===undefined||b===y));
+  const possible=f.table.filter(([x,y])=>{spend(budget);return (a===undefined||a===x)&&(b===undefined||b===y);});
   if(!possible.length)return result(false,f.cells);
-  return a===undefined||b===undefined?{status:'undecided'}:result(true,[]);
+  return a===undefined||b===undefined?{status:'undecided'}:result(true,f.cells);
  }
  if(f.op==='Allowed'){const d=read(f.cell,f.channel);return d===undefined?{status:'undecided'}:result(f.values.includes(d),[f.cell]);}
  if(f.op==='CountAtLeast'){
   const count=f.cells.filter(c=>digits[c]===f.digit).length,empty=f.cells.filter(c=>digits[c]===undefined).length;
-  return count>=f.count?result(true,[]):count+empty<f.count?result(false,f.cells):{status:'undecided'};
+  return count>=f.count?result(true,f.cells.filter(c=>digits[c]===f.digit)):count+empty<f.count?result(false,f.cells):{status:'undecided'};
  }
  if(f.op!=='SumEqual')throw new Error('Unknown finite formula');
  const cells=supports(f);if(cells.some(c=>read(c,f.channel)===undefined))return {status:'undecided'};
  return result(f.left.reduce((s,c)=>s+BigInt(read(c,f.channel)),0n)===f.right.reduce((s,c)=>s+BigInt(read(c,f.channel)),0n),cells);
 }
-/** Sound three-valued evaluation; missing witnesses never become false answers. */
-export function evaluate(rule:CompiledRule,assignment:Assignment):Evaluation{
- const first=evaluateRule(rule,assignment,0);if(first.status!=='undecided')return first;
- const digits=record(assignment.digits),empty=rule.scope.filter(c=>digits[c]===undefined);
- // Refine small digit scopes exactly; larger scopes retain three-valued logic.
- if(!empty.length||rule.board.alphabet.length**empty.length*Math.max(1,rule.scope.length)>10_000)return first;
- let holds=false,broken=false,unknown=false;const cells=new Set<Cell>();
- const visit=(i:number):void=>{if(holds&&broken||unknown)return;if(i===empty.length){const e=evaluateRule(rule,{...assignment,digits},0);holds ||= e.status==='holds';broken ||= e.status==='broken';unknown ||= e.status==='undecided';for(const c of e.cells??[])cells.add(c);return;}for(const d of rule.board.alphabet){digits[empty[i]]=d;visit(i+1);}delete digits[empty[i]];};
- visit(0);return unknown||holds&&broken?first:holds?{status:'holds'}:{status:'broken',cells:[...cells]};
+/** One expression budget covers the initial verdict, refinement and nested calls. */
+export const ALLOWED_WORK_LIMIT=100_000;
+function spend(budget:StepBudget):void{if(--budget.remaining<0)throw new EvaluationLimit('Evaluation step budget exceeded');}
+function shadingScope(rule:CompiledRule):Cell[]{
+ const seen=new Set<string>();
+ const visit=(n:import('../language/ast.js').Expr):boolean=>{
+  if(n.kind==='name'){
+   if(n.value==='H'||n.value==='marked')return true;
+   const term=defaultCasePrelude().environment.terms[n.value!];
+   if(term?.body&&!seen.has(term.name)){seen.add(term.name);if(visit(term.body))return true;}
+  }
+  return n.children.some(visit);
+ };
+ return rule.condition?.predicate==='uniform'||rule.page.formulas.some(f=>visit(f.ast))?rule.scope:[];
 }
-function evaluateRule(rule:CompiledRule,assignment:Assignment,depth:number):Evaluation{
+function filledWitness(rule:CompiledRule,assignment:Assignment,cells:Cell[]):Cell[]{
+ const digits=record(assignment.digits),shades=record(assignment.shading);
+ return [...new Set(cells)].filter(c=>digits[c]!==undefined||shades[c]!==undefined);
+}
+function refine(rule:CompiledRule,assignment:Assignment,budget:StepBudget):Evaluation{
+ const first=evaluateRule(rule,assignment,0,budget);if(first.status!=='undecided')return first;
+ const digits=record(assignment.digits),shading=record(assignment.shading);
+ const empty=rule.scope.filter(c=>digits[c]===undefined),unshaded=shadingScope(rule).filter(c=>shading[c]===undefined);
+ if(!empty.length&&!unshaded.length||rule.board.alphabet.length**empty.length*2**unshaded.length*Math.max(1,rule.scope.length)>10_000)return first;
+ let holds=false,broken=false,unknown=false;
+ const visit=(i:number):void=>{
+  spend(budget);if(holds&&broken||unknown)return;
+  if(i===empty.length+unshaded.length){const e=evaluateRule(rule,{...assignment,digits,shading},0,budget);holds ||= e.status==='holds';broken ||= e.status==='broken';unknown ||= e.status==='undecided';return;}
+  if(i<empty.length){for(const d of rule.board.alphabet){digits[empty[i]]=d;visit(i+1);}delete digits[empty[i]];}
+  else {const c=unshaded[i-empty.length];for(const shade of [false,true]){shading[c]=shade;visit(i+1);}delete shading[c];}
+ };
+ visit(0);return unknown||holds&&broken?first:holds?{status:'holds'}:{status:'broken',cells:filledWitness(rule,assignment,rule.scope)};
+}
+/** Sound three-valued evaluation; resource refusals and missing witnesses are undecided. */
+export function evaluate(rule:CompiledRule,assignment:Assignment):Evaluation{
+ try{
+  const verdict=refine(rule,assignment,{remaining:ALLOWED_WORK_LIMIT});
+  return verdict.status==='broken'?{status:'broken',cells:filledWitness(rule,assignment,verdict.cells??rule.scope)}:{status:verdict.status};
+ }catch{return {status:'undecided'};}
+}
+function aggregateVerdict(rule:CompiledRule,assignment:Assignment,budget:StepBudget):Evaluation{
+ const p=rule.parameters,cage=['cage','killer'].includes(rule.libraryKind!);
+ const cells=cage?[...new Set(p.cells as Cell[])]:p.cells as Cell[];
+ const digits=record(assignment.digits),effective=assignment.values??assignment.valueAnswers?.V;
+ const channel=p.channel??(cage?'V':'D'),total=cage?p.total:p.sum;
+ const value=(c:Cell)=>channel==='D'?digits[c]:effective?.[c]??(!rule.valueBindings&&!effective?digits[c]:undefined);
+ const repeatValue=(c:Cell)=>cage?digits[c]:value(c);
+ const conflicts:Cell[]=[];
+ if(p.repeats===false)for(let i=0;i<cells.length;i++)for(let j=i+1;j<cells.length;j++){
+  spend(budget);const a=repeatValue(cells[i]),b=repeatValue(cells[j]);
+  if(a!==undefined&&b!==undefined&&compareExact(numericInput(a),numericInput(b))===0)conflicts.push(cells[i],cells[j]);
+ }
+ if(conflicts.length)return {status:'broken',cells:[...new Set(conflicts)]};
+ if(total!==undefined){
+  if(cells.some(c=>value(c)===undefined))return {status:'undecided'};
+  let sum=exact('0');for(const c of cells){spend(budget);sum=arithmetic('+',sum,numericInput(value(c)));}
+  if(compareExact(sum,numericInput(total))!==0)return {status:'broken',cells:[...cells]};
+ }
+ if(p.repeats===false&&cells.some(c=>repeatValue(c)===undefined))return {status:'undecided'};
+ return {status:'holds',cells:[...cells]};
+}
+function evaluateRule(rule:CompiledRule,assignment:Assignment,depth:number,budget:StepBudget):Evaluation{
+ spend(budget);
  if(depth>32)throw new EvaluationLimit('Owned-clue and valued-rule evaluation exceeds 32 nested calls');
  const digits=record(assignment.digits);
- for(const cell of rule.scope)if(digits[cell]!==undefined&&!rule.board.alphabet.includes(digits[cell]))throw new RangeError(`Digit outside the alphabet at ${cell}`);
- const cond=rule.condition?conditionVerdict(rule.condition,assignment,rule.board.alphabet):undefined;
+ const invalid=rule.scope.filter(cell=>digits[cell]!==undefined&&!rule.board.alphabet.includes(digits[cell]));if(invalid.length)return {status:'broken',cells:invalid};
+ const cond=rule.condition?conditionVerdict(rule.condition,assignment,rule.board.alphabet,budget):undefined;
  if(cond?.status==='broken')return {status:'holds'};
  let base:Evaluation;
- if(rule.finite&&(!readsFiniteValue(rule.finite)||!rule.valueBindings&&!assignment.values&&!assignment.valueAnswers?.V))base=finiteVerdict(rule.finite,assignment,rule.board.alphabet);
+ const aggregate=!!rule.libraryKind&&localAggregates.has(rule.libraryKind);
+ const finite=!aggregate&&rule.finite&&(!readsFiniteValue(rule.finite)||!rule.valueBindings&&!assignment.values&&!assignment.valueAnswers?.V)?rule.finite:undefined;
+ if(aggregate)base=aggregateVerdict(rule,assignment,budget);
+ else if(finite)base=finiteVerdict(rule.negated?{op:'Not',child:finite}:finite,assignment,rule.board.alphabet,budget);
  else{
   try{
    if(rule.valueBindings&&readsEffective(rule.page)&&!assignment.values&&!assignment.valueAnswers?.V)throw new MissingValue('Supply shared effective values');
    const shading=record(assignment.shading);
    const readCells=new Set<string>();
-   const fragment:Fragment={...assignment,definitionKind:rule.libraryKind,readCells,valuedMeanings:()=>rule.caseRules.filter(r=>r!==rule&&!['value-modifier','liar-cells'].includes(r.name)&&readsEffective(r.page)).map(r=>{const e=evaluateRule(r,assignment,depth+1);if(e.status==='undecided')throw new MissingValue('Incomplete valued rule');return e.status==='holds';}),clueTruth:q=>{
+   const fragment:Fragment={...assignment,budget,definitionKind:rule.libraryKind,readCells,valuedMeanings:()=>rule.caseRules.filter(r=>r!==rule&&!['value-modifier','liar-cells'].includes(r.name)&&readsEffective(r.page)).map(r=>{const e=evaluateRule(r,assignment,depth+1,budget);if(e.status==='undecided')throw new MissingValue('Incomplete valued rule');return e.status==='holds';}),clueTruth:q=>{
     const clue=q as {rule:string;args:Record<string,unknown>};const definition=rule.definitions.get(clue.rule);
     if(!definition)throw new EvaluationLimit(`Unresolved owned clue ${clue.rule}`);
     const parameters={...Object.fromEntries(Object.entries(definition.contract.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([k,p])=>[k,p.default])),...clue.args};
     applyBoardDefaults(parameters,definition.name,rule.board);
     const nested:CompiledRule={...rule,libraryKind:rule.definitions.get(`${root}${definition.name}.md`)===definition?definition.name:undefined,name:definition.name,page:definition.page,parameters,finite:undefined,condition:undefined,negated:false,scope:rule.board.activeCells};
-    const verdict=evaluateRule(nested,assignment,depth+1);if(verdict.status==='undecided')throw new MissingValue('Incomplete owned clue');return verdict.status==='holds';
+    const verdict=evaluateRule(nested,assignment,depth+1,budget);if(verdict.status==='undecided')throw new MissingValue('Incomplete owned clue');return verdict.status==='holds';
    },shadeAnswers:shading,values:assignment.values??assignment.valueAnswers?.V,faces:digits,cells:rule.board.activeCells,parameters:rule.parameters,rows:rule.board.rows,cols:rule.board.cols,alphabet:rule.board.alphabet,regions:rule.board.regions,givens:Object.fromEntries(rule.board.givens.map(g=>[g.cell,g.digit])),shaded:Object.keys(shading).filter(c=>shading[c])};
-   base=rule.page.formulas.every(f=>formulaVerdict(f.ast,defaultCasePrelude(),rule.page.parameters,fragment))?{status:'holds'}:{status:'broken',cells:readCells.size?[...readCells] as Cell[]:rule.scope};
+   let failed=false,unknown=false;const failures=new Set<string>(),proof=new Set<string>();
+   for(const formula of rule.page.formulas){
+    readCells.clear();
+    try{const holds=formulaVerdict(formula.ast,defaultCasePrelude(),rule.page.parameters,fragment);failed ||= !holds;for(const c of readCells)(holds?proof:failures).add(c);}
+    catch(error){if(!(error instanceof MissingValue))throw error;unknown=true;}
+   }
+   base=failed?{status:'broken',cells:[...failures] as Cell[]}:unknown?{status:'undecided'}:{status:'holds',cells:[...proof] as Cell[]};
   }catch(error){if(error instanceof LanguageError&&error.diagnostic.code==='E_LANGUAGE_LIMIT')throw new EvaluationLimit(error.message);if(!(error instanceof MissingValue))throw error;base={status:'undecided'};}
  }
- if(rule.negated){base=inverse(base);if(base.status==='broken')base.cells=rule.scope;}
+ if(rule.negated&&!finite)base=inverse(base);
  if(cond?.status==='undecided'&&base.status!=='holds')return {status:'undecided'};
+ if(base.status==='broken'&&rule.condition)base.cells=[...new Set([...base.cells??[],...rule.condition.cells])];
  return base;
 }
-function conditionVerdict(condition:NonNullable<CompiledRule['condition']>,assignment:Assignment,alphabet:readonly number[]):Evaluation{
+function conditionVerdict(condition:NonNullable<CompiledRule['condition']>,assignment:Assignment,alphabet:readonly number[],budget:StepBudget):Evaluation{
  const {predicate,cells,unless}=condition;
   let cond:Evaluation;
-  if(predicate==='distinct')cond=finiteVerdict({op:'Distinct',cells,channel:'D',collection:'list'},assignment,alphabet);
+  if(predicate==='distinct')cond=finiteVerdict({op:'Distinct',cells,channel:'D',collection:'list'},assignment,alphabet,budget);
   else if(predicate==='uniform'){
    const shades=record(assignment.shading),known=cells.map(c=>shades[c]).filter(x=>x!==undefined);
    cond=new Set(known).size>1?{status:'broken'}:!cells.length?{status:'broken'}:known.length===cells.length?{status:'holds'}:{status:'undecided'};
@@ -229,8 +298,7 @@ function conditionVerdict(condition:NonNullable<CompiledRule['condition']>,assig
   if(unless)cond=inverse(cond);
  return cond;
 }
-/** Maximum scope-size times Cartesian candidate combinations. */
-export const ALLOWED_WORK_LIMIT=100_000;
+/** Candidate support shares a single step budget across all completions. */
 export function allowed(rule:CompiledRule,assignment:Assignment,candidates:ReadonlyMap<Cell,ReadonlySet<Digit>>):Map<Cell,Set<Digit>>|'too-large'{
  const digits=record(assignment.digits),empty=rule.scope.filter(c=>digits[c]===undefined);
  const domains=empty.map(c=>[...(candidates.get(c)??new Set(rule.board.alphabet))]);
@@ -238,17 +306,18 @@ export function allowed(rule:CompiledRule,assignment:Assignment,candidates:Reado
  const output=new Map(empty.map(c=>[c,new Set<Digit>()]));
  if(domains.some(d=>d.length===0))return output;
  let work=Math.max(1,rule.scope.length);for(const domain of domains){work*=domain.length;if(work>ALLOWED_WORK_LIMIT)return 'too-large';}
+ const budget={remaining:ALLOWED_WORK_LIMIT};
  function visit(i:number):void{
-  if(i===empty.length){const verdict=evaluate(rule,{...assignment,digits});if(verdict.status==='undecided')throw new MissingValue('Candidate support requires complete auxiliary witnesses');if(verdict.status==='holds')for(const c of empty)output.get(c)!.add(digits[c]);return;}
+  spend(budget);
+  if(i===empty.length){const verdict=refine(rule,{...assignment,digits},budget);if(verdict.status!=='broken')for(const c of empty)output.get(c)!.add(digits[c]);return;}
   for(const digit of domains[i]){digits[empty[i]]=digit;visit(i+1);}delete digits[empty[i]];
  }
- try{visit(0);}catch(error){if(error instanceof EvaluationLimit)return 'too-large';throw error;}return output;
+ try{visit(0);}catch(error){if(error instanceof EvaluationLimit||error instanceof LanguageError&&error.diagnostic.code==='E_LANGUAGE_LIMIT')return 'too-large';throw error;}return output;
 }
 export function checkAnswer(compiled:CompiledCase,answer:Assignment):{holds:boolean;broken:{rule:CompiledRule;cells:Cell[]}[]}{
  const digits=record(answer.digits);
- for(const c of compiled.board.activeCells)if(digits[c]===undefined)throw new RangeError(`Answer is incomplete at ${c}`);
- const broken:{rule:CompiledRule;cells:Cell[]}[]=[];
- for(const rule of compiled.rules){const verdict=evaluate(rule,answer);if(verdict.status==='undecided')throw new MissingValue('Answer needs complete auxiliary witnesses');if(verdict.status==='broken')broken.push({rule,cells:verdict.cells??rule.scope});}
- const holds=broken.length===0&&compiled.board.activeCells.every(c=>compiled.board.alphabet.includes(digits[c]))&&compiled.board.givens.every(g=>digits[g.cell]===g.digit);
- return {holds,broken};
+ const complete=compiled.board.activeCells.every(c=>digits[c]!==undefined&&compiled.board.alphabet.includes(digits[c]));
+ const broken:{rule:CompiledRule;cells:Cell[]}[]=[];let decided=true;
+ for(const rule of compiled.rules){const verdict=evaluate(rule,answer);if(verdict.status==='undecided')decided=false;if(verdict.status==='broken')broken.push({rule,cells:[...verdict.cells??rule.scope]});}
+ return {holds:complete&&decided&&broken.length===0&&compiled.board.givens.every(g=>digits[g.cell]===g.digit),broken};
 }

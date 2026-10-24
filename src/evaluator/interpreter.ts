@@ -20,7 +20,8 @@ class Lazy { constructor(public read:()=>Value){} }
 type Value=Lazy|Rational|string|boolean|undefined|Value[]|Group|Callable|{[key:string]:Value};
 interface Group {group:Value[]}
 type Callable=(...args:Value[])=>Value;
-export interface Fragment {cells?:string[];definitionKind?:string;readCells?:Set<string>;valuedMeanings?:()=>boolean[];shadeAnswers?:Record<string,boolean>;clueTruth?:(clue:unknown)=>boolean;rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,NumericInput>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];routeAnswers?:Record<string,string[]>;routeClosures?:Record<string,boolean>;networkAnswers?:Record<string,string[][]>;partitionAnswers?:Record<string,string[][]>;selectionAnswers?:Record<string,string[]>;choiceAnswers?:Record<string,boolean>;assignmentAnswers?:Record<string,number[]>;valueAnswers?:Record<string,Record<string,NumericInput>>;symbolAnswers?:Record<string,Record<string,number[]>>}
+export interface StepBudget { remaining:number }
+export interface Fragment {budget?:StepBudget;cells?:string[];definitionKind?:string;readCells?:Set<string>;valuedMeanings?:()=>boolean[];shadeAnswers?:Record<string,boolean>;clueTruth?:(clue:unknown)=>boolean;rows?:number;cols?:number;faces:Record<string,number>;values?:Record<string,NumericInput>;alphabet?:number[];regions?:string[][];parameters:Record<string,unknown>;givens?:Record<string,number>;shaded?:string[];routeAnswers?:Record<string,string[]>;routeClosures?:Record<string,boolean>;networkAnswers?:Record<string,string[][]>;partitionAnswers?:Record<string,string[][]>;selectionAnswers?:Record<string,string[]>;choiceAnswers?:Record<string,boolean>;assignmentAnswers?:Record<string,number[]>;valueAnswers?:Record<string,Record<string,NumericInput>>;symbolAnswers?:Record<string,Record<string,number[]>>}
 const number=(value:Value):Rational=>{if(!value||typeof value!=="object"||!("numerator" in value))throw Error("Expected exact number");return value as Rational;};
 const truth=(value:Value):boolean=>{if(typeof value!=="boolean")throw Error("Expected Boolean");return value;};
 const members=(value:Value):Value[]=>{if(Array.isArray(value))return value;if(value&&typeof value==="object"&&"group" in value)return (value as Group).group;throw Error("Expected collection");};
@@ -53,7 +54,7 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
   if(property==="places")return a>=1n&&n>=0n&&BigInt(n.toString().length)===a;
   if(property==="prime"||property==="composite"){
    if(n<=1n)return false;let composite=false;
-   for(let d=2n;d*d<=n;d=d===2n?3n:d+2n){if(--budget<0)throw new EvaluationLimit("Primality evaluation budget exceeded");if(n%d===0n){composite=true;break;}}
+   for(let d=2n;d*d<=n;d=d===2n?3n:d+2n){if(--budget.remaining<0)throw new EvaluationLimit("Primality evaluation budget exceeded");if(n%d===0n){composite=true;break;}}
    return composite===(property==="composite");
   }
   if(property==="power"){
@@ -61,7 +62,7 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
    // A base >=2 has at least exponent+1 binary digits in its power.
    if(a>BigInt(n.toString(2).length))return false;
    const power=(base:bigint):bigint=>{let v=1n;for(let i=0n;i<a;i++){v*=base;if(v>n)break;}return v;};
-   let lo=0n,hi=n;while(lo<=hi){if(--budget<0)throw new EvaluationLimit("Power evaluation budget exceeded");const mid=(lo+hi)/2n,v=power(mid);if(v===n)return true;if(v<n)lo=mid+1n;else hi=mid-1n;}return false;
+   let lo=0n,hi=n;while(lo<=hi){if(--budget.remaining<0)throw new EvaluationLimit("Power evaluation budget exceeded");const mid=(lo+hi)/2n,v=power(mid);if(v===n)return true;if(v<n)lo=mid+1n;else hi=mid-1n;}return false;
   }
   throw new EvaluationLimit("Unknown numeric property");
  };
@@ -112,13 +113,13 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
   minimumDigit:s=>members(s).reduce((a,b)=>compare(number(a),number(b))<0?a:b),maximumDigit:s=>members(s).reduce((a,b)=>compare(number(a),number(b))>0?a:b),
   minimumValue:s=>members(s).reduce((a,b)=>compare(number(a),number(b))<0?a:b),maximumValue:s=>members(s).reduce((a,b)=>compare(number(a),number(b))>0?a:b),
  };
- let budget=2000000;
+ const budget=fragment.budget??{remaining:100_000};
  const letters=new Set<string>();
  const findLetters=(value:unknown):void=>{if(!value||typeof value!=='object')return;if('op' in value&&(value as {op:unknown}).op==='letter'&&'name' in value)letters.add(String(value.name));else Object.values(value).forEach(findLetters);};
  findLetters(fragment.parameters);const letterNames=[...letters].sort();
  class UndefinedExpression extends Error {}
  function expression(e:Value,letters:Value[]):Rational{
-  if(--budget<0)throw new EvaluationLimit("Expression evaluation budget exceeded");
+  if(--budget.remaining<0)throw new EvaluationLimit("Expression evaluation budget exceeded");
   const x=e as Record<string,Value>;
   if(x.op==="number"){const n=numericInput(x.value);if(n.denominator!==1n)throw new UndefinedExpression();return n;}
   if(x.op==="letter"){const i=letterNames.indexOf(String(x.name));if(i<0||i>=letters.length)throw new UndefinedExpression();return number(letters[i]);}
@@ -128,22 +129,25 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
   return arithmetic(String(x.op),a,b);
  }
  function evaluate(node:Expr,scope:Record<string,Value>):Value{
-  if(--budget<0)throw new EvaluationLimit("Formula evaluation exceeds 2000000 steps");
+  if(--budget.remaining<0)throw new EvaluationLimit("Formula evaluation step budget exceeded");
   const child=(i:number)=>evaluate(node.children[i],scope);
   switch(node.kind){
    case "number":return exact(node.value!);case "literal":return node.value;case "boolean":return node.value==="true";
    case "name":{
     if(node.value==="ValuedRuleMeanings"&&fragment.valuedMeanings)return fragment.valuedMeanings();
-    if(node.value==="H"&&fragment.shadeAnswers&&cells.some(c=>fragment.shadeAnswers![c]===undefined))throw new MissingValue("Supply complete shading");
+    if(node.value==="H"&&fragment.shadeAnswers){
+     if(cells.some(c=>fragment.shadeAnswers![c]===undefined))throw new MissingValue("Supply complete shading");
+     for(const c of cells)fragment.readCells?.add(c);
+    }
     if(Object.hasOwn(scope,node.value!)){const v=scope[node.value!];return v instanceof Lazy?v.read():v;}
     const term=prelude.environment.terms[node.value!];if(!term)throw new EvaluationLimit(`No finite domain for ${node.value}`);
     return (...args:Value[])=>{
      if(term.name==="marked"&&args[0]==="H"&&fragment.shadeAnswers){fragment.readCells?.add(String(args[1]));const shade=fragment.shadeAnswers[String(args[1])];if(shade===undefined)throw new MissingValue(`Shade at ${args[1]}`);return shade;}
      if(term.name==="allDifferent"){
-      const seen=new Map<string,Set<string>>(),before=new Set(fragment.readCells),all=new Set(before);let missing:MissingValue|undefined;
+      const seen=new Map<string,Set<string>>(),before=new Set(fragment.readCells),all=new Set(before),conflicts=new Set<string>();let missing:MissingValue|undefined,failed=false;
       const reset=(cells:Iterable<string>)=>{if(fragment.readCells){fragment.readCells.clear();for(const c of cells)fragment.readCells.add(c);}};
-      for(const item of members(args[0])){reset(before);try{const v=(args[1] as Callable)(item),k=key(v),reads=new Set(fragment.readCells);if(seen.has(k)){for(const c of seen.get(k)!)fragment.readCells?.add(c);return false;}seen.set(k,reads);for(const c of reads)all.add(c);}catch(error){if(!(error instanceof MissingValue))throw error;missing=error;}}
-      reset(all);if(missing)throw missing;return true;
+      for(const item of members(args[0])){reset(before);try{const v=(args[1] as Callable)(item),k=key(v),reads=new Set(fragment.readCells);if(seen.has(k)){failed=true;for(const c of seen.get(k)!)conflicts.add(c);for(const c of reads)conflicts.add(c);}else seen.set(k,reads);for(const c of reads)all.add(c);}catch(error){if(!(error instanceof MissingValue))throw error;missing=error;}}
+      reset(failed?new Set([...before,...conflicts]):all);if(failed)return false;if(missing)throw missing;return true;
      }
      if(term.name==="divides")return divides(args[0],args[1]);
      if(term.name==="numericProperty")return numericProperty(...args);
@@ -160,7 +164,7 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
       for(let start=0;start<line.length;start++)if(possible.has(start)){
        let total=exact("0");const seen=new Set<string>();
        for(let end=start;end<line.length;end++){
-        if(--budget<0)throw new EvaluationLimit("Partition evaluation budget exceeded");
+        if(--budget.remaining<0)throw new EvaluationLimit("Partition evaluation budget exceeded");
         const v=number((ch==="D"?primitives.face:primitives.effective)(line[end]));
         if(!repeats&&seen.has(key(v)))break;seen.add(key(v));total=arithmetic("+",total,v);
         if(compare(total,target)===0)possible.add(end+1);
@@ -188,14 +192,21 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
      const reset=()=>{if(fragment.readCells){fragment.readCells.clear();for(const c of before)fragment.readCells.add(c);}};
      let left:Value;try{left=child(0);}catch(error){if(!(error instanceof MissingValue))throw error;reset();const right=truth(child(1));if(node.value==="and"&&!right)return false;if((node.value==="or"||node.value==="implies")&&right)return true;throw error;}
      const leftReads=new Set(fragment.readCells);
-     if(node.value==="and"&&!truth(left))return false;
+     if(node.value==="and"&&!truth(left)){
+      reset();try{if(!truth(child(1)))for(const c of fragment.readCells??[])leftReads.add(c);}catch(error){if(budget.remaining<0)throw error;/* The right may require the false left clause as a guard. */}
+      reset();for(const c of leftReads)fragment.readCells?.add(c);return false;
+     }
      if(node.value==="or"&&truth(left)||node.value==="implies"&&!truth(left))return true;
      reset();const right=truth(child(1));
      if(node.value==="and"&&right||node.value==="or"&&!right||node.value==="implies")for(const c of leftReads)fragment.readCells?.add(c);
      return right;
     }
     const left=child(0);
-    
+    if(["in","notin"].includes(node.value!)&&node.children[1].kind==="name"&&node.children[1].value==="H"&&fragment.shadeAnswers){
+     const cell=String(left);fragment.readCells?.add(cell);const shade=fragment.shadeAnswers[cell];
+     if(shade===undefined)throw new MissingValue(`Shade at ${cell}`);
+     return node.value==="in"?shade:!shade;
+    }
     const right=child(1);if(node.value==="iff")return truth(left)===truth(right);
     if(node.value==="="||node.value==="!=")return (key(left)===key(right))===(node.value==="=");
     if(["in","notin"].includes(node.value!))return members(right).some(item=>key(item)===key(left))===(node.value==="in");
@@ -210,7 +221,7 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
    case "lambda":return (...args:Value[])=>evaluate(node.children[0],{...scope,...Object.fromEntries(node.binders!.map((b,i)=>[b.name,args[i]]))});
    case "conditional":return truth(child(0))?child(1):child(2);
    case "let":return evaluate(node.children[1],{...scope,[node.binders![0].name]:new Lazy(()=>child(0))});
-   case "image":case "comprehension":{const values=members(child(0));const result:Value[]=[];for(const item of values){const local={...scope,[node.binders![0].name]:item};if(node.kind==="comprehension"){if(truth(evaluate(node.children[1],local)))result.push(item);}else if(!node.children[2]||truth(evaluate(node.children[2],local)))result.push(evaluate(node.children[1],local));}return node.value==="list"?result:group(result);}
+   case "image":case "comprehension":{if(node.children[2]?.kind==="boolean"&&node.children[2].value==="false")return node.value==="list"?[]:group([]);const values=members(child(0));const result:Value[]=[];for(const item of values){const local={...scope,[node.binders![0].name]:item};if(node.kind==="comprehension"){if(truth(evaluate(node.children[1],local)))result.push(item);}else if(!node.children[2]||truth(evaluate(node.children[2],local)))result.push(evaluate(node.children[1],local));}return node.value==="list"?result:group(result);}
    case "aggregate":case "quantifier":{
     const domain=node.hasDomain?members(child(0)):undefined;
     const finiteValues=(type:Type):Value[]=>{
@@ -270,7 +281,7 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
       const options=hidden.map(h=>{
        const required=[...new Set([h.clue,...h.known])];if(required.length>size)return [];
        const available=cells.filter(c=>!required.includes(c));const results:string[][]=[];
-       const choose=(i:number,prefix:string[]):void=>{if(--budget<0)throw new EvaluationLimit("Hidden cage search budget exceeded");if(prefix.length===size){results.push([...prefix]);return;}if(available.length-i<size-prefix.length)return;for(let j=i;j<available.length;j++)choose(j+1,[...prefix,available[j]]);};
+       const choose=(i:number,prefix:string[]):void=>{if(--budget.remaining<0)throw new EvaluationLimit("Hidden cage search budget exceeded");if(prefix.length===size){results.push([...prefix]);return;}if(available.length-i<size-prefix.length)return;for(let j=i;j<available.length;j++)choose(j+1,[...prefix,available[j]]);};
        choose(0,required);return results;
       });
       let count=1;for(const option of options){count*=option.length;if(count>100000)throw new EvaluationLimit("Hidden cage expansion exceeds 100000");}
@@ -297,7 +308,7 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
       if(target.numerator<=0n)return [];
       if(target.numerator>100000n)throw new EvaluationLimit("Arrow remainder exceeds 100000");
       const reached=new Map<bigint,{before:bigint;digit:Value}|undefined>([[0n,undefined]]);
-      for(let n=1n;n<=target.numerator;n++){for(const digit of alphabet){if(--budget<0)throw new EvaluationLimit("Arrow remainder evaluation budget exceeded");if(reached.has(n-digit.numerator)){reached.set(n,{before:n-digit.numerator,digit});break;}}}
+      for(let n=1n;n<=target.numerator;n++){for(const digit of alphabet){if(--budget.remaining<0)throw new EvaluationLimit("Arrow remainder evaluation budget exceeded");if(reached.has(n-digit.numerator)){reached.set(n,{before:n-digit.numerator,digit});break;}}}
       if(!reached.has(target.numerator))return [];
       const witness:Value[]=[];for(let n=target.numerator;n>0n;){const step=reached.get(n)!;witness.push(step.digit);n=step.before;}return [witness];
      }
@@ -321,7 +332,23 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
     };
     function* assignments(i:number,local:Record<string,Value>):Generator<Record<string,Value>>{if(i===node.binders!.length){yield local;return;}const binder=node.binders![i];for(const item of domain??choices(binder.sourceName??binder.name,binder.type!,binder.name,local))yield* assignments(i+1,{...local,[binder.name]:item});}
     const body=node.children[node.hasDomain?1:0];
-    if(node.kind==="quantifier"){let missing:MissingValue|undefined;const before=new Set(fragment.readCells),successful=new Set<string>();for(const local of assignments(0,scope)){if(node.value==="forall"&&fragment.readCells){fragment.readCells.clear();for(const c of before)fragment.readCells.add(c);}try{const verdict=truth(evaluate(body,local));if(node.value==="exists"&&verdict)return true;if(node.value==="forall"&&!verdict)return false;if(node.value==="forall")for(const c of fragment.readCells??[])successful.add(c);}catch(error){if(!(error instanceof MissingValue))throw error;missing=error;}}if(missing)throw missing;if(node.value==="forall")for(const c of successful)fragment.readCells?.add(c);return node.value==="forall";}
+    if(node.kind==="quantifier"){
+     let missing:MissingValue|undefined,failed=false;
+     const before=new Set(fragment.readCells),successful=new Set<string>(),failures=new Set<string>();
+     for(const local of assignments(0,scope)){
+      if(node.value==="forall"&&fragment.readCells){fragment.readCells.clear();for(const c of before)fragment.readCells.add(c);}
+      try{
+       const verdict=truth(evaluate(body,local));if(node.value==="exists"&&verdict)return true;
+       if(node.value==="forall"){failed ||= !verdict;for(const c of fragment.readCells??[])(verdict?successful:failures).add(c);}
+      }catch(error){if(!(error instanceof MissingValue))throw error;missing=error;}
+     }
+     if(node.value==="forall"){
+      fragment.readCells?.clear();for(const c of before)fragment.readCells?.add(c);
+      for(const c of failed?failures:successful)fragment.readCells?.add(c);
+      if(failed)return false;
+     }
+     if(missing)throw missing;return node.value==="forall";
+    }
     let result=exact(node.value==="product"?"1":"0");for(const local of assignments(0,scope)){const value=evaluate(body,local);if(node.value==="count"){if(truth(value))result=arithmetic("+",result,exact("1"));}else result=arithmetic(node.value==="product"?"*":"+",result,number(value));}return result;
    }
   }
