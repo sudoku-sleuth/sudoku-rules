@@ -6,6 +6,8 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Minesweeper Circles, Cave Layout, Shade Run Sums, Parity Bridge, Helping Cages and Signed Shading Cage add reusable shading, counting and cage relationships. Signed Shading Cage explicitly selects whether a wholly shaded cage is allowed.
+
 - Unique Primes, Stingy Cages and Ziffer Lines bind Number Property, Profile Relation and Mirrored Pairs. Optional operand collections, allowed results, result distinctness, shared-support bounds and centre-clued differences extend those blocks while preserving existing defaults.
 
 - Portable case compilation and rule evaluation with source-linked conflicts, three-valued partial assignments, shading conditions, shared answer channels and complete-answer checking.

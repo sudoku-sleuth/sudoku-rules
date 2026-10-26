@@ -112,5 +112,11 @@
   "crossed-paths": "rules/lines/index-line.svg",
   "unique-primes": "rules/lines/primality.svg",
   "stingy-cages": "rules/cages/cage.svg",
-  "ziffer-lines": "rules/lines/zipper.svg"
+  "ziffer-lines": "rules/lines/zipper.svg",
+  "minesweeper": "rules/cells/counting-circles.svg",
+  "cave-layout": "rules/regions/constructed-regions.svg",
+  "shade-run-sums": "rules/lines/region-sum.svg",
+  "parity-bridge": "rules/lines/double-arrow.svg",
+  "helping-cages": "rules/cages/cage.svg",
+  "signed-shading-cage": "rules/cages/cage.svg"
 }

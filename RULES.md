@@ -116,12 +116,14 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 - [Modular](rules/modular.md)
 - [Nabner](rules/nabner.md)
 - [Palindrome](rules/palindrome.md)
+- [Parity Bridge](rules/parity-bridge.md)
 - [Parity Line](rules/parity-line.md)
 - [Pointing Thermo](rules/pointing-thermo.md)
 - [Primality](rules/primality.md)
 - [Region Sum](rules/region-sum.md)
 - [Renban](rules/renban.md)
 - [Run Sum](rules/run-sum.md)
+- [Shade Run Sums](rules/shade-run-sums.md)
 - [Shifter Line](rules/shifter-line.md)
 - [Slow Thermo](rules/slow-thermo.md)
 - [Split Pea](rules/split-pea.md)
@@ -147,6 +149,7 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 - [Equal Sums](rules/equal-sums.md)
 - [Extremum](rules/extremum.md)
 - [Liar Cells](rules/liar-cells.md)
+- [Minesweeper Circles](rules/minesweeper.md)
 - [Molecules](rules/molecules.md)
 - [Odd Even Cells](rules/odd-even-cells.md)
 - [Pressure Gauge](rules/pressure-gauge.md)
@@ -161,10 +164,12 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 - [Cage Pair](rules/cage-pair.md)
 - [Cage Shapes](rules/cage-shapes.md)
 - [Equality Cage](rules/equality-cage.md)
+- [Helping Cages](rules/helping-cages.md)
 - [Layered Cage](rules/layered-cage.md)
 - [Look And Say](rules/look-and-say.md)
 - [Product Cage](rules/product-cage.md)
 - [Remainder Cage](rules/remainder-cage.md)
+- [Signed Shading Cage](rules/signed-shading-cage.md)
 - [Sum Free Cage](rules/sum-free-cage.md)
 - [Vault](rules/vault.md)
 
@@ -185,6 +190,7 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 
 ### Regions
 
+- [Cave Layout](rules/cave-layout.md)
 - [Constructed Regions](rules/constructed-regions.md)
 - [Regions](rules/regions.md)
 

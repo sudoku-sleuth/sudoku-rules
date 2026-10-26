@@ -1,5 +1,7 @@
 /** Distinct meanings sharing depth-3 structure; the guard rejects stale entries. */
 export const overlapAllowlist: Record<string,string> = {
+  "rule:minmax-cages / rule:signed-shading-cage": "Both use nonempty cages of distinct digits. Minmax Cages adds the smallest and largest digits; Signed Shading Cage adds every shaded digit and subtracts every unshaded digit, with a connected-unshaded-subset policy.",
+  "block:shade-components / rule:cave-layout": "Shade Components derives components of a chosen selection within a scope and optionally counts them; Cave Layout derives shaded walls across the board, requires each wall to touch an edge, and requires a connected unshaded cave containing every clue.",
   "rule:shaded-successors / rule:treasures": "Shaded Successors exhaustively marks cells one greater than a king-neighbour in their own region; Treasures bounds every orthogonal neighbour of every five by four, without marking or region conditions.",
   "predicate:moveRelation / predicate:selectedPair": "moveRelation selects a geometric move; selectedPair additionally selects all, incident or scoped pairs.",
   "predicate:connectedRegionPartition / predicate:partition": "partition requires disjoint nonempty coverage; connectedRegionPartition also requires connected regions.",

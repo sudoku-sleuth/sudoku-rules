@@ -8,6 +8,13 @@ const hdrShading=Object.fromEntries(Array.from({length:81},(_,i)=>{const c=`r${M
 const arrowShading=Object.fromEntries(Array.from({length:81},(_,i)=>{const c=`r${Math.floor(i/9)+1}c${i%9+1}`;return [c,c==='r1c1'||c==='r1c3'];}));
 // Auxiliary answer objects described alongside the public examples.
 export const newRuleExamples:Record<string,[Partial<Assignment>,Partial<Assignment>]>={
+ 'minesweeper':[0,1].map(()=>({shading:shade(square,['r2c2'])})) as [Partial<Assignment>,Partial<Assignment>],
+ 'cave-layout':[
+  {shading:shade(['r1c1','r1c2','r1c3','r2c1','r2c2','r2c3','r3c1','r3c2','r3c3'],['r1c1']),partitionAnswers:{walls:[['r1c1']]}},
+  {shading:shade(['r1c1','r1c2','r1c3','r2c1','r2c2','r2c3','r3c1','r3c2','r3c3'],['r2c2']),partitionAnswers:{walls:[['r2c2']]}}
+ ],
+ 'shade-run-sums':[0,1].map(()=>({shading:shade(['r1c1','r1c2','r1c3','r1c4'],['r1c1','r1c2'])})) as [Partial<Assignment>,Partial<Assignment>],
+ 'signed-shading-cage':[0,1].map(()=>({shading:shade(['r1c1','r1c2'],['r1c1'])})) as [Partial<Assignment>,Partial<Assignment>],
  islands:[0,1].map(()=>({shading:shade(square,['r1c2','r2c1','r2c2']),partitionAnswers:{islands:[['r1c1']]}})) as [Partial<Assignment>,Partial<Assignment>],
  'domino-trails':[0,1].map(()=>({shading:shade(square,['r2c1','r2c2']),partitionAnswers:{dominoes:[['r1c1','r1c2']]}})) as [Partial<Assignment>,Partial<Assignment>],
  'opposite-colour-arrows':[{shading:arrowShading},{shading:arrowShading}],
