@@ -10,6 +10,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 - Portable case compilation and rule evaluation with source-linked conflicts, three-valued partial assignments, shading conditions, shared answer channels and complete-answer checking.
 - Exact candidate support over bounded rule scopes, with explicit size and formula-resource refusals.
+- `shadingScope(rule)` names the cells whose shading a rule reads, so hosts know which declarations need a shading answer.
 - Executable public examples, alias examples, candidate properties and per-rule timing reports. Document the API and finite evaluation domains in `docs/evaluator.md`.
 
 ## 1.0.0

@@ -1,5 +1,5 @@
 import {expect,test} from 'bun:test';
-import {compileCase,evaluate,allowed,checkAnswer,type Assignment,type CompiledRule,type Cell} from '../../src';
+import {compileCase,evaluate,allowed,checkAnswer,shadingScope,type Assignment,type CompiledRule,type Cell} from '../../src';
 import {stringify} from 'yaml';
 export const file=(rules:string,extra='',board='board: {rows: 1, cols: 3, symbols: [1,2,3]}\n')=>({file:'example.md',text:`---\nformat: open-rules\ntitle: Example\nsetter: Example\nsource: ""\ncase: ""\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n${board}---\n\n\`\`\`rules\n${rules}\n\`\`\`\n${extra}`});
 export function compile(rules:string,extra='',board?:string){const result=compileCase(file(rules,extra,board));expect(result.diagnostics).toEqual([]);expect(result.value).toBeDefined();return result.value!;}
@@ -26,6 +26,12 @@ test('uniform if/unless and unknown shading',()=>{
  expect(evaluate(r,{digits,shading:{[a]:true,[b]:true}}).status).toBe(unless?'holds':'broken');
  expect(evaluate(r,{digits,shading:{[a]:true,[b]:false}}).status).toBe(unless?'broken':'holds');
  }
+});
+test('shadingScope names the cells a rule reads shading from',()=>{
+ const board='board: {rows: 2, cols: 2, symbols: [1,2,3,4]}\n';
+ expect(shadingScope(compile('yin-yang','',board).rules[0])).toEqual(['r1c1','r1c2','r2c1','r2c2']);
+ expect(shadingScope(compile('thermo r1c1-r1c2 if uniform').rules[0])).toEqual([a,b]);
+ expect(shadingScope(compile('thermo r1c1-r1c2').rules[0])).toEqual([]);
 });
 test('allowed matches independent exhaustive truth for every partial pair assignment',()=>{
  for(const text of ['pair r1c1-r1c2 difference 1','not pair r1c1-r1c2 sum 3','thermo r1c1-r1c2']){
