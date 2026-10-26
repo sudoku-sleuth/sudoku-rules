@@ -3,6 +3,13 @@ const lowered = { status: "lowered" } as const;
 const pending = (reason: string): DeclarationCapability => ({ status: "unsupported", reason });
 /** Exhaustive public declaration inventory. Adding a rule page requires an entry here. */
 export const declarationRegistry = {
+  "minesweeper": pending("Shaded king-neighbour counts and unshaded clue cells are evaluated from the published formula."),
+  "cave-layout": pending("Connected cave cells and edge-touching wall components are evaluated from the published formula."),
+  "shade-run-sums": pending("Maximal same-shade run totals on open and closed walks are evaluated from the published formula."),
+  "parity-bridge": pending("Interior parity counts with opposite-parity endpoints are evaluated from the published formula."),
+  "helping-cages": pending("One-to-one helper assignments between distinct cage totals are evaluated from the published formula."),
+  "signed-shading-cage": pending("Signed cage digits and connected unshaded subsets are evaluated from the published formula."),
+
   "unique-primes": pending("Distinct allowed prime decimal operands are evaluated from their formula."),
   "stingy-cages": pending("Pairwise support intersection bounds are evaluated from their formula."),
   "ziffer-lines": pending("Centre-clued mirrored differences are evaluated from their formula."),
