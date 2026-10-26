@@ -49,6 +49,8 @@ Sudoku houses, anti-move constraints and supported global relations use decompos
 
 ## Candidate support and bounds
 
+`shadingScope(rule)` returns the cells whose shading the rule reads: the rule's scope when one of its formulas, or a `uniform` condition, reads the shading answer, and an empty list otherwise. A host that offers shading uses it to know which declarations need a shading answer.
+
 `allowed(rule, assignment, candidates)` returns `Map<Cell, Set<Digit>>` for empty scope cells. Each digit with a satisfying completion of the rule’s scope is retained. When every completion can be decided, the result is exact. An undecided completion also supports its digits, so missing auxiliary answers cannot cause pruning. It ignores other declarations. Missing candidate sets use the board alphabet; an explicitly empty set supplies no candidates.
 
 The Cartesian preflight bound is:

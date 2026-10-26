@@ -189,7 +189,8 @@ function finiteVerdict(f:Formula,assignment:Assignment,alphabet?:readonly number
 /** One expression budget covers the initial verdict, refinement and nested calls. */
 export const ALLOWED_WORK_LIMIT=100_000;
 function spend(budget:StepBudget):void{if(--budget.remaining<0)throw new EvaluationLimit('Evaluation step budget exceeded');}
-function shadingScope(rule:CompiledRule):Cell[]{
+/** The cells whose shading a rule reads: its scope when a formula or condition reads the shading answer, otherwise none. */
+export function shadingScope(rule:CompiledRule):Cell[]{
  const seen=new Set<string>();
  const visit=(n:import('../language/ast.js').Expr):boolean=>{
   if(n.kind==='name'){
