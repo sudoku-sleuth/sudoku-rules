@@ -416,7 +416,9 @@ const libraryRoot='https://rules.sudoku-sleuth.com/';
 const bareKind=(kind:string)=>kind.startsWith(libraryRoot)?kind.slice(libraryRoot.length).replace(/\.md$/,''):kind;
 const bindingKinds=['clue-count','liar-cells','mapped-values','value-modifier'];
 interface Edit {start:number;end:number;text:string}
-interface Line {ast:DeclarationAST;kind:string;rule:string;p:Record<string,unknown>;text:string;lineStart:number;lineEnd:number;custom:boolean}
+interface Line {ast:DeclarationAST;kind:string;rule:string;p:Record<string,unknown>;text:string;lineStart:number;lineEnd:number;custom:boolean;
+ /** The rule's primary cell list, however it is written: positional (`r1c1-r1c2`) or as a setting (`line [...]`). */
+ path?:string[];form:'positional'|'setting'|'none';primary?:string}
 /** What a template proposes: the lines it replaces, the text edits and the declarations it writes, or why it already refuses. */
 interface Match {lines:Line[];edits:Edit[];written:string[];refuse?:string}
 
@@ -435,7 +437,11 @@ function scanLines(page:PageSource,spellings:Map<string,string>):{lines:Line[];u
     const kind=bareKind(ast.kind.value);
     const p:Record<string,unknown>={};for(const param of ast.parameters)p[param.name.value]=decoded(param.value);
     const rule=declarationLibrary.kindByUrl?.get(`${libraryRoot}${kind}.md`)??spellings.get(kind)??kind;
-    lines.push({ast,kind,rule,p,text:page.text.slice(ast.span.start.offset,ast.span.end.offset),lineStart:offset,lineEnd:offset+raw.length,custom:kind.startsWith('#')||!declarationLibrary.kinds.has(kind)});
+    // The same reading as the parser: the primary list is the positional cells or the setting of that name.
+    const primary=parameterGrammar(declarationLibrary.parameters?.get(`${libraryRoot}${kind}.md`)).primary;
+    const data=declarationParameters(ast,primary),listed=primary?data[primary]:undefined;
+    const path=Array.isArray(listed)&&listed.every(c=>typeof c==='string'&&/^r\d+c\d+$/.test(c))?listed as string[]:undefined;
+    lines.push({ast,kind,rule,p,path,primary,form:!path?'none':ast.cells?'positional':'setting',text:page.text.slice(ast.span.start.offset,ast.span.end.offset),lineStart:offset,lineEnd:offset+raw.length,custom:kind.startsWith('#')||!declarationLibrary.kinds.has(kind)});
    }else if(raw.trim()&&!raw.trim().startsWith('#'))unreadable++;
    offset+=raw.length;
   }
@@ -462,12 +468,13 @@ function strandedLabel(removed:Line[],page:PageSource):string|undefined {
 function touching(pieces:Line[]):Line[][] {
  const parent=pieces.map((_,i)=>i),find=(i:number):number=>parent[i]===i?i:parent[i]=find(parent[i]);
  const owner=new Map<string,number>();
- pieces.forEach((l,i)=>{for(const cell of new Set(l.ast.cells!.value as string[])){const j=owner.get(cell);if(j===undefined)owner.set(cell,i);else parent[find(i)]=find(j);}});
+ pieces.forEach((l,i)=>{for(const cell of new Set(cellsOf(l))){const j=owner.get(cell);if(j===undefined)owner.set(cell,i);else parent[find(i)]=find(j);}});
  const groups=new Map<number,Line[]>();
  pieces.forEach((l,i)=>groups.set(find(i),[...groups.get(find(i))??[],l]));
  return [...groups.values()];
 }
-const cellsOf=(l:Line)=>l.ast.cells!.value as string[];
+/** The cells of a line's primary list; a declaration that gives none has none. */
+const cellsOf=(l:Line)=>l.path??[];
 const coordinates=(cell:string)=>cell.match(/^r(\d+)c(\d+)$/)!.slice(1).map(Number);
 const settingsMatch=(t:Template,l:Line)=>Object.entries(t.settings!).every(([name,value])=>Object.hasOwn(l.p,name)&&encode(l.p[name])===encode(value));
 
@@ -489,7 +496,7 @@ function replaceSettings(t:Template,lines:Line[]):Match[] {
 /** One `not pair` per orthogonal edge among a set of cells becomes one negative limited to those cells. */
 function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
  const pieces=lines.filter(l=>l.rule==='pair'&&l.ast.negations.length===1&&!l.ast.condition&&cellsOf(l).length===2
-  &&Object.hasOwn(l.p,'relation')&&l.ast.parameters.every(p=>['relation','element'].includes(p.name.value))
+  &&Object.hasOwn(l.p,'relation')&&l.ast.parameters.every(p=>['relation','element',...l.form==='setting'?[l.primary]:[]].includes(p.name.value))
   &&coordinates(cellsOf(l)[0]).reduce((n,v,i)=>n+Math.abs(v-coordinates(cellsOf(l)[1])[i]),0)===1);
  const byRelation=new Map<string,Line[]>();
  for(const l of pieces)byRelation.set(encode(l.p.relation),[...byRelation.get(encode(l.p.relation))??[],l]);
@@ -511,10 +518,10 @@ function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
 }
 /** Touching pieces of one drawn line, written as separate lines, become one line. */
 function joinLinePieces(t:Template,lines:Line[],page:PageSource):Match[] {
- const pieces=lines.filter(l=>l.rule===t.rule&&!l.ast.negations.length&&!l.ast.condition&&cellsOf(l).length>=2
+ const pieces=lines.filter(l=>l.rule===t.rule&&!l.ast.negations.length&&!l.ast.condition&&l.form!=='none'&&cellsOf(l).length>=2
   &&!Object.hasOwn(l.p,'edges')&&(l.p.loop===undefined||l.p.loop===false));
  const bySettings=new Map<string,Line[]>();
- const settings=(l:Line)=>encode(Object.fromEntries(Object.entries(l.p).filter(([name])=>name!=='element'&&name!=='loop').sort(([a],[b])=>a<b?-1:1)))+(l.p.loop===undefined?'':'loop');
+ const settings=(l:Line)=>encode(Object.fromEntries(Object.entries(l.p).filter(([name])=>name!=='element'&&name!=='loop'&&name!==l.primary).sort(([a],[b])=>a<b?-1:1)))+(l.p.loop===undefined?'':'loop');
  for(const l of pieces)bySettings.set(settings(l),[...bySettings.get(settings(l))??[],l]);
  const matches:Match[]=[];
  for(const group of bySettings.values())for(const part of touching(group)){
@@ -530,24 +537,30 @@ function joinLinePieces(t:Template,lines:Line[],page:PageSource):Match[] {
   const shape=joints.some(c=>uses.get(c)!==2||ends.get(c)?.length!==2)||repeated?'the pieces branch, cross or repeat a cell'
    :joints.length!==part.length-1?'the pieces close a loop':undefined;
   const refuse=part.some(l=>l.ast.comment)?'a piece carries a comment that a join would lose'
+   :new Set(part.map(l=>l.form)).size>1?'the pieces write their cells in different forms, positional and as a setting'
    :new Set(part.map(element)).size>1?'the pieces are tied to different drawn elements':shape??strandedLabel(part.slice(1),page);
   const written=[''],edits:Edit[]=[];
   if(!refuse){
    // Walk from the free end of one piece through each joint.
-   const start=part.find(l=>[cellsOf(l)[0],cellsOf(l).at(-1)!].some(c=>uses.get(c)===1))!;
+   const start=part.find(l=>[cellsOf(l)[0],cellsOf(l).at(-1)!].some(c=>uses.get(c)===1));
+   if(!start){matches.push({lines:part,edits,written:[],refuse:'the pieces have no free end to start from'});continue;}
    const first=cellsOf(start);
    let path=uses.get(first[0])===1?[...first]:[...first].reverse();
    const used=new Set([start]);
    while(used.size<part.length){
-    const next=part.find(l=>!used.has(l)&&(cellsOf(l)[0]===path.at(-1)||cellsOf(l).at(-1)===path.at(-1)))!;
+    const next=part.find(l=>!used.has(l)&&(cellsOf(l)[0]===path.at(-1)||cellsOf(l).at(-1)===path.at(-1)));
+    if(!next)break;
     used.add(next);
     const cells=cellsOf(next);
     path=[...path,...(cells[0]===path.at(-1)?cells:[...cells].reverse()).slice(1)];
    }
-   const base=part[0],at=base.ast.cells!.span;
-   const text=base.text,offset=base.ast.span.start.offset;
-   written[0]=text.slice(0,at.start.offset-offset)+path.join('-')+text.slice(at.end.offset-offset);
-   edits.push({start:at.start.offset,end:at.end.offset,text:path.join('-')},...part.slice(1).map(wholeLine));
+   if(used.size<part.length){matches.push({lines:part,edits,written:[],refuse:'the pieces do not form one path'});continue;}
+   // Keep the form the pieces used: a positional list, or the setting's own list notation.
+   const base=part[0],holder=base.form==='positional'?base.ast.cells!:base.ast.parameters.find(p=>p.name.value===base.primary)!.value;
+   const at=holder.span,text=base.text,offset=base.ast.span.start.offset;
+   const printed=base.form==='positional'?path.join('-'):`[${path.map(c=>JSON.stringify(c)).join(holder.raw.includes(', ')?', ':',')}]`;
+   written[0]=text.slice(0,at.start.offset-offset)+printed+text.slice(at.end.offset-offset);
+   edits.push({start:at.start.offset,end:at.end.offset,text:printed},...part.slice(1).map(wholeLine));
   }
   matches.push({lines:part,edits,written:refuse?[]:written,...(refuse?{refuse}:{})});
  }

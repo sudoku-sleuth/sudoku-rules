@@ -85,3 +85,38 @@ test('a header the spec defines cannot be declared, nor a non-array list',()=>{
  expect(()=>canonicalise(page,board,undefined,{metadataHeaders:['givens']})).toThrow('cannot be declared');
  expect(()=>canonicalise(page,board,undefined,{metadataHeaders:'notes' as never})).toThrow('array of header names');
 });
+
+test('whisper pieces written with the line setting join and keep that form',()=>{
+ const pieces=['"w-1": whispers loop false line ["r1c1","r1c2"] gap 4','"w-2": whispers loop false line ["r1c3","r1c2"] gap 4'];
+ const result=run(pieces.join('\n'));
+ expect(rulesOf(result.text)).toBe('"w-1": whispers loop false line ["r1c1","r1c2","r1c3"] gap 4');
+ expect(result.rewrites).toHaveLength(1);
+ expect(result.kept).toEqual([]);
+});
+
+test('lines written with the line setting that do not touch are left as written',()=>{
+ const lines='whispers loop false line ["r1c1","r1c2"] gap 4\nwhispers loop false line ["r5c5","r5c6"] gap 4\nparity line ["r8c1","r8c2"]';
+ const result=run(lines);
+ expect(rulesOf(result.text)).toBe(lines);
+ expect(result).toMatchObject({rewrites:[],kept:[]});
+});
+
+test('a positional piece and a setting piece are kept apart with a reason',()=>{
+ const lines='whispers r1c1-r1c2 gap 4 loop false\nwhispers loop false line ["r1c2","r1c3"] gap 4';
+ const result=run(lines);
+ expect(rulesOf(result.text)).toBe(lines);
+ expect(result.rewrites).toEqual([]);
+ expect(result.kept).toHaveLength(1);
+ expect(result.kept[0].reason).toBe('the pieces write their cells in different forms, positional and as a setting');
+});
+
+test('a file mixing positional and setting forms across every template does not throw',()=>{
+ const lines=[
+  'whispers loop false line ["r1c1","r1c2"] gap 4','whispers r1c2-r1c3 gap 4 loop false','whispers line [] edges [["r2c1","r2c2"]] gap 4',
+  'parity line ["r3c1","r3c2"]','parity line ["r3c2","r3c3"]','parity r4c1-r4c2','parity r4c2-r4c3',
+  'not pair cells ["r5c1","r5c2"] relation "difference"','not pair r5c2-r5c3 relation "difference"',
+  'pair cells ["r6c1","r6c2"]','unique line ["r7c1","r7c2"]','unique r7c3-r7c4',
+ ].join('\n');
+ expect(()=>run(lines)).not.toThrow();
+ expect(()=>run(lines.split('\n').reverse().join('\n'))).not.toThrow();
+});
