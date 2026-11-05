@@ -31,6 +31,8 @@ alias_bind:
   gap: gap
   turnDigits: "{}"
 layer: rule
+replaces:
+  - pattern: join-line-pieces
 ---
 
 

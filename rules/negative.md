@@ -31,6 +31,9 @@ alias_bind:
   negative: "true"
   channel: '"D"'
 layer: rule
+replaces:
+  - pattern: merge-negated-pairs
+    guard: no-value-binding
 ---
 
 

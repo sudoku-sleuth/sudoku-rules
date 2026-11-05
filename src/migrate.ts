@@ -399,3 +399,208 @@ function migrateAllGiven(page:PageSource):Result<PageSource> {
  let text=page.text;for(const c of changes.sort((a,b)=>b.start-a.start))text=text.slice(0,c.start)+c.text+text.slice(c.end);
  return {value:{...page,text},diagnostics:[]};
 }
+
+import {publishedTemplates} from './published-templates.js';
+import {groupPatterns,type Template,type TemplateGuard} from './templates.js';
+import {normalise,compare as compareNormalForms,type BoardContext} from './semantics/index.js';
+import {stringify} from 'yaml';
+
+/** One rewrite canonicalise made: the template, the declarations it replaced and the ones it wrote. */
+export interface CanonicalRewrite {template:string;replaced:string[];written:string[]}
+/** A match a template proposed and canonicalise refused, with the reason. */
+export interface CanonicalKept {template:string;declarations:string[];reason:string}
+export interface Canonicalised {text:string;rewrites:CanonicalRewrite[];kept:CanonicalKept[]}
+
+const libraryRoot='https://rules.sudoku-sleuth.com/';
+const bareKind=(kind:string)=>kind.startsWith(libraryRoot)?kind.slice(libraryRoot.length).replace(/\.md$/,''):kind;
+const bindingKinds=['clue-count','liar-cells','mapped-values','value-modifier'];
+interface Edit {start:number;end:number;text:string}
+interface Line {ast:DeclarationAST;kind:string;rule:string;p:Record<string,unknown>;text:string;lineStart:number;lineEnd:number;custom:boolean}
+/** What a template proposes: the lines it replaces, the text edits and the declarations it writes, or why it already refuses. */
+interface Match {lines:Line[];edits:Edit[];written:string[];refuse?:string}
+
+function scanLines(page:PageSource,spellings:Map<string,string>):Line[] {
+ const lines:Line[]=[];
+ for(const block of markdownBlocks(page.text).filter(b=>b.language==='rules')){
+  let offset=block.offset;
+  for(const raw of block.text.split(/(?<=\n)/)){
+   const parsed=parseDeclaration({file:page.file,text:raw.trimEnd(),document:page.text,offset},kind=>{
+    const url=kind.startsWith('https://')?kind:`${libraryRoot}${kind}.md`,contract=declarationLibrary.parameters?.get(url);
+    return {...parameterGrammar(contract),positional:contract?.positional,line:declarationLibrary.lines?.get(url),opaque:!declarationLibrary.urls.has(url)};
+   });
+   const ast=parsed.value;
+   if(ast&&!parsed.diagnostics.length){
+    const kind=bareKind(ast.kind.value);
+    const p:Record<string,unknown>={};for(const param of ast.parameters)p[param.name.value]=decoded(param.value);
+    lines.push({ast,kind,rule:spellings.get(kind)??kind,p,text:page.text.slice(ast.span.start.offset,ast.span.end.offset),lineStart:offset,lineEnd:offset+raw.length,custom:kind.startsWith('#')||!declarationLibrary.kinds.has(kind)});
+   }
+   offset+=raw.length;
+  }
+ }
+ return lines;
+}
+const guards:Record<TemplateGuard,(lines:Line[])=>string|undefined>={
+ 'no-value-binding':lines=>lines.some(l=>bindingKinds.includes(l.rule)||l.custom)?'the file binds or defines values, so printed digits may differ from effective values':undefined,
+};
+const element=(l:Line)=>l.p.element===undefined?'':encode(l.p.element);
+const label=(l:Line,page:PageSource)=>l.ast.instance?page.text.slice(l.ast.span.start.offset,(l.ast.negations[0]?.span.start??l.ast.kind.span.start).offset):'';
+const wholeLine=(l:Line):Edit=>({start:l.lineStart,end:l.lineEnd,text:''});
+/** A removed declaration's label must not be read anywhere else in the file. */
+function strandedLabel(removed:Line[],page:PageSource):string|undefined {
+ for(const l of removed){
+  const id=l.ast.instance?.value;if(!id)continue;
+  const outside=page.text.slice(0,l.ast.span.start.offset)+page.text.slice(l.ast.span.end.offset);
+  const escaped=id.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  if(new RegExp(`(?<![\\p{L}\\p{M}0-9_.-])${escaped}(?![\\p{L}\\p{M}0-9_.-])`,'u').test(outside))return `the label ${id} is used elsewhere in the file`;
+ }
+}
+/** Connected groups of lines that share a cell. */
+function touching(pieces:Line[]):Line[][] {
+ const parent=pieces.map((_,i)=>i),find=(i:number):number=>parent[i]===i?i:parent[i]=find(parent[i]);
+ const owner=new Map<string,number>();
+ pieces.forEach((l,i)=>{for(const cell of new Set(l.ast.cells!.value as string[])){const j=owner.get(cell);if(j===undefined)owner.set(cell,i);else parent[find(i)]=find(j);}});
+ const groups=new Map<number,Line[]>();
+ pieces.forEach((l,i)=>groups.set(find(i),[...groups.get(find(i))??[],l]));
+ return [...groups.values()];
+}
+const cellsOf=(l:Line)=>l.ast.cells!.value as string[];
+const coordinates=(cell:string)=>cell.match(/^r(\d+)c(\d+)$/)!.slice(1).map(Number);
+const settingsMatch=(t:Template,l:Line)=>Object.entries(t.settings!).every(([name,value])=>Object.hasOwn(l.p,name)&&encode(l.p[name])===encode(value));
+
+/** The printed-digit setting, or any settings form a page lists: drop the settings the canonical form leaves to the default. */
+function replaceSettings(t:Template,lines:Line[]):Match[] {
+ return lines.filter(l=>(l.kind===t.kind||t.kind===t.rule&&t.spellings.includes(l.kind))&&settingsMatch(t,l)).map(l=>{
+  const edits:Edit[]=[];
+  for(const name of t.omit!){
+   const parameter=l.ast.parameters.find(p=>p.name.value===name)!;
+   let start=parameter.span.start.offset;
+   while(start>l.ast.span.start.offset&&/\s/.test(l.text[start-1-l.ast.span.start.offset]))start--;
+   edits.push({start,end:parameter.span.end.offset,text:''});
+  }
+  if(l.kind!==t.rule)edits.push({start:l.ast.kind.span.start.offset,end:l.ast.kind.span.end.offset,text:t.rule});
+  const base=l.ast.span.start.offset;
+  let written=l.text;for(const e of [...edits].sort((a,b)=>b.start-a.start))written=written.slice(0,e.start-base)+e.text+written.slice(e.end-base);
+  return {lines:[l],edits,written:[written]};
+ });
+}
+/** One `not pair` per orthogonal edge among a set of cells becomes one negative limited to those cells. */
+function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
+ const pieces=lines.filter(l=>l.rule==='pair'&&l.ast.negations.length===1&&!l.ast.condition&&!l.ast.comment&&cellsOf(l).length===2
+  &&Object.hasOwn(l.p,'relation')&&l.ast.parameters.every(p=>['relation','element'].includes(p.name.value))
+  &&coordinates(cellsOf(l)[0]).reduce((n,v,i)=>n+Math.abs(v-coordinates(cellsOf(l)[1])[i]),0)===1);
+ const byRelation=new Map<string,Line[]>();
+ for(const l of pieces)byRelation.set(encode(l.p.relation),[...byRelation.get(encode(l.p.relation))??[],l]);
+ const matches:Match[]=[];
+ for(const group of byRelation.values())for(const part of touching(group)){
+  const edges=new Set(part.map(l=>JSON.stringify([...cellsOf(l)].sort())));
+  if(edges.size<2)continue;
+  const area=unique(part.flatMap(cellsOf)) as string[];
+  const required=area.flatMap((a,i)=>area.slice(i+1).filter(b=>coordinates(a).reduce((n,v,k)=>n+Math.abs(v-coordinates(b)[k]),0)===1).map(b=>JSON.stringify([a,b].sort())));
+  const refuse=new Set(part.map(element)).size>1?'the pairs are tied to different drawn elements'
+   :required.some(e=>!edges.has(e))?'the pairs do not cover every orthogonal edge between their cells'
+   :strandedLabel(part.slice(1),page);
+  const first=part[0],extra=part.find(l=>l.p.element!==undefined)?.p.element;
+  const written=label(first,page)+printMigratedDeclaration({kind:'negative',parameters:{relations:[first.p.relation],except:[],within:[area],...(extra===undefined?{}:{element:extra})}});
+  matches.push({lines:part,edits:[{start:first.ast.span.start.offset,end:first.ast.span.end.offset,text:written},...part.slice(1).map(wholeLine)],written:[written],...(refuse?{refuse}:{})});
+ }
+ return matches;
+}
+/** Touching pieces of one drawn line, written as separate lines, become one line. */
+function joinLinePieces(t:Template,lines:Line[],page:PageSource):Match[] {
+ const pieces=lines.filter(l=>l.rule===t.rule&&!l.ast.negations.length&&!l.ast.condition&&!l.ast.comment&&cellsOf(l).length>=2
+  &&!Object.hasOwn(l.p,'edges')&&(l.p.loop===undefined||l.p.loop===false));
+ const bySettings=new Map<string,Line[]>();
+ const settings=(l:Line)=>encode(Object.fromEntries(Object.entries(l.p).filter(([name])=>name!=='element'&&name!=='loop').sort(([a],[b])=>a<b?-1:1)))+(l.p.loop===undefined?'':'loop');
+ for(const l of pieces)bySettings.set(settings(l),[...bySettings.get(settings(l))??[],l]);
+ const matches:Match[]=[];
+ for(const group of bySettings.values())for(const part of touching(group)){
+  if(part.length<2)continue;
+  const ends=new Map<string,Line[]>(),uses=new Map<string,number>();
+  for(const l of part){
+   const cells=cellsOf(l);
+   cells.forEach(c=>uses.set(c,(uses.get(c)??0)+1));
+   for(const c of new Set([cells[0],cells.at(-1)!]))ends.set(c,[...ends.get(c)??[],l]);
+  }
+  const joints=[...uses].filter(([,n])=>n>1).map(([c])=>c);
+  const repeated=part.some(l=>new Set(cellsOf(l)).size!==cellsOf(l).length||cellsOf(l)[0]===cellsOf(l).at(-1));
+  const shape=joints.some(c=>uses.get(c)!==2||ends.get(c)?.length!==2)||repeated?'the pieces branch, cross or repeat a cell'
+   :joints.length!==part.length-1?'the pieces close a loop':undefined;
+  const refuse=new Set(part.map(element)).size>1?'the pieces are tied to different drawn elements':shape??strandedLabel(part.slice(1),page);
+  const written=[''],edits:Edit[]=[];
+  if(!refuse){
+   // Walk from the free end of one piece through each joint.
+   const start=part.find(l=>[cellsOf(l)[0],cellsOf(l).at(-1)!].some(c=>uses.get(c)===1))!;
+   const first=cellsOf(start);
+   let path=uses.get(first[0])===1?[...first]:[...first].reverse();
+   const used=new Set([start]);
+   while(used.size<part.length){
+    const next=part.find(l=>!used.has(l)&&(cellsOf(l)[0]===path.at(-1)||cellsOf(l).at(-1)===path.at(-1)))!;
+    used.add(next);
+    const cells=cellsOf(next);
+    path=[...path,...(cells[0]===path.at(-1)?cells:[...cells].reverse()).slice(1)];
+   }
+   const base=part[0],at=base.ast.cells!.span;
+   const text=base.text,offset=base.ast.span.start.offset;
+   written[0]=text.slice(0,at.start.offset-offset)+path.join('-')+text.slice(at.end.offset-offset);
+   edits.push({start:at.start.offset,end:at.end.offset,text:path.join('-')},...part.slice(1).map(wholeLine));
+  }
+  matches.push({lines:part,edits,written:refuse?[]:written,...(refuse?{refuse}:{})});
+ }
+ return matches;
+}
+const groupMatchers:Record<string,(t:Template,lines:Line[],page:PageSource)=>Match[]>={'join-line-pieces':joinLinePieces,'merge-negated-pairs':mergeNegatedPairs};
+/** The group patterns that exist in code, by name. Published pages can only name these. */
+export const groupPatternNames=Object.keys(groupMatchers).sort();
+if(JSON.stringify(groupPatternNames)!==JSON.stringify(Object.keys(groupPatterns).sort()))throw Error('Group patterns in code and in templates.ts disagree.');
+
+/**
+ * Normalise the matched declarations and their rewrites on the case board, with everything they read
+ * (header board, regions and givens, value bindings and custom definitions). Equal normal forms prove the rewrite.
+ */
+function prove(page:PageSource,metadata:Record<string,unknown>,board:BoardContext,lines:Line[],match:Match):string|undefined {
+ const header=stringify({format:'open-rules',title:'Canonical proof',setter:'Open Rules',source:'',case:'',library:metadata.library,status:'read',
+  ...Object.fromEntries(['board','givens','regions'].filter(k=>metadata[k]!==undefined).map(k=>[k,metadata[k]]))});
+ const context=[...markdownBlocks(page.text).filter(b=>b.language==='custom-rules').map(b=>'```custom-rules\n'+b.text+(b.text.endsWith('\n')?'':'\n')+'```\n')];
+ const bindings=lines.filter(l=>bindingKinds.includes(l.rule)||l.custom).map(l=>l.text);
+ const file=(declarations:string[])=>({file:page.file,text:`---\n${header}---\n\n${context.join('\n')}\`\`\`rules\n${[...bindings,...declarations].join('\n')}\n\`\`\`\n`});
+ const result=compareNormalForms(normalise(file(match.lines.map(l=>l.text)),board),normalise(file(match.written),board));
+ if(result.status==='equivalent')return undefined;
+ if(result.status==='invalid')return `a side could not be normalised: ${result.issues[0]?.message??'invalid'}`;
+ if(result.uncovered.length)return `not proven, a declaration is not lowered: ${result.uncovered[0].declaration.reason}`;
+ return `the normal forms differ: ${result.differences[0]?.message??'unresolved'}`;
+}
+/**
+ * Rewrite a case file to the canonical rule of each equivalence set its rule pages list. Templates apply in the
+ * alphabetical order of their canonical rule; each proposes, and only a rewrite whose old and new declarations
+ * normalise to equal forms on the case board is written. Text outside the changed declarations is untouched.
+ */
+export function canonicalise(page:PageSource,board:BoardContext,templates:readonly Template[]=publishedTemplates):Canonicalised {
+ const rewrites:CanonicalRewrite[]=[],kept:CanonicalKept[]=[];
+ const header=readHeader(page);
+ if(!header.value||header.value.metadata.library!==libraryRoot||header.value.metadata.negate!==undefined)return {text:page.text,rewrites,kept};
+ const metadata=header.value.metadata;
+ const spellings=new Map(templates.flatMap(t=>t.spellings.map(s=>[s,t.rule] as const)));
+ const ordered=[...templates].sort((a,b)=>a.rule<b.rule?-1:a.rule>b.rule?1:a.form<b.form?-1:a.form>b.form?1:0);
+ const seen=new Set<string>();
+ let text=page.text;
+ // A pass that changes nothing ends the loop; each match is tried once.
+ for(let changed=true;changed;){
+  changed=false;
+  for(const t of ordered){
+   const current={...page,text},lines=scanLines(current,spellings);
+   const matches=t.pattern?groupMatchers[t.pattern](t,lines,current):replaceSettings(t,lines);
+   const edits:Edit[]=[];
+   for(const match of matches){
+    const id=`${t.form}\n${match.lines.map(l=>l.text).join('\n')}`;
+    if(seen.has(id))continue;
+    seen.add(id);
+    const reason=match.refuse??(t.guard?guards[t.guard](lines):undefined)??prove(current,metadata,board,lines,match);
+    if(reason){kept.push({template:t.form,declarations:match.lines.map(l=>l.text),reason});continue;}
+    edits.push(...match.edits);
+    rewrites.push({template:t.form,replaced:match.lines.map(l=>l.text),written:match.written});
+   }
+   if(edits.length){for(const e of edits.sort((a,b)=>b.start-a.start))text=text.slice(0,e.start)+e.text+text.slice(e.end);changed=true;}
+  }
+ }
+ return {text,rewrites,kept};
+}

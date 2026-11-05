@@ -31,6 +31,12 @@ alias_bind:
   gap: gap
   turnDigits: "{}"
 layer: rule
+replaces:
+  - settings:
+      channel: D
+    canonical:
+      omit: [channel]
+    guard: no-value-binding
 ---
 
 

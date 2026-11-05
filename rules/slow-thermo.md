@@ -22,6 +22,12 @@ alias_bind:
   orientation: orientation
   channel: channel
 layer: rule
+replaces:
+  - settings:
+      channel: D
+    canonical:
+      omit: [channel]
+    guard: no-value-binding
 ---
 
 # Slow Thermo

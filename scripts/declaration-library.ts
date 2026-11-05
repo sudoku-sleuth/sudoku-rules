@@ -19,3 +19,7 @@ const homes=Object.fromEntries(headers.map(m=>[m.kind,m.alias_of??m.kind]));
 const layerOutput=`// Generated from public page headers by scripts/declaration-library.ts.\nexport const libraryLayers: Record<string, 'block'|'rule'> = ${JSON.stringify(layers,null,2)};\nexport const blockHomes: Record<string,string> = ${JSON.stringify(homes,null,2)};\n`;
 if(process.argv.includes('--check')) {if(await Bun.file('src/library-layers.ts').text()!==layerOutput)throw Error('Run bun run generate:declarations to update library layers.');}
 else await Bun.write('src/library-layers.ts',layerOutput);
+
+const templateOutput=`// Generated from the replaces entries of the public pages by scripts/declaration-library.ts.\nimport type { Template } from './templates.js';\nexport const publishedTemplates: readonly Template[] = ${JSON.stringify(compiled.value.templates,null,2)};\n`;
+if(process.argv.includes('--check')) {if(await Bun.file('src/published-templates.ts').text()!==templateOutput)throw Error('Run bun run generate:declarations to update published templates.');}
+else await Bun.write('src/published-templates.ts',templateOutput);

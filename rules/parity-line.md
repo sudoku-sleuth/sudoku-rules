@@ -30,6 +30,8 @@ alias_bind:
   fixedClass: absent(|{}|)
   channel: '"D"'
 layer: rule
+replaces:
+  - pattern: join-line-pieces
 ---
 
 

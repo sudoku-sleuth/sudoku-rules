@@ -28,6 +28,12 @@ alias_bind:
   rightOperation: '"sum"'
   relation: relationSpec("difference",0)
 layer: rule
+replaces:
+  - settings:
+      channel: D
+    canonical:
+      omit: [channel]
+    guard: no-value-binding
 ---
 
 

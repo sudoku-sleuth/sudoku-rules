@@ -33,6 +33,12 @@ alias_bind:
   repeats: repeats
   mode: '"consecutive"'
 layer: rule
+replaces:
+  - settings:
+      channel: D
+    canonical:
+      omit: [channel]
+    guard: no-value-binding
 ---
 
 

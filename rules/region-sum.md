@@ -33,6 +33,12 @@ alias_bind:
   repeats: "true"
   line: some(line)
   combine: combine
+replaces:
+  - settings:
+      channel: D
+    canonical:
+      omit: [channel]
+    guard: no-value-binding
 ---
 
 # Region Sum

@@ -166,6 +166,24 @@ Route Group requires at least two different names in `routes`. Cell Entries
 rejects the reserved names D and V.
 
 
+## Replaced forms and canonical rewriting
+
+A rule page lists the forms it replaces in a `replaces` front-matter entry. An entry is either settings of this rule that the canonical form leaves to the default, or the name of a group pattern that exists in code:
+
+```yaml
+replaces:
+  - settings:
+      channel: D
+    canonical:
+      omit: [channel]
+    guard: no-value-binding
+  - pattern: join-line-pieces
+```
+
+`kind` names the replaced declaration when it is not the page's own rule. `guard` comes from a closed list; `no-value-binding` holds only when the file declares no value binding or custom definition. The group patterns are `join-line-pieces` (touching pieces of one drawn line become one line) and `merge-negated-pairs` (one negated pair per orthogonal edge among a set of cells becomes one `negative` limited to those cells). A pattern can only be listed on a rule that it writes. `bun run lint:library` refuses two pages that claim the same replaced form, so each set has one canonical rule.
+
+`canonicalise(page, board)` returns `{ text, rewrites, kept }`. Templates apply in the alphabetical order of their canonical rule, each declaration matches a template at most once, and the loop ends when a pass changes nothing. A template only proposes. Each proposal is written when the old declarations and the new ones normalise on the case board, together with the header board, regions and givens, the value bindings and the custom definitions, to equal normal forms with nothing uncovered. Any other result leaves the declarations as written and lists them in `kept` with the reason. Text outside the changed declarations is unchanged. A rewrite never merges declarations tied to different drawn elements and never splits one drawn element.
+
 ## Major-version migration
 
 The [1.0 migration](../docs/migration.md) rewrites every published 0.3 kind without splitting its whole-instance meaning. Blocks take explicit channels and occurrence policies; named rules retain their input contracts and former defaults. Migration chooses a named rule where one exists, otherwise a block with settings. Conditional source lines keep their bound declaration so the condition still reads the original primary cells. `migrationTable` records the output kind, canonical definition, form and meaning status for each old kind.

@@ -1,4 +1,5 @@
 import {legacyRuleRenames} from "./migration-data.js";
+import { readTemplates, type Template } from "./templates.js";
 import { checkSharedAnswers } from './shared-answers.js';
 import { compileBoundAlias } from './bound-alias.js';
 import { checkBoard, checkParameterAST, parameterGrammar, explicitBoardParameters, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
@@ -274,6 +275,8 @@ export interface PublicLibrary {
     documents: number;
     features: CompiledFeature[];
     registry: RuleRegistry;
+    /** What each rule page says it replaces, for canonicalise. */
+    templates: Template[];
 }
 // Batch callers can reuse source-keyed prelude checks through preludeCompiler.
 export function compilePublicLibrary(pages: PageSource[], preludeCompiler = compilePrelude): Result<PublicLibrary> {
@@ -431,5 +434,14 @@ export function compilePublicLibrary(pages: PageSource[], preludeCompiler = comp
         if (line) registry.lines!.set(oldUrl,line);
         registry.sharedNames!.set(oldKind,registry.sharedNames!.get(target) ?? {});
     }
-    return diagnostics.length ? { diagnostics } : { value: { prelude: parsed.value, rules, blocks: new Map([...rules].filter(([kind]) => pages.some(p => {const m=headers.get(p.file)?.value?.metadata;return m?.kind===kind && m.layer==="block";}))), namedRules: new Map([...rules].filter(([kind]) => pages.some(p => {const m=headers.get(p.file)?.value?.metadata;return m?.kind===kind && m.layer==="rule";}))), aliases, shorthands, documents, features, registry }, diagnostics: [] };
+    const templates: Template[] = [];
+    for (const page of pages) {
+        const header = headers.get(page.file)?.value;
+        const kind = header?.metadata.kind;
+        if (!header || typeof kind !== "string" || header.metadata.replaces === undefined) continue;
+        const read = readTemplates(header.metadata, kind, [...aliases].filter(([, target]) => target === kind).map(([alias]) => alias));
+        diagnostics.push(...read.errors.map(message => diagnostic("E_HEADER_TYPE", header.field("replaces"), message)));
+        templates.push(...read.templates);
+    }
+    return diagnostics.length ? { diagnostics } : { value: { templates, prelude: parsed.value, rules, blocks: new Map([...rules].filter(([kind]) => pages.some(p => {const m=headers.get(p.file)?.value?.metadata;return m?.kind===kind && m.layer==="block";}))), namedRules: new Map([...rules].filter(([kind]) => pages.some(p => {const m=headers.get(p.file)?.value?.metadata;return m?.kind===kind && m.layer==="rule";}))), aliases, shorthands, documents, features, registry }, diagnostics: [] };
 }
