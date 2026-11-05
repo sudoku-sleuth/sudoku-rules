@@ -1,3 +1,4 @@
+import { isEnvelopeHeader } from "./headers.js";
 import { declarationParameters, type DeclarationAST } from "../declarations.js";
 import { parameterGrammar, type CaseBoard } from "../case-values.js";
 import { semanticParameters } from "./declaration.js";
@@ -38,8 +39,7 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFil
   if (result.issues.length) return result;
   if (metadata.negate !== undefined && metadata.negate !== "all") result.issues.push({ code: "E_SEMANTIC_HEADER", message: "negate must be all when supplied.", span: field("negate") });
   // Board data is supplied through the typed API, never silently ignored in a header.
-  const envelope = new Set(["format", "title", "setter", "source", "case", "library", "status", "flags", "negate"]);
-  for (const key of Object.keys(metadata)) if (!envelope.has(key)) result.extras.push({
+  for (const key of Object.keys(metadata)) if (!isEnvelopeHeader(key)) result.extras.push({
     kind: `header:${key}`, source: { kind: `header:${key}`, span: field(key) },
     reason: key === "board" || key === "givens" ? "Supply board data through BoardContext; header board data is not decoded." : `The ${key} header's semantic meaning is not lowered.`,
   });

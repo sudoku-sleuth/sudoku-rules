@@ -2,6 +2,17 @@ import { groups, key } from "./board.js";
 import type { ReadFile } from "./reader.js";
 import type { CanonicalBoard, Cell } from "./types.js";
 
+/**
+ * Headers the spec defines as text about the case: they never change a solution, so they
+ * lower as covered with no formula and leave the effective-value domain alone. Any header
+ * not listed here or in `ENVELOPE_HEADERS` is read as potentially value-affecting, and an
+ * undefined header keeps its uncovered result. Keep spec/normal-form.md in step.
+ */
+export const METADATA_HEADERS: readonly string[] = ["title", "setter", "source", "case", "status", "flags"];
+/** Spec-defined headers that are read directly: the library root resolves kinds and `negate` flips every rule. */
+export const ENVELOPE_HEADERS: readonly string[] = ["format", "library", "negate"];
+export const isEnvelopeHeader = (name: string): boolean => METADATA_HEADERS.includes(name) || ENVELOPE_HEADERS.includes(name);
+
 /** Header board fields must agree with the caller's resolved context. */
 export function checkBoardHeaders(read: ReadFile, board: CanonicalBoard): void {
   const decodeGivens = (raw: unknown): CanonicalBoard["givens"] => {
