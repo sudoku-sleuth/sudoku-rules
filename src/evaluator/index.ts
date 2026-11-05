@@ -41,23 +41,28 @@ const root = 'https://rules.sudoku-sleuth.com/';
 const record = <T>(input:ReadonlyMap<Cell,T>|Readonly<Partial<Record<Cell,T>>>|undefined):Record<string,T> => input&&'entries' in input&&typeof input.entries==='function'?Object.fromEntries(input.entries()):{...input} as Record<string,T>;
 const supports = (f:Formula):Cell[] => f.op==='All'||f.op==='Any' ? [...new Set(f.children.flatMap(supports))] : f.op==='Not'?supports(f.child):f.op==='Allowed'?[f.cell]:f.op==='SumEqual'?[...new Set([...f.left,...f.right])]:'cells' in f?f.cells:[];
 /**
- * A comprehension or quantifier over the board cells `C` whose body requires its own binder to belong to
- * another collection (`{c∈C: ∃G∈groups: c∈G}`) ranges over that collection, not the board.
- * Membership counts only in positive position: a conjunct, or inside an existential.
+ * A comprehension, existential or filtered image over the board cells `C` whose filter requires its own
+ * binder to belong to another collection (`{c∈C: ∃G∈groups: c∈G}`) ranges over that collection, not the board.
+ * Membership counts only in positive position: a conjunct, or inside an existential that does not rebind the name.
+ * The filter is the predicate of a comprehension, the body of an existential, or the third child of an image;
+ * a mapped image body, a universal, a negation, a disjunction and an implication never narrow.
  */
 function boundedByMembership(node:import('../language/ast.js').Expr):boolean{
  const binder=node.binders?.[0]?.name,domain=node.children[0];
  if(!binder||node.binders!.length!==1||domain?.kind!=='name'||domain.value!=='C')return false;
+ const filter=node.kind==='comprehension'||node.kind==='quantifier'&&node.value==='exists'?node.children[node.children.length-1]
+  :node.kind==='image'&&node.children.length===3?node.children[2]:undefined;
+ if(!filter)return false;
  const member=(n:import('../language/ast.js').Expr):boolean=>
   n.kind==='binary'&&n.value==='in'?n.children[0].kind==='name'&&n.children[0].value===binder&&!(n.children[1].kind==='name'&&n.children[1].value==='C')
   :n.kind==='binary'&&n.value==='and'?n.children.some(member)
-  :n.kind==='quantifier'&&n.value==='exists'?member(n.children[n.children.length-1])
+  :n.kind==='quantifier'&&n.value==='exists'&&!n.binders?.some(b=>b.name===binder)?member(n.children[n.children.length-1])
   :false;
- return member(node.children[node.children.length-1]);
+ return member(filter);
 }
 /**
  * The exact test for "ranges over the board": after following the terms a formula uses, it has a
- * quantifier over a cell binder with no domain, or it names `C`, the houses (`Regions`) or an answer
+ * quantifier or aggregate with no domain whose binder is cell-typed or unannotated, or it names `C`, the houses (`Regions`) or an answer
  * the evaluator reads board-wide (`H`, `boardCell`, clue and answer readers), except where
  * `boundedByMembership` shows `C` only filters cells the definition was given. Anything else reads the
  * cells it is given, so its scope is those cells.
@@ -66,7 +71,8 @@ function rangesOverBoard(page:CompiledPage):boolean {
  const hasCell=(t:import('../language/ast.js').Type):boolean=>t.name==='cell'||(t.args??[]).some(hasCell)||Object.values(t.fields??{}).some(hasCell);
  const seen=new Set<string>();
  const visit=(node:import('../language/ast.js').Expr):boolean=>{
-  if(node.kind==='quantifier'&&!node.hasDomain&&node.binders?.some(b=>b.type&&hasCell(b.type)))return true;
+  // An unannotated domain-less binder takes its type from use and may range over cells, so it counts as ranging over the board.
+  if((node.kind==='quantifier'||node.kind==='aggregate')&&!node.hasDomain&&node.binders?.some(b=>!b.type||hasCell(b.type)))return true;
   if(node.kind==='name'){
    if(['C','H','Regions','boardCell','ValuedRuleMeanings','clueHolds','selectionAnswer','partitionAnswer','routeAnswer','networkAnswer','valueAnswer','symbolAnswer'].includes(node.value!))return true;
    const term=defaultCasePrelude().environment.terms[node.value!];
