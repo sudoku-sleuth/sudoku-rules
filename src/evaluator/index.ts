@@ -40,7 +40,29 @@ export interface Evaluation { status:'holds'|'broken'|'undecided'; cells?: Cell[
 const root = 'https://rules.sudoku-sleuth.com/';
 const record = <T>(input:ReadonlyMap<Cell,T>|Readonly<Partial<Record<Cell,T>>>|undefined):Record<string,T> => input&&'entries' in input&&typeof input.entries==='function'?Object.fromEntries(input.entries()):{...input} as Record<string,T>;
 const supports = (f:Formula):Cell[] => f.op==='All'||f.op==='Any' ? [...new Set(f.children.flatMap(supports))] : f.op==='Not'?supports(f.child):f.op==='Allowed'?[f.cell]:f.op==='SumEqual'?[...new Set([...f.left,...f.right])]:'cells' in f?f.cells:[];
-function referencesBoard(page:CompiledPage):boolean {
+/**
+ * A comprehension or quantifier over the board cells `C` whose body requires its own binder to belong to
+ * another collection (`{c∈C: ∃G∈groups: c∈G}`) ranges over that collection, not the board.
+ * Membership counts only in positive position: a conjunct, or inside an existential.
+ */
+function boundedByMembership(node:import('../language/ast.js').Expr):boolean{
+ const binder=node.binders?.[0]?.name,domain=node.children[0];
+ if(!binder||node.binders!.length!==1||domain?.kind!=='name'||domain.value!=='C')return false;
+ const member=(n:import('../language/ast.js').Expr):boolean=>
+  n.kind==='binary'&&n.value==='in'?n.children[0].kind==='name'&&n.children[0].value===binder&&!(n.children[1].kind==='name'&&n.children[1].value==='C')
+  :n.kind==='binary'&&n.value==='and'?n.children.some(member)
+  :n.kind==='quantifier'&&n.value==='exists'?member(n.children[n.children.length-1])
+  :false;
+ return member(node.children[node.children.length-1]);
+}
+/**
+ * The exact test for "ranges over the board": after following the terms a formula uses, it has a
+ * quantifier over a cell binder with no domain, or it names `C`, the houses (`Regions`) or an answer
+ * the evaluator reads board-wide (`H`, `boardCell`, clue and answer readers), except where
+ * `boundedByMembership` shows `C` only filters cells the definition was given. Anything else reads the
+ * cells it is given, so its scope is those cells.
+ */
+function rangesOverBoard(page:CompiledPage):boolean {
  const hasCell=(t:import('../language/ast.js').Type):boolean=>t.name==='cell'||(t.args??[]).some(hasCell)||Object.values(t.fields??{}).some(hasCell);
  const seen=new Set<string>();
  const visit=(node:import('../language/ast.js').Expr):boolean=>{
@@ -50,7 +72,7 @@ function referencesBoard(page:CompiledPage):boolean {
    const term=defaultCasePrelude().environment.terms[node.value!];
    if(term?.body&&!seen.has(term.name)){seen.add(term.name);if(visit(term.body))return true;}
   }
-  return node.children.some(visit);
+  return (boundedByMembership(node)?node.children.slice(1):node.children).some(visit);
  };
  return page.formulas.some(f=>visit(f.ast));
 }
@@ -130,7 +152,7 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
    if(!page.formulas.length){errors.push(diagnostic('E_CUSTOM_DEFINITION',ast.span,`No executable meaning: ${(error as Error).message}`));continue;}
   }
   if(!ref.custom&&definition.name==='regions')finite={op:'Distinct',channel:'D',collection:'set',cells:parameters.cells as Cell[]};
-  const scope=finite?supports(finite):!ref.custom&&localAggregates.has(kind)?inputCells(parameters.cells):referencesBoard(page)?board.activeCells:[...new Set(inputCells(parameters))];
+  const scope=finite?supports(finite):!ref.custom&&localAggregates.has(kind)?inputCells(parameters.cells):rangesOverBoard(page)?board.activeCells:[...new Set(inputCells(parameters))];
   const condition=ast.condition?{unless:ast.condition.unless,predicate:ast.condition.predicate.value,cells:(ast.cells?.value??parameters.line??parameters.cells??[]) as Cell[]}:undefined;
   rules.push({meta:ast.meta?.value as CompiledRule["meta"],id:ast.instance?.value,label:ast.instance?.value,name:kind,span:ast.span,scope:[...new Set([...scope,...condition?.cells??[]])],page,parameters,board,negated:kind==='decoration'?false:(metadata.negate==='all')!==(ast.negations.length%2===1),condition,finite,valueBindings,libraryKind:ref.custom?undefined:kind,definitions,caseRules:rules});
  }
@@ -302,21 +324,33 @@ function conditionVerdict(condition:NonNullable<CompiledRule['condition']>,assig
   if(unless)cond=inverse(cond);
  return cond;
 }
-/** Candidate support shares a single step budget across all completions. */
-export function allowed(rule:CompiledRule,assignment:Assignment,candidates:ReadonlyMap<Cell,ReadonlySet<Digit>>):Map<Cell,Set<Digit>>|'too-large'{
+/** What `allowedWithWork` returns: the support (or a refusal) and the steps spent finding it. */
+export interface AllowedResult { result: Map<Cell,Set<Digit>>|'too-large'; work: number }
+/**
+ * Candidate support shares a single step budget across all completions. `work` counts the steps spent
+ * from the `ALLOWED_WORK_LIMIT` budget; a refusal before any search (empty domain, product over the
+ * limit) spends none, and a search that exhausts the budget spends all of it.
+ */
+export function allowedWithWork(rule:CompiledRule,assignment:Assignment,candidates:ReadonlyMap<Cell,ReadonlySet<Digit>>):AllowedResult{
  const digits=record(assignment.digits),empty=rule.scope.filter(c=>digits[c]===undefined);
  const domains=empty.map(c=>[...(candidates.get(c)??new Set(rule.board.alphabet))]);
  for(const domain of domains)for(const digit of domain)if(!rule.board.alphabet.includes(digit))throw new RangeError('Candidate outside the alphabet');
  const output=new Map(empty.map(c=>[c,new Set<Digit>()]));
- if(domains.some(d=>d.length===0))return output;
- let work=Math.max(1,rule.scope.length);for(const domain of domains){work*=domain.length;if(work>ALLOWED_WORK_LIMIT)return 'too-large';}
+ if(domains.some(d=>d.length===0))return {result:output,work:0};
+ let work=Math.max(1,rule.scope.length);for(const domain of domains){work*=domain.length;if(work>ALLOWED_WORK_LIMIT)return {result:'too-large',work:0};}
  const budget={remaining:ALLOWED_WORK_LIMIT};
+ const spent=()=>ALLOWED_WORK_LIMIT-Math.max(0,budget.remaining);
  function visit(i:number):void{
   spend(budget);
   if(i===empty.length){const verdict=refine(rule,{...assignment,digits},budget);if(verdict.status!=='broken')for(const c of empty)output.get(c)!.add(digits[c]);return;}
   for(const digit of domains[i]){digits[empty[i]]=digit;visit(i+1);}delete digits[empty[i]];
  }
- try{visit(0);}catch(error){if(error instanceof EvaluationLimit||error instanceof LanguageError&&error.diagnostic.code==='E_LANGUAGE_LIMIT')return 'too-large';throw error;}return output;
+ try{visit(0);}catch(error){if(error instanceof EvaluationLimit||error instanceof LanguageError&&error.diagnostic.code==='E_LANGUAGE_LIMIT')return {result:'too-large',work:spent()};throw error;}
+ return {result:output,work:spent()};
+}
+/** The support alone; hosts that charge the work use `allowedWithWork`. */
+export function allowed(rule:CompiledRule,assignment:Assignment,candidates:ReadonlyMap<Cell,ReadonlySet<Digit>>):Map<Cell,Set<Digit>>|'too-large'{
+ return allowedWithWork(rule,assignment,candidates).result;
 }
 export function checkAnswer(compiled:CompiledCase,answer:Assignment):{holds:boolean;broken:{rule:CompiledRule;cells:Cell[]}[]}{
  const digits=record(answer.digits);
