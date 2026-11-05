@@ -5,8 +5,8 @@ import {board,caseFile} from '../helpers/canonicalise';
 test('text outside the changed declarations is byte-identical',()=>{
  const rules=['sudoku 9x9','# a note between rules','a: close-whispers r1c1-r1c2 gap 2 channel "D" # keep this','',
   'not pair r3c3-r3c4 difference 1','  unique r6c1-r6c2   element "x"','not pair r3c4-r4c4 difference 1','not pair r3c3-r4c3 difference 1','not pair r4c3-r4c4 difference 1','parity r8c1-r8c2','parity r8c2-r8c3  ','thermo r9c1-r9c2'].join('\n');
- const file=caseFile(rules,'fog: true\nextra: "kept"\n');
- const result=canonicalise(file,board);
+ const file=caseFile(rules,'extra: "kept"\n');
+ const result=canonicalise(file,board,undefined,{metadataHeaders:['extra']});
  expect(result.rewrites.map(r=>r.template).sort()).toEqual(['close-whispers {"channel":"D"}','join-line-pieces parity-line','merge-negated-pairs negative']);
  const expected=file.text
   .replace('a: close-whispers r1c1-r1c2 gap 2 channel "D" # keep this','a: close-whispers r1c1-r1c2 gap 2 # keep this')

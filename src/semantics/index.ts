@@ -6,7 +6,8 @@ import { location } from "../language/diagnostics.js";
 import { boardHouseSources, canonicalBoard, groups, key, standardHouses } from "./board.js";
 import { addSources, canonicalise, sourceLinks, type CanonicalState } from "./canonical.js";
 import { all, condition, lower, validateCells, UnsupportedSemantics } from "./lower.js";
-import { checkBoardHeaders } from "./headers.js";
+import { checkBoardHeaders, checkMetadataHeaders, type NormaliseOptions } from "./headers.js";
+export type { NormaliseOptions } from "./headers.js";
 import { readSemanticFile } from "./reader.js";
 import { declarationRegistry, type DeclarationCapability } from "./registry.js";
 import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, NormalForm, SemanticDifference, SemanticFile, SemanticIssue, SemanticSource } from "./types.js";
@@ -14,14 +15,17 @@ export * from "./types.js";
 export { declarationRegistry } from "./registry.js";
 
 /** Portable structural normalisation. No URL loading, execution, or board solving. */
-export function normalise(file: SemanticFile, context: BoardContext): Normalisation {
+export function normalise(file: SemanticFile, context: BoardContext, options?: NormaliseOptions): Normalisation {
   const issues: SemanticIssue[] = [];
   const here = location(file, 0, 0);
+  let declared: readonly string[];
+  try { declared = checkMetadataHeaders(options); }
+  catch (error) { issues.push({ code: "E_SEMANTIC_HEADER", message: (error as Error).message, span: here }); return { status: "invalid", issues }; }
   let board;
   try { board = canonicalBoard(context); }
   catch (error) { issues.push({ code: "E_SEMANTIC_BOARD", message: (error as Error).message, span: here }); return { status: "invalid", issues }; }
   const read = readSemanticFile(file, {rows: board.rows, cols: board.cols, symbols: board.alphabet, activeCells: board.activeCells,
-    standard: board.rows === 9 && board.cols === 9 && board.activeCells.length === 81 && board.alphabet.join(',') === '1,2,3,4,5,6,7,8,9'});
+    standard: board.rows === 9 && board.cols === 9 && board.activeCells.length === 81 && board.alphabet.join(',') === '1,2,3,4,5,6,7,8,9'}, declared);
   issues.push(...read.issues);
   read.issues = issues;
   const boardSources = read.extras.filter(e => ["header:board", "header:givens", "header:regions"].includes(e.kind)).map(e => e.source);

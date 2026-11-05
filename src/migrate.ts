@@ -403,6 +403,7 @@ function migrateAllGiven(page:PageSource):Result<PageSource> {
 import {publishedTemplates} from './published-templates.js';
 import {groupPatterns,type Template,type TemplateGuard} from './templates.js';
 import {normalise,compare as compareNormalForms,type BoardContext} from './semantics/index.js';
+import {checkMetadataHeaders,isEnvelopeHeader,type NormaliseOptions} from './semantics/headers.js';
 import {stringify} from 'yaml';
 
 /** One rewrite canonicalise made: the template, the declarations it replaced and the ones it wrote. */
@@ -561,13 +562,13 @@ if(JSON.stringify(groupPatternNames)!==JSON.stringify(Object.keys(groupPatterns)
  * Normalise the matched declarations and their rewrites on the case board, with everything they read
  * (header board, regions and givens, value bindings and custom definitions). Equal normal forms prove the rewrite.
  */
-function prove(page:PageSource,metadata:Record<string,unknown>,board:BoardContext,lines:Line[],match:Match):string|undefined {
+function prove(page:PageSource,metadata:Record<string,unknown>,board:BoardContext,lines:Line[],match:Match,options?:NormaliseOptions):string|undefined {
  const header=stringify({format:'open-rules',title:'Canonical proof',setter:'Open Rules',source:'',case:'',library:metadata.library,status:'read',
-  ...Object.fromEntries(['board','givens','regions'].filter(k=>metadata[k]!==undefined).map(k=>[k,metadata[k]]))});
+  ...Object.fromEntries(Object.keys(metadata).filter(k=>!isEnvelopeHeader(k)).map(k=>[k,metadata[k]]))});
  const context=[...markdownBlocks(page.text).filter(b=>b.language==='custom-rules').map(b=>'```custom-rules\n'+b.text+(b.text.endsWith('\n')?'':'\n')+'```\n')];
  const bindings=lines.filter(l=>bindingKinds.includes(l.rule)||l.custom).map(l=>l.text);
  const file=(declarations:string[])=>({file:page.file,text:`---\n${header}---\n\n${context.join('\n')}\`\`\`rules\n${[...bindings,...declarations].join('\n')}\n\`\`\`\n`});
- const result=compareNormalForms(normalise(file(match.lines.map(l=>l.text)),board),normalise(file(match.written),board));
+ const result=compareNormalForms(normalise(file(match.lines.map(l=>l.text)),board,options),normalise(file(match.written),board,options));
  if(result.status==='equivalent')return undefined;
  if(result.status==='invalid')return `a side could not be normalised: ${result.issues[0]?.message??'invalid'}`;
  if(result.uncovered.length)return `not proven, a declaration is not lowered: ${result.uncovered[0].declaration.reason}`;
@@ -578,7 +579,8 @@ function prove(page:PageSource,metadata:Record<string,unknown>,board:BoardContex
  * alphabetical order of their canonical rule; each proposes, and only a rewrite whose old and new declarations
  * normalise to equal forms on the case board is written. Text outside the changed declarations is untouched.
  */
-export function canonicalise(page:PageSource,board:BoardContext,templates:readonly Template[]=publishedTemplates):Canonicalised {
+export function canonicalise(page:PageSource,board:BoardContext,templates:readonly Template[]=publishedTemplates,options?:NormaliseOptions):Canonicalised {
+ checkMetadataHeaders(options);
  const rewrites:CanonicalRewrite[]=[],kept:CanonicalKept[]=[];
  const header=readHeader(page);
  if(!header.value||header.value.metadata.library!==libraryRoot||header.value.metadata.negate!==undefined)return {text:page.text,rewrites,kept};
@@ -600,7 +602,7 @@ export function canonicalise(page:PageSource,board:BoardContext,templates:readon
     const id=`${t.form}\n${match.lines.map(l=>l.text).join('\n')}\n#${earlier}`;
     if(seen.has(id))continue;
     seen.add(id);
-    const reason=match.refuse??(t.guard?guards[t.guard](lines,unreadable):undefined)??prove(current,metadata,board,lines,match);
+    const reason=match.refuse??(t.guard?guards[t.guard](lines,unreadable):undefined)??prove(current,metadata,board,lines,match,options);
     if(reason){kept.push({template:t.form,declarations:match.lines.map(l=>l.text),reason});continue;}
     edits.push(...match.edits);
     rewrites.push({template:t.form,replaced:match.lines.map(l=>l.text),written:match.written});
