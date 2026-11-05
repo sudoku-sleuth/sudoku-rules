@@ -496,7 +496,7 @@ function replaceSettings(t:Template,lines:Line[]):Match[] {
 /** One `not pair` per orthogonal edge among a set of cells becomes one negative limited to those cells. */
 function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
  const pieces=lines.filter(l=>l.rule==='pair'&&l.ast.negations.length===1&&!l.ast.condition&&cellsOf(l).length===2
-  &&Object.hasOwn(l.p,'relation')&&l.ast.parameters.every(p=>['relation','element',...l.form==='setting'?[l.primary]:[]].includes(p.name.value))
+  &&Object.hasOwn(l.p,'relation')&&l.ast.parameters.every(p=>['relation','element'].includes(p.name.value))
   &&coordinates(cellsOf(l)[0]).reduce((n,v,i)=>n+Math.abs(v-coordinates(cellsOf(l)[1])[i]),0)===1);
  const byRelation=new Map<string,Line[]>();
  for(const l of pieces)byRelation.set(encode(l.p.relation),[...byRelation.get(encode(l.p.relation))??[],l]);
