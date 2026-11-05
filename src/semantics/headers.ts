@@ -19,6 +19,7 @@ export interface NormaliseOptions { metadataHeaders?: readonly string[] }
 /** Refuses a declaration that names a header the spec defines with meaning. */
 export function checkMetadataHeaders(options?: NormaliseOptions): readonly string[] {
   const declared = options?.metadataHeaders ?? [];
+  if (!Array.isArray(declared) || declared.some(name => typeof name !== "string")) throw Error("metadataHeaders must be an array of header names.");
   const bad = declared.filter(name => MEANINGFUL_HEADERS.includes(name));
   if (bad.length) throw Error(`The spec gives ${bad.join(", ")} a meaning for solutions, so ${bad.length === 1 ? "it" : "they"} cannot be declared metadata headers.`);
   return declared;

@@ -70,3 +70,9 @@ test("declaring a header the spec defines with meaning is an error", () => {
     expect(n.issues[0].message).toContain(name);
   }
 });
+
+test("a non-array metadataHeaders is an error", () => {
+  const n = normalise(bare, board, { metadataHeaders: "notes" as never });
+  expect(n.status).toBe("invalid");
+  expect(n.issues[0].message).toContain("array of header names");
+});

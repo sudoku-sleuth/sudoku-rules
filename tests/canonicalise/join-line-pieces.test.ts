@@ -64,12 +64,24 @@ test('canonical output is unchanged by another pass',()=>{
  expect(second.rewrites).toEqual([]);
 });
 
-test('a declared metadata header travels into the proof, and a header the spec defines cannot be declared',()=>{
- const pieces='whispers r1c1-r1c2 gap 4 loop false\nwhispers r1c2-r1c3 gap 4 loop false';
- const page=caseFile(pieces,'notes: free text\n');
+const refusals:[string,string,string][]=[
+ ['join-line-pieces whispers','whispers r1c1-r1c2 gap 4 loop false\nwhispers r1c2-r1c3 gap 4 loop false','whispers r1c1-r1c2-r1c3 gap 4 loop false'],
+ ['printed-digit channel','a: close-whispers r1c1-r1c2 gap 2 channel "D"','a: close-whispers r1c1-r1c2 gap 2'],
+ ['merge-negated-pairs negative',['not pair r1c1-r1c2 difference 1','not pair r1c1-r2c1 difference 1','not pair r2c1-r2c2 difference 1','not pair r1c2-r2c2 difference 1'].join('\n'),'negative relations [{"op":"difference","value":1}] except [] within [r1c1-r1c2-r2c1-r2c2]'],
+];
+for(const [name,rules,written] of refusals)test(`${name}: an undeclared unknown header leaves the rewrite unproven; a declared one proves it`,()=>{
+ const page=caseFile(rules,'notes: free text\n');
+ const plain=canonicalise(page,board);
+ expect(plain.rewrites).toEqual([]);
+ expect(plain.text).toBe(page.text);
+ expect(plain.kept[0].reason).toContain('not proven');
  const declared=canonicalise(page,board,undefined,{metadataHeaders:['notes']});
- expect(rulesOf(declared.text)).toBe('whispers r1c1-r1c2-r1c3 gap 4 loop false');
- expect(declared.rewrites).toHaveLength(1);
  expect(declared.kept).toEqual([]);
- expect(()=>canonicalise(page,board,undefined,{metadataHeaders:['givens']})).toThrow();
+ expect(rulesOf(declared.text)).toBe(written);
+});
+
+test('a header the spec defines cannot be declared, nor a non-array list',()=>{
+ const page=caseFile('parity r1c1-r1c2','notes: x\n');
+ expect(()=>canonicalise(page,board,undefined,{metadataHeaders:['givens']})).toThrow('cannot be declared');
+ expect(()=>canonicalise(page,board,undefined,{metadataHeaders:'notes' as never})).toThrow('array of header names');
 });

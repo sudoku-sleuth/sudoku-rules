@@ -403,7 +403,7 @@ function migrateAllGiven(page:PageSource):Result<PageSource> {
 import {publishedTemplates} from './published-templates.js';
 import {groupPatterns,type Template,type TemplateGuard} from './templates.js';
 import {normalise,compare as compareNormalForms,type BoardContext} from './semantics/index.js';
-import {checkMetadataHeaders,type NormaliseOptions} from './semantics/headers.js';
+import {checkMetadataHeaders,isEnvelopeHeader,type NormaliseOptions} from './semantics/headers.js';
 import {stringify} from 'yaml';
 
 /** One rewrite canonicalise made: the template, the declarations it replaced and the ones it wrote. */
@@ -564,7 +564,7 @@ if(JSON.stringify(groupPatternNames)!==JSON.stringify(Object.keys(groupPatterns)
  */
 function prove(page:PageSource,metadata:Record<string,unknown>,board:BoardContext,lines:Line[],match:Match,options?:NormaliseOptions):string|undefined {
  const header=stringify({format:'open-rules',title:'Canonical proof',setter:'Open Rules',source:'',case:'',library:metadata.library,status:'read',
-  ...Object.fromEntries(Object.keys(metadata).filter(k=>['board','givens','regions'].includes(k)||(options?.metadataHeaders??[]).includes(k)).map(k=>[k,metadata[k]]))});
+  ...Object.fromEntries(Object.keys(metadata).filter(k=>!isEnvelopeHeader(k)).map(k=>[k,metadata[k]]))});
  const context=[...markdownBlocks(page.text).filter(b=>b.language==='custom-rules').map(b=>'```custom-rules\n'+b.text+(b.text.endsWith('\n')?'':'\n')+'```\n')];
  const bindings=lines.filter(l=>bindingKinds.includes(l.rule)||l.custom).map(l=>l.text);
  const file=(declarations:string[])=>({file:page.file,text:`---\n${header}---\n\n${context.join('\n')}\`\`\`rules\n${[...bindings,...declarations].join('\n')}\n\`\`\`\n`});
