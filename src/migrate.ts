@@ -419,8 +419,9 @@ interface Line {ast:DeclarationAST;kind:string;rule:string;p:Record<string,unkno
 /** What a template proposes: the lines it replaces, the text edits and the declarations it writes, or why it already refuses. */
 interface Match {lines:Line[];edits:Edit[];written:string[];refuse?:string}
 
-function scanLines(page:PageSource,spellings:Map<string,string>):Line[] {
+function scanLines(page:PageSource,spellings:Map<string,string>):{lines:Line[];unreadable:number} {
  const lines:Line[]=[];
+ let unreadable=0;
  for(const block of markdownBlocks(page.text).filter(b=>b.language==='rules')){
   let offset=block.offset;
   for(const raw of block.text.split(/(?<=\n)/)){
@@ -432,15 +433,17 @@ function scanLines(page:PageSource,spellings:Map<string,string>):Line[] {
    if(ast&&!parsed.diagnostics.length){
     const kind=bareKind(ast.kind.value);
     const p:Record<string,unknown>={};for(const param of ast.parameters)p[param.name.value]=decoded(param.value);
-    lines.push({ast,kind,rule:spellings.get(kind)??kind,p,text:page.text.slice(ast.span.start.offset,ast.span.end.offset),lineStart:offset,lineEnd:offset+raw.length,custom:kind.startsWith('#')||!declarationLibrary.kinds.has(kind)});
-   }
+    const rule=declarationLibrary.kindByUrl?.get(`${libraryRoot}${kind}.md`)??spellings.get(kind)??kind;
+    lines.push({ast,kind,rule,p,text:page.text.slice(ast.span.start.offset,ast.span.end.offset),lineStart:offset,lineEnd:offset+raw.length,custom:kind.startsWith('#')||!declarationLibrary.kinds.has(kind)});
+   }else if(raw.trim()&&!raw.trim().startsWith('#'))unreadable++;
    offset+=raw.length;
   }
  }
- return lines;
+ return {lines,unreadable};
 }
-const guards:Record<TemplateGuard,(lines:Line[])=>string|undefined>={
- 'no-value-binding':lines=>lines.some(l=>bindingKinds.includes(l.rule)||l.custom)?'the file binds or defines values, so printed digits may differ from effective values':undefined,
+const guards:Record<TemplateGuard,(lines:Line[],unreadable:number)=>string|undefined>={
+ 'no-value-binding':(lines,unreadable)=>unreadable?'a declaration in the file cannot be read, so its value bindings are unknown'
+  :lines.some(l=>bindingKinds.includes(l.rule)||l.custom)?'the file binds or defines values, so printed digits may differ from effective values':undefined,
 };
 const element=(l:Line)=>l.p.element===undefined?'':encode(l.p.element);
 const label=(l:Line,page:PageSource)=>l.ast.instance?page.text.slice(l.ast.span.start.offset,(l.ast.negations[0]?.span.start??l.ast.kind.span.start).offset):'';
@@ -469,7 +472,7 @@ const settingsMatch=(t:Template,l:Line)=>Object.entries(t.settings!).every(([nam
 
 /** The printed-digit setting, or any settings form a page lists: drop the settings the canonical form leaves to the default. */
 function replaceSettings(t:Template,lines:Line[]):Match[] {
- return lines.filter(l=>(l.kind===t.kind||t.kind===t.rule&&t.spellings.includes(l.kind))&&settingsMatch(t,l)).map(l=>{
+ return lines.filter(l=>(l.rule===t.rule)&&settingsMatch(t,l)).map(l=>{
   const edits:Edit[]=[];
   for(const name of t.omit!){
    const parameter=l.ast.parameters.find(p=>p.name.value===name)!;
@@ -477,7 +480,6 @@ function replaceSettings(t:Template,lines:Line[]):Match[] {
    while(start>l.ast.span.start.offset&&/\s/.test(l.text[start-1-l.ast.span.start.offset]))start--;
    edits.push({start,end:parameter.span.end.offset,text:''});
   }
-  if(l.kind!==t.rule)edits.push({start:l.ast.kind.span.start.offset,end:l.ast.kind.span.end.offset,text:t.rule});
   const base=l.ast.span.start.offset;
   let written=l.text;for(const e of [...edits].sort((a,b)=>b.start-a.start))written=written.slice(0,e.start-base)+e.text+written.slice(e.end-base);
   return {lines:[l],edits,written:[written]};
@@ -485,7 +487,7 @@ function replaceSettings(t:Template,lines:Line[]):Match[] {
 }
 /** One `not pair` per orthogonal edge among a set of cells becomes one negative limited to those cells. */
 function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
- const pieces=lines.filter(l=>l.rule==='pair'&&l.ast.negations.length===1&&!l.ast.condition&&!l.ast.comment&&cellsOf(l).length===2
+ const pieces=lines.filter(l=>l.rule==='pair'&&l.ast.negations.length===1&&!l.ast.condition&&cellsOf(l).length===2
   &&Object.hasOwn(l.p,'relation')&&l.ast.parameters.every(p=>['relation','element'].includes(p.name.value))
   &&coordinates(cellsOf(l)[0]).reduce((n,v,i)=>n+Math.abs(v-coordinates(cellsOf(l)[1])[i]),0)===1);
  const byRelation=new Map<string,Line[]>();
@@ -496,7 +498,8 @@ function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
   if(edges.size<2)continue;
   const area=unique(part.flatMap(cellsOf)) as string[];
   const required=area.flatMap((a,i)=>area.slice(i+1).filter(b=>coordinates(a).reduce((n,v,k)=>n+Math.abs(v-coordinates(b)[k]),0)===1).map(b=>JSON.stringify([a,b].sort())));
-  const refuse=new Set(part.map(element)).size>1?'the pairs are tied to different drawn elements'
+  const refuse=part.some(l=>l.ast.comment)?'a pair carries a comment that a merge would lose'
+   :new Set(part.map(element)).size>1?'the pairs are tied to different drawn elements'
    :required.some(e=>!edges.has(e))?'the pairs do not cover every orthogonal edge between their cells'
    :strandedLabel(part.slice(1),page);
   const first=part[0],extra=part.find(l=>l.p.element!==undefined)?.p.element;
@@ -507,7 +510,7 @@ function mergeNegatedPairs(t:Template,lines:Line[],page:PageSource):Match[] {
 }
 /** Touching pieces of one drawn line, written as separate lines, become one line. */
 function joinLinePieces(t:Template,lines:Line[],page:PageSource):Match[] {
- const pieces=lines.filter(l=>l.rule===t.rule&&!l.ast.negations.length&&!l.ast.condition&&!l.ast.comment&&cellsOf(l).length>=2
+ const pieces=lines.filter(l=>l.rule===t.rule&&!l.ast.negations.length&&!l.ast.condition&&cellsOf(l).length>=2
   &&!Object.hasOwn(l.p,'edges')&&(l.p.loop===undefined||l.p.loop===false));
  const bySettings=new Map<string,Line[]>();
  const settings=(l:Line)=>encode(Object.fromEntries(Object.entries(l.p).filter(([name])=>name!=='element'&&name!=='loop').sort(([a],[b])=>a<b?-1:1)))+(l.p.loop===undefined?'':'loop');
@@ -525,7 +528,8 @@ function joinLinePieces(t:Template,lines:Line[],page:PageSource):Match[] {
   const repeated=part.some(l=>new Set(cellsOf(l)).size!==cellsOf(l).length||cellsOf(l)[0]===cellsOf(l).at(-1));
   const shape=joints.some(c=>uses.get(c)!==2||ends.get(c)?.length!==2)||repeated?'the pieces branch, cross or repeat a cell'
    :joints.length!==part.length-1?'the pieces close a loop':undefined;
-  const refuse=new Set(part.map(element)).size>1?'the pieces are tied to different drawn elements':shape??strandedLabel(part.slice(1),page);
+  const refuse=part.some(l=>l.ast.comment)?'a piece carries a comment that a join would lose'
+   :new Set(part.map(element)).size>1?'the pieces are tied to different drawn elements':shape??strandedLabel(part.slice(1),page);
   const written=[''],edits:Edit[]=[];
   if(!refuse){
    // Walk from the free end of one piece through each joint.
@@ -587,14 +591,16 @@ export function canonicalise(page:PageSource,board:BoardContext,templates:readon
  for(let changed=true;changed;){
   changed=false;
   for(const t of ordered){
-   const current={...page,text},lines=scanLines(current,spellings);
+   const current={...page,text},{lines,unreadable}=scanLines(current,spellings);
    const matches=t.pattern?groupMatchers[t.pattern](t,lines,current):replaceSettings(t,lines);
    const edits:Edit[]=[];
    for(const match of matches){
-    const id=`${t.form}\n${match.lines.map(l=>l.text).join('\n')}`;
+    // Identical declarations are separate matches: count the earlier lines with the same text.
+    const first=match.lines[0],earlier=lines.filter(l=>l.text===first.text&&l.lineStart<first.lineStart).length;
+    const id=`${t.form}\n${match.lines.map(l=>l.text).join('\n')}\n#${earlier}`;
     if(seen.has(id))continue;
     seen.add(id);
-    const reason=match.refuse??(t.guard?guards[t.guard](lines):undefined)??prove(current,metadata,board,lines,match);
+    const reason=match.refuse??(t.guard?guards[t.guard](lines,unreadable):undefined)??prove(current,metadata,board,lines,match);
     if(reason){kept.push({template:t.form,declarations:match.lines.map(l=>l.text),reason});continue;}
     edits.push(...match.edits);
     rewrites.push({template:t.form,replaced:match.lines.map(l=>l.text),written:match.written});

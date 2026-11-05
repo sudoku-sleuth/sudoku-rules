@@ -15,8 +15,6 @@ export interface Template {
  /** The replaced form: one value per distinct claim, so that two pages cannot claim the same form. */
  form: string;
  pattern?: string;
- /** The declaration kind of the replaced form. It is the rule or one of its spellings unless another rule's form is replaced. */
- kind?: string;
  settings?: Record<string,unknown>;
  omit?: string[];
  guard?: TemplateGuard;
@@ -35,7 +33,7 @@ export function readTemplates(metadata:Record<string,unknown>,rule:string,aliase
  raw.forEach((entry,index)=>{
   const at=`replaces entry ${index+1}`;
   if(!isObject(entry)){errors.push(`${at} must be a mapping`);return;}
-  const unknown=Object.keys(entry).filter(k=>!['pattern','kind','settings','canonical','guard'].includes(k));
+  const unknown=Object.keys(entry).filter(k=>!['pattern','settings','canonical','guard'].includes(k));
   if(unknown.length){errors.push(`${at} has unknown fields: ${unknown.join(', ')}`);return;}
   let guard:TemplateGuard|undefined;
   if(entry.guard!==undefined){
@@ -47,13 +45,11 @@ export function readTemplates(metadata:Record<string,unknown>,rule:string,aliase
    const pattern=String(entry.pattern);
    if(!Object.hasOwn(groupPatterns,pattern)){errors.push(`${at} names group pattern ${pattern}, which does not exist`);return;}
    if(!groupPatterns[pattern].includes(rule)){errors.push(`${at}: group pattern ${pattern} writes ${groupPatterns[pattern].join(' or ')}, not ${rule}`);return;}
-   if(entry.settings!==undefined||entry.canonical!==undefined||entry.kind!==undefined){errors.push(`${at}: a group pattern takes no kind, settings or canonical`);return;}
+   if(entry.settings!==undefined||entry.canonical!==undefined){errors.push(`${at}: a group pattern takes no settings or canonical`);return;}
    templates.push({rule,spellings,form:`${pattern} ${rule}`,pattern,...(guard?{guard}:{})});
    return;
   }
   if(!isObject(entry.settings)||!Object.keys(entry.settings).length){errors.push(`${at} needs a pattern or nonempty settings`);return;}
-  const kind=entry.kind===undefined?rule:entry.kind;
-  if(typeof kind!=='string'||!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(kind)){errors.push(`${at}: kind must be a rule name`);return;}
   const omit=isObject(entry.canonical)&&Array.isArray(entry.canonical.omit)?entry.canonical.omit:undefined;
   if(!isObject(entry.canonical)||Object.keys(entry.canonical).some(k=>k!=='omit')||!omit||!omit.length||omit.some(name=>typeof name!=='string')){errors.push(`${at} needs canonical: {omit: [setting names]}`);return;}
   const names=omit as string[];
@@ -63,7 +59,7 @@ export function readTemplates(metadata:Record<string,unknown>,rule:string,aliase
    if(!isObject(parameter)||parameter.default===undefined||/^Required\b/.test(String(parameter.default))){errors.push(`${at} omits ${name}, which has no default on this page`);return;}
   }
   if(Object.keys(entry.settings).some(name=>!names.includes(name))){errors.push(`${at}: every setting of the replaced form must be omitted by the canonical form`);return;}
-  templates.push({rule,spellings,form:`${kind} ${JSON.stringify(Object.fromEntries(Object.entries(entry.settings).sort(([a],[b])=>a<b?-1:1)))}`,kind,settings:entry.settings,omit:names,...(guard?{guard}:{})});
+  templates.push({rule,spellings,form:`${rule} ${JSON.stringify(Object.fromEntries(Object.entries(entry.settings).sort(([a],[b])=>a<b?-1:1)))}`,settings:entry.settings,omit:names,...(guard?{guard}:{})});
  });
  return {templates,errors};
 }

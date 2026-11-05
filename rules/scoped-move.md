@@ -34,12 +34,6 @@ alias_bind:
   negative: "true"
   channel: channel
 layer: rule
-replaces:
-  - settings:
-      channel: D
-    canonical:
-      omit: [channel]
-    guard: no-value-binding
 ---
 
 

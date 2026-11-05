@@ -48,6 +48,14 @@ test('a value binding leaves the proof unable to rewrite whisper pieces',()=>{
  expect(result.kept[0].reason).toContain('not proven');
 });
 
+test('a piece with a trailing comment is kept with a reason, not dropped',()=>{
+ const lines='parity r1c1-r1c2 # the first stretch\nparity r1c2-r1c3';
+ const result=run(lines);
+ expect(rulesOf(result.text)).toBe(lines);
+ expect(result.kept).toHaveLength(1);
+ expect(result.kept[0].reason).toBe('a piece carries a comment that a join would lose');
+});
+
 test('canonical output is unchanged by another pass',()=>{
  const first=run('parity r1c1-r1c2\nparity r1c2-r1c3');
  const second=run(rulesOf(first.text));

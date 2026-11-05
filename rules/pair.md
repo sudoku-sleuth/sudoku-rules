@@ -41,12 +41,6 @@ alias_bind:
   rightOperation: '"sum"'
   relation: if |cells|=2 then relation else relationSpec("difference",-1)
 layer: rule
-replaces:
-  - settings:
-      channel: D
-    canonical:
-      omit: [channel]
-    guard: no-value-binding
 ---
 
 

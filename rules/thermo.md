@@ -26,12 +26,6 @@ alias_bind:
   strict: strict
   orientation: orientation
   channel: channel
-replaces:
-  - settings:
-      channel: D
-    canonical:
-      omit: [channel]
-    guard: no-value-binding
 ---
 
 # Thermo

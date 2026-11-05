@@ -45,6 +45,13 @@ test('a label read elsewhere keeps its declaration, and an unread label goes wit
  expect(rulesOf(unread.text)).toBe(`a: negative relations [${negative}] except [] within [r1c1-r1c2-r1c3]\ndecoration r2c1 note "grey"`);
 });
 
+test('a pair with a trailing comment is kept with a reason',()=>{
+ const lines=['not pair r1c1-r1c2 difference 1 # grey','not pair r1c2-r1c3 difference 1'].join('\n');
+ const result=run(lines);
+ expect(rulesOf(result.text)).toBe(lines);
+ expect(result.kept[0].reason).toBe('a pair carries a comment that a merge would lose');
+});
+
 test('canonical output is unchanged by another pass',()=>{
  const first=run(square.join('\n'));
  const second=run(rulesOf(first.text));

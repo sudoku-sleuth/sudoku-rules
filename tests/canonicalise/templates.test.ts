@@ -20,8 +20,8 @@ test('a page cannot name a pattern that does not exist, on a rule that cannot wr
  expect(readTemplates({parameters,replaces:[{settings:{channel:'D'},canonical:{omit:['channel']},guard:'no-value-binding'}]},'thermo')).toMatchObject({errors:[],templates:[{rule:'thermo',form:'thermo {"channel":"D"}'}]});
 });
 
-test('two pages that claim the same replaced form are refused',()=>{
- const claim={parameters,replaces:[{kind:'thermo',settings:{channel:'D'},canonical:{omit:['channel']}}]};
- const templates=[...readTemplates(claim,'thermo').templates,...readTemplates(claim,'slow-thermo').templates];
- expect(duplicateClaims(templates)).toEqual(['The form thermo {"channel":"D"} is claimed by both thermo and slow-thermo; each replaced form has one canonical rule.']);
+test('a form claimed twice is refused',()=>{
+ const claim={parameters,replaces:[{settings:{channel:'D'},canonical:{omit:['channel']}},{settings:{channel:'D'},canonical:{omit:['channel']}}]};
+ expect(duplicateClaims(readTemplates(claim,'thermo').templates)).toEqual(['The form thermo {"channel":"D"} is claimed by both thermo and thermo; each replaced form has one canonical rule.']);
+ expect(readTemplates({parameters,replaces:[{kind:'pair',settings:{channel:'D'},canonical:{omit:['channel']}}]},'thermo').errors[0]).toContain('unknown fields');
 });

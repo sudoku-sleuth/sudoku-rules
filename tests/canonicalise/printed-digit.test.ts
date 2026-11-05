@@ -39,3 +39,24 @@ test('canonical output is unchanged by another pass',()=>{
  expect(second.text).toBe(first.text);
  expect(second.rewrites).toEqual([]);
 });
+
+test('slow-thermo drops its printed-digit setting, and identical declarations are each rewritten',()=>{
+ const result=run('slow-thermo r1c1-r1c2 channel "D"');
+ expect(rulesOf(result.text)).toBe('slow-thermo r1c1-r1c2');
+ expect(result.rewrites).toHaveLength(1);
+ const twice='close-whispers r1c1-r1c2 gap 2 channel "D"\nclose-whispers r1c1-r1c2 gap 2 channel "D"';
+ const both=run(twice);
+ expect(rulesOf(both.text)).toBe('close-whispers r1c1-r1c2 gap 2\nclose-whispers r1c1-r1c2 gap 2');
+ expect(both.rewrites).toHaveLength(2);
+ const refused=run(twice+'\n'+'value-modifier factor 2 offset 0 exactly [["r1c1"]] count 1 atMostOne [["r1c1"]] distinct false');
+ expect(refused.rewrites).toEqual([]);
+ expect(refused.kept).toHaveLength(2);
+});
+
+test('a declaration that cannot be read makes the guard refuse',()=>{
+ const rules='close-whispers r1c1-r1c2 gap 2 channel "D"\nthermo r9c9-r9c8 channel';
+ const result=run(rules);
+ expect(rulesOf(result.text)).toBe(rules);
+ expect(result.kept).toHaveLength(1);
+ expect(result.kept[0].reason).toContain('cannot be read');
+});
