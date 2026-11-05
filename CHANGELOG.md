@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- `normalise` and `canonicalise` accept `metadataHeaders`, header names the caller declares carry no meaning for solutions. Declared headers are covered and leave the value domain resolved, so value rules beside them lower, and canonicalise proofs carry them. Naming a header the spec gives a meaning is an error.
 - The normal form keeps its header classification in one list (`src/semantics/headers.ts`): the case text headers (`title`, `setter`, `source`, `case`, `status`, `flags`) are covered and never affect the value domain; any other header keeps its uncovered result.
 - The normal form lowers cages with a total (`total` or `sum`, with or without `repeats`) to an exact SumTotal building block over the cage cells, without expanding the cage into tables. It reads the effective value channel like the other value rules and is uncovered when that domain is unresolved.
 - The normal form lowers an explicit `edges` list on Whispers, Close Whispers, Parity, Primality and Shifter lines to the rule's pair test on exactly those edges. Window and whole-set line rules keep `edges` uncovered.

@@ -11,7 +11,18 @@ import type { CanonicalBoard, Cell } from "./types.js";
 export const METADATA_HEADERS: readonly string[] = ["title", "setter", "source", "case", "status", "flags"];
 /** Spec-defined headers that are read directly: the library root resolves kinds and `negate` flips every rule. */
 export const ENVELOPE_HEADERS: readonly string[] = ["format", "library", "negate"];
-export const isEnvelopeHeader = (name: string): boolean => METADATA_HEADERS.includes(name) || ENVELOPE_HEADERS.includes(name);
+/** Headers the spec gives a meaning to beyond the envelope; a caller can never declare these metadata. */
+const MEANINGFUL_HEADERS: readonly string[] = ["board", "givens", "regions", "fog", "format", "library", "negate"];
+export const isEnvelopeHeader = (name: string, declared: readonly string[] = []): boolean => METADATA_HEADERS.includes(name) || ENVELOPE_HEADERS.includes(name) || declared.includes(name);
+/** Caller options for reading a file. `metadataHeaders` names headers the caller declares carry no meaning for solutions. */
+export interface NormaliseOptions { metadataHeaders?: readonly string[] }
+/** Refuses a declaration that names a header the spec defines with meaning. */
+export function checkMetadataHeaders(options?: NormaliseOptions): readonly string[] {
+  const declared = options?.metadataHeaders ?? [];
+  const bad = declared.filter(name => MEANINGFUL_HEADERS.includes(name));
+  if (bad.length) throw Error(`The spec gives ${bad.join(", ")} a meaning for solutions, so ${bad.length === 1 ? "it" : "they"} cannot be declared metadata headers.`);
+  return declared;
+}
 
 /** Header board fields must agree with the caller's resolved context. */
 export function checkBoardHeaders(read: ReadFile, board: CanonicalBoard): void {

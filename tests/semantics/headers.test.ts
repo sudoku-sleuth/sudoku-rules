@@ -42,3 +42,31 @@ test("an unknown header keeps its uncovered result and blocks value rules", () =
   expect(reasons).toContain("The notes header's semantic meaning is not lowered.");
   expect(reasons).toContain("Effective-value domain is unresolved because value bindings or definitions are uncovered.");
 });
+
+const notes = "notes: free text\n";
+const bare = file({});
+const withNotes = file({}, notes);
+
+test("declaring notes as metadata covers the file and compares equivalent to the file without it", () => {
+  const n = normalise(withNotes, board, { metadataHeaders: ["notes"] });
+  expect(n.issues).toEqual([]);
+  expect(n.status).toBe("complete");
+  expect(n.normalForm!.coverage.every(c => c.status === "lowered")).toBe(true);
+  expect(compare(n, normalise(bare, board)).status).toBe("equivalent");
+});
+
+test("without the option notes behaves as before", () => {
+  const n = normalise(withNotes, board);
+  expect(n.status).toBe("partial");
+  expect(n.normalForm!.coverage.some(c => c.kind === "header:notes" && c.status === "unsupported")).toBe(true);
+  expect(compare(n, normalise(bare, board)).status).not.toBe("equivalent");
+});
+
+test("declaring a header the spec defines with meaning is an error", () => {
+  for (const name of ["board", "givens", "regions", "fog", "negate", "library", "format"]) {
+    const n = normalise(bare, board, { metadataHeaders: [name] });
+    expect(n.status).toBe("invalid");
+    expect(n.issues[0].code).toBe("E_SEMANTIC_HEADER");
+    expect(n.issues[0].message).toContain(name);
+  }
+});

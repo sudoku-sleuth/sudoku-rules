@@ -23,7 +23,7 @@ function instanceIdentity(ast: DeclarationAST, kind: string, negated: boolean): 
       ? Object.fromEntries(Object.entries(value).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)) : value);
 }
 /** Reads the published instance grammar; decoding of unsupported families remains deferred. */
-export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFile {
+export function readSemanticFile(file: SemanticFile, board?: CaseBoard, declared: readonly string[] = []): ReadFile {
   const result: ReadFile = { instances: [], metadata: {}, issues: [], extras: [] };
   const header = readHeader(file);
   if (!header.value) { result.issues.push(...header.diagnostics); return result; }
@@ -39,7 +39,7 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard): ReadFil
   if (result.issues.length) return result;
   if (metadata.negate !== undefined && metadata.negate !== "all") result.issues.push({ code: "E_SEMANTIC_HEADER", message: "negate must be all when supplied.", span: field("negate") });
   // Board data is supplied through the typed API, never silently ignored in a header.
-  for (const key of Object.keys(metadata)) if (!isEnvelopeHeader(key)) result.extras.push({
+  for (const key of Object.keys(metadata)) if (!isEnvelopeHeader(key, declared)) result.extras.push({
     kind: `header:${key}`, source: { kind: `header:${key}`, span: field(key) },
     reason: key === "board" || key === "givens" ? "Supply board data through BoardContext; header board data is not decoded." : `The ${key} header's semantic meaning is not lowered.`,
   });

@@ -1,5 +1,6 @@
 import {expect,test} from 'bun:test';
-import {run,rulesOf} from '../helpers/canonicalise';
+import {run,rulesOf,caseFile,board} from '../helpers/canonicalise';
+import {canonicalise} from '../../src';
 
 test('touching whisper pieces of one drawn line become one line, whichever way a piece is written',()=>{
  const pieces=['whispers r1c1-r1c2 gap 4 loop false element "a"','whispers r1c2-r1c3 gap 4 loop false element "a"','whispers r1c4-r1c3 gap 4 loop false element "a"'];
@@ -61,4 +62,14 @@ test('canonical output is unchanged by another pass',()=>{
  const second=run(rulesOf(first.text));
  expect(second.text).toBe(first.text);
  expect(second.rewrites).toEqual([]);
+});
+
+test('a declared metadata header travels into the proof, and a header the spec defines cannot be declared',()=>{
+ const pieces='whispers r1c1-r1c2 gap 4 loop false\nwhispers r1c2-r1c3 gap 4 loop false';
+ const page=caseFile(pieces,'notes: free text\n');
+ const declared=canonicalise(page,board,undefined,{metadataHeaders:['notes']});
+ expect(rulesOf(declared.text)).toBe('whispers r1c1-r1c2-r1c3 gap 4 loop false');
+ expect(declared.rewrites).toHaveLength(1);
+ expect(declared.kept).toEqual([]);
+ expect(()=>canonicalise(page,board,undefined,{metadataHeaders:['givens']})).toThrow();
 });
