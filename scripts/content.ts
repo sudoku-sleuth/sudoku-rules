@@ -3,6 +3,7 @@ import { basename, join } from "node:path";
 import { parseDocument } from "yaml";
 import { marked } from "marked";
 import { parseFormula } from "../src/language/parser";
+import { readTemplates } from "../src/templates";
 import { renderMath } from "./mathml";
 
 export const origin = "https://rules.sudoku-sleuth.com";
@@ -28,6 +29,8 @@ export function validatePage(metadata: Metadata, file: string) {
   if (alias !== undefined && (metadata.kind !== slug || (metadata.parameters !== undefined && metadata.alias_bind === undefined))) throw new Error(`${file}: alias pages declare their own kind and no parameters`);
   if (typeof metadata.name !== "string" || !metadata.name.trim()) throw new Error(`${file}: name must be a nonempty string`);
   if (metadata.url !== `${origin}/${slug}.md`) throw new Error(`${file}: url must be ${origin}/${slug}.md`);
+  const { errors } = readTemplates(metadata, slug);
+  if (errors.length) throw new Error(`${file}: ${errors.join("; ")}`);
   return slug;
 }
 

@@ -20,6 +20,9 @@ export * from "./declarations.js";
 
 export * from "./migrate.js";
 
+export * from "./templates.js";
+export { publishedTemplates } from "./published-templates.js";
+
 export {libraryLayers,blockHomes} from "./library-layers.js";
 
 export * from "./evaluator/index.js";
