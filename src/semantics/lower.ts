@@ -1,5 +1,5 @@
 import { declarationLibrary } from "../declaration-library.js";
-import { lineFields, lowerLine } from "./lines.js";
+import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
 import type { DeclarationAST } from "../declarations.js";
@@ -41,6 +41,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   };
   for (const name of Object.keys(p)) {
     if (allowed.includes(name)) continue;
+    if (name === "edges" && edgeLines.includes(kind)) continue;
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;
@@ -50,7 +51,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
   validateCells(ast, board);
   const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
-  if (needsCells && !instance.cells?.length) throw Error(`${kind} needs a nonempty cell list.`);
+  if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${kind} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${kind} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   const cells = sortedCells(instance.cells ?? []);

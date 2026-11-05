@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- The normal form lowers an explicit `edges` list on Whispers, Close Whispers, Parity, Primality and Shifter lines to the rule's pair test on exactly those edges. Window and whole-set line rules keep `edges` uncovered.
 - A formula that fails to lower keeps the whole board as scope only when it ranges over the board; a comprehension or existential over the cells that requires its binder to belong to a given collection is scoped to that collection. `allowedWithWork` returns the steps spent beside the candidate support; `allowed` is unchanged.
 - Minesweeper Circles, Cave Layout, Shade Run Sums, Parity Bridge, Helping Cages and Signed Shading Cage add reusable shading, counting and cage relationships. Signed Shading Cage explicitly selects whether a wholly shaded cage is allowed.
 

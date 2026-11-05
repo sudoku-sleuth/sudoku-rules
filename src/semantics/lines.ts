@@ -10,6 +10,8 @@ export const lineFields: Record<string, string[]> = {
   entropic: ["loop"], palindrome: [], renban: [], bremban: [], nabner: ["distinct"],
   "region-sum": ["segments", "combine", "loop"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
 };
+/** Line kinds whose meaning is a test on each adjacent pair: an explicit edge list yields that test on exactly those edges. */
+export const edgeLines = ["whispers", "whisper", "close-whispers", "parity", "primality", "shifter-line"];
 export const valueLines = ["thermo", "whispers", "whisper", "whispers-4", "whispers-5", "palindrome", "renban", "region-sum"];
 const any = (children: Formula[]): Formula => ({ op: "Any", children });
 const parity = (x: number) => Math.abs(x % 2);
@@ -29,10 +31,36 @@ function prime(value: number): boolean {
   return true;
 }
 
+/**
+ * Read an explicit `edges` list on an edge line. Returns the deduplicated undirected edges in
+ * row-major order and the cells they touch, or undefined when the declaration has no edges.
+ */
+function explicitEdges(instance: ReturnType<typeof semanticDeclaration>, board: CanonicalBoard): { edges: [Cell, Cell][]; cells: Cell[] } | undefined {
+  const { kind, parameters: p } = instance;
+  if (p.edges === undefined) return undefined;
+  if (!edgeLines.includes(kind)) throw new UnsupportedSemantics(`The edges parameter of ${kind} is not lowered; the whole instance remains uncovered.`);
+  const raw = p.edges;
+  if (!Array.isArray(raw) || raw.some(e => !Array.isArray(e) || e.length !== 2 || e.some(c => !board.activeCells.includes(c)))) throw Error("Every edge needs exactly two active board cells.");
+  // Well-typed edge lists that no assignment can satisfy are left to the evaluator.
+  if (p.loop === true) throw new UnsupportedSemantics("A closed network is not lowered; the whole instance remains uncovered.");
+  if (instance.condition) throw new UnsupportedSemantics("Conditions on a network are not lowered; the whole instance remains uncovered.");
+  if (!raw.length || raw.some(([a,b]) => a === b)) throw new UnsupportedSemantics("Edges must name two different cells each; the whole instance remains uncovered.");
+  const edges = [...new Map((raw as [Cell,Cell][]).map(([a,b]) => { const e: [Cell,Cell] = sortedCells([a,b]) as [Cell,Cell]; return [key(e), e]; })).values()]
+    .sort((x,y) => key(x).localeCompare(key(y),"en"));
+  const cells = sortedCells(edges.flat());
+  const reached = new Set<Cell>([cells[0]]);
+  for (let grew = true; grew;) { grew = false; for (const [a,b] of edges) if (reached.has(a) !== reached.has(b)) { reached.add(a); reached.add(b); grew = true; } }
+  if (reached.size !== cells.length) throw new UnsupportedSemantics("Edges must form one connected network; the whole instance remains uncovered.");
+  const line = instance.cells ?? [];
+  if (line.some(c => !cells.includes(c))) throw new UnsupportedSemantics("Every line cell must lie on the network; the whole instance remains uncovered.");
+  return { edges, cells };
+}
+
 export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance = semanticDeclaration(ast);
   const { kind, parameters: p } = instance;
-  const path = instance.cells!;
+  const network = explicitEdges(instance, board);
+  const path = network ? network.cells : instance.cells!;
   for (const name of ["loop", "distinct", "combine"]) if (p[name] !== undefined && typeof p[name] !== "boolean") throw Error(`${name} must be true or false.`);
   if (["whispers", "whisper", "close-whispers"].includes(kind) && (typeof p.gap !== "number" || !Number.isFinite(p.gap))) throw Error("Supply a finite numeric gap.");
   const modulus = p.modulus === undefined ? 3 : p.modulus;
@@ -54,6 +82,7 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
   };
   const allowed = (cell: Cell, values: number[]): Formula => { charge(values.length + 1); return { op: "Allowed", channel: "D", cell, values }; };
   const edges = (test: (x: number,y: number,a: Cell,b: Cell) => boolean) => {
+    if (network) { for (const [a,b] of network.edges) nodes.push(edge(a,b,(x,y) => test(x,y,a,b))); return; }
     for (let i = 0; i < path.length - (p.loop && path.length > 2 ? 0 : 1); i++) {
       const a = path[i], b = path[(i+1)%path.length]; nodes.push(edge(a,b,(x,y) => test(x,y,a,b)));
     }
