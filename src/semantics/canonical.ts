@@ -35,6 +35,16 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
       rewrite(state,"sum-equation",input,result,sources);
       break;
     }
+    case "SumTotal": {
+      const cells = sortedCells(input.cells), { alphabet } = state.board;
+      // Distinct cells take one alphabet value each, so a total outside n*min..n*max has no solution.
+      if (!cells.length) result = { op: input.total === 0 ? "All" : "Any", children: [] };
+      else if (input.total < cells.length * Math.min(...alphabet) || input.total > cells.length * Math.max(...alphabet)) result = { op: "Any", children: [] };
+      else if (cells.length === 1) result = canonicalise({ op: "Allowed", channel: input.channel, cell: cells[0], values: alphabet.filter(d => d === input.total) }, state, sources, positive);
+      else result = { op: "SumTotal", channel: input.channel, cells, total: input.total };
+      rewrite(state, "boolean-canonical", input, result, sources);
+      break;
+    }
     case "Distinct": {
       const cells = input.collection === "list" ? input.cells : sortedCells(input.cells);
       const children = cells.flatMap((a, i) => cells.slice(i + 1).map(b => pair(state.board, a, b, (x, y) => x !== y)));

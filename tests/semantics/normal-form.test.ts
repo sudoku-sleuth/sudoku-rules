@@ -205,7 +205,7 @@ test("every supported family is checked under not, if, unless and negate all", (
 });
 
 test("mixed coverage, foreign definitions and play setup never yield whole-file agreement", () => {
-  for (const result of [nf("unique r1c1-r1c2\ncage r1c1-r1c2 repeats false total 3"), nf("https://example.test/custom.md r1c1"), nf("unique r1c1", board(), "definitions: {}\n")]) {
+  for (const result of [nf("unique r1c1-r1c2\ncage r1c1-r1c2 repeats false total 3.5"), nf("https://example.test/custom.md r1c1"), nf("unique r1c1", board(), "definitions: {}\n")]) {
     expect(result.issues).toEqual([]);
     expect(result.status).toBe("partial");
     const c = compare(result, result);
@@ -309,7 +309,7 @@ test("untotalled cage and killer alias use distinctness and retain house witness
   expect(f.rewrites.find(r => r.rule === 'house-implied')!.sources.some(s => s.kind === 'cage')).toBe(true);
   expect(evaluate(complete(nf('cage r1c1-r1c2 repeats false')).solution, {r1c1: 1, r1c2: 2})).toBe(true);
   expect(evaluate(complete(nf('cage r1c1-r1c2 repeats false')).solution, {r1c1: 1, r1c2: 1})).toBe(false);
-  for (const rule of ['cage r1c1 repeats false total 1', 'killer r1c1 repeats false sum 1']) expect(nf(rule).status).toBe('partial');
+  for (const rule of ['cage r1c1 repeats false total 1.5', 'killer r1c1 repeats false sum 1.5']) expect(nf(rule).status).toBe('partial');
 });
 
 test("explicit board headers agree with resolved context and retain board provenance", () => {

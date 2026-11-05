@@ -210,6 +210,10 @@ function finiteVerdict(f:Formula,assignment:Assignment,alphabet?:readonly number
   const count=f.cells.filter(c=>digits[c]===f.digit).length,empty=f.cells.filter(c=>digits[c]===undefined).length;
   return count>=f.count?result(true,f.cells.filter(c=>digits[c]===f.digit)):count+empty<f.count?result(false,f.cells):{status:'undecided'};
  }
+ if(f.op==='SumTotal'){
+  if(f.cells.some(c=>read(c,f.channel)===undefined))return {status:'undecided'};
+  return result(f.cells.reduce((s,c)=>s+BigInt(read(c,f.channel)),0n)===BigInt(f.total),f.cells);
+ }
  if(f.op!=='SumEqual')throw new Error('Unknown finite formula');
  const cells=supports(f);if(cells.some(c=>read(c,f.channel)===undefined))return {status:'undecided'};
  return result(f.left.reduce((s,c)=>s+BigInt(read(c,f.channel)),0n)===f.right.reduce((s,c)=>s+BigInt(read(c,f.channel)),0n),cells);

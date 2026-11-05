@@ -7,7 +7,7 @@ import { semanticDeclaration } from "./declaration.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
 export { all, distinct, pair, UnsupportedSemantics } from "./primitives.js";
-import { all, distinct, pair, UnsupportedSemantics } from "./primitives.js";
+import { all, distinct, pair, sumTotal, UnsupportedSemantics } from "./primitives.js";
 function digitList(raw: unknown, board: CanonicalBoard): number[] {
   if (!Array.isArray(raw) || raw.some(d => !Number.isSafeInteger(d) || !board.alphabet.includes(d))) throw Error("Supply a digit list drawn from the board alphabet.");
   return raw;
@@ -83,10 +83,11 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
       if (p.total !== undefined && p.sum !== undefined) throw Error("Use total once; sum is its alias.");
       const total = p.total !== undefined ? p.total : p.sum;
       if (total !== undefined && (typeof total !== "number" || !Number.isFinite(total))) throw Error("The cage total must be a number.");
-      if (total !== undefined) throw new UnsupportedSemantics("Cage value totals are not lowered; the whole cage remains uncovered.");
-      if (p.repeats === true) return all([]);
-      checkPairExpansion();
-      return distinct(cells);
+      if (total !== undefined && !Number.isSafeInteger(total)) throw new UnsupportedSemantics("A cage total that is not a safe integer is not lowered; the whole cage remains uncovered.");
+      // Face digits differ unless repeats is true; the total reads the effective value channel.
+      if (p.repeats !== true) checkPairExpansion();
+      if (total === undefined) return p.repeats === true ? all([]) : distinct(cells);
+      return all([...(p.repeats === true ? [] : [distinct(cells)]), sumTotal(cells, total as number)]);
     }
     case "unique": checkPairExpansion(); return distinct(cells);
     case "clone": checkPairExpansion(); return all(cells.flatMap((a, i) => cells.slice(i + 1).map(b => pair(board, a, b, (x, y) => x === y))));

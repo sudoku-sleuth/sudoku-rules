@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- The normal form lowers cages with a total (`total` or `sum`, with or without `repeats`) to an exact SumTotal building block over the cage cells, without expanding the cage into tables. It reads the effective value channel like the other value rules and is uncovered when that domain is unresolved.
 - The normal form lowers an explicit `edges` list on Whispers, Close Whispers, Parity, Primality and Shifter lines to the rule's pair test on exactly those edges. Window and whole-set line rules keep `edges` uncovered.
 - Rule pages can list the forms they replace in `replaces`, and `canonicalise(page, board)` rewrites a case to each set's canonical rule when the normal forms prove the rewrite. The first templates drop a printed-digit channel setting, merge per-pair `not` lines into one Negative and join touching pieces of one whispers or parity line. `lint:library` refuses two pages that claim the same replaced form.
 - A formula that fails to lower keeps the whole board as scope only when it ranges over the board; a comprehension or existential over the cells that requires its binder to belong to a given collection is scoped to that collection. `allowedWithWork` returns the steps spent beside the candidate support; `allowed` is unchanged.

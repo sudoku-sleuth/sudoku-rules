@@ -57,7 +57,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
   const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || i.kind === "liar-cells" || i.kind === "clue-count" || i.kind === "mapped-values" || !Object.hasOwn(capabilities, i.kind)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
   let expansion = 0;
   const charged = new Set<string>();
-  const cost = (f: Formula): number => f.op === "Pair" ? f.table.length : f.op === "Distinct" ? f.cells.length * (f.cells.length - 1) / 2 * board.alphabet.length ** 2 : f.op === "Not" ? cost(f.child) : f.op === "All" || f.op === "Any" ? f.children.reduce((n,c) => n + cost(c), 0) : f.op === "Allowed" ? f.values.length : f.op === "SumEqual" ? f.left.length + f.right.length : 0;
+  const cost = (f: Formula): number => f.op === "Pair" ? f.table.length : f.op === "Distinct" ? f.cells.length * (f.cells.length - 1) / 2 * board.alphabet.length ** 2 : f.op === "Not" ? cost(f.child) : f.op === "All" || f.op === "Any" ? f.children.reduce((n,c) => n + cost(c), 0) : f.op === "Allowed" ? f.values.length : f.op === "SumEqual" ? f.left.length + f.right.length : f.op === "SumTotal" ? f.cells.length : 0;
   const identity = (i: typeof read.instances[number]) => key([i.kind, i.negated, i.cells, i.ast.parameters.find(p => p.name.value === "element")?.value.value, Object.entries(i.parameters).sort(([x],[y]) => x < y ? -1 : x > y ? 1 : 0), i.condition]);
   const grouped = new Map<string, { instance: typeof read.instances[number]; sources: SemanticSource[] }>();
   for (const instance of read.instances) {
@@ -101,11 +101,12 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
     }
     try {
       let formula = lower(instance.ast, board);
-      const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : ([...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind)) && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
+      const readsValues = [...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind) || (["cage", "killer"].includes(kind) && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined));
+      const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : readsValues && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
       if (reason) { cover("unsupported", reason); continue; }
-      if (([...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind))) {
+      if (readsValues) {
         const before = key(formula);
-        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? { ...f, child: convert(f.child) } : f;
+        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" || f.op === "SumTotal" ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? { ...f, child: convert(f.child) } : f;
         formula = convert(formula);
         state.rewrites.push({ rule: "value-channel", version: 1, before, after: key(formula), sources });
       }
@@ -145,7 +146,7 @@ export function normalise(file: SemanticFile, context: BoardContext): Normalisat
 }
 function support(term: Formula): Cell[] {
   switch (term.op) {
-    case "Pair": case "Distinct": case "CountAtLeast": return term.cells;
+    case "Pair": case "Distinct": case "CountAtLeast": case "SumTotal": return term.cells;
     case "Allowed": return [term.cell];
     case "SumEqual": return [...new Set([...term.left, ...term.right])].sort();
     case "Not": return support(term.child);
