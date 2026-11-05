@@ -25,6 +25,7 @@ export type Formula =
   | { op: "Distinct"; channel: Channel; collection: "set" | "list"; cells: Cell[] }
   | { op: "Pair"; channel: Channel; cells: [Cell, Cell]; table: [number, number][] }
   | { op: "SumEqual"; channel: Channel; left: Cell[]; right: Cell[] }
+  | { op: "SumTotal"; channel: Channel; cells: Cell[]; total: number }
   | { op: "CountAtLeast"; channel: "D"; cells: Cell[]; digit: number; count: number }
   | { op: "Allowed"; channel: Channel; cell: Cell; values: number[] };
 export interface SemanticSource { span: Span; kind: string; instance?: string; position?: number; scope?: string; custom?: boolean }

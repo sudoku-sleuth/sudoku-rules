@@ -85,7 +85,7 @@ test('review 9: missing executable definitions emit diagnostics',()=>{
  const page=evaluatorLibrary().rules.get('cage')!;const formulas=page.formulas;
  try{
   page.formulas=[];
-  const result=compileCase(file('cage r1c1-r1c2 total 3','','board: {rows: 9, cols: 9, symbols: [1,2,3,4,5,6,7,8,9]}\n'));
+  const result=compileCase(file('cage r1c1-r1c2 total 3.5','','board: {rows: 9, cols: 9, symbols: [1,2,3,4,5,6,7,8,9]}\n'));
   expect(result.value).toBeUndefined();
   expect(result.diagnostics.some(d=>d.code==='E_CUSTOM_DEFINITION')).toBe(true);
  }finally{page.formulas=formulas;}

@@ -60,6 +60,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | Pair(channel, cells, table) | The ordered values at the two cells belong to the explicit allowed-pair table. Its axes use the board's actual numeric alphabet. Swapping cells transposes the table. A pair with the same cell on both axes uses only diagonal table entries. |
 | Allowed(channel, cell, values) | The cell's value belongs to this explicit numeric set. An empty set is false. |
 | SumEqual(channel, left, right) | Exact equality of sums over two occurrence lists, including repeated visits. Canonical equations cancel common occurrences, divide coefficients by their common factor and choose a fixed sign. |
+| SumTotal(channel, cells, total) | The values read on the channel at the distinct cells add up to the integer total, using exact integers. Cells are a sorted set. Canonically an empty set holds only for total 0, a total outside n times the least or greatest alphabet symbol holds nowhere, and a single cell becomes Allowed on the alphabet symbol equal to the total. |
 | CountAtLeast(D, cells, digit, count) | The number of matching digit occurrences is at least count. Cells are a sorted list retaining occurrence multiplicity. |
 | All(children) | Conjunction; empty All is true. |
 | Any(children) | Disjunction; empty Any is false. |
@@ -89,7 +90,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | quadruple | At-least counts of each listed digit over the cell set. Duplicate listed digits increase the required count. |
 | outside | At-least counts over cell occurrences. Order is immaterial; repeated positions still count. |
 | negative | Each listed relation is forbidden on orthogonal face-digit pairs in its direction and within scope, excluding exactly its declared exception pairs. |
-| cage, killer | Untotalled cages lower to distinctness unless repeats is true. Killer is the cage alias. Any supplied total (`total` or `sum`) leaves the whole declaration uncovered. |
+| cage, killer | Untotalled cages lower to distinctness unless repeats is true. Killer is the cage alias. A supplied total (`total` or `sum`, an integer) adds SumTotal over the cage cells on the V channel, converted to D with the `value-channel` rewrite when the effective-value domain is resolved and left uncovered when it is not. Face digits differ unless repeats is true, with or without a total. A total that is not a safe integer and a `channel` other than the default leave the whole declaration uncovered. |
 | thermo, slow-thermo | Directed adjacent strict increase on V, or nondecrease on D, respectively. |
 | whispers, whisper | Absolute adjacent V difference at least the required gap; German uses 5, Dutch uses 4. Optional loop closure. |
 | close-whispers | Absolute adjacent D difference at most the required gap. |
