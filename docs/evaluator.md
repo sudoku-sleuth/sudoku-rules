@@ -35,6 +35,8 @@ Without a value-binding declaration, effective values default to face digits. A 
 
 Scope is a safe set of cells a rule can read. Finite lowering supplies local supports for supported houses, pair relations and lines. Cage, Killer and Diagonal Sum (Little Killer) use their declared cell collections; their constant totals do not add board cells. General formulas that use board collections, computed coordinates or shared answers retain a conservative board-wide scope. Treat compiled objects as immutable and compile again after changing declarations.
 
+A formula that fails to lower keeps the whole board as scope when it ranges over the board (`rangesOverBoard`): it has a quantifier or aggregate with no domain whose binder is cell-typed or unannotated, or it names `C`, the houses or a board-wide answer reader. The exception is a comprehension, existential or filtered image over `C` whose filter requires its own binder to belong to another collection (`{c∈C: ∃G∈groups: c∈G}`), in positive position and without the name being rebound (`boundedByMembership`): it ranges over that collection, so its scope is the cells it was given.
+
 `not` negates the complete declaration. A condition wraps that result as an implication: `if uniform` activates it when the primary cells have one shading colour; `unless uniform` activates it when they do not. `distinct` reads face digits and `connected` reads orthogonal geometry. An inactive condition holds without evaluating its consequent.
 
 ## Verdicts
@@ -52,6 +54,8 @@ Sudoku houses, anti-move constraints and supported global relations use decompos
 `shadingScope(rule)` returns the cells whose shading the rule reads: the rule's scope when one of its formulas, or a `uniform` condition, reads the shading answer, and an empty list otherwise. A host that offers shading uses it to know which declarations need a shading answer.
 
 `allowed(rule, assignment, candidates)` returns `Map<Cell, Set<Digit>>` for empty scope cells. Each digit with a satisfying completion of the rule’s scope is retained. When every completion can be decided, the result is exact. An undecided completion also supports its digits, so missing auxiliary answers cannot cause pruning. It ignores other declarations. Missing candidate sets use the board alphabet; an explicitly empty set supplies no candidates.
+
+`allowedWithWork(rule, assignment, candidates)` returns `{result, work}`: the same result as `allowed`, and the steps spent from the shared budget. A refusal before any search spends 0 and an exhausted budget spends all of it. A host that charges a shared meter charges `work`.
 
 The Cartesian preflight bound is:
 
