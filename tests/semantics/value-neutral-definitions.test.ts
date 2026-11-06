@@ -150,3 +150,57 @@ test("the lowered value rules and the public evaluator agree on every board besi
     }
   }
 });
+
+const urlDefinition = (url: string, maths: string) =>
+  "\n```custom-rules\n" + stringify([{ url, name: "Probe", class: "first-order", parameters: { cells: cellsParameter }, definition: "A synthetic probe rule.", maths, example: "Fives break it." }]) + "```";
+
+test("a definition published at its own URL is treated like a local one", () => {
+  const url = "https://example.test/probe.md";
+  const neutral = normalise(file(`${url} ${a}-${b}\n${valueRules}`, urlDefinition(url, "∀c∈cells:D(c)!=5")), board);
+  expect(neutral.issues).toEqual([]);
+  expect(status(neutral, "kropki").status).toBe("lowered");
+  expect(status(neutral, "cage").status).toBe("lowered");
+  const reading = normalise(file(`${url} ${a}-${b}\n${valueRules}`, urlDefinition(url, "∀c∈cells:V(c)!=5")), board);
+  expect(status(reading, "kropki")).toMatchObject({ status: "unsupported", reason: unresolved });
+});
+
+test("a reference to a definition that is not in the file keeps value rules uncovered beside a neutral local one", () => {
+  const result = normalise(file(`#probe ${a}-${b}\nhttps://example.test/elsewhere.md ${b}-${c}\n${valueRules}`, definition("∀c∈cells:D(c)!=5")), board);
+  expect(result.issues).toEqual([]);
+  expect(status(result, "kropki")).toMatchObject({ status: "unsupported", reason: unresolved });
+  expect(status(result, "cage")).toMatchObject({ status: "unsupported", reason: unresolved });
+});
+
+test("a conditioned or negated instance of a neutral definition still leaves value rules lowered", () => {
+  for (const instance of [`#probe ${a}-${b} if uniform`, `#probe ${a}-${b} unless uniform`, `not #probe ${a}-${b}`]) {
+    const result = normalise(file(`${instance}\n${valueRules}`, definition("∀c∈cells:D(c)!=5")), board);
+    expect([instance, result.issues]).toEqual([instance, []]);
+    expect([instance, status(result, "kropki").status]).toEqual([instance, "lowered"]);
+    expect([instance, status(result, "cage").status]).toEqual([instance, "lowered"]);
+  }
+});
+
+test("on a whole case with a neutral definition the lowered D formulas agree with the evaluator, custom rule included", () => {
+  const maths = "∀c∈cells:D(c)!=5";
+  const rules = `#probe ${a}-${b}\nkropki ${a}-${b} white\ncage ${b}-${c} total 7 repeats false`;
+  for (const symbols of [digits9, [0, 2, 3, 5, 10]]) {
+    const n = normalise(file(rules, definition(maths)), { ...board, alphabet: symbols });
+    expect(n.issues).toEqual([]);
+    expect(n.normalForm!.coverage.filter(x => x.status === "unsupported").map(x => x.kind)).toEqual(["#probe"]);
+    const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---\n${definition(maths)}\n\`\`\`rules\n${rules}\n\`\`\`` });
+    expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+    const [custom, ...valueOnes] = compiled.value!.rules;
+    expect(valueOnes).toHaveLength(2);
+    for (const x of symbols) for (const y of symbols) for (const z of symbols) {
+      const values = { [a]: x, [b]: y, [c]: z };
+      const digits = { digits: values };
+      const valueHolds = valueOnes.every(rule => evaluate(rule, digits).status === "holds");
+      const customHolds = evaluate(custom, digits).status === "holds";
+      const whole = compiled.value!.rules.every(rule => evaluate(rule, digits).status === "holds");
+      // The lowered formulas match the value rules, and the custom rule only adds its own face-digit condition.
+      expect([symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([symbols.join(), x, y, z, valueHolds]);
+      expect(whole).toBe(valueHolds && customHolds);
+      expect(customHolds).toBe(x !== 5 && y !== 5);
+    }
+  }
+});
