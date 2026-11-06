@@ -38,18 +38,16 @@ export function lowerArrow(ast: DeclarationAST, board: CanonicalBoard): Formula 
   if (board.alphabet.some(d => !Number.isSafeInteger(d) || d < 0)) throw new UnsupportedSemantics("A partial arrow on an alphabet with negative or non-integer symbols is not lowered; the whole instance remains uncovered.");
   if (new Set(shaft).size !== shaft.length) throw new UnsupportedSemantics("A partial arrow whose shaft repeats a cell is not lowered; the whole instance remains uncovered.");
   const owners = [...weights];
-  const bulbValues: { assignment: number[]; value: number }[] = [];
-  let partial: { assignment: number[]; value: number }[] = [{ assignment: [], value: 0 }];
-  for (const [, weight] of owners) {
-    partial = partial.flatMap(x => digits.map(d => ({ assignment: [...x.assignment, d], value: x.value + d * weight })));
-    if (partial.length > maxLeaves) throw new UnsupportedSemantics("A partial arrow with more than 100,000 bulb readings is not lowered; the whole instance remains uncovered.");
-  }
-  bulbValues.push(...partial);
-  const top = Math.max(0, ...bulbValues.map(x => x.value));
+  // Refuse before enumerating: the readings are the alphabet choices for each distinct bulb cell.
+  if (digits.length ** owners.length > maxLeaves) throw new UnsupportedSemantics("A partial arrow with more than 100,000 bulb readings is not lowered; the whole instance remains uncovered.");
+  let bulbValues: { assignment: number[]; value: number }[] = [{ assignment: [], value: 0 }];
+  for (const [, weight] of owners) bulbValues = bulbValues.flatMap(x => digits.map(d => ({ assignment: [...x.assignment, d], value: x.value + d * weight })));
+  const top = bulbValues.reduce((m, x) => Math.max(m, x.value), 0);
   // Sums of nonempty lists of alphabet digits, up to the largest bulb value.
   const reachable = new Set<number>();
   for (let t = 0; t <= top; t++) if (board.alphabet.some(d => d <= t && (d === t || reachable.has(t - d)))) reachable.add(t);
-  const least = shaft.length * Math.min(...board.alphabet), most = shaft.length * Math.max(...board.alphabet);
+  const lowest = board.alphabet.reduce((m, x) => Math.min(m, x), Infinity), highest = board.alphabet.reduce((m, x) => Math.max(m, x), -Infinity);
+  const least = shaft.length * lowest, most = shaft.length * highest;
   let leaves = 0;
   const branches: Formula[] = [];
   for (const { assignment, value } of bulbValues) {

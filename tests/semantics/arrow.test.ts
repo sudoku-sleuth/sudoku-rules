@@ -91,41 +91,71 @@ test("bulbs whose weights are too large and partial arrows outside the finite fr
   expect(nf(`arrow ${b}-${c}-${b} bulb ${bulb(a)}`).status).toBe("complete");
 });
 
-test("the lowered formula and the public evaluator agree on every assignment", () => {
-  const sixteen = Array.from({ length: 16 }, (_, i) => i + 1);
-  const cases: { symbols: number[]; rules: string[] }[] = [
-    { symbols: [1, 2, 3, 4, 5, 6, 7, 8, 9], rules: [
-      `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c} bulb ${bulb(a, b)}`, `arrow ${d} bulb ${bulb(b, a)}`, `arrow ${b}-${c}-${b} bulb ${bulb(a)}`,
-      `arrow ${a} bulb ${bulb(a, b)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `not arrow ${c} bulb ${bulb(a, b)}`, `not arrow ${b}-${c} bulb ${bulb(a)}`,
-      `arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${c} bulb ${bulb(a, b)} partial true`, `arrow ${b}-${c}-${d} bulb ${bulb(a)} partial true`,
-      `not arrow ${b} bulb ${bulb(a)} partial true`, `arrow ${c}-${d} bulb ${bulb(a, a)} partial true`,
-    ] },
-    { symbols: [0, 1, 2, 3, 5], rules: [
-      `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${d} bulb ${bulb(a, b)} partial true`,
-    ] },
-    { symbols: [2, 5], rules: [`arrow ${b} bulb ${bulb(a)} partial true`, `arrow ${c} bulb ${bulb(a, b)} partial true`] },
-    // Values above 9 force the bulb digits into 0..9.
-    { symbols: [1, 2, 3, 9, 10, 12, 16], rules: [
-      `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `arrow ${c} bulb ${bulb(a, b)} partial true`, `arrow ${b} bulb ${bulb(a)} partial true`,
-    ] },
-  ];
-  for (const { symbols, rules } of cases) for (const text of rules) {
-    const context = { ...board, alphabet: symbols };
+type Layout = { rows: number; cols: number; regions: Cell[][] };
+const cellOf = (r: number, k: number) => `r${r}c${k}` as Cell;
+const line: Layout = { rows: 1, cols: 4, regions: [[a, b, c, d]] };
+const grid: Layout = { rows: 2, cols: 3, regions: [[1, 2, 3].map(k => cellOf(1, k)), [1, 2, 3].map(k => cellOf(2, k))] };
+/** A rule listed with "none" is one that no assignment on that alphabet satisfies, so agreement there is checked against an empty set. */
+type Entry = string | [string, "none"];
+function differential(layout: Layout, symbols: number[], entries: Entry[]): void {
+  const cells = layout.regions.flat();
+  const context: BoardContext = { rows: layout.rows, cols: layout.cols, activeCells: cells, alphabet: symbols, regions: layout.regions };
+  const regions = `[${layout.regions.map(r => `[${r.join(", ")}]`).join(", ")}]`;
+  for (const entry of entries) {
+    const [text, none] = typeof entry === "string" ? [entry, undefined] : entry;
     const n = nf(text, context);
     expect(n.issues).toEqual([]);
     expect(n.status).toBe("complete");
-    const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3, r1c4]]}\n---${body(text)}` });
+    const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: ${layout.rows}, cols: ${layout.cols}, symbols: [${symbols.join(",")}], regions: ${regions}}\n---${body(text)}` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
     const rule = compiled.value!.rules[0];
     let satisfied = 0;
-    for (const w of symbols) for (const x of symbols) for (const y of symbols) for (const z of symbols) {
-      const values = { [a]: w, [b]: x, [c]: y, [d]: z };
-      const expected = evaluate(rule, { digits: values }).status === "holds";
-      expect([text, symbols.join(), w, x, y, z, holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), w, x, y, z, expected]);
-      if (expected) satisfied++;
-    }
-    // A one-cell shaft cannot reach a two-digit bulb, and [2,5] cannot leave a remainder of 3 or 2 from one cell.
-    const empty = [`arrow ${c} bulb ${bulb(a, b)}`, `arrow ${d} bulb ${bulb(b, a)}`, `arrow ${a} bulb ${bulb(a, b)}`, `arrow ${b} bulb ${bulb(a)} partial true`];
-    if (!text.startsWith("not") && !(symbols.join() === "2,5" && empty[3] === text) && !(symbols.length === 9 && empty.slice(0, 3).includes(text))) expect(satisfied).toBeGreaterThan(0);
+    const walk = (index: number, values: Record<string, number>) => {
+      if (index === cells.length) {
+        const expected = evaluate(rule, { digits: values }).status === "holds";
+        expect([text, symbols.join(), JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), JSON.stringify(values), expected]);
+        if (expected) satisfied++;
+        return;
+      }
+      for (const x of symbols) walk(index + 1, { ...values, [cells[index]]: x });
+    };
+    walk(0, {});
+    expect([text, symbols.join(), satisfied === 0]).toEqual([text, symbols.join(), none === "none"]);
   }
+}
+
+test("the lowered formula and the public evaluator agree on every assignment", () => {
+  differential(line, [1, 2, 3, 4, 5, 6, 7, 8, 9], [
+    `arrow ${b}-${c} bulb ${bulb(a)}`, [`arrow ${c} bulb ${bulb(a, b)}`, "none"], [`arrow ${d} bulb ${bulb(b, a)}`, "none"], `arrow ${b}-${c}-${b} bulb ${bulb(a)}`,
+    [`arrow ${a} bulb ${bulb(a, b)}`, "none"], `arrow ${c}-${d} bulb ${bulb(a, b)}`, `not arrow ${c} bulb ${bulb(a, b)}`, `not arrow ${b}-${c} bulb ${bulb(a)}`,
+    `arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${c} bulb ${bulb(a, b)} partial true`, `arrow ${b}-${c}-${d} bulb ${bulb(a)} partial true`,
+    `not arrow ${b} bulb ${bulb(a)} partial true`, `arrow ${c}-${d} bulb ${bulb(a, a)} partial true`,
+    // The shaft includes a bulb cell.
+    `arrow ${b}-${a} bulb ${bulb(a, b)} partial true`, [`arrow ${a}-${b} bulb ${bulb(a)} partial true`, "none"],
+  ]);
+  differential(line, [0, 1, 2, 3, 5], [
+    `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${d} bulb ${bulb(a, b)} partial true`,
+    `arrow ${a}-${c} bulb ${bulb(a)} partial true`, `arrow ${b}-${a} bulb ${bulb(a, b)} partial true`,
+  ]);
+  differential(line, [2, 5], [[`arrow ${b} bulb ${bulb(a)} partial true`, "none"], `arrow ${c} bulb ${bulb(a, b)} partial true`]);
+  // Values above 9 force the bulb digits into 0..9, also under negation.
+  differential(line, [1, 2, 3, 9, 10, 12, 16], [
+    `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `arrow ${c} bulb ${bulb(a, b)} partial true`, `arrow ${b} bulb ${bulb(a)} partial true`,
+    `not arrow ${c}-${d} bulb ${bulb(a, b)}`, `not arrow ${c} bulb ${bulb(a, b)} partial true`,
+  ]);
+});
+
+test("the lowered formula and the evaluator agree when the shaft and bulb sit in different rows", () => {
+  const [r1c1, r1c2, r1c3, r2c1, r2c2, r2c3] = grid.regions.flat();
+  differential(grid, [0, 1, 2, 3], [
+    `arrow ${r2c1}-${r2c2} bulb ${bulb(r1c1)}`, `arrow ${r2c3} bulb ${bulb(r1c1, r1c2)}`, `arrow ${r2c1}-${r2c2}-${r2c3} bulb ${bulb(r1c1, r1c2, r1c3)}`,
+    `arrow ${r2c1}-${r1c3} bulb ${bulb(r1c1, r2c2)} partial true`, `arrow ${r2c1}-${r2c2} bulb ${bulb(r1c2)} partial true`,
+    `not arrow ${r2c1}-${r2c2} bulb ${bulb(r1c2, r2c3)}`,
+  ]);
+});
+
+test("a partial arrow above the reading cap is refused with its reason", () => {
+  const wide: BoardContext = { rows: 1, cols: 8, activeCells: Array.from({ length: 8 }, (_, i) => `r1c${i + 1}` as Cell), alphabet: [0, ...digits9] };
+  const refused = nf(`arrow r1c8 bulb ${bulb(...wide.activeCells.slice(0, 6))} partial true`, wide);
+  expect(refused.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("100,000 bulb readings") });
 });
