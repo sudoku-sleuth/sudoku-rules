@@ -111,7 +111,7 @@ export const declarationRegistry = {
   between: pending("Interior bounds and partial extent are not lowered."),
   "between-line": pending("Interior bounds and partial extent are not lowered."),
   "remainder-cage": pending("Cage remainder arithmetic is not lowered."),
-  arrow: pending("Decimal bulb sums and partial shafts are not lowered."),
+  arrow: lowered,
   summit: lowered,
   "line-choice": pending("Counts of whole candidate formulas are not lowered."),
   "limited-digits": pending("Image cardinality is not lowered."),

@@ -1,4 +1,5 @@
 import { declarationLibrary } from "../declaration-library.js";
+import { lowerArrow } from "./arrow.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
@@ -18,6 +19,7 @@ const fields: Record<string, string[]> = {
   xv: ["mark", "x", "v", "allGiven"], "marked-pairs": ["x", "v", "white", "black", "allGiven"], quadruple: ["digits"], outside: ["digits"],
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
+  arrow: ["partial", "bulb"],
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
 };
@@ -53,10 +55,11 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     throw Error(`${written} has no parameter ${name}.`);
   }
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
+  if (kind === "arrow") return lowerArrow(ast, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
     if (cells.length * (cells.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
