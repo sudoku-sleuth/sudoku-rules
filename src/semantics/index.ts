@@ -9,6 +9,7 @@ import { all, condition, lower, validateCells, UnsupportedSemantics } from "./lo
 import { checkBoardHeaders, checkMetadataHeaders, type NormaliseOptions } from "./headers.js";
 export type { NormaliseOptions } from "./headers.js";
 import { readSemanticFile } from "./reader.js";
+import { valueNeutralDefinitions } from "./values.js";
 import { declarationRegistry, type DeclarationCapability } from "./registry.js";
 import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, NormalForm, SemanticDifference, SemanticFile, SemanticIssue, SemanticSource } from "./types.js";
 export * from "./types.js";
@@ -58,7 +59,10 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
   const decorations: NonNullable<NormalForm["decorations"]> = [];
   const bundles: { formula: Formula; sources: SemanticSource[] }[] = [];
   const capabilities: Record<string, DeclarationCapability> = declarationRegistry;
-  const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || i.kind === "liar-cells" || i.kind === "clue-count" || i.kind === "mapped-values" || !Object.hasOwn(capabilities, i.kind)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
+  // A case's own definition leaves the effective-value domain resolved when its checked formula never touches V.
+  const neutralDefinitions = read.instances.some(i => i.source.custom) ? valueNeutralDefinitions(file) : new Set<string>();
+  const neutral = (i: typeof read.instances[number]) => i.source.custom === true && neutralDefinitions.has(i.kind);
+  const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || i.kind === "liar-cells" || i.kind === "clue-count" || i.kind === "mapped-values" || !Object.hasOwn(capabilities, i.kind) && !neutral(i)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
   let expansion = 0;
   const charged = new Set<string>();
   const cost = (f: Formula): number => f.op === "Pair" ? f.table.length : f.op === "Distinct" ? f.cells.length * (f.cells.length - 1) / 2 * board.alphabet.length ** 2 : f.op === "Not" ? cost(f.child) : f.op === "All" || f.op === "Any" ? f.children.reduce((n,c) => n + cost(c), 0) : f.op === "Allowed" ? f.values.length : f.op === "SumEqual" ? f.left.length + f.right.length : f.op === "SumTotal" ? f.cells.length : 0;
