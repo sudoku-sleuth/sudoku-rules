@@ -28,7 +28,9 @@ export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void 
 /** Validate completely before wrapping with negation or a condition. */
 export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance=semanticDeclaration(ast);
-  const { kind, parameters: p } = instance;
+  const { parameters: p } = instance;
+  // regions and extra-regions are spellings of the same distinct-cells meaning as unique.
+  const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind;
   const allowed = fields[kind];
   if (!allowed) throw Error(`No lowering for ${kind}.`);
   const extensions: Record<string,string[]> = {

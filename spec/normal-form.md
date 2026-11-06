@@ -79,7 +79,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | Kind | Lowering |
 | --- | --- |
 | sudoku | Standard 9×9 composed houses; explicit board alphabet and givens retained. |
-| unique | Set distinctness to all unordered inequality pairs. |
+| unique, regions, extra-regions | Set distinctness to all unordered inequality pairs. The three spellings share one lowering, so equal cell sets compare equivalent; a group already implied by a declared house reduces to nothing, as for any inequality pair. |
 | clone | Equality table on every unordered cell pair. |
 | diagonal | Distinctness on active coordinates satisfying row=column (main) or row+column=cols+1 (anti). |
 | anti-knight | Inequality for every active (1,2)/(2,1) move edge. |
