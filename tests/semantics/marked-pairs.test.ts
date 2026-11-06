@@ -37,10 +37,10 @@ test('repeated unlabelled shapes retain positional provenance and print without 
   expect(written.every(line=>!line.includes(':'))).toBe(true);
   expect(readSemanticFile(file(written.join('\n'))).issues).toEqual([]);
   const result=normalise(page,board);
-  expect(result.status).toBe('partial'); // Arrow remains outside finite lowering.
+  expect(result.status).toBe('complete');
   expect(result.normalForm!.coverage).toHaveLength(9);
-  expect(result.normalForm!.coverage.filter(c=>c.kind==='arrow').every(c=>c.status==='unsupported')).toBe(true);
-  expect(result.normalForm!.coverage.filter(c=>c.kind!=='arrow').every(c=>c.status==='lowered')).toBe(true);
+  expect(result.normalForm!.coverage.filter(c=>c.kind==='arrow').every(c=>c.status==='lowered')).toBe(true);
+  expect(result.normalForm!.coverage.every(c=>c.status==='lowered')).toBe(true);
   expect(compare(norm(lines.slice(3).join('\n')),norm(written.slice(3).join('\n'))).status).toBe('equivalent');
   const mixed=readSemanticFile(file('"@2": unique r1c1\n```\n\n```rules\nunique r1c2\nunique r1c2'),{rows:9,cols:9,symbols:board.alphabet,standard:true});
   expect(mixed.issues).toEqual([]);
@@ -65,9 +65,9 @@ for(const number of [2,13])test(`Colorado ${number} fixture has equivalent seman
   const input=await Bun.file(`${base}.input.md`).text(), expected=await Bun.file(`${base}.expected.md`).text();
   const page=(text:string)=>({...file(''),text:file('').text.replace(/```rules[\s\S]*?```/,text.trim())});
   const before=normalise(page(input),board),after=normalise(page(expected),board);
-  // These full fixtures also contain arrows or little killers outside this fragment.
   expect(compare(before,after).covered).toBe('equal');
-  expect(compare(before,after).status).toBe('unresolved');
+  // Colorado 2 also contains little killers, which remain outside finite lowering.
+  expect(compare(before,after).status).toBe(number===2?'unresolved':'equivalent');
   const marksOnly=(text:string)=>page(text.split('\n').filter(line=>!/^((?:[\w-]+: )?(?:arrow|little-killer|diagonal-sum)) /.test(line)).join('\n'));
   expect(compare(normalise(marksOnly(input),board),normalise(marksOnly(expected),board)).status).toBe('equivalent');
 });
