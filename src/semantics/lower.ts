@@ -129,7 +129,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
 }
 /** Most value assignments of the repeated cells of a ray that are enumerated. */
-const maxRepeatReadings = 100_000;
+const maxRepeatReadings = 20_000;
 /**
  * Diagonal sum (Little Killer): the values of the listed cells, each cell counted once per occurrence, add up to the sum.
  * With repeats false the values on the ray must also differ, and a cell listed twice then differs from itself, so no
@@ -152,7 +152,7 @@ function lowerDiagonalSum(p: Record<string, unknown>, listed: Cell[], board: Can
     return all([{ op: "Distinct", channel, collection: "set", cells: sortedCells(listed) }, sumTotal(listed, total, channel)]);
   }
   if (!repeated.length) return sumTotal(listed, total, channel);
-  if (board.alphabet.length ** repeated.length > maxRepeatReadings) throw new UnsupportedSemantics("A ray with more than 100,000 readings of its repeated cells is not lowered; the whole instance remains uncovered.");
+  if (board.alphabet.length ** repeated.length > maxRepeatReadings) throw new UnsupportedSemantics("A ray with more than 20,000 readings of its repeated cells is not lowered; the whole instance remains uncovered.");
   const once = sortedCells(listed.filter(c => times.get(c) === 1));
   const lowest = Math.min(...board.alphabet), highest = Math.max(...board.alphabet);
   let readings: { values: number[]; part: number }[] = [{ values: [], part: 0 }];

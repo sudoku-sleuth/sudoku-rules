@@ -79,7 +79,12 @@ test("a ray with too many readings of its repeated cells names its reason", () =
   const wide: BoardContext = { rows: 1, cols: 8, activeCells: Array.from({ length: 8 }, (_, i) => `r1c${i + 1}` as Cell), alphabet: digits9 };
   const text = (list: string[]) => `little-killer ${list.join("-")} sum 20`;
   const refused = nf(text(["r1c1", "r1c1", "r1c2", "r1c2", "r1c3", "r1c3", "r1c4", "r1c4", "r1c5", "r1c5", "r1c6", "r1c6"]), wide);
-  expect(refused.normalForm!.coverage.find(x => x.kind === "little-killer")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("100,000") });
+  expect(refused.normalForm!.coverage.find(x => x.kind === "little-killer")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("20,000") });
+  // Five repeated cells on nine symbols is 59,049 readings, over the cap; four is 6,561, under it.
+  const five = nf(text(["r1c1", "r1c1", "r1c2", "r1c2", "r1c3", "r1c3", "r1c4", "r1c4", "r1c5", "r1c5"]), wide);
+  expect(five.normalForm!.coverage.find(x => x.kind === "little-killer")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("20,000") });
+  const four = nf(text(["r1c1", "r1c1", "r1c2", "r1c2", "r1c3", "r1c3", "r1c4", "r1c4"]), wide);
+  expect(four.normalForm!.coverage.find(x => x.kind === "little-killer")).toMatchObject({ status: "lowered" });
   const huge = nf(`little-killer ${a}-${b} sum 1e300`);
   expect(huge.normalForm!.coverage.find(x => x.kind === "little-killer")).toMatchObject({ status: "unsupported" });
 });
