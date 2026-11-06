@@ -106,12 +106,13 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
     try {
       let formula = lower(instance.ast, board);
       const bulb = instance.parameters.bulb;
-      const readsValues = (kind === "arrow" && instance.parameters.partial !== true && Array.isArray(bulb) && bulb.length === 1) || [...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind) || (["cage", "killer"].includes(kind) && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined));
+      const readsValues = (kind === "arrow" && instance.parameters.partial !== true && Array.isArray(bulb) && bulb.length === 1) || [...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind) || (["cage", "killer"].includes(kind) && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined)) || (["diagonal-sum", "little-killer"].includes(kind) && instance.parameters.channel === "V");
       const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : readsValues && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
       if (reason) { cover("unsupported", reason); continue; }
       if (readsValues) {
         const before = key(formula);
-        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" || f.op === "SumTotal" ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? { ...f, child: convert(f.child) } : f;
+        const ray = ["diagonal-sum", "little-killer"].includes(kind);
+        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" || f.op === "SumTotal" || (f.op === "Distinct" && ray) ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? { ...f, child: convert(f.child) } : f;
         formula = convert(formula);
         state.rewrites.push({ rule: "value-channel", version: 1, before, after: key(formula), sources });
       }

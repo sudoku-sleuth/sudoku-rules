@@ -19,7 +19,7 @@ const fields: Record<string, string[]> = {
   xv: ["mark", "x", "v", "allGiven"], "marked-pairs": ["x", "v", "white", "black", "allGiven"], quadruple: ["digits"], outside: ["digits"],
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
-  arrow: ["partial", "bulb"],
+  arrow: ["partial", "bulb"], "diagonal-sum": ["sum", "channel", "repeats"],
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
 };
@@ -32,7 +32,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance=semanticDeclaration(ast);
   const { parameters: p } = instance;
   // regions and extra-regions are spellings of the same distinct-cells meaning as unique.
-  const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind;
+  const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind === "little-killer" ? "diagonal-sum" : instance.kind;
   const written = instance.kind;
   const allowed = fields[kind];
   if (!allowed) throw Error(`No lowering for ${written}.`);
@@ -55,7 +55,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     throw Error(`${written} has no parameter ${name}.`);
   }
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "diagonal-sum", "unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -95,6 +95,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
       if (total === undefined) return p.repeats === true ? all([]) : distinct(cells);
       return all([...(p.repeats === true ? [] : [distinct(cells)]), sumTotal(cells, total as number)]);
     }
+    case "diagonal-sum": return lowerDiagonalSum(p, instance.cells!, board);
     case "unique": checkPairExpansion(); return distinct(cells);
     case "clone": checkPairExpansion(); return all(cells.flatMap((a, i) => cells.slice(i + 1).map(b => pair(board, a, b, (x, y) => x === y))));
     case "diagonal": {
@@ -126,6 +127,46 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
       return all(nodes);
     }
   }
+}
+/** Most value assignments of the repeated cells of a ray that are enumerated. */
+const maxRepeatReadings = 100_000;
+/**
+ * Diagonal sum (Little Killer): the values of the listed cells, each cell counted once per occurrence, add up to the sum.
+ * With repeats false the values on the ray must also differ, and a cell listed twice then differs from itself, so no
+ * assignment holds. A ray with a repeated cell is written as an exact disjunction over the values of its repeated cells,
+ * each leaving a plain total over the cells listed once. The channel is left as written; the caller converts V to D.
+ */
+function lowerDiagonalSum(p: Record<string, unknown>, listed: Cell[], board: CanonicalBoard): Formula {
+  if (p.repeats !== undefined && typeof p.repeats !== "boolean") throw Error("repeats must be true or false.");
+  if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
+  const total = p.sum;
+  if (typeof total !== "number" || !Number.isFinite(total)) throw Error("The sum must be a number.");
+  if (!Number.isSafeInteger(total)) throw new UnsupportedSemantics("A diagonal sum that is not a safe integer is not lowered; the whole instance remains uncovered.");
+  const channel = p.channel === "V" ? "V" : "D";
+  const times = new Map<Cell, number>();
+  for (const cell of listed) times.set(cell, (times.get(cell) ?? 0) + 1);
+  const repeated = [...times].filter(([, n]) => n > 1).sort(([a], [b]) => a < b ? -1 : 1);
+  if (p.repeats === false) {
+    if (repeated.length) return { op: "Any", children: [] };
+    if (listed.length * (listed.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
+    return all([{ op: "Distinct", channel, collection: "set", cells: sortedCells(listed) }, sumTotal(listed, total, channel)]);
+  }
+  if (!repeated.length) return sumTotal(listed, total, channel);
+  if (board.alphabet.length ** repeated.length > maxRepeatReadings) throw new UnsupportedSemantics("A ray with more than 100,000 readings of its repeated cells is not lowered; the whole instance remains uncovered.");
+  const once = sortedCells(listed.filter(c => times.get(c) === 1));
+  const lowest = Math.min(...board.alphabet), highest = Math.max(...board.alphabet);
+  let readings: { values: number[]; part: number }[] = [{ values: [], part: 0 }];
+  for (const [, n] of repeated) readings = readings.flatMap(r => board.alphabet.map(d => ({ values: [...r.values, d], part: r.part + n * d })));
+  const branches: Formula[] = [];
+  for (const { values, part } of readings) {
+    const rest = total - part;
+    if (once.length ? rest < once.length * lowest || rest > once.length * highest : rest !== 0) continue;
+    branches.push(all([
+      ...repeated.map(([cell], i): Formula => ({ op: "Allowed", channel, cell, values: [values[i]] })),
+      ...(once.length ? [sumTotal(once, rest, channel)] : []),
+    ]));
+  }
+  return { op: "Any", children: branches };
 }
 /** Negative scope is shared by explicit negatives and each all-given mark kind. */
 function lowerNegative(p: Record<string, unknown>, board: CanonicalBoard): Formula {
