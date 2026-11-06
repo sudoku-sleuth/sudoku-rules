@@ -1,5 +1,9 @@
 import { expect, test } from "bun:test";
-import { compileCase, evaluate, normalise, compare, type BoardContext, type Cell, type Formula } from "../../src";
+import { checkCaseReferences, compileCase, evaluate, normalise, compare, type BoardContext, type Cell, type Formula } from "../../src";
+import { declarationLibrary } from "../../src/declaration-library";
+import type { DeclarationAST } from "../../src/declarations";
+import { canonicalBoard } from "../../src/semantics/board";
+import { lower } from "../../src/semantics/lower";
 
 const [a, b, c]: Cell[] = ["r1c1", "r1c2", "r1c3"];
 const digits9 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -77,5 +81,18 @@ test("the lowered formula and the public evaluator agree on every assignment", (
       const expected = evaluate(rule, { digits: values }).status === "holds";
       expect([text, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), x, y, z, expected]);
     }
+  }
+});
+
+test("board geometry alone asserts no distinctness", () => {
+  expect(compare(nf(`regions ${a}-${b}-${c}`), nf("")).status).not.toBe("equivalent");
+});
+
+test("errors name the written kind", () => {
+  const checked = checkCaseReferences(file(`sudoku 9x9\nregions ${a}-${b}\nextra-regions ${a}-${b}`), declarationLibrary);
+  expect(checked.diagnostics).toEqual([]);
+  for (const [i, kind] of ["regions", "extra-regions"].entries()) {
+    const ast = { ...checked.value!.declarations[i + 1], cells: undefined } as DeclarationAST;
+    expect(() => lower(ast, canonicalBoard(board))).toThrow(`${kind} needs a nonempty cell list.`);
   }
 });

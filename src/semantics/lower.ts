@@ -31,8 +31,9 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const { parameters: p } = instance;
   // regions and extra-regions are spellings of the same distinct-cells meaning as unique.
   const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind;
+  const written = instance.kind;
   const allowed = fields[kind];
-  if (!allowed) throw Error(`No lowering for ${kind}.`);
+  if (!allowed) throw Error(`No lowering for ${written}.`);
   const extensions: Record<string,string[]> = {
     thermo:["strict","orientation","channel"], "slow-thermo":["orientation","channel"],
     renban:["edges","channel","repeats","selection"], nabner:["edges","channel","separated","selection"],
@@ -47,14 +48,14 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;
-      throw new UnsupportedSemantics(`The ${name} parameter of ${kind} is not lowered; the whole instance remains uncovered.`);
+      throw new UnsupportedSemantics(`The ${name} parameter of ${written} is not lowered; the whole instance remains uncovered.`);
     }
-    throw Error(`${kind} has no parameter ${name}.`);
+    throw Error(`${written} has no parameter ${name}.`);
   }
   validateCells(ast, board);
   const needsCells = Object.hasOwn(lineFields, kind) || ["unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
-  if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${kind} needs a nonempty cell list.`);
-  if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${kind} does not take a cell list.`);
+  if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
+  if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
