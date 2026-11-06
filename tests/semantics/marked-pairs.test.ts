@@ -66,8 +66,7 @@ for(const number of [2,13])test(`Colorado ${number} fixture has equivalent seman
   const page=(text:string)=>({...file(''),text:file('').text.replace(/```rules[\s\S]*?```/,text.trim())});
   const before=normalise(page(input),board),after=normalise(page(expected),board);
   expect(compare(before,after).covered).toBe('equal');
-  // Colorado 2 also contains little killers, which remain outside finite lowering.
-  expect(compare(before,after).status).toBe(number===2?'unresolved':'equivalent');
+  expect(compare(before,after).status).toBe('equivalent');
   const marksOnly=(text:string)=>page(text.split('\n').filter(line=>!/^((?:[\w-]+: )?(?:arrow|little-killer|diagonal-sum)) /.test(line)).join('\n'));
   expect(compare(normalise(marksOnly(input),board),normalise(marksOnly(expected),board)).status).toBe('equivalent');
 });
