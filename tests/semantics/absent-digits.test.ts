@@ -53,6 +53,11 @@ test("reordered and repeated digit lists and cell lists compare equivalent", () 
   eq(absent(`${a}-${b}`, "2,4"), `${absent(a, "2,4")}\n${absent(b, "2,4")}`);
 });
 
+test("a repeated cell equals the single cell, and the complement list is allowed-digits", () => {
+  eq(absent(`${a}-${a}`, "2"), absent(a, "2"));
+  eq(absent(a, "2,4"), `allowed-digits ${a} digits [1,3,5,6,7,8,9]`);
+});
+
 test("covered, with the printed digits read whatever the effective-value domain", () => {
   const modifier = `value-modifier factor 2 offset 0 exactly [["${c}"]] count 1 atMostOne [] distinct false meta {"name":"Doubler","stated":true}`;
   expect(nf(`${absent(a, "2")}\n${modifier}`).normalForm!.coverage.find(x => x.kind === "absent-digits")).toMatchObject({ status: "lowered" });
