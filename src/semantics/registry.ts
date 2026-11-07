@@ -102,7 +102,7 @@ export const declarationRegistry = {
   "flat-mates": pending("Guarded neighbours above and below are not lowered."),
   lockout: lowered,
   "equal-sums": lowered,
-  "equality-cage": pending("Alphabet halves and balanced class counts are not lowered."),
+  "equality-cage": lowered,
   extremum: lowered,
   pair: lowered,
   "cage-expressions": pending("Shared integer letter witnesses and expression evaluation are not lowered."),
