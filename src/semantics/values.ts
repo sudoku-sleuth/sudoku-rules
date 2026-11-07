@@ -8,7 +8,7 @@ import type { SemanticFile } from "./types.js";
  * Prelude primitives with no body whose meaning is known not to read the effective value. Any other
  * primitive is opaque, so a formula reaching it is treated as touching values.
  */
-const valueFreePrimitives = new Set([
+export const valueFreePrimitives = new Set([
   "face", "toValue", "row", "col", "cellIndex", "boardCell", "orderedCells", "some", "absent", "present", "unwrap",
   "minimumDigit", "maximumDigit", "minimumValue", "maximumValue", "alphabetPosition", "givenDigit", "relationSpec",
   "cellLists", "connected", "routeAnswer", "routeClosed", "networkAnswer", "partitionAnswer", "selectionAnswer",
@@ -59,7 +59,8 @@ export function definitionTouchesValues(definition: CustomDefinition, prelude: C
     visiting.add(key);
     let touches = declaration.parameters.some(p => !(digits.has(p.name) && p.type.name === "Channel") && typeTouches(p.type, types)) || typeTouches(declaration.result, types);
     if (!touches) {
-      if (!declaration.body) touches = !valueFreePrimitives.has(name);
+      // A primitive with a Channel parameter is opaque whatever the whitelist says.
+      if (!declaration.body) touches = !valueFreePrimitives.has(name) || declaration.parameters.some(p => p.type.name === "Channel");
       else {
         const bound = new Set(declaration.parameters.map(p => p.name));
         touches = [declaration.body, declaration.requires].some(part => part !== undefined && walk(part as TypedExpr, bound, false, digits));
@@ -91,10 +92,10 @@ export function definitionTouchesValues(definition: CustomDefinition, prelude: C
     if (node.kind === "conditional" && node.children.length === 3) {
       const [condition, whenTrue, whenFalse] = node.children;
       const [left, right] = condition.children;
-      const operands = condition.kind === "binary" && condition.value === "=" && left && right ? [left, right] : [];
+      const operands = condition.kind === "binary" && (condition.value === "=" || condition.value === "!=" || condition.value === "≠") && left && right ? [left, right] : [];
       const channel = operands.find(x => x.kind === "name" && !own && bound.has(x.value!) && digits.has(x.value!));
       const literal = operands.find(x => x.kind === "literal");
-      if (channel && literal && (literal.value === "D" || literal.value === "V")) return walk(literal.value === "D" ? whenTrue : whenFalse, bound, own, digits);
+      if (channel && literal && (literal.value === "D" || literal.value === "V")) return walk((literal.value === "D") === (condition.value === "=") ? whenTrue : whenFalse, bound, own, digits);
     }
     if (typeTouches(node.type, types)) return true;
     if (node.kind === "literal" && node.value === "V") return true;

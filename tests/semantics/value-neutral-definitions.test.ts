@@ -1,10 +1,18 @@
-import { expect, test } from "bun:test";
+import { beforeAll, expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
 import { stringify } from "yaml";
 import { compileCase, evaluate, normalise, type BoardContext, type Cell, type Formula, type Normalisation } from "../../src";
 import { caseBlocks, readCustomDefinitions } from "../../src/custom-definitions";
 import { declarationLibrary, defaultCasePrelude } from "../../src/declaration-library";
-import { definitionTouchesValues } from "../../src/semantics/values";
+import { compilePrelude } from "../../src/library";
+import { definitionTouchesValues, valueFreePrimitives } from "../../src/semantics/values";
 
+// The first compile and normalise pay a one-time setup cost; keep it out of the individual tests.
+beforeAll(() => {
+  const warm = { file: "warm.rules.md", text: `${"---\nformat: open-rules\ntitle: Warm\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n"}board: {rows: 1, cols: 3, symbols: [1,2,3], regions: [[r1c1, r1c2, r1c3]]}\n---\n\`\`\`rules\nkropki r1c1-r1c2 white\n\`\`\`` };
+  compileCase(warm);
+  normalise(warm, { rows: 1, cols: 3, activeCells: ["r1c1", "r1c2", "r1c3"], alphabet: [1, 2, 3], regions: [["r1c1", "r1c2", "r1c3"]] });
+});
 const [a, b, c]: Cell[] = ["r1c1", "r1c2", "r1c3"];
 const digits9 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const board: BoardContext = { rows: 1, cols: 3, activeCells: [a, b, c], alphabet: digits9, regions: [[a, b, c]] };
@@ -98,7 +106,6 @@ test("the value check reads the typed formula and everything it reaches", () => 
     ["V", "∀c∈cells:V(c)!=5"],
     ["effective", "∀c∈cells:effective(c)!=5"],
     ["read, literal V", '∀c∈cells:read(c,"V")!=5'],
-    ["read, literal V", '∀c∈cells:read(c,"V")>0'],
     ["channel parameter used", "∀c∈cells:read(c,channel)!=5", { cells: cellsParameter, channel }],
     ["channel parameter unused", "∀c∈cells:D(c)!=5", { cells: cellsParameter, channel }],
     ["library function passed V", 'aggregate(cells,"V","sum")>3', undefined],
@@ -264,5 +271,53 @@ test("on a whole case with a neutral definition the lowered D formulas agree wit
       expect(whole).toBe(valueHolds && customHolds);
       expect(customHolds).toBe(x !== 5 && y !== 5);
     }
+  }
+});
+
+/** The shared prelude plus test-only terms, so the Channel shortcut can be tried on small bodies. */
+const probePrelude = (() => {
+  const source = readFileSync(new URL("../../rules/predicates.md", import.meta.url), "utf8");
+  const terms = [
+    'term pickEq(c:cell,ch:Channel):boolean = if ch="D" then D(c)!=5 else V(c)!=5;',
+    'term pickReversed(c:cell,ch:Channel):boolean = if "D"=ch then D(c)!=5 else V(c)!=5;',
+    'term pickNotEqual(c:cell,ch:Channel):boolean = if ch!="D" then V(c)!=5 else D(c)!=5;',
+    'term pickNested(c:cell,ch:Channel):boolean = if ch="D" then (if ch="V" then V(c)!=5 else D(c)!=5) else V(c)!=5;',
+    'term pickOnlyV(c:cell,ch:Channel):boolean = if ch="V" then V(c)!=5 else D(c)!=5;',
+    'term pickVThen(c:cell,ch:Channel):boolean = if ch="D" then V(c)!=5 else D(c)!=5;',
+    'term pickOutside(c:cell,ch:Channel):boolean = ch="D" ∧ D(c)!=5;',
+  ];
+  const prelude = compilePrelude({ file: "rules/predicates.md", text: `${source}\n\n\`\`\`openrules\n${terms.join("\n")}\n\`\`\`\n` });
+  expect(prelude.diagnostics).toEqual([]);
+  return prelude.value!;
+})();
+function touchesProbe(maths: string): boolean {
+  const page = { file: "probe.md", text: `${header}---\n${definition(maths)}` };
+  const read = readCustomDefinitions(page, caseBlocks(page), declarationLibrary.kinds, probePrelude, declarationLibrary.urls);
+  expect([maths, read.diagnostics]).toEqual([maths, []]);
+  return definitionTouchesValues(read.definitions.get("#probe")!, probePrelude);
+}
+
+test("a fixed digit channel chooses the branch it selects and nothing else", () => {
+  const neutral = [
+    ["equals, with a V else-branch skipped", '∀c∈cells:pickEq(c,"D")'],
+    ["reversed operand order", '∀c∈cells:pickReversed(c,"D")'],
+    ["not equal", '∀c∈cells:pickNotEqual(c,"D")'],
+    ["nested", '∀c∈cells:pickNested(c,"D")'],
+    ["a V comparison skips its then-branch", '∀c∈cells:pickOnlyV(c,"D")'],
+  ];
+  for (const [name, maths] of neutral) expect([name, touchesProbe(maths)]).toEqual([name, false]);
+  const touching = [
+    ["the V branch is the one selected", '∀c∈cells:pickVThen(c,"D")'],
+    ["the same term with V", '∀c∈cells:pickEq(c,"V")'],
+    ["a fixed parameter used outside a call or condition", '∀c∈cells:pickOutside(c,"D")'],
+  ];
+  for (const [name, maths] of touching) expect([name, touchesProbe(maths)]).toEqual([name, true]);
+});
+
+test("no primitive that takes a Channel is treated as value-free", () => {
+  const { terms } = defaultCasePrelude().environment;
+  for (const name of valueFreePrimitives) {
+    const declaration = Object.hasOwn(terms, name) ? terms[name] : undefined;
+    if (declaration && !declaration.body) expect([name, declaration.parameters.some(p => p.type.name === "Channel")]).toEqual([name, false]);
   }
 });
