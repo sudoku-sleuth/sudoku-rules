@@ -121,7 +121,7 @@ export const declarationRegistry = {
   "sum-free-cage": pending("Modular digit-set exclusion including self-pairs is not lowered."),
   entropic: lowered,
   "doll-sum": pending("Existential endpoint pairs and interior sums are not lowered."),
-  "double-arrow": pending("Endpoint and shaft sums with partial extent are not lowered."),
+  "double-arrow": lowered,
   "yin-yang": pending("Shared shading, connectivity and partition constraints are not lowered."),
   "counting-circles": pending("Digit-dependent multiplicity counts are not lowered."),
   "ordered-block": pending("Existential ordered block positions are not lowered."),
