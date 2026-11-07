@@ -1,4 +1,4 @@
-import { beforeAll, expect, test } from "bun:test";
+import { expect, test } from "bun:test";
 import { compileCase, evaluate, normalise, compare, type BoardContext, type Cell, type Formula } from "../../src";
 
 const cells: Cell[] = ["r1c1", "r1c2", "r1c3", "r1c4", "r1c5", "r1c6"];
@@ -29,9 +29,8 @@ function holds(f: Formula, v: Record<string, number>): boolean {
 }
 function form(rules: string) { const r = nf(rules); expect(r.issues).toEqual([]); expect(r.status).toBe("complete"); return r.normalForm!.solution; }
 const at = (...v: number[]) => Object.fromEntries(v.map((x, i) => [cells[i], x]));
-// The first compile loads the library; keep that one-off cost out of the timed tests.
-// The first library load is slow on CI, so this hook alone gets a longer limit.
-beforeAll(() => {
+// The first library load is slow on CI, so it is timed on its own with a longer limit; the tests below reuse it.
+test("the library loads", () => {
   nf(sums([[a, b], [c]]));
   compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3], regions: [[r1c1, r1c2, r1c3]]}\n---${body(sums([[a, b], [c]]))}` });
 }, 30000);
