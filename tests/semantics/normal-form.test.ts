@@ -639,7 +639,7 @@ test("fog start cells, links and link members are sets with retained provenance"
   expect(compare(absent,nf('unique r1c1')).covered).toBe('structural-difference');
   const fromClear = compare(nf('unique r1c1'),absent);
   expect(fromClear.differences.find(d => d.side === 'right' && d.primitive === 'Play')!.sources[0].kind).toBe('header:fog');
-  expect(compare(nf('double-arrow r1c1-r1c2 ends ["r1c1","r1c2"]',board(),'fog: {}\n'),nf('double-arrow r1c1-r1c2 ends ["r1c1","r1c2"]',board(),'fog: {}\n')).status).toBe('unresolved');
+  expect(compare(nf('product-cage r1c1-r1c2 product 6 distinct false',board(),'fog: {}\n'),nf('product-cage r1c1-r1c2 product 6 distinct false',board(),'fog: {}\n')).status).toBe('unresolved');
   expect(compare(nf('unique r1c1',board(),'fog: {initiallyLit: [0,1]}\n'),nf('unique r1c1',board(),'fog: {initiallyLit: [r1c1,r1c2]}\n')).status).toBe('equivalent');
 });
 
