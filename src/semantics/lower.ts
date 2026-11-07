@@ -1,6 +1,7 @@
 import { declarationLibrary } from "../declaration-library.js";
 import { lowerArrow } from "./arrow.js";
 import { lowerSandwich, lowerXSum } from "./sandwich.js";
+import { lowerExtremum } from "./extremum.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
@@ -23,6 +24,7 @@ const fields: Record<string, string[]> = {
   arrow: ["partial", "bulb"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
+  extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
 export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
   const instance=semanticDeclaration(ast);
@@ -33,7 +35,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance=semanticDeclaration(ast);
   const { parameters: p } = instance;
   // regions and extra-regions are spellings of the same distinct-cells meaning as unique.
-  const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind === "little-killer" ? "diagonal-sum" : instance.kind;
+  const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind === "neighbour-extremum" ? "extremum" : instance.kind === "little-killer" ? "diagonal-sum" : instance.kind;
   const written = instance.kind;
   const allowed = fields[kind];
   if (!allowed) throw Error(`No lowering for ${written}.`);
@@ -57,13 +59,14 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     throw Error(`${written} has no parameter ${name}.`);
   }
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "sandwich", "x-sum", "diagonal-sum", "unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "sandwich", "x-sum", "diagonal-sum", "unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   if (kind === "arrow") return lowerArrow(ast, board);
   if (kind === "sandwich") return lowerSandwich(ast, board);
   if (kind === "x-sum") return lowerXSum(ast, board);
+  if (kind === "extremum") return lowerExtremum(ast, board);
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
