@@ -93,7 +93,7 @@ export const declarationRegistry = {
   "allowed-digits": lowered,
   "parity-cells": lowered,
   "odd-even-cells": lowered,
-  "absent-digits": pending("Forbidden digit membership is not lowered."),
+  "absent-digits": lowered,
   cage: lowered,
   killer: lowered,
   "killer-cage": lowered,
