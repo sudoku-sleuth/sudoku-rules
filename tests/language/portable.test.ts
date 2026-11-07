@@ -3,6 +3,7 @@ import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
+// This test builds the browser bundle, so it is slow on CI.
 test("the browser bundle parses and checks in a realm with no Node, DOM or fetch globals", async () => {
   const directory = await mkdtemp(join(tmpdir(), "open-rules-portable-"));
   try {
@@ -38,4 +39,4 @@ test("the browser bundle parses and checks in a realm with no Node, DOM or fetch
     expect(await process.exited).toBe(0);
     expect(stdout.trim()).toBe("3/10");
   } finally { await rm(directory, { recursive: true, force: true }); }
-});
+}, 30000);
