@@ -27,7 +27,7 @@ const fields: Record<string, string[]> = {
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
   "equality-cage": [], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
-  "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
+  "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
 export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
@@ -63,7 +63,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     throw Error(`${written} has no parameter ${name}.`);
   }
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "equality-cage", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "equality-cage", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -120,6 +120,12 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     }
     case "allowed-digits": {
       const values = digitList(p.digits, board);
+      return all(cells.map(cell => ({ op: "Allowed", channel: "D", cell, values })));
+    }
+    case "absent-digits": {
+      // No marked cell holds a listed digit. Listed digits outside the alphabet exclude nothing; order and repeats do not matter.
+      if (!Array.isArray(p.digits) || p.digits.some(d => !Number.isSafeInteger(d))) throw Error("Supply a digit list of whole numbers.");
+      const values = board.alphabet.filter(d => !(p.digits as number[]).includes(d));
       return all(cells.map(cell => ({ op: "Allowed", channel: "D", cell, values })));
     }
     case "parity-cells": {
