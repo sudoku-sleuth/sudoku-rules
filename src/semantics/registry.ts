@@ -151,7 +151,7 @@ export const declarationRegistry = {
   "greek-carpet": pending("Spiral position correspondence is not lowered."),
   nabner: lowered,
   molecules: pending("Shared electron-choice witnesses and atom sums are not lowered."),
-  sandwich: pending("Guarded crust occurrences and between-position sums are not lowered."),
+  sandwich: lowered,
   "index-line": pending("Guarded inverse-permutation indexing is not lowered."),
   "n-mate": pending("Digit-indexed rays and cage sums are not lowered."),
   "pressure-gauge": pending("Larger and smaller neighbour counts are not lowered."),
