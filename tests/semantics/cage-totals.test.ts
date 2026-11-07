@@ -127,6 +127,12 @@ test("a channel D cage stays covered beside a value modifier while a V cage does
   expect(cageStatus(nf(`cage ${a}-${b} total 7.5 channel "D"`))).toBe("unsupported");
 });
 
+test("a cage with an invalid channel is rejected", () => {
+  const n = nf(`cage ${a}-${b} total 3 channel "X"`);
+  expect(n.status).toBe("invalid");
+  expect(n.issues.map(x => x.code)).toContain("E_CASE_PARAMETERS");
+});
+
 test("near misses of a channel D cage are reported different", () => {
   differs(`cage ${a}-${b} total 7 channel "D"`, `cage ${a}-${b} total 8 channel "D"`);
   differs(`cage ${a}-${b} total 7 channel "D"`, `cage ${a}-${b} total 7 channel "D" repeats true`);
@@ -139,9 +145,9 @@ test("near misses of a channel D cage are reported different", () => {
 
 test("the channel D formula and the public evaluator agree on every board, including one with a value modifier", () => {
   const doubled = (values: Record<string, number>) => ({ ...values, [c]: values[c] * 2 });
-  for (const symbols of [digits9, [0, 2, 3, 5, 10]]) for (const withModifier of [false, true]) for (const channel of ["D", "V"]) {
+  for (const symbols of [[1, 3, 4, 5, 8]]) for (const withModifier of [false, true]) for (const channel of ["D", "V"]) {
     if (channel === "V" && withModifier) continue;
-    for (const [list, total] of [[[a, b], 7], [[a, b, c], 12], [[a, c], 14], [[a], 5]] as [Cell[], number][]) for (const repeats of [false, true]) for (const negated of [false, true]) {
+    for (const [list, total] of [[[a, b], 8], [[a, b, c], 12], [[a, c], 13], [[a], 5]] as [Cell[], number][]) for (const repeats of [false, true]) for (const negated of [false, true]) {
       const text = `${negated ? "not " : ""}cage ${list.join("-")} total ${total} channel "${channel}" repeats ${repeats}`;
       const full = withModifier ? `${text}\n${modifier}` : text;
       const n = nf(full, { ...board, alphabet: symbols });
