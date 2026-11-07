@@ -6,6 +6,7 @@ import { parseFormula, parseType } from "./language/parser.js";
 import { checkParameterAST, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { pageEnvironment, checkLogicClass, type PageSource } from "./library.js";
 import { checkFormula, type CheckedPrelude } from "./language/checker.js";
+import type { CheckedFormula } from "./language/ast.js";
 
 export interface CaseBlock { language: string; text: string; offset: number; end: number }
 /** Only top-level fences count; examples nested in a Markdown fence are prose. */
@@ -16,7 +17,9 @@ export function caseBlocks(page: PageSource): CaseBlock[] {
 export function headingSlug(text: string): string {
   return text.trim().toLowerCase().replace(/[^\p{L}\p{N}_\s-]/gu, "").replace(/\s/g, "-");
 }
-export interface CustomDefinition { url: string; id?: string; metadata: Record<string, unknown>; fields: Record<string, Span>; parameters: Record<string, unknown>; types?: CaseParameters["types"]; span: Span }
+export interface CustomDefinition { url: string; id?: string; metadata: Record<string, unknown>; fields: Record<string, Span>; parameters: Record<string, unknown>; types?: CaseParameters["types"]; span: Span;
+  /** The checker's typed formula, kept only when the formula and its class check without a diagnostic. */
+  checked?: CheckedFormula }
 export function readCustomDefinitions(page: PageSource, blocks: CaseBlock[], kinds: Set<string> = new Set(), prelude?: CheckedPrelude, libraryUrls: Set<string> = new Set()): { definitions: Map<string, CustomDefinition>; diagnostics: Diagnostic[] } {
   const definitions = new Map<string, CustomDefinition>(), diagnostics: Diagnostic[] = [];
   const add = (span: Span, message: string) => diagnostics.push(diagnostic("E_CUSTOM_DEFINITION", span, message));
@@ -100,5 +103,6 @@ export function checkCustomFormula(page: PageSource, definition: CustomDefinitio
   if (checked?.value && !diagnostics.length) {
     diagnostics.push(...checkLogicClass([checked.value], metadata.class ?? "first-order", fields.class ?? fields.maths ?? span).map(error => ({...error, message: error.message.replace(/write Class: \*\*([^*]+)\*\* on the rule page/, 'set class: $1 in this custom definition')})));
   }
+  if (checked?.value && !diagnostics.length) definition.checked = checked.value;
   return diagnostics;
 }
