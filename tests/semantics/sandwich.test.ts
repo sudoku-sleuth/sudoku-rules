@@ -155,6 +155,9 @@ test("near misses compare as different", () => {
 /** The public evaluator needs explicit crusts off the standard 9x9 board, so default crusts are checked there on a spread of digits. */
 type Case = { n: number; symbols: number[]; rest: string; standard: boolean };
 const layouts: Case[] = [];
+// Five cells, and middle digits 4 to 8 between the crusts.
+const middle = [1, 4, 6, 9];
+for (const rest of ["sum 10", "sum 12 endpointOccurrences \"exactly-one\"", "sum 6 endpointOccurrences \"at-most-one\""]) layouts.push({ n: 5, symbols: [1, 6, 9], rest, standard: true }, { n: 4, symbols: middle, rest, standard: true });
 const spread = [1, 2, 3, 9], small = [1, 2, 3, 4];
 for (const rest of ["sum 0", "sum 2", "sum 5", "sum 11", "sum 2.5", "sum 3 endpointOccurrences \"exactly-one\"", "sum 5 endpointOccurrences \"at-most-one\"", "sum 0 endpointOccurrences \"exactly-one\""]) {
   layouts.push({ n: 3, symbols: spread, rest, standard: true }, { n: 4, symbols: spread, rest, standard: true });

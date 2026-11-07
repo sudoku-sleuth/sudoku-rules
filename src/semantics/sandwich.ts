@@ -31,7 +31,8 @@ export function lowerSandwich(ast: DeclarationAST, board: CanonicalBoard): Formu
   if (new Set(cells).size !== n) throw new UnsupportedSemantics("A sandwich that lists a cell more than once is not lowered; the whole instance remains uncovered.");
   if (Number.isInteger(sum) && !Number.isSafeInteger(sum)) throw new UnsupportedSemantics("A sandwich sum that is not a safe integer is not lowered; the whole instance remains uncovered.");
   const { alphabet } = board;
-  const lowest = Math.min(...alphabet), highest = Math.max(...alphabet);
+  // The block formula reads the first and last symbol of the board's ordered alphabet, which is ascending on every board the library accepts.
+  const lowest = alphabet[0], highest = alphabet[alphabet.length - 1];
   const first = crusts ? [...new Set(crusts)].filter(d => alphabet.includes(d)) : [lowest, highest];
   // Worst case: one disjunct per pair of positions, each restricting up to n cells and totalling the cells between.
   if ((n + 1) ** 2 * (n * alphabet.length + n + 1) > maxWork) throw new UnsupportedSemantics("Finite sandwich expansion exceeds 1,000,000 value combinations for this declaration.");
