@@ -39,7 +39,7 @@ export const declarationRegistry = {
   "monotone-line": pending("The declarable block has no dedicated finite lowering."),
   "extra-regions": lowered,
   "regions": lowered,
-  "neighbour-extremum": pending("The declarable block has no dedicated finite lowering."),
+  "neighbour-extremum": lowered,
 
   "marked-pairs": lowered,
   xv: lowered,
@@ -103,7 +103,7 @@ export const declarationRegistry = {
   lockout: pending("Endpoint gap, outside interval and partial extent are not lowered."),
   "equal-sums": lowered,
   "equality-cage": pending("Alphabet halves and balanced class counts are not lowered."),
-  extremum: pending("Marked-set neighbour exclusions and exhaustive obligations are not lowered."),
+  extremum: lowered,
   pair: lowered,
   "cage-expressions": pending("Shared integer letter witnesses and expression evaluation are not lowered."),
   bremban: lowered,
