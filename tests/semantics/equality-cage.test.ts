@@ -109,6 +109,13 @@ test("a cage beyond the expansion bound stays uncovered with a reason", () => {
   expect(r.normalForm!.coverage[0]).toMatchObject({ kind: "equality-cage", status: "unsupported", reason: expect.stringContaining("exceeds 1,000,000") });
 });
 
+test("a cage that lists a cell twice stays uncovered with its reason", () => {
+  const r = nf(`equality-cage ${cells[0]}-${cells[1]}-${cells[0]}-${cells[2]}`);
+  expect(r.issues).toEqual([]);
+  expect(r.status).toBe("partial");
+  expect(r.normalForm!.coverage.find(x => x.kind === "equality-cage")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("lists a cell more than once") });
+});
+
 test("the declaration is covered beside a value modifier", () => {
   const r = nf(`${cage(cells[0], cells[1])}\n${modifier}`);
   expect(r.normalForm!.coverage.find(x => x.kind === "equality-cage")).toMatchObject({ status: "lowered" });
@@ -155,6 +162,10 @@ test("the lowered formula and the public evaluator agree on negative digits and 
 
 test("the lowered formula and the public evaluator agree on a cage of four", () => {
   expect(differential(4, [1, 2, 3, 4, 5, 6], [cage(...cells.slice(0, 4))])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the public evaluator agree on a cage of four over an odd alphabet", () => {
+  expect(differential(4, [1, 2, 3, 4, 5, 6, 7], [cage(...cells.slice(0, 4))])).toBeGreaterThan(0);
 });
 
 test("a modifier board: the printed digits agree with the evaluator", () => {
