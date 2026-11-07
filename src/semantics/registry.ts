@@ -136,7 +136,7 @@ export const declarationRegistry = {
   "window-classes": pending("Class coverage in board windows is not lowered."),
   "product-cage": pending("Exact cage products are not lowered."),
   "x-sum": lowered,
-  skyscraper: pending("Record-maximum counts are not lowered."),
+  skyscraper: lowered,
   index: pending("Guarded row and column lookups are not lowered."),
   kropki: lowered,
   "hidden-modular": pending("Digit-selected extents and modular windows are not lowered."),
