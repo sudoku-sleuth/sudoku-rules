@@ -22,6 +22,15 @@ function touches(maths: string, parameters?: Record<string, unknown>): boolean {
   }
   throw new Error(`The synthetic definition ${maths} does not check.`);
 }
+/** The definition text under the one logic class that makes it check cleanly. */
+function fitted(maths: string, parameters?: Record<string, unknown>): string {
+  for (const logicClass of ["first-order", "with aggregates", "existential"]) {
+    const text = definition(maths, parameters, "probe", logicClass);
+    const page = { file: "probe.md", text: `${header}---\n${text}` };
+    if (!readCustomDefinitions(page, caseBlocks(page), declarationLibrary.kinds, defaultCasePrelude(), declarationLibrary.urls).diagnostics.length) return text;
+  }
+  throw new Error(`The synthetic definition ${maths} does not check.`);
+}
 const valueRules = `kropki ${a}-${b} white\ncage ${b}-${c} total 7 repeats false`;
 const file = (rules: string, custom: string, extra = "") => ({ file: "synthetic.rules.md", text: `${header}${extra}---\n${custom}\n\`\`\`rules\n${rules}\n\`\`\`` });
 const run = (maths: string, parameters?: Record<string, unknown>, context = board): Normalisation =>
@@ -89,11 +98,14 @@ test("the value check reads the typed formula and everything it reaches", () => 
     ["V", "∀c∈cells:V(c)!=5"],
     ["effective", "∀c∈cells:effective(c)!=5"],
     ["read, literal V", '∀c∈cells:read(c,"V")!=5'],
-    ["read, literal D, whose body can reach V", '∀c∈cells:read(c,"D")!=5'],
+    ["read, literal V", '∀c∈cells:read(c,"V")>0'],
     ["channel parameter used", "∀c∈cells:read(c,channel)!=5", { cells: cellsParameter, channel }],
     ["channel parameter unused", "∀c∈cells:D(c)!=5", { cells: cellsParameter, channel }],
     ["library function passed V", 'aggregate(cells,"V","sum")>3', undefined],
-    ["library function passed D", 'aggregate(cells,"D","sum")>3', undefined],
+    ["library function through a let", 'let ch="D"; aggregate(cells,ch,"sum")>3', undefined],
+    ["library function through a bound variable", '∀ch∈{"D"}: aggregate(cells,ch,"sum")>3', undefined],
+    ["library function with a channel default of V", 'aggregate(cells,channel,"sum")>3', { cells: cellsParameter, channel: { type: "Channel", description: "Channel to read.", default: "V" } }],
+    ["library function, one channel D and one V", 'classCount(cells,{1},"V")>0 ∧ aggregate(cells,"D","sum")>3', undefined],
     ["library function given a channel parameter", 'aggregate(cells,channel,"sum")>3', { cells: cellsParameter, channel }],
     ["wrapper, literal V", '∀c∈cells:channelValue("V",c)!=5'],
     ["wrapper, name from a parameter", "∀c∈cells:channelValue(label,c)!=5", { cells: cellsParameter, label }],
@@ -110,8 +122,40 @@ test("the value check reads the typed formula and everything it reaches", () => 
     ["a selection mark with another name", '∀c∈cells:marked("A",c)'],
     ["geometry and a house", "∀c∈cells:c∈C ∧ row(c)<rows"],
     ["a counted shape", "countWhere(cells,λc:cell:D(c)=5)<=1", undefined],
+    ["read, literal D", '∀c∈cells:read(c,"D")!=5'],
+    ["aggregate, literal D", 'aggregate(cells,"D","sum")>3'],
+    ["aggregate nested in a let", 'let total=aggregate(cells,"D","product"); total>3'],
+    ["a term reaching read through a lambda", 'classCount(cells,{1,2},"D")>0'],
+    ["a term reaching aggregate and a repeat policy", 'repeatPolicy(cells,"D",false)'],
   ];
   for (const [name, maths, parameters] of neutral) expect([name, touches(maths, parameters)]).toEqual([name, false]);
+});
+
+test("a call with the digit channel stays value-neutral and lowers beside value rules", () => {
+  for (const maths of ['aggregate(cells,"D","sum")>3', '∀c∈cells:read(c,"D")!=5', 'classCount(cells,{1,2},"D")>0']) {
+    const result = normalise(file(`#probe ${a}-${b}\n${valueRules}`, fitted(maths)), board);
+    expect([maths, result.issues]).toEqual([maths, []]);
+    expect([maths, status(result, "kropki").status]).toEqual([maths, "lowered"]);
+    expect([maths, status(result, "cage").status]).toEqual([maths, "lowered"]);
+  }
+});
+
+test("the same calls with another channel keep value rules uncovered", () => {
+  const channel = { type: "Channel", description: "Channel to read.", default: "D" };
+  const refused: [string, string, Record<string, unknown>?][] = [
+    ["aggregate, V", 'aggregate(cells,"V","sum")>3'],
+    ["read, V", '∀c∈cells:read(c,"V")!=5'],
+    ["aggregate, parameter", "aggregate(cells,channel,\"sum\")>3", { cells: cellsParameter, channel }],
+    ["aggregate, default V", "aggregate(cells,channel,\"sum\")>3", { cells: cellsParameter, channel: { ...channel, default: "V" } }],
+    ["aggregate, let", 'let ch="D"; aggregate(cells,ch,"sum")>3'],
+    ["classCount, variable", '∀ch∈{"D"}: classCount(cells,{1},ch)>0'],
+  ];
+  for (const [label, maths, parameters] of refused) {
+    const result = normalise(file(`#probe ${a}-${b}\n${valueRules}`, fitted(maths, parameters)), board);
+    expect([label, result.issues]).toEqual([label, []]);
+    expect([label, status(result, "kropki")]).toMatchObject([label, { status: "unsupported", reason: unresolved }]);
+    expect([label, status(result, "cage")]).toMatchObject([label, { status: "unsupported", reason: unresolved }]);
+  }
 });
 
 test("an unchecked definition counts as touching values", () => {
@@ -148,6 +192,24 @@ test("the lowered value rules and the public evaluator agree on every board besi
       const expected = evaluate(valueRule, { digits: values }).status === "holds";
       expect([rules, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([rules, symbols.join(), x, y, z, expected]);
     }
+  }
+});
+
+test("a mixed case with digit-channel calls agrees with the public evaluator", () => {
+  const maths = 'aggregate(cells,"D","sum")>3 ∧ ∀c∈cells:read(c,"D")!=5';
+  const rules = `#probe ${a}-${b}\nkropki ${a}-${b} white\ncage ${b}-${c} total 7 repeats false`;
+  const symbols = [1, 2, 5];
+  const n = normalise(file(rules, fitted(maths)), { ...board, alphabet: symbols });
+  expect(n.issues).toEqual([]);
+  expect(n.normalForm!.coverage.filter(x => x.status === "unsupported").map(x => x.kind)).toEqual(["#probe"]);
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---\n${fitted(maths)}\n\`\`\`rules\n${rules}\n\`\`\`` });
+  expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+  const [custom, ...valueOnes] = compiled.value!.rules;
+  for (const x of symbols) for (const y of symbols) for (const z of symbols) {
+    const values = { [a]: x, [b]: y, [c]: z };
+    const digits = { digits: values };
+    expect([x, y, z, holds(n.normalForm!.solution, values)]).toEqual([x, y, z, valueOnes.every(rule => evaluate(rule, digits).status === "holds")]);
+    expect(evaluate(custom, digits).status === "holds").toBe(x + y > 3 && x !== 5 && y !== 5);
   }
 });
 
