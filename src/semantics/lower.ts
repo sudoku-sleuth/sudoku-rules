@@ -47,6 +47,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   for (const name of Object.keys(p)) {
     if (allowed.includes(name)) continue;
     if (name === "edges" && edgeLines.includes(kind)) continue;
+    if (name === "channel" && (kind === "cage" || kind === "killer") && (p.channel === "D" || p.channel === "V")) continue;
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;
@@ -90,10 +91,10 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
       const total = p.total !== undefined ? p.total : p.sum;
       if (total !== undefined && (typeof total !== "number" || !Number.isFinite(total))) throw Error("The cage total must be a number.");
       if (total !== undefined && !Number.isSafeInteger(total)) throw new UnsupportedSemantics("A cage total that is not a safe integer is not lowered; the whole cage remains uncovered.");
-      // Face digits differ unless repeats is true; the total reads the effective value channel.
+      // Face digits differ unless repeats is true; the total reads the effective value channel, or the printed digits when channel is "D".
       if (p.repeats !== true) checkPairExpansion();
       if (total === undefined) return p.repeats === true ? all([]) : distinct(cells);
-      return all([...(p.repeats === true ? [] : [distinct(cells)]), sumTotal(cells, total as number)]);
+      return all([...(p.repeats === true ? [] : [distinct(cells)]), sumTotal(cells, total as number, p.channel === "D" ? "D" : "V")]);
     }
     case "diagonal-sum": return lowerDiagonalSum(p, instance.cells!, board);
     case "unique": checkPairExpansion(); return distinct(cells);

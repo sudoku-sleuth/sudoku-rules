@@ -66,7 +66,6 @@ test("a different total, extra cell, missing cell or repeat rule compares as dif
 
 test("uncovered shapes name their specific reason", () => {
   expect(reason(`cage ${a}-${b} total 3.5`)).toBe("A cage total that is not a safe integer is not lowered; the whole cage remains uncovered.");
-  expect(reason(`cage ${a}-${b} total 3 channel "D"`)).toBe("The channel parameter of cage is not lowered; the whole instance remains uncovered.");
   expect(reason(`cage ${a}-${b} total 3\nvalue-modifier factor 2 offset 0 exactly [["${c}"]] count 1 atMostOne [] distinct false meta {"name":"Doubler","stated":true}`)).toContain("Effective-value domain is unresolved");
   expect(nf(`cage ${a}-${b} total "three"`).status).toBe("invalid");
   // An untotalled cage never reads values, so unresolved values do not uncover it.
@@ -96,4 +95,79 @@ test("the lowered formula and the public evaluator agree on every assignment", (
     }
     if (!negated && total !== undefined && total >= 3 && total <= 12 && symbols === digits9) expect(satisfied).toBeGreaterThan(0);
   }
+});
+
+// Channel D reads printed digits, so the total is a SumTotal on D and no value rewrite or value domain is involved.
+const modifier = `value-modifier factor 2 offset 0 exactly [["${c}"]] count 1 atMostOne [] distinct false meta {"name":"Doubler","stated":true}`;
+const cageStatus = (n: ReturnType<typeof nf>) => n.normalForm!.coverage.find(x => x.kind === "cage")!.status;
+const sums = (n: ReturnType<typeof nf>) => JSON.stringify(n.normalForm!.solution);
+
+test("channel D cages lower to a SumTotal on D with or without repeats, with total or sum", () => {
+  for (const text of [`cage ${a}-${b} total 8 channel "D"`, `cage ${a}-${b} sum 8 channel "D"`, `killer ${a}-${b} total 8 channel "D" repeats true`, `cage ${a}-${b} sum 8 channel "D" repeats true`]) {
+    const n = nf(text);
+    expect(n.issues).toEqual([]);
+    expect(n.status).toBe("complete");
+    expect(n.normalForm!.rewrites.some(r => r.rule === "value-channel")).toBe(false);
+    const solution = n.normalForm!.solution;
+    const parts = solution.op === "All" ? solution.children : [solution];
+    expect(parts).toContainEqual({ op: "SumTotal", channel: "D", cells: [a, b], total: 8 });
+    expect(holds(solution, { [a]: 3, [b]: 5, [c]: 1 })).toBe(true);
+    expect(holds(solution, { [a]: 2, [b]: 5, [c]: 1 })).toBe(false);
+    // Two equal digits adding to the total are allowed only with repeats.
+    expect(holds(solution, { [a]: 4, [b]: 4, [c]: 1 })).toBe(/repeats true/.test(text));
+  }
+  eq(`cage ${a}-${b} total 7 channel "D"`, `killer ${b}-${a} sum 7 channel "D"`);
+  eq(`cage ${a}-${b} channel "D"`, `cage ${a}-${b}`);
+});
+
+test("a channel D cage stays covered beside a value modifier while a V cage does not", () => {
+  expect(cageStatus(nf(`cage ${a}-${b} total 7 channel "D"\n${modifier}`))).toBe("lowered");
+  expect(cageStatus(nf(`cage ${a}-${b} total 7 channel "V"\n${modifier}`))).toBe("unsupported");
+  expect(cageStatus(nf(`cage ${a}-${b} total 7\n${modifier}`))).toBe("unsupported");
+  expect(cageStatus(nf(`cage ${a}-${b} total 7.5 channel "D"`))).toBe("unsupported");
+});
+
+test("a cage with an invalid channel is rejected", () => {
+  const n = nf(`cage ${a}-${b} total 3 channel "X"`);
+  expect(n.status).toBe("invalid");
+  expect(n.issues.map(x => x.code)).toContain("E_CASE_PARAMETERS");
+});
+
+test("near misses of a channel D cage are reported different", () => {
+  differs(`cage ${a}-${b} total 7 channel "D"`, `cage ${a}-${b} total 8 channel "D"`);
+  differs(`cage ${a}-${b} total 7 channel "D"`, `cage ${a}-${b} total 7 channel "D" repeats true`);
+  differs(`cage ${a}-${b} total 7 channel "D"`, `cage ${a}-${b}-${c} total 7 channel "D"`);
+  // Beside a modifier, D and V differ: the V cage is uncovered, so the pair cannot be equivalent.
+  const x = nf(`cage ${a}-${b} total 7 channel "D"\n${modifier}`), y = nf(`cage ${a}-${b} total 7 channel "V"\n${modifier}`);
+  expect(compare(x, y).status).not.toBe("equivalent");
+  expect(sums(x)).not.toBe(sums(y));
+});
+
+test("the channel D formula and the public evaluator agree on every board, including one with a value modifier", () => {
+  const doubled = (values: Record<string, number>) => ({ ...values, [c]: values[c] * 2 });
+  for (const symbols of [[1, 3, 4, 5, 8]]) for (const withModifier of [false, true]) for (const channel of ["D", "V"]) {
+    if (channel === "V" && withModifier) continue;
+    for (const [list, total] of [[[a, b], 8], [[a, b, c], 12], [[a, c], 13], [[a], 5]] as [Cell[], number][]) for (const repeats of [false, true]) for (const negated of [false, true]) {
+      const text = `${negated ? "not " : ""}cage ${list.join("-")} total ${total} channel "${channel}" repeats ${repeats}`;
+      const full = withModifier ? `${text}\n${modifier}` : text;
+      const n = nf(full, { ...board, alphabet: symbols });
+      expect(n.issues).toEqual([]);
+      // The modifier itself stays uncovered, so only the cage is required to be lowered there.
+      expect(withModifier ? cageStatus(n) : n.status).toBe(withModifier ? "lowered" : "complete");
+      const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---${body(full)}` });
+      expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+      const rule = compiled.value!.rules[0];
+      for (const x of symbols) for (const y of symbols) for (const z of symbols) {
+        const values = { [a]: x, [b]: y, [c]: z };
+        const expected = evaluate(rule, withModifier ? { digits: values, values: doubled(values) } : { digits: values }).status === "holds";
+        expect([full, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([full, symbols.join(), x, y, z, expected]);
+      }
+    }
+  }
+  // On the modified file the same total reads differently by channel: digits 3, 4, 5 sum to 12 on D but 3, 4, 10 on V.
+  const dRule = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3,4,5,6,7,8,9], regions: [[r1c1, r1c2, r1c3]]}\n---${body(`cage ${a}-${b}-${c} total 12 channel "D" repeats true\n${modifier}`)}` }).value!.rules[0];
+  const vRule = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3,4,5,6,7,8,9], regions: [[r1c1, r1c2, r1c3]]}\n---${body(`cage ${a}-${b}-${c} total 12 channel "V" repeats true\n${modifier}`)}` }).value!.rules[0];
+  const digits = { [a]: 3, [b]: 4, [c]: 5 };
+  expect(evaluate(dRule, { digits, values: doubled(digits) }).status).toBe("holds");
+  expect(evaluate(vRule, { digits, values: doubled(digits) }).status).not.toBe("holds");
 });
