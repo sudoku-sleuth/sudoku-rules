@@ -20,7 +20,7 @@ const fields: Record<string, string[]> = {
   xv: ["mark", "x", "v", "allGiven"], "marked-pairs": ["x", "v", "white", "black", "allGiven"], quadruple: ["digits"], outside: ["digits"],
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
-  arrow: ["partial", "bulb"], sandwich: ["sum", "endpointOccurrences", "crusts"], "diagonal-sum": ["sum", "channel", "repeats"],
+  arrow: ["partial", "bulb"], sandwich: ["sum", "endpointOccurrences", "crusts"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
   sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "parity-cells": ["parity"],
 };
@@ -63,6 +63,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   if (kind === "arrow") return lowerArrow(ast, board);
   if (kind === "sandwich") return lowerSandwich(ast, board);
+  if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
     if (cells.length * (cells.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
@@ -170,6 +171,25 @@ function lowerDiagonalSum(p: Record<string, unknown>, listed: Cell[], board: Can
     ]));
   }
   return { op: "Any", children: branches };
+}
+/**
+ * Equal sums: every group has the same total on the channel. Each group after the first is a SumEqual against the first.
+ * Groups are sets of cells, so a cell listed twice in one group counts once; an empty group totals zero.
+ * With repeats false the values read on the channel differ within each group. The channel is left as written;
+ * the caller converts V to D.
+ */
+function lowerEqualSums(p: Record<string, unknown>, board: CanonicalBoard): Formula {
+  if (p.repeats !== undefined && typeof p.repeats !== "boolean") throw Error("repeats must be true or false.");
+  if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
+  const raw = p.groups;
+  if (!Array.isArray(raw) || raw.some(g => !Array.isArray(g) || g.some(c => !board.activeCells.includes(c as Cell)))) throw Error("Supply groups as lists of active board cells.");
+  const channel = p.channel === "V" ? "V" : "D";
+  const sets = (raw as Cell[][]).map(g => sortedCells([...new Set(g)]));
+  if (p.repeats === false) for (const g of sets) if (g.length * (g.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
+  return all([
+    ...(p.repeats === false ? sets.filter(g => g.length > 1).map((g): Formula => ({ op: "Distinct", channel, collection: "set", cells: g })) : []),
+    ...sets.slice(1).map((g): Formula => ({ op: "SumEqual", channel, left: sets[0], right: g })),
+  ]);
 }
 /** Negative scope is shared by explicit negatives and each all-given mark kind. */
 function lowerNegative(p: Record<string, unknown>, board: CanonicalBoard): Formula {
