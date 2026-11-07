@@ -125,7 +125,7 @@ export const declarationRegistry = {
   "yin-yang": pending("Shared shading, connectivity and partition constraints are not lowered."),
   "counting-circles": pending("Digit-dependent multiplicity counts are not lowered."),
   "ordered-block": pending("Existential ordered block positions are not lowered."),
-  "numbered-room": pending("Guarded digit-indexed positions are not lowered."),
+  "numbered-room": lowered,
   outside: lowered,
   "constructed-regions": pending("Connected region partition witnesses are not lowered."),
   "region-sum": lowered,

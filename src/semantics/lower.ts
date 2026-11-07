@@ -4,6 +4,7 @@ import { lowerEndpointRange } from "./between.js";
 import { lowerDoubleArrow } from "./double-arrow.js";
 import { lowerSandwich, lowerXSum } from "./sandwich.js";
 import { lowerSkyscraper } from "./skyscraper.js";
+import { lowerNumberedRoom } from "./numbered-room.js";
 import { lowerExtremum } from "./extremum.js";
 import { lowerEqualityCage } from "./equality-cage.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
@@ -26,7 +27,7 @@ const fields: Record<string, string[]> = {
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
-  "equality-cage": [], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
+  "equality-cage": [], "numbered-room": ["digit"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
@@ -63,7 +64,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     throw Error(`${written} has no parameter ${name}.`);
   }
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "equality-cage", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "equality-cage", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -73,6 +74,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "sandwich") return lowerSandwich(ast, board);
   if (kind === "x-sum") return lowerXSum(ast, board);
   if (kind === "skyscraper") return lowerSkyscraper(ast, board);
+  if (kind === "numbered-room") return lowerNumberedRoom(ast, board);
   if (kind === "extremum") return lowerExtremum(ast, board);
   if (kind === "equality-cage") return lowerEqualityCage(ast, board);
   if (kind === "equal-sums") return lowerEqualSums(p, board);
