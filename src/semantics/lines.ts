@@ -8,7 +8,7 @@ export const lineFields: Record<string, string[]> = {
   thermo: [], "slow-thermo": [], whispers: ["gap", "loop"], whisper: ["gap", "loop"],
   "close-whispers": ["gap"], parity: ["loop"], modular: ["modulus", "loop"],
   entropic: ["loop"], palindrome: [], renban: [], bremban: [], nabner: ["distinct"],
-  "region-sum": ["segments", "combine", "loop"], primality: ["loop"], summit: ["loop"], "shifter-line": [],
+  "region-sum": ["segments", "combine", "loop"], primality: ["loop"], summit: ["loop"], "shifter-line": [], zipper: ["centre"],
 };
 /** Line kinds whose meaning is a test on each adjacent pair: an explicit edge list yields that test on exactly those edges. */
 export const edgeLines = ["whispers", "whisper", "close-whispers", "parity", "primality", "shifter-line"];
@@ -109,6 +109,15 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
     for (let i = 0; i < (p.loop && path.length >= 3 ? path.length : path.length-2); i++) window([path[i], path[(i+1)%path.length], path[(i+2)%path.length]]);
   } else if (kind === "palindrome") {
     for (let i = 0; i < Math.floor(path.length/2); i++) nodes.push(edge(path[i],path[path.length-1-i],(x,y) => x === y));
+  } else if (kind === "zipper") {
+    const centre = p.centre === undefined ? "when-odd" : p.centre;
+    if (typeof centre !== "string" || !["when-odd", "ignore", "required"].includes(centre)) throw Error('centre must be "when-odd", "ignore" or "required".');
+    const half = Math.floor(path.length/2), odd = path.length % 2 === 1;
+    // Every mirrored pair shares the first pair's sum. A cell visited twice is one cell, so its digit counts at each visit.
+    const sum = (i: number) => [path[i], path[path.length-1-i]];
+    for (let i = 1; i < half; i++) nodes.push({ op: "SumEqual", channel: "D", left: sum(0), right: sum(i) });
+    if (centre === "required" && !odd) nodes.push(any([]));
+    if (centre !== "ignore" && odd) for (let i = 0; i < half; i++) nodes.push({ op: "SumEqual", channel: "D", left: sum(i), right: [path[half]] });
   } else if (kind === "nabner") {
     path.forEach((a,i) => path.slice(i+1).forEach(b => nodes.push(edge(a,b,(x,y) => {
       const d = BigInt(x)-BigInt(y); return d !== 1n && d !== -1n && (!p.distinct || x !== y);

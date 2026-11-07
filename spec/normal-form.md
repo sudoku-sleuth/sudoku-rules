@@ -106,6 +106,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | palindrome | Equality of V at mirrored path positions. |
 | renban | Distinct V values covering a consecutive integer interval of the path length. Repeated cells are rejected. |
 | bremban | The distinct D values cover a consecutive integer interval; repeated values and visits are permitted. |
+| zipper | Mirrored pairs path[i], path[n-1-i] have equal D sums. With centre `when-odd` or `required` on an odd line, every pair sums to the centre D digit; `ignore` drops that. `required` on an even line is unsatisfiable. A line of one or two cells adds no pair equality. A cell visited twice counts at each visit. |
 | nabner | Every pair of path positions has nonconsecutive D values; optional `distinct` forbids equal values. Repeated cells are rejected. |
 | primality | Every D exceeds one; adjacent positions alternate prime and composite classes. Optional closure. |
 | summit | Unequal adjacent D values; successive differences reverse sign at internal 1 or 9 and retain sign elsewhere. Includes cyclic triples on loops. |

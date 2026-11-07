@@ -117,7 +117,7 @@ export const declarationRegistry = {
   "limited-digits": pending("Image cardinality is not lowered."),
   "diagonal-sum": lowered,
   "little-killer": lowered,
-  zipper: pending("Mirrored sum equalities are not lowered."),
+  zipper: lowered,
   "sum-free-cage": pending("Modular digit-set exclusion including self-pairs is not lowered."),
   entropic: lowered,
   "doll-sum": pending("Existential endpoint pairs and interior sums are not lowered."),
