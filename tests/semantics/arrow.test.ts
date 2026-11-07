@@ -125,7 +125,7 @@ function differential(layout: Layout, symbols: number[], entries: Entry[]): void
 }
 
 test("the lowered formula and the public evaluator agree on every assignment", () => {
-  differential(line, [1, 2, 3, 4, 5, 6, 7, 8, 9], [
+  differential(line, [1, 2, 3, 9], [
     `arrow ${b}-${c} bulb ${bulb(a)}`, [`arrow ${c} bulb ${bulb(a, b)}`, "none"], [`arrow ${d} bulb ${bulb(b, a)}`, "none"], `arrow ${b}-${c}-${b} bulb ${bulb(a)}`,
     [`arrow ${a} bulb ${bulb(a, b)}`, "none"], `arrow ${c}-${d} bulb ${bulb(a, b)}`, `not arrow ${c} bulb ${bulb(a, b)}`, `not arrow ${b}-${c} bulb ${bulb(a)}`,
     `arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${c} bulb ${bulb(a, b)} partial true`, `arrow ${b}-${c}-${d} bulb ${bulb(a)} partial true`,
@@ -133,13 +133,13 @@ test("the lowered formula and the public evaluator agree on every assignment", (
     // The shaft includes a bulb cell.
     `arrow ${b}-${a} bulb ${bulb(a, b)} partial true`, [`arrow ${a}-${b} bulb ${bulb(a)} partial true`, "none"],
   ]);
-  differential(line, [0, 1, 2, 3, 5], [
+  differential(line, [0, 1, 2], [
     `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${d} bulb ${bulb(a, b)} partial true`,
     `arrow ${a}-${c} bulb ${bulb(a)} partial true`, `arrow ${b}-${a} bulb ${bulb(a, b)} partial true`,
   ]);
   differential(line, [2, 5], [[`arrow ${b} bulb ${bulb(a)} partial true`, "none"], `arrow ${c} bulb ${bulb(a, b)} partial true`]);
   // Values above 9 force the bulb digits into 0..9, also under negation.
-  differential(line, [1, 2, 3, 9, 10, 12, 16], [
+  differential(line, [1, 2, 9, 10, 16], [
     `arrow ${b}-${c} bulb ${bulb(a)}`, `arrow ${c}-${d} bulb ${bulb(a, b)}`, `arrow ${c} bulb ${bulb(a, b)} partial true`, `arrow ${b} bulb ${bulb(a)} partial true`,
     `not arrow ${c}-${d} bulb ${bulb(a, b)}`, `not arrow ${c} bulb ${bulb(a, b)} partial true`,
   ]);

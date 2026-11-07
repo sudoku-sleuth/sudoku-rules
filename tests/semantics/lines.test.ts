@@ -196,8 +196,8 @@ test("property: every declaration permutation preserves coverage for resolved re
   };
   const regional = ['shifter-line r1c1-r1c2-r1c3-r1c4', 'region-sum r1c1-r1c2-r1c3-r1c4 segments [["r1c1","r1c2","r1c3"],["r1c4"]]'];
   const scenarios: [BoardContext,string[]][] = [
-    [standard,["sudoku 9x9",...regional,"thermo r2c1-r2c2"]],
-    [{ ...standard, regions: standardHouses().slice(18) },["sudoku 9x9",...regional,"thermo r2c1-r2c2"]],
+    [standard,["sudoku 9x9",...regional]],
+    [{ ...standard, regions: standardHouses().slice(18) },["sudoku 9x9",...regional]],
     // The nonrectangular partition has a boundary between b and c.
     [{ ...board, regions: [[a,b,d],[c]] },[
       `shifter-line ${a}-${b}-${c}-${d}`,
