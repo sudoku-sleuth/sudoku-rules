@@ -101,7 +101,7 @@ export const declarationRegistry = {
   "close-whispers": lowered,
   "flat-mates": pending("Guarded neighbours above and below are not lowered."),
   lockout: pending("Endpoint gap, outside interval and partial extent are not lowered."),
-  "equal-sums": pending("Aggregate equalities and linear basis reduction are not lowered."),
+  "equal-sums": lowered,
   "equality-cage": pending("Alphabet halves and balanced class counts are not lowered."),
   extremum: pending("Marked-set neighbour exclusions and exhaustive obligations are not lowered."),
   pair: lowered,
