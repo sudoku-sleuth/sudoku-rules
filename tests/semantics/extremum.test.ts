@@ -152,6 +152,24 @@ test("an expansion beyond the bound stays uncovered with a reason", () => {
   expect(r.status).toBe("partial");
 });
 
+test("an explicit neighbour that is not an active cell is rejected as an invalid parameter", () => {
+  const small: BoardContext = { rows: 2, cols: 3, activeCells: [a, b, c, d, e], alphabet: [1, 2, 3], regions: [[a, b, c, d, e]] };
+  const r = normalise({ file: "synthetic.rules.md", text: `${header}---\n${body(rule([a], "min", false, ` neighbours ${list(f)}`))}` }, small);
+  expect(r.status).toBe("invalid");
+  expect(r.issues.map(x => x.code)).toEqual(["E_CASE_PARAMETERS"]);
+});
+
+test("a bishop move reaches across an inactive gap", () => {
+  const ring: Cell[] = ["r1c1", "r1c2", "r1c3", "r2c1", "r2c3", "r3c1", "r3c2", "r3c3"];
+  const holey: BoardContext = { rows: 3, cols: 3, activeCells: ring, alphabet: [1, 2], regions: [ring] };
+  const r = normalise({ file: "synthetic.rules.md", text: `${header}---\n${body(rule(["r1c1"], "max", false, ' neighbourhood "bishop"'))}` }, holey);
+  expect(r.status).toBe("complete");
+  const g = r.normalForm!.solution;
+  const all2 = (x: number, corner: number) => Object.fromEntries(ring.map(q => [q, q === "r1c1" ? x : q === "r3c3" ? corner : 1]));
+  expect(holds(g, all2(2, 1))).toBe(true);
+  expect(holds(g, all2(2, 2))).toBe(false);
+});
+
 type Entry = string | [string, "none"];
 function differential(rows: number, cols: number, symbols: number[], entries: Entry[], extra = ""): void {
   const used = cells.filter(cell => Number(cell.slice(cell.indexOf("c") + 1)) <= cols && Number(cell[1]) <= rows);
@@ -187,7 +205,9 @@ test("the lowered formula and the public evaluator agree on every assignment", (
     rule([a], "min", false, ' neighbourhood "king"'), rule([a], "max", true, ' neighbourhood "diagonal"'),
     rule([a], "min", true, ' neighbourhood "king"'), rule([a], "max", false, ' neighbourhood "bishop"'),
     rule([a], "min", false, ` neighbours ${list(b, e)}`), rule([a, b], "max", true, ` neighbours ${list(a, d)}`),
-    [rule([a], "min", false, ` neighbours ${list(a)}`), "none"], rule([a], "min", false, " neighbours []"),
+    [rule([a], "min", false, ` neighbours ${list(a)}`), "none"],
+    // Every unmarked cell lacks a knight neighbour on a 2x2 board, so no assignment holds.
+    [rule([a], "min", true, ' neighbourhood "knight"'), "none"], rule([a], "min", false, " neighbours []"),
     rule([a, d], "min", true, ' channel "V"'), `not ${rule([a], "min", true)}`, `not ${rule([a, b], "max", false)}`,
   ]);
   differential(2, 3, [1, 2], [
