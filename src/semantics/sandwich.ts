@@ -29,7 +29,8 @@ export function lowerXSum(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const n = cells.length;
   let count: number | undefined;
   if (p.count !== undefined) {
-    if (typeof p.count !== "number" || !Number.isSafeInteger(p.count)) throw Error("count must be a whole number.");
+    if (typeof p.count !== "number" || !Number.isFinite(p.count)) throw Error("count must be a number.");
+    if (!Number.isSafeInteger(p.count)) throw new UnsupportedSemantics("An x-sum count that is not a whole number is not lowered; the whole instance remains uncovered.");
     count = p.count;
   }
   const prefix = (k: number): Formula => sumTotal(cells.slice(0, k), sum, "D");

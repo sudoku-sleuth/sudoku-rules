@@ -63,10 +63,12 @@ test("a line shorter than the alphabet drops the extents it cannot hold", () => 
 test("x-sum is covered, and a repeated cell or unsafe sum stays uncovered with a reason", () => {
   const [a, b] = cells;
   expect(nf(`x-sum ${a}-${b}-${a} sum 2`, 3, nine).normalForm!.coverage.find(x => x.kind === "x-sum")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("more than once") });
+  // A fractional count is refused at the parameter boundary with a typed diagnostic, before lowering.
+  expect(nf(xsum(3, "sum 4 count 2.5"), 3, nine).issues).toMatchObject([{ code: "E_CASE_PARAMETERS", message: "count must be a whole number." }]);
   expect(nf(xsum(3, "sum 1e300"), 3, nine).normalForm!.coverage.find(x => x.kind === "x-sum")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("safe integer") });
 });
 
-test("the same x-sum written two ways compares equivalent", () => {
+test("a sum spelled with a decimal point compares equivalent", () => {
   const same = (x: string, y: string) => expect(compare(nf(x, 4, nine), nf(y, 4, nine)).status).toBe("equivalent");
   same(xsum(4, "sum 5"), xsum(4, "sum 5.0"));
 });
