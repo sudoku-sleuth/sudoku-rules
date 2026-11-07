@@ -93,7 +93,7 @@ test("near misses compare as different", () => {
 
 type Case = { n: number; symbols: number[]; rest: string };
 const layouts: Case[] = [];
-const kinds = (line: string, x: string, y: string) => [`between-line ${line} ends ["${x}","${y}"]`, `between ${line} ends ["${x}","${y}"]`, `lockout ${line} ends ["${x}","${y}"] gap 0`, `lockout ${line} ends ["${x}","${y}"] gap 2`, `lockout ${line} ends ["${x}","${y}"] gap -1`];
+const kinds = (line: string, x: string, y: string) => [`between-line ${line} ends ["${x}","${y}"]`, `between ${line} ends ["${x}","${y}"]`, `lockout ${line} ends ["${x}","${y}"] gap 0`, `lockout ${line} ends ["${x}","${y}"] gap 2`, `lockout ${line} ends ["${x}","${y}"] gap 4`, `lockout ${line} ends ["${x}","${y}"] gap 9`, `lockout ${line} ends ["${x}","${y}"] gap -1`];
 for (const symbols of [[1, 2, 3, 4], [0, 2, 3, 7], [2, 5, 9]]) {
   for (const rest of kinds(b, a, c)) layouts.push({ n: 3, symbols, rest });
   for (const rest of kinds(`${c}-${d}`, a, b)) layouts.push({ n: 4, symbols: symbols.slice(0, 3), rest });
