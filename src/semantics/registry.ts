@@ -80,7 +80,7 @@ export const declarationRegistry = {
   "region-shape": pending("Template congruence and galaxy symmetry are not lowered."),
   "region-clue": pending("Clues on a shared region partition are not lowered."),
 
-  lookup: pending("Channel-dependent bounded lookup relations are not lowered."),
+  lookup: lowered,
   "difference-line": pending("Common or distinct edge differences and signed steps are not lowered."),
   "split-pea": pending("Reversible decimal endpoint readings are not lowered."),
   "prefix-sum": pending("Answer-dependent stopping prefixes are not lowered."),
