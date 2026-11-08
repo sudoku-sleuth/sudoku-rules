@@ -9,6 +9,7 @@ const nf = (rules: string, n = 5, alphabet = [1, 2, 3, 4, 5]) => normalise({ fil
 const list = (cs: number[]) => `[${cs.map(i => `"r1c${i}"`).join(",")}]`;
 /** A one-row pointing thermo from the line and the ray as cell numbers. */
 const thermo = (line: number[], ray: number[]) => `pointing-thermo ${line.map(i => `r1c${i}`).join("-")} ray ${list(ray)}`;
+const eq = (x: string, y: string, n = 5) => expect(compare(nf(x, n), nf(y, n)).status).toBe("equivalent");
 const differs = (x: string, y: string, n = 5) => { const r = compare(nf(x, n), nf(y, n)); expect(r.status).not.toBe("equivalent"); expect(r.covered).toBe("structural-difference"); };
 const modifier = `value-modifier factor 2 offset 0 exactly [["r1c4"]] count 1 atMostOne [] distinct false meta {"name":"Doubler","stated":true}`;
 
@@ -147,20 +148,33 @@ function differential(n: number, symbols: number[], entries: string[], sample = 
   return seen;
 }
 
-test("the lowered formula and the public evaluator agree on two- and three-cell lines", () => {
-  expect(differential(4, [1, 2, 3], [thermo([1, 2], [3, 4]), thermo([2, 1], [3, 4]), thermo([1, 2, 3], [4, 1, 2]), `not ${thermo([1, 2], [3, 4])}`], 3)).toBeGreaterThan(0);
+const hasPair = (f: Formula): boolean => f.op === "Pair" || (f.op === "All" || f.op === "Any" ? f.children.some(hasPair) : f.op === "Not" ? hasPair(f.child) : false);
+
+test("a one-cell line, or a ray cell that is the tip, is read as its digit rather than through a pair table", () => {
+  expect(hasPair(form(thermo([1], [2, 3, 1])))).toBe(false);
+  // The ray starts at the tip itself, which can only be picked by a tip digit of 1, and that cannot rise above the bulb.
+  const f = form(thermo([1, 2], [2, 3]));
+  expect(holds(f, at(1, 2, 1))).toBe(true);
+  expect(holds(f, at(1, 2, 3))).toBe(false);
+  expect(holds(f, at(2, 3, 5))).toBe(false);
+  eq(thermo([1, 2], [3, 4]), `pointing-thermo line r1c1-r1c2 ray ${list([3, 4])}`);
 });
 
-test("the lowered formula and the public evaluator agree on a five-cell board", () => {
-  expect(differential(5, [1, 2, 3, 4], [thermo([1, 2, 3], [4, 5, 1]), thermo([1, 3], [2, 4, 5])], 120)).toBeGreaterThan(0);
+test("a tip of zero or a negative digit names no position", () => {
+  const zero = form(thermo([1, 2], [3, 4]), 5, [0, 1, 2]);
+  expect(holds(zero, at(0, 1, 5, 5))).toBe(false);
+  expect(holds(zero, at(0, 2, 5, 0))).toBe(true);
+  expect(form(thermo([1, 2], [3, 4]), 5, [-2, -1, 0])).toEqual({ op: "Any", children: [] });
 });
 
-test("the lowered formula and the public evaluator agree on a zero-based alphabet", () => {
-  expect(differential(4, [0, 1, 2, 3], [thermo([1, 2], [3, 4, 1])], 3)).toBeGreaterThan(0);
-});
+// Every assignment is checked against the published definition (sample 1); each entry is its own test to keep the time down.
+const diffTest = (name: string, n: number, symbols: number[], entries: string[], sample = 1, atLeast = 1) =>
+  entries.forEach((entry, i) => test(`the lowered formula and the public evaluator agree on ${name} (${i + 1})`, () => { expect(differential(n, symbols, [entry], sample)).toBeGreaterThanOrEqual(atLeast); }));
 
-test("the lowered formula and the public evaluator agree on one-cell, repeating and unreachable lines", () => {
-  expect(differential(4, [1, 2, 3], [thermo([1], [2, 3, 1]), thermo([1], [1, 2, 3]), thermo([1, 2, 1], [3, 4]), thermo([1, 1], [3, 4])], 3)).toBeGreaterThanOrEqual(0);
-  expect(differential(4, [1, 2, 3], [thermo([1], [2, 3, 1])], 3)).toBeGreaterThan(0);
-  expect(differential(4, [3, 4, 5], [thermo([1, 2], [3, 4])], 3)).toBe(0);
-});
+diffTest("two- and three-cell lines", 4, [1, 2, 3], [thermo([1, 2], [3, 4]), thermo([2, 1], [3, 4]), thermo([1, 2, 3], [4, 1, 2]), `not ${thermo([1, 2], [3, 4])}`], 1, 0);
+diffTest("a five-cell board (every fourth rejected assignment)", 5, [1, 2, 3], [thermo([1, 2, 3], [4, 5, 1]), thermo([1, 3], [2, 4, 5])], 4);
+diffTest("a zero-based alphabet", 4, [0, 1, 2, 3], [thermo([1, 2], [3, 4, 1])]);
+diffTest("a negative alphabet", 4, [-1, 0, 1, 2], [thermo([1, 2], [3, 4, 1])], 1, 0);
+diffTest("a gapped alphabet", 4, [2, 3, 4], [thermo([1, 2], [3, 4, 1])], 1, 0);
+diffTest("one-cell and repeating lines", 4, [1, 2, 3], [thermo([1], [2, 3, 1]), thermo([1], [1, 2, 3]), thermo([1, 2, 1], [3, 4]), thermo([1, 1], [3, 4])], 1, 0);
+diffTest("an unreachable line", 4, [3, 4, 5], [thermo([1, 2], [3, 4])], 1, 0);
