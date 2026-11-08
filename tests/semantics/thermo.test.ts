@@ -98,3 +98,21 @@ const entries: Entry[] = [
   [`thermo ${b}`, "all"], `not thermo ${a}-${b}-${c} orientation "either"`,
 ];
 for (const entry of entries) test(`the lowered formula and the public evaluator agree on every assignment: ${typeof entry === "string" ? entry : entry[0]}`, () => differential(entry));
+
+test("an invalid orientation or strict value is rejected", () => {
+  expect(nf(`thermo ${a}-${b} orientation "sideways"`).status).toBe("invalid");
+  expect(nf(`thermo ${a}-${b} strict "yes"`).status).toBe("invalid");
+  expect(nf(`thermo ${a}-${b} channel "X"`).status).toBe("invalid");
+});
+
+test("channel D follows the printed digits when the effective values differ", () => {
+  const compile = (text: string) => compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3], regions: [[${cells.join(", ")}]]}\n---${body(text)}` }).value!.rules[0];
+  const digits = { [a]: 1, [b]: 2, [c]: 3 };
+  // Effective values that break the climb: the channel V declaration follows them, the channel D declaration ignores them.
+  const shifted = { ...digits, [b]: 5 };
+  expect(evaluate(compile(`thermo ${a}-${b}-${c}`), { digits, values: shifted }).status).toBe("broken");
+  expect(evaluate(compile(`thermo ${a}-${b}-${c} channel "D"`), { digits, values: shifted }).status).toBe("holds");
+  const n = nf(`thermo ${a}-${b}-${c} channel "D"`, symbols);
+  expect(JSON.stringify(n.normalForm!.solution)).not.toContain('"channel":"V"');
+  expect(holds(n.normalForm!.solution, digits)).toBe(true);
+});
