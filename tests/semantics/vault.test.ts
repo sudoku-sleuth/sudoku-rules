@@ -1,4 +1,10 @@
 import { expect, test } from "bun:test";
+import { parseDeclaration } from "../../src/declarations";
+import { declarationLibrary } from "../../src/declaration-library";
+import { parameterGrammar } from "../../src/case-values";
+import { canonicalBoard } from "../../src/semantics/board";
+import { lowerVault } from "../../src/semantics/vault";
+import { UnsupportedSemantics } from "../../src/semantics/primitives";
 import { compileCase, evaluate, normalise, compare, type BoardContext, type Cell, type Formula } from "../../src";
 
 const cells: Cell[] = ["r1c1", "r1c2", "r1c3", "r1c4", "r1c5"];
@@ -87,6 +93,34 @@ test("the lowering reads printed digits, so a value modifier does not leave it u
   const modifier = `value-modifier factor 2 offset 0 exactly [["${e}"]] count 1 atMostOne [] distinct false meta {"name":"Doubler","stated":true}`;
   const r = nf(`${vault([a, b], [c], 7)}\n${modifier}`);
   expect(r.normalForm!.coverage.find(x => x.kind === "vault")!.status).toBe("lowered");
+});
+
+// Call the lowering directly so refusals the reader would reject first are still tested.
+function lowerDirect(text: string, count: number, alphabet: number[]) {
+  const url = "https://rules.sudoku-sleuth.com/vault.md";
+  const parsed = parseDeclaration({ file: "line", text }, { ...parameterGrammar(declarationLibrary.parameters?.get(url)), line: declarationLibrary.lines?.get(url) });
+  expect(parsed.value).toBeTruthy();
+  const row = Array.from({ length: count }, (_, i) => `r1c${i + 1}` as Cell);
+  return lowerVault(parsed.value!, canonicalBoard({ rows: 1, cols: count, activeCells: row, alphabet, regions: [row] }));
+}
+
+test("a neighbour that is not an active board cell is refused", () => {
+  expect(() => lowerDirect(vault([a], [b]), 2, [1, 2, 3])).not.toThrow();
+  expect(() => lowerDirect(vault([a], [e]), 2, [1, 2, 3])).toThrow(/not an active board cell/);
+  expect(() => lowerDirect(vault([a], [e]), 2, [1, 2, 3])).toThrow(UnsupportedSemantics);
+});
+
+test("a sum that is not an integer or not safe is refused", () => {
+  expect(() => lowerDirect(vault([a], [b], 7.5), 2, [1, 2, 3])).toThrow(UnsupportedSemantics);
+  expect(() => lowerDirect(vault([a], [b], 2 ** 60), 2, [1, 2, 3])).toThrow(UnsupportedSemantics);
+});
+
+test("an expansion past 1,000,000 value combinations is refused", () => {
+  const alphabet = Array.from({ length: 64 }, (_, i) => i + 1);
+  const row = Array.from({ length: 40 }, (_, i) => `r1c${i + 1}` as Cell);
+  // At 64 digits, 8 cells by 31 neighbours is 1,015,808 combinations; 30 neighbours is 983,040.
+  expect(() => lowerDirect(vault(row.slice(0, 8), row.slice(8, 39)), 40, alphabet)).toThrow(/exceeds 1,000,000/);
+  expect(() => lowerDirect(vault(row.slice(0, 8), row.slice(8, 38)), 40, alphabet)).not.toThrow();
 });
 
 const layouts: { n: number; symbols: number[]; text: string }[] = [
