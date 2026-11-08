@@ -40,6 +40,10 @@ Each release lists what changed. A change that breaks a published export, front-
 - `shadingScope(rule)` names the cells whose shading a rule reads, so hosts know which declarations need a shading answer.
 - Executable public examples, alias examples, candidate properties and per-rule timing reports. Document the API and finite evaluation domains in `docs/evaluator.md`.
 
+### Fixed
+
+- A custom rule parameter that declares `default: []` in YAML keeps that empty list for list, set and path types (including named aliases), so a case that omits the parameter receives an empty list instead of undefined.
+
 ## 1.0.0
 
 ### Added

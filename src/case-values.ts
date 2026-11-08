@@ -185,9 +185,22 @@ function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: 
   return node.span;
 }
 
+/** True when a type, through its named aliases, is a list, set or path. */
+function isSequenceType(type: Type, types: Record<string, Type>): boolean {
+  let current = type;
+  for (let depth = 0; depth < 128; depth++) {
+    if (["list", "set", "path"].includes(current.name)) return true;
+    const alias = Object.hasOwn(types, current.name) ? types[current.name] : undefined;
+    if (!alias) return false;
+    current = alias;
+  }
+  return false;
+}
+
 /** Fixed defaults are read from the page's human-readable default declaration. */
 export function declaredDefault(raw: unknown, type: Type, types: Record<string, Type>): {default?: unknown} {
   if (typeof raw === "boolean" || typeof raw === "number") return {default: raw};
+  if (Array.isArray(raw)) return raw.length === 0 && isSequenceType(type, types) ? {default: []} : {};
   if (typeof raw !== "string") return {};
   const value = raw.trim();
   if (/^(Empty list|Empty set|No authored strips|\[\])/.test(value)) return {default: []};
