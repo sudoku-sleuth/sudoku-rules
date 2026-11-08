@@ -22,6 +22,7 @@ import { lowerLimitedDigits } from "./limited-digits.js";
 import { lowerLookAndSay } from "./look-and-say.js";
 import { lowerDigitProfile } from "./digit-profile.js";
 import { lowerHiddenModular } from "./hidden-modular.js";
+import { lowerPressureGauge } from "./pressure-gauge.js";
 import { lowerCountingCircles } from "./counting-circles.js";
 import { lowerLayeredCage } from "./layered-cage.js";
 import { lowerAggregateEquation, lowerCagePair, lowerProductCage } from "./aggregate-equation.js";
@@ -59,6 +60,7 @@ const fields: Record<string, string[]> = {
   "look-and-say": ["counts"],
   "digit-profile": ["classes", "counts", "exhaustive", "channel", "selfCount", "windowLength", "loop", "comparison", "maximumDistinct", "repeats", "balancePairs", "sumFree"],
   "hidden-modular": ["extent"],
+  "pressure-gauge": ["type", "cell", "neighbours"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
   "branched-thermo": ["edges", "strict", "channel"],
@@ -148,6 +150,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "look-and-say") return lowerLookAndSay(ast, board);
   if (kind === "digit-profile") return lowerDigitProfile(ast, board);
   if (kind === "hidden-modular") return lowerHiddenModular(ast, board);
+  if (kind === "pressure-gauge") return lowerPressureGauge(ast, board);
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
