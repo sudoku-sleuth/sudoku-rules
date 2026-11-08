@@ -137,7 +137,7 @@ export const declarationRegistry = {
   "product-cage": pending("Exact cage products are not lowered."),
   "x-sum": lowered,
   skyscraper: lowered,
-  index: pending("Guarded row and column lookups are not lowered."),
+  index: lowered,
   kropki: lowered,
   "hidden-modular": pending("Digit-selected extents and modular windows are not lowered."),
   whispers: lowered,
