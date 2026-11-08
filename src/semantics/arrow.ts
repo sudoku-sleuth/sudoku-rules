@@ -8,6 +8,8 @@ const maxOccurrences = 1_000_000;
 const maxLeaves = 100_000;
 /** Largest count of value readings of the repeated shaft cells of a partial arrow. */
 const maxRepeatReadings = 20_000;
+/** Largest count of pairs of a bulb reading and a reading of the repeated shaft cells that a partial arrow enumerates. */
+const maxEnumeration = 2_000_000;
 
 /**
  * Arrow: the shaft sums to the bulb. A complete one-cell arrow compares effective values (V on both sides,
@@ -52,16 +54,24 @@ export function lowerArrow(ast: DeclarationAST, board: CanonicalBoard): Formula 
   if (digits.length ** owners.length > maxLeaves) throw new UnsupportedSemantics("A partial arrow with more than 100,000 bulb readings is not lowered; the whole instance remains uncovered.");
   let bulbValues: { assignment: number[]; value: number }[] = [{ assignment: [], value: 0 }];
   for (const [, weight] of owners) bulbValues = bulbValues.flatMap(x => digits.map(d => ({ assignment: [...x.assignment, d], value: x.value + d * weight })));
+  // Refuse before looping: every bulb reading meets every reading of the repeated shaft cells.
+  if (bulbValues.length * shaftReadings.length > maxEnumeration) throw new UnsupportedSemantics("A partial arrow with more than 2,000,000 pairs of bulb and repeated shaft readings is not lowered; the whole instance remains uncovered.");
   const top = bulbValues.reduce((m, x) => Math.max(m, x.value), 0);
   // Sums of nonempty lists of alphabet digits, up to the largest bulb value.
-  const reachable = new Set<number>();
-  for (let t = 0; t <= top; t++) if (board.alphabet.some(d => d <= t && (d === t || reachable.has(t - d)))) reachable.add(t);
+  const reachableSet = new Set<number>();
+  for (let t = 0; t <= top; t++) if (board.alphabet.some(d => d <= t && (d === t || reachableSet.has(t - d)))) reachableSet.add(t);
+  const reachable = [...reachableSet];
+  /** Index of the first reachable sum that is at least the given value. */
+  const firstAtLeast = (v: number) => { let lo = 0, hi = reachable.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (reachable[mid] < v) lo = mid + 1; else hi = mid; } return lo; };
   const lowest = board.alphabet.reduce((m, x) => Math.min(m, x), Infinity), highest = board.alphabet.reduce((m, x) => Math.max(m, x), -Infinity);
   const least = once.length * lowest, most = once.length * highest;
   let leaves = 0;
   const branches: Formula[] = [];
   for (const { assignment, value } of bulbValues) for (const { values, part } of shaftReadings) {
-    const totals = [...reachable].map(r => value - part - r).filter(s => s >= least && s <= most).sort((a, b) => a - b);
+    // Remainders r leave the shaft total value - part - r, which must lie between the least and the most the cells visited once can total.
+    const base = value - part, totals: number[] = [];
+    for (let i = firstAtLeast(base - most); i < reachable.length && reachable[i] <= base - least; i++) totals.push(base - reachable[i]);
+    totals.reverse();
     // With no cell visited once, the remainder must leave exactly nothing to sum.
     const fits = once.length ? totals : totals.filter(s => s === 0);
     if (!fits.length) continue;
