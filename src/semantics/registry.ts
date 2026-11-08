@@ -12,7 +12,7 @@ export const declarationRegistry = {
 
   "unique-primes": lowered,
   "stingy-cages": pending("Pairwise support intersection bounds are evaluated from their formula."),
-  "ziffer-lines": pending("Centre-clued mirrored differences are evaluated from their formula."),
+  "ziffer-lines": lowered,
   "high-low-lines": pending("Whole-line choice between overlapping digit ranges is evaluated from its formula."),
   "islands": pending("Shared island components, connected water and water sight are evaluated from its formula."),
   "super-indexing": lowered,
@@ -35,7 +35,7 @@ export const declarationRegistry = {
   "aggregate-relation": pending("Legacy Aggregate Relation has moved to Aggregate Equation; general aggregate comparisons are not lowered."),
   "clue-count": pending("Counts of owned complete clue truths are not lowered."),
   "liar-cells": pending("Shared liar-cell choices and independent effective-value assignments are not lowered."),
-  "mirrored-pairs": pending("The declarable block has no dedicated finite lowering."),
+  "mirrored-pairs": lowered,
   "endpoint-range": pending("The declarable block has no dedicated finite lowering."),
   "selected-stretch": pending("The declarable block has no dedicated finite lowering."),
   "monotone-line": pending("The declarable block has no dedicated finite lowering."),
@@ -179,5 +179,5 @@ export const declarationRegistry = {
   "parity-line": lowered,
   palindrome: lowered,
   renban: lowered,
-  "rotational-sums": pending("Half-turn pairs and allowed totals are not lowered."),
+  "rotational-sums": lowered,
 } satisfies Record<string, DeclarationCapability>;
