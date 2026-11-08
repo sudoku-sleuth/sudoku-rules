@@ -206,3 +206,20 @@ test("absent crusts take the default reading on the page formula, stated crusts 
   expect(lowered("sum 1")).toBe(true);
   expect(lowered("sum 0 crusts [1,9]")).toBe(true);
 });
+
+test("absent crusts agree with the page formula under each endpoint policy, including a missing lowest or highest", () => {
+  const layouts = [[2, 3, 4], [1, 2, 3], [9, 9, 1], [1, 5, 9], [1, 1, 9], [9, 4, 1], [1, 9, 9], [5, 5, 5]];
+  for (const policy of ["", ' endpointOccurrences "exactly-one"', ' endpointOccurrences "at-most-one"']) for (const sum of [0, 1, 2, 4, 5, 9]) {
+    const rest = `sum ${sum}${policy}`;
+    const compiled = compileCase({ file: "example.md", text: `${standardHeader}---${body(sandwich(3, rest))}` });
+    expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+    const rule = compiled.value!.rules[0];
+    const lowered = nf(sandwich(3, rest));
+    expect(lowered.status).toBe("complete");
+    for (const layout of layouts) {
+      const digits = { r1c1: layout[0], r1c2: layout[1], r1c3: layout[2] };
+      const page = evaluate({ ...rule, finite: undefined }, { digits, values: digits }).status === "holds";
+      expect([rest, layout.join(), holds(lowered.normalForm!.solution, digits)]).toEqual([rest, layout.join(), page]);
+    }
+  }
+});
