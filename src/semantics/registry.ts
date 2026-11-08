@@ -120,7 +120,7 @@ export const declarationRegistry = {
   "pill-arrow": lowered,
   summit: lowered,
   "line-choice": pending("Counts of whole candidate formulas are not lowered."),
-  "limited-digits": pending("Image cardinality is not lowered."),
+  "limited-digits": lowered,
   "diagonal-sum": lowered,
   "little-killer": lowered,
   zipper: lowered,
