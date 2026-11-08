@@ -119,7 +119,7 @@ test("equal normal forms: a re-ordered or repeated cell list and an equal number
   same(index("column", "r1c1", "r1c3"), index("column", "r1c3", "r1c1"));
   same(index("column", "r1c1", "r1c1"), index("column", "r1c1"));
   same(index("column", "r1c1", "r1c3"), `${index("column", "r1c1")}\n${index("column", "r1c3")}`);
-  // Column indexing at r1c2 is the numbered room over row 1 with first cell r1c2... only when the line starts there, so use column 1.
+  // Column indexing from column 1 reads its row from the marked cell, so it matches the numbered room on that row with digit 1.
   same(index("column", "r1c1"), "numbered-room r1c1-r1c2-r1c3 digit 1");
 });
 
