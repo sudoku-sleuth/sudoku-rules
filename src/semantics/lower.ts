@@ -6,6 +6,7 @@ import { lowerSandwich, lowerXSum } from "./sandwich.js";
 import { lowerSkyscraper } from "./skyscraper.js";
 import { lowerIndex, lowerNumberedRoom } from "./numbered-room.js";
 import { lowerBlockedSight } from "./blocked-sight.js";
+import { lowerIndexLine } from "./index-line.js";
 import { lowerFlatMates } from "./flat-mates.js";
 import { lowerExtremum } from "./extremum.js";
 import { lowerEqualityCage } from "./equality-cage.js";
@@ -32,7 +33,7 @@ const fields: Record<string, string[]> = {
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
-  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
+  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [], "index-line": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
@@ -78,7 +79,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
   if (kind === "same-class" && (instance.cells ?? []).some(cell => !board.activeCells.includes(cell))) throw new UnsupportedSemantics("A same-class cell that is inactive is not lowered; the whole instance remains uncovered.");
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -91,6 +92,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "numbered-room") return lowerNumberedRoom(ast, board);
   if (kind === "index") return lowerIndex(ast, board);
   if (kind === "blocked-sight") return lowerBlockedSight(ast, board);
+  if (kind === "index-line") return lowerIndexLine(ast, board);
   if (kind === "flat-mates") return lowerFlatMates(ast, board);
   if (kind === "extremum") return lowerExtremum(ast, board);
   if (kind === "equality-cage") return lowerEqualityCage(ast, board);

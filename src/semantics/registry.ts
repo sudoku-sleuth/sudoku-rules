@@ -159,7 +159,7 @@ export const declarationRegistry = {
   nabner: lowered,
   molecules: pending("Shared electron-choice witnesses and atom sums are not lowered."),
   sandwich: lowered,
-  "index-line": pending("Guarded inverse-permutation indexing is not lowered."),
+  "index-line": lowered,
   "n-mate": pending("Digit-indexed rays and cage sums are not lowered."),
   "pressure-gauge": pending("Larger and smaller neighbour counts are not lowered."),
   "value-modifier": pending("Shared effective-value bindings and modifier witnesses are not lowered."),
