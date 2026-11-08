@@ -97,6 +97,23 @@ const line: Layout = { rows: 1, cols: 4, regions: [[a, b, c, d]] };
 const grid: Layout = { rows: 2, cols: 3, regions: [[1, 2, 3].map(k => cellOf(1, k)), [1, 2, 3].map(k => cellOf(2, k))] };
 /** A rule listed with "none" is one that no assignment on that alphabet satisfies, so agreement there is checked against an empty set. */
 type Entry = string | [string, "none"];
+/**
+ * A partial arrow read straight from its meaning, independent of the library: the shaft counted at every visit plus a nonempty list of
+ * alphabet symbols makes the bulb, a bulb of several cells is the decimal number of digits 0 to 9 (otherwise nothing holds), and a
+ * negated declaration is the complement.
+ */
+function partialMeaning(text: string, symbols: number[], v: Record<string, number>): boolean {
+  const negated = text.startsWith("not ");
+  const shaft = /arrow ([^ ]+) bulb/.exec(text)![1].split("-");
+  const bulbCells = [...text.matchAll(/"(r\dc\d)"/g)].map(m => m[1]);
+  const digitsOk = bulbCells.length === 1 || bulbCells.every(q => v[q] >= 0 && v[q] <= 9);
+  const number = bulbCells.reduce((n, q) => n * 10 + v[q], 0);
+  const left = number - shaft.reduce((n, q) => n + v[q], 0);
+  const reachable = new Set<number>();
+  for (let t = 0; t <= Math.max(left, 0); t++) if (symbols.some(x => x === t || x > 0 && x < t && reachable.has(t - x))) reachable.add(t);
+  const holdsNow = digitsOk && left >= 0 && reachable.has(left);
+  return negated ? !holdsNow : holdsNow;
+}
 function differential(layout: Layout, symbols: number[], entries: Entry[]): void {
   const cells = layout.regions.flat();
   const context: BoardContext = { rows: layout.rows, cols: layout.cols, activeCells: cells, alphabet: symbols, regions: layout.regions };
@@ -110,9 +127,11 @@ function differential(layout: Layout, symbols: number[], entries: Entry[]): void
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
     const rule = compiled.value!.rules[0];
     let satisfied = 0;
+    // The page formula of a partial arrow is existential, which the evaluator leaves undecided, so it is judged by partialMeaning.
+    const partial = text.includes("partial true");
     const walk = (index: number, values: Record<string, number>) => {
       if (index === cells.length) {
-        const expected = evaluate(rule, { digits: values }).status === "holds";
+        const expected = partial ? partialMeaning(text, symbols, values) : evaluate({ ...rule, finite: undefined }, { digits: values, values }).status === "holds";
         expect([text, symbols.join(), JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), JSON.stringify(values), expected]);
         if (expected) satisfied++;
         return;

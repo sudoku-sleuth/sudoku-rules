@@ -89,7 +89,7 @@ test("the lowered formula and the public evaluator agree on every assignment", (
     let satisfied = 0;
     for (const x of symbols) for (const y of symbols) for (const z of symbols) {
       const values = { [a]: x, [b]: y, [c]: z };
-      const expected = evaluate(rule, { digits: values }).status === "holds";
+      const expected = evaluate({ ...rule, finite: undefined }, { digits: values, values: values }).status === "holds";
       expect([text, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), x, y, z, expected]);
       if (expected) satisfied++;
     }
@@ -159,7 +159,7 @@ test("the channel D formula and the public evaluator agree on every board, inclu
       const rule = compiled.value!.rules[0];
       for (const x of symbols) for (const y of symbols) for (const z of symbols) {
         const values = { [a]: x, [b]: y, [c]: z };
-        const expected = evaluate(rule, withModifier ? { digits: values, values: doubled(values) } : { digits: values }).status === "holds";
+        const expected = evaluate({ ...rule, finite: undefined }, withModifier ? { digits: values, values: doubled(values) } : { digits: values, values }).status === "holds";
         expect([full, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([full, symbols.join(), x, y, z, expected]);
       }
     }

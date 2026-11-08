@@ -78,7 +78,7 @@ test("the lowered formula and the public evaluator agree on every assignment", (
     const rule = compiled.value!.rules[0];
     for (const x of symbols) for (const y of symbols) for (const z of symbols) {
       const values = { [a]: x, [b]: y, [c]: z };
-      const expected = evaluate(rule, { digits: values }).status === "holds";
+      const expected = evaluate({ ...rule, finite: undefined }, { digits: values, values: values }).status === "holds";
       expect([text, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), x, y, z, expected]);
     }
   }

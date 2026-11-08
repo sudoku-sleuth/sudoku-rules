@@ -110,7 +110,7 @@ function differential(layout: Layout, symbols: number[], entries: Entry[]): void
     let satisfied = 0, total = 0;
     const walk = (index: number, values: Record<string, number>) => {
       if (index === cells.length) {
-        const expected = evaluate(rule, { digits: values }).status === "holds";
+        const expected = evaluate({ ...rule, finite: undefined }, { digits: values, values: values }).status === "holds";
         expect([text, symbols.join(), JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, symbols.join(), JSON.stringify(values), expected]);
         total++;
         if (expected) satisfied++;

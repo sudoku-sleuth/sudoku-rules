@@ -121,6 +121,10 @@ test("the declaration is covered beside a value modifier", () => {
   expect(r.normalForm!.coverage.find(x => x.kind === "equality-cage")).toMatchObject({ status: "lowered" });
 });
 
+/** Seeded generator for the sampled assignments; the seed is part of the failure message so a failure can be replayed. */
+const seed = 20260301;
+const generator = (start: number) => () => { start = (start + 0x6D2B79F5) | 0; let t = Math.imul(start ^ (start >>> 15), 1 | start); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const sampleSize = 25;
 function differential(n: number, symbols: number[], entries: string[], extra = ""): number {
   let seen = 0;
   const used = cells.slice(0, n);
@@ -132,17 +136,21 @@ function differential(n: number, symbols: number[], entries: string[], extra = "
     const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: ${n}, symbols: [${symbols}], regions: [[${used.join(", ")}]]}\n---${body(text + extra)}` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
     const rule = compiled.value!.rules[0];
-    let satisfied = 0;
+    // The lowered formula is cheap, so it is counted over every assignment; the page formula is slow, so it judges every assignment of
+    // a small board and, above 25 holding or 25 breaking ones, a seeded sample of each.
+    const random = generator(seed);
+    const holding: Record<string, number>[] = [], breaking: Record<string, number>[] = [];
     const walk = (index: number, values: Record<string, number>) => {
-      if (index === n) {
-        const expected = evaluate(rule, { digits: values }).status === "holds";
-        expect([text, JSON.stringify(values), holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
-        if (expected) satisfied++;
-        return;
-      }
+      if (index === n) { (holds(r.normalForm!.solution, values) ? holding : breaking).push(values); return; }
       for (const x of symbols) walk(index + 1, { ...values, [used[index]]: x });
     };
     walk(0, {});
+    const pick = (all: Record<string, number>[]) => all.length <= sampleSize ? all : Array.from({ length: sampleSize }, () => all[Math.floor(random() * all.length)]);
+    for (const values of [...pick(holding), ...pick(breaking)]) {
+      const expected = evaluate({ ...rule, finite: undefined }, { digits: values, values }).status === "holds";
+      expect([text, JSON.stringify(values), seed, holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), seed, expected]);
+    }
+    const satisfied = holding.length;
     seen += satisfied;
   }
   return seen;

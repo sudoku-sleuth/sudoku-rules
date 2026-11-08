@@ -114,7 +114,7 @@ for (const { symbols, classes } of [
   const walk = (digits: number[]) => {
     if (digits.length === cs.length) {
       const v = Object.fromEntries(digits.map((d, i) => [cs[i], d]));
-      expect([text, digits, holds(r.normalForm!.solution, v)]).toEqual([text, digits, evaluate(rl, { digits: v }).status === "holds"]);
+      expect([text, digits, holds(r.normalForm!.solution, v)]).toEqual([text, digits, evaluate({ ...rl, finite: undefined }, { digits: v, values: v }).status === "holds"]);
       return;
     }
     for (const s of symbols) walk([...digits, s]);
