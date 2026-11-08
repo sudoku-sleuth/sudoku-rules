@@ -262,6 +262,7 @@ export const blockHomes: Record<string,string> = {
   "parity-cells": "odd-even-cells",
   "parity-line": "class-pattern",
   "parity": "parity-line",
+  "pill-arrow": "arrow",
   "pointing-arrow": "lookup",
   "pointing-thermo": "lookup",
   "prefix-sum": "aggregate-equation",

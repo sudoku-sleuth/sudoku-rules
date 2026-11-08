@@ -113,6 +113,7 @@ export const declarationRegistry = {
   "between-line": lowered,
   "remainder-cage": pending("Cage remainder arithmetic is not lowered."),
   arrow: lowered,
+  "pill-arrow": lowered,
   summit: lowered,
   "line-choice": pending("Counts of whole candidate formulas are not lowered."),
   "limited-digits": pending("Image cardinality is not lowered."),

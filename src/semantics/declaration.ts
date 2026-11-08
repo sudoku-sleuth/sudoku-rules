@@ -22,7 +22,7 @@ const fixedGaps: Record<string,number> = {'whispers-4':4,'dutch-whispers':4,'whi
 export function semanticDeclaration(ast: DeclarationAST) {
   const reference=ast.kind.value, root='https://rules.sudoku-sleuth.com/';
   const spelling=reference.startsWith(root)?reference.slice(root.length,-3):reference;
-  const legacyKind: Record<string,string> = {'parity-line':'parity','odd-even-cells':'parity-cells','between-line':'between'};
+  const legacyKind: Record<string,string> = {'parity-line':'parity','odd-even-cells':'parity-cells','between-line':'between','pill-arrow':'arrow'};
   const kind=legacyKind[spelling] ?? (['whispers-4','whispers-5','dutch-whispers','german-whispers'].includes(spelling)?'whispers':spelling==='killer-cage'?'cage':spelling);
   const parameters=semanticParameters(ast);
   if(spelling in fixedGaps)parameters.gap=fixedGaps[spelling];
