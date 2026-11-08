@@ -496,10 +496,10 @@ test("in-file custom fragment declarations retain semantic coverage, including w
       const text = template.replace("weighted_1: ", prefix).replaceAll("```", fence).replaceAll("\n", "\r\n");
       const result = normalise({ file: "custom.rules.md", text }, board(9));
       expect(result.issues).toEqual([]);
-      expect(result.status).toBe("partial");
+      expect(result.status).toBe("complete");
       const coverage = result.normalForm!.coverage.filter(c => c.kind === "#weighted-triple");
       expect(coverage).toHaveLength(1);
-      expect(coverage[0].status).toBe("unsupported");
+      expect(coverage[0].status).toBe("lowered");
       expect(coverage[0].source.span.start.line).toBe(text.split(/\r?\n/).findIndex(line=>line.includes("#weighted-triple r"))+1);
     }
   }

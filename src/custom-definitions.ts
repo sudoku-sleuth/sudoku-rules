@@ -3,7 +3,7 @@ import { markdownBlocks } from "./rules-blocks.js";
 import { isAlias, isSeq, parseDocument, stringify, visit } from "yaml";
 import { diagnostic, location, type Diagnostic, type Span } from "./language/diagnostics.js";
 import { parseFormula, parseType } from "./language/parser.js";
-import { checkParameterAST, object, type CaseBoard, type CaseParameters } from "./case-values.js";
+import { checkParameterAST, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { pageEnvironment, checkLogicClass, type PageSource } from "./library.js";
 import { checkFormula, type CheckedPrelude } from "./language/checker.js";
 import type { CheckedFormula } from "./language/ast.js";
@@ -76,6 +76,16 @@ export function customParameterContract(definition: CustomDefinition): CaseParam
     return [name, { type: declared ?? (["cells", "line"].includes(name) ? {name: "path", args: [{name: "cell"}]} : undefined), required: !object(raw) || raw.default === undefined || /^Required\b/.test(String(raw.default)) }];
   }));
   return {parameters: {element: {type: {name: "string"}, required: false}, ...parameters, kind: {type: undefined, required: false}}, types: definition.types ?? {}};
+}
+
+/** The parameter contract of a definition with its declared defaults decoded, as a case compiles it. */
+export function customDefinitionContract(definition: CustomDefinition): CaseParameters {
+  const contract = customParameterContract(definition);
+  for (const [name, raw] of Object.entries(definition.parameters)) {
+    const parameter = contract.parameters[name];
+    if (parameter?.type && object(raw) && "default" in raw) Object.assign(parameter, declaredDefault(raw.default, parameter.type, contract.types));
+  }
+  return contract;
 }
 
 export function checkCustomParameters(ast: DeclarationTail, span: Span, definition: CustomDefinition, board: CaseBoard): Diagnostic[] {

@@ -180,7 +180,7 @@ const maxRepeatReadings = 20_000;
  * assignment holds. A ray with a repeated cell is written as an exact disjunction over the values of its repeated cells,
  * each leaving a plain total over the cells listed once. The channel is left as written; the caller converts V to D.
  */
-function lowerDiagonalSum(p: Record<string, unknown>, listed: Cell[], board: CanonicalBoard): Formula {
+export function lowerDiagonalSum(p: Record<string, unknown>, listed: Cell[], board: CanonicalBoard): Formula {
   if (p.repeats !== undefined && typeof p.repeats !== "boolean") throw Error("repeats must be true or false.");
   if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
   const total = p.sum;

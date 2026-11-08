@@ -9,7 +9,9 @@ import { all, condition, lower, validateCells, UnsupportedSemantics } from "./lo
 import { checkBoardHeaders, checkMetadataHeaders, type NormaliseOptions } from "./headers.js";
 export type { NormaliseOptions } from "./headers.js";
 import { readSemanticFile } from "./reader.js";
-import { valueNeutralDefinitions } from "./values.js";
+import { fileDefinitions, valueNeutralDefinitions } from "./values.js";
+import { lowerCustom } from "./custom.js";
+import { defaultCasePrelude } from "../declaration-library.js";
 import { declarationRegistry, type DeclarationCapability } from "./registry.js";
 import type { BoardContext, Cell, Comparison, Coverage, Formula, Normalisation, NormalForm, SemanticDifference, SemanticFile, SemanticIssue, SemanticSource } from "./types.js";
 export * from "./types.js";
@@ -60,7 +62,9 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
   const bundles: { formula: Formula; sources: SemanticSource[] }[] = [];
   const capabilities: Record<string, DeclarationCapability> = declarationRegistry;
   // A case's own definition leaves the effective-value domain resolved when its checked formula never touches V.
-  const neutralDefinitions = read.instances.some(i => i.source.custom) ? valueNeutralDefinitions(file) : new Set<string>();
+  const customDefinitions = read.instances.some(i => i.source.custom) ? fileDefinitions(file) : new Map();
+  const prelude = defaultCasePrelude();
+  const neutralDefinitions = valueNeutralDefinitions(file, customDefinitions, prelude);
   const neutral = (i: typeof read.instances[number]) => i.source.custom === true && neutralDefinitions.has(i.kind);
   const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || i.kind === "liar-cells" || i.kind === "clue-count" || i.kind === "mapped-values" || !Object.hasOwn(capabilities, i.kind) && !neutral(i)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
   let expansion = 0;
@@ -95,7 +99,8 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
     const capability = Object.hasOwn(capabilities, kind) ? capabilities[kind] : undefined;
     try { validateCells(instance.ast, board); }
     catch (error) { issues.push(...sources.map(source => ({ code: "E_SEMANTIC_CELL", message: (error as Error).message, span: source.span }))); continue; }
-    if (!capability || capability.status === "unsupported") {
+    const definition = instance.source.custom ? customDefinitions.get(kind) : undefined;
+    if (!definition && (!capability || capability.status === "unsupported")) {
       cover("unsupported", capability?.status === "unsupported" ? capability.reason : "The referenced definition and its dependencies have not been resolved.");
       continue;
     }
@@ -108,7 +113,7 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
       continue;
     }
     try {
-      let formula = lower(instance.ast, board);
+      let formula = definition ? lowerCustom(definition, instance.ast, board, prelude) : lower(instance.ast, board);
       const bulb = instance.parameters.bulb;
       const readsValues = (kind === "arrow" && instance.parameters.partial !== true && Array.isArray(bulb) && bulb.length === 1) || (valueLines.includes(kind) && instance.parameters.channel !== "D") || (kind === "pair" && instance.parameters.channel !== "D") || ["parity-cells", "odd-even-cells", "kropki", "xv", "marked-pairs"].includes(kind) || (["cage", "killer"].includes(kind) && instance.parameters.channel !== "D" && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined)) || (["diagonal-sum", "little-killer", "equal-sums", "skyscraper", "double-arrow", "extremum", "neighbour-extremum"].includes(kind) && instance.parameters.channel === "V");
       const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : readsValues && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
