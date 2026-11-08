@@ -10,7 +10,7 @@ import { lowerExtremum } from "./extremum.js";
 import { lowerEqualityCage } from "./equality-cage.js";
 import { lowerVault } from "./vault.js";
 import { lowerCountingCircles } from "./counting-circles.js";
-import { lowerWindowClasses } from "./window-classes.js";
+import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
 import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
@@ -31,7 +31,7 @@ const fields: Record<string, string[]> = {
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
-  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
+  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
@@ -67,8 +67,9 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     }
     throw Error(`${written} has no parameter ${name}.`);
   }
+  if (kind === "same-class" && (instance.cells ?? []).some(cell => !board.activeCells.includes(cell))) throw new UnsupportedSemantics("A same-class cell that is inactive is not lowered; the whole instance remains uncovered.");
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class"].includes(kind);
   if (needsCells && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -86,6 +87,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "vault") return lowerVault(ast, board);
   if (kind === "counting-circles") return lowerCountingCircles(ast, board);
   if (kind === "window-classes") return lowerWindowClasses(ast, board);
+  if (kind === "same-class") return lowerSameClass(ast, board);
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
