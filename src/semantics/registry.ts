@@ -172,7 +172,7 @@ export const declarationRegistry = {
   "pointing-arrow": lowered,
   "magic-square": pending("Placement disjunctions and fixed magic sums are not lowered."),
   modular: lowered,
-  "pointing-thermo": pending("Directed path and guarded tip ray indexing are not lowered."),
+  "pointing-thermo": lowered,
   tardis: pending("Centre versus supplied-neighbour comparisons are not lowered."),
   parity: lowered,
   "parity-line": lowered,
