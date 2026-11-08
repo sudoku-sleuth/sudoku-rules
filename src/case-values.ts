@@ -27,6 +27,11 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
   const alias = Object.hasOwn(types, type.name) ? types[type.name] : undefined;
   if (alias) return valueProblem(value, alias, types, board, depth + 1);
   const child = (v: unknown, t: Type) => valueProblem(v, t, types, board, depth + 1);
+  if (SEQUENCE_TYPES.includes(type.name)) {
+    if (!Array.isArray(value)) return "must be a list";
+    for (const [i, v] of value.entries()) { const problem = child(v, type.args![0]); if (problem) return `item ${i + 1} ${problem}`; }
+    return;
+  }
   switch (type.name) {
     case "optional": return value === undefined ? undefined : child(value, type.args![0]);
     case "cell": return cellValid(value, board) ? undefined : "must be an in-board cell in r1c1 form";
@@ -35,10 +40,6 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
     case "string": return typeof value === "string" ? undefined : "must be text";
     case "boolean": return typeof value === "boolean" ? undefined : "must be true or false";
     case "enum": return typeof value === "string" && type.members?.includes(value) ? undefined : `must be one of ${type.members?.join(", ")}`;
-    case "set": case "list": case "path": case "collection":
-      if (!Array.isArray(value)) return "must be a list";
-      for (const [i, v] of value.entries()) { const problem = child(v, type.args![0]); if (problem) return `item ${i + 1} ${problem}`; }
-      return;
     case "record":
       if (!object(value)) return "must be an object";
       for (const key of Object.keys(value)) if (!Object.hasOwn(type.fields ?? {}, key)) return `has unknown field ${key}`;
@@ -169,7 +170,7 @@ function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: 
   const alias = Object.hasOwn(types, type.name) ? types[type.name] : undefined;
   if (alias) return problemSpan(node, value, alias, types, board, depth + 1);
   if (type.name === 'optional') return problemSpan(node, value, type.args![0], types, board, depth + 1);
-  if (['set','list','path','collection'].includes(type.name) && Array.isArray(value)) {
+  if (SEQUENCE_TYPES.includes(type.name) && Array.isArray(value)) {
     const index = value.findIndex(v => valueProblem(v, type.args![0], types, board) !== undefined);
     if (index >= 0 && node.children?.[index]) return problemSpan(node.children[index], value[index], type.args![0], types, board, depth + 1);
   }
@@ -185,9 +186,26 @@ function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: 
   return node.span;
 }
 
+/** Type names whose values are arrays. */
+const SEQUENCE_TYPES = ["set", "list", "path", "collection"];
+
+/** True when a type, through its named aliases and optional wrappers, is an array type. */
+function isSequenceType(type: Type, types: Record<string, Type>): boolean {
+  let current = type;
+  for (let depth = 0; depth < 128; depth++) {
+    if (SEQUENCE_TYPES.includes(current.name)) return true;
+    if (current.name === "optional" && current.args?.[0]) { current = current.args[0]; continue; }
+    const alias = Object.hasOwn(types, current.name) ? types[current.name] : undefined;
+    if (!alias) return false;
+    current = alias;
+  }
+  return false;
+}
+
 /** Fixed defaults are read from the page's human-readable default declaration. */
 export function declaredDefault(raw: unknown, type: Type, types: Record<string, Type>): {default?: unknown} {
   if (typeof raw === "boolean" || typeof raw === "number") return {default: raw};
+  if (Array.isArray(raw)) return raw.length === 0 && isSequenceType(type, types) ? {default: []} : {};
   if (typeof raw !== "string") return {};
   const value = raw.trim();
   if (/^(Empty list|Empty set|No authored strips|\[\])/.test(value)) return {default: []};
