@@ -85,8 +85,11 @@ test("bulbs whose weights are too large and partial arrows outside the finite fr
   expect(long.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("1,000,000") });
   const negative = nf(`arrow ${b} bulb ${bulb(a)} partial true`, { ...board, alphabet: [-1, 2, 3] });
   expect(negative.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("negative") });
-  const repeated = nf(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`);
-  expect(repeated.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("repeats a cell") });
+  // Five repeated shaft cells on nine digits are more than 20,000 readings.
+  const cellsOf = wide.activeCells;
+  const loop = [...cellsOf.slice(0, 5), ...cellsOf.slice(0, 5)];
+  const repeated = nf(`arrow ${loop.join("-")} bulb ${bulb(cellsOf[7])} partial true`, wide);
+  expect(repeated.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("20,000") });
   // A complete arrow may repeat a shaft cell: the equation counts each visit.
   expect(nf(`arrow ${b}-${c}-${b} bulb ${bulb(a)}`).status).toBe("complete");
 });
@@ -177,4 +180,51 @@ test("a partial arrow above the reading cap is refused with its reason", () => {
   const wide: BoardContext = { rows: 1, cols: 8, activeCells: Array.from({ length: 8 }, (_, i) => `r1c${i + 1}` as Cell), alphabet: [0, ...digits9] };
   const refused = nf(`arrow r1c8 bulb ${bulb(...wide.activeCells.slice(0, 6))} partial true`, wide);
   expect(refused.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("100,000 bulb readings") });
+});
+
+// Shafts that repeat a cell, and a cell visited three times, on gapped alphabets that do not start at 1 and on one with digits above 9.
+test("a partial arrow whose shaft repeats a cell agrees with its meaning on every assignment", () => {
+  const shafts = [`arrow ${b}-${c}-${b} bulb ${bulb(a)}`, `arrow ${b}-${b} bulb ${bulb(a)}`, `arrow ${b}-${c}-${d}-${c}-${b} bulb ${bulb(a)}`,
+    `arrow ${b}-${c}-${b}-${d}-${b} bulb ${bulb(a)}`, `arrow ${c}-${d}-${c} bulb ${bulb(a, b)}`, `arrow ${b}-${a}-${b} bulb ${bulb(a)}`];
+  // A declaration that the independent reading satisfies nowhere is listed as "none", so the comparison is still against its meaning.
+  const classify = (symbols: number[], text: string): Entry => {
+    const cells = [a, b, c, d];
+    const some = (index: number, v: Record<string, number>): boolean => index === cells.length ? partialMeaning(text, symbols, v) : symbols.some(x => some(index + 1, { ...v, [cells[index]]: x }));
+    return some(0, {}) ? text : [text, "none"];
+  };
+  for (const symbols of [[0, 1, 2, 3], [1, 2, 3], [0, 2, 5], [2, 3]]) differential(line, symbols, shafts.map(t => classify(symbols, `${t} partial true`)));
+  // Digits above 9 cannot be bulb digits of a multi-cell bulb, so only the one-cell bulb can hold with them.
+  differential(line, [0, 1, 10, 12], [`arrow ${c}-${d}-${c} bulb ${bulb(a, b)} partial true`, `arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `not arrow ${c}-${d}-${c} bulb ${bulb(a, b)} partial true`].map(t => classify([0, 1, 10, 12], t)));
+});
+
+test("a repeated shaft cell changes the partial arrow's normal form", () => {
+  differs(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `arrow ${b}-${c} bulb ${bulb(a)} partial true`);
+  differs(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `arrow ${b}-${c}-${c} bulb ${bulb(a)} partial true`);
+  eq(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `arrow ${b}-${b}-${c} bulb ${bulb(a)} partial true`);
+  eq(`arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${c}-${b} bulb ${bulb(a)} partial true`);
+});
+
+/** Which bound decides: bulb readings, readings times repeated shaft readings, or the surviving branches. */
+const cellsOn = (n: number) => Array.from({ length: n }, (_, i) => `r1c${i + 1}` as Cell);
+const wideBoard = (n: number, alphabet: number[]): BoardContext => ({ rows: 1, cols: n, activeCells: cellsOn(n), alphabet, regions: [cellsOn(n)] });
+const status = (text: string, context: BoardContext) => nf(text, context).normalForm!.coverage.find(x => x.kind === "arrow")!;
+
+test("the caps, not the bulb length, decide whether a long partial bulb lowers", () => {
+  const nine = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const w = cellsOn(12);
+  // A four-cell bulb lowers on five symbols with a short shaft and is refused on nine symbols with a long one, because surviving branches pass 100,000.
+  expect(status(`arrow ${w[4]} bulb ${bulb(...w.slice(0, 4))} partial true`, wideBoard(12, [1, 2, 3, 4, 5]))).toMatchObject({ status: "lowered" });
+  expect(status(`arrow ${w.slice(4, 10).join("-")} bulb ${bulb(...w.slice(0, 4))} partial true`, wideBoard(12, nine))).toMatchObject({ status: "unsupported", reason: expect.stringContaining("100,000 finite value combinations") });
+  // A five-cell bulb lowers on a two-symbol alphabet and is refused on nine symbols.
+  expect(status(`arrow ${w[5]} bulb ${bulb(...w.slice(0, 5))} partial true`, wideBoard(12, [1, 2]))).toMatchObject({ status: "lowered" });
+  expect(status(`arrow ${w.slice(5, 8).join("-")} bulb ${bulb(...w.slice(0, 5))} partial true`, wideBoard(12, nine))).toMatchObject({ status: "unsupported" });
+});
+
+test("a repeated shaft with a long bulb is refused before it is enumerated", () => {
+  const w = cellsOn(10);
+  const text = `arrow ${w[5]}-${w[6]}-${w[5]}-${w[6]} bulb ${bulb(...w.slice(0, 5))} partial true`;
+  const started = performance.now();
+  const result = status(text, wideBoard(10, [1, 2, 3, 4, 5, 6, 7, 8, 9]));
+  expect(result).toMatchObject({ status: "unsupported", reason: expect.stringContaining("2,000,000 pairs") });
+  expect(performance.now() - started).toBeLessThan(1000);
 });

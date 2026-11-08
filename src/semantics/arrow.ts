@@ -6,6 +6,10 @@ import type { CanonicalBoard, Cell, Formula } from "./types.js";
 /** Largest total weight of repeated bulb occurrences, and largest count of partial-arrow leaves. */
 const maxOccurrences = 1_000_000;
 const maxLeaves = 100_000;
+/** Largest count of value readings of the repeated shaft cells of a partial arrow. */
+const maxRepeatReadings = 20_000;
+/** Largest count of pairs of a bulb reading and a reading of the repeated shaft cells that a partial arrow enumerates. */
+const maxEnumeration = 2_000_000;
 
 /**
  * Arrow: the shaft sums to the bulb. A complete one-cell arrow compares effective values (V on both sides,
@@ -36,28 +40,47 @@ export function lowerArrow(ast: DeclarationAST, board: CanonicalBoard): Formula 
   // Partial: bulb minus the visible shaft sum is a sum of a nonempty list of alphabet digits. The remainders are
   // enumerated over the finite bulb values; this needs nonnegative integer symbols and a shaft of distinct cells.
   if (board.alphabet.some(d => !Number.isSafeInteger(d) || d < 0)) throw new UnsupportedSemantics("A partial arrow on an alphabet with negative or non-integer symbols is not lowered; the whole instance remains uncovered.");
-  if (new Set(shaft).size !== shaft.length) throw new UnsupportedSemantics("A partial arrow whose shaft repeats a cell is not lowered; the whole instance remains uncovered.");
+  // A shaft cell visited more than once counts at each visit: its value is read as one of the alphabet digits in a branch of its own,
+  // and the cells visited once keep a plain total.
+  const times = new Map<Cell, number>();
+  for (const cell of shaft) times.set(cell, (times.get(cell) ?? 0) + 1);
+  const repeated = [...times].filter(([, n]) => n > 1).sort(([x], [y]) => x < y ? -1 : 1);
+  const once = [...times].filter(([, n]) => n === 1).map(([cell]) => cell);
+  if (board.alphabet.length ** repeated.length > maxRepeatReadings) throw new UnsupportedSemantics("A partial arrow whose shaft repeats cells with more than 20,000 readings is not lowered; the whole instance remains uncovered.");
+  let shaftReadings: { values: number[]; part: number }[] = [{ values: [], part: 0 }];
+  for (const [, n] of repeated) shaftReadings = shaftReadings.flatMap(r => board.alphabet.map(d => ({ values: [...r.values, d], part: r.part + n * d })));
   const owners = [...weights];
   // Refuse before enumerating: the readings are the alphabet choices for each distinct bulb cell.
   if (digits.length ** owners.length > maxLeaves) throw new UnsupportedSemantics("A partial arrow with more than 100,000 bulb readings is not lowered; the whole instance remains uncovered.");
   let bulbValues: { assignment: number[]; value: number }[] = [{ assignment: [], value: 0 }];
   for (const [, weight] of owners) bulbValues = bulbValues.flatMap(x => digits.map(d => ({ assignment: [...x.assignment, d], value: x.value + d * weight })));
+  // Refuse before looping: every bulb reading meets every reading of the repeated shaft cells.
+  if (bulbValues.length * shaftReadings.length > maxEnumeration) throw new UnsupportedSemantics("A partial arrow with more than 2,000,000 pairs of bulb and repeated shaft readings is not lowered; the whole instance remains uncovered.");
   const top = bulbValues.reduce((m, x) => Math.max(m, x.value), 0);
   // Sums of nonempty lists of alphabet digits, up to the largest bulb value.
-  const reachable = new Set<number>();
-  for (let t = 0; t <= top; t++) if (board.alphabet.some(d => d <= t && (d === t || reachable.has(t - d)))) reachable.add(t);
+  const reachableSet = new Set<number>();
+  for (let t = 0; t <= top; t++) if (board.alphabet.some(d => d <= t && (d === t || reachableSet.has(t - d)))) reachableSet.add(t);
+  const reachable = [...reachableSet];
+  /** Index of the first reachable sum that is at least the given value. */
+  const firstAtLeast = (v: number) => { let lo = 0, hi = reachable.length; while (lo < hi) { const mid = (lo + hi) >> 1; if (reachable[mid] < v) lo = mid + 1; else hi = mid; } return lo; };
   const lowest = board.alphabet.reduce((m, x) => Math.min(m, x), Infinity), highest = board.alphabet.reduce((m, x) => Math.max(m, x), -Infinity);
-  const least = shaft.length * lowest, most = shaft.length * highest;
+  const least = once.length * lowest, most = once.length * highest;
   let leaves = 0;
   const branches: Formula[] = [];
-  for (const { assignment, value } of bulbValues) {
-    const totals = [...reachable].map(r => value - r).filter(s => s >= least && s <= most).sort((a, b) => a - b);
-    if (!totals.length) continue;
-    leaves += totals.length;
+  for (const { assignment, value } of bulbValues) for (const { values, part } of shaftReadings) {
+    // Remainders r leave the shaft total value - part - r, which must lie between the least and the most the cells visited once can total.
+    const base = value - part, totals: number[] = [];
+    for (let i = firstAtLeast(base - most); i < reachable.length && reachable[i] <= base - least; i++) totals.push(base - reachable[i]);
+    totals.reverse();
+    // With no cell visited once, the remainder must leave exactly nothing to sum.
+    const fits = once.length ? totals : totals.filter(s => s === 0);
+    if (!fits.length) continue;
+    leaves += fits.length;
     if (leaves > maxLeaves) throw new UnsupportedSemantics("A partial arrow with more than 100,000 finite value combinations is not lowered; the whole instance remains uncovered.");
     branches.push(all([
       ...owners.map(([cell], i): Formula => ({ op: "Allowed", channel: "D", cell, values: [assignment[i]] })),
-      { op: "Any", children: totals.map(s => sumTotal(shaft, s, "D")) },
+      ...repeated.map(([cell], i): Formula => ({ op: "Allowed", channel: "D", cell, values: [values[i]] })),
+      ...(once.length ? [{ op: "Any", children: fits.map(s => sumTotal(once, s, "D")) } as Formula] : []),
     ]));
   }
   return { op: "Any", children: branches };
