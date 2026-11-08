@@ -3,12 +3,13 @@ import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, pair, UnsupportedSemantics } from "./primitives.js";
 import { key, sortedCells } from "./board.js";
+import { lowerDifferenceLineDeclaration } from "./difference-line.js";
 
 export const lineFields: Record<string, string[]> = {
   thermo: [], "slow-thermo": [], whispers: ["gap", "loop"], whisper: ["gap", "loop"],
   "close-whispers": ["gap"], parity: ["loop"], modular: ["modulus", "loop"],
   entropic: ["loop"], palindrome: [], renban: [], bremban: [], nabner: ["distinct"],
-  "region-sum": ["segments", "combine", "loop"], primality: ["loop"], summit: ["loop"], "shifter-line": [], zipper: ["centre"],
+  "region-sum": ["segments", "combine", "loop"], primality: ["loop"], summit: ["loop"], "difference-line": ["mode", "loop", "channel", "diamonds", "gap", "turnDigits"], "shifter-line": [], zipper: ["centre"],
 };
 /** Line kinds whose meaning is a test on each adjacent pair: an explicit edge list yields that test on exactly those edges. */
 export const edgeLines = ["whispers", "whisper", "close-whispers", "parity", "primality", "shifter-line"];
@@ -59,6 +60,7 @@ function explicitEdges(instance: ReturnType<typeof semanticDeclaration>, board: 
 export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance = semanticDeclaration(ast);
   const { kind, parameters: p } = instance;
+  if (kind === "difference-line" || kind === "summit") return lowerDifferenceLineDeclaration(ast, board);
   const network = explicitEdges(instance, board);
   const path = network ? network.cells : instance.cells!;
   for (const name of ["loop", "distinct", "combine"]) if (p[name] !== undefined && typeof p[name] !== "boolean") throw Error(`${name} must be true or false.`);
@@ -163,15 +165,6 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
     else {
       nodes.push(consecutive(path, !repeats));
       nodes.push(...apart(path));
-    }
-  } else if (kind === "summit") {
-    edges((x,y) => x !== y);
-    for (let i = 0; i < (p.loop && path.length >= 3 ? path.length : path.length-2); i++) {
-      const a = path[i], b = path[(i+1)%path.length], c = path[(i+2)%path.length];
-      const turns = allowed(b,board.alphabet.filter(d => d === 1 || d === 9));
-      const up = edge(a,b,(x,y) => x < y), down = edge(a,b,(x,y) => x > y);
-      const rising = edge(b,c,(x,y) => x < y), falling = edge(b,c,(x,y) => x > y);
-      nodes.push(any([all([turns,any([all([up,falling]),all([down,rising])])]), all([{ op: "Not", child: turns },any([all([up,rising]),all([down,falling])])])]));
     }
   } else if (kind === "region-sum") {
     if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
