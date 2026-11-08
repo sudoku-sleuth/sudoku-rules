@@ -177,4 +177,6 @@ test("a coordinate that can name an inactive cell stays uncovered, because the p
   expect(r.normalForm!.coverage.find(x => x.kind === "coordinate-arrows")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("inactive cell") });
   // With an alphabet that cannot name the hole (row 2 is not a symbol), the arrow is still lowered.
   expect(nf(arrows(["r1c1", "r1c2"]), 2, 3, [1, 3, 4], hole).normalForm!.coverage.find(x => x.kind === "coordinate-arrows")).toMatchObject({ status: "lowered" });
+  // The lowered case also agrees with the published definition on the hole board.
+  expect(differential(2, 3, [1, 3, 4], [arrows(["r1c1", "r1c2"])], hole, 20)).toBeGreaterThan(0);
 });
