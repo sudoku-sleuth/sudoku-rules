@@ -170,7 +170,7 @@ export const declarationRegistry = {
   "same-class": lowered,
   thermo: lowered,
   "pointing-arrow": lowered,
-  "magic-square": pending("Placement disjunctions and fixed magic sums are not lowered."),
+  "magic-square": lowered,
   modular: lowered,
   "pointing-thermo": lowered,
   tardis: pending("Centre versus supplied-neighbour comparisons are not lowered."),
