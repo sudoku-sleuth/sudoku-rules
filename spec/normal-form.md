@@ -88,7 +88,7 @@ Version 1 implements the following finite fragment of the logical tree. All node
 | allowed-digits | Membership at every path cell. Repeated visits do not multiply membership constraints. |
 | absent-digits | No marked cell holds a listed digit, on printed digits: Allowed at every cell, restricted to the alphabet symbols that are not listed. Listed digits outside the alphabet exclude nothing, and the order and repetition of the listed digits do not matter; a list with no alphabet digit adds no restriction (an empty list is rejected when the case is read). Repeated cells count once. |
 | parity-cells | Membership in the odd/even part of the actual alphabet when V=D; negative odd digits and zero retain their numeric parity. |
-| pair | Exact table for difference, at-least, ratio, sum, less, multiple and shift over the actual alphabet. Keywords retain cell direction; swapping axes transposes the table. Arithmetic uses exact integers. |
+| pair | Exact table for difference, at-least, ratio, sum, less, multiple and shift over the actual alphabet. Keywords retain cell direction; swapping axes transposes the table. Arithmetic uses exact integers. The default `channel` V converts to D when the effective-value domain is resolved; `channel "D"` reads printed digits and is covered whatever the domain. |
 | kropki | Single or grouped white (difference 1) and black (ratio 2) marks, including zero/zero for ratio. Selected allGiven kinds forbid their own relation on orthogonal edges outside their own mark list. |
 | xv | Single or grouped X (sum 10) and V (sum 5) marks, with independent allGiven restrictions. |
 | marked-pairs | Grouped X, V, white and black marks with independent allGiven restrictions. |
