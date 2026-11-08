@@ -165,7 +165,7 @@ export const declarationRegistry = {
   "value-modifier": lowered,
   "look-and-say": lowered,
   "run-sum": lowered,
-  "mean-lines": pending("Cross-multiplied aggregate means are not lowered."),
+  "mean-lines": lowered,
   vault: lowered,
   "same-class": lowered,
   thermo: lowered,
