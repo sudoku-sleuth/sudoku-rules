@@ -26,6 +26,7 @@ import { lowerPressureGauge } from "./pressure-gauge.js";
 import { lowerNeighbourCount } from "./neighbour-count.js";
 import { lowerOrderedBlock } from "./ordered-block.js";
 import { lowerValueModifier } from "./value-modifier.js";
+import { lowerNumberProperty } from "./number-property.js";
 import { lowerCountingCircles } from "./counting-circles.js";
 import { lowerLayeredCage } from "./layered-cage.js";
 import { lowerAggregateEquation, lowerCagePair, lowerProductCage } from "./aggregate-equation.js";
@@ -68,6 +69,8 @@ const fields: Record<string, string[]> = {
   tardis: ["cell", "neighbours", "channel"],
   "ordered-block": ["digits"],
   "value-modifier": ["factor", "offset", "exactly", "count", "atMostOne", "distinct"],
+  "number-property": ["operand", "property", "argument", "reverse", "remainder", "alternating", "edges", "loop", "operands", "allowed", "distinct"],
+  "remainder-cage": ["modulus", "remainder", "distinct"], "unique-primes": ["groups", "allowed"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
   "branched-thermo": ["edges", "strict", "channel"],
@@ -114,9 +117,9 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
   if (kind === "same-class" && (instance.cells ?? []).some(cell => !board.activeCells.includes(cell))) throw new UnsupportedSemantics("A same-class cell that is inactive is not lowered; the whole instance remains uncovered.");
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage", "product-cage", "cage-totals", "sum-free-cage", "relation-scope", "limited-digits", "look-and-say", "digit-profile", "hidden-modular", "ordered-block"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage", "product-cage", "cage-totals", "sum-free-cage", "relation-scope", "limited-digits", "look-and-say", "digit-profile", "hidden-modular", "ordered-block", "remainder-cage"].includes(kind);
   if (needsCells && kind !== "lookup" && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
-  if (!needsCells && !["xv", "kropki", "aggregate-groups"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
+  if (!needsCells && !["xv", "kropki", "aggregate-groups", "number-property"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   if (kind === "arrow") return lowerArrow(ast, board);
   if (kind === "between" || kind === "lockout") return lowerEndpointRange(ast, board);
@@ -166,6 +169,10 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
   if (kind === "ordered-block") return lowerOrderedBlock(ast, board);
   if (kind === "value-modifier") return lowerValueModifier(ast, board);
+  if (kind === "number-property" || kind === "remainder-cage" || kind === "unique-primes") {
+    if (instance.condition && !instance.cells?.length) throw Error("A condition needs a nonempty primary cell list.");
+    return lowerNumberProperty(ast, board);
+  }
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
