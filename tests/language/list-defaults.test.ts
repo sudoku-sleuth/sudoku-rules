@@ -14,6 +14,17 @@ test('a named alias of a list resolves to the same default',()=>{
  expect(declaredDefault([],{name:'Marks'},types)).toEqual({default:[]});
  expect(declaredDefault([],{name:'Alias'},types)).toEqual({default:[]});
 });
+test('collection, optional and nested list types keep the empty default',()=>{
+ const list={name:'list',args:[cell]};
+ expect(declaredDefault([],{name:'collection',args:[cell]},{})).toEqual({default:[]});
+ expect(declaredDefault([],{name:'optional',args:[list]},{})).toEqual({default:[]});
+ expect(declaredDefault([],{name:'OptMarks'},{OptMarks:{name:'optional',args:[list]}})).toEqual({default:[]});
+ expect(declaredDefault([],{name:'list',args:[list]},{})).toEqual({default:[]});
+ expect(declaredDefault([],{name:'optional',args:[number]},{})).toEqual({});
+});
+test('a cyclic alias gives no default',()=>{
+ expect(declaredDefault([],{name:'A'},{A:{name:'B'},B:{name:'A'}})).toEqual({});
+});
 test('an empty array is not a default for other types, and unchecked values are ignored',()=>{
  expect(declaredDefault([],number,{})).toEqual({});
  expect(declaredDefault([],{name:'string'},{})).toEqual({});

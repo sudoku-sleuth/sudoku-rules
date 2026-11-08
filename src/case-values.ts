@@ -169,7 +169,7 @@ function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: 
   const alias = Object.hasOwn(types, type.name) ? types[type.name] : undefined;
   if (alias) return problemSpan(node, value, alias, types, board, depth + 1);
   if (type.name === 'optional') return problemSpan(node, value, type.args![0], types, board, depth + 1);
-  if (['set','list','path','collection'].includes(type.name) && Array.isArray(value)) {
+  if (SEQUENCE_TYPES.includes(type.name) && Array.isArray(value)) {
     const index = value.findIndex(v => valueProblem(v, type.args![0], types, board) !== undefined);
     if (index >= 0 && node.children?.[index]) return problemSpan(node.children[index], value[index], type.args![0], types, board, depth + 1);
   }
@@ -185,11 +185,15 @@ function problemSpan(node: DeclarationValue, value: unknown, type: Type, types: 
   return node.span;
 }
 
-/** True when a type, through its named aliases, is a list, set or path. */
+/** Type names whose values are arrays. */
+const SEQUENCE_TYPES = ["set", "list", "path", "collection"];
+
+/** True when a type, through its named aliases and optional wrappers, is an array type. */
 function isSequenceType(type: Type, types: Record<string, Type>): boolean {
   let current = type;
   for (let depth = 0; depth < 128; depth++) {
-    if (["list", "set", "path"].includes(current.name)) return true;
+    if (SEQUENCE_TYPES.includes(current.name)) return true;
+    if (current.name === "optional" && current.args?.[0]) { current = current.args[0]; continue; }
     const alias = Object.hasOwn(types, current.name) ? types[current.name] : undefined;
     if (!alias) return false;
     current = alias;
