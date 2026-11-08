@@ -48,7 +48,7 @@ export const declarationRegistry = {
   "marked-pairs": lowered,
   xv: lowered,
   "value-set": pending("Whole-set consecutive and nonconsecutive value conditions are not lowered."),
-  "class-pattern": pending("General class windows on ordered lines and networks are not lowered."),
+  "class-pattern": lowered,
   "aggregate-groups": lowered,
   "selection": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "marking-relation": pending("Shared selections, assignments and symbol or value channels are not lowered."),
