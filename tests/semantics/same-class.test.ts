@@ -1,4 +1,11 @@
 import { expect, test } from "bun:test";
+import { readFileSync } from "node:fs";
+import { parse as parseYaml } from "yaml";
+import { parseDeclaration } from "../../src/declarations";
+import { declarationLibrary } from "../../src/declaration-library";
+import { parameterGrammar } from "../../src/case-values";
+import { canonicalBoard } from "../../src/semantics/board";
+import { lower, UnsupportedSemantics } from "../../src/semantics/lower";
 import { compileCase, evaluate, normalise, compare, type BoardContext, type Cell, type Formula } from "../../src";
 
 const header = "---\nformat: open-rules\ntitle: Synthetic\nsetter: Example\nsource: \"\"\ncase: \"\"\nlibrary: https://rules.sudoku-sleuth.com/\nstatus: read\n";
@@ -114,3 +121,27 @@ for (const { symbols, classes } of [
   };
   walk([]);
 });
+
+test("the lowering refuses a marked cell that is not active, with its typed reason", () => {
+  const ast = parseDeclaration({ file: "line", text: sc("r1c1-r2c2", "parity") }, kind => {
+    const url = `https://rules.sudoku-sleuth.com/${kind}.md`;
+    return { ...parameterGrammar(declarationLibrary.parameters?.get(url)), line: declarationLibrary.lines?.get(url) };
+  }).value!;
+  const board = canonicalBoard(boardOf(3, 3, nine, ["r2c2"]));
+  expect(() => lower(ast, board)).toThrow(UnsupportedSemantics);
+  expect(() => lower(ast, board)).toThrow("inactive");
+});
+
+test("the lowering assumes the library's same-class bindings", () => {
+  const text = readFileSync(new URL("../../rules/same-class.md", import.meta.url), "utf8");
+  const meta = parseYaml(text.split("---")[1]) as { alias_of: string; alias_bind: Record<string, string> };
+  const bind = meta.alias_bind;
+  expect(meta.alias_of).toBe("class-pattern");
+  expect(bind.mode).toBe('"same"');
+  expect(bind.geometry).toBe('"cells"');
+  expect(bind.loop).toBe("false");
+  expect(bind.channel).toBe('"D"');
+  expect(bind.fixedClass).toBe("absent(|{}|)");
+  expect(bind.classification).toBe('if classes="entropy" then "entropy" else "residue"');
+  expect(bind.modulus).toBe('if classes="parity" then 2 else 3');
+}, 5000);

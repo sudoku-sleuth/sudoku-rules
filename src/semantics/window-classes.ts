@@ -45,15 +45,12 @@ export function lowerWindowClasses(ast: DeclarationAST, board: CanonicalBoard): 
 /**
  * Same class: every marked digit belongs to one common class of the stated system. Lowered as the disjunction over the
  * classes of the conjunction, over the marked cells, of membership in that class's digits. The cells are a set, so order and
- * repeats do not matter. A class with no digit in the alphabet is dropped (its disjunct could never hold). An inactive cell is not
- * lowered.
+ * repeats do not matter. A class with no digit in the alphabet is dropped (its disjunct could never hold).
  */
 export function lowerSameClass(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const { parameters: p, cells } = semanticDeclaration(ast);
   if (p.classes !== "parity" && p.classes !== "mod3" && p.classes !== "entropy") throw Error("classes must be parity, mod3 or entropy.");
   const marked = [...new Set(cells ?? [])];
-  const active = new Set(board.activeCells);
-  if (marked.some(cell => !active.has(cell))) throw new UnsupportedSemantics("A same-class cell that is inactive is not lowered; the whole instance remains uncovered.");
   const disjuncts = digitClasses(p.classes, board.alphabet).filter(values => values.length > 0)
     .map((values): Formula => all(marked.map((cell): Formula => ({ op: "Allowed", channel: "D", cell, values }))));
   return { op: "Any", children: disjuncts };
