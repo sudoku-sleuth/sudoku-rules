@@ -99,7 +99,7 @@ export const declarationRegistry = {
   "killer-cage": lowered,
   "cage-shapes": pending("Hidden connected cage witnesses are not lowered."),
   "close-whispers": lowered,
-  "flat-mates": pending("Guarded neighbours above and below are not lowered."),
+  "flat-mates": lowered,
   lockout: lowered,
   "equal-sums": lowered,
   "equality-cage": lowered,

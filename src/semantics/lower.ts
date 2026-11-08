@@ -5,6 +5,7 @@ import { lowerDoubleArrow } from "./double-arrow.js";
 import { lowerSandwich, lowerXSum } from "./sandwich.js";
 import { lowerSkyscraper } from "./skyscraper.js";
 import { lowerIndex, lowerNumberedRoom } from "./numbered-room.js";
+import { lowerFlatMates } from "./flat-mates.js";
 import { lowerExtremum } from "./extremum.js";
 import { lowerEqualityCage } from "./equality-cage.js";
 import { lowerCountingCircles } from "./counting-circles.js";
@@ -29,7 +30,7 @@ const fields: Record<string, string[]> = {
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
-  "equality-cage": [], "counting-circles": [], "window-classes": ["classes"], "numbered-room": ["digit"], index: ["axis"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
+  "equality-cage": [], "counting-circles": [], "window-classes": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
@@ -78,6 +79,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "skyscraper") return lowerSkyscraper(ast, board);
   if (kind === "numbered-room") return lowerNumberedRoom(ast, board);
   if (kind === "index") return lowerIndex(ast, board);
+  if (kind === "flat-mates") return lowerFlatMates(ast, board);
   if (kind === "extremum") return lowerExtremum(ast, board);
   if (kind === "equality-cage") return lowerEqualityCage(ast, board);
   if (kind === "counting-circles") return lowerCountingCircles(ast, board);
