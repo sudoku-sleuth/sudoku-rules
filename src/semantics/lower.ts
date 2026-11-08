@@ -25,6 +25,7 @@ import { lowerHiddenModular } from "./hidden-modular.js";
 import { lowerPressureGauge } from "./pressure-gauge.js";
 import { lowerNeighbourCount } from "./neighbour-count.js";
 import { lowerOrderedBlock } from "./ordered-block.js";
+import { lowerValueModifier } from "./value-modifier.js";
 import { lowerCountingCircles } from "./counting-circles.js";
 import { lowerLayeredCage } from "./layered-cage.js";
 import { lowerAggregateEquation, lowerCagePair, lowerProductCage } from "./aggregate-equation.js";
@@ -66,6 +67,7 @@ const fields: Record<string, string[]> = {
   "neighbour-count": ["cell", "scope", "move", "includeSelf", "relations", "total", "exhaustive", "channel"],
   tardis: ["cell", "neighbours", "channel"],
   "ordered-block": ["digits"],
+  "value-modifier": ["factor", "offset", "exactly", "count", "atMostOne", "distinct"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
   "branched-thermo": ["edges", "strict", "channel"],
@@ -163,6 +165,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     return lowerExtremumOf([p.cell as Cell], { type: "max", exhaustive: false, neighbourhood: "orthogonal", boundary: false, neighbours: p.neighbours, ...(p.channel === undefined ? {} : { channel: p.channel }) }, board);
   }
   if (kind === "ordered-block") return lowerOrderedBlock(ast, board);
+  if (kind === "value-modifier") return lowerValueModifier(ast, board);
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {

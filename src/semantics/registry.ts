@@ -162,7 +162,7 @@ export const declarationRegistry = {
   "index-line": lowered,
   "n-mate": lowered,
   "pressure-gauge": lowered,
-  "value-modifier": pending("Shared effective-value bindings and modifier witnesses are not lowered."),
+  "value-modifier": lowered,
   "look-and-say": lowered,
   "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
   "mean-lines": pending("Cross-multiplied aggregate means are not lowered."),
