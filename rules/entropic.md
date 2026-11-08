@@ -43,6 +43,8 @@ For an ordered alphabet of 1–6, the three groups are 1–2, 3–4 and 5–6. D
 
 With explicit `edges`, supply one connected network and write `line []` when no ordered list is needed. The window checks include every simple traversal through its junctions.
 
+A junction of three or more branches has no filling: the junction and three of its neighbours would need four different groups, and there are only three. Such a network is valid to write and never satisfied; cycles of three cells and paths with no junction of three are the shapes that can be satisfied.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

@@ -30,6 +30,8 @@ The end digits differ by at least the stated gap. Every digit between them is be
 
 Use `gap 4` for the usual lockout rule. The `line` excludes the two diamond cells in `ends`. Each diamond ends a segment: declare each segment separately when a drawing contains more diamonds. Interior digits may repeat when other rules allow; they cannot equal either endpoint.
 
+A branched line cannot be written with this rule: it has no `edges` parameter, because its two end circles bound the cells between them, which a branch has no way to define. Declare each path separately.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

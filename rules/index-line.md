@@ -33,6 +33,8 @@ layer: rule
 
 Count positions from the marked end, starting at 1. A digit X in position N means the digit in position X is N.
 
+Positions count from one marked end along one path, so the rule has no `edges` parameter.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

@@ -36,6 +36,8 @@ Digits between the two ends add up to the sum of the end digits.
 
 List the two circled cells in `ends` and only the intervening cells in `line`. The two ends are added as separate digits, not read as a two-digit number. Digits may repeat when other rules allow.
 
+This rule reads its line as one path between the two circles, so it has no `edges` parameter.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
