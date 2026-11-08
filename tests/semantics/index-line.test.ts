@@ -74,11 +74,23 @@ test("a digit past the line or outside the alphabet names no position", () => {
   expect(holds(zero, at(0, 1))).toBe(false);
 });
 
-test("a cell listed twice is read at each position", () => {
-  const f = form(line([cells[0], cells[1], cells[0]]), 2);
-  expect(holds(f, at(1, 1))).toBe(false);
-  expect(holds(f, at(3, 1))).toBe(false);
-  expect(holds(f, at(2, 1))).toBe(false);
+test("a repeated cell, a single cell or a line past 16 cells is invalid input, as the page requires", () => {
+  expect(nf(line([cells[0], cells[1], cells[0]]), 2).status).toBe("invalid");
+  expect(nf(line([cells[0]]), 2).status).toBe("invalid");
+  expect(nf(line(cells.slice(0, 2)), 2).status).toBe("complete");
+});
+
+test("the normal form ignores alphabet symbols that cannot index the line", () => {
+  const two = cells.slice(0, 3);
+  // Zero and the larger symbols name no position, so they leave the form unchanged.
+  expect(form(line(two), 3, [0, 1, 2, 3])).toEqual(form(line(two), 3, [1, 2, 3]));
+  expect(form(line(two), 3, [1, 2, 3, 7])).toEqual(form(line(two), 3, [1, 2, 3]));
+  // Position 3 is not an alphabet symbol, so that position's clue, and so the line's, can never be met.
+  expect(form(line(two), 3, [1, 2, 4])).toEqual({ op: "Any", children: [] });
+  // Positions 1 and 2 alone, on a two-cell line, keep exactly their own cases.
+  const f = form(line(cells.slice(0, 2)), 2, [0, 1, 2, 4]);
+  expect(f).toEqual(form(line(cells.slice(0, 2)), 2, [1, 2]));
+  expect(JSON.stringify(f)).not.toContain("undefined");
 });
 
 test("the line setting, the whole-row index and the bare list agree", () => {
@@ -152,7 +164,14 @@ test("the lowered formula and the public evaluator agree on zero-based and shift
   expect(differential(3, [2, 3, 4], [line(three)], 2)).toBe(0);
 });
 
-test("the lowered formula and the public evaluator agree on repeated and single-cell lines", () => {
-  expect(differential(2, [1, 2, 3], [line([cells[0], cells[1], cells[0]]), line([cells[0], cells[0]])])).toBeGreaterThanOrEqual(0);
-  expect(differential(2, [1, 2], [line([cells[0]])])).toBeGreaterThan(0);
+test("the lowered formula and the public evaluator agree on a line longer than the alphabet", () => {
+  expect(differential(4, [1, 2, 3], [line(cells.slice(0, 4))], 6)).toBe(0);
+});
+
+test("the lowered formula and the public evaluator agree on a five-cell line", () => {
+  expect(differential(5, [1, 2, 3, 4, 5], [line(cells.slice(0, 5))], 400)).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the public evaluator agree on the shortest line", () => {
+  expect(differential(2, [1, 2], [line([cells[0], cells[1]])])).toBeGreaterThan(0);
 });
