@@ -160,7 +160,7 @@ export const declarationRegistry = {
   "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
   "mean-lines": pending("Cross-multiplied aggregate means are not lowered."),
   vault: lowered,
-  "same-class": pending("Resolved digit-class equality is not lowered."),
+  "same-class": lowered,
   thermo: lowered,
   "pointing-arrow": pending("Guarded ray indexing and first-five policy are not lowered."),
   "magic-square": pending("Placement disjunctions and fixed magic sums are not lowered."),
