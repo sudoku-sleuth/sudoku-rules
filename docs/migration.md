@@ -27,7 +27,7 @@ Extra Regions is now Regions (`regions`); Parity is now Parity Line (`parity-lin
 
 Little Killer is now Diagonal Sum (`diagonal-sum`). The `little-killer` spelling, searches and published route remain aliases with the same parameters and meaning.
 
-Whispers retains its general `gap`. Prefer `whispers-5` for German Whispers and `whispers-4` for Dutch Whispers; these rules bind Difference Line with the gap fixed at 5 or 4. Existing Whispers declarations with either gap may stay unchanged. Pill, Pill Arrow and Arrow Pill name Arrow with a two- or three-cell decimal bulb.
+Whispers retains its general `gap`. Prefer `german-whispers` and `dutch-whispers`, which have their own pages and read exactly as `whispers-5` and `whispers-4`; these rules bind Difference Line with the gap fixed at 5 or 4. Existing Whispers declarations with either gap may stay unchanged. Pill, Pill Arrow and Arrow Pill name Arrow with a two- or three-cell decimal bulb.
 
 Pair retains its name. Migration selects a name per declaration after binding defaults:
 

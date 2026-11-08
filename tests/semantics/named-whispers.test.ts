@@ -36,3 +36,9 @@ test("a named kind has the normal form of whispers with the same gap", () => {
 test("Dutch and German whispers on the same line differ", () => {
   for (let i = 0; i < 3; i++) expect(compare(nf(shapes("dutch-whispers")[i]), nf(shapes("german-whispers")[i])).status).not.toBe("equivalent");
 });
+
+test("a named kind differs from the other gap's numbered twin", () => {
+  const line = " r1c1-r1c2-r1c3 loop false";
+  expect(compare(nf("dutch-whispers" + line), nf("whispers-5" + line)).status).not.toBe("equivalent");
+  expect(compare(nf("german-whispers" + line), nf("whispers-4" + line)).status).not.toBe("equivalent");
+});
