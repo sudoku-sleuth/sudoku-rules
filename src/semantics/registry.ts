@@ -15,7 +15,7 @@ export const declarationRegistry = {
   "ziffer-lines": pending("Centre-clued mirrored differences are evaluated from their formula."),
   "high-low-lines": pending("Whole-line choice between overlapping digit ranges is evaluated from its formula."),
   "islands": pending("Shared island components, connected water and water sight are evaluated from its formula."),
-  "super-indexing": pending("Cyclic row-column-digit coordinate lookups are evaluated from its formula."),
+  "super-indexing": lowered,
   "cage-totals": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
   "perfect-square-cages": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
   "perfect-cube-cages": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
