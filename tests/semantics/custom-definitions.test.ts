@@ -103,6 +103,15 @@ test("a king-move definition built on a shared term equals the anti-king rule", 
   expect(compare(own, lowered).status).toBe("equivalent");
 });
 
+/** Whether the published definition text, read by the public evaluator, holds for these digits. */
+function published(maths: string, alphabet: number[], definitionCells = 3): (digits: Record<string, number>) => boolean {
+  const rules = `#probe ${cells(definitionCells).join("-")}`;
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: ${definitionCells}, symbols: [${alphabet.join(",")}], regions: [[${cells(definitionCells).join(", ")}]]}\n---\n${fence(custom(maths))}\n\`\`\`rules\n${rules}\n\`\`\`` });
+  expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+  const rule = compiled.value!.rules[0];
+  return digits => evaluate(rule, { digits }).status === "holds";
+}
+
 test("a definition may use shared terms, local bindings and nested quantifiers", () => {
   const cases: [string, string, (digits: number[]) => boolean][] = [
     ["a shared term over a digit", "∃x∈cells: odd(D(x))", d => d.some(x => x % 2 === 1)],
@@ -126,9 +135,12 @@ test("a definition may use shared terms, local bindings and nested quantifiers",
     const alphabet = [1, 2, 3, 4, 5, 6];
     const result = nf(`#probe ${a}-${b}-${c}`, [custom(maths)], context(3, alphabet));
     expect([label, result.issues, result.status]).toEqual([label, [], "complete"]);
-    // Every assignment of the three cells agrees with the formula the definition states.
+    const text = published(maths, alphabet);
+    // Every assignment of the three cells agrees with the formula the definition states, as the public evaluator reads it.
     for (const x of alphabet) for (const y of alphabet) for (const z of alphabet) {
-      expect([label, x, y, z, holds(result.normalForm!.solution, { [a]: x, [b]: y, [c]: z })]).toEqual([label, x, y, z, expected([x, y, z])]);
+      const values = { [a]: x, [b]: y, [c]: z };
+      expect([label, x, y, z, holds(result.normalForm!.solution, values)]).toEqual([label, x, y, z, expected([x, y, z])]);
+      expect([label, x, y, z, text(values)]).toEqual([label, x, y, z, expected([x, y, z])]);
     }
   }
 });
@@ -150,7 +162,11 @@ test("the lowered formula agrees with the public evaluator on a small board", ()
     const rule = compiled.value!.rules[0];
     for (const x of alphabet) for (const y of alphabet) for (const z of alphabet) {
       const values = { [a]: x, [b]: y, [c]: z };
-      expect([label, x, y, z, holds(result.normalForm!.solution, values)]).toEqual([label, x, y, z, evaluate(rule, { digits: values }).status === "holds"]);
+      const published = evaluate(rule, { digits: values }).status === "holds";
+      expect([label, x, y, z, holds(result.normalForm!.solution, values)]).toEqual([label, x, y, z, published]);
+      // The definition text reads face digits (D): doubling the effective values of a cell must not change its verdict.
+      const doubled = { [a]: x * 2, [b]: y, [c]: z };
+      expect([label, x, y, z, evaluate(rule, { digits: values, values: doubled }).status === "holds"]).toEqual([label, x, y, z, published]);
     }
   }
 });
