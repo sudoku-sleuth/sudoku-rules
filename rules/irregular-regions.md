@@ -7,7 +7,7 @@ alias_of: regions
 
 # Irregular Regions
 
-The boxes are replaced by irregularly shaped regions. Declare each region as a group of cells whose digits are all different.
+The board has irregularly shaped regions in place of boxes. Declare each region as a group of cells whose digits are all different.
 
 Irregular Regions uses the parameters and meaning of [Regions](regions.md).
 
@@ -21,15 +21,26 @@ setter: Example
 source: ""
 case: ""
 library: https://rules.sudoku-sleuth.com/
+board:
+  rows: 4
+  cols: 4
+  symbols: [1, 2, 3, 4]
+  regions:
+    - [r1c1, r1c2, r1c3, r2c1]
+    - [r1c4, r2c2, r2c3, r2c4]
+    - [r3c1, r3c2, r4c1, r4c2]
+    - [r3c3, r3c4, r4c3, r4c4]
 status: read
 ---
 
 ```rules
-sudoku 9x9
-irregular-regions r1c1-r1c2-r1c3-r2c1-r2c2-r2c3-r3c1-r3c2-r4c1
+irregular-regions r1c1-r1c2-r1c3-r2c1
+irregular-regions r1c4-r2c2-r2c3-r2c4
+irregular-regions r3c1-r3c2-r4c1-r4c2
+irregular-regions r3c3-r3c4-r4c3-r4c4
 ```
 ````
 
-Satisfies the rule: r1c1=1, r1c2=2, r1c3=3, r2c1=4, r2c2=5, r2c3=6, r3c1=7, r3c2=8, r4c1=9. The nine cells of the region hold the digits 1 to 9 once.
+Satisfies the rule: r1c1=1, r1c2=2, r1c3=3, r2c1=4. The four cells of the first region hold 1 to 4 once.
 
-Breaks the rule: r1c1=1, r1c2=2, r1c3=3, r2c1=4, r2c2=5, r2c3=6, r3c1=7, r3c2=8, r4c1=1. The first and last cells of the region both hold 1.
+Breaks the rule: r1c1=1, r1c2=2, r1c3=3, r2c1=1. Two cells of the first region both hold 1.
