@@ -246,3 +246,36 @@ test("the lowered formula and the public evaluator agree across the r9 to r10 ed
     expect(holds(rule.finite!, digits, digits)).toBe(a < b);
   }
 });
+
+/**
+ * With strict false and equal digits every edge holds, so only the acyclic predicate can reject a network. The channel is V and the
+ * assignment supplies effective values, so the public evaluator follows the published definition instead of the lowered formula.
+ */
+test("the published definition rejects a directed cycle even when every edge would hold", () => {
+  const compile = (edges: string, rows: number, cols: number) => {
+    const cells = gridCells(rows, cols);
+    const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: ${rows}, cols: ${cols}, symbols: [1,2,3], regions: [[${cells.join(", ")}]]}\n---${body(bt(edges, "strict false"))}` });
+    expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+    const digits = Object.fromEntries(cells.map(c => [c, 2]));
+    return evaluate(compiled.value!.rules[0], { digits, values: digits }).status;
+  };
+  expect(compile(E(["r1c1", "r1c2"], ["r1c2", "r1c1"]), 1, 2)).toBe("broken");
+  expect(compile(E(["r1c1", "r1c2"], ["r1c2", "r2c2"], ["r2c2", "r2c1"], ["r2c1", "r1c1"]), 2, 2)).toBe("broken");
+  expect(compile(E(["r1c1", "r1c2"], ["r1c2", "r1c3"], ["r1c3", "r2c3"], ["r2c3", "r2c2"], ["r2c2", "r2c1"], ["r2c1", "r1c1"]), 2, 3)).toBe("broken");
+  expect(compile(E(["r1c1", "r1c2"], ["r1c2", "r1c1"], ["r1c2", "r1c3"]), 1, 3)).toBe("broken");
+  expect(compile(diamond, 2, 2)).toBe("holds");
+  expect(compile(fork, 1, 3)).toBe("holds");
+});
+
+test("the lowered formula and the public evaluator agree on the alphabet 0, 1, 2", () => {
+  expect(differential(KINDS, 1, 3, [0, 1, 2], [bt(fork), bt(fork, "strict false")])).toBeGreaterThan(0);
+  expect(differential(KINDS, 2, 2, [0, 1, 2], [bt(diamond, "strict false")])).toBeGreaterThan(0);
+});
+
+test("an edge touching an inactive cell is invalid", () => {
+  const board = boardOf(1, 3, [1, 2, 3], ["r1c1", "r1c3"]);
+  expect(nf(bt(E(["r1c1", "r1c2"])), board).status).toBe("invalid");
+  expect(nf(bt(E(["r1c2", "r1c3"])), board).status).toBe("invalid");
+  expect(nf(bt(E(["r1c1", "r1c2"], ["r1c2", "r1c3"])), board).status).toBe("invalid");
+  expect(nf(bt(E(["r1c1", "r1c2"])), boardOf(1, 3, [1, 2, 3], ["r1c1", "r1c2"])).status).toBe("complete");
+});
