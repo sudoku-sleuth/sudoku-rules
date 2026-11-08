@@ -110,8 +110,6 @@ test("combinations left uncovered keep a typed reason", () => {
   expect(reason(rule([cage([a], { op: "+", left: letter("A"), right: num(1) })]))).toContain("arithmetic operators");
   expect(reason(rule([cage([a], letter("A"))]), [-1, 0, 1])).toContain("negative digit");
   expect(reason(rule([cage([a], num(1e20))]))).toContain("safe whole number");
-  expect(reason(rule([cage([a, a, b], letter("A"))]))).toContain("more than once");
-  expect(reason(rule([cage([a, b], num(3)), cage([c, c], num(2))]))).toContain("more than once");
 });
 
 function differential(n: number, symbols: number[], entries: string[]): number {
@@ -151,6 +149,16 @@ test("the lowered formula and the published definition agree on shared letters a
     rule([cage([a], letter("A")), cage([b, c], letter("A"))]), rule([cage([a], letter("A")), cage([b], letter("A")), cage([c], letter("A"))]),
     rule([cage([a, b], num(4)), cage([c], letter("A"))]), rule([cage([a], num(2)), cage([b], letter("A")), cage([c], letter("A"))]),
     `not ${rule([cage([a], letter("A")), cage([b], letter("A"))])}`, rule([cage([a], num(1.5))]),
+  ])).toBeGreaterThan(0);
+});
+
+test("a cell listed twice in a cage counts once, in the lowering and in the published definition", () => {
+  eq(rule([cage([a, a, b], letter("A")), cage([c], letter("A"))]), rule([cage([b, a], letter("A")), cage([c], letter("A"))]));
+  eq(rule([cage([a, b], num(3)), cage([c, c], num(2))]), rule([cage([b, a], num(3)), cage([c], num(2))]));
+  differs(rule([cage([a, a], num(2))]), rule([cage([a], num(4))]));
+  expect(differential(3, [1, 2, 3], [
+    rule([cage([a, a, b], letter("A")), cage([c], letter("A"))]), rule([cage([a, b], num(3)), cage([c, c], num(2))]),
+    rule([cage([a, a], num(2)), cage([b, c, b], letter("A"))], true), rule([cage([c, a, c], letter("A")), cage([b, b], letter("B"))], true),
   ])).toBeGreaterThan(0);
 });
 
