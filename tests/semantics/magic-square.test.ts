@@ -143,12 +143,15 @@ test("the lowered formula and the public evaluator agree on magic squares, near 
   for (let k = 0; k < 150; k++) { const s = [...nineDigits]; for (let i = 8; i > 0; i--) { const j = Math.floor(random() * (i + 1)); [s[i], s[j]] = [s[j], s[i]]; } samples.push(s); }
   for (let k = 0; k < 50; k++) samples.push(Array.from({ length: 9 }, () => 1 + Math.floor(random() * 9)));
   const alphabet = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const rule = compileCase({ file: "example.md", text: `${header}board: {rows: 2, cols: 9, symbols: [${alphabet}], regions: [[${grid(2, 9).join(", ")}]]}\n---${body(places(row1))}` }).value!.rules[0];
+  // The evaluator runs the lowered formula itself when a rule has one, so it is switched off to compare with the published definition.
+  const rule = { ...compileCase({ file: "example.md", text: `${header}board: {rows: 2, cols: 9, symbols: [${alphabet}], regions: [[${grid(2, 9).join(", ")}]]}\n---${body(places(row1))}` }).value!.rules[0], finite: undefined };
   const f = form(places(row1), alphabet);
   let satisfied = 0;
   for (const digits of samples) {
     const values = assign(row1, digits);
     const expected = evaluate(rule, { digits: values }).status === "holds";
+    // The rule reads printed digits, so effective values that differ from them change nothing.
+    expect(evaluate(rule, { digits: values, values: Object.fromEntries(Object.entries(values).map(([k, x]) => [k, 2 * x])) }).status === "holds").toBe(expected);
     expect([JSON.stringify(digits), holds(f, values)]).toEqual([JSON.stringify(digits), expected]);
     if (expected) satisfied++;
   }
@@ -159,7 +162,8 @@ test("the lowered formula and the public evaluator agree on two places and a sho
   const alphabet = nineDigits;
   const place = row1, other = row2;
   const text = places(place, other.slice(0, 8));
-  const rule = compileCase({ file: "example.md", text: `${header}board: {rows: 2, cols: 9, symbols: [${alphabet}], regions: [[${grid(2, 9).join(", ")}]]}\n---${body(text)}` }).value!.rules[0];
+  // The evaluator runs the lowered formula itself when a rule has one, so it is switched off to compare with the published definition.
+  const rule = { ...compileCase({ file: "example.md", text: `${header}board: {rows: 2, cols: 9, symbols: [${alphabet}], regions: [[${grid(2, 9).join(", ")}]]}\n---${body(text)}` }).value!.rules[0], finite: undefined };
   const f = form(text);
   const square = magicSquares[3], other2 = magicSquares[5];
   for (const [first, second] of [[square, other2], [[...square].reverse(), square], [[...square].reverse(), [...other2].reverse()]]) {
