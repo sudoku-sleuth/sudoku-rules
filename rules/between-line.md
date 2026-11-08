@@ -27,6 +27,8 @@ Every digit between the ends is strictly greater than the smaller end and strict
 
 The `line` lists only the cells between the two ends; `ends` lists the circles. Interior digits may repeat when other rules allow. They need not increase or decrease along the line.
 
+A branched line cannot be written with this rule: it has no `edges` parameter. The two end circles bound the cells between them, which a branch has no way to define. Declare each path separately.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

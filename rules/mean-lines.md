@@ -24,6 +24,8 @@ layer: rule
 
 Every listed line has the same average digit.
 
+The rule reads several separate lines, not one network, so it has no `edges` parameter.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

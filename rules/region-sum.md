@@ -41,6 +41,8 @@ Region boundaries split the line into segments. By default, each segment has the
 
 The board’s primary regions supply the boundaries: standard boxes on a normal Sudoku board, or the declared regions on an irregular board. List the maximal runs in `segments` in path order, including every return to a region. `combine false` keeps those visits separate; `combine true` adds their values together within each region. State the choice explicitly when a line re-enters a region. Digits may repeat when other rules allow; each occurrence on the supplied path contributes to its sum.
 
+This rule reads its line as one path, so it has no `edges` parameter.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

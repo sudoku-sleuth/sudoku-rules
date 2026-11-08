@@ -24,6 +24,8 @@ The values along the line read the same forwards and backwards.
 
 Compare positions equally far from the two ends. Digits may repeat, including in neighbouring cells, when other rules allow.
 
+A branched line cannot be written with this rule: it has no `edges` parameter, because mirrored positions are not defined on a branch. Declare each path separately.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

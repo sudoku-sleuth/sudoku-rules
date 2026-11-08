@@ -31,6 +31,8 @@ For an ordinary horizontal bulb, list its cells left to right; for a vertical bu
 
 When several shafts leave the same bulb, declare each shaft separately with the same `bulb` list. Each shaft must reach the bulb total on its own; their sums are not combined. The `line` lists shaft cells only, excluding the bulb.
 
+This rule reads each shaft as one path, so it has no `edges` parameter.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |

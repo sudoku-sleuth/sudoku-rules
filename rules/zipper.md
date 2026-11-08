@@ -28,6 +28,8 @@ Pairs equally far from the centre have the same sum. By default, on an odd-lengt
 
 `centre "when-odd"` allows even and odd lengths, tying the pair sum to the centre only when it exists. `centre "ignore"` compares the mirrored pair sums without constraining an odd line’s centre. `centre "required"` requires odd length and ties every pair sum to the centre. Digits may repeat when other rules allow. A line with fewer than two cells has no pairs; only the required-centre version rejects empty or even length.
 
+A branched line cannot be written with this rule: it has no `edges` parameter, because a centre and equal distances from it are not defined on a branch. Declare each path separately.
+
 ## Parameters
 
 | Parameter | Type | Meaning | Default |
