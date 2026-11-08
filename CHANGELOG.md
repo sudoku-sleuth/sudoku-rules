@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Perfect Square Cages and Perfect Cube Cages have their own pages and kinds, `perfect-square-cages` and `perfect-cube-cages`. Each reads as Cage Totals, with the same `cells` and `totals` parameters, so it stays uncovered for the same reason and compares as Cage Totals does.
 - Disjoint Sets and Irregular Regions have their own pages and kinds, `disjoint-sets` and `irregular-regions`. Each reads as Regions, with the same `cells` parameter, so it lowers to the same normal form as Regions over the same cells.
 - Pill Arrow has its own page and kind, `pill-arrow`. It reads as Arrow, with the same `bulb`, `line` and `partial` parameters, so it lowers to the same normal form or stays uncovered for the same reason.
 - Dutch Whispers and German Whispers have their own pages and kinds, `dutch-whispers` and `german-whispers`. They bind Difference Line with a gap of 4 and 5, so each lowers to the same normal form as Whispers 4 and Whispers 5.
