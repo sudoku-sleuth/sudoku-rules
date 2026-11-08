@@ -3,10 +3,10 @@ import { markdownBlocks } from "./rules-blocks.js";
 import { isAlias, isSeq, parseDocument, stringify, visit } from "yaml";
 import { diagnostic, location, type Diagnostic, type Span } from "./language/diagnostics.js";
 import { parseFormula, parseType } from "./language/parser.js";
-import { checkParameterAST, object, type CaseBoard, type CaseParameters } from "./case-values.js";
+import { checkParameterAST, declaredDefault, object, type CaseBoard, type CaseParameters } from "./case-values.js";
 import { pageEnvironment, checkLogicClass, type PageSource } from "./library.js";
 import { checkFormula, type CheckedPrelude } from "./language/checker.js";
-import type { CheckedFormula } from "./language/ast.js";
+import type { CheckedFormula, Type } from "./language/ast.js";
 
 export interface CaseBlock { language: string; text: string; offset: number; end: number }
 /** Only top-level fences count; examples nested in a Markdown fence are prose. */
@@ -76,6 +76,22 @@ export function customParameterContract(definition: CustomDefinition): CaseParam
     return [name, { type: declared ?? (["cells", "line"].includes(name) ? {name: "path", args: [{name: "cell"}]} : undefined), required: !object(raw) || raw.default === undefined || /^Required\b/.test(String(raw.default)) }];
   }));
   return {parameters: {element: {type: {name: "string"}, required: false}, ...parameters, kind: {type: undefined, required: false}}, types: definition.types ?? {}};
+}
+
+/** The parameter types the checker reads for a definition, including parameters the contract cannot type (such as one named kind). */
+export function customParameterTypes(definition: CustomDefinition, prelude: CheckedPrelude): Record<string, Type> {
+  const environment = pageEnvironment({file: "definition", text: `---\n${stringify({parameters: definition.parameters})}---\n`}, prelude.environment);
+  return Object.fromEntries((environment.value?.parameters ?? []).map(p => [p.name, p.type]));
+}
+
+/** The parameter contract of a definition with its declared defaults decoded, as a case compiles it. */
+export function customDefinitionContract(definition: CustomDefinition, prelude: CheckedPrelude): CaseParameters {
+  const contract = customParameterContract(definition);
+  for (const [name, type] of Object.entries(customParameterTypes(definition, prelude))) {
+    const raw = definition.parameters[name];
+    if (object(raw) && "default" in raw) Object.assign(contract.parameters[name], declaredDefault(raw.default, type, contract.types));
+  }
+  return contract;
 }
 
 export function checkCustomParameters(ast: DeclarationTail, span: Span, definition: CustomDefinition, board: CaseBoard): Diagnostic[] {

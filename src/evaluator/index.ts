@@ -1,9 +1,9 @@
 import { declarationLibrary, defaultCasePrelude } from '../declaration-library.js';
 import { evaluatorLibrary } from '../evaluator-library.js';
 import { checkCaseReferences, readHeader } from '../documents.js';
-import { caseBlocks, customParameterContract, readCustomDefinitions } from '../custom-definitions.js';
-import { declarationParameters, type DeclarationAST, type DeclarationValue } from '../declarations.js';
-import { checkBoard, declaredDefault, parameterGrammar, type CaseParameters } from '../case-values.js';
+import { caseBlocks, customDefinitionContract, readCustomDefinitions } from '../custom-definitions.js';
+import { type DeclarationAST } from '../declarations.js';
+import { checkBoard, type CaseParameters } from '../case-values.js';
 import { pageEnvironment, type CompiledPage, type PageSource } from '../library.js';
 import { stringify } from 'yaml';
 import {arithmetic,exact,compare as compareExact} from '../language/exact.js';
@@ -13,6 +13,7 @@ import { diagnostic, LanguageError, type Result, type Span } from '../language/d
 import type { Cell, Formula, CanonicalBoard } from '../semantics/types.js';
 import { canonicalBoard, standardHouses } from '../semantics/board.js';
 import { lower } from '../semantics/lower.js';
+import { instanceInputs as inputs } from './inputs.js';
 import { formulaVerdict, MissingValue, EvaluationLimit, numericInput, type Fragment, type StepBudget } from './interpreter.js';
 export { EvaluationLimit, MissingValue, type NumericInput } from './interpreter.js';
 export type Digit = number;
@@ -88,22 +89,6 @@ function inputCells(value:unknown):Cell[]{
  if(value&&typeof value==='object')return Object.values(value).flatMap(inputCells);
  return [];
 }
-function inputs(ast:DeclarationAST, contract:CaseParameters):Record<string,unknown>{
- const data=declarationParameters(ast,parameterGrammar(contract).primary);
- for(const [name,p] of Object.entries(contract.parameters))if(data[name]===undefined&&Object.hasOwn(p,'default'))data[name]=p.default;
- // Preserve authored numeric precision before the decoded JSON number loses it.
- const sourceValue=(node:DeclarationValue):unknown=>{
-  if(/^-?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/.test(node.raw)){
-   const n=numericInput(node.raw),decoded=Number(node.raw);
-   return Number.isFinite(decoded)&&compareExact(n,numericInput(decoded))===0?decoded:n;
-  }
-  if(node.children)return node.children.map(sourceValue);
-  if(node.fields)return Object.fromEntries(node.fields.map(f=>[f.name.value,sourceValue(f.value)]));
-  return node.value;
- };
- for(const parameter of ast.parameters)data[parameter.name.value]=sourceValue(parameter.value);
- return data;
-}
 /** Compile supplied text without fetching URLs or reading the filesystem. */
 export function compileCase(file:PageSource):Result<CompiledCase>{
  const {rules:evaluatorRules,aliases:evaluatorAliases}=evaluatorLibrary();
@@ -136,8 +121,7 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
   const parsed=parseFormula(String(local.metadata.maths),{file:file.file});
   const formula=parsed.value&&env.value?checkFormula(parsed.value,env.value.environment):undefined;
   if(formula?.value&&env.value){
-   const contract=customParameterContract(local);
-   for(const p of env.value.parameters){const raw=local.parameters[p.name];if(raw&&typeof raw==='object'&&'default' in raw)Object.assign(contract.parameters[p.name],declaredDefault(raw.default,p.type,contract.types));}
+   const contract=customDefinitionContract(local,defaultCasePrelude());
    const definition={name:local.id??local.url,page:{file:file.file,parameters:env.value.parameters,formulas:[formula.value]},contract};definitions.set(local.url,definition);if(typeof local.metadata.url==='string')definitions.set(local.metadata.url,definition);
   }else errors.push(...env.diagnostics,...parsed.diagnostics,...formula?.diagnostics??[]);
  }

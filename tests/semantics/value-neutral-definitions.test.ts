@@ -64,14 +64,13 @@ test("a definition that reads only face digits leaves Kropki and a cage total lo
   for (const maths of ["∀c∈cells:D(c)!=5", "∀c∈cells: let d=D(c); d>1 ∨ row(c)=0", "∀c∈cells: given(c) → givenValue(c)>0"]) {
     const result = run(maths);
     expect(result.issues).toEqual([]);
-    expect(result.status).toBe("partial");
+    expect(result.status).toBe("complete");
     expect(status(result, "kropki").status).toBe("lowered");
     expect(status(result, "cage").status).toBe("lowered");
     expect(result.normalForm!.rewrites.filter(r => r.rule === "value-channel")).toHaveLength(2);
-    // The custom declaration itself stays uncovered with its existing reason.
-    const custom = result.normalForm!.coverage.find(x => x.status === "unsupported")!;
-    expect(custom).toMatchObject({ status: "unsupported", reason: "The referenced definition and its dependencies have not been resolved." });
-    expect(result.normalForm!.coverage.filter(x => x.status === "unsupported")).toHaveLength(1);
+    // The definition itself is lowered too: it reads only face digits.
+    expect(status(result, "#probe").status).toBe("lowered");
+    expect(result.normalForm!.coverage.filter(x => x.status === "unsupported")).toHaveLength(0);
   }
 });
 
@@ -193,10 +192,11 @@ test("the lowered value rules and the public evaluator agree on every board besi
     expect(status(n, shape.split(" ")[0]).status).toBe("lowered");
     const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---\n${definition(maths)}\n\`\`\`rules\n${rules}\n\`\`\`` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
-    const valueRule = compiled.value!.rules[1];
+    const [custom, valueRule] = compiled.value!.rules;
     for (const x of symbols) for (const y of symbols) for (const z of symbols) {
       const values = { [a]: x, [b]: y, [c]: z };
-      const expected = evaluate(valueRule, { digits: values }).status === "holds";
+      // The definition only adds its own face-digit condition to the value rule.
+      const expected = evaluate(valueRule, { digits: values }).status === "holds" && evaluate(custom, { digits: values }).status === "holds";
       expect([rules, symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([rules, symbols.join(), x, y, z, expected]);
     }
   }
@@ -208,15 +208,16 @@ test("a mixed case with digit-channel calls agrees with the public evaluator", (
   const symbols = [1, 2, 5];
   const n = normalise(file(rules, fitted(maths)), { ...board, alphabet: symbols });
   expect(n.issues).toEqual([]);
-  expect(n.normalForm!.coverage.filter(x => x.status === "unsupported").map(x => x.kind)).toEqual(["#probe"]);
+  expect(n.normalForm!.coverage.filter(x => x.status === "unsupported").map(x => x.kind)).toEqual([]);
   const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---\n${fitted(maths)}\n\`\`\`rules\n${rules}\n\`\`\`` });
   expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
   const [custom, ...valueOnes] = compiled.value!.rules;
   for (const x of symbols) for (const y of symbols) for (const z of symbols) {
     const values = { [a]: x, [b]: y, [c]: z };
     const digits = { digits: values };
-    expect([x, y, z, holds(n.normalForm!.solution, values)]).toEqual([x, y, z, valueOnes.every(rule => evaluate(rule, digits).status === "holds")]);
-    expect(evaluate(custom, digits).status === "holds").toBe(x + y > 3 && x !== 5 && y !== 5);
+    const customHolds = evaluate(custom, digits).status === "holds";
+    expect(customHolds).toBe(x + y > 3 && x !== 5 && y !== 5);
+    expect([x, y, z, holds(n.normalForm!.solution, values)]).toEqual([x, y, z, customHolds && valueOnes.every(rule => evaluate(rule, digits).status === "holds")]);
   }
 });
 
@@ -255,7 +256,7 @@ test("on a whole case with a neutral definition the lowered D formulas agree wit
   for (const symbols of [digits9, [0, 2, 3, 5, 10]]) {
     const n = normalise(file(rules, definition(maths)), { ...board, alphabet: symbols });
     expect(n.issues).toEqual([]);
-    expect(n.normalForm!.coverage.filter(x => x.status === "unsupported").map(x => x.kind)).toEqual(["#probe"]);
+    expect(n.normalForm!.coverage.filter(x => x.status === "unsupported").map(x => x.kind)).toEqual([]);
     const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---\n${definition(maths)}\n\`\`\`rules\n${rules}\n\`\`\`` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
     const [custom, ...valueOnes] = compiled.value!.rules;
@@ -266,8 +267,8 @@ test("on a whole case with a neutral definition the lowered D formulas agree wit
       const valueHolds = valueOnes.every(rule => evaluate(rule, digits).status === "holds");
       const customHolds = evaluate(custom, digits).status === "holds";
       const whole = compiled.value!.rules.every(rule => evaluate(rule, digits).status === "holds");
-      // The lowered formulas match the value rules, and the custom rule only adds its own face-digit condition.
-      expect([symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([symbols.join(), x, y, z, valueHolds]);
+      // The lowered formulas match the evaluator on the whole case, the definition's own face-digit condition included.
+      expect([symbols.join(), x, y, z, holds(n.normalForm!.solution, values)]).toEqual([symbols.join(), x, y, z, valueHolds && customHolds]);
       expect(whole).toBe(valueHolds && customHolds);
       expect(customHolds).toBe(x !== 5 && y !== 5);
     }

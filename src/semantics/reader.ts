@@ -68,7 +68,7 @@ export function readSemanticFile(file: SemanticFile, board?: CaseBoard, declared
     if(ast.cells) parsed.cells=ast.cells.value as Cell[];
     if(ast.condition) parsed.condition={unless:ast.condition.unless,predicate:ast.condition.predicate.value};
     const unsupported = !Object.hasOwn(declarationRegistry,kind) || declarationRegistry[kind as keyof typeof declarationRegistry].status === "unsupported";
-    if (!unsupported) parsed.parameters=semanticParameters(ast);
+    if (!unsupported || resolved?.custom) parsed.parameters=semanticParameters(ast);
     result.instances.push(parsed);
   }
   return result;

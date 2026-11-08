@@ -34,18 +34,21 @@ test('custom formula checks apply to escaped and multiline YAML, and unused defi
   }
 });
 
-test('matching local names retain file scope and never prove semantic equivalence', async () => {
+test('matching local names retain file scope; equal meanings compare equal and different meanings do not',async()=>{
   const text=await fixture('local');
   const activeCells=Array.from({length:81},(_,i)=>`r${Math.floor(i/9)+1}c${i%9+1}` as `r${number}c${number}`);
   const board={rows:9,cols:9,alphabet:[1,2,3,4,5,6,7,8,9],activeCells};
   const forms=['a.rules.md','b.rules.md'].map(file=>normalise({file,text},board));
   for(const [i,form] of forms.entries()) {
     expect(form.issues).toEqual([]);
-    expect(form.status).toBe('partial');
+    expect(form.status).toBe('complete');
     expect(form.normalForm!.coverage.find(c=>c.kind==='#weighted-triple')!.source.custom).toBe(true);
     expect(form.normalForm!.coverage.find(c=>c.kind==='#weighted-triple')!.source.scope).toBe(i ? 'b.rules.md' : 'a.rules.md');
   }
-  expect(compare(forms[0],forms[1]).status).toBe('unresolved');
+  // The same name and the same meaning: equal normal forms. The name alone proves nothing.
+  expect(compare(forms[0],forms[1]).status).toBe('equivalent');
+  const changed=normalise({file:'c.rules.md',text:text.replace('2 × D(cells[1])','3 × D(cells[1])')},board);
+  expect(compare(forms[0],changed).status).toBe('unresolved');
 });
 test('local declarations are independent of headings and placement',async()=>{
   const text=(await fixture('local')).replace(/## Definitions\n\n### Arbitrary heading\n\n/,'');

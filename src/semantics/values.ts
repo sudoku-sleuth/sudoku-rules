@@ -116,8 +116,10 @@ export function definitionTouchesValues(definition: CustomDefinition, prelude: C
 }
 
 /** References of the file's own custom definitions that never touch V; every other reference is left out. */
-export function valueNeutralDefinitions(file: SemanticFile): ReadonlySet<string> {
-  const prelude = defaultCasePrelude();
-  const { definitions } = readCustomDefinitions(file, caseBlocks(file), declarationLibrary.kinds, prelude, declarationLibrary.urls);
+export function valueNeutralDefinitions(file: SemanticFile, definitions: ReadonlyMap<string, CustomDefinition> = fileDefinitions(file), prelude: CheckedPrelude = defaultCasePrelude()): ReadonlySet<string> {
   return new Set([...definitions].filter(([, definition]) => !definitionTouchesValues(definition, prelude)).map(([url]) => url));
+}
+/** The file's own custom definitions, checked against the shared prelude. */
+export function fileDefinitions(file: SemanticFile): Map<string, CustomDefinition> {
+  return readCustomDefinitions(file, caseBlocks(file), declarationLibrary.kinds, defaultCasePrelude(), declarationLibrary.urls).definitions;
 }
