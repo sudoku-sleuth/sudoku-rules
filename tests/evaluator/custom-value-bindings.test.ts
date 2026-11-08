@@ -45,3 +45,18 @@ test('an answer check needs the values instead of reporting the rule broken', ()
   expect(check.broken.some(b => b.rule.name === 'cage')).toBe(false);
   expect(checkAnswer(compiled, {digits, values: {r1c1: 1, r1c2: 4, r1c3: 3}}).broken.some(b => b.rule.name === 'cage')).toBe(false);
 });
+
+test('two custom binders in one case constrain the same values without evaluating each other', () => {
+  const second = '∃M:set<cell>: M⊆C ∧ (∀c∈M: V(c)>=1) ∧ (∀meaning∈ValuedRuleMeanings: meaning)';
+  const definitions = custom(liar, 'existential').replace('```\n', '') + stringify([{id: 'extra', name: 'Extra', class: 'existential', parameters: {}, definition: 'A second synthetic binder.', maths: second, example: 'Fives break it.'}]).replace(/^/, '') + '```\n';
+  const mine = rulesOf(file(`#probe\n#extra\n${reading}`, definitions));
+  const library = rulesOf(file(`liar-cells groups [[r1c1,r1c2,r1c3]] values [1,2,3,4]\n${reading}`));
+  for (const values of [{r1c1: 1, r1c2: 4, r1c3: 3}, {r1c1: 1, r1c2: 2, r1c3: 3}]) {
+    const got = evaluate(cage(mine), {digits, values}).status;
+    expect(got).toBe(evaluate(cage(library), {digits, values}).status);
+    // The binders themselves decide like the library declaration, not undecided at the evaluation limit.
+    const expected = evaluate(library.find(r => r.name === 'liar-cells')!, {digits, values}).status;
+    expect(expected).not.toBe('undecided');
+    for (const rule of mine.filter(r => r.valueBindings && r.name !== 'cage')) expect(evaluate(rule, {digits, values}).status).toBe(expected);
+  }
+});

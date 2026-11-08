@@ -285,7 +285,7 @@ function evaluateRule(rule:CompiledRule,assignment:Assignment,depth:number,budge
    if(rule.valueBindings&&readsEffective(rule.page)&&!assignment.values&&!assignment.valueAnswers?.V)throw new MissingValue('Supply shared effective values');
    const shading=record(assignment.shading);
    const readCells=new Set<string>();
-   const fragment:Fragment={...assignment,budget,definitionKind:rule.libraryKind,readCells,valuedMeanings:()=>rule.caseRules.filter(r=>r!==rule&&!['value-modifier','liar-cells'].includes(r.name)&&readsEffective(r.page)).map(r=>{const e=evaluateRule(r,assignment,depth+1,budget);if(e.status==='undecided')throw new MissingValue('Incomplete valued rule');return e.status==='holds';}),clueTruth:q=>{
+   const fragment:Fragment={...assignment,budget,definitionKind:rule.libraryKind,readCells,valuedMeanings:()=>rule.caseRules.filter(r=>r!==rule&&!['value-modifier','liar-cells'].includes(r.name)&&!bindsValues(r.page)&&readsEffective(r.page)).map(r=>{const e=evaluateRule(r,assignment,depth+1,budget);if(e.status==='undecided')throw new MissingValue('Incomplete valued rule');return e.status==='holds';}),clueTruth:q=>{
     const clue=q as {rule:string;args:Record<string,unknown>};const definition=rule.definitions.get(clue.rule);
     if(!definition)throw new EvaluationLimit(`Unresolved owned clue ${clue.rule}`);
     const parameters={...Object.fromEntries(Object.entries(definition.contract.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([k,p])=>[k,p.default])),...clue.args};
