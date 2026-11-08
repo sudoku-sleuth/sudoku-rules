@@ -190,3 +190,19 @@ for (const { n, symbols, rest, standard } of layouts) for (const negate of [fals
   walk([]);
   expect(total).toBe(symbols.length ** n);
 });
+
+test("absent crusts take the default reading on the page formula, stated crusts the custom one", () => {
+  const rule = (rest: string) => compileCase({ file: "example.md", text: `${standardHeader}---${body(sandwich(3, rest))}` }).value!.rules[0];
+  // Digits 1,1,9: the first 1 and the first 9 enclose the second 1, so a sum of 0 is broken. The two first crust occurrences (both 1) are adjacent.
+  const digits = { r1c1: 1, r1c2: 1, r1c3: 9 };
+  const page = (rest: string) => evaluate({ ...rule(rest), finite: undefined }, { digits, values: digits }).status;
+  expect(page("sum 0")).toBe("broken");
+  expect(page("sum 1")).toBe("holds");
+  expect(page("sum 0 crusts [1,9]")).toBe("holds");
+  expect(page("sum 1 crusts [1,9]")).toBe("broken");
+  // The lowering agrees with the default reading for absent crusts and with the custom reading for stated ones.
+  const lowered = (rest: string) => holds(nf(sandwich(3, rest)).normalForm!.solution, digits);
+  expect(lowered("sum 0")).toBe(false);
+  expect(lowered("sum 1")).toBe(true);
+  expect(lowered("sum 0 crusts [1,9]")).toBe(true);
+});
