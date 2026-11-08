@@ -91,7 +91,7 @@ test("a number that is not a whole number is undefined, so the declaration is fa
 test("equivalent spellings compare as equal", () => {
   eq(rule([cage([a], letter("A")), cage([b], letter("A"))]), rule([cage([b], letter("A")), cage([a], letter("A"))]));
   eq(rule([cage([a], letter("A")), cage([b], letter("A"))]), rule([cage([a], letter("X")), cage([b], letter("X"))]));
-  eq(rule([cage([a, b], letter("A")), cage([c], letter("A"))]), rule([cage([b, a], letter("A")), cage([c, c], letter("A"))]));
+  eq(rule([cage([a, b], letter("A")), cage([c], letter("A"))]), rule([cage([b, a], letter("A")), cage([c], letter("A"))]));
   eq(rule([cage([a], letter("A")), cage([b], letter("B"))], true), rule([cage([b], letter("A")), cage([a], letter("B"))], true));
   eq(rule([cage([a], letter("A")), cage([b], letter("A"))]), `equal-sums groups ${JSON.stringify([[a], [b]])}`);
   eq(rule([cage([a, b], num(5))]), `cage ${a}-${b} total 5 repeats true`);
@@ -110,6 +110,8 @@ test("combinations left uncovered keep a typed reason", () => {
   expect(reason(rule([cage([a], { op: "+", left: letter("A"), right: num(1) })]))).toContain("arithmetic operators");
   expect(reason(rule([cage([a], letter("A"))]), [-1, 0, 1])).toContain("negative digit");
   expect(reason(rule([cage([a], num(1e20))]))).toContain("safe whole number");
+  expect(reason(rule([cage([a, a, b], letter("A"))]))).toContain("more than once");
+  expect(reason(rule([cage([a, b], num(3)), cage([c, c], num(2))]))).toContain("more than once");
 });
 
 function differential(n: number, symbols: number[], entries: string[]): number {
@@ -159,4 +161,8 @@ test("the lowered formula and the published definition agree on distinct letters
     rule([cage([a], letter("A")), cage([b], letter("B")), cage([c], letter("C"))], true), rule([cage([a], letter("A")), cage([b], letter("B")), cage([c], letter("C"))], false),
   ])).toBeGreaterThan(0);
   expect(differential(3, [0, 1, 2], [rule([cage([a, b], letter("A")), cage([c], letter("B"))], true)])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the published definition agree on number cages over a negative alphabet", () => {
+  expect(differential(3, [-1, 0, 1], [rule([cage([a], num(-1)), cage([b, c], num(0))]), rule([cage([a, b], num(-2)), cage([c], num(0))]), rule([cage([a, b], num(-1))]), rule([cage([a], num(-2))]), `not ${rule([cage([a, b], num(-2))])}`])).toBeGreaterThan(0);
 });

@@ -15,28 +15,30 @@ const unsupported = (message: string) => new UnsupportedSemantics(`${message}; t
  * - the cages stated with one letter have equal totals (SumEqual against the first of them, in cell order);
  * - with `distinct`, two letters differ when the first cages of the two letters have different totals (a negated SumEqual).
  * Letters are nonnegative whole numbers, so an alphabet with a negative digit, where a total can be negative, stays uncovered, as
- * does any expression built with +, -, *, / or ^. Printed digits only.
+ * does a cage that lists a cell twice or any expression built with +, -, *, / or ^. Printed digits only.
  */
 export function lowerCageExpressions(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const p = semanticDeclaration(ast).parameters;
-  if (typeof p.distinct !== "boolean") throw Error("distinct must be true or false.");
+  if (typeof p.distinct !== "boolean") throw Error("distinct must be true or false (cage-expressions).");
   const raw = p.cages;
-  if (!Array.isArray(raw)) throw Error("Supply cages as records of cells and an expression.");
+  if (!Array.isArray(raw)) throw Error("cages must be a list of records, each with cells and an expression.");
   const totals: Formula[] = [];
   const byLetter = new Map<string, Cell[][]>();
   let defined = true;
   for (const item of raw) {
-    if (!item || typeof item !== "object" || Array.isArray(item)) throw Error("Supply each cage as a record of cells and an expression.");
+    if (!item || typeof item !== "object" || Array.isArray(item)) throw Error("Each cage must be a record with cells and an expression.");
     const { cells: listed, expression } = item as { cells: unknown; expression: { op?: unknown; name?: unknown; value?: unknown } };
-    if (!Array.isArray(listed) || listed.some(c => !board.activeCells.includes(c as Cell))) throw Error("Supply cage cells as active board cells.");
+    if (!Array.isArray(listed) || listed.some(c => !board.activeCells.includes(c as Cell))) throw Error("The cells of each cage must be a list of active board cells.");
     const cells = sortedCells(listed as Cell[]);
+    // The page reads a cage as a set, but the evaluator counts a cell listed twice twice, so the two are not told apart here.
+    if (cells.length !== listed.length) throw unsupported("A cage that lists a cell more than once is not lowered");
     if (expression.op === "number") {
-      if (typeof expression.value !== "number" || !Number.isFinite(expression.value)) throw Error("A number must be finite.");
+      if (typeof expression.value !== "number" || !Number.isFinite(expression.value)) throw Error("A number in an expression must be a finite number.");
       if (!Number.isInteger(expression.value)) defined = false;
       else if (!Number.isSafeInteger(expression.value)) throw unsupported("A number that is not a safe whole number is not lowered");
       else totals.push(sumTotal(cells, expression.value, "D"));
     } else if (expression.op === "letter") {
-      if (typeof expression.name !== "string") throw Error("A letter needs a name.");
+      if (typeof expression.name !== "string") throw Error("A letter in an expression needs a text name.");
       byLetter.set(expression.name, [...(byLetter.get(expression.name) ?? []), cells]);
     } else throw unsupported("An expression built with arithmetic operators is not lowered");
   }
