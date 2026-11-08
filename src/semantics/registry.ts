@@ -62,7 +62,7 @@ export const declarationRegistry = {
   "cell-entries": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "symbol-house": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "relation-scope": lowered,
-  "local-sequence": pending("Directed transitions, divisor sequences and recurrences are not lowered."),
+  "local-sequence": lowered,
   "coordinate-count": pending("Counts of transformed coordinate hits are not lowered."),
   "aggregate-equation": lowered,
   "subset-total": pending("Existence or exclusion of bounded subset totals are not lowered."),

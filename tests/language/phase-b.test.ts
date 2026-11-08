@@ -250,7 +250,9 @@ test('shape reflections can be allowed without admitting a half-turn rotation',(
 });
 test('new declarations keep their coverage under negation',()=>{
  const board={rows:9,cols:9,alphabet:[1,2,3,4,5,6,7,8,9],activeCells:Array.from({length:81},(_,i)=>`r${Math.floor(i/9)+1}c${i%9+1}` as `r${number}c${number}`)};
- for(const kind of additions.filter(k=>library.rules.has(k))){
+ // Kinds the normal form now lowers are no longer uncovered; their examples are still checked above.
+const lowered=['local-sequence'];
+for(const kind of additions.filter(k=>library.rules.has(k)&&!lowered.includes(k))){
   const text=caseExamples(sources.find(s=>s.file===`rules/${kind==='index-count'?'lookup':kind}.md`)!.text)[0].replace(`\n${kind} `,`\nnot ${kind} `);
   const result=normalise({file:'synthetic.rules.md',text},board);
   expect(result.issues).toEqual([]);
