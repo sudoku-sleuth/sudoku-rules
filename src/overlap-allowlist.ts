@@ -14,3 +14,9 @@ export const overlapAllowlist: Record<string,string> = {
   "predicate:cyclicCut / predicate:window": "window selects a bounded window with optional wrapping; cyclicCut rotates a whole path.",
   "predicate:decimal / predicate:reversal": "reversal returns a reversed cell list; decimal evaluates a base-ten numeral."
 };
+
+/** Rules a community knows by their own name that bind a rule exactly as another page does. Each reads as that page and lowers to the same normal form. */
+export const namedReadings: Record<string,string> = {
+  "rule:dutch-whispers / rule:whispers-4": "Dutch Whispers is the name players use for Whispers 4; both bind Difference Line with a gap of 4.",
+  "rule:german-whispers / rule:whispers-5": "German Whispers is the name players use for Whispers 5; both bind Difference Line with a gap of 5."
+};

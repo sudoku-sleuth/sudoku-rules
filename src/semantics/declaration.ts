@@ -17,13 +17,15 @@ export function semanticParameters(ast: DeclarationAST): Record<string, unknown>
   return values;
 }
 
+const fixedGaps: Record<string,number> = {'whispers-4':4,'dutch-whispers':4,'whispers-5':5,'german-whispers':5};
+
 export function semanticDeclaration(ast: DeclarationAST) {
   const reference=ast.kind.value, root='https://rules.sudoku-sleuth.com/';
   const spelling=reference.startsWith(root)?reference.slice(root.length,-3):reference;
   const legacyKind: Record<string,string> = {'parity-line':'parity','odd-even-cells':'parity-cells','between-line':'between'};
-  const kind=legacyKind[spelling] ?? (['whispers-4','whispers-5'].includes(spelling)?'whispers':spelling==='killer-cage'?'cage':spelling);
+  const kind=legacyKind[spelling] ?? (['whispers-4','whispers-5','dutch-whispers','german-whispers'].includes(spelling)?'whispers':spelling==='killer-cage'?'cage':spelling);
   const parameters=semanticParameters(ast);
-  if(spelling==='whispers-4' || spelling==='whispers-5')parameters.gap=Number(spelling.slice(-1));
+  if(spelling in fixedGaps)parameters.gap=fixedGaps[spelling];
   const namedCells=ast.parameters.find(p=>['cells','line'].includes(p.name.value));
   if(namedCells) delete parameters[namedCells.name.value];
   return {kind,negated:ast.negations.length%2===1,parameters,cells:(ast.cells?.value ?? namedCells?.value.value) as Cell[]|undefined,

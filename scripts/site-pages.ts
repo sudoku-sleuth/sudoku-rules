@@ -29,8 +29,8 @@ export function homeIntro(count: number, icon: string) {
 }
 const section = (body: string, title: string) => new RegExp(`^## ${title}\\s*\\n([\\s\\S]*?)(?=^## |$(?![\\s\\S]))`, 'm').exec(body)?.[1] ?? '';
 export function ruleExperience(page: Page, pages: Page[], icon: string, rendered: string, names: Set<string>) {
-  const whispers = ['whispers', 'whispers-4', 'whispers-5'].includes(page.slug);
-  const gap = page.slug === 'whispers-4' ? 4 : 5;
+  const whispers = ['whispers', 'whispers-4', 'whispers-5', 'dutch-whispers', 'german-whispers'].includes(page.slug);
+  const gap = ['whispers-4', 'dutch-whispers'].includes(page.slug) ? 4 : 5;
   const wording = summary(page.body).replace(/`([^`]+)`/g, "$1").replace(/\[([^\]]+)\]\([^)]+\)/g,"$1");
   const example = section(page.body, 'Example');
   const declaration = /```rules\n([\s\S]*?)```/.exec(example)?.[1].trim().split('\n').filter(l=>!l.startsWith('sudoku ')).join('\n') ?? '';
