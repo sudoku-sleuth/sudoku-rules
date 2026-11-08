@@ -54,6 +54,7 @@
   "numbered-room": "rules/outside/numbered-room.svg",
   "sandwich": "rules/outside/sandwich.svg",
   "arrow": "rules/lines/arrow.svg",
+  "pill-arrow": "rules/lines/arrow.svg",
   "fog": "rules/global/fog.svg",
   "greek-carpet": "rules/lines/greek-carpet.svg",
   "ordered-block": "rules/outside/ordered-block.svg",

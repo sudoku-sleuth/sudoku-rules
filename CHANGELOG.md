@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Pill Arrow has its own page and kind, `pill-arrow`. It reads as Arrow, with the same `bulb`, `line` and `partial` parameters, so it lowers to the same normal form or stays uncovered for the same reason.
 - Dutch Whispers and German Whispers have their own pages and kinds, `dutch-whispers` and `german-whispers`. They bind Difference Line with a gap of 4 and 5, so each lowers to the same normal form as Whispers 4 and Whispers 5.
 - The normal form lowers Vault declarations to one inequality for every cell and neighbour pair, with a total over the cells on printed digits when a sum is stated. Order and repeated listings of cells and neighbours do not matter. Cells that overlap the neighbours, sums that are not safe integers and very large cross-pair expansions stay uncovered.
 - The normal form lowers Same Class declarations to a choice of one class of the stated system, with every marked cell allowed only that class's digits. Classes come from the board's own alphabet, as for Window Classes. Entropy over an alphabet whose size is not a multiple of three, and inactive cells, stay uncovered.
