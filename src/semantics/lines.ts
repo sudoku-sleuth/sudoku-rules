@@ -87,7 +87,22 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
       const a = path[i], b = path[(i+1)%path.length]; nodes.push(edge(a,b,(x,y) => test(x,y,a,b)));
     }
   };
-  if (kind === "thermo") edges((x,y) => x < y);
+  if (kind === "thermo") {
+    // Strictness, orientation and channel: reverse reads the listed tip as the bulb, either chooses one direction for the whole line.
+    if (p.strict !== undefined && typeof p.strict !== "boolean") throw Error("strict must be true or false.");
+    if (p.orientation !== undefined && (typeof p.orientation !== "string" || !["forward", "reverse", "either"].includes(p.orientation))) throw Error('orientation must be "forward", "reverse" or "either".');
+    if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
+    const rises = p.strict === false ? (x: number, y: number) => x <= y : (x: number, y: number) => x < y;
+    const direction = (reversed: boolean): Formula => {
+      const steps: Formula[] = [];
+      for (let i = 0; i < path.length - 1; i++) {
+        const a = path[i], b = path[i + 1];
+        steps.push(reversed ? edge(b, a, rises) : edge(a, b, rises));
+      }
+      return all(steps);
+    };
+    nodes.push(p.orientation === "either" && path.length > 1 ? any([direction(false), direction(true)]) : direction(p.orientation === "reverse"));
+  }
   else if (kind === "slow-thermo") edges((x,y) => x <= y);
   else if (["whispers", "whisper", "close-whispers"].includes(kind)) edges((x,y) => {
     const diff = BigInt(x) > BigInt(y) ? BigInt(x)-BigInt(y) : BigInt(y)-BigInt(x);
@@ -168,5 +183,6 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const effective = (f: Formula): Formula => f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(effective) }
     : f.op === "Not" ? { ...f, child: effective(f.child) }
     : "channel" in f ? { ...f, channel: "V" } as Formula : f;
-  return valueLines.includes(kind) ? effective(result) : result;
+  // A thermometer that states channel D reads printed digits whatever the value domain.
+  return valueLines.includes(kind) && !(kind === "thermo" && p.channel === "D") ? effective(result) : result;
 }

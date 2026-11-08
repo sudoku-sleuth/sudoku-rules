@@ -60,6 +60,8 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     if (allowed.includes(name)) continue;
     if (name === "edges" && edgeLines.includes(kind)) continue;
     if (name === "channel" && (kind === "cage" || kind === "killer") && (p.channel === "D" || p.channel === "V")) continue;
+    // A thermometer reads its three parameters in lowerLine.
+    if (kind === "thermo" && ["strict", "orientation", "channel"].includes(name)) continue;
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;

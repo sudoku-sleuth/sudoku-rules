@@ -325,8 +325,8 @@ test('explicit default extensions preserve the existing lowering',()=>{
   expect(before.status).toBe('complete');expect(after.issues).toEqual([]);expect(after.status).toBe('complete');
   expect(compare(before,after).status).toBe('equivalent');
  }
- for(const extra of ['strict false','orientation "reverse"','channel "D"']) {
-  const result=nf(`thermo r1c1-r1c2 ${extra}`);
+ for(const extra of ['orientation "reverse"','channel "V"']) {
+  const result=nf(`slow-thermo r1c1-r1c2 ${extra}`);
   expect(result.issues).toEqual([]);expect(result.status).toBe('partial');
   expect(result.normalForm!.coverage.some(c=>c.status==='unsupported')).toBe(true);
  }
