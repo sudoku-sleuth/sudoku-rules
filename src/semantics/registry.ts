@@ -67,7 +67,7 @@ export const declarationRegistry = {
   "aggregate-equation": lowered,
   "subset-total": pending("Existence or exclusion of bounded subset totals are not lowered."),
   "digit-profile": pending("Arbitrary numeric class counts and windows are not lowered."),
-  "profile-relation": pending("Numeric set and multiset comparisons are not lowered."),
+  "profile-relation": lowered,
   "number-property": pending("Decimal orientation and numeric result properties are not lowered."),
   "derived-count": pending("Counts and ranks of derived aggregate results are not lowered."),
   "neighbour-count": pending("Scoped neighbour predicate counts are not lowered."),
