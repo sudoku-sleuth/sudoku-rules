@@ -13,7 +13,7 @@ export const declarationRegistry = {
   "unique-primes": lowered,
   "stingy-cages": pending("Pairwise support intersection bounds are evaluated from their formula."),
   "ziffer-lines": lowered,
-  "high-low-lines": pending("Whole-line choice between overlapping digit ranges is evaluated from its formula."),
+  "high-low-lines": lowered,
   "islands": pending("Shared island components, connected water and water sight are evaluated from its formula."),
   "super-indexing": lowered,
   "cage-totals": lowered,
