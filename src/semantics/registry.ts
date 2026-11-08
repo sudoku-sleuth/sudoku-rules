@@ -164,7 +164,7 @@ export const declarationRegistry = {
   "pressure-gauge": lowered,
   "value-modifier": lowered,
   "look-and-say": lowered,
-  "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
+  "run-sum": lowered,
   "mean-lines": pending("Cross-multiplied aggregate means are not lowered."),
   vault: lowered,
   "same-class": lowered,
