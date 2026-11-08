@@ -26,6 +26,21 @@ function form(rows: number, cols: number, alphabet: number[], active?: Cell[], r
 }
 const put = (cells: Cell[], ...v: number[]) => Object.fromEntries(cells.map((c, i) => [c, v[i]]));
 
+/**
+ * The published definition. The compiled rule keeps a lowered fast path (`finite`); it is removed here so the evaluator reads the rule
+ * page's own formula. A second run supplies effective values that differ from the printed digits (the first cell doubled): this rule
+ * reads printed digits only, so both runs must agree.
+ */
+type Compiled = NonNullable<ReturnType<typeof compileCase>["value"]>["rules"][number];
+const published = (compiled: Compiled, values: Record<string, number>): boolean => {
+  const rule = { ...compiled, finite: undefined } as Compiled;
+  const printed = evaluate(rule, { digits: values }).status;
+  const doubled = Object.fromEntries(Object.entries(values).map(([c, x], i) => [c, i === 0 ? x * 2 : x]));
+  expect(evaluate(rule, { digits: values, values: doubled }).status).toBe(printed);
+  expect(printed).not.toBe("undecided");
+  return printed === "holds";
+};
+
 // The first library load is slow on CI, so it is timed on its own with a longer limit; the tests below reuse it.
 test("the library loads", () => {
   nf("super-indexing");
@@ -125,7 +140,7 @@ function differential(rows: number, cols: number, symbols: number[], active = gr
     if (i === active.length) {
       const got = holds(r.normalForm!.solution, values);
       if (got) seen++;
-      if (got || index++ % sample === 0) expect([JSON.stringify(values), evaluate(rule, { digits: values }).status === "holds"]).toEqual([JSON.stringify(values), got]);
+      if (got || index++ % sample === 0) expect([JSON.stringify(values), published(rule, values)]).toEqual([JSON.stringify(values), got]);
       return;
     }
     for (const x of symbols) walk(i + 1, { ...values, [active[i]]: x });
@@ -137,13 +152,16 @@ function differential(rows: number, cols: number, symbols: number[], active = gr
 test("the lowered formula and the public evaluator agree on two by two boards", () => {
   expect(differential(2, 2, [1, 2])).toBeGreaterThan(0);
   expect(differential(2, 2, [1, 2, 3])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the public evaluator agree on shifted alphabets and unequal boards", () => {
   expect(differential(2, 2, [0, 1, 2])).toBeGreaterThan(0);
   expect(differential(2, 2, [2, 3, 4])).toBe(0);
   expect(differential(2, 3, [1, 2], grid(2, 3))).toBe(0);
 });
 
 test("the lowered formula and the public evaluator agree on three by three boards", () => {
-  expect(differential(3, 3, [1, 2, 3], grid(3, 3), 150)).toBeGreaterThan(0);
+  expect(differential(3, 3, [1, 2, 3], grid(3, 3), 400)).toBeGreaterThan(0);
   const hole = grid(3, 3).filter(c => c !== "r2c2");
-  differential(3, 3, [1, 2, 3], hole, 60);
+  differential(3, 3, [1, 2, 3], hole, 200);
 });
