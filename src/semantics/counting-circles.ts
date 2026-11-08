@@ -2,7 +2,7 @@ import type { DeclarationAST } from "../declarations.js";
 import { sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
-import type { CanonicalBoard, Formula } from "./types.js";
+import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
 /**
  * Counting circles: every digit that appears in the circles appears in exactly that many circles. For a circle cell c and a
@@ -15,9 +15,14 @@ export function lowerCountingCircles(ast: DeclarationAST, board: CanonicalBoard)
   const cells = semanticDeclaration(ast).cells ?? [];
   const circles = sortedCells(cells);
   if (circles.length !== cells.length) throw new UnsupportedSemantics("Counting circles that list a cell more than once are not lowered; the whole instance remains uncovered.");
+  return selfCounts(circles, board.alphabet);
+}
+
+/** Every alphabet digit that occurs among the listed cells, taken as listed, occurs exactly as many times as its value. */
+export function selfCounts(circles: Cell[], alphabet: readonly number[]): Formula {
   const n = circles.length;
   const holds = (digit: number, count: number): Formula => ({ op: "CountAtLeast", channel: "D", cells: circles, digit, count });
-  return all(board.alphabet.map((d): Formula => {
+  return all(alphabet.map((d): Formula => {
     if (!Number.isInteger(d) || d < 1 || d > n) return { op: "Not", child: holds(d, 1) };
     return { op: "Any", children: [{ op: "Not", child: holds(d, 1) }, all([holds(d, d), ...(d < n ? [{ op: "Not", child: holds(d, d + 1) } as Formula] : [])])] };
   }));
