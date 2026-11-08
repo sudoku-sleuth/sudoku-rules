@@ -53,40 +53,68 @@ test("channel D stays covered when the effective-value domain is unresolved, cha
   expect(read(' channel "V"')).toMatchObject({ status: "unsupported" });
 });
 
-/**
- * The evaluator runs a lowered declaration's own formula unless the assignment supplies effective values and the formula reads them,
- * so the expectation comes from the published definition: the declaration is written on channel V (the default) and evaluated with
- * effective values equal to the digits, which is what channel D reads.
- */
-const oracle = (text: string) => text.replace(/ channel "D"/g, "");
-type Entry = string | [string, "none" | "all"];
+/** The formula as lowered, before the effective-value rewrite, read channel by channel against separate digits and effective values. */
+function holdsOn(f: Formula, digits: Record<string, number>, values: Record<string, number>): boolean {
+  const read = (channel: string) => channel === "D" ? digits : values;
+  switch (f.op) {
+    case "All": return f.children.every(x => holdsOn(x, digits, values));
+    case "Any": return f.children.some(x => holdsOn(x, digits, values));
+    case "Not": return !holdsOn(f.child, digits, values);
+    case "SumEqual": return f.left.reduce((n, q) => n + BigInt(read(f.channel)[q]), 0n) === f.right.reduce((n, q) => n + BigInt(read(f.channel)[q]), 0n);
+    default: throw Error(`Unexpected ${f.op}`);
+  }
+}
+
 const symbols = [1, 2, 3], cells = [a, b, c, d];
-function differential(entry: Entry) {
-  const [text, extreme] = typeof entry === "string" ? [entry, undefined] : entry;
-  const n = nf(text, symbols);
-  expect(n.issues).toEqual([]);
-  expect(n.status).toBe("complete");
-  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [1,2,3], regions: [[${a}, ${b}], [${c}, ${d}]]}\n---${body(oracle(text))}` });
+const entries = [
+  `region-sum ${two}`, `region-sum ${a}-${b}-${c} segments [["${a}","${b}"],["${c}"]]`,
+  `region-sum ${a}-${c}-${b}-${d} segments [["${a}"],["${c}"],["${b}"],["${d}"]] combine true`, `region-sum ${two} loop true`,
+  `region-sum ${a}-${c}-${b} segments [["${a}"],["${c}"],["${b}"]]`, `not region-sum ${two}`,
+];
+/**
+ * Each declaration is written on the default channel V and its twin on channel D. The published definition (the channel V text,
+ * evaluated with effective values) is the oracle: with values equal to the digits it judges the channel D lowering, and with values
+ * that differ (the second cell doubled) it judges the channel V lowering read before the effective-value rewrite. Some assignment
+ * must make those two verdicts disagree, so a D-versus-V mix-up is caught.
+ */
+function differential(text: string) {
+  const twin = text.replace(/(region-sum [^\n]*)$/, '$1 channel "D"');
+  const v = nf(text, symbols), d2 = nf(twin, symbols);
+  for (const n of [v, d2]) { expect(n.issues).toEqual([]); expect(n.status).toBe("complete"); }
+  expect(d2.normalForm!.rewrites.some(r => r.rule === "value-channel")).toBe(false);
+  expect(JSON.stringify(d2.normalForm!.solution)).not.toContain('"channel":"V"');
+  const before = JSON.parse(v.normalForm!.rewrites.find(r => r.rule === "value-channel")!.before) as Formula;
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [1,2,3], regions: [[${a}, ${b}], [${c}, ${d}]]}\n---${body(text)}` });
   expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
   const rule = compiled.value!.rules[0];
-  let satisfied = 0, total = 0;
-  const walk = (index: number, values: Record<string, number>) => {
+  let satisfied = 0, total = 0, disagree = 0;
+  const walk = (index: number, digits: Record<string, number>) => {
     if (index === cells.length) {
-      const expected = evaluate(rule, { digits: values, values }).status === "holds";
-      expect([text, JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
+      const values = { ...digits, [b]: 2 * digits[b] };
+      const onDigits = evaluate(rule, { digits, values: digits }).status === "holds";
+      const onValues = evaluate(rule, { digits, values }).status === "holds";
+      expect([twin, JSON.stringify(digits), holds(d2.normalForm!.solution, digits)]).toEqual([twin, JSON.stringify(digits), onDigits]);
+      expect([text, JSON.stringify(values), holdsOn(before, digits, values) !== text.startsWith("not ")]).toEqual([text, JSON.stringify(values), onValues]);
       total++;
-      if (expected) satisfied++;
+      if (onDigits) satisfied++;
+      if (onDigits !== onValues) disagree++;
       return;
     }
-    for (const x of symbols) walk(index + 1, { ...values, [cells[index]]: x });
+    for (const x of symbols) walk(index + 1, { ...digits, [cells[index]]: x });
   };
   walk(0, {});
-  // Agreement is never vacuous: a declaration is satisfied by some assignments and broken by others unless it is marked "none" or "all".
-  expect([text, satisfied > 0, satisfied < total]).toEqual([text, extreme !== "none", extreme !== "all"]);
+  expect([text, satisfied > 0, satisfied < total, disagree > 0]).toEqual([text, true, true, true]);
 }
-const entries: Entry[] = [
-  `region-sum ${two}`, `region-sum ${two} channel "D"`, `region-sum ${a}-${b}-${c} segments [["${a}","${b}"],["${c}"]] channel "D"`,
-  `region-sum ${a}-${c}-${b}-${d} segments [["${a}"],["${c}"],["${b}"],["${d}"]] combine true channel "D"`, `region-sum ${two} loop true channel "D"`,
-  `region-sum ${a}-${c}-${b} segments [["${a}"],["${c}"],["${b}"]] channel "D"`, `not region-sum ${two} channel "D"`,
-];
-for (const entry of entries) test(`the lowered formula and the public evaluator agree on every assignment: ${typeof entry === "string" ? entry : entry[0]}`, () => differential(entry));
+for (const text of entries) test(`the lowered formula and the public evaluator agree on every assignment: ${text}`, () => differential(text));
+
+test("a board without primary regions leaves channel D uncovered", () => {
+  const bare: BoardContext = { rows: 1, cols: 4, activeCells: cells, alphabet: symbols };
+  const n = normalise({ file: "synthetic.rules.md", text: `${header}---\n${body(`region-sum ${two} channel "D"`)}` }, bare);
+  expect(n.normalForm!.coverage.find(x => x.kind === "region-sum")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("primary board regions") });
+});
+
+test("an invalid channel is rejected as invalid input", () => {
+  const n = nf(`region-sum ${two} channel "X"`);
+  expect(n.status).toBe("invalid");
+  expect(n.issues.map(i => i.message)).toEqual(["channel must be one of D, V."]);
+});
