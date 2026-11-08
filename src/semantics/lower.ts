@@ -62,6 +62,8 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     if (name === "channel" && (kind === "cage" || kind === "killer") && (p.channel === "D" || p.channel === "V")) continue;
     // A thermometer reads its three parameters in lowerLine.
     if (kind === "thermo" && ["strict", "orientation", "channel"].includes(name)) continue;
+    // Renban reads these three in lowerLine; its explicit edges stay uncovered.
+    if (kind === "renban" && ["channel", "repeats", "selection"].includes(name)) continue;
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;
