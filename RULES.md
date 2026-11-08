@@ -102,6 +102,7 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 - [Allowed Digits](rules/allowed-digits.md)
 - [Arrow](rules/arrow.md)
 - [Between Line](rules/between-line.md)
+- [Branched Thermo](rules/branched-thermo.md)
 - [Bremban](rules/bremban.md)
 - [Close Whispers](rules/close-whispers.md)
 - [Coordinate Arrows](rules/coordinate-arrows.md)

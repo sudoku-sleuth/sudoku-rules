@@ -11,7 +11,7 @@ import type { SemanticFile } from "./types.js";
 export const valueFreePrimitives = new Set([
   "face", "toValue", "row", "col", "cellIndex", "boardCell", "orderedCells", "some", "absent", "present", "unwrap",
   "minimumDigit", "maximumDigit", "minimumValue", "maximumValue", "alphabetPosition", "givenDigit", "relationSpec",
-  "cellLists", "connected", "routeAnswer", "routeClosed", "networkAnswer", "partitionAnswer", "selectionAnswer",
+  "cellLists", "connected", "acyclic", "routeAnswer", "routeClosed", "networkAnswer", "partitionAnswer", "selectionAnswer",
   "choiceAnswer", "assignmentAnswer", "symbolAnswer",
 ]);
 /** Board inputs that carry no value channel. */

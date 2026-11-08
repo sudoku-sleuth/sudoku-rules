@@ -100,6 +100,14 @@ export function formulaVerdict(ast:Expr,prelude:CheckedPrelude,parameters:{name:
    while(changed){changed=false;for(const [a,b] of es)if(reached.has(key(a))!==reached.has(key(b))){reached.add(key(a));reached.add(key(b));changed=true;}}
    return vertices.every(v=>reached.has(key(v)));
   },
+  acyclic:input=>{
+   const edges=members(input).map(members).map(e=>[key(e[0]),key(e[1])]);
+   const incoming=new Map<string,number>(),out=new Map<string,string[]>();
+   for(const [a,b] of new Map(edges.map(e=>[JSON.stringify(e),e])).values()){incoming.set(a,incoming.get(a)??0);incoming.set(b,(incoming.get(b)??0)+1);out.set(a,[...out.get(a)??[],b]);}
+   const ready=[...incoming].filter(([,n])=>n===0).map(([v])=>v);let removed=0;
+   while(ready.length){const v=ready.pop()!;removed++;for(const w of out.get(v)??[]){incoming.set(w,incoming.get(w)!-1);if(incoming.get(w)===0)ready.push(w);}}
+   return removed===incoming.size;
+  },
   letterCount:expressions=>{const names=new Set<string>();const visit=(e:Value):void=>{const x=e as Record<string,Value>;if(x.op==="letter")names.add(String(x.name));else if(x.op!=="number"){visit(x.left);visit(x.right);}};members(expressions).forEach(visit);return exact(String(names.size));},
   defined:(e,letters)=>{try{expression(e,members(letters));return true;}catch(error){if(error instanceof UndefinedExpression)return false;throw error;}},
   eval:(e,letters)=>expression(e,members(letters)),

@@ -14,6 +14,7 @@
   "doll-sum": "rules/outside/doll-sum.svg",
   "sum-free-cage": "rules/cages/sum-free-cage.svg",
   "thermo": "rules/lines/thermo.svg",
+  "branched-thermo": "rules/lines/thermo.svg",
   "vault": "rules/cages/vault.svg",
   "equality-cage": "rules/cages/equality-cage.svg",
   "hidden-modular": "rules/lines/hidden-modular.svg",

@@ -6,13 +6,13 @@ Predicates are mathematical functions and cannot be declared in a case file. Blo
 
 | Item | Count |
 | --- | ---: |
-| Callable predicates | 183 |
-| Vocabulary declarations | 205 |
+| Callable predicates | 184 |
+| Vocabulary declarations | 206 |
 | Blocks | 43 |
-| Rules | 113 |
+| Rules | 114 |
 | Blocks owning formulas | 43 |
-| Rules owning formulas | 44 |
-| Formula-owning definitions | 87 |
+| Rules owning formulas | 45 |
+| Formula-owning definitions | 88 |
 
 Blocks by number of named rules binding them:
 
@@ -40,6 +40,7 @@ Blocks by number of named rules binding them:
 | [Battenburg](../rules/battenburg.md) | By default, every marked 2×2 square alternates between two classes across each edge, with equal classes on diagonals. Use face-digit parity or a shared selection. Exhaustive mode also forbids this pattern in unmarked squares wholly inside scope. Set `positive false` for marks that impose no positive condition. Every supplied mark must identify a complete square inside scope. | Own formula on rule page | yes |
 | [Between Line](../rules/between-line.md) | Every digit between the ends is strictly greater than the smaller end and strictly less than the larger end. | [endpoint-range](../rules/endpoint-range.md): `ends=ends; line=line; outside=false; gap=0` | yes |
 | [Bipolar Quadruples](../rules/bipolar-quadruples.md) | Exactly half of the listed digits occur among the four surrounding cells. The other listed digits are absent. Repeated occurrences of a digit count only once. | Own formula on rule page | yes |
+| [Branched Thermo](../rules/branched-thermo.md) | A thermometer with branches, or with arms that rejoin. Each edge is a pair of orthogonally adjacent cells written [lower, higher], and the value rises along every edge, from the first cell of the pair to the second. | Own formula on rule page | yes |
 | [Bremban](../rules/bremban.md) | The distinct digits in the marked cells form a consecutive run, in any order. Digits may repeat where the other rules allow it. This is Renban without its no-repeat condition. | [value-set](../rules/value-set.md): `line=line; edges=edges; channel="D"; repeats=true; selection=selection; mode="consecutive"` | yes |
 | [Cage](../rules/cage.md) | Cage digits add up to the stated total value. Digits are different unless repeats are allowed. A cage without a total supplies the repeat rule alone. | [aggregate-equation](../rules/aggregate-equation.md): `left=⟨if termIndex=0 then weightedOperand(aggregateOperand(orderedCells(cells),"D","count",repeats),0,1) else weightedOperand(aggregateOperand(orderedCells(cells),channel,"sum",true),if present(total) then 1 else 0,1):termIndex∈[0,2)⟩; right=⟨weightedOperand(aggregateOperand(⟨c:c∈orderedCells(C),false⟩,"D","count",true),if present(total) then unwrap(total) else 0,0):termIndex∈[0,1)⟩; leftOperation="sum"; rightOperation="sum"; relation=relationSpec("difference",0)` | yes |
 | [Cage Expressions](../rules/cage-expressions.md) | Each cage total equals its expression. Letters stand for whole numbers and keep the same value throughout the rule. The distinct parameter gives different letters different values. | Own formula on rule page | yes |

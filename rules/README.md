@@ -18,6 +18,7 @@ Choose a familiar rule and say where it applies. Shared building blocks combine 
 - [Battenburg](https://rules.sudoku-sleuth.com/battenburg.md)
 - [Between Line](https://rules.sudoku-sleuth.com/between-line.md)
 - [Bipolar Quadruples](https://rules.sudoku-sleuth.com/bipolar-quadruples.md)
+- [Branched Thermo](https://rules.sudoku-sleuth.com/branched-thermo.md)
 - [Bremban](https://rules.sudoku-sleuth.com/bremban.md)
 - [Cage](https://rules.sudoku-sleuth.com/cage.md)
 - [Cage Expressions](https://rules.sudoku-sleuth.com/cage-expressions.md)

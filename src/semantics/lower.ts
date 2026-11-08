@@ -26,6 +26,7 @@ import { lowerProfileRelation } from "./profile-relation.js";
 import { lowerCageExpressions } from "./cage-expressions.js";
 import { lowerCageTotals } from "./cage-totals.js";
 import { lowerSumFreeCage } from "./sum-free-cage.js";
+import { lowerBranchedThermo } from "./branched-thermo.js";
 import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
@@ -50,6 +51,7 @@ const fields: Record<string, string[]> = {
   "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [], "index-line": [], "n-mate": ["cell", "ray", "cage"], "super-indexing": [], "coordinate-arrows": ["arrows"], "pointing-arrow": ["cell", "ray", "target", "source"], "pointing-thermo": ["ray"], lookup: ["mode", "cell", "indexChannel", "channel", "offset", "target", "targetCell", "relation", "sources", "queries", "total", "firstMatch", "increasing", "reverseRelation", "nonempty"], "layered-cage": ["upper"], "aggregate-equation": ["left", "right", "leftOperation", "rightOperation", "relation"], "product-cage": ["product", "distinct"], "cage-pair": ["relation", "cages"], "magic-square": ["places"], "aggregate-groups": ["groups", "operation", "channel", "repeats", "line", "loop", "combine"], "profile-relation": ["left", "right", "multiset", "channel", "groups", "maximumShared"], "cage-expressions": ["cages", "distinct"], "cage-totals": ["totals"], "sum-free-cage": ["modulus"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
+  "branched-thermo": ["edges", "strict", "channel"],
 };
 export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
   const instance=semanticDeclaration(ast);
@@ -129,6 +131,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "sum-free-cage") return lowerSumFreeCage(ast, board);
   if (kind === "counting-circles") return lowerCountingCircles(ast, board);
   if (kind === "window-classes") return lowerWindowClasses(ast, board);
+  if (kind === "branched-thermo") return lowerBranchedThermo(ast, board);
   if (kind === "same-class") return lowerSameClass(ast, board);
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);

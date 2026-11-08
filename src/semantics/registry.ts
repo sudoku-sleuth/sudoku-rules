@@ -171,6 +171,7 @@ export const declarationRegistry = {
   thermo: lowered,
   "pointing-arrow": lowered,
   "magic-square": lowered,
+  "branched-thermo": lowered,
   modular: lowered,
   "pointing-thermo": lowered,
   tardis: pending("Centre versus supplied-neighbour comparisons are not lowered."),
