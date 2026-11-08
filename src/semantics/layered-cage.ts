@@ -23,10 +23,14 @@ export function lowerLayeredCage(ast: DeclarationAST, board: CanonicalBoard): Fo
   if (cells.length * (cells.length - 1) / 2 * board.alphabet.length ** 2 > maxWork) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
   const isUpper = (d: number) => (upper as number[]).includes(d);
   const nodes: Formula[] = [];
+  // Rows are compared as numbers: the string order of cell names puts r10c1 before r2c1, so list order says nothing about rows.
   cells.forEach((a, i) => cells.slice(i + 1).forEach(b => {
     const [ra] = coordinates(a), [rb] = coordinates(b);
-    // a is listed before b in cell order, so ra <= rb; rows are equal or a is the higher row.
-    nodes.push(pair(board, a, b, (x, y) => ra === rb ? isUpper(x) === isUpper(y) : isUpper(x) || !isUpper(y)));
+    nodes.push(pair(board, a, b, (x, y) => {
+      if (ra === rb) return isUpper(x) === isUpper(y);
+      // The cell in the lower row (larger row number) may not be upper while the cell above is not.
+      return ra < rb ? isUpper(x) || !isUpper(y) : isUpper(y) || !isUpper(x);
+    }));
   }));
   return all(nodes);
 }

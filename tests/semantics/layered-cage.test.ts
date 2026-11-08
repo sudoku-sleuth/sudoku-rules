@@ -135,3 +135,24 @@ test("the lowered formula and the published definition agree on a single row, re
   expect(differential(1, 4, [1, 2, 3], [layered("r1c1-r1c2-r1c3-r1c4", "2")])).toBeGreaterThan(0);
   expect(differential(2, 2, [1, 2, 3], [layered("r1c1-r2c2-r1c1", "9"), layered("r2c1-r1c2", "1,2,3"), layered("r1c1-r2c1-r2c2", "2")])).toBeGreaterThan(0);
 });
+
+test("rows are compared as numbers, so a pair across row nine and ten is read the right way up", () => {
+  const column = Array.from({ length: 10 }, (_, i) => `r${i + 1}c1` as Cell);
+  const board: BoardContext = { rows: 10, cols: 1, activeCells: column, alphabet: [1, 2], regions: [column] };
+  const text = layered("r2c1-r10c1", "1");
+  const r = normalise({ file: "synthetic.rules.md", text: `${header}---\n${body(text)}` }, board);
+  expect(r.issues).toEqual([]);
+  const f = r.normalForm!.solution;
+  // r2c1 is above r10c1: an upper digit (1) may be above a lower one (2), not below it.
+  expect(holds(f, { r2c1: 1, r10c1: 2 })).toBe(true);
+  expect(holds(f, { r2c1: 2, r10c1: 1 })).toBe(false);
+  expect(holds(f, { r2c1: 1, r10c1: 1 })).toBe(true);
+  expect(holds(f, { r2c1: 2, r10c1: 2 })).toBe(true);
+  // The same pair against the published definition, walked in full.
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 10, cols: 1, symbols: [1,2], regions: [[${column.join(", ")}]]}\n---${body(text)}` });
+  const published = { ...compiled.value!.rules[0], finite: undefined };
+  for (const x of [1, 2]) for (const y of [1, 2]) {
+    const digits = { r2c1: x, r10c1: y };
+    expect(holds(f, digits)).toBe(evaluate(published, { digits }).status === "holds");
+  }
+});
