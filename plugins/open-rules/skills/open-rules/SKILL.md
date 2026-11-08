@@ -52,15 +52,15 @@ For cells with independent real values and counts of false clues, read [lying.md
 
 ## Start from a skeleton
 
-When the input holds a `skeleton` (an importer such as Sudoku Sleuth's prepares one from the drawing), start the `rules` block from its text instead of from the drawing description. It has one slot per drawn element: a comment line `# slot <label> <shape> <cells>` above a placeholder declaration `todo <label>`. Labels are `<group>-<n>` in drawing order: `line-1`, `edge-2`, `cell-3`, `cage-4`, `outside-5`, `region-6`, and `global-1` for a rule only the wording states.
+When the input holds a `skeleton` (an importer prepares one from the drawing; see [reading-input.md](references/reading-input.md#skeleton)), start the `rules` block from its text instead of from the drawing description. It has one slot per drawn element: a comment line `# slot <label> <shape> <cells>` above a placeholder declaration `todo <label>`. Labels are `<group>-<n>` in drawing order: `line-1`, `edge-2`, `cell-3`, `cage-4`, `outside-5`, `region-6`, and `global-1` for a rule only the wording states.
 
 - Replace each placeholder with the canonical library rule for what the setter's rule means, not with a custom definition or a formula when a library page states it. Keep the slot comment line exactly as given.
-- A slot may take several declarations (a line with its own circles, for example). Keep them together under the slot's comment.
+- A slot may take several declaration lines (a line with its own circles, for example). Keep them together under the slot's comment.
 - Tie each declaration to its slot with `element "<label>"` unless its cells already sit inside the slot's cells. A `global` slot has no cells and is tied by its comment alone.
 - Mark a slot decorative only when the setter says the marks are decorative (F4): declare a `decoration` over its cells with `element "<label>"` and a note.
 - A slot marked `ambiguous "<reason>"` may be split into two slots or joined with another. Keep the comment lines you split from or join into, add a comment line `# note <label> split|join <labels>` above them, and say so in the account of checks.
-- Never delete a slot, rename a label or change a slot's cells. A `global` slot whose wording is not a rule (a false match) is marked decorative, not deleted.
-- The importer's checks warn about an unfilled slot, a slot added or dropped, and a declaration not tied to its slot.
+- Never delete a slot, rename a label or change a slot's cells. A `global` slot whose wording is not a rule (a false match) has no cells to decorate: keep its comment line and replace the placeholder with a comment line `# note <label> not a rule`.
+- No `todo` line may remain in the delivered file: `todo` is not a library kind, and `bun run lint:spec` rejects it. Replace each placeholder, or flag the slot under P1 and keep the setter's wording.
 
 Without a skeleton, work from the drawing description as above.
 

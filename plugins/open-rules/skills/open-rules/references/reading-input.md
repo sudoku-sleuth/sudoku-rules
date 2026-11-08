@@ -6,6 +6,10 @@ Read the whole supplied input, including top-level fields outside the drawing. T
 
 Inspect dimensions, symbols, active boards, regions, givens, any stored solve, fog, cages, lines, shapes, text and the setter's wording. Generic canvas metadata must agree with the setter's board description before it becomes a Sudoku house. Keep raw drawing indices in working notes so appearance and geometry can be checked again.
 
+### Skeleton
+
+An importer may supply a `skeleton`: the text of a `rules` block with one slot per drawn element. Each slot is a comment line `# slot <label> <shape> <cells>` (a `#` token followed by whitespace starts a comment) above a placeholder `todo <label>`. Treat it as a top-level field: inventory every slot, and fill it as [SKILL.md](../SKILL.md#start-from-a-skeleton) describes.
+
 ### Fog
 
 Declare supplied fog in the YAML header. Initial visibility, linked reveals and neighbourhood behaviour are separate facts. Convert zero-based row-major cell numbers using the supplied canvas width: row = floor(index / width) + 1, column = index mod width + 1. Do not derive initial visibility from the givens or title.
