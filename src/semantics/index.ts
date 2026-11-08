@@ -110,7 +110,7 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
     try {
       let formula = lower(instance.ast, board);
       const bulb = instance.parameters.bulb;
-      const readsValues = (kind === "arrow" && instance.parameters.partial !== true && Array.isArray(bulb) && bulb.length === 1) || [...valueLines, "parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind) || (["cage", "killer"].includes(kind) && instance.parameters.channel !== "D" && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined)) || (["diagonal-sum", "little-killer", "equal-sums", "skyscraper", "double-arrow", "extremum", "neighbour-extremum"].includes(kind) && instance.parameters.channel === "V");
+      const readsValues = (kind === "arrow" && instance.parameters.partial !== true && Array.isArray(bulb) && bulb.length === 1) || (valueLines.includes(kind) && instance.parameters.channel !== "D") || ["parity-cells", "odd-even-cells", "pair", "kropki", "xv", "marked-pairs"].includes(kind) || (["cage", "killer"].includes(kind) && instance.parameters.channel !== "D" && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined)) || (["diagonal-sum", "little-killer", "equal-sums", "skyscraper", "double-arrow", "extremum", "neighbour-extremum"].includes(kind) && instance.parameters.channel === "V");
       const reason = instance.condition?.predicate === "uniform" ? "Uniform conditions require a shared shading interpretation." : readsValues && valuesUnknown ? "Effective-value domain is unresolved because value bindings or definitions are uncovered." : undefined;
       if (reason) { cover("unsupported", reason); continue; }
       if (readsValues) {
