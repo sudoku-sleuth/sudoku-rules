@@ -163,10 +163,9 @@ test("counts of cells holding a digit are lowered to the digit-count primitive",
     ["in a set", "(count x∈cells: D(x) = 6) ∈ {0,2}", d => [0, 2].includes(d.filter(x => x === 6).length)],
     ["a shifted count", "(count x∈cells: D(x) = 6) + 1 > 2", d => d.filter(x => x === 6).length + 1 > 2],
     ["no match", "(count x∈cells: D(x) = 9) = 0", d => !d.includes(9)],
-    ["an always count", "(count x∈cells: D(x) > 0) = 3", () => true],
+    ["an always count", "(count x∈cells: D(x) > -10) = 3", () => true],
   ];
-  const alphabet = [1, 2, 3, 4, 5, 6];
-  for (const [label, maths, expected] of cases) {
+  for (const alphabet of [[1, 2, 3, 4, 5, 6], [-3, -1, 0, 2, 5], [0, 1, 2, 3], [2, 4, 7]]) for (const [label, maths, expected] of cases) {
     const result = nf(`#probe ${a}-${b}-${c}`, [custom(maths)], context(3, alphabet));
     expect([label, result.issues, result.status]).toEqual([label, [], "complete"]);
     const text = published(maths, alphabet);
@@ -175,6 +174,15 @@ test("counts of cells holding a digit are lowered to the digit-count primitive",
       expect([label, x, y, z, holds(result.normalForm!.solution, values)]).toEqual([label, x, y, z, expected([x, y, z])]);
       expect([label, x, y, z, text(values)]).toEqual([label, x, y, z, expected([x, y, z])]);
     }
+  }
+});
+
+test("a near miss of a count differs in normal form and matches the evaluator on its own text", () => {
+  const alphabet = [1, 2, 3, 4];
+  const original = agree("(count x∈cells: D(x) = 1) >= 2", "(count x∈cells: D(x) = 1) >= 2", alphabet);
+  for (const mutant of ["(count x∈cells: D(x) = 1) > 2", "(count x∈cells: D(x) = 1) >= 1", "(count x∈cells: D(x) = 2) >= 2", "(count x∈cells: D(x) = 1) <= 2"]) {
+    const near = agree(mutant, mutant, alphabet);
+    expect([mutant, compare(original, near).status, solution(original) === solution(near)]).toEqual([mutant, "unresolved", false]);
   }
 });
 
