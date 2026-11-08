@@ -64,6 +64,8 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     if (kind === "thermo" && ["strict", "orientation", "channel"].includes(name)) continue;
     // Renban reads these three in lowerLine; its explicit edges stay uncovered.
     if (kind === "renban" && ["channel", "repeats", "selection"].includes(name)) continue;
+    // Region sum reads its channel in lowerLine.
+    if (kind === "region-sum" && name === "channel") continue;
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;

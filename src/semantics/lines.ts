@@ -174,6 +174,7 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
       nodes.push(any([all([turns,any([all([up,falling]),all([down,rising])])]), all([{ op: "Not", child: turns },any([all([up,rising]),all([down,falling])])])]));
     }
   } else if (kind === "region-sum") {
+    if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
     const segments = p.segments as Cell[][];
     const runs: Cell[][] = [];
     let ordered = path;
