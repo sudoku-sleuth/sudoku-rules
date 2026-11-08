@@ -123,7 +123,7 @@ export const declarationRegistry = {
   "doll-sum": pending("Existential endpoint pairs and interior sums are not lowered."),
   "double-arrow": lowered,
   "yin-yang": pending("Shared shading, connectivity and partition constraints are not lowered."),
-  "counting-circles": pending("Digit-dependent multiplicity counts are not lowered."),
+  "counting-circles": lowered,
   "ordered-block": pending("Existential ordered block positions are not lowered."),
   "numbered-room": lowered,
   outside: lowered,
