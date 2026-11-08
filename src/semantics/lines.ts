@@ -12,7 +12,7 @@ export const lineFields: Record<string, string[]> = {
 };
 /** Line kinds whose meaning is a test on each adjacent pair: an explicit edge list yields that test on exactly those edges. */
 export const edgeLines = ["whispers", "whisper", "close-whispers", "parity", "primality", "shifter-line"];
-export const valueLines = ["thermo", "whispers", "whisper", "whispers-4", "whispers-5", "palindrome", "renban", "region-sum"];
+export const valueLines = ["thermo", "whispers", "whisper", "whispers-4", "whispers-5", "dutch-whispers", "german-whispers", "palindrome", "renban", "region-sum"];
 const any = (children: Formula[]): Formula => ({ op: "Any", children });
 const parity = (x: number) => Math.abs(x % 2);
 /** Deterministic Miller–Rabin on the safe-integer domain. */

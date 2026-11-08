@@ -3,7 +3,7 @@ import {legacyFormulaTerms} from '../../src/migration-data';
 import {expect,test} from 'bun:test';
 import {type Expr} from '../../src';
 import {formulaNotation} from '../../src/formula-similarity';
-import {overlapAllowlist} from '../../src/overlap-allowlist';
+import {overlapAllowlist,namedReadings} from '../../src/overlap-allowlist';
 import {parseFormula} from '../../src';
 
 
@@ -14,9 +14,10 @@ const headers = pages.map(page => pageHeader(page).value!.metadata);
 const ruleHeaders = headers.filter(m => m.layer === 'rule');
 const publicPairs = overlapPairs(rows);
 
-function guard(inventory: typeof rows,allowlist:Record<string,string>=overlapAllowlist){
- const pairs=inventory === rows ? publicPairs : overlapPairs(inventory),used=new Set<string>();
+function guard(inventory: typeof rows,allowlist:Record<string,string>=overlapAllowlist,readings:Record<string,string>=namedReadings){
+ const pairs=inventory === rows ? publicPairs : overlapPairs(inventory),used=new Set<string>(),usedReadings=new Set<string>();
  for(const pair of pairs){
+  if(pair.exact&&readings[pair.key]&&!pair.wrapper&&pair.a.layer==='rule'&&pair.b.layer==='rule'){usedReadings.add(pair.key);continue;}
   expect(pair.exact,`Identical instantiated formula: ${pair.key}`).toBe(false);
   if(pair.sameBlock){expect(Object.keys(pair.settings!).length,`Identical block settings: ${pair.key}`).toBeGreaterThan(0);continue;}
   expect(allowlist[pair.key],`Near duplicate: ${pair.key} (${pair.score})`).toBeTruthy();
@@ -25,6 +26,7 @@ function guard(inventory: typeof rows,allowlist:Record<string,string>=overlapAll
   expect(pair.shared.length,`Missing shared formula: ${pair.key}`).toBeGreaterThan(0);
  }
  expect([...used].sort()).toEqual(Object.keys(allowlist).sort());
+ expect([...usedReadings].sort()).toEqual(Object.keys(readings).sort());
 }
 test('all layers reject exact and near duplicates without a current semantic reason',()=>guard(rows));
 

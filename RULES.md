@@ -16,7 +16,7 @@ The Definition section links to a [block](BLOCKS.md) and shows its settings. Rul
 
 ## Names and aliases
 
-Use the page's `kind`, such as `cage` or `whispers-5`, in a case file. German Whispers is another name for Whispers 5; Dutch Whispers means Whispers 4. Killer Cage and Killer refer to Cage.
+Use the page's `kind`, such as `cage` or `whispers-5`, in a case file. [German Whispers](rules/german-whispers.md) reads as Whispers 5 and [Dutch Whispers](rules/dutch-whispers.md) as Whispers 4. Killer Cage and Killer refer to Cage.
 
 Published alias pages link to their definition. Older spellings such as `killer` can be read and migrated to the current kind. The [migration guide](docs/migration.md) maps old declarations to their current forms.
 
@@ -106,7 +106,9 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 - [Close Whispers](rules/close-whispers.md)
 - [Coordinate Arrows](rules/coordinate-arrows.md)
 - [Double Arrow](rules/double-arrow.md)
+- [Dutch Whispers](rules/dutch-whispers.md)
 - [Entropic](rules/entropic.md)
+- [German Whispers](rules/german-whispers.md)
 - [Greek Carpet](rules/greek-carpet.md)
 - [Hidden Modular](rules/hidden-modular.md)
 - [Index Line](rules/index-line.md)

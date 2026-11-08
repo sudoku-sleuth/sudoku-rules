@@ -141,6 +141,8 @@ export const declarationRegistry = {
   kropki: lowered,
   "hidden-modular": pending("Digit-selected extents and modular windows are not lowered."),
   whispers: lowered,
+  "dutch-whispers": lowered,
+  "german-whispers": lowered,
   "whispers-4": lowered,
   "whispers-5": lowered,
   whisper: lowered,
