@@ -38,6 +38,8 @@ export const declarationRegistry = {
   "selected-stretch": pending("The declarable block has no dedicated finite lowering."),
   "monotone-line": pending("The declarable block has no dedicated finite lowering."),
   "extra-regions": lowered,
+  "disjoint-sets": lowered,
+  "irregular-regions": lowered,
   "regions": lowered,
   "neighbour-extremum": lowered,
 

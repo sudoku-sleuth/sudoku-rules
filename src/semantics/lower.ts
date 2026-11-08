@@ -43,8 +43,8 @@ export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void 
 export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const instance=semanticDeclaration(ast);
   const { parameters: p } = instance;
-  // regions and extra-regions are spellings of the same distinct-cells meaning as unique.
-  const kind = ["regions", "extra-regions"].includes(instance.kind) ? "unique" : instance.kind === "neighbour-extremum" ? "extremum" : instance.kind === "little-killer" ? "diagonal-sum" : instance.kind;
+  // regions, extra-regions, disjoint-sets and irregular-regions are spellings of the same distinct-cells meaning as unique.
+  const kind = ["regions", "extra-regions", "disjoint-sets", "irregular-regions"].includes(instance.kind) ? "unique" : instance.kind === "neighbour-extremum" ? "extremum" : instance.kind === "little-killer" ? "diagonal-sum" : instance.kind;
   const written = instance.kind;
   const allowed = fields[kind];
   if (!allowed) throw Error(`No lowering for ${written}.`);

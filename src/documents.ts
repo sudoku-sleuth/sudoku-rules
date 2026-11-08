@@ -151,7 +151,7 @@ export function checkCaseReferences(page: PageSource, registry: RuleRegistry, co
                 const data=declarationParameters(declaration);
                 const relations=data.relations as {op?:string;value?:unknown}[]|undefined;
                 const relationHouse=house === "relation-scope.md" && data.mode === "all" && data.negative === true && (!data.channel || data.channel === "D") && (!data.except || Array.isArray(data.except) && data.except.length===0) && relations?.length===1 && relations[0].op==="difference" && (relations[0].value===0 || relations[0].value===0n);
-                if (positive && !declaration.condition && (house === "unique.md" || house === "extra-regions.md" || house === "regions.md" || relationHouse || house === "sudoku.md" && standard(declaration))) hasHouse = true;
+                if (positive && !declaration.condition && (house === "unique.md" || house === "extra-regions.md" || house === "disjoint-sets.md" || house === "irregular-regions.md" || house === "regions.md" || relationHouse || house === "sudoku.md" && standard(declaration))) hasHouse = true;
                 references.push({kind, url: url.href, span});
                 if (registry.parameters?.has(url.href)) {
                     errors.push(...checkParameterAST(declaration, span, registry.parameters.get(url.href)!, board.board));

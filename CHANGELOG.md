@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- Disjoint Sets and Irregular Regions have their own pages and kinds, `disjoint-sets` and `irregular-regions`. Each reads as Regions, with the same `cells` parameter, so it lowers to the same normal form as Regions over the same cells.
 - Pill Arrow has its own page and kind, `pill-arrow`. It reads as Arrow, with the same `bulb`, `line` and `partial` parameters, so it lowers to the same normal form or stays uncovered for the same reason.
 - Dutch Whispers and German Whispers have their own pages and kinds, `dutch-whispers` and `german-whispers`. They bind Difference Line with a gap of 4 and 5, so each lowers to the same normal form as Whispers 4 and Whispers 5.
 - The normal form lowers Vault declarations to one inequality for every cell and neighbour pair, with a total over the cells on printed digits when a sum is stated. Order and repeated listings of cells and neighbours do not matter. Cells that overlap the neighbours, sums that are not safe integers and very large cross-pair expansions stay uncovered.

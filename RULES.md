@@ -217,7 +217,9 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 
 - [Aggregate Relation](rules/aggregate-relation.md) → [aggregate-equation](rules/aggregate-equation.md)
 - [Between](rules/between.md) → [between-line](rules/between-line.md)
+- [Disjoint Sets](rules/disjoint-sets.md) → [regions](rules/regions.md)
 - [Extra Regions](rules/extra-regions.md) → [regions](rules/regions.md)
+- [Irregular Regions](rules/irregular-regions.md) → [regions](rules/regions.md)
 - [Index Count](rules/index-count.md) → [lookup](rules/lookup.md)
 - [Killer Cage](rules/killer.md) → [cage](rules/cage.md)
 - [Little Killer](rules/little-killer.md) → [diagonal-sum](rules/diagonal-sum.md)

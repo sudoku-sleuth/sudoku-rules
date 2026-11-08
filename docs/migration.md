@@ -23,7 +23,7 @@ For already decoded data, call `migrateDeclaration({kind, parameters})`. Values 
 
 ## Rule names and pair settings
 
-Extra Regions is now Regions (`regions`); Parity is now Parity Line (`parity-line`); Parity Cells is now Odd Even Cells (`odd-even-cells`); Between is now Between Line (`between-line`). The old kinds and published routes remain aliases and migrate with the same parameters and meaning. Regions also covers boxes, irregular regions and disjoint groups. Odd Even Cells is searchable as odd/even cells, parity cells and odd and even digits.
+[Irregular Regions](../rules/irregular-regions.md) and [Disjoint Sets](../rules/disjoint-sets.md) have their own pages and read exactly as Regions. Extra Regions is now Regions (`regions`); Parity is now Parity Line (`parity-line`); Parity Cells is now Odd Even Cells (`odd-even-cells`); Between is now Between Line (`between-line`). The old kinds and published routes remain aliases and migrate with the same parameters and meaning. Regions also covers boxes, irregular regions and disjoint groups. Odd Even Cells is searchable as odd/even cells, parity cells and odd and even digits.
 
 Little Killer is now Diagonal Sum (`diagonal-sum`). The `little-killer` spelling, searches and published route remain aliases with the same parameters and meaning.
 

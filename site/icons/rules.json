@@ -37,6 +37,8 @@
   "layered-cage": "rules/cages/layered-cage.svg",
   "README": "rules/global/README.svg",
   "extra-regions": "rules/regions/unique.svg",
+  "disjoint-sets": "rules/regions/unique.svg",
+  "irregular-regions": "rules/regions/unique.svg",
   "skyscraper": "rules/outside/skyscraper.svg",
   "bremban": "rules/lines/bremban.svg",
   "parity": "rules/lines/parity.svg",
