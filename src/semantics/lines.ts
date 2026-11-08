@@ -193,13 +193,15 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
     for (let i = 1; i < sums.length; i++) nodes.push({ op: "SumEqual", channel: "D", left: sums[0], right: sums[i] });
   }
   const result = all(nodes);
-  const effective = (f: Formula): Formula => f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(effective) }
+  const effective = (f: Formula): Formula => printed.has(f) ? f : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(effective) }
     : f.op === "Not" ? { ...f, child: effective(f.child) }
     : "channel" in f ? { ...f, channel: "V" } as Formula : f;
   // A line that states channel D reads printed digits whatever the value domain.
   return valueLines.includes(kind) && p.channel !== "D" ? effective(result) : result;
 }
 
+/** Nodes that read printed digits whatever the line's channel, which the effective-value rewrite leaves alone. */
+const printed = new WeakSet<Formula>();
 /**
  * A prefix selection on an ordered line: the line stops at its first stopping cell (a cell reading the target, a cell holding a crust
  * digit, or a given cell), which the prefix keeps when `include` is true, and a missing stopping cell fails the rule. This is an exact
@@ -224,7 +226,9 @@ function prefixBranches(raw: unknown, line: Cell[], board: CanonicalBoard, alpha
   const others = alphabet.filter(d => !stops.includes(d));
   line.forEach((cell, stop) => {
     if (!prefix(stop).length || stop > 0 && !others.length || !stops.length) return;
-    branches.push({ op: "All", children: [...line.slice(0, stop).map(c => allowed(c, others)), allowed(cell, stops), rule(prefix(stop))] });
+    // A crust is a printed digit, so its stopping tests stay on D when the rest of the line reads effective values.
+    const test = (c: Cell, values: number[]): Formula => { const node = allowed(c, values); if (s.stop === "crust") printed.add(node); return node; };
+    branches.push({ op: "All", children: [...line.slice(0, stop).map(c => test(c, others)), test(cell, stops), rule(prefix(stop))] });
   });
   return { op: "Any", children: branches };
 }

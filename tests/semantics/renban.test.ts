@@ -123,3 +123,41 @@ const cases: [Entry, { cell: Cell; digit: number }[]?][] = [
 for (const [entry, givens] of cases) {
   test(`the lowered formula and the public evaluator agree on every assignment: ${typeof entry === "string" ? entry : entry[0]}`, () => differential([1, 2, 3], [entry], givens));
 }
+
+/** The formula as lowered, before the effective-value rewrite, read channel by channel against separate digits and effective values. */
+function holdsOn(f: Formula, digits: Record<string, number>, values: Record<string, number>): boolean {
+  switch (f.op) {
+    case "All": return f.children.every(x => holdsOn(x, digits, values));
+    case "Any": return f.children.some(x => holdsOn(x, digits, values));
+    case "Not": return !holdsOn(f.child, digits, values);
+    case "Allowed": return f.values.includes((f.channel === "D" ? digits : values)[f.cell]);
+    case "Pair": return f.table.some(([x, y]) => x === (f.channel === "D" ? digits : values)[f.cells[0]] && y === (f.channel === "D" ? digits : values)[f.cells[1]]);
+    default: throw Error(`Unexpected ${f.op}`);
+  }
+}
+
+test("a crust stop reads printed digits and the rest of the line reads effective values", () => {
+  const text = `renban ${a}-${b}-${c} ${crust([3], false)}`;
+  const before = JSON.parse(nf(text, [1, 2, 3, 4]).normalForm!.rewrites.find(r => r.rule === "value-channel")!.before) as Formula;
+  // Digits stop the line at the third cell; the values there are 4. The first two values 1, 2 are consecutive.
+  const digits = { [a]: 1, [b]: 2, [c]: 3, [d]: 1 }, values = { ...digits, [c]: 4 };
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [1,2,3,4], regions: [[${a}, ${b}, ${c}, ${d}]]}\n---${body(text)}` });
+  expect(evaluate(compiled.value!.rules[0], { digits, values }).status).toBe("holds");
+  expect(holdsOn(before, digits, values)).toBe(true);
+  // Effective values that break the prefix are seen, and values alone cannot make a stop.
+  expect(holdsOn(before, digits, { ...values, [b]: 4 })).toBe(false);
+  expect(holdsOn(before, { ...digits, [c]: 4 }, { ...values, [c]: 3 })).toBe(false);
+  expect(evaluate(compiled.value!.rules[0], { digits: { ...digits, [c]: 4 }, values: { ...values, [c]: 3 } }).status).toBe("broken");
+});
+
+test("channel D follows the printed digits when the effective values differ", () => {
+  const text = `renban ${a}-${b}-${c} channel "D" ${target(3, false)}`;
+  const n = nf(text, [1, 2, 3, 4]);
+  expect(JSON.stringify(n.normalForm!.solution)).not.toContain('"channel":"V"');
+  expect(n.normalForm!.rewrites.some(r => r.rule === "value-channel")).toBe(false);
+  const digits = { [a]: 1, [b]: 2, [c]: 3, [d]: 1 };
+  const twin = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [1,2,3,4], regions: [[${a}, ${b}, ${c}, ${d}]]}\n---${body(`renban ${a}-${b}-${c} ${target(3, false)}`)}` }).value!.rules[0];
+  // Effective values that would break the rule on channel V do not touch the channel D declaration.
+  expect(evaluate(twin, { digits, values: { ...digits, [b]: 4 } }).status).toBe("broken");
+  expect(holds(n.normalForm!.solution, digits)).toBe(true);
+});
