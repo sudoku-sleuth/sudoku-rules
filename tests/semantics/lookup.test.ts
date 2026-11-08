@@ -152,6 +152,44 @@ test("near misses compare as different", () => {
   differs(single([2, 3], 1, ` relation {"op":"less"} target 3`), single([2, 3], 1, ` relation {"op":"less"} reverseRelation true target 3`));
 });
 
+const hasPair = (f: Formula): boolean => f.op === "Pair" || (f.op === "All" || f.op === "Any" ? f.children.some(hasPair) : f.op === "Not" ? hasPair(f.child) : false);
+
+test("a position below one misses, even when the relation always holds", () => {
+  // Offset -1 sends the digit 1 to position 0, which names no cell; at-least 0 would hold for any cell that was read.
+  const f = form(single([2, 3], 1, ` offset -1 relation {"op":"at-least","value":0} target 1`));
+  expect(holds(f, at(1, 1, 1))).toBe(false);
+  expect(holds(f, at(2, 1, 1))).toBe(true);
+  expect(holds(f, at(3, 1, 1))).toBe(true);
+  expect(holds(f, at(4, 1, 1))).toBe(false);
+  const zero = form(single([2, 3], 1, ` relation {"op":"at-least","value":0} target 1`), 5, [0, 1, 2, 3]);
+  expect(holds(zero, at(0, 1, 1))).toBe(false);
+  expect(holds(zero, at(1, 1, 1))).toBe(true);
+  const negative = form(single([2, 3], 1, ` offset 3 relation {"op":"at-least","value":0} target 1`), 5, [-2, -1, 0, 1]);
+  expect(holds(negative, at(-2, 1, 1))).toBe(true);
+  expect(holds(negative, at(-1, 1, 1))).toBe(true);
+  expect(holds(negative, at(0, 1, 1))).toBe(false);
+  expect(holds(negative, at(1, 1, 1))).toBe(false);
+});
+
+test("a source or target that is also a listed cell is read as its digit, with no pair table", () => {
+  // The source r1c1 is the first listed cell and its own target: the digit 1 always matches itself.
+  const own = form(single([1, 3], 1));
+  expect(hasPair(own)).toBe(false);
+  expect(holds(own, at(1, 5, 5))).toBe(true);
+  expect(holds(own, at(2, 5, 2))).toBe(true);
+  expect(holds(own, at(2, 5, 3))).toBe(false);
+  eq(single([1, 3], 1), single([1, 3], 1, ` targetCell "r1c1"`));
+  // A target cell that is also the cell looked up is the same cell on both sides.
+  const same = form(single([5], 1, ` targetCell "r1c5"`));
+  expect(hasPair(same)).toBe(false);
+  expect(holds(same, at(1, 5, 5, 5, 4))).toBe(true);
+  expect(holds(same, at(2, 5, 5, 5, 4))).toBe(false);
+  // A different target cell does need a pair table.
+  expect(hasPair(form(single([2, 3], 1, ` targetCell "r1c5"`)))).toBe(true);
+  // The source on the list and the self target in another position of the list give the same form as writing the target cell.
+  eq(single([2, 1], 1), single([2, 1], 1, ` targetCell "r1c1"`));
+});
+
 test("every combination left uncovered says why", () => {
   expect(reasonOf(`lookup mode "queries" queries [{"cells":["r1c2"],"index":1,"target":1,"channel":"D","relation":{"op":"difference","value":0}}]`)).toContain("explicit queries");
   expect(reasonOf(single([2, 3], 1, ' channel "V" target 4'))).toContain("effective-value channel");
@@ -190,8 +228,9 @@ function differential(n: number, symbols: number[], entries: string[], sample = 
   }
   return seen;
 }
-const diffTest = (name: string, n: number, symbols: number[], entries: string[], sample: number, atLeast = 1) =>
-  test(`the lowered formula and the public evaluator agree on ${name}`, () => { expect(differential(n, symbols, entries, sample)).toBeGreaterThanOrEqual(atLeast); });
+// Every assignment is checked against the published definition (sample 1); each entry is its own test to keep the time down.
+const diffTest = (name: string, n: number, symbols: number[], entries: string[], _sample: number, atLeast = 1) =>
+  entries.forEach((entry, i) => test(`the lowered formula and the public evaluator agree on ${name} (${i + 1})`, () => { expect(differential(n, symbols, [entry], 1)).toBeGreaterThanOrEqual(atLeast); }));
 
 diffTest("a source compared with itself", 4, [1, 2, 3], [single([2, 3, 4], 1), single([1, 3, 4], 2)], 12);
 diffTest("a fixed target and a target cell", 4, [1, 2, 3], [single([2, 3, 4], 1, " target 2"), single([2, 3], 1, ` targetCell "r1c4"`)], 12);
@@ -203,6 +242,9 @@ diffTest("firstMatch", 4, [1, 2, 3], [single([2, 3, 4], 1, " firstMatch true tar
 diffTest("a lookup that must miss", 4, [1, 2, 3], [single([2, 3, 4], 1, " total 0 target 2"), single([2, 3, 4], 1, " total 2 target 2")], 12, 0);
 diffTest("count mode", 4, [1, 2, 3], [counted([3, 4], [1, 2], " target 2 total 2"), counted([3, 4], [1, 2], " target 2 total 0"), counted([3, 4], [1, 1, 2], " total 3")], 12);
 diffTest("an increasing path", 4, [1, 2, 3], [single([2, 3], 1, ` target 2 increasing ${list([3, 4])}`), single([2, 3], 1, ` target 2 nonempty true increasing ${list([4])}`)], 12);
-diffTest("a source on its own list and the empty list", 4, [1, 2, 3], [single([1, 2, 3], 1), single([1, 2], 2, " target 1"), `lookup cell "r1c1" target 2`], 12);
+diffTest("a source on its own list and the empty list", 4, [1, 2, 3], [single([1, 2, 3], 1), single([1, 2], 2, " target 1"), `lookup cell "r1c1" target 2`], 1, 0);
 diffTest("a zero-based alphabet", 4, [0, 1, 2, 3], [single([2, 3, 4], 1, " target 2"), single([2, 3, 4], 1, " offset -1 target 1")], 20);
 diffTest("a negation", 4, [1, 2, 3], [`not ${single([2, 3, 4], 1, " target 2")}`], 8);
+diffTest("a gapped alphabet", 4, [2, 3, 4], [single([2, 3, 4], 1, " target 3"), single([2, 3, 4], 1, " offset -1 target 2")], 1, 0);
+diffTest("a negative alphabet", 4, [-1, 0, 1, 2], [single([2, 3, 4], 1, " offset 2 target 0"), single([2, 3, 4], 1, ` offset 1 relation {"op":"at-least","value":0} target 1`)], 1, 0);
+diffTest("a position below one with an always-true relation", 4, [1, 2, 3], [single([2, 3, 4], 1, ` offset -1 relation {"op":"at-least","value":0} target 1`)], 1);
