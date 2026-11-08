@@ -130,7 +130,7 @@ export const declarationRegistry = {
   "double-arrow": lowered,
   "yin-yang": pending("Shared shading, connectivity and partition constraints are not lowered."),
   "counting-circles": lowered,
-  "ordered-block": pending("Existential ordered block positions are not lowered."),
+  "ordered-block": lowered,
   "numbered-room": lowered,
   outside: lowered,
   "constructed-regions": pending("Connected region partition witnesses are not lowered."),

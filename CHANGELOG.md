@@ -15,6 +15,7 @@ Each release lists what changed. A change that breaks a published export, front-
 - The normal form lowers Pressure Gauge declarations to an exact disjunction over the clue digit, with that many neighbours larger (low) or smaller (high).
 - The normal form lowers Neighbour Count declarations on printed digits to an exact disjunction over the origin digit, with that many neighbours related to it.
 - The normal form lowers Tardis declarations as the Neighbour Extremum alias: the clue cell is above each listed neighbour.
+- The normal form lowers Ordered Block declarations to an exact disjunction over the starting positions of the digit run.
 - The normal form lowers every Thermo parameter: `strict false`, `orientation` "reverse" and "either", and `channel` "D". Reverse reads the line from its last cell, either is a disjunction of the two directions, and channel D stays covered when the effective-value domain is unresolved.
 - The normal form lowers the Renban parameters `channel` "D", `repeats` true and `selection`. Repeats true is the Bremban formula, channel D stays covered when the effective-value domain is unresolved, and a prefix selection is an exact disjunction over the first stopping cell (target, crust or given). Explicit edges stay uncovered.
 - The normal form lowers Region Sum with `channel` "D". It reads printed digits, so it stays covered when the effective-value domain is unresolved.
