@@ -169,7 +169,7 @@ export const declarationRegistry = {
   vault: lowered,
   "same-class": lowered,
   thermo: lowered,
-  "pointing-arrow": pending("Guarded ray indexing and first-five policy are not lowered."),
+  "pointing-arrow": lowered,
   "magic-square": pending("Placement disjunctions and fixed magic sums are not lowered."),
   modular: lowered,
   "pointing-thermo": pending("Directed path and guarded tip ray indexing are not lowered."),
