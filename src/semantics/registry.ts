@@ -70,7 +70,7 @@ export const declarationRegistry = {
   "profile-relation": lowered,
   "number-property": pending("Decimal orientation and numeric result properties are not lowered."),
   "derived-count": pending("Counts and ranks of derived aggregate results are not lowered."),
-  "neighbour-count": pending("Scoped neighbour predicate counts are not lowered."),
+  "neighbour-count": lowered,
   "route": pending("Shared route assignments and topology are not lowered."),
   "route-group": pending("Relations between shared routes are not lowered."),
   "route-clue": pending("Numeric clues on a shared route are not lowered."),
