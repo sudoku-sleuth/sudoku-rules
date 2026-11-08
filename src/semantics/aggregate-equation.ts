@@ -133,7 +133,7 @@ function entries(v: Value, board: CanonicalBoard): Entry[] | undefined {
   const weights = [...v.weights.values()];
   if (weights.some(w => w !== weights[0])) return undefined;
   const cells = sortedCells([...v.weights.keys()]);
-  return reachableSums(cells.length, board).map(s => ({ value: safe(weights[0] * s + v.constant, "A value"), condition: sumTotal(cells, s, "D") }));
+  return reachableSums(cells.length, board).map(s => ({ value: safe(safe(weights[0] * s, "A value") + v.constant, "A value"), condition: sumTotal(cells, s, "D") }));
 }
 function disjunction(pairs: Iterable<[Entry, Entry]>, test: (a: number, b: number) => boolean): Formula {
   const branches: Formula[] = [];
@@ -165,7 +165,7 @@ function linearEquation(weights: Map<Cell, number>, k: number, board: CanonicalB
 }
 /** coefficient * product of the distinct cells' digits + constant = target. */
 function productEquation(v: Value & { kind: "product" }, target: number, board: CanonicalBoard): Formula {
-  const rest = target - v.constant;
+  const rest = safe(target - v.constant, "A value");
   if (v.coefficient === 0) return rest === 0 ? all([]) : none;
   if (rest % v.coefficient !== 0) return none;
   const want = BigInt(rest / v.coefficient);
@@ -225,7 +225,7 @@ export function lowerEquation(e: Equation, board: CanonicalBoard): Formula {
     if (left.kind === "affine" && right.kind === "affine") {
       const net = new Map(left.weights);
       for (const [c, w] of right.weights) { const n = safe((net.get(c) ?? 0) - w, "A weight"); if (n) net.set(c, n); else net.delete(c); }
-      comparison = linearEquation(net, right.constant - left.constant, board);
+      comparison = linearEquation(net, safe(right.constant - left.constant, "A value"), board);
     } else if (left.kind === "product" && isConstant(right)) comparison = productEquation(left, right.constant, board);
     else if (right.kind === "product" && isConstant(left)) comparison = productEquation(right, left.constant, board);
     else throw unsupported("A product operand compared with a varying expression is not lowered");

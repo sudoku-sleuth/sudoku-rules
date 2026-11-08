@@ -256,6 +256,7 @@ test('new declarations retain whole-instance unsupported comparison coverage und
   expect(result.issues).toEqual([]);
   // A kind the registry lowers is covered under `not` too; every other addition stays uncovered as a whole instance.
   if(declarationRegistry[kind as keyof typeof declarationRegistry]?.status==='lowered'){
+   expect(result.status).toBe('complete');
    expect(result.normalForm!.coverage.filter(c=>c.kind===kind).every(c=>c.status==='lowered')).toBe(true);
    continue;
   }

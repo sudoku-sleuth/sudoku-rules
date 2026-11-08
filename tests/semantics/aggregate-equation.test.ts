@@ -23,6 +23,8 @@ const product = (list: string[], p: number, distinct = false) => `product-cage $
 const pairOf = (x: string[], y: string[], relation: object) => `cage-pair cages ${JSON.stringify([x, y])} relation ${JSON.stringify(relation)}`;
 
 function holds(f: Formula, v: Record<string, number>): boolean {
+  // The lowerings here read printed digits only.
+  if ("channel" in f) expect(f.channel).toBe("D");
   switch (f.op) {
     case "All": return f.children.every(x => holds(x, v));
     case "Any": return f.children.some(x => holds(x, v));
@@ -345,5 +347,21 @@ test("the lowered formula and the published definition agree with zero in the al
   expect(differential(3, [0, 1, 2], [
     equation([term([a], 3, 0)], [konst(3)]), equation([term([a, b], 1, 1, "product")], [konst(0)]),
     equation([term([a], 1, 1, "product"), konst(0)], [term([b])]), equation([term([a], 2, 0), term([b])], [term([c])]),
+  ])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the published definition agree on empty and zero-length operands, counts and negation", () => {
+  expect(differential(3, [0, 1, 2], [
+    equation([term([], 3, 1, "product")], [konst(3)]), equation([term([], 3, 1, "product")], [konst(0)]), equation([term([a, b], 2, 1, "product", true, { start: 1, length: 0 })], [konst(2)]),
+    equation([term([a, b], 1, 1, "sum", true, { start: 2 })], [konst(0)]), equation([term([a, b])], [term([a, b, c], 1, 2, "count")], ` relation ${JSON.stringify({ op: "difference", value: 5 })}`),
+    equation([term([a, b])], [term([a, b, c], 1, 2, "count"), konst(-5)]), `not ${equation([term([a, b])], [konst(2)])}`,
+  ])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the published definition agree on negative weights, totals and product coefficients", () => {
+  expect(differential(3, [-2, -1, 0, 1], [
+    equation([term([a, b])], [konst(-3)]), equation([term([a, b], -1)], [konst(3)]), equation([term([a], -2), term([b], -2)], [konst(-6)]),
+    equation([term([a, b], -1, 1, "product")], [konst(-2)]), equation([term([a, b], 0, 1, "product")], [konst(0)]), equation([term([a, b], 0, 1, "product")], [konst(1)]),
+    equation([term([a, b], 1, 1, "product"), konst(1)], [konst(3)]), equation([term([a, b], 2, 1, "product"), konst(-1)], [konst(-3)]), `not ${equation([term([a, b], -1, 1, "product")], [konst(-2)])}`,
   ])).toBeGreaterThan(0);
 });
