@@ -159,7 +159,7 @@ export const declarationRegistry = {
   "look-and-say": pending("Exact listed-digit multiplicities are not lowered."),
   "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
   "mean-lines": pending("Cross-multiplied aggregate means are not lowered."),
-  vault: pending("Cage and outside-neighbour cross-pairs and totals are not lowered."),
+  vault: lowered,
   "same-class": pending("Resolved digit-class equality is not lowered."),
   thermo: lowered,
   "pointing-arrow": pending("Guarded ray indexing and first-five policy are not lowered."),
