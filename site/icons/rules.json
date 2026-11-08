@@ -104,6 +104,8 @@
   "islands": "rules/regions/constructed-regions.svg",
   "super-indexing": "rules/regions/index.svg",
   "cage-totals": "rules/cages/cage.svg",
+  "perfect-square-cages": "rules/cages/cage.svg",
+  "perfect-cube-cages": "rules/cages/cage.svg",
   "bipolar-quadruples": "rules/edges/quadruple.svg",
   "counting-diagonals": "rules/outside/little-killer.svg",
   "domino-trails": "rules/cages/cage-shapes.svg",

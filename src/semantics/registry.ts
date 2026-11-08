@@ -17,6 +17,8 @@ export const declarationRegistry = {
   "islands": pending("Shared island components, connected water and water sight are evaluated from its formula."),
   "super-indexing": pending("Cyclic row-column-digit coordinate lookups are evaluated from its formula."),
   "cage-totals": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
+  "perfect-square-cages": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
+  "perfect-cube-cages": pending("Membership of an effective-value aggregate in a permitted list is evaluated from its formula."),
   "bipolar-quadruples": pending("Distinct clue-symbol presence counts are evaluated from its formula."),
   "counting-diagonals": pending("Counts of diagonals containing each digit are evaluated from its formula."),
   "domino-trails": pending("Induced trail topology and shared domino partitions are evaluated from its formula."),

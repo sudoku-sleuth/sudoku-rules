@@ -264,6 +264,8 @@ export const blockHomes: Record<string,string> = {
   "parity-cells": "odd-even-cells",
   "parity-line": "class-pattern",
   "parity": "parity-line",
+  "perfect-cube-cages": "cage-totals",
+  "perfect-square-cages": "cage-totals",
   "pill-arrow": "arrow",
   "pointing-arrow": "lookup",
   "pointing-thermo": "lookup",

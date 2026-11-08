@@ -225,6 +225,8 @@ This index follows the rule pages' metadata and the library's shape grouping. Th
 - [Little Killer](rules/little-killer.md) → [diagonal-sum](rules/diagonal-sum.md)
 - [Parity](rules/parity.md) → [parity-line](rules/parity-line.md)
 - [Parity Cells](rules/parity-cells.md) → [odd-even-cells](rules/odd-even-cells.md)
+- [Perfect Cube Cages](rules/perfect-cube-cages.md) → [cage-totals](rules/cage-totals.md)
+- [Perfect Square Cages](rules/perfect-square-cages.md) → [cage-totals](rules/cage-totals.md)
 - [Pill Arrow](rules/pill-arrow.md) → [arrow](rules/arrow.md)
 - [Unique](rules/unique.md) → [regions](rules/regions.md)
 - [Whisper](rules/whisper.md) → [whispers](rules/whispers.md)
