@@ -7,10 +7,10 @@ import type { CanonicalBoard, Cell, Formula } from "./types.js";
 /** Most finite value combinations an extremum expansion may charge. */
 const maxWork = 1_000_000;
 const none: Formula = { op: "Any", children: [] };
-const moves = ["orthogonal", "diagonal", "king", "knight", "bishop"];
+export const moves = ["orthogonal", "diagonal", "king", "knight", "bishop"];
 
 /** The published moveRelation on two active cells. */
-function moveRelation(move: string, a: Cell, b: Cell): boolean {
+export function moveRelation(move: string, a: Cell, b: Cell): boolean {
   const [ar, ac] = coordinates(a), [br, bc] = coordinates(b);
   const dr = Math.abs(ar - br), dc = Math.abs(ac - bc);
   switch (move) {
