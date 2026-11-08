@@ -84,7 +84,7 @@ export const declarationRegistry = {
   "difference-line": pending("Common or distinct edge differences and signed steps are not lowered."),
   "split-pea": pending("Reversible decimal endpoint readings are not lowered."),
   "prefix-sum": pending("Answer-dependent stopping prefixes are not lowered."),
-  "blocked-sight": pending("Blocked ray selections and their count or sum are not lowered."),
+  "blocked-sight": lowered,
   "sum-partition": pending("Covering intervals and partition cuts are not lowered."),
   decoration: lowered,
   sudoku: lowered,
