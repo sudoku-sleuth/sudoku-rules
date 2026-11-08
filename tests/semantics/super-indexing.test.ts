@@ -165,3 +165,32 @@ test("the lowered formula and the public evaluator agree on three by three board
   const hole = grid(3, 3).filter(c => c !== "r2c2");
   differential(3, 3, [1, 2, 3], hole, 200);
 });
+
+/** The rule text, written directly: every cell (r, c) holding d has r at (c, d) and c at (d, r). */
+function reference(n: number, active: Cell[], v: Record<string, number>): boolean {
+  const cellOf = (r: number, c: number) => `r${r}c${c}`;
+  return active.every(cell => {
+    const [, r, c] = /^r(\d+)c(\d+)$/.exec(cell)!.map(Number);
+    const d = v[cell];
+    return Number.isInteger(d) && d >= 1 && d <= n && v[cellOf(c, d)] === r && v[cellOf(d, r)] === c;
+  });
+}
+
+test("the lowered formula equals the rule text on every assignment of small boards", () => {
+  for (const [n, symbols, active] of [[2, [1, 2, 3], grid(2, 2)], [3, [1, 2, 3], grid(3, 3)], [3, [1, 2, 3], grid(3, 3).filter(c => c !== "r2c2")]] as [number, number[], Cell[]][]) {
+    const f = form(n, n, symbols, active);
+    let seen = 0;
+    const walk = (i: number, values: Record<string, number>) => {
+      if (i === active.length) {
+        // A partner that is inactive reads as no digit, so the reference never holds for it.
+        const want = reference(n, active, values);
+        expect(holds(f, values)).toBe(want);
+        if (want) seen++;
+        return;
+      }
+      for (const x of symbols) walk(i + 1, { ...values, [active[i]]: x });
+    };
+    walk(0, {});
+    expect(seen).toBeGreaterThan(0);
+  }
+});
