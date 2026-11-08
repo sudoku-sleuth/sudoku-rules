@@ -60,29 +60,41 @@ test("channel V converts to D once the domain is resolved and channel D leaves n
   expect(nf(`thermo ${a}-${b} channel "D"`).normalForm!.rewrites.some(r => r.rule === "value-channel")).toBe(false);
 });
 
-test("the lowered formula and the public evaluator agree on every assignment", () => {
-  const texts = [
-    `thermo ${a}-${b}-${c}`, `thermo ${a}-${b}-${c} strict false`, `thermo ${a}-${b}-${c} orientation "reverse"`, `thermo ${a}-${b}-${c} strict false orientation "reverse"`,
-    `thermo ${a}-${b}-${c} orientation "either"`, `thermo ${a}-${b}-${c} strict false orientation "either"`, `thermo ${a}-${b}-${c} channel "D"`,
-    `thermo ${a}-${b}-${a}`, `thermo ${a}-${b}-${a} strict false orientation "either"`, `thermo ${b}`, `not thermo ${a}-${b}-${c} orientation "either"`,
-  ];
-  const symbols = [1, 2, 3];
-  const cells = [a, b, c];
-  for (const text of texts) {
-    const n = nf(text, symbols);
-    expect(n.issues).toEqual([]);
-    expect(n.status).toBe("complete");
-    const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3], regions: [[${cells.join(", ")}]]}\n---${body(text)}` });
-    expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
-    const rule = compiled.value!.rules[0];
-    const walk = (index: number, values: Record<string, number>) => {
-      if (index === cells.length) {
-        const expected = evaluate(rule, { digits: values }).status === "holds";
-        expect([text, JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
-        return;
-      }
-      for (const x of symbols) walk(index + 1, { ...values, [cells[index]]: x });
-    };
-    walk(0, {});
-  }
-});
+/**
+ * The evaluator runs a lowered declaration's own formula unless the assignment supplies effective values and the formula reads them,
+ * so the expectation comes from the published definition: the declaration is written on channel V (the default) and evaluated with
+ * effective values equal to the digits, which is what channel D reads.
+ */
+const oracle = (text: string) => text.replace(/ channel "D"/g, "");
+type Entry = string | [string, "none" | "all"];
+const symbols = [1, 2, 3], cells = [a, b, c];
+function differential(entry: Entry) {
+  const [text, extreme] = typeof entry === "string" ? [entry, undefined] : entry;
+  const n = nf(text, symbols);
+  expect(n.issues).toEqual([]);
+  expect(n.status).toBe("complete");
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3], regions: [[${cells.join(", ")}]]}\n---${body(oracle(text))}` });
+  expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+  const rule = compiled.value!.rules[0];
+  let satisfied = 0, total = 0;
+  const walk = (index: number, values: Record<string, number>) => {
+    if (index === cells.length) {
+      const expected = evaluate(rule, { digits: values, values }).status === "holds";
+      expect([text, JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
+      total++;
+      if (expected) satisfied++;
+      return;
+    }
+    for (const x of symbols) walk(index + 1, { ...values, [cells[index]]: x });
+  };
+  walk(0, {});
+  // Agreement is never vacuous: a declaration is satisfied by some assignments and broken by others unless it is marked "none" or "all".
+  expect([text, satisfied > 0, satisfied < total]).toEqual([text, extreme !== "none", extreme !== "all"]);
+}
+const entries: Entry[] = [
+  `thermo ${a}-${b}-${c}`, `thermo ${a}-${b}-${c} strict false`, `thermo ${a}-${b}-${c} orientation "reverse"`, `thermo ${a}-${b}-${c} strict false orientation "reverse"`,
+  `thermo ${a}-${b}-${c} orientation "either"`, `thermo ${a}-${b}-${c} strict false orientation "either"`, `thermo ${a}-${b}-${c} channel "D"`,
+  `thermo ${a}-${b}-${c} orientation "reverse" channel "D"`, [`thermo ${a}-${b}-${a}`, "none"], `thermo ${a}-${b}-${a} strict false orientation "either"`,
+  [`thermo ${b}`, "all"], `not thermo ${a}-${b}-${c} orientation "either"`,
+];
+for (const entry of entries) test(`the lowered formula and the public evaluator agree on every assignment: ${typeof entry === "string" ? entry : entry[0]}`, () => differential(entry));
