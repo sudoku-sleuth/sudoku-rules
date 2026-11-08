@@ -138,7 +138,7 @@ test("a group beyond the expansion bounds stays uncovered", () => {
 });
 
 function differential(n: number, symbols: number[], entries: string[]): number {
-  let seen = 0, sampled = 0;
+  let seen = 0;
   const used = cells.slice(0, n);
   const board = boardOf(symbols, n);
   for (const text of entries) {
@@ -154,7 +154,7 @@ function differential(n: number, symbols: number[], entries: string[]): number {
       if (index === n) {
         const expected = evaluate(rule, { digits: values }).status === "holds";
         // The rule reads printed digits, so effective values that differ from them change nothing.
-        if (++sampled % 4 === 0) expect(evaluate(rule, { digits: values, values: Object.fromEntries(Object.entries(values).map(([k, x]) => [k, 2 * x])) }).status === "holds").toBe(expected);
+        for (const shift of [(x: number) => 2 * x, (x: number) => x + 3]) expect(evaluate(rule, { digits: values, values: Object.fromEntries(Object.entries(values).map(([k, x]) => [k, shift(x)])) }).status === "holds").toBe(expected);
         expect([text, JSON.stringify(values), holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
         if (expected) satisfied++;
         return;
@@ -182,4 +182,10 @@ test("the lowered formula and the published definition agree on means", () => {
 test("the lowered formula and the published definition agree on products", () => {
   expect(differential(4, [1, 2, 3], [groups([[a], [b]], ' operation "product"'), groups([[a], []], ' operation "product"'), groups([[a, b], [b, a]], ' operation "product"'), groups([[a], [b], []], ' operation "product" repeats false')])).toBeGreaterThan(0);
   expect(differential(3, [0, 1, 2, 3], [groups([[a, b], [c]], ' operation "mean"'), groups([[a], [b]], ' operation "product"')])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the published definition agree on products and means over alphabets without one and with negatives", () => {
+  expect(differential(3, [2, 3, 4], [groups([[a], []], ' operation "product"'), groups([[a], [b]], ' operation "product"'), groups([[a, b], [c]], ' operation "mean"'), groups([[a], [], [b]], ' operation "mean"')])).toBeGreaterThan(0);
+  expect(differential(3, [-2, -1, 1, 2], [groups([[a], [b]], ' operation "product"'), groups([[a], [b, c]], ' operation "mean"'), groups([[a, b], [c]], ' operation "mean"'), groups([[a, b], [c]])])).toBeGreaterThan(0);
+  expect(differential(3, [-3, 0, 4], [groups([[a], []], ' operation "product"'), groups([[a, b], [c]], ' operation "mean"')])).toBeGreaterThan(0);
 });
