@@ -56,53 +56,64 @@ test("an invalid channel is rejected", () => {
   expect(nf(`pair ${a}-${b} sum 5 channel "X"`).status).toBe("invalid");
 });
 
-/**
- * The evaluator runs a lowered declaration's own formula unless the assignment supplies effective values and the formula reads them,
- * so the expectation comes from the published definition: the declaration is written on channel V (the default) and evaluated with
- * effective values equal to the digits, which is what channel D reads.
- */
-const oracle = (text: string) => text.replace(/ channel "D"/g, "");
-type Entry = string | [string, "none" | "all"];
+/** The formula as lowered, before the effective-value rewrite, read channel by channel against separate digits and effective values. */
+function holdsOn(f: Formula, digits: Record<string, number>, values: Record<string, number>): boolean {
+  const read = (channel: string) => channel === "D" ? digits : values;
+  switch (f.op) {
+    case "All": return f.children.every(x => holdsOn(x, digits, values));
+    case "Any": return f.children.some(x => holdsOn(x, digits, values));
+    case "Not": return !holdsOn(f.child, digits, values);
+    case "Pair": return f.table.some(([x, y]) => x === read(f.channel)[f.cells[0]] && y === read(f.channel)[f.cells[1]]);
+    default: throw Error(`Unexpected ${f.op}`);
+  }
+}
+
 const symbols = [1, 2, 3, 4], cells = [a, b, c];
+const relations = ["sum 5", "difference 1", "at-least 2", "ratio 2", "less", "multiple", "shift"];
+const entries = [...relations.map(r => `pair ${a}-${b} ${r}`), `not pair ${a}-${b} sum 5`, `pair ${b}-${c} difference 1`, `pair ${b}-${a} less`];
+/**
+ * Each declaration is written on the default channel V and its twin on channel D. The published definition (the channel V text,
+ * evaluated with effective values) is the oracle: with values equal to the digits it judges the channel D lowering, and with values
+ * that differ (the second cell moved to the next symbol, wrapping) it judges the channel V lowering read before the effective-value rewrite. Some assignment
+ * must make those two verdicts disagree, so a D-versus-V mix-up is caught.
+ */
+function differential(text: string) {
+  const twin = `${text} channel "D"`;
+  const v = nf(text, symbols), d = nf(twin, symbols);
+  for (const n of [v, d]) { expect(n.issues).toEqual([]); expect(n.status).toBe("complete"); }
+  expect(d.normalForm!.rewrites.some(r => r.rule === "value-channel")).toBe(false);
+  expect(JSON.stringify(d.normalForm!.solution)).not.toContain('"channel":"V"');
+  const before = JSON.parse(v.normalForm!.rewrites.find(r => r.rule === "value-channel")!.before) as Formula;
+  const rule = compile(text);
+  let satisfied = 0, total = 0, disagree = 0;
+  const walk = (index: number, digits: Record<string, number>) => {
+    if (index === cells.length) {
+      const values = { ...digits, [b]: digits[b] % 4 + 1 };
+      const onDigits = evaluate(rule, { digits, values: digits }).status === "holds";
+      const onValues = evaluate(rule, { digits, values }).status === "holds";
+      expect([twin, JSON.stringify(digits), holds(d.normalForm!.solution, digits)]).toEqual([twin, JSON.stringify(digits), onDigits]);
+      expect([text, JSON.stringify(values), holdsOn(before, digits, values) !== text.startsWith("not ")]).toEqual([text, JSON.stringify(values), onValues]);
+      total++;
+      if (onDigits) satisfied++;
+      if (onDigits !== onValues) disagree++;
+      return;
+    }
+    for (const x of symbols) walk(index + 1, { ...digits, [cells[index]]: x });
+  };
+  walk(0, {});
+  expect([text, satisfied > 0, satisfied < total, disagree > 0]).toEqual([text, true, true, true]);
+}
 function compile(text: string) {
   const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3,4], regions: [[${cells.join(", ")}]]}\n---${body(text)}` });
   expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
   return compiled.value!.rules[0];
 }
-function differential(entry: Entry) {
-  const [text, extreme] = typeof entry === "string" ? [entry, undefined] : entry;
-  const n = nf(text, symbols);
-  expect(n.issues).toEqual([]);
-  expect(n.status).toBe("complete");
-  const rule = compile(oracle(text));
-  let satisfied = 0, total = 0;
-  const walk = (index: number, values: Record<string, number>) => {
-    if (index === cells.length) {
-      const expected = evaluate(rule, { digits: values, values }).status === "holds";
-      expect([text, JSON.stringify(values), holds(n.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
-      total++;
-      if (expected) satisfied++;
-      return;
-    }
-    for (const x of symbols) walk(index + 1, { ...values, [cells[index]]: x });
-  };
-  walk(0, {});
-  // Agreement is never vacuous: a declaration is satisfied by some assignments and broken by others unless it is marked "none" or "all".
-  expect([text, satisfied > 0, satisfied < total]).toEqual([text, extreme !== "none", extreme !== "all"]);
-}
-const entries: Entry[] = [
-  `pair ${a}-${b} sum 5`, `pair ${a}-${b} sum 5 channel "D"`, `pair ${a}-${b} difference 1 channel "D"`, `pair ${a}-${b} at-least 2 channel "D"`,
-  `pair ${a}-${b} ratio 2 channel "D"`, `pair ${a}-${b} less channel "D"`, `pair ${a}-${b} multiple channel "D"`, `pair ${a}-${b} shift channel "D"`,
-  `not pair ${a}-${b} sum 5 channel "D"`, `pair ${a}-${a} sum 8 channel "D"`,
-];
-for (const entry of entries) test(`the lowered formula and the public evaluator agree on every assignment: ${typeof entry === "string" ? entry : entry[0]}`, () => differential(entry));
+for (const text of entries) test(`the lowered formula and the public evaluator agree on every assignment: ${text}`, () => differential(text));
 
-test("channel D follows the printed digits when the effective values differ", () => {
-  const n = nf(`pair ${a}-${b} sum 5 channel "D"`, symbols);
-  const rule = compile(`pair ${a}-${b} sum 5`);
-  const digits = { [a]: 2, [b]: 3, [c]: 1 };
-  // The channel V declaration follows the effective values, the channel D declaration ignores them.
-  expect(evaluate(rule, { digits, values: { ...digits, [b]: 4 } }).status).toBe("broken");
-  expect(holds(n.normalForm!.solution, digits)).toBe(true);
-  expect(holds(n.normalForm!.solution, { ...digits, [b]: 4 })).toBe(false);
+test("a pair needs exactly two cells whatever the channel", () => {
+  for (const cellsText of [a, `${a}-${b}-${c}`]) {
+    const n = nf(`pair ${cellsText} sum 5 channel "D"`);
+    expect(n.status).toBe("invalid");
+    expect(n.issues.map(i => i.message)).toEqual(["Write 2 cells for cells, joined by hyphens, such as r1c1-r1c2."]);
+  }
 });
