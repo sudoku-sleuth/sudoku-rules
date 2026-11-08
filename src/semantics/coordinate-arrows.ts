@@ -1,7 +1,7 @@
 import type { DeclarationAST } from "../declarations.js";
 import { cellAt } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
-import { all, pair } from "./primitives.js";
+import { all, pair, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
 const never: Formula = { op: "Any", children: [] };
@@ -9,8 +9,8 @@ const never: Formula = { op: "Any", children: [] };
 /**
  * Coordinate arrows: each arrow's base digit a is a row and its tip digit b a column, counted from one, and the cell at row a and
  * column b holds a + b. Every arrow must also name a different coordinate pair than every other arrow, so no two arrows share both
- * their base digit and their tip digit. An arrow is an exact disjunction over the base and tip digits (a, b) that name an active
- * cell and whose sum is in the alphabet: the base holds a, the tip holds b and the named cell holds a + b. Where two of those
+ * their base digit and their tip digit. An arrow is an exact disjunction over the base and tip digits (a, b) whose sum is in the
+ * alphabet, on a board where every such coordinate is an active cell (otherwise the clue stays uncovered): the base holds a, the tip holds b and the named cell holds a + b. Where two of those
  * cells are the same cell they must agree. Two arrows with the same base cell and the same tip cell can never differ, and an
  * arrow that does not list exactly two cells can never be met. Distinctness is a disjunction of two pair tables. Printed digits only.
  */
@@ -26,7 +26,9 @@ export function lowerCoordinateArrows(ast: DeclarationAST, board: CanonicalBoard
     const cases: Formula[] = [];
     for (const a of digits.filter(d => d <= board.rows)) for (const b of digits.filter(d => d <= board.cols)) {
       const target = cellAt(a, b);
-      if (!active.has(target) || !board.alphabet.includes(a + b)) continue;
+      // The published rule reads the named cell without a guard, so an inactive cell leaves the clue undecided, not false.
+      if (!active.has(target)) throw new UnsupportedSemantics("A coordinate that can name an inactive cell is not lowered; the whole instance remains uncovered.");
+      if (!board.alphabet.includes(a + b)) continue;
       const needs = new Map<Cell, number>();
       let agree = true;
       for (const [cell, held] of [[base, a], [tip, b], [target, a + b]] as [Cell, number][]) {

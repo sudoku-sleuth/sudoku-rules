@@ -29,6 +29,21 @@ function form(rules: string, rows = 2, cols = 3, alphabet = [1, 2, 3, 4], active
 const g = grid(2, 3);
 const put = (...v: number[]) => Object.fromEntries(g.map((c, i) => [c, v[i]]));
 
+/**
+ * The published definition. The compiled rule keeps a lowered fast path (`finite`); it is removed here so the evaluator reads the rule
+ * page's own formula. A second run supplies effective values that differ from the printed digits (the first cell doubled): this rule
+ * reads printed digits only, so both runs must agree.
+ */
+type Compiled = NonNullable<ReturnType<typeof compileCase>["value"]>["rules"][number];
+const published = (compiled: Compiled, values: Record<string, number>): boolean => {
+  const rule = { ...compiled, finite: undefined } as Compiled;
+  const printed = evaluate(rule, { digits: values }).status;
+  const doubled = Object.fromEntries(Object.entries(values).map(([c, x], i) => [c, i === 0 ? x * 2 : x]));
+  expect(evaluate(rule, { digits: values, values: doubled }).status).toBe(printed);
+  expect(printed).not.toBe("undecided");
+  return printed === "holds";
+};
+
 // The first library load is slow on CI, so it is timed on its own with a longer limit; the tests below reuse it.
 test("the library loads", () => {
   nf(arrows(["r1c1", "r1c2"]));
@@ -124,7 +139,7 @@ function differential(rows: number, cols: number, symbols: number[], entries: st
       if (i === active.length) {
         const got = holds(r.normalForm!.solution, values);
         if (got) seen++;
-        if (got || index++ % sample === 0) expect([text, JSON.stringify(values), evaluate(rule, { digits: values }).status === "holds"]).toEqual([text, JSON.stringify(values), got]);
+        if (got || index++ % sample === 0) expect([text, JSON.stringify(values), published(rule, values)]).toEqual([text, JSON.stringify(values), got]);
         return;
       }
       for (const x of symbols) walk(i + 1, { ...values, [active[i]]: x });
@@ -136,18 +151,30 @@ function differential(rows: number, cols: number, symbols: number[], entries: st
 
 test("the lowered formula and the public evaluator agree on single arrows", () => {
   expect(differential(2, 2, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"]), arrows(["r2c1", "r1c1"]), arrows(["r1c1", "r1c1"]), `not ${arrows(["r1c1", "r1c2"])}`])).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the public evaluator agree on shifted alphabets", () => {
   expect(differential(2, 2, [0, 1, 2, 3], [arrows(["r1c1", "r1c2"])])).toBeGreaterThan(0);
   expect(differential(2, 2, [3, 4], [arrows(["r1c1", "r1c2"])])).toBe(0);
-  expect(differential(2, 3, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"]), arrows(["r2c3", "r1c3"])], grid(2, 3), 40)).toBeGreaterThan(0);
+});
+
+test("the lowered formula and the public evaluator agree on a two by three board", () => {
+  expect(differential(2, 3, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"]), arrows(["r2c3", "r1c3"])], grid(2, 3), 120)).toBeGreaterThan(0);
 });
 
 test("the lowered formula and the public evaluator agree on several arrows and on malformed ones", () => {
   expect(differential(2, 3, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"], ["r1c3", "r2c1"]), arrows(["r1c1", "r1c2"], ["r1c1", "r2c2"])], grid(2, 3), 40)).toBeGreaterThan(0);
-  expect(differential(2, 2, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"], ["r1c1", "r1c2"])])).toBe(0);
+});
+
+test("the lowered formula and the public evaluator agree on identical arrows", () => {
+  expect(differential(2, 2, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"], ["r1c1", "r1c2"])], grid(2, 2), 4)).toBe(0);
   expect(differential(2, 2, [1, 2, 3, 4], [`coordinate-arrows arrows [["r1c1","r1c2","r2c1"]]`, `coordinate-arrows arrows [["r1c1"]]`])).toBe(0);
 });
 
-test("the lowered formula and the public evaluator agree with an inactive cell", () => {
+test("a coordinate that can name an inactive cell stays uncovered, because the published rule leaves it undecided", () => {
   const hole = grid(2, 3).filter(c => c !== "r2c2");
-  expect(differential(2, 3, [1, 2, 3, 4], [arrows(["r1c1", "r1c2"]), arrows(["r1c1", "r1c3"])], hole, 25)).toBeGreaterThan(0);
+  const r = nf(arrows(["r1c1", "r1c2"]), 2, 3, [1, 2, 3, 4], hole);
+  expect(r.normalForm!.coverage.find(x => x.kind === "coordinate-arrows")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("inactive cell") });
+  // With an alphabet that cannot name the hole (row 2 is not a symbol), the arrow is still lowered.
+  expect(nf(arrows(["r1c1", "r1c2"]), 2, 3, [1, 3, 4], hole).normalForm!.coverage.find(x => x.kind === "coordinate-arrows")).toMatchObject({ status: "lowered" });
 });
