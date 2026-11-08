@@ -85,7 +85,7 @@ export const declarationRegistry = {
   "split-pea": lowered,
   "prefix-sum": lowered,
   "blocked-sight": lowered,
-  "sum-partition": pending("Covering intervals and partition cuts are not lowered."),
+  "sum-partition": lowered,
   decoration: lowered,
   sudoku: lowered,
   unique: lowered,
