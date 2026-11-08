@@ -122,6 +122,7 @@ term graphWindow(E:list<list<cell>>,W:list<cell>,k:position):boolean = k>=1 ∧ 
 term graphWindows(E:list<list<cell>>,k:position):set<list<cell>> = {W∈cellLists(allCells(E),k): graphWindow(E,W,k)};
 term lineWindows(L:list<cell>,E:optional<list<list<cell>>>,k:position,closed:boolean):set<list<cell>> = if present(E) then graphWindows(unwrap(E),k) else {window(L,k,s,closed):s∈{i∈[0,|L|): k>=0 ∧ start(L,k,i,closed) ∧ (closed → |L|>0)}};
 primitive connected<T>(E:collection<T>):boolean;
+primitive acyclic(E:list<list<cell>>):boolean;
 term validNetwork(E:list<list<cell>>):boolean = |E|>0 ∧ (∀e∈E: |e|=2 ∧ e[0]!=e[1]) ∧ connected(E);
 term lineGeometry(L:list<cell>,E:optional<list<list<cell>>>,closed:boolean):boolean = present(E) → ¬closed ∧ validNetwork(unwrap(E)) ∧ (∀c∈L:c∈allCells(unwrap(E)));
 term maximalRegionRuns(L:list<cell>,segments:list<list<cell>>):boolean = (∀s∈segments: |s|>0 ∧ ∃R∈Regions: ∀c∈s:c∈R) ∧ (Σ_{s∈segments}|s|)=|L| ∧ (∀i∈[0,|segments|): let offset=Σ_{j∈[0,i)} |segments[j]|; ∀k∈[0,|segments[i]|): 0<=offset+k ∧ offset+k<|L| ∧ segments[i][k]=L[offset+k]) ∧ ∀i∈[0,|segments|-1): |segments[i]|>0 ∧ |segments[i+1]|>0 → 0<=|segments[i]|-1 ∧ |segments[i]|-1<|segments[i]| ∧ ¬samePartition(Regions,segments[i][|segments[i]|-1],segments[i+1][0]);
@@ -263,7 +264,7 @@ An `expression` is an authored arithmetic tree containing whole numbers, letters
 
 A `collection<T>` accepts a set, list or path of T. Aggregates over lists retain repeated positions; mapped sets remove duplicate results. Ordered comprehensions traverse intervals in increasing order or traverse a supplied list in its given order; a trailing condition filters that order. Sets have no implied order. Empty sums are zero and empty products are one. `allDifferent(S,f)` requires different projected numbers for every occurrence. Sets contain one occurrence per member; lists retain repeated positions. `repeatPolicy(S,ch,false)` applies this to a numeric channel.
 
-`connected` checks orthogonal reachability for cell collections and explicit reachability for edge collections. It rejects an empty collection. `partition` covers every board cell exactly once. boardDiagonals constructs maximal straight bishop rays from top/side boundaries. magicLines lists all eight rows, columns and diagonals of a nine-cell square in reading order.
+`connected` checks orthogonal reachability for cell collections and explicit reachability for edge collections. It rejects an empty collection. `acyclic` holds when the directed edges, each read from its first cell to its second, contain no directed cycle; a repeated edge is one edge, and an edge from a cell to itself is a cycle. `partition` covers every board cell exactly once. boardDiagonals constructs maximal straight bishop rays from top/side boundaries. magicLines lists all eight rows, columns and diagonals of a nine-cell square in reading order.
 
 Shift relations compare integer values; their parity is the normalised remainder modulo 2.
 
