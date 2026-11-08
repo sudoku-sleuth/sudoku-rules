@@ -2,7 +2,7 @@ import {compilePublicLibrary,publicPages} from '../helpers/library';
 import {migrateDeclaration} from '../../src';
 import {assertMigratedEquivalent,replayedKinds} from './migration-equivalence';
 import {expect,test,afterAll} from 'bun:test';
-import {normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
+import {normalise,checkCaseReferences,parseFormula,checkFormula,declarationRegistry} from '../../src';
 import {caseExamples} from '../../scripts/lint-skill';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
 import {declarationRegistry} from '../../src/semantics/registry';
@@ -248,7 +248,7 @@ test('shape reflections can be allowed without admitting a half-turn rotation',(
  expect(formula('congruent({boardCell(0,0),boardCell(0,1),boardCell(0,2),boardCell(1,0)},{boardCell(1,0),boardCell(1,1),boardCell(1,2),boardCell(0,2)},false,true)')).toBe(false);
  expect(formula('congruent({boardCell(0,0),boardCell(0,1),boardCell(0,2),boardCell(1,0)},{boardCell(1,0),boardCell(1,1),boardCell(1,2),boardCell(0,2)},true,false)')).toBe(true);
 });
-test('new declarations retain whole-instance unsupported comparison coverage under negation',()=>{
+test('new declarations keep their coverage under negation',()=>{
  const board={rows:9,cols:9,alphabet:[1,2,3,4,5,6,7,8,9],activeCells:Array.from({length:81},(_,i)=>`r${Math.floor(i/9)+1}c${i%9+1}` as `r${number}c${number}`)};
  for(const kind of additions.filter(k=>library.rules.has(k))){
   const text=caseExamples(sources.find(s=>s.file===`rules/${kind==='index-count'?'lookup':kind}.md`)!.text)[0].replace(`\n${kind} `,`\nnot ${kind} `);
