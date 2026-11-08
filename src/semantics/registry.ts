@@ -81,7 +81,7 @@ export const declarationRegistry = {
   "region-clue": pending("Clues on a shared region partition are not lowered."),
 
   lookup: lowered,
-  "difference-line": pending("Common or distinct edge differences and signed steps are not lowered."),
+  "difference-line": lowered,
   "split-pea": pending("Reversible decimal endpoint readings are not lowered."),
   "prefix-sum": pending("Answer-dependent stopping prefixes are not lowered."),
   "blocked-sight": lowered,

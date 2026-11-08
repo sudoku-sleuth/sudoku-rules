@@ -93,7 +93,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     renban:["edges","channel","repeats","selection"], nabner:["edges","channel","separated","selection"],
     bremban:["edges","selection"], "shifter-line":["edges"],
     modular:["edges","length"], entropic:["edges"], parity:["edges"], whispers:["edges"], whisper:["edges"],
-    "close-whispers":["edges","channel"], primality:["edges"], summit:["edges"], "region-sum":["channel"],
+    "close-whispers":["edges","channel"], primality:["edges"], summit:["edges"], "difference-line":["edges"], "region-sum":["channel"],
     pair:["channel"], cage:["channel"], killer:["channel"], "scoped-move":["scope","channel"],
   };
   for (const name of Object.keys(p)) {
