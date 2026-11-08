@@ -534,13 +534,32 @@ function joinLinePieces(t:Template,lines:Line[],page:PageSource):Match[] {
   }
   const joints=[...uses].filter(([,n])=>n>1).map(([c])=>c);
   const repeated=part.some(l=>new Set(cellsOf(l)).size!==cellsOf(l).length||cellsOf(l)[0]===cellsOf(l).at(-1));
-  const shape=joints.some(c=>uses.get(c)!==2||ends.get(c)?.length!==2)||repeated?'the pieces branch, cross or repeat a cell'
+  // Pieces that branch or meet at a middle cell are one network, when the rule declares `edges`:
+  // its edges are the pieces' neighbouring pairs. Any other rule keeps the old refusal.
+  const hasEdges=!!declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${t.rule}.md`)?.parameters.edges;
+  const area=unique(part.flatMap(cellsOf)) as string[];
+  const pairs=part.flatMap(l=>cellsOf(l).slice(1).map((c,i)=>[cellsOf(l)[i],c] as [string,string]));
+  const repeatsEdge=new Set(pairs.map(([x,y])=>x<y?`${x}|${y}`:`${y}|${x}`)).size!==pairs.length;
+  const crosses=joints.some(c=>uses.get(c)!==2||ends.get(c)?.length!==2);
+  const branched=hasEdges&&!repeated&&!repeatsEdge&&crosses;
+  const shape=!hasEdges?(crosses||repeated?'the pieces branch, cross or repeat a cell':joints.length!==part.length-1?'the pieces close a loop':undefined)
+   :repeated?'the pieces repeat a cell'
+   :repeatsEdge?'the pieces repeat an edge'
+   :crosses?(pairs.length>=area.length?'the pieces close a loop':undefined)
    :joints.length!==part.length-1?'the pieces close a loop':undefined;
   const refuse=part.some(l=>l.ast.comment)?'a piece carries a comment that a join would lose'
    :new Set(part.map(l=>l.form)).size>1?'the pieces write their cells in different forms, positional and as a setting'
    :new Set(part.map(element)).size>1?'the pieces are tied to different drawn elements':shape??strandedLabel(part.slice(1),page);
   const written=[''],edits:Edit[]=[];
-  if(!refuse){
+  if(!refuse&&branched){
+   // One network: an empty line and the pairs as edges, in the order the pieces list them.
+   const base=part[0],holder=base.form==='positional'?base.ast.cells!:base.ast.parameters.find(p=>p.name.value===base.primary)!.value;
+   const at=holder.span,text=base.text,offset=base.ast.span.start.offset;
+   const edges=`edges [${pairs.map(([a,b])=>`[${JSON.stringify(a)},${JSON.stringify(b)}]`).join(',')}]`;
+   const printed=base.form==='positional'?`line [] ${edges}`:`[] ${edges}`;
+   written[0]=text.slice(0,at.start.offset-offset)+printed+text.slice(at.end.offset-offset);
+   edits.push({start:at.start.offset,end:at.end.offset,text:printed},...part.slice(1).map(wholeLine));
+  } else if(!refuse){
    // Walk from the free end of one piece through each joint.
    const start=part.find(l=>[cellsOf(l)[0],cellsOf(l).at(-1)!].some(c=>uses.get(c)===1));
    if(!start){matches.push({lines:part,edits,written:[],refuse:'the pieces have no free end to start from'});continue;}

@@ -1,6 +1,7 @@
 import {expect,test} from 'bun:test';
 import {run,rulesOf,caseFile,board} from '../helpers/canonicalise';
 import {canonicalise} from '../../src';
+import {declarationLibrary} from '../../src/declaration-library';
 
 test('touching whisper pieces of one drawn line become one line, whichever way a piece is written',()=>{
  const pieces=['whispers r1c1-r1c2 gap 4 loop false element "a"','whispers r1c2-r1c3 gap 4 loop false element "a"','whispers r1c4-r1c3 gap 4 loop false element "a"'];
@@ -25,13 +26,78 @@ test('pieces tied to different drawn elements are never merged',()=>{
  expect(result.kept[0].reason).toBe('the pieces are tied to different drawn elements');
 });
 
-test('pieces that branch, or close a loop, are refused',()=>{
+test('pieces that branch join into one network, and pieces that close a loop are refused',()=>{
  const branch=['parity r1c1-r1c2','parity r1c2-r1c3','parity r1c2-r2c2'].join('\n');
  const branched=run(branch);
- expect(rulesOf(branched.text)).toBe(branch);
- expect(branched.kept[0].reason).toBe('the pieces branch, cross or repeat a cell');
+ expect(rulesOf(branched.text)).toBe('parity line [] edges [["r1c1","r1c2"],["r1c2","r1c3"],["r1c2","r2c2"]]');
+ expect(branched.rewrites.map(r=>r.template)).toEqual(['join-line-pieces parity-line']);
+ expect(branched.kept).toEqual([]);
  const ring=['parity r1c1-r1c2','parity r1c2-r2c2','parity r2c2-r2c1','parity r2c1-r1c1'].join('\n');
  expect(run(ring).kept[0].reason).toBe('the pieces close a loop');
+});
+
+test('whisper pieces that meet at a middle cell join into one network',()=>{
+ const result=run(['whispers r1c1-r1c2-r1c3 gap 5 loop false','whispers r2c2-r1c2 gap 5 loop false'].join('\n'));
+ expect(rulesOf(result.text)).toBe('whispers line [] edges [["r1c1","r1c2"],["r1c2","r1c3"],["r2c2","r1c2"]] gap 5 loop false');
+ expect(result.kept).toEqual([]);
+});
+
+test('two pieces that cross at a middle cell join into one network',()=>{
+ const result=run(['parity r2c1-r2c2-r2c3','parity r1c2-r2c2-r3c2'].join('\n'));
+ expect(rulesOf(result.text)).toBe('parity line [] edges [["r2c1","r2c2"],["r2c2","r2c3"],["r1c2","r2c2"],["r2c2","r3c2"]]');
+ expect(result.rewrites.map(r=>r.template)).toEqual(['join-line-pieces parity-line']);
+ expect(result.kept).toEqual([]);
+});
+
+test('a repeated edge, in either direction, is refused with its own reason',()=>{
+ for(const again of ['parity r1c2-r1c3','parity r1c3-r1c2']){
+  const lines=['parity r1c1-r1c2','parity r1c2-r1c3','parity r1c2-r2c2',again].join('\n');
+  const result=run(lines);
+  expect(rulesOf(result.text)).toBe(lines);
+  expect(result.rewrites).toEqual([]);
+  expect(result.kept[0].reason).toBe('the pieces repeat an edge');
+ }
+ const twice=run('parity r1c1-r1c2\nparity r1c2-r1c1');
+ expect(twice.kept[0].reason).toBe('the pieces repeat an edge');
+});
+
+test('pieces written as a line setting join into a network, keeping the setting form',()=>{
+ const result=run(['parity line ["r1c1","r1c2"]','parity line ["r1c2","r1c3"]','parity line ["r1c2","r2c2"]'].join('\n'));
+ expect(rulesOf(result.text)).toBe('parity line [] edges [["r1c1","r1c2"],["r1c2","r1c3"],["r1c2","r2c2"]]');
+ expect(result.kept).toEqual([]);
+});
+
+test('branched pieces with different gaps or drawn elements stay apart',()=>{
+ const gaps=['whispers r1c1-r1c2 gap 4 loop false','whispers r1c2-r1c3 gap 4 loop false','whispers r1c2-r2c2 gap 5 loop false'].join('\n');
+ const apart=run(gaps);
+ // The two gap-4 pieces are a line of their own; the gap-5 piece is another line.
+ expect(rulesOf(apart.text)).toBe('whispers r1c1-r1c2-r1c3 gap 4 loop false\nwhispers r1c2-r2c2 gap 5 loop false');
+ const elements=['whispers r1c1-r1c2 gap 4 loop false element "a"','whispers r1c2-r1c3 gap 4 loop false element "a"','whispers r1c2-r2c2 gap 4 loop false element "b"'].join('\n');
+ const other=run(elements);
+ expect(rulesOf(other.text)).toContain('element "b"');
+ expect(other.text).not.toContain('edges');
+});
+
+test('a rule without an edges parameter keeps the old refusal for branches and crossings',()=>{
+ const contract=declarationLibrary.parameters!.get('https://rules.sudoku-sleuth.com/whispers.md')!;
+ const edges=contract.parameters.edges;
+ delete contract.parameters.edges;
+ try{
+  for(const lines of [['whispers r1c1-r1c2 gap 4 loop false','whispers r1c2-r1c3 gap 4 loop false','whispers r1c2-r2c2 gap 4 loop false'],['whispers r2c1-r2c2-r2c3 gap 4 loop false','whispers r1c2-r2c2-r3c2 gap 4 loop false']]){
+   const result=run(lines.join('\n'));
+   expect(rulesOf(result.text)).toBe(lines.join('\n'));
+   expect(result.rewrites).toEqual([]);
+   expect(result.kept[0].reason).toBe('the pieces branch, cross or repeat a cell');
+  }
+ }finally{contract.parameters.edges=edges;}
+});
+
+test('branched pieces sharing a gap and an element join, and the piece that differs stays apart',()=>{
+ const lines=['whispers r1c1-r1c2 gap 4 loop false element "a"','whispers r1c2-r1c3 gap 4 loop false element "a"','whispers r1c2-r2c2 gap 4 loop false element "a"','whispers r5c5-r5c6 gap 5 loop false element "b"'];
+ const result=run(lines.join('\n'));
+ expect(rulesOf(result.text)).toBe(['whispers line [] edges [["r1c1","r1c2"],["r1c2","r1c3"],["r1c2","r2c2"]] gap 4 loop false element "a"',lines[3]].join('\n'));
+ expect(result.kept).toEqual([]);
+ expect(result.rewrites.map(r=>r.template)).toEqual(['join-line-pieces whispers']);
 });
 
 test('pieces with different settings are different lines and stay apart',()=>{
