@@ -85,8 +85,11 @@ test("bulbs whose weights are too large and partial arrows outside the finite fr
   expect(long.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("1,000,000") });
   const negative = nf(`arrow ${b} bulb ${bulb(a)} partial true`, { ...board, alphabet: [-1, 2, 3] });
   expect(negative.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("negative") });
-  const repeated = nf(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`);
-  expect(repeated.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("repeats a cell") });
+  // Five repeated shaft cells on nine digits are more than 20,000 readings.
+  const cellsOf = wide.activeCells;
+  const loop = [...cellsOf.slice(0, 5), ...cellsOf.slice(0, 5)];
+  const repeated = nf(`arrow ${loop.join("-")} bulb ${bulb(cellsOf[7])} partial true`, wide);
+  expect(repeated.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("20,000") });
   // A complete arrow may repeat a shaft cell: the equation counts each visit.
   expect(nf(`arrow ${b}-${c}-${b} bulb ${bulb(a)}`).status).toBe("complete");
 });
@@ -177,4 +180,52 @@ test("a partial arrow above the reading cap is refused with its reason", () => {
   const wide: BoardContext = { rows: 1, cols: 8, activeCells: Array.from({ length: 8 }, (_, i) => `r1c${i + 1}` as Cell), alphabet: [0, ...digits9] };
   const refused = nf(`arrow r1c8 bulb ${bulb(...wide.activeCells.slice(0, 6))} partial true`, wide);
   expect(refused.normalForm!.coverage.find(x => x.kind === "arrow")).toMatchObject({ status: "unsupported", reason: expect.stringContaining("100,000 bulb readings") });
+});
+
+/** A partial arrow, read straight from its meaning: the shaft counted at every visit, plus a nonempty list of alphabet digits, makes the bulb. */
+function partialArrow(symbols: number[], shaft: Cell[], bulbCells: Cell[], v: Record<string, number>): boolean {
+  const number = bulbCells.reduce((n, q) => n * 10 + v[q], 0);
+  const visible = shaft.reduce((n, q) => n + v[q], 0);
+  const reachable = new Set<number>();
+  for (let t = 0; t <= number; t++) if (symbols.some(x => x === t || x > 0 && x < t && reachable.has(t - x))) reachable.add(t);
+  return number - visible >= 0 && reachable.has(number - visible);
+}
+
+const repeatCases: [string, Cell[], Cell[]][] = [
+  [`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, [b, c, b], [a]],
+  [`arrow ${b}-${b} bulb ${bulb(a)} partial true`, [b, b], [a]],
+  [`arrow ${b}-${c}-${d}-${c}-${b} bulb ${bulb(a)} partial true`, [b, c, d, c, b], [a]],
+  [`arrow ${c}-${d}-${c} bulb ${bulb(a, b)} partial true`, [c, d, c], [a, b]],
+  [`arrow ${b}-${a}-${b} bulb ${bulb(a)} partial true`, [b, a, b], [a]],
+];
+for (const [text, shaft, bulbCells] of repeatCases) {
+  test(`a partial arrow whose shaft repeats a cell agrees with its meaning on every assignment: ${text}`, () => {
+    for (const symbols of [[0, 1, 2, 3], [1, 2, 3]]) {
+      const n = nf(text, { ...board, alphabet: symbols });
+      expect(n.issues).toEqual([]);
+      expect(n.status).toBe("complete");
+      let satisfied = 0, total = 0;
+      const cells = [a, b, c, d];
+      const walk = (index: number, v: Record<string, number>) => {
+        if (index === cells.length) {
+          const expected = partialArrow(symbols, shaft, bulbCells, v);
+          expect([text, symbols.join(), JSON.stringify(v), holds(n.normalForm!.solution, v)]).toEqual([text, symbols.join(), JSON.stringify(v), expected]);
+          total++;
+          if (expected) satisfied++;
+          return;
+        }
+        for (const x of symbols) walk(index + 1, { ...v, [cells[index]]: x });
+      };
+      walk(0, {});
+      // Agreement is never vacuous on the alphabet with zero; without zero a long shaft can exceed every bulb or fall short of none.
+      if (symbols.includes(0)) expect([text, satisfied > 0, satisfied < total]).toEqual([text, true, true]);
+    }
+  });
+}
+
+test("a repeated shaft cell changes the partial arrow's normal form", () => {
+  differs(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `arrow ${b}-${c} bulb ${bulb(a)} partial true`);
+  differs(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `arrow ${b}-${c}-${c} bulb ${bulb(a)} partial true`);
+  eq(`arrow ${b}-${c}-${b} bulb ${bulb(a)} partial true`, `arrow ${b}-${b}-${c} bulb ${bulb(a)} partial true`);
+  eq(`arrow ${b}-${c} bulb ${bulb(a)} partial true`, `arrow ${c}-${b} bulb ${bulb(a)} partial true`);
 });
