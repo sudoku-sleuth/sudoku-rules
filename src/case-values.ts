@@ -27,6 +27,11 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
   const alias = Object.hasOwn(types, type.name) ? types[type.name] : undefined;
   if (alias) return valueProblem(value, alias, types, board, depth + 1);
   const child = (v: unknown, t: Type) => valueProblem(v, t, types, board, depth + 1);
+  if (SEQUENCE_TYPES.includes(type.name)) {
+    if (!Array.isArray(value)) return "must be a list";
+    for (const [i, v] of value.entries()) { const problem = child(v, type.args![0]); if (problem) return `item ${i + 1} ${problem}`; }
+    return;
+  }
   switch (type.name) {
     case "optional": return value === undefined ? undefined : child(value, type.args![0]);
     case "cell": return cellValid(value, board) ? undefined : "must be an in-board cell in r1c1 form";
@@ -35,10 +40,6 @@ export function valueProblem(value: unknown, type: Type, types: Record<string, T
     case "string": return typeof value === "string" ? undefined : "must be text";
     case "boolean": return typeof value === "boolean" ? undefined : "must be true or false";
     case "enum": return typeof value === "string" && type.members?.includes(value) ? undefined : `must be one of ${type.members?.join(", ")}`;
-    case "set": case "list": case "path": case "collection":
-      if (!Array.isArray(value)) return "must be a list";
-      for (const [i, v] of value.entries()) { const problem = child(v, type.args![0]); if (problem) return `item ${i + 1} ${problem}`; }
-      return;
     case "record":
       if (!object(value)) return "must be an object";
       for (const key of Object.keys(value)) if (!Object.hasOwn(type.fields ?? {}, key)) return `has unknown field ${key}`;
