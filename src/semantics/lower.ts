@@ -19,6 +19,7 @@ import { lowerEqualityCage } from "./equality-cage.js";
 import { lowerVault } from "./vault.js";
 import { lowerCountingCircles } from "./counting-circles.js";
 import { lowerLayeredCage } from "./layered-cage.js";
+import { lowerAggregateEquation, lowerCagePair, lowerProductCage } from "./aggregate-equation.js";
 import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
@@ -40,7 +41,7 @@ const fields: Record<string, string[]> = {
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
-  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [], "index-line": [], "n-mate": ["cell", "ray", "cage"], "super-indexing": [], "coordinate-arrows": ["arrows"], "pointing-arrow": ["cell", "ray", "target", "source"], "pointing-thermo": ["ray"], lookup: ["mode", "cell", "indexChannel", "channel", "offset", "target", "targetCell", "relation", "sources", "queries", "total", "firstMatch", "increasing", "reverseRelation", "nonempty"], "layered-cage": ["upper"],
+  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [], "index-line": [], "n-mate": ["cell", "ray", "cage"], "super-indexing": [], "coordinate-arrows": ["arrows"], "pointing-arrow": ["cell", "ray", "target", "source"], "pointing-thermo": ["ray"], lookup: ["mode", "cell", "indexChannel", "channel", "offset", "target", "targetCell", "relation", "sources", "queries", "total", "firstMatch", "increasing", "reverseRelation", "nonempty"], "layered-cage": ["upper"], "aggregate-equation": ["left", "right", "leftOperation", "rightOperation", "relation"], "product-cage": ["product", "distinct"], "cage-pair": ["relation", "cages"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
@@ -86,7 +87,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
   if (kind === "same-class" && (instance.cells ?? []).some(cell => !board.activeCells.includes(cell))) throw new UnsupportedSemantics("A same-class cell that is inactive is not lowered; the whole instance remains uncovered.");
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage", "product-cage"].includes(kind);
   if (needsCells && kind !== "lookup" && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -111,6 +112,9 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "equality-cage") return lowerEqualityCage(ast, board);
   if (kind === "vault") return lowerVault(ast, board);
   if (kind === "layered-cage") return lowerLayeredCage(ast, board);
+  if (kind === "aggregate-equation") return lowerAggregateEquation(ast, board);
+  if (kind === "product-cage") return lowerProductCage(ast, board);
+  if (kind === "cage-pair") return lowerCagePair(ast, board);
   if (kind === "counting-circles") return lowerCountingCircles(ast, board);
   if (kind === "window-classes") return lowerWindowClasses(ast, board);
   if (kind === "same-class") return lowerSameClass(ast, board);

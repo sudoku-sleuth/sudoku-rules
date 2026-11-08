@@ -5,6 +5,7 @@ import {expect,test,afterAll} from 'bun:test';
 import {normalise,checkCaseReferences,parseFormula,checkFormula} from '../../src';
 import {caseExamples} from '../../scripts/lint-skill';
 import {fragmentVerdict,type Fragment} from './finite-fragment';
+import {declarationRegistry} from '../../src/semantics/registry';
 const sources = publicPages;
 const compiled=compilePublicLibrary(sources);
 if(!compiled.value)throw Error(JSON.stringify(compiled.diagnostics));
@@ -253,6 +254,12 @@ test('new declarations retain whole-instance unsupported comparison coverage und
   const text=caseExamples(sources.find(s=>s.file===`rules/${kind==='index-count'?'lookup':kind}.md`)!.text)[0].replace(`\n${kind} `,`\nnot ${kind} `);
   const result=normalise({file:'synthetic.rules.md',text},board);
   expect(result.issues).toEqual([]);
+  // A kind the registry lowers is covered under `not` too; every other addition stays uncovered as a whole instance.
+  if(declarationRegistry[kind as keyof typeof declarationRegistry]?.status==='lowered'){
+   expect(result.status).toBe('complete');
+   expect(result.normalForm!.coverage.filter(c=>c.kind===kind).every(c=>c.status==='lowered')).toBe(true);
+   continue;
+  }
   expect(result.status).toBe('partial');
   expect(result.normalForm!.coverage.some(c=>c.kind===kind&&c.status==='unsupported')).toBe(true);
  }
