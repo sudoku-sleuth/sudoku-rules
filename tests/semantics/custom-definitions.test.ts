@@ -109,7 +109,7 @@ function published(maths: string, alphabet: number[], definitionCells = 3): (dig
   const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: ${definitionCells}, symbols: [${alphabet.join(",")}], regions: [[${cells(definitionCells).join(", ")}]]}\n---\n${fence(custom(maths))}\n\`\`\`rules\n${rules}\n\`\`\`` });
   expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
   const rule = compiled.value!.rules[0];
-  return digits => evaluate(rule, { digits }).status === "holds";
+  return digits => evaluate(rule, { digits, values: remap(digits) }).status === "holds";
 }
 
 test("a definition may use shared terms, local bindings and nested quantifiers", () => {
@@ -274,4 +274,84 @@ test("a shared term that calls itself is refused as recursion", () => {
   const ast = parseDeclaration({ file: "x", text: `#probe ${a}-${b}` }, () => ({ primary: "cells" })).value!;
   const recursive = { ...definition, checked: { ...definition.checked!, ast: call as never } };
   expect(() => lowerCustom(recursive, ast, canonicalBoard(context(2)), prelude as never)).toThrow(reason("recursion", "loop"));
+});
+
+/** Effective values that are not a multiple of the digits; a definition that reads D must ignore them. */
+const remap = (digits: Record<string, number>): Record<string, number> => Object.fromEntries(Object.entries(digits).map(([cell, x]) => [cell, x + 7]));
+/** Every assignment of three cells over the alphabet: the lowered formula equals the published definition read by the public evaluator. */
+function agree(label: string, maths: string, alphabet: number[]): Normalisation {
+  const result = nf(`#probe ${a}-${b}-${c}`, [custom(maths)], context(3, alphabet));
+  expect([label, result.issues, result.status, coverageOf(result).map(x => x.reason)]).toEqual([label, [], "complete", [undefined]]);
+  const rules = `#probe ${a}-${b}-${c}`;
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [${alphabet.join(",")}], regions: [[r1c1, r1c2, r1c3]]}\n---\n${fence(custom(maths))}\n\`\`\`rules\n${rules}\n\`\`\`` });
+  expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+  const rule = compiled.value!.rules[0];
+  for (const x of alphabet) for (const y of alphabet) for (const z of alphabet) {
+    const digits = { [a]: x, [b]: y, [c]: z };
+    const text = evaluate(rule, { digits, values: remap(digits) }).status === "holds";
+    expect([label, alphabet.join(), x, y, z, holds(result.normalForm!.solution, digits)]).toEqual([label, alphabet.join(), x, y, z, text]);
+    expect([label, x, y, z, evaluate(rule, { digits }).status === "holds"]).toEqual([label, x, y, z, text]);
+  }
+  return result;
+}
+
+const arithmeticFormulas = [
+    "|cells| = 3 ∧ ⌊D(cells[0]) / 2⌋ = D(cells[1])",
+    "|cells| = 3 ∧ D(cells[0]) / 2 < D(cells[1])",
+    "|cells| = 3 ∧ |D(cells[0]) - D(cells[1])| >= 2",
+    "|cells| = 3 ∧ |D(cells[0]) - D(cells[1])| = 2 ∧ D(cells[2]) != D(cells[0])",
+    "|cells| = 3 ∧ -D(cells[0]) < D(cells[1])",
+    "|cells| = 3 ∧ -(D(cells[0]) + D(cells[1])) = D(cells[2])",
+    "|cells| = 3 ∧ D(cells[0]) ^ 2 > D(cells[1])",
+    "|cells| = 3 ∧ D(cells[0]) ^ 2 = D(cells[1]) ^ 2",
+    "|cells| = 3 ∧ D(cells[0]) mod 3 = D(cells[1]) mod 3",
+    "|cells| = 3 ∧ (D(cells[0]) + D(cells[1])) mod 2 = 1",
+    "|cells| = 3 ∧ 2 × D(cells[0]) - D(cells[1]) = D(cells[2])",
+    "|cells| = 3 ∧ D(cells[0]) + D(cells[1]) + D(cells[2]) <= 2",
+    "|cells| = 3 ∧ D(cells[0]) + D(cells[1]) + D(cells[2]) != 4",
+    "|cells| = 3 ∧ D(cells[0]) + 2 × D(cells[1]) + D(cells[2]) = 5",
+    "∀i∈[0,|cells|-1): D(cells[i]) < D(cells[i+1])",
+    "∀x∈cells: D(x) ∈ {0,2,5}",
+    "∃p,q∈cells: p!=q ∧ D(p) + D(q) = 0",
+    "allDifferent(cells, λx:cell: D(x) mod 2)",
+    "|cells| = 3 ∧ (D(cells[0]) > 1 ↔ D(cells[1]) < 3)",
+];
+for (const alphabet of [[-3, -1, 0, 2, 5], [0, 1, 2, 3], [2, 4, 7], digits9.slice(0, 5)]) {
+  test(`arithmetic over the alphabet ${alphabet.join(",")} agrees with the public evaluator`, () => {
+    for (const maths of arithmeticFormulas) agree(maths, maths, alphabet);
+  });
+}
+
+test("a near miss of a definition differs in normal form and still matches the evaluator on its own text", () => {
+  interface Base { template: string; op: string; swapped?: string; k: number }
+  const bases: Base[] = [
+    { template: "|cells| = 3 ∧ D(cells[0]) + D(cells[1]) + D(cells[2]) {op} {k}", op: "<", k: 10, swapped: "|cells| = 3 ∧ {k} {op} D(cells[0]) + D(cells[1]) + D(cells[2])" },
+    { template: "|cells| = 3 ∧ |D(cells[0]) - D(cells[1])| {op} {k}", op: ">", k: 2 },
+    { template: "|cells| = 3 ∧ 2 × D(cells[0]) {op} D(cells[1]) + {k}", op: "=", k: 1, swapped: "|cells| = 3 ∧ D(cells[1]) + {k} {op} 2 × D(cells[0])" },
+    { template: "∀i∈[0,|cells|-1): D(cells[i]) {op} D(cells[i+1]) + {k}", op: "<", k: 0 },
+  ];
+  const alphabet = [1, 2, 3, 4, 5, 6];
+  const text = (base: Base, op = base.op, k = base.k, template = base.template) => template.replaceAll("{op}", op).replaceAll("{k}", String(k));
+  const relax: Record<string, string> = { "<": "<=", ">": ">=", "=": "!=" };
+  for (const base of bases) {
+    const original = agree(text(base), text(base), alphabet);
+    const mutants = [text(base, relax[base.op]), text(base, base.op, base.k + 1)];
+    if (base.swapped && base.op !== "=") mutants.push(text(base, base.op, base.k, base.swapped));
+    for (const mutant of mutants) {
+      const near = agree(mutant, mutant, alphabet);
+      expect([mutant, compare(original, near).status, solution(original) === solution(near)]).toEqual([mutant, "unresolved", false]);
+    }
+    // Swapping both sides of an equation states the same condition.
+    if (base.swapped && base.op === "=") expect(compare(original, agree(text(base, base.op, base.k, base.swapped), text(base, base.op, base.k, base.swapped), alphabet)).status).toBe("equivalent");
+  }
+});
+
+test("a parameter named kind keeps its default", () => {
+  const withKind = (name: string) => ({ id: "gap", parameters: { cells: path, [name]: { type: "number", description: "The gap.", default: 2 } }, maths: `|cells| = 2 ∧ D(cells[0]) + ${name} = D(cells[1])` });
+  const result = nf(`#gap ${a}-${b}`, [withKind("kind")], context(2));
+  const plain = nf(`#gap ${a}-${b}`, [withKind("gap")], context(2));
+  expect([result.issues, result.status]).toEqual([[], "complete"]);
+  expect(compare(result, plain).status).toBe("equivalent");
+  expect(holds(result.normalForm!.solution, { [a]: 3, [b]: 5 })).toBe(true);
+  expect(holds(result.normalForm!.solution, { [a]: 3, [b]: 4 })).toBe(false);
 });

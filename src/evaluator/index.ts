@@ -121,7 +121,7 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
   const parsed=parseFormula(String(local.metadata.maths),{file:file.file});
   const formula=parsed.value&&env.value?checkFormula(parsed.value,env.value.environment):undefined;
   if(formula?.value&&env.value){
-   const contract=customDefinitionContract(local);
+   const contract=customDefinitionContract(local,defaultCasePrelude());
    const definition={name:local.id??local.url,page:{file:file.file,parameters:env.value.parameters,formulas:[formula.value]},contract};definitions.set(local.url,definition);if(typeof local.metadata.url==='string')definitions.set(local.metadata.url,definition);
   }else errors.push(...env.diagnostics,...parsed.diagnostics,...formula?.diagnostics??[]);
  }

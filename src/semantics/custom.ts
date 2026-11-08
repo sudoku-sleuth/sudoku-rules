@@ -1,4 +1,4 @@
-import { customDefinitionContract, type CustomDefinition } from "../custom-definitions.js";
+import { customDefinitionContract, customParameterTypes, type CustomDefinition } from "../custom-definitions.js";
 import type { DeclarationAST } from "../declarations.js";
 import { instanceInputs } from "../evaluator/inputs.js";
 import { numericInput } from "../evaluator/interpreter.js";
@@ -513,11 +513,13 @@ class Lowering {
 
 /** The parameters an instance supplies, each converted to the type its definition declares. */
 function parametersOf(definition: CustomDefinition, ast: DeclarationAST, prelude: CheckedPrelude): Scope {
-  const contract = customDefinitionContract(definition);
+  const contract = customDefinitionContract(definition, prelude);
   const inputs = instanceInputs(ast, contract);
   const types = prelude.environment.types ?? {};
+  // The checker's own parameter types, so a parameter the contract cannot type (one named kind) still converts.
+  const declared = customParameterTypes(definition, prelude);
   return Object.fromEntries(Object.keys(definition.parameters).map(name => {
-    const type = contract.parameters[name]?.type;
+    const type = declared[name] ?? contract.parameters[name]?.type;
     return [name, type ? typed(inputs[name], type, types) : inputs[name] as Value];
   }));
 }
