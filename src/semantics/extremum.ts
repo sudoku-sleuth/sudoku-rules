@@ -31,8 +31,13 @@ export function moveRelation(move: string, a: Cell, b: Cell): boolean {
  * The channel is left as written; the caller converts V to D.
  */
 export function lowerExtremum(ast: DeclarationAST, board: CanonicalBoard): Formula {
-  const instance = semanticDeclaration(ast), p = instance.parameters;
-  const marked = sortedCells(instance.cells ?? []);
+  const instance = semanticDeclaration(ast);
+  return lowerExtremumOf(instance.cells ?? [], instance.parameters, board);
+}
+
+/** The extremum of already-read marked cells and parameters; the aliases that bind it call this with their bound settings. */
+export function lowerExtremumOf(markedCells: Cell[], p: Record<string, unknown>, board: CanonicalBoard): Formula {
+  const marked = sortedCells(markedCells);
   if (p.type !== "min" && p.type !== "max") throw Error('Choose type "min" or "max".');
   if (typeof p.exhaustive !== "boolean") throw Error("exhaustive must be true or false.");
   if (p.boundary !== undefined && typeof p.boundary !== "boolean") throw Error("boundary must be true or false.");

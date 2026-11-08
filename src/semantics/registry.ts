@@ -174,7 +174,7 @@ export const declarationRegistry = {
   "branched-thermo": lowered,
   modular: lowered,
   "pointing-thermo": lowered,
-  tardis: pending("Centre versus supplied-neighbour comparisons are not lowered."),
+  tardis: lowered,
   parity: lowered,
   "parity-line": lowered,
   palindrome: lowered,
