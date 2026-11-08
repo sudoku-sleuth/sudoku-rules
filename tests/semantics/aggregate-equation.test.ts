@@ -273,11 +273,14 @@ function differential(n: number, symbols: number[], entries: string[]): number {
     expect([text, r.normalForm!.coverage.filter(x => x.kind !== "sudoku" && x.status !== "lowered")]).toEqual([text, []]);
     const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: ${n}, symbols: [${symbols}], regions: [[${used.join(", ")}]]}\n---${body(text)}` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
-    const rule = compiled.value!.rules[0];
+    // The evaluator runs the lowered formula itself when a rule has one, so it is switched off to compare with the published definition.
+    const rule = { ...compiled.value!.rules[0], finite: undefined };
     let satisfied = 0;
     const walk = (index: number, values: Record<string, number>) => {
       if (index === n) {
         const expected = evaluate(rule, { digits: values }).status === "holds";
+        // The rule reads printed digits, so effective values that differ from them change nothing.
+        expect(evaluate(rule, { digits: values, values: Object.fromEntries(Object.entries(values).map(([k, x]) => [k, 2 * x])) }).status === "holds").toBe(expected);
         expect([text, JSON.stringify(values), holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
         if (expected) satisfied++;
         return;
