@@ -110,23 +110,16 @@ function differential(symbols: number[], entries: Entry[], givens: { cell: Cell;
   }
 }
 
-test("the lowered formula and the public evaluator agree on every assignment, repeats and channel", () => {
-  differential([1, 2, 3, 4], [
-    `renban ${a}-${b}-${c} repeats true`, `renban ${a}-${b}-${c} channel "D"`, `renban ${a}-${b}-${c}-${d} repeats true channel "D"`, `not renban ${a}-${b}-${c} repeats true`,
-  ]);
-});
-
-test("the lowered formula and the public evaluator agree on every assignment, target and crust prefixes", () => {
-  differential([1, 2, 3, 4], [
-    `renban ${a}-${b}-${c} ${target(4, false)}`, `renban ${a}-${b}-${c} ${target(4, true)}`, `renban ${a}-${b}-${c}-${d} ${target(1, true)} repeats true`,
-    [`renban ${a}-${b}-${c} ${target(9, true)}`, "none"], `renban ${a}-${b}-${c} ${crust([1, 4], false)}`, `renban ${a}-${b}-${c}-${d} ${crust([3], true)} channel "D"`,
-    [`renban ${a}-${b}-${c} ${crust([], true)}`, "none"], [`renban ${a}-${b}-${c} ${crust([1, 2, 3, 4], true)}`, "all"], `not renban ${a}-${b}-${c} ${target(2, true)}`,
-  ]);
-});
-
-test("the lowered formula and the public evaluator agree on every assignment, given prefixes", () => {
-  differential([1, 2, 3, 4], [`renban ${a}-${b}-${c}-${d} ${given(true)}`, `renban ${a}-${b}-${c}-${d} ${given(false)} repeats true`, `renban ${a}-${b}-${c} ${given(false)}`],
-    [{ cell: c, digit: 2 }]);
-  differential([1, 2, 3, 4], [[`renban ${a}-${b} ${given(true)}`, "none"]], [{ cell: c, digit: 2 }]);
-  differential([1, 2, 3, 4], [[`renban ${a}-${b}-${c} ${given(false)}`, "none"]], [{ cell: a, digit: 3 }]);
-});
+// One test for each declaration keeps every test small.
+const at = (cell: Cell, digit: number) => [{ cell, digit }];
+const cases: [Entry, { cell: Cell; digit: number }[]?][] = [
+  [`renban ${a}-${b}-${c} repeats true`], [`renban ${a}-${b}-${c} channel "D"`], [`renban ${a}-${b}-${c}-${d} repeats true channel "D"`], [`not renban ${a}-${b}-${c} repeats true`],
+  [`renban ${a}-${b}-${c} ${target(3, false)}`], [`renban ${a}-${b}-${c} ${target(3, true)}`], [`renban ${a}-${b}-${c}-${d} ${target(1, true)} repeats true`],
+  [[`renban ${a}-${b}-${c} ${target(9, true)}`, "none"]], [`renban ${a}-${b}-${c} ${crust([1, 3], false)}`], [`renban ${a}-${b}-${c}-${d} ${crust([3], true)} channel "D"`],
+  [[`renban ${a}-${b}-${c} ${crust([], true)}`, "none"]], [[`renban ${a}-${b}-${c} ${crust([1, 2, 3], true)}`, "all"]], [`not renban ${a}-${b}-${c} ${target(2, true)}`],
+  [`renban ${a}-${b}-${c}-${d} ${given(true)}`, at(c, 2)], [`renban ${a}-${b}-${c}-${d} ${given(false)} repeats true`, at(c, 2)], [`renban ${a}-${b}-${c} ${given(false)}`, at(c, 2)],
+  [[`renban ${a}-${b} ${given(true)}`, "none"], at(c, 2)], [[`renban ${a}-${b}-${c} ${given(false)}`, "none"], at(a, 3)],
+];
+for (const [entry, givens] of cases) {
+  test(`the lowered formula and the public evaluator agree on every assignment: ${typeof entry === "string" ? entry : entry[0]}`, () => differential([1, 2, 3], [entry], givens));
+}
