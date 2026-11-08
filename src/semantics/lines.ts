@@ -138,19 +138,32 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
       const d = BigInt(x)-BigInt(y); return d !== 1n && d !== -1n && (!p.distinct || x !== y);
     }))));
   } else if (kind === "renban" || kind === "bremban") {
-    const cells = sortedCells(path), alphabet = [...board.alphabet].sort((a,b) => a-b);
-    const intervals: Formula[] = [];
-    for (let i = 0; i < alphabet.length; i++) for (let j = i; j < alphabet.length; j++) {
-      if (j > i && BigInt(alphabet[j])-BigInt(alphabet[j-1]) !== 1n) break;
-      const values = alphabet.slice(i,j+1);
-      if (kind === "renban" && values.length !== path.length) continue;
-      intervals.push(all([
-        ...cells.map(c => allowed(c,values)),
-        ...values.map(d => any(cells.map(c => allowed(c,[d])))),
-      ]));
+    const alphabet = [...board.alphabet].sort((a,b) => a-b);
+    // The distinct values of the cells form a run of consecutive alphabet values; `exact` also fixes the run's length to the number of cells.
+    const consecutive = (set: Cell[], exact: boolean): Formula => {
+      const cells = sortedCells(set), intervals: Formula[] = [];
+      for (let i = 0; i < alphabet.length; i++) for (let j = i; j < alphabet.length; j++) {
+        if (j > i && BigInt(alphabet[j])-BigInt(alphabet[j-1]) !== 1n) break;
+        const values = alphabet.slice(i,j+1);
+        if (exact && values.length !== cells.length) continue;
+        intervals.push(all([
+          ...cells.map(c => allowed(c,values)),
+          ...values.map(d => any(cells.map(c => allowed(c,[d])))),
+        ]));
+      }
+      return any(intervals);
+    };
+    if (kind === "renban") {
+      if (p.repeats !== undefined && typeof p.repeats !== "boolean") throw Error("repeats must be true or false.");
+      if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
     }
-    nodes.push(any(intervals));
-    if (kind === "renban") path.forEach((a,i) => path.slice(i+1).forEach(b => nodes.push(edge(a,b,(x,y) => x !== y))));
+    const repeats = kind === "bremban" || p.repeats === true;
+    const apart = (set: Cell[]): Formula[] => repeats ? [] : set.flatMap((a,i) => set.slice(i+1).map(b => edge(a,b,(x,y) => x !== y)));
+    if (kind === "renban" && p.selection !== undefined) nodes.push(prefixBranches(p.selection, path, board, alphabet, allowed, set => all([consecutive(set, !repeats), ...apart(set)])));
+    else {
+      nodes.push(consecutive(path, !repeats));
+      nodes.push(...apart(path));
+    }
   } else if (kind === "summit") {
     edges((x,y) => x !== y);
     for (let i = 0; i < (p.loop && path.length >= 3 ? path.length : path.length-2); i++) {
@@ -180,9 +193,42 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
     for (let i = 1; i < sums.length; i++) nodes.push({ op: "SumEqual", channel: "D", left: sums[0], right: sums[i] });
   }
   const result = all(nodes);
-  const effective = (f: Formula): Formula => f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(effective) }
+  const effective = (f: Formula): Formula => printed.has(f) ? f : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(effective) }
     : f.op === "Not" ? { ...f, child: effective(f.child) }
     : "channel" in f ? { ...f, channel: "V" } as Formula : f;
-  // A thermometer that states channel D reads printed digits whatever the value domain.
-  return valueLines.includes(kind) && !(kind === "thermo" && p.channel === "D") ? effective(result) : result;
+  // A line that states channel D reads printed digits whatever the value domain.
+  return valueLines.includes(kind) && p.channel !== "D" ? effective(result) : result;
+}
+
+/** Nodes that read printed digits whatever the line's channel, which the effective-value rewrite leaves alone. */
+const printed = new WeakSet<Formula>();
+/**
+ * A prefix selection on an ordered line: the line stops at its first stopping cell (a cell reading the target, a cell holding a crust
+ * digit, or a given cell), which the prefix keeps when `include` is true, and a missing stopping cell fails the rule. This is an exact
+ * disjunction over the position of that first stopping cell, each branch giving the cells before it none of the stopping values and the
+ * stopping cell one of them. An empty prefix has no values to be consecutive and fails.
+ */
+function prefixBranches(raw: unknown, line: Cell[], board: CanonicalBoard, alphabet: number[], allowed: (cell: Cell, values: number[]) => Formula, rule: (prefix: Cell[]) => Formula): Formula {
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw Error("Supply a prefix selection record.");
+  const s = raw as Record<string, unknown>;
+  if (typeof s.stop !== "string" || !["target", "given", "crust"].includes(s.stop)) throw Error('stop must be "target", "given" or "crust".');
+  if (typeof s.include !== "boolean") throw Error("include must be true or false.");
+  if (s.crusts !== undefined && (!Array.isArray(s.crusts) || s.crusts.some(d => !Number.isSafeInteger(d)))) throw Error("crusts must be a list of digits.");
+  if (s.target !== undefined && (typeof s.target !== "number" || !Number.isFinite(s.target))) throw Error("target must be a number.");
+  const none: Formula = { op: "Any", children: [] };
+  const prefix = (stop: number) => line.slice(0, s.include ? stop + 1 : stop);
+  const branches: Formula[] = [];
+  if (s.stop === "given") {
+    const stop = line.findIndex(c => board.givens.some(g => g.cell === c));
+    return stop < 0 || !prefix(stop).length ? none : rule(prefix(stop));
+  }
+  const stops = alphabet.filter(d => s.stop === "target" ? d === s.target : (s.crusts as number[] | undefined ?? []).includes(d));
+  const others = alphabet.filter(d => !stops.includes(d));
+  line.forEach((cell, stop) => {
+    if (!prefix(stop).length || stop > 0 && !others.length || !stops.length) return;
+    // A crust is a printed digit, so its stopping tests stay on D when the rest of the line reads effective values.
+    const test = (c: Cell, values: number[]): Formula => { const node = allowed(c, values); if (s.stop === "crust") printed.add(node); return node; };
+    branches.push({ op: "All", children: [...line.slice(0, stop).map(c => test(c, others)), test(cell, stops), rule(prefix(stop))] });
+  });
+  return { op: "Any", children: branches };
 }
