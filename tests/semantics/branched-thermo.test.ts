@@ -213,3 +213,36 @@ test("the lowered formula and the public evaluator agree on arms that rejoin", (
 test("the lowered formula and the public evaluator agree on several bulbs and a duplicate edge", () => {
   expect(differential(KINDS, 1, 3, [1, 2, 3], [bt(E(["r1c1", "r1c2"], ["r1c3", "r1c2"])), bt(E(["r1c1", "r1c2"], ["r1c2", "r1c3"], ["r1c1", "r1c2"]))])).toBeGreaterThan(0);
 });
+
+test("direction and adjacency are read numerically on a board of ten or more rows", () => {
+  // Cells sort as text with r10 before r2, so a text sort would turn r9 to r10 the wrong way round.
+  const tall = boardOf(10, 1, [1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const column = (...v: number[]) => gr(10, 1, ...v);
+  const up = form(bt(E(["r9c1", "r10c1"])), tall);
+  expect(holds(up, column(1, 1, 1, 1, 1, 1, 1, 1, 2, 3))).toBe(true);
+  expect(holds(up, column(1, 1, 1, 1, 1, 1, 1, 1, 3, 2))).toBe(false);
+  const down = form(bt(E(["r10c1", "r9c1"])), tall);
+  expect(holds(down, column(1, 1, 1, 1, 1, 1, 1, 1, 3, 2))).toBe(true);
+  expect(holds(down, column(1, 1, 1, 1, 1, 1, 1, 1, 2, 3))).toBe(false);
+  differs(bt(E(["r9c1", "r10c1"])), bt(E(["r10c1", "r9c1"])), tall);
+  // A path through the tall board matches the thermo whichever way the cells sort.
+  equal(bt(E(["r8c1", "r9c1"], ["r9c1", "r10c1"])), "thermo r8c1-r9c1-r10c1", tall);
+  equal(bt(E(["r10c1", "r9c1"], ["r9c1", "r8c1"])), 'thermo r8c1-r9c1-r10c1 orientation "reverse"', tall);
+  // r2 and r10 sit next to each other in a text sort but eight rows apart on the board.
+  expect(nf(bt(E(["r2c1", "r10c1"])), tall).status).toBe("invalid");
+  expect(nf(bt(E(["r10c1", "r2c1"])), tall).status).toBe("invalid");
+  expect(nf(bt(E(["r2c1", "r3c1"], ["r3c1", "r10c1"])), tall).status).toBe("invalid");
+  expect(nf(bt(E(["r1c1", "r2c1"], ["r9c1", "r10c1"])), tall).status).toBe("invalid");
+});
+
+test("the lowered formula and the public evaluator agree across the r9 to r10 edge", () => {
+  const cells = gridCells(10, 1);
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 10, cols: 1, symbols: [1,2,3], regions: [[${cells.join(", ")}]]}\n---${body(bt(E(["r9c1", "r10c1"])))}` });
+  const rule = compiled.value!.rules[0];
+  const r = nf(bt(E(["r9c1", "r10c1"])), boardOf(10, 1, [1, 2, 3]));
+  for (const [a, b] of [[1, 2], [2, 1], [3, 3], [1, 3]]) {
+    const digits = { ...Object.fromEntries(cells.map(c => [c, 1])), r9c1: a, r10c1: b };
+    expect(holds(r.normalForm!.solution, digits)).toBe(evaluate(rule, { digits, values: digits }).status === "holds");
+    expect(holds(rule.finite!, digits, digits)).toBe(a < b);
+  }
+});
