@@ -6,6 +6,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Added
 
+- The normal form lowers Vault declarations to one inequality for every cell and neighbour pair, with a total over the cells on printed digits when a sum is stated. Order and repeated listings of cells and neighbours do not matter. Cells that overlap the neighbours, sums that are not safe integers and very large cross-pair expansions stay uncovered.
 - `normalise` and `canonicalise` accept `metadataHeaders`, header names the caller declares carry no meaning for solutions. Declared headers are covered and leave the value domain resolved, so value rules beside them lower, and canonicalise proofs carry them. Naming a header the spec gives a meaning is an error.
 - The normal form keeps its header classification in one list (`src/semantics/headers.ts`): the case text headers (`title`, `setter`, `source`, `case`, `status`, `flags`) are covered and never affect the value domain; any other header keeps its uncovered result.
 - The normal form lowers Double Arrow declarations to an exact sum equation between the line and the two ends, with Distinct over the ends and the line when `repeats` is false. Channel V converts to D when the effective-value domain is resolved. Ends that are not two cells and repeated cells under `repeats` false stay uncovered.
