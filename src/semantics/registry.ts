@@ -163,7 +163,7 @@ export const declarationRegistry = {
   "n-mate": lowered,
   "pressure-gauge": pending("Larger and smaller neighbour counts are not lowered."),
   "value-modifier": pending("Shared effective-value bindings and modifier witnesses are not lowered."),
-  "look-and-say": pending("Exact listed-digit multiplicities are not lowered."),
+  "look-and-say": lowered,
   "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
   "mean-lines": pending("Cross-multiplied aggregate means are not lowered."),
   vault: lowered,
