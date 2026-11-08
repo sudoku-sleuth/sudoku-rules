@@ -1,4 +1,4 @@
-import { key, sortedCells } from "./board.js";
+import { cellOrder, key, sortedCells } from "./board.js";
 import { pair } from "./lower.js";
 import type { CanonicalBoard, Cell, Formula, Rewrite, SemanticSource, SourceLink } from "./types.js";
 
@@ -25,7 +25,7 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
       const weights = new Map<Cell, number>();
       input.left.forEach(c => weights.set(c, (weights.get(c) ?? 0) + 1));
       input.right.forEach(c => weights.set(c, (weights.get(c) ?? 0) - 1));
-      const entries = [...weights].filter(([,n]) => n).sort(([a],[b]) => a < b ? -1 : 1);
+      const entries = [...weights].filter(([,n]) => n).sort(([a],[b]) => cellOrder(a, b));
       const gcd = (a: number,b: number): number => b ? gcd(b,a%b) : a;
       const divisor = entries.reduce((n,[,w]) => gcd(n,Math.abs(w)),0) || 1;
       const sign = (entries[0]?.[1] ?? 1) > 0 ? 1 : -1;
@@ -55,7 +55,7 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
       break;
     }
     case "Pair": {
-      const reverse = input.cells[0] > input.cells[1];
+      const reverse = cellOrder(input.cells[0], input.cells[1]) > 0;
       const table = [...new Map(input.table.map(([x, y]) => { const p: [number, number] = reverse ? [y, x] : [x, y]; return [key(p), p]; })).values()].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
       const node: Formula & { op: "Pair" } = { op: "Pair", channel: input.channel, cells: reverse ? [input.cells[1], input.cells[0]] : [...input.cells], table };
       rewrite(state, "pair-order", input, node, sources);
@@ -95,7 +95,7 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
           }
           if (!capped) break;
         }
-        const cells = [...weights].sort(([a],[b]) => a < b ? -1 : a > b ? 1 : 0).flatMap(([cell, weight]) => Array<Cell>(weight).fill(cell));
+        const cells = [...weights].sort(([a],[b]) => cellOrder(a, b)).flatMap(([cell, weight]) => Array<Cell>(weight).fill(cell));
         result = weights.size === 1
           ? canonicalise({ op: "Allowed", channel: input.channel, cell: cells[0], values: [input.digit] }, state, sources, positive)
           : { ...input, cells, count };

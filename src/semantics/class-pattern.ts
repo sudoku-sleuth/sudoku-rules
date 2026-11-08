@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { cellAt } from "./board.js";
+import { cellAt, sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, pair, UnsupportedSemantics } from "./primitives.js";
 import { digitClasses } from "./window-classes.js";
@@ -49,7 +49,7 @@ export function lowerClassPattern(ast: DeclarationAST, board: CanonicalBoard): F
   if (fixed !== undefined) {
     if (modulus < 1) return none;
     const values = alphabet.filter(d => remainder(d, modulus) === fixed);
-    return all([...new Set(line)].sort().map((cell): Formula => ({ op: "Allowed", channel: p.channel === "V" ? "V" : "D", cell, values })));
+    return all(sortedCells(line).map((cell): Formula => ({ op: "Allowed", channel: p.channel === "V" ? "V" : "D", cell, values })));
   }
   if (modulus < 1) return none;
   if (geometry === "line" && p.edges !== undefined) throw new UnsupportedSemantics("The edges parameter of class-pattern is not lowered; the whole instance remains uncovered.");
@@ -65,14 +65,14 @@ export function lowerClassPattern(ast: DeclarationAST, board: CanonicalBoard): F
   let work = 0;
   const charge = (n: number) => { work += n; if (work > maxWork) throw new UnsupportedSemantics("Finite class-pattern expansion exceeds 1,000,000 value combinations for this declaration."); };
   const scope = (members: Cell[], unique: boolean): Formula => {
-    const cells = unique ? [...new Set(members)].sort() as Cell[] : members;
+    const cells = unique ? sortedCells(members) : members;
     if (mode === "distinct") {
       const tests: Formula[] = [];
       cells.forEach((a, i) => cells.slice(i + 1).forEach(b => { charge(alphabet.length ** 2); tests.push(pair(board, a, b, (x, y) => classOf.get(x) !== classOf.get(y))); }));
       return all(tests);
     }
     charge(cells.length * alphabet.length + 1);
-    const only = [...new Set(cells)].sort() as Cell[];
+    const only = sortedCells(cells);
     if (mode === "same") return cells.length ? any([...groups.values()].map(values => all(only.map((cell): Formula => ({ op: "Allowed", channel: "D", cell, values }))))) : all([]);
     // Cover: every class holds a digit on some cell; a class no digit belongs to can never be covered.
     if (groups.size < classes) return none;

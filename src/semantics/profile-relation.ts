@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { sortedCells } from "./board.js";
+import { cellOrder, sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -54,7 +54,7 @@ export function lowerProfileRelation(ast: DeclarationAST, board: CanonicalBoard)
       for (const chosen of subsets(alphabet, m + 1)) children.push({ op: "Not", child: all(chosen.flatMap(n => [present(inputs[i], n), present(inputs[j], n)])) });
     return all(children);
   }
-  const l = [...left].sort(), r = [...right].sort();
+  const l = [...left].sort(cellOrder), r = [...right].sort(cellOrder);
   if (p.multiset === false) {
     const sets = [sortedCells(left), sortedCells(right)];
     if (alphabet.length * (sets[0].length + sets[1].length) > maxWork) throw tooBig();

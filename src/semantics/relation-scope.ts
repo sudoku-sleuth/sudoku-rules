@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { coordinates, sortedCells } from "./board.js";
+import { cellOrder, coordinates, sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { moveRelation, moves } from "./extremum.js";
 import { all, pair, UnsupportedSemantics } from "./primitives.js";
@@ -37,11 +37,9 @@ export function lowerRelationScope(ast: DeclarationAST, board: CanonicalBoard): 
   if (p.except !== undefined && !Array.isArray(p.except)) throw Error("Supply except as a list of cell lists.");
   const except = ((p.except ?? []) as unknown[]).map(e => cellList(e, "each exception"));
   if (except.some(e => e.length !== 2)) return none;
-  const exempt = new Set(except.filter(([a, b]) => a !== b).map(([a, b]) => [a, b].sort().join(",")));
+  const exempt = new Set(except.filter(([a, b]) => a !== b).map(([a, b]) => [a, b].sort(cellOrder).join(",")));
   const channel = p.channel === "V" ? "V" : "D";
   const negative = p.negative === true;
-  const order = (a: Cell, b: Cell) => { const [ar, ac] = coordinates(a), [br, bc] = coordinates(b); return ar - br || ac - bc; };
-  const ordered = [...scope].sort(order);
   const unit = board.alphabet.length ** 2;
   let work = 0;
   const nodes: Formula[] = [];
@@ -50,10 +48,10 @@ export function lowerRelationScope(ast: DeclarationAST, board: CanonicalBoard): 
     if (work > maxWork) throw new UnsupportedSemantics("Finite relation-scope expansion exceeds 1,000,000 value combinations for this declaration.");
     nodes.push({ ...pair(board, a, b, test), channel } as Formula);
   };
-  ordered.forEach((a, i) => ordered.slice(i + 1).forEach(b => {
+  scope.forEach((a, i) => scope.slice(i + 1).forEach(b => {
     if (mode !== "all" && !moveRelation(move, a, b)) return;
     if (mode === "incident" && !anchors.has(a) && !anchors.has(b)) return;
-    if (exempt.has([a, b].sort().join(","))) return;
+    if (exempt.has([a, b].sort(cellOrder).join(","))) return;
     if (negative) for (const r of relations) emit((x, y) => !holds(r, x, y), a, b);
     else emit((x, y) => relations.some(r => holds(r, x, y)), a, b);
   }));

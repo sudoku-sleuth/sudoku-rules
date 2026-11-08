@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { sortedCells } from "./board.js";
+import { cellOrder, sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, sumTotal, UnsupportedSemantics } from "./primitives.js";
 import { holds, relation, type Relation } from "./relations.js";
@@ -150,7 +150,7 @@ function* cross<T, U>(a: T[], b: U[]): Generator<[T, U]> { for (const x of a) fo
 
 /** Weighted cells with a constant: sum of w*cell = k. */
 function linearEquation(weights: Map<Cell, number>, k: number, board: CanonicalBoard): Formula {
-  const net = [...weights].sort(([a], [b]) => a < b ? -1 : 1);
+  const net = [...weights].sort(([a], [b]) => cellOrder(a, b));
   if (!net.length) return k === 0 ? all([]) : none;
   if (net.reduce((n, [, w]) => n + Math.abs(w), 0) > maxOccurrences) throw unsupported("An equation that repeats cells more than 10,000 times is not lowered");
   if (k === 0) return { op: "SumEqual", channel: "D", left: net.flatMap(([c, w]) => w > 0 ? Array<Cell>(w).fill(c) : []), right: net.flatMap(([c, w]) => w < 0 ? Array<Cell>(-w).fill(c) : []) };

@@ -1,17 +1,19 @@
 import type { BoardContext, CanonicalBoard, Cell, SemanticSource } from "./types.js";
 export const key = (value: unknown): string => JSON.stringify(value);
-export const sortedCells = (cells: Cell[]): Cell[] => [...new Set(cells)].sort();
-export const groups = (sets: Cell[][]): Cell[][] => [...new Map(sets.map(cells => { const sorted = sortedCells(cells); return [key(sorted), sorted]; })).values()].sort((a, b) => key(a).localeCompare(key(b), "en"));
-export function coordinates(cell: Cell): [number, number] {
-  const match = /^r([1-9]\d*)c([1-9]\d*)$/.exec(cell);
-  if (!match) throw Error(`Invalid cell ${cell}.`);
-  return [Number(match[1]), Number(match[2])];
-}
 /** Row then column, numerically: r10c1 follows r2c1, which a text sort would not give. */
 export const cellOrder = (a: Cell, b: Cell): number => {
   const [r, c] = a.slice(1).split("c").map(Number), [s, d] = b.slice(1).split("c").map(Number);
   return r - s || c - d || (a < b ? -1 : a > b ? 1 : 0);
 };
+/** Lists of cells compared cell by cell in cellOrder, a shorter prefix first. */
+export const cellListOrder = (a: Cell[], b: Cell[]): number => { for (let i = 0; i < Math.min(a.length, b.length); i++) { const d = cellOrder(a[i], b[i]); if (d) return d; } return a.length - b.length; };
+export const sortedCells = (cells: Cell[]): Cell[] => [...new Set(cells)].sort(cellOrder);
+export const groups = (sets: Cell[][]): Cell[][] => [...new Map(sets.map(cells => { const sorted = sortedCells(cells); return [key(sorted), sorted]; })).values()].sort(cellListOrder);
+export function coordinates(cell: Cell): [number, number] {
+  const match = /^r([1-9]\d*)c([1-9]\d*)$/.exec(cell);
+  if (!match) throw Error(`Invalid cell ${cell}.`);
+  return [Number(match[1]), Number(match[2])];
+}
 export const cellAt = (row: number, col: number): Cell => `r${row}c${col}`;
 export function canonicalBoard(board: BoardContext): CanonicalBoard {
   const fields = new Set(["rows", "cols", "alphabet", "activeCells", "regions", "houses", "givens"]);
@@ -33,7 +35,7 @@ export function canonicalBoard(board: BoardContext): CanonicalBoard {
     if (seen.has(given.cell) || !board.alphabet.includes(given.digit)) throw Error(`Give ${given.cell} one digit from the board alphabet.`);
     seen.add(given.cell);
   }
-  return { rows: board.rows, cols: board.cols, alphabet: [...board.alphabet], activeCells: sortedCells(board.activeCells), regions: groups(regions), houses: groups(houses), givens: givens.map(({ cell, digit }) => ({ cell, digit })).sort((a, b) => a.cell.localeCompare(b.cell, "en")) };
+  return { rows: board.rows, cols: board.cols, alphabet: [...board.alphabet], activeCells: sortedCells(board.activeCells), regions: groups(regions), houses: groups(houses), givens: givens.map(({ cell, digit }) => ({ cell, digit })).sort((a, b) => cellOrder(a.cell, b.cell)) };
 }
 export function standardHouses(): Cell[][] {
   const houses: Cell[][] = [];

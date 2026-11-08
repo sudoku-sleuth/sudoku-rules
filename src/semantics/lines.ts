@@ -2,7 +2,7 @@ import type { CanonicalBoard, Cell, Formula } from "./types.js";
 import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, pair, UnsupportedSemantics } from "./primitives.js";
-import { key, sortedCells } from "./board.js";
+import { cellListOrder, cellOrder, key, sortedCells } from "./board.js";
 import { lowerDifferenceLineDeclaration } from "./difference-line.js";
 
 export const lineFields: Record<string, string[]> = {
@@ -47,7 +47,7 @@ function explicitEdges(instance: ReturnType<typeof semanticDeclaration>, board: 
   if (instance.condition) throw new UnsupportedSemantics("Conditions on a network are not lowered; the whole instance remains uncovered.");
   if (!raw.length || raw.some(([a,b]) => a === b)) throw new UnsupportedSemantics("Edges must name two different cells each; the whole instance remains uncovered.");
   const edges = [...new Map((raw as [Cell,Cell][]).map(([a,b]) => { const e: [Cell,Cell] = sortedCells([a,b]) as [Cell,Cell]; return [key(e), e]; })).values()]
-    .sort((x,y) => key(x).localeCompare(key(y),"en"));
+    .sort(cellListOrder);
   const cells = sortedCells(edges.flat());
   const reached = new Set<Cell>([cells[0]]);
   for (let grew = true; grew;) { grew = false; for (const [a,b] of edges) if (reached.has(a) !== reached.has(b)) { reached.add(a); reached.add(b); grew = true; } }
@@ -183,7 +183,7 @@ export function lowerLine(ast: DeclarationAST, board: CanonicalBoard): Formula {
       : key(runs) === key(segments);
     if (!matches) throw Error("segments must match the ordered maximal region runs of the path, retaining every occurrence.");
     const groups = p.combine ? board.regions.map(r => path.filter(c => r.includes(c))).filter(r => r.length) : segments;
-    const sums = [...new Map(groups.map(s => [key([...s].sort()), [...s].sort() as Cell[]])).values()].sort((a,b) => key(a).localeCompare(key(b),"en"));
+    const sums = [...new Map(groups.map(s => [key([...s].sort(cellOrder)), [...s].sort(cellOrder) as Cell[]])).values()].sort(cellListOrder);
     for (let i = 1; i < sums.length; i++) nodes.push({ op: "SumEqual", channel: "D", left: sums[0], right: sums[i] });
   }
   const result = all(nodes);

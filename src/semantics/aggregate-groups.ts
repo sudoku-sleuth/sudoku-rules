@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { sortedCells } from "./board.js";
+import { cellListOrder, cellOrder, sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -50,7 +50,7 @@ export function lowerAggregateGroups(ast: DeclarationAST, board: CanonicalBoard)
     return { op: "SumEqual", channel: "D", left, right };
   };
   // Every aggregate comparison is symmetric, so the groups are ordered by their cells and the order they were written in changes nothing.
-  const ordered = groups.map(g => [...g].sort()).sort((x, y) => multiset(x) < multiset(y) ? -1 : multiset(x) > multiset(y) ? 1 : 0);
+  const ordered = groups.map(g => [...g].sort(cellOrder)).sort(cellListOrder);
   const first = ordered[0];
   const rest = ordered.slice(1);
   let comparison: Formula[];

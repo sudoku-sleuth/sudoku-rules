@@ -1,4 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
+import { sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import type { CanonicalBoard, Formula } from "./types.js";
 
@@ -9,7 +10,7 @@ import type { CanonicalBoard, Formula } from "./types.js";
  * board's alphabet.
  */
 export function lowerHighLowLines(ast: DeclarationAST, board: CanonicalBoard): Formula {
-  const cells = [...new Set(semanticDeclaration(ast).cells ?? [])].sort();
+  const cells = sortedCells(semanticDeclaration(ast).cells ?? []);
   const within = (low: number, high: number): Formula => ({
     op: "All",
     children: cells.map((cell): Formula => ({ op: "Allowed", channel: "D", cell, values: board.alphabet.filter(d => d >= low && d <= high) })),

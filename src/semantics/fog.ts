@@ -1,4 +1,4 @@
-import { coordinates, key, sortedCells } from "./board.js";
+import { cellListOrder, coordinates, key, sortedCells } from "./board.js";
 import type { CanonicalBoard, Cell, FogPlay, NormalForm } from "./types.js";
 
 /** Validate and canonicalise fog setup without evaluating an answer. */
@@ -33,7 +33,7 @@ export function fogPlay(raw: unknown, board: CanonicalBoard): FogPlay {
       const id = key(trigger), previous = grouped.get(id);
       grouped.set(id, { trigger, lights: sortedCells([...(previous?.lights ?? []), ...lights]) });
     }
-    play.links = [...grouped.entries()].sort(([a],[b]) => a < b ? -1 : a > b ? 1 : 0).map(([,l]) => l);
+    play.links = [...grouped.entries()].map(([,l]) => l).sort((x, y) => cellListOrder(x.trigger, y.trigger));
   }
   return play;
 }
