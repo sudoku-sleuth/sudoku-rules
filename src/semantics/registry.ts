@@ -49,7 +49,7 @@ export const declarationRegistry = {
   xv: lowered,
   "value-set": pending("Whole-set consecutive and nonconsecutive value conditions are not lowered."),
   "class-pattern": pending("General class windows on ordered lines and networks are not lowered."),
-  "aggregate-groups": pending("Aggregate group comparisons are not lowered."),
+  "aggregate-groups": lowered,
   "selection": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "marking-relation": pending("Shared selections, assignments and symbol or value channels are not lowered."),
   "battenburg": pending("Shared selections, assignments and symbol or value channels are not lowered."),
