@@ -160,7 +160,7 @@ export const declarationRegistry = {
   molecules: pending("Shared electron-choice witnesses and atom sums are not lowered."),
   sandwich: lowered,
   "index-line": lowered,
-  "n-mate": pending("Digit-indexed rays and cage sums are not lowered."),
+  "n-mate": lowered,
   "pressure-gauge": pending("Larger and smaller neighbour counts are not lowered."),
   "value-modifier": pending("Shared effective-value bindings and modifier witnesses are not lowered."),
   "look-and-say": pending("Exact listed-digit multiplicities are not lowered."),

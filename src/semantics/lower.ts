@@ -7,6 +7,7 @@ import { lowerSkyscraper } from "./skyscraper.js";
 import { lowerIndex, lowerNumberedRoom } from "./numbered-room.js";
 import { lowerBlockedSight } from "./blocked-sight.js";
 import { lowerIndexLine } from "./index-line.js";
+import { lowerNMate } from "./n-mate.js";
 import { lowerFlatMates } from "./flat-mates.js";
 import { lowerExtremum } from "./extremum.js";
 import { lowerEqualityCage } from "./equality-cage.js";
@@ -33,7 +34,7 @@ const fields: Record<string, string[]> = {
   negative: ["relations", "except", "within", "direction"],
   cage: ["total", "sum", "repeats"], killer: ["total", "sum", "repeats"],
   arrow: ["partial", "bulb"], "double-arrow": ["ends", "channel", "repeats"], between: ["ends"], lockout: ["ends", "gap"], sandwich: ["sum", "endpointOccurrences", "crusts"], "x-sum": ["sum", "count"], "equal-sums": ["groups", "channel", "repeats"], "diagonal-sum": ["sum", "channel", "repeats"],
-  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [], "index-line": [],
+  "equality-cage": [], vault: ["sum", "neighbours"], "counting-circles": [], "window-classes": ["classes"], "same-class": ["classes"], "numbered-room": ["digit"], "flat-mates": ["digit", "above", "below"], index: ["axis"], "blocked-sight": ["cell", "rays", "blockers", "includeBlocker", "includeOrigin", "channel", "offset", "output", "records", "total", "blocking", "targetCells", "occurrences"], skyscraper: ["visible", "channel"], sudoku: ["size"], unique: [], clone: [], diagonal: ["direction"], "anti-knight": [], "anti-king": [], "index-line": [], "n-mate": ["cell", "ray", "cage"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
 };
@@ -93,6 +94,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "index") return lowerIndex(ast, board);
   if (kind === "blocked-sight") return lowerBlockedSight(ast, board);
   if (kind === "index-line") return lowerIndexLine(ast, board);
+  if (kind === "n-mate") return lowerNMate(ast, board);
   if (kind === "flat-mates") return lowerFlatMates(ast, board);
   if (kind === "extremum") return lowerExtremum(ast, board);
   if (kind === "equality-cage") return lowerEqualityCage(ast, board);
