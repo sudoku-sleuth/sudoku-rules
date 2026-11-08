@@ -131,6 +131,31 @@ test("near misses compare as different", () => {
   differs(arrow(1, [2, 3, 4], "source", ` source "r1c5"`), arrow(1, [2, 3, 4], "source"));
 });
 
+const hasPair = (f: Formula): boolean => f.op === "Pair" || (f.op === "All" || f.op === "Any" ? f.children.some(hasPair) : f.op === "Not" ? hasPair(f.child) : false);
+
+test("the clue cell, or a source on the ray, is read as its digit rather than through a pair table", () => {
+  expect(hasPair(form(arrow(1, [1, 3], "greater")))).toBe(false);
+  expect(hasPair(form(arrow(1, [1, 3], "less")))).toBe(false);
+  // The picked ray cell is the source itself, so it always matches.
+  const own = form(arrow(1, [3], "source", ` source "r1c3"`));
+  expect(hasPair(own)).toBe(false);
+  expect(holds(own, at(1, 5, 4))).toBe(true);
+  expect(holds(own, at(2, 5, 4))).toBe(false);
+  // A source that is the clue cell reads the same as the self comparison.
+  expect(hasPair(form(arrow(1, [1, 3], "source", ` source "r1c1"`)))).toBe(false);
+  // A source elsewhere does need a pair table.
+  expect(hasPair(form(arrow(1, [2, 3], "source", ` source "r1c5"`)))).toBe(true);
+});
+
+test("a clue of zero or a negative digit names no position, even against an always-true reading", () => {
+  const zero = form(arrow(1, [2, 3], "less"), 5, [0, 1, 2]);
+  // Digit 0 is not a position, so it never holds, and digit 1 and 2 pick r1c2 and r1c3.
+  expect(holds(zero, at(0, 0, 0))).toBe(false);
+  expect(holds(zero, at(2, 5, 1))).toBe(true);
+  expect(form(arrow(1, [2, 3], "less"), 5, [-2, -1, 0])).toEqual({ op: "Any", children: [] });
+  eq(arrow(1, [2, 3], "less"), arrow(1, [2, 3], "less"), 5, [0, 1, 2]);
+});
+
 test("a cell off the active board is an error in the case", () => {
   const r = normalise({ file: "synthetic.rules.md", text: `${header}---\n${body(arrow(1, [2, 3], "greater"))}` }, { rows: 1, cols: 3, alphabet: [1, 2, 3], activeCells: [cells[0], cells[2]], regions: [[cells[0], cells[2]]] });
   expect(r.status).toBe("invalid");
@@ -167,8 +192,9 @@ function differential(n: number, symbols: number[], entries: string[], sample = 
   return seen;
 }
 
-const diffTest = (name: string, n: number, symbols: number[], entries: string[], sample: number, atLeast = 1) =>
-  test(`the lowered formula and the public evaluator agree on ${name}`, () => { expect(differential(n, symbols, entries, sample)).toBeGreaterThanOrEqual(atLeast); });
+// Every assignment is checked against the published definition (sample 1); each entry is its own test to keep the time down.
+const diffTest = (name: string, n: number, symbols: number[], entries: string[], _sample: number, atLeast = 1) =>
+  entries.forEach((entry, i) => test(`the lowered formula and the public evaluator agree on ${name} (${i + 1})`, () => { expect(differential(n, symbols, [entry], 1)).toBeGreaterThanOrEqual(atLeast); }));
 
 diffTest("greater", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "greater"), arrow(2, [1, 3, 4], "greater")], 12);
 diffTest("less and a shorter ray", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "less"), arrow(1, [2, 3], "less")], 12);
@@ -183,3 +209,5 @@ diffTest("first-five", 4, [1, 2, 5], [arrow(1, [2, 3, 4], "first-five"), arrow(1
 diffTest("first-five with a source cell beside it", 4, [1, 2, 5], [arrow(3, [4, 2, 1], "first-five"), arrow(1, [2, 3], "first-five", ` source "r1c4"`)], 12);
 diffTest("first-five without a 5 and with other digits", 4, [2, 3, 5], [arrow(1, [2, 3, 4], "first-five")], 12);
 diffTest("first-five without a 5 in the alphabet", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "first-five")], 12, 0);
+diffTest("a negative alphabet", 4, [-1, 0, 1, 2], [arrow(1, [2, 3, 4], "greater"), arrow(1, [2, 3, 4], "less")], 1, 0);
+diffTest("a gapped alphabet", 4, [2, 3, 4], [arrow(1, [2, 3, 4], "greater"), arrow(1, [2, 3, 4], "less")], 1, 0);
