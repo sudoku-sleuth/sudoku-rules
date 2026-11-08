@@ -47,6 +47,7 @@ import { lowerPrefixSum } from "./prefix-sum.js";
 import { lowerSumPartition } from "./sum-partition.js";
 import { lowerClassPattern } from "./class-pattern.js";
 import { lowerMeanLines } from "./mean-lines.js";
+import { lowerDiagonalLines } from "./diagonal-lines.js";
 import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
@@ -94,6 +95,7 @@ const fields: Record<string, string[]> = {
   "sum-partition": ["total", "mode", "channel", "repeats", "loop"],
   "class-pattern": ["edges", "loop", "classification", "modulus", "length", "geometry", "mode", "fixedClass", "channel"],
   "mean-lines": ["lines"],
+  "diagonal-lines": ["classes", "minLength"],
 };
 export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
   const instance=semanticDeclaration(ast);
@@ -184,6 +186,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "sum-partition") return lowerSumPartition(ast, board);
   if (kind === "class-pattern") return lowerClassPattern(ast, board);
   if (kind === "mean-lines") return lowerMeanLines(ast, board);
+  if (kind === "diagonal-lines") return lowerDiagonalLines(ast, board);
   if (kind === "same-class") return lowerSameClass(ast, board);
   if (kind === "relation-scope") return lowerRelationScope(ast, board);
   if (kind === "limited-digits") return lowerLimitedDigits(ast, board);
