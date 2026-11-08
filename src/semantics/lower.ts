@@ -66,6 +66,8 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     if (kind === "renban" && ["channel", "repeats", "selection"].includes(name)) continue;
     // Region sum reads its channel in lowerLine.
     if (kind === "region-sum" && name === "channel") continue;
+    // A pair reads its channel below.
+    if (kind === "pair" && name === "channel") continue;
     if (extensions[kind]?.includes(name)) {
       const parameter = declarationLibrary.parameters?.get(`https://rules.sudoku-sleuth.com/${kind}.md`)?.parameters[name];
       if (parameter && Object.hasOwn(parameter, "default") && JSON.stringify(parameter.default) === JSON.stringify(p[name])) continue;
@@ -105,7 +107,8 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     case "pair": {
       if (instance.cells!.length !== 2) throw Error(`${kind} requires exactly two cell positions.`);
       const r = relation(p.relation);
-      return { ...pair(board, instance.cells![0], instance.cells![1], (a,b) => holds(r,a,b)), channel: "V" } as Formula;
+      if (p.channel !== undefined && p.channel !== "D" && p.channel !== "V") throw Error('Choose channel "D" or "V".');
+      return { ...pair(board, instance.cells![0], instance.cells![1], (a,b) => holds(r,a,b)), channel: p.channel === "D" ? "D" : "V" } as Formula;
     }
     case "quadruple": case "outside": {
       const digits = digitList(p.digits, board);
