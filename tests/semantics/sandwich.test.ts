@@ -190,3 +190,36 @@ for (const { n, symbols, rest, standard } of layouts) for (const negate of [fals
   walk([]);
   expect(total).toBe(symbols.length ** n);
 });
+
+test("absent crusts take the default reading on the page formula, stated crusts the custom one", () => {
+  const rule = (rest: string) => compileCase({ file: "example.md", text: `${standardHeader}---${body(sandwich(3, rest))}` }).value!.rules[0];
+  // Digits 1,1,9: the first 1 and the first 9 enclose the second 1, so a sum of 0 is broken. The two first crust occurrences (both 1) are adjacent.
+  const digits = { r1c1: 1, r1c2: 1, r1c3: 9 };
+  const page = (rest: string) => evaluate({ ...rule(rest), finite: undefined }, { digits, values: digits }).status;
+  expect(page("sum 0")).toBe("broken");
+  expect(page("sum 1")).toBe("holds");
+  expect(page("sum 0 crusts [1,9]")).toBe("holds");
+  expect(page("sum 1 crusts [1,9]")).toBe("broken");
+  // The lowering agrees with the default reading for absent crusts and with the custom reading for stated ones.
+  const lowered = (rest: string) => holds(nf(sandwich(3, rest)).normalForm!.solution, digits);
+  expect(lowered("sum 0")).toBe(false);
+  expect(lowered("sum 1")).toBe(true);
+  expect(lowered("sum 0 crusts [1,9]")).toBe(true);
+});
+
+test("absent crusts agree with the page formula under each endpoint policy, including a missing lowest or highest", () => {
+  const layouts = [[2, 3, 4], [1, 2, 3], [9, 9, 1], [1, 5, 9], [1, 1, 9], [9, 4, 1], [1, 9, 9], [5, 5, 5]];
+  for (const policy of ["", ' endpointOccurrences "exactly-one"', ' endpointOccurrences "at-most-one"']) for (const sum of [0, 1, 2, 4, 5, 9]) {
+    const rest = `sum ${sum}${policy}`;
+    const compiled = compileCase({ file: "example.md", text: `${standardHeader}---${body(sandwich(3, rest))}` });
+    expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+    const rule = compiled.value!.rules[0];
+    const lowered = nf(sandwich(3, rest));
+    expect(lowered.status).toBe("complete");
+    for (const layout of layouts) {
+      const digits = { r1c1: layout[0], r1c2: layout[1], r1c3: layout[2] };
+      const page = evaluate({ ...rule, finite: undefined }, { digits, values: digits }).status === "holds";
+      expect([rest, layout.join(), holds(lowered.normalForm!.solution, digits)]).toEqual([rest, layout.join(), page]);
+    }
+  }
+});

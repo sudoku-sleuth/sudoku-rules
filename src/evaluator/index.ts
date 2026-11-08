@@ -172,7 +172,7 @@ const localAggregates=new Set(['cage','killer','little-killer','diagonal-sum']);
 function applyBoardDefaults(parameters:Record<string,unknown>,kind:string,board:CanonicalBoard):void{
  if(kind==='liar-cells'){parameters.groups??=standardHouses();parameters.values??=[1,2,3,4,5,6,7,8,9];}
  if(kind==='scoped-move')parameters.scope??=board.activeCells;
- if(kind==='sandwich')parameters.crusts??=[Math.min(...board.alphabet),Math.max(...board.alphabet)];
+ // Sandwich crusts stay absent when not stated: the formula reads an absent value as the first lowest and highest symbols.
 }
 function readsEffective(page:CompiledPage):boolean{
  const seen=new Set<string>();const visit=(n:import('../language/ast.js').Expr):boolean=>{if(n.kind==='name'){if(n.value==='effective')return true;const term=defaultCasePrelude().environment.terms[n.value!];if(term?.body&&!seen.has(term.name)){seen.add(term.name);if(visit(term.body))return true;}}return n.children.some(visit);};return page.formulas.some(f=>visit(f.ast));
