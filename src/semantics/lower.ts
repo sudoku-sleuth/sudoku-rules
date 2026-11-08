@@ -42,6 +42,7 @@ import { lowerSplitPea } from "./split-pea.js";
 import { lowerHighLowLines } from "./high-low-lines.js";
 import { lowerLocalSequence } from "./local-sequence.js";
 import { lowerRunSum } from "./run-sum.js";
+import { lowerDollSum } from "./doll-sum.js";
 import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
@@ -84,6 +85,7 @@ const fields: Record<string, string[]> = {
   "high-low-lines": [],
   "local-sequence": ["mode", "allowed", "a", "b", "loop", "channel"],
   "run-sum": ["sum"],
+  "doll-sum": ["sums"],
 };
 export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
   const instance=semanticDeclaration(ast);
@@ -127,7 +129,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   }
   if (kind === "same-class" && (instance.cells ?? []).some(cell => !board.activeCells.includes(cell))) throw new UnsupportedSemantics("A same-class cell that is inactive is not lowered; the whole instance remains uncovered.");
   validateCells(ast, board);
-  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage", "product-cage", "cage-totals", "sum-free-cage", "relation-scope", "limited-digits", "look-and-say", "digit-profile", "hidden-modular", "ordered-block", "remainder-cage", "ziffer-lines", "split-pea", "high-low-lines", "local-sequence", "run-sum"].includes(kind);
+  const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage", "product-cage", "cage-totals", "sum-free-cage", "relation-scope", "limited-digits", "look-and-say", "digit-profile", "hidden-modular", "ordered-block", "remainder-cage", "ziffer-lines", "split-pea", "high-low-lines", "local-sequence", "run-sum", "doll-sum"].includes(kind);
   if (needsCells && kind !== "lookup" && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
   if (!needsCells && !["xv", "kropki", "aggregate-groups", "number-property", "mirrored-pairs"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
@@ -169,6 +171,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "high-low-lines") return lowerHighLowLines(ast, board);
   if (kind === "local-sequence") return lowerLocalSequence(ast, board);
   if (kind === "run-sum") return lowerRunSum(ast, board);
+  if (kind === "doll-sum") return lowerDollSum(ast, board);
   if (kind === "same-class") return lowerSameClass(ast, board);
   if (kind === "relation-scope") return lowerRelationScope(ast, board);
   if (kind === "limited-digits") return lowerLimitedDigits(ast, board);

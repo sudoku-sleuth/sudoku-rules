@@ -126,7 +126,7 @@ export const declarationRegistry = {
   zipper: lowered,
   "sum-free-cage": lowered,
   entropic: lowered,
-  "doll-sum": pending("Existential endpoint pairs and interior sums are not lowered."),
+  "doll-sum": lowered,
   "double-arrow": lowered,
   "yin-yang": pending("Shared shading, connectivity and partition constraints are not lowered."),
   "counting-circles": lowered,
