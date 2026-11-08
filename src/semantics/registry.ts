@@ -144,7 +144,7 @@ export const declarationRegistry = {
   skyscraper: lowered,
   index: lowered,
   kropki: lowered,
-  "hidden-modular": pending("Digit-selected extents and modular windows are not lowered."),
+  "hidden-modular": lowered,
   whispers: lowered,
   "dutch-whispers": lowered,
   "german-whispers": lowered,
