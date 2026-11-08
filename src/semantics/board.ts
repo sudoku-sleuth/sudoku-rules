@@ -7,6 +7,11 @@ export function coordinates(cell: Cell): [number, number] {
   if (!match) throw Error(`Invalid cell ${cell}.`);
   return [Number(match[1]), Number(match[2])];
 }
+/** Row then column, numerically: r10c1 follows r2c1, which a text sort would not give. */
+export const cellOrder = (a: Cell, b: Cell): number => {
+  const [r, c] = a.slice(1).split("c").map(Number), [s, d] = b.slice(1).split("c").map(Number);
+  return r - s || c - d || (a < b ? -1 : a > b ? 1 : 0);
+};
 export const cellAt = (row: number, col: number): Cell => `r${row}c${col}`;
 export function canonicalBoard(board: BoardContext): CanonicalBoard {
   const fields = new Set(["rows", "cols", "alphabet", "activeCells", "regions", "houses", "givens"]);

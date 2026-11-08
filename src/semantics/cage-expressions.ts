@@ -14,8 +14,8 @@ const unsupported = (message: string) => new UnsupportedSemantics(`${message}; t
  *   false;
  * - the cages stated with one letter have equal totals (SumEqual against the first of them, in cell order);
  * - with `distinct`, two letters differ when the first cages of the two letters have different totals (a negated SumEqual).
- * Letters are nonnegative whole numbers, so an alphabet with a negative digit, where a total can be negative, stays uncovered, as
- * does a cage that lists a cell twice or any expression built with +, -, *, / or ^. Printed digits only.
+ * A cage is a set of cells, so a cell listed twice counts once. Letters are nonnegative whole numbers, so an alphabet with a
+ * negative digit, where a total can be negative, stays uncovered, as does any expression built with +, -, *, / or ^. Printed digits only.
  */
 export function lowerCageExpressions(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const p = semanticDeclaration(ast).parameters;
@@ -30,8 +30,6 @@ export function lowerCageExpressions(ast: DeclarationAST, board: CanonicalBoard)
     const { cells: listed, expression } = item as { cells: unknown; expression: { op?: unknown; name?: unknown; value?: unknown } };
     if (!Array.isArray(listed) || listed.some(c => !board.activeCells.includes(c as Cell))) throw Error("The cells of each cage must be a list of active board cells.");
     const cells = sortedCells(listed as Cell[]);
-    // The page reads a cage as a set, but the evaluator counts a cell listed twice twice, so the two are not told apart here.
-    if (cells.length !== listed.length) throw unsupported("A cage that lists a cell more than once is not lowered");
     if (expression.op === "number") {
       if (typeof expression.value !== "number" || !Number.isFinite(expression.value)) throw Error("A number in an expression must be a finite number.");
       if (!Number.isInteger(expression.value)) defined = false;

@@ -95,6 +95,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 ### Fixed
 
+- The evaluator reads a parameter typed `set<cell>` as a set at any depth. A set inside a record or list is now its distinct cells in numeric row then column order, so a cage written `[r1c1, r1c1, r1c2]` counts r1c1 once and two declarations that differ only in the order or repeats of a nested set's cells give equal results. Lists keep their order and repeats. Cage Expressions declarations that list a cell twice in a cage are now lowered instead of left uncovered.
 - A custom rule parameter that declares `default: []` in YAML keeps that empty list for list, set and path types (including named aliases), so a case that omits the parameter receives an empty list instead of undefined.
 
 ## 1.0.0

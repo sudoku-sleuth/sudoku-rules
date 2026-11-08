@@ -5,6 +5,7 @@ import { numericInput } from "../evaluator/interpreter.js";
 import type { Expr, Type } from "../language/ast.js";
 import type { CheckedPrelude } from "../language/checker.js";
 import { arithmetic, compare, exact, floor, printExact, rational, type Rational } from "../language/exact.js";
+import { cellOrder } from "./board.js";
 import { lowerDiagonalSum } from "./lower.js";
 import { sumTotal, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -110,7 +111,6 @@ function exactNumber(v: Value): Rational {
   if (isRational(v)) return v;
   return refuse("nonlinear", "a cell digit used where an exact number is required");
 }
-const cellOrder = (a: Cell, b: Cell) => { const [r, c] = a.slice(1).split("c").map(Number), [s, d] = b.slice(1).split("c").map(Number); return r - s || c - d; };
 
 /** Converts a decoded parameter to the value its declared type names. */
 function typed(raw: unknown, type: Type, types: Record<string, Type>): Value {
