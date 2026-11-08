@@ -52,6 +52,8 @@ class Lin { constructor(readonly terms: ReadonlyMap<Cell, Rational>, readonly co
 class Img { constructor(readonly inner: Lin, readonly apply: (value: Rational) => Rational) {} }
 /** A Boolean that depends on cell digits. */
 class Sym { constructor(readonly formula: Formula) {} }
+/** The number of cells, among those listed, that hold one digit, plus a constant. */
+class Tally { constructor(readonly cells: readonly Cell[], readonly digit: number, readonly constant: Rational) {} }
 class SetV { constructor(readonly items: Value[]) {} }
 class Lazy {
   private value: Value | undefined; private done = false;
@@ -59,13 +61,13 @@ class Lazy {
   get(): Value { if (!this.done) { this.value = this.read(); this.done = true; } return this.value; }
 }
 type Fn = (...args: Value[]) => Value;
-type Value = Rational | string | boolean | undefined | Lin | Img | Sym | SetV | Value[] | Fn | { [field: string]: Value };
+type Value = Rational | string | boolean | undefined | Lin | Img | Sym | Tally | SetV | Value[] | Fn | { [field: string]: Value };
 type Scope = Record<string, Value | Lazy>;
 
 const zero = exact("0"), one = exact("1");
 const isRational = (v: unknown): v is Rational => !!v && typeof v === "object" && "numerator" in v && "denominator" in v;
 const isRecord = (v: unknown): v is { [field: string]: Value } =>
-  !!v && typeof v === "object" && !Array.isArray(v) && !isRational(v) && !(v instanceof Lin || v instanceof Img || v instanceof Sym || v instanceof SetV);
+  !!v && typeof v === "object" && !Array.isArray(v) && !isRational(v) && !(v instanceof Lin || v instanceof Img || v instanceof Sym || v instanceof Tally || v instanceof SetV);
 const isNumeric = (v: Value): v is Rational | Lin | Img => isRational(v) || v instanceof Lin || v instanceof Img;
 const isTruth = (v: Value): v is boolean | Sym => typeof v === "boolean" || v instanceof Sym;
 const none = (): Formula => ({ op: "Any", children: [] });
@@ -94,7 +96,7 @@ function key(v: Value): string {
   if (isRational(v)) return printExact(v);
   if (Array.isArray(v)) return `[${v.map(key).join(",")}]`;
   if (v instanceof SetV) return `{${v.items.map(key).sort().join(",")}}`;
-  if (v instanceof Lin || v instanceof Img || v instanceof Sym) return refuse("collected", "a cell digit used as a member of a collection or compared with a collection");
+  if (v instanceof Lin || v instanceof Img || v instanceof Sym || v instanceof Tally) return refuse("collected", "a cell digit used as a member of a collection or compared with a collection");
   if (isRecord(v)) return `{${Object.entries(v).filter(([, x]) => x !== undefined).sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([k, x]) => `${JSON.stringify(k)}:${key(x)}`).join(",")}}`;
   return JSON.stringify(v) ?? "absent";
 }
@@ -207,14 +209,23 @@ class Lowering {
     for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) { this.spend(); parts.push(this.compareValues("!=", results[i], results[j])); }
     return this.all(parts);
   }
+  /** How many of these conditions hold. Conditions on cell digits count the cells that hold one digit. */
   private count(conditions: Value[]): Value {
-    let total = 0n;
+    let total = 0n, digit: number | undefined;
+    const cells: Cell[] = [];
     for (const condition of conditions) {
       const verdict = truth(condition);
-      if (verdict instanceof Sym) return refuse("collected", "a count of conditions on cell digits");
-      if (verdict) total++;
+      if (verdict === true) { total++; continue; }
+      if (verdict === false) continue;
+      const f = verdict.formula;
+      if (f.op !== "Allowed") return refuse("collected", "a count of conditions that are not a single digit at a cell");
+      if (f.values.length === this.board.alphabet.length) { total++; continue; }
+      if (!f.values.length) continue;
+      if (f.values.length > 1 || (digit !== undefined && digit !== f.values[0])) return refuse("collected", "a count of cells that hold different digits");
+      digit = f.values[0];
+      cells.push(f.cell);
     }
-    return exact(String(total));
+    return cells.length ? new Tally(cells, digit!, exact(String(total))) : exact(String(total));
   }
   private all(parts: Value[]): Value {
     const formulas: Formula[] = [];
@@ -316,6 +327,7 @@ class Lowering {
     if (isRational(v)) return f(v);
     if (v instanceof Lin) return exactly ? exactly(v) : new Img(v, f);
     if (v instanceof Img) { const g = v.apply; return new Img(v.inner, x => f(g(x))); }
+    if (v instanceof Tally) return refuse("collected", "a function of a count of cells");
     throw Error("Expected a number.");
   }
 
@@ -343,6 +355,9 @@ class Lowering {
 
   private arith(op: string, a: Value, b: Value): Value {
     if (isRational(a) && isRational(b)) return arithmetic(op, a, b);
+    if (a instanceof Tally && isRational(b) && (op === "+" || op === "-")) return new Tally(a.cells, a.digit, arithmetic(op, a.constant, b));
+    if (b instanceof Tally && isRational(a) && op === "+") return new Tally(b.cells, b.digit, arithmetic(op, a, b.constant));
+    if (a instanceof Tally || b instanceof Tally) return refuse("collected", `${op} on a count of cells`);
     if (!isNumeric(a) || !isNumeric(b)) throw Error("Expected numbers.");
     const symbolic = (v: Value) => v instanceof Lin || v instanceof Img;
     if (symbolic(a) && symbolic(b)) {
@@ -373,6 +388,11 @@ class Lowering {
       const wanted = new Set(items.map(key));
       return this.relate(img(left), x => wanted.has(printExact(x)) === inside);
     }
+    if (left instanceof Tally) {
+      if (items.some(item => !isRational(item))) return refuse("collected", "a count of cells tested against a collection of cell digits");
+      const wanted = new Set(items.map(key));
+      return this.relateTally(left, n => wanted.has(printExact(n)) === inside);
+    }
     if (left instanceof Sym) return refuse("collected", "a condition used as a member of a collection");
     return items.some(item => key(item) === key(left)) === inside;
   }
@@ -380,6 +400,11 @@ class Lowering {
   private compareValues(op: string, a: Value, b: Value): Value {
     const test = (c: number) => op === "=" ? c === 0 : op === "!=" ? c !== 0 : op === "<" ? c < 0 : op === "<=" ? c <= 0 : op === ">" ? c > 0 : c >= 0;
     if (isRational(a) && isRational(b)) return test(compare(a, b));
+    if (a instanceof Tally || b instanceof Tally) {
+      const [tally, other, flip] = a instanceof Tally ? [a, b, false] as const : [b as Tally, a, true] as const;
+      if (!isRational(other)) return refuse("collected", "a count of cells compared with a cell-digit expression");
+      return this.relateTally(tally, n => test(flip ? compare(other, n) : compare(n, other)));
+    }
     if (isTruth(a) && isTruth(b) && (a instanceof Sym || b instanceof Sym)) {
       if (op !== "=" && op !== "!=") throw Error("Booleans have no order.");
       const same = this.all([this.any([this.not(a), b]), this.any([this.not(b), a])]);
@@ -463,6 +488,31 @@ class Lowering {
       return new Sym(hint === "eq" ? equation : { op: "Not", child: equation });
     }
     return refuse("relation", `${support.length} cells`);
+  }
+
+  /** The condition that the number of listed cells holding the digit passes `test`: runs of accepted counts, each a lower and an upper bound. */
+  private relateTally(tally: Tally, test: (value: Rational) => boolean): Value {
+    const cells = [...tally.cells].sort(cellOrder), n = cells.length;
+    const accepted: boolean[] = [];
+    for (let t = 0; t <= n; t++) accepted.push(test(arithmetic("+", tally.constant, exact(String(t)))));
+    if (accepted.every(x => !x)) return false;
+    if (accepted.every(x => x)) return true;
+    const atLeast = (count: number): Formula => ({ op: "CountAtLeast", channel: "D", cells, digit: tally.digit, count });
+    // Maximal runs of equal verdicts, each as "at least lo and fewer than hi + 1".
+    const runs = (want: boolean): [number, number][] => {
+      const found: [number, number][] = [];
+      for (let t = 0; t <= n; t++) if (accepted[t] === want) { if (found.length && found[found.length - 1][1] === t - 1) found[found.length - 1][1] = t; else found.push([t, t]); }
+      return found;
+    };
+    const band = ([lo, hi]: [number, number]): Formula => {
+      const parts: Formula[] = [];
+      if (lo > 0) parts.push(atLeast(lo));
+      if (hi < n) parts.push({ op: "Not", child: atLeast(hi + 1) });
+      return parts.length === 1 ? parts[0] : { op: "All", children: parts };
+    };
+    const yes = runs(true), no = runs(false);
+    const union = (list: [number, number][]): Formula => list.length === 1 ? band(list[0]) : { op: "Any", children: list.map(band) };
+    return new Sym(yes.length <= no.length ? union(yes) : { op: "Not", child: union(no) });
   }
 
   /** A comparison of several functions of cell digits that together read at most two cells. */

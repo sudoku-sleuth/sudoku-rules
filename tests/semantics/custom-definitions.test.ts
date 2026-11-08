@@ -145,11 +145,60 @@ test("a definition may use shared terms, local bindings and nested quantifiers",
   }
 });
 
+/** Whether the published definition text, read by the public evaluator, holds for these digits. */
+function published(maths: string, alphabet: number[], definitionCells = 3): (digits: Record<string, number>) => boolean {
+  const rules = `#probe ${cells(definitionCells).join("-")}`;
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: ${definitionCells}, symbols: [${alphabet.join(",")}], regions: [[${cells(definitionCells).join(", ")}]]}\n---\n${fence(custom(maths))}\n\`\`\`rules\n${rules}\n\`\`\`` });
+  expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+  const rule = compiled.value!.rules[0];
+  return digits => evaluate(rule, { digits }).status === "holds";
+}
+
+test("counts of cells holding a digit are lowered to the digit-count primitive", () => {
+  const cases: [string, string, (digits: number[]) => boolean][] = [
+    ["at least", "(count x∈cells: D(x) = 1) >= 2", d => d.filter(x => x === 1).length >= 2],
+    ["exactly", "(count x∈cells: D(x) = 5) = 1", d => d.filter(x => x === 5).length === 1],
+    ["a shared term", "countWhere(cells, λx:cell: D(x) = 2) != 2", d => d.filter(x => x === 2).length !== 2],
+    ["a band", "1 <= (count x∈cells: D(x) = 3) ∧ (count x∈cells: D(x) = 3) <= 2", d => { const n = d.filter(x => x === 3).length; return n >= 1 && n <= 2; }],
+    ["in a set", "(count x∈cells: D(x) = 6) ∈ {0,2}", d => [0, 2].includes(d.filter(x => x === 6).length)],
+    ["a shifted count", "(count x∈cells: D(x) = 6) + 1 > 2", d => d.filter(x => x === 6).length + 1 > 2],
+    ["no match", "(count x∈cells: D(x) = 9) = 0", d => !d.includes(9)],
+    ["an always count", "(count x∈cells: D(x) > -10) = 3", () => true],
+  ];
+  for (const alphabet of [[1, 2, 3, 4, 5, 6], [-3, -1, 0, 2, 5], [0, 1, 2, 3], [2, 4, 7]]) for (const [label, maths, expected] of cases) {
+    const result = nf(`#probe ${a}-${b}-${c}`, [custom(maths)], context(3, alphabet));
+    expect([label, result.issues, result.status]).toEqual([label, [], "complete"]);
+    const text = published(maths, alphabet);
+    for (const x of alphabet) for (const y of alphabet) for (const z of alphabet) {
+      const values = { [a]: x, [b]: y, [c]: z };
+      expect([label, x, y, z, holds(result.normalForm!.solution, values)]).toEqual([label, x, y, z, expected([x, y, z])]);
+      expect([label, x, y, z, text(values)]).toEqual([label, x, y, z, expected([x, y, z])]);
+    }
+  }
+});
+
+test("a near miss of a count differs in normal form and matches the evaluator on its own text", () => {
+  const alphabet = [1, 2, 3, 4];
+  const original = agree("(count x∈cells: D(x) = 1) >= 2", "(count x∈cells: D(x) = 1) >= 2", alphabet);
+  for (const mutant of ["(count x∈cells: D(x) = 1) > 2", "(count x∈cells: D(x) = 1) >= 1", "(count x∈cells: D(x) = 2) >= 2", "(count x∈cells: D(x) = 1) <= 2"]) {
+    const near = agree(mutant, mutant, alphabet);
+    expect([mutant, compare(original, near).status, solution(original) === solution(near)]).toEqual([mutant, "unresolved", false]);
+  }
+});
+
+test("a definition that counts digits equals the library rule that states the same counts", () => {
+  const own = nf(`outside ${a}-${b}-${c}-${d} digits [1,1,2]`, []);
+  const lowered = nf(`#probe ${a}-${b}-${c}-${d}`, [custom("(count x∈cells: D(x) = 1) >= 2 ∧ (count x∈cells: D(x) = 2) >= 1")]);
+  expect(compare(own, lowered).status).toBe("equivalent");
+  expect(solution(own)).toBe(solution(lowered));
+});
+
 test("the lowered formula agrees with the public evaluator on a small board", () => {
   const cases: [string, Definition][] = [
     ["weighted", custom("|cells| = 3 ∧ D(cells[2]) = D(cells[0]) + 2 × D(cells[1])")],
     ["increasing sum", custom("Σ_{x∈cells} D(x) >= 8 ∧ ∀i∈[0,|cells|-1): D(cells[i]) < D(cells[i+1])")],
     ["spread", custom("∀p∈cells: ∀q∈cells: p!=q → |D(p) - D(q)| >= 2")],
+    ["counts", custom("(count x∈cells: D(x) = 2) = 1 ∧ (count x∈cells: D(x) = 5) <= 1")],
     ["residues", custom("|cells| = 3 ∧ rem(D(cells[0]),2) = rem(D(cells[2]),2) ∧ odd(D(cells[1]))")],
   ];
   const alphabet = [1, 2, 3, 4, 5, 6];
@@ -218,7 +267,9 @@ test("every refusal names what is missing", () => {
   refused("∃S:set<cell>: S ⊆ cells ∧ |S| = 2", "witness", "a set of cell", { cells: { type: "set<cell>", description: "Cells." } });
   refused("|cells| = 3 ∧ D(cells[0]) * D(cells[1]) = 6", "nonlinear", "* of two cell-digit expressions");
   refused("|cells| = 3 ∧ D(cells[0]) + D(cells[1]) < D(cells[2]) + 1", "relation", "3 cells");
-  refused("(count x∈cells: D(x) = 1) >= 2", "collected", "a count of conditions on cell digits");
+  refused("(count x∈cells: D(x) = 1 ∨ D(x) = 2) >= 2", "collected", "a count of conditions that are not a single digit at a cell");
+  refused("(count x∈cells: D(x) = 1) + (count x∈cells: D(x) = 2) >= 2", "collected", "+ on a count of cells");
+  refused("|cells| = 3 ∧ (count x∈cells: D(x) = 1) >= D(cells[0])", "collected", "a count of cells compared with a cell-digit expression");
   refused("|H| = 2", "answer", "the shaded cells");
   refused("|cells| = 3 ∧ ∀i∈[0,200000): D(cells[0]) != 5", "expansion", "an interval of more than 100,000 positions");
   refused("connected(cells)", "primitive", "connected");
