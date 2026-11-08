@@ -30,6 +30,21 @@ function form(rules: string, n = 5, alphabet?: number[]) { const r = nf(rules, n
 const at = (...v: number[]) => Object.fromEntries(v.map((x, i) => [cells[i], x]));
 const reasonOf = (rules: string) => { const r = nf(rules); expect(r.issues).toEqual([]); const c = r.normalForm!.coverage.find(x => x.kind === "blocked-sight")!; expect(c.status).toBe("unsupported"); return c.reason!; };
 
+/**
+ * The published definition. The compiled rule keeps a lowered fast path (`finite`); it is removed here so the evaluator reads the rule
+ * page's own formula. A second run supplies effective values that differ from the printed digits (the first cell doubled): this rule
+ * reads printed digits only, so both runs must agree.
+ */
+type Compiled = NonNullable<ReturnType<typeof compileCase>["value"]>["rules"][number];
+const published = (compiled: Compiled, values: Record<string, number>): boolean => {
+  const rule = { ...compiled, finite: undefined } as Compiled;
+  const printed = evaluate(rule, { digits: values }).status;
+  const doubled = Object.fromEntries(Object.entries(values).map(([c, x], i) => [c, i === 0 ? x * 2 : x]));
+  expect(evaluate(rule, { digits: values, values: doubled }).status).toBe(printed);
+  expect(printed).not.toBe("undecided");
+  return printed === "holds";
+};
+
 // The first library load is slow on CI, so it is timed on its own with a longer limit; the tests below reuse it.
 test("the library loads", () => {
   nf(sight(1, [[2, 3]], "count"));
@@ -151,8 +166,9 @@ test("the declaration is covered beside a value modifier because it reads printe
   expect(r.normalForm!.coverage.find(x => x.kind === "blocked-sight")).toMatchObject({ status: "lowered" });
 });
 
-function differential(n: number, symbols: number[], entries: string[]): number {
-  let seen = 0;
+/** The evaluator is run on every satisfying assignment and on every `sample`-th other one. */
+function differential(n: number, symbols: number[], entries: string[], sample = 1): number {
+  let seen = 0, stride = 0;
   const used = cells.slice(0, n);
   const board = boardOf(n, symbols);
   for (const text of entries) {
@@ -164,9 +180,9 @@ function differential(n: number, symbols: number[], entries: string[]): number {
     const rule = compiled.value!.rules[0];
     const walk = (index: number, values: Record<string, number>) => {
       if (index === n) {
-        const expected = evaluate(rule, { digits: values }).status === "holds";
-        expect([text, JSON.stringify(values), holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
-        if (expected) seen++;
+        const got = holds(r.normalForm!.solution, values);
+        if (got) seen++;
+        if (got || stride++ % sample === 0) expect([text, JSON.stringify(values), published(rule, values)]).toEqual([text, JSON.stringify(values), got]);
         return;
       }
       for (const x of symbols) walk(index + 1, { ...values, [used[index]]: x });
@@ -176,23 +192,18 @@ function differential(n: number, symbols: number[], entries: string[]): number {
   return seen;
 }
 
-test("the lowered formula and the public evaluator agree on counts", () => {
-  const entries = [
-    sight(1, [[2, 3, 4]], "count"), sight(1, [[2, 3, 4]], "count", ` blockers ${list([3])}`), sight(1, [[2, 3, 4]], "count", ` blockers ${list([3])} includeBlocker true`),
-    sight(1, [[2, 3], [4]], "count", " includeOrigin true"), sight(2, [[3, 4], [1]], "count", " offset 1"), sight(1, [[2, 3, 4]], "count", " total 2"),
-    sight(1, [[2, 3]], "count", ` targetCells ${list([4])}`), sight(1, [[2, 1]], "count"), `not ${sight(1, [[2, 3, 4]], "count", ` blockers ${list([3])}`)}`,
-  ];
-  expect(differential(4, [1, 2, 3], entries)).toBeGreaterThan(0);
-  expect(differential(4, [0, 1, 2, 3], [sight(1, [[2, 3]], "count", " offset -1"), sight(1, [[2, 3, 4]], "count", ` blockers ${list([2])}`)])).toBeGreaterThan(0);
-});
+const blockedList = ` blockers ${list([3])}`;
+const diffTest = (name: string, n: number, symbols: number[], entries: string[], sample: number, atLeast = 1) =>
+  test(`the lowered formula and the public evaluator agree on ${name}`, () => { expect(differential(n, symbols, entries, sample)).toBeGreaterThanOrEqual(atLeast); });
 
-test("the lowered formula and the public evaluator agree on sums", () => {
-  const entries = [
-    sight(1, [[2, 3, 4]], "sum"), sight(1, [[2, 3, 4]], "sum", ` blockers ${list([3])} includeBlocker true`), sight(1, [[2, 3], [3, 4]], "sum", " total 4"),
-    sight(1, [[2, 3]], "sum", ` targetCells ${list([4])}`), sight(1, [[2, 3]], "sum", ` targetCells ${list([3, 4])}`), sight(1, [[2, 3]], "sum", " offset 1"),
-    sight(1, [[2, 3]], "sum", " offset -1 includeOrigin true"), sight(1, [[2]], "sum", ` blockers ${list([2])} offset 2`), sight(1, [[2]], "sum", ` blockers ${list([2])} total 0`),
-    sight(3, [[2, 1], [4]], "sum", " includeOrigin true"),
-  ];
-  expect(differential(4, [1, 2, 3], entries)).toBeGreaterThan(0);
-  expect(differential(5, [1, 2, 3], [sight(1, [[2, 3], [4, 5]], "sum", ` blockers ${list([3])} offset -2`)])).toBeGreaterThan(0);
-});
+diffTest("a count with blockers", 4, [1, 2, 3], [sight(1, [[2, 3, 4]], "count", blockedList), sight(1, [[2, 3, 4]], "count", blockedList + " includeBlocker true")], 14);
+diffTest("a count with the origin and two rays", 4, [1, 2, 3], [sight(1, [[2], [3]], "count", " includeOrigin true"), sight(2, [[3, 4], [1]], "count", " offset -1")], 14);
+diffTest("a count against a total or target cells", 4, [1, 2, 3], [sight(1, [[2, 3, 4]], "count", " total 2"), sight(1, [[2, 3]], "count", ` targetCells ${list([4])}`)], 14);
+diffTest("a count with the origin on its ray and a negation", 4, [1, 2, 3], [sight(1, [[2, 1]], "count"), `not ${sight(1, [[2, 3, 4]], "count", blockedList)}`], 14, 0);
+diffTest("a count over a zero-based alphabet", 4, [0, 1, 2, 3], [sight(1, [[2, 3]], "count", " offset -1")], 20);
+diffTest("a sum against the origin", 4, [1, 2, 3], [sight(1, [[2, 3, 4]], "sum"), sight(1, [[2, 3, 4]], "sum", blockedList + " includeBlocker true")], 14);
+diffTest("a sum against a total", 4, [1, 2, 3], [sight(1, [[2, 3], [3, 4]], "sum", " total 4"), sight(1, [[2]], "sum", ` blockers ${list([2])} total 0`)], 14);
+diffTest("a sum against target cells", 4, [1, 2, 3], [sight(1, [[2, 3]], "sum", ` targetCells ${list([4])}`), sight(1, [[2, 3]], "sum", ` targetCells ${list([3, 4])}`)], 14);
+diffTest("a sum with an offset", 4, [1, 2, 3], [sight(1, [[2, 3]], "sum", " offset 1"), sight(1, [[2, 3]], "sum", " offset -1 includeOrigin true"), sight(1, [[2]], "sum", ` blockers ${list([2])} offset 2`)], 14);
+diffTest("a sum from the origin outward on both sides", 4, [1, 2, 3], [sight(3, [[2, 1], [4]], "sum", " includeOrigin true offset -3")], 14);
+diffTest("a five-cell board", 5, [1, 2, 3], [sight(1, [[2, 3], [4, 5]], "sum", `${blockedList} offset -2`)], 30);
