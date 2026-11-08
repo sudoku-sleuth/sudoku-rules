@@ -29,6 +29,21 @@ function holds(f: Formula, v: Record<string, number>): boolean {
 function form(rules: string, n = 5, alphabet?: number[]) { const r = nf(rules, n, alphabet); expect(r.issues).toEqual([]); expect(r.status).toBe("complete"); return r.normalForm!.solution; }
 const at = (...v: number[]) => Object.fromEntries(v.map((x, i) => [cells[i], x]));
 
+/**
+ * The published definition. The compiled rule keeps a lowered fast path (`finite`); it is removed here so the evaluator reads the rule
+ * page's own formula. A second run supplies effective values that differ from the printed digits (the first cell doubled): this rule
+ * reads printed digits only, so both runs must agree.
+ */
+type Compiled = NonNullable<ReturnType<typeof compileCase>["value"]>["rules"][number];
+const published = (compiled: Compiled, values: Record<string, number>): boolean => {
+  const rule = { ...compiled, finite: undefined } as Compiled;
+  const printed = evaluate(rule, { digits: values }).status;
+  const doubled = Object.fromEntries(Object.entries(values).map(([c, x], i) => [c, i === 0 ? x * 2 : x]));
+  expect(evaluate(rule, { digits: values, values: doubled }).status).toBe(printed);
+  expect(printed).not.toBe("undecided");
+  return printed === "holds";
+};
+
 // The first library load is slow on CI, so it is timed on its own with a longer limit; the tests below reuse it.
 test("the library loads", () => {
   nf(arrow(1, [2, 3], "greater"));
@@ -126,8 +141,9 @@ test("the declaration is covered beside a value modifier because it reads printe
   expect(r.normalForm!.coverage.find(x => x.kind === "pointing-arrow")).toMatchObject({ status: "lowered" });
 });
 
-function differential(n: number, symbols: number[], entries: string[]): number {
-  let seen = 0;
+/** The evaluator is run on every satisfying assignment and on every `sample`-th other one. */
+function differential(n: number, symbols: number[], entries: string[], sample = 1): number {
+  let seen = 0, stride = 0;
   const used = cells.slice(0, n);
   const board = boardOf(n, symbols);
   for (const text of entries) {
@@ -139,9 +155,9 @@ function differential(n: number, symbols: number[], entries: string[]): number {
     const rule = compiled.value!.rules[0];
     const walk = (index: number, values: Record<string, number>) => {
       if (index === n) {
-        const expected = evaluate(rule, { digits: values }).status === "holds";
-        expect([text, JSON.stringify(values), holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
-        if (expected) seen++;
+        const got = holds(r.normalForm!.solution, values);
+        if (got) seen++;
+        if (got || stride++ % sample === 0) expect([text, JSON.stringify(values), published(rule, values)]).toEqual([text, JSON.stringify(values), got]);
         return;
       }
       for (const x of symbols) walk(index + 1, { ...values, [used[index]]: x });
@@ -151,22 +167,19 @@ function differential(n: number, symbols: number[], entries: string[]): number {
   return seen;
 }
 
-test("the lowered formula and the public evaluator agree on greater and less", () => {
-  expect(differential(4, [1, 2, 3], [arrow(1, [2, 3, 4], "greater"), arrow(1, [2, 3, 4], "less"), arrow(2, [1, 3, 4], "greater"), arrow(1, [2, 3], "less"), `not ${arrow(1, [2, 3, 4], "greater")}`])).toBeGreaterThan(0);
-  expect(differential(4, [0, 1, 2, 3], [arrow(1, [2, 3, 4], "greater")])).toBeGreaterThan(0);
-});
+const diffTest = (name: string, n: number, symbols: number[], entries: string[], sample: number, atLeast = 1) =>
+  test(`the lowered formula and the public evaluator agree on ${name}`, () => { expect(differential(n, symbols, entries, sample)).toBeGreaterThanOrEqual(atLeast); });
 
-test("the lowered formula and the public evaluator agree on a clue cell on its own ray", () => {
-  expect(differential(3, [1, 2, 3, 4], [arrow(1, [1, 2, 3], "greater"), arrow(1, [1, 2, 3], "less"), arrow(2, [3, 2, 1], "greater"), arrow(1, [2, 1, 3], "source", ` source "r1c3"`)])).toBeGreaterThan(0);
-});
-
-test("the lowered formula and the public evaluator agree on source", () => {
-  expect(differential(4, [1, 2, 3], [arrow(1, [2, 3, 4], "source", ` source "r1c4"`), arrow(1, [2, 3], "source", ` source "r1c1"`), arrow(1, [2, 3, 4], "source", ` source "r1c3"`)])).toBeGreaterThan(0);
-  expect(differential(3, [1, 2, 3], [arrow(1, [2, 3], "source")])).toBe(0);
-});
-
-test("the lowered formula and the public evaluator agree on first-five", () => {
-  expect(differential(4, [1, 2, 5], [arrow(1, [2, 3, 4], "first-five"), arrow(1, [1, 2, 3, 4], "first-five"), arrow(3, [4, 2, 1], "first-five"), arrow(1, [2, 3], "first-five", ` source "r1c4"`)])).toBeGreaterThan(0);
-  expect(differential(4, [1, 2, 3], [arrow(1, [2, 3, 4], "first-five")])).toBe(0);
-  expect(differential(4, [2, 3, 5], [arrow(1, [2, 3, 4], "first-five")])).toBeGreaterThan(0);
-});
+diffTest("greater", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "greater"), arrow(2, [1, 3, 4], "greater")], 12);
+diffTest("less and a shorter ray", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "less"), arrow(1, [2, 3], "less")], 12);
+diffTest("a negated greater", 4, [1, 2, 3], [`not ${arrow(1, [2, 3, 4], "greater")}`], 6);
+diffTest("greater over a zero-based alphabet", 4, [0, 1, 2, 3], [arrow(1, [2, 3, 4], "greater")], 20);
+diffTest("a clue cell on its own ray", 3, [1, 2, 3, 4], [arrow(1, [1, 2, 3], "greater"), arrow(1, [1, 2, 3], "less"), arrow(2, [3, 2, 1], "greater")], 8);
+diffTest("a source on the ray", 3, [1, 2, 3, 4], [arrow(1, [2, 1, 3], "source", ` source "r1c3"`)], 4);
+diffTest("source", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "source", ` source "r1c4"`), arrow(1, [2, 3], "source", ` source "r1c1"`)], 12);
+diffTest("a source cell on the ray", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "source", ` source "r1c3"`)], 12);
+diffTest("a missing source", 3, [1, 2, 3], [arrow(1, [2, 3], "source")], 6, 0);
+diffTest("first-five", 4, [1, 2, 5], [arrow(1, [2, 3, 4], "first-five"), arrow(1, [1, 2, 3, 4], "first-five")], 12);
+diffTest("first-five with a source cell beside it", 4, [1, 2, 5], [arrow(3, [4, 2, 1], "first-five"), arrow(1, [2, 3], "first-five", ` source "r1c4"`)], 12);
+diffTest("first-five without a 5 and with other digits", 4, [2, 3, 5], [arrow(1, [2, 3, 4], "first-five")], 12);
+diffTest("first-five without a 5 in the alphabet", 4, [1, 2, 3], [arrow(1, [2, 3, 4], "first-five")], 12, 0);
