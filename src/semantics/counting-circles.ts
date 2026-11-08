@@ -1,4 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
+import { sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Formula } from "./types.js";
@@ -12,7 +13,7 @@ import type { CanonicalBoard, Formula } from "./types.js";
  */
 export function lowerCountingCircles(ast: DeclarationAST, board: CanonicalBoard): Formula {
   const cells = semanticDeclaration(ast).cells ?? [];
-  const circles = [...new Set(cells)].sort();
+  const circles = sortedCells(cells);
   if (circles.length !== cells.length) throw new UnsupportedSemantics("Counting circles that list a cell more than once are not lowered; the whole instance remains uncovered.");
   const n = circles.length;
   const holds = (digit: number, count: number): Formula => ({ op: "CountAtLeast", channel: "D", cells: circles, digit, count });
