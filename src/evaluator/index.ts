@@ -126,7 +126,7 @@ export function compileCase(file:PageSource):Result<CompiledCase>{
   }else errors.push(...env.diagnostics,...parsed.diagnostics,...formula?.diagnostics??[]);
  }
  errors.push(...custom.diagnostics);
- const valueBindings=checked.value.references.some(r=>['value-modifier','mapped-values','liar-cells'].includes(r.kind));
+ const valueBindings=checked.value.references.some(r=>['value-modifier','mapped-values','liar-cells'].includes(r.kind)||r.custom&&bindsValues(definitions.get(r.url)?.page));
  for(const ast of checked.value.declarations){
   const ref=checked.value.references.find(r=>r.span.start.offset===ast.kind.span.start.offset);
   if(!ref){errors.push(diagnostic('E_CUSTOM_DEFINITION',ast.span,'No resolved reference for this declaration.'));continue;}
@@ -160,6 +160,10 @@ function applyBoardDefaults(parameters:Record<string,unknown>,kind:string,board:
 }
 function readsEffective(page:CompiledPage):boolean{
  const seen=new Set<string>();const visit=(n:import('../language/ast.js').Expr):boolean=>{if(n.kind==='name'){if(n.value==='effective')return true;const term=defaultCasePrelude().environment.terms[n.value!];if(term?.body&&!seen.has(term.name)){seen.add(term.name);if(visit(term.body))return true;}}return n.children.some(visit);};return page.formulas.some(f=>visit(f.ast));
+}
+/** A definition binds the shared effective values when its formula, or a prelude term it reaches, ranges over ValuedRuleMeanings. */
+function bindsValues(page:CompiledPage|undefined):boolean{
+ const seen=new Set<string>();const visit=(n:import('../language/ast.js').Expr):boolean=>{if(n.kind==='name'){if(n.value==='ValuedRuleMeanings')return true;const term=defaultCasePrelude().environment.terms[n.value!];if(term?.body&&!seen.has(term.name)){seen.add(term.name);if(visit(term.body))return true;}}return n.children.some(visit);};return !!page?.formulas.some(f=>visit(f.ast));
 }
 const readsFiniteValue=(f:Formula):boolean=>'channel' in f?f.channel==='V':f.op==='Not'?readsFiniteValue(f.child):f.children.some(readsFiniteValue);
 const inverse=(e:Evaluation):Evaluation=>({status:e.status==='holds'?'broken':e.status==='broken'?'holds':'undecided',...(e.cells?{cells:[...e.cells]}: {})});
@@ -281,7 +285,7 @@ function evaluateRule(rule:CompiledRule,assignment:Assignment,depth:number,budge
    if(rule.valueBindings&&readsEffective(rule.page)&&!assignment.values&&!assignment.valueAnswers?.V)throw new MissingValue('Supply shared effective values');
    const shading=record(assignment.shading);
    const readCells=new Set<string>();
-   const fragment:Fragment={...assignment,budget,definitionKind:rule.libraryKind,readCells,valuedMeanings:()=>rule.caseRules.filter(r=>r!==rule&&!['value-modifier','liar-cells'].includes(r.name)&&readsEffective(r.page)).map(r=>{const e=evaluateRule(r,assignment,depth+1,budget);if(e.status==='undecided')throw new MissingValue('Incomplete valued rule');return e.status==='holds';}),clueTruth:q=>{
+   const fragment:Fragment={...assignment,budget,definitionKind:rule.libraryKind,readCells,valuedMeanings:()=>rule.caseRules.filter(r=>r!==rule&&!['value-modifier','liar-cells'].includes(r.name)&&!bindsValues(r.page)&&readsEffective(r.page)).map(r=>{const e=evaluateRule(r,assignment,depth+1,budget);if(e.status==='undecided')throw new MissingValue('Incomplete valued rule');return e.status==='holds';}),clueTruth:q=>{
     const clue=q as {rule:string;args:Record<string,unknown>};const definition=rule.definitions.get(clue.rule);
     if(!definition)throw new EvaluationLimit(`Unresolved owned clue ${clue.rule}`);
     const parameters={...Object.fromEntries(Object.entries(definition.contract.parameters).filter(([,p])=>Object.hasOwn(p,'default')).map(([k,p])=>[k,p.default])),...clue.args};
