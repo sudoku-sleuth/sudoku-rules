@@ -124,7 +124,7 @@ export const declarationRegistry = {
   "diagonal-sum": lowered,
   "little-killer": lowered,
   zipper: lowered,
-  "sum-free-cage": pending("Modular digit-set exclusion including self-pairs is not lowered."),
+  "sum-free-cage": lowered,
   entropic: lowered,
   "doll-sum": pending("Existential endpoint pairs and interior sums are not lowered."),
   "double-arrow": lowered,
