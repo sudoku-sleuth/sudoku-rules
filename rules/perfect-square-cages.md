@@ -27,6 +27,7 @@ status: read
 ```rules
 sudoku 9x9
 perfect-square-cages cells ["r1c1","r1c2"] totals [4,9,16]
+cage r1c1-r1c2
 ```
 ````
 

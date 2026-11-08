@@ -29,13 +29,18 @@ test("each kind gives the same result as cage-totals", () => {
   }
 });
 
-test("a different totals list is not the same cage", () => {
-  for (const { kind, totals, other } of kinds) {
-    const near = compare(nf(line(kind, [a, b], totals)), nf(line("cage-totals", [a, b], other)));
-    const nearBase = compare(nf(line("cage-totals", [a, b], totals)), nf(line("cage-totals", [a, b], other)));
-    expect(near.status).toBe("unresolved");
-    expect(near.status).toBe(nearBase.status);
-    expect(near.covered).toBe(nearBase.covered);
+test("a totals list without the sum breaks, as in cage-totals", () => {
+  for (const { kind, totals, other, holds } of kinds) {
+    const sum = holds[0] + holds[1];
+    const missing = other.includes(String(sum)) ? "[100]" : other;
+    for (const [list, status] of [[totals, "holds"], [missing, "broken"]]) {
+      const results = [kind, "cage-totals"].map(k => {
+        const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 3, symbols: [1,2,3,4,5,6,7,8,9]}\n---\n\n\`\`\`rules\n${line(k, [a, b], list)}\n\`\`\`` });
+        expect(compiled.diagnostics).toEqual([]);
+        return evaluate(compiled.value!.rules[0], { digits: { r1c1: holds[0], r1c2: holds[1] } }).status;
+      });
+      expect(results).toEqual([status, status]);
+    }
   }
 });
 

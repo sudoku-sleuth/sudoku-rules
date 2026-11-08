@@ -26,10 +26,11 @@ status: read
 
 ```rules
 sudoku 9x9
-perfect-cube-cages cells ["r1c1","r1c2"] totals [8,27]
+perfect-cube-cages cells ["r1c1","r1c2","r1c3"] totals [8,27]
+cage r1c1-r1c3
 ```
 ````
 
-Satisfies the rule: r1c1=3, r1c2=5. The cage total is 8, a perfect cube.
+Satisfies the rule: r1c1=1, r1c2=2, r1c3=5. The cage total is 8, a perfect cube.
 
-Breaks the rule: r1c1=3, r1c2=6. The cage total is 9, which is not a perfect cube.
+Breaks the rule: r1c1=1, r1c2=2, r1c3=6. The cage total is 9, which is not a perfect cube.
