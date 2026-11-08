@@ -194,3 +194,33 @@ test("the lowered formula equals the rule text on every assignment of small boar
     expect(seen).toBeGreaterThan(0);
   }
 });
+
+const permutations = (xs: number[]): number[][] => xs.length <= 1 ? [xs] : xs.flatMap((x, i) => permutations([...xs.slice(0, i), ...xs.slice(i + 1)]).map(p => [x, ...p]));
+
+test("on four by four the row-Latin solutions include asymmetric ones, and the formula and the published rule both follow them", () => {
+  const g4 = grid(4, 4);
+  const rows = permutations([1, 2, 3, 4]);
+  const solutions: number[][] = [];
+  for (const a of rows) for (const b of rows) for (const c of rows) for (const d of rows) {
+    const flat = [...a, ...b, ...c, ...d];
+    // The rule text on plain arrays: cell (r, c) holding d needs r at (c, d) and c at (d, r), all counted from one.
+    if (flat.every((d, i) => flat[(i % 4) * 4 + d - 1] === Math.floor(i / 4) + 1 && flat[(d - 1) * 4 + Math.floor(i / 4)] === (i % 4) + 1)) solutions.push(flat);
+  }
+  expect(solutions.length).toBe(18);
+  const asymmetric = solutions.filter(s => s.some((x, i) => x !== s[(i % 4) * 4 + Math.floor(i / 4)]));
+  expect(asymmetric.length).toBe(2);
+  const f = form(4, 4, [1, 2, 3, 4]);
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 4, cols: 4, symbols: [1,2,3,4], regions: [[${g4.join(", ")}]]}\n---${body("super-indexing")}` });
+  const rule = compiled.value!.rules[0];
+  for (const s of solutions) {
+    const v = put(g4, ...s);
+    expect(holds(f, v)).toBe(true);
+    expect(published(rule, v)).toBe(true);
+    // Changing any one cell breaks the clue on both sides.
+    for (const i of [0, 5, 10, 15, 6]) {
+      const w = { ...v, [g4[i]]: (s[i] % 4) + 1 };
+      expect(holds(f, w)).toBe(false);
+      expect(published(rule, w)).toBe(false);
+    }
+  }
+});
