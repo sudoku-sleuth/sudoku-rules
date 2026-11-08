@@ -45,6 +45,7 @@ import { lowerRunSum } from "./run-sum.js";
 import { lowerDollSum } from "./doll-sum.js";
 import { lowerPrefixSum } from "./prefix-sum.js";
 import { lowerSumPartition } from "./sum-partition.js";
+import { lowerClassPattern } from "./class-pattern.js";
 import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
@@ -90,6 +91,7 @@ const fields: Record<string, string[]> = {
   "doll-sum": ["sums"],
   "prefix-sum": ["stop", "target", "crusts", "include", "channel", "total"],
   "sum-partition": ["total", "mode", "channel", "repeats", "loop"],
+  "class-pattern": ["edges", "loop", "classification", "modulus", "length", "geometry", "mode", "fixedClass", "channel"],
 };
 export function validateCells(ast: DeclarationAST, board: CanonicalBoard): void {
   const instance=semanticDeclaration(ast);
@@ -135,7 +137,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   validateCells(ast, board);
   const needsCells = Object.hasOwn(lineFields, kind) || ["arrow", "double-arrow", "between", "lockout", "sandwich", "x-sum", "numbered-room", "index", "index-line", "equality-cage", "vault", "counting-circles", "skyscraper", "diagonal-sum", "unique", "clone", "allowed-digits", "absent-digits", "parity-cells", "cage", "killer", "pair", "quadruple", "outside", "extremum", "same-class", "pointing-thermo", "lookup", "layered-cage", "product-cage", "cage-totals", "sum-free-cage", "relation-scope", "limited-digits", "look-and-say", "digit-profile", "hidden-modular", "ordered-block", "remainder-cage", "ziffer-lines", "split-pea", "high-low-lines", "local-sequence", "run-sum", "doll-sum", "prefix-sum", "sum-partition"].includes(kind);
   if (needsCells && kind !== "lookup" && !instance.cells?.length && !(p.edges !== undefined && edgeLines.includes(kind))) throw Error(`${written} needs a nonempty cell list.`);
-  if (!needsCells && !["xv", "kropki", "aggregate-groups", "number-property", "mirrored-pairs"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
+  if (!needsCells && !["xv", "kropki", "aggregate-groups", "number-property", "mirrored-pairs", "class-pattern"].includes(kind) && instance.cells) throw Error(`${written} does not take a cell list.`);
   if (Object.hasOwn(lineFields, kind)) return lowerLine(ast, board);
   if (kind === "arrow") return lowerArrow(ast, board);
   if (kind === "between" || kind === "lockout") return lowerEndpointRange(ast, board);
@@ -178,6 +180,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "doll-sum") return lowerDollSum(ast, board);
   if (kind === "prefix-sum") return lowerPrefixSum(ast, board);
   if (kind === "sum-partition") return lowerSumPartition(ast, board);
+  if (kind === "class-pattern") return lowerClassPattern(ast, board);
   if (kind === "same-class") return lowerSameClass(ast, board);
   if (kind === "relation-scope") return lowerRelationScope(ast, board);
   if (kind === "limited-digits") return lowerLimitedDigits(ast, board);
