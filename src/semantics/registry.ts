@@ -161,7 +161,7 @@ export const declarationRegistry = {
   sandwich: lowered,
   "index-line": lowered,
   "n-mate": lowered,
-  "pressure-gauge": pending("Larger and smaller neighbour counts are not lowered."),
+  "pressure-gauge": lowered,
   "value-modifier": pending("Shared effective-value bindings and modifier witnesses are not lowered."),
   "look-and-say": lowered,
   "run-sum": pending("Neighbour-selected occurrence sums are not lowered."),
