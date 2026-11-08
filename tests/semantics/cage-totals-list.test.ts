@@ -35,7 +35,9 @@ const at = (...v: number[]) => Object.fromEntries(v.map((x, i) => [cells[i], x])
 // The first library load is slow on CI, so it is timed on its own with a longer limit; the tests below reuse it.
 test("the library loads", () => {
   nf(totals([a, b], [4]));
-  compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 2, symbols: [1,2,3], regions: [[r1c1, r1c2]]}\n---${body(totals([a, b], [4]))}` });
+  const loaded = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 2, symbols: [1,2,3], regions: [[r1c1, r1c2]]}\n---${body(totals([a, b], [4]))}` });
+  // Evaluating once here loads the evaluator too, so the timed tests below measure only their own work.
+  evaluate({ ...loaded.value!.rules[0], finite: undefined }, { digits: {} });
 }, 30000);
 
 test("the cage sums to one of the listed totals", () => {
@@ -119,7 +121,7 @@ test("the lowering reads the V channel: with effective values doubled it follows
 });
 
 function differential(n: number, symbols: number[], entries: string[]): number {
-  let seen = 0;
+  let seen = 0, sampled = 0;
   const used = cells.slice(0, n);
   const board = boardOf(symbols, n);
   for (const text of entries) {
