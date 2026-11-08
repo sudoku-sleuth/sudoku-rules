@@ -1,4 +1,4 @@
-import { cellAt, coordinates } from "./board.js";
+import { cellAt, cellOrder, coordinates } from "./board.js";
 import { all } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
@@ -23,7 +23,7 @@ export function lowerSuperIndexing(board: CanonicalBoard): Formula {
       const needs = new Map<Cell, number>();
       for (const [partner, held] of partners) needs.set(partner, needs.get(partner) ?? held);
       if (partners.some(([partner, held]) => needs.get(partner) !== held)) continue;
-      cases.push(all([...needs].sort(([x], [y]) => x < y ? -1 : 1).map(([partner, held]): Formula => ({ op: "Allowed", channel: "D", cell: partner, values: [held] }))));
+      cases.push(all([...needs].sort(([x], [y]) => cellOrder(x, y)).map(([partner, held]): Formula => ({ op: "Allowed", channel: "D", cell: partner, values: [held] }))));
     }
     return { op: "Any", children: cases };
   }));

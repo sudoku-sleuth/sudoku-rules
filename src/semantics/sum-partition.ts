@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { key } from "./board.js";
+import { cellOrder, key } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -46,10 +46,10 @@ export function lowerSumPartition(ast: DeclarationAST, board: CanonicalBoard): F
   const atoms = new Map<string, Formula>();
   /** The interval over these cells holds the total, with different values when repeats is false. */
   const interval = (members: Cell[]): Formula => {
-    const id = key([...members].sort());
+    const id = key([...members].sort(cellOrder));
     let atom = atoms.get(id);
     if (!atom) {
-      const sorted = [...members].sort() as Cell[];
+      const sorted = [...members].sort(cellOrder) as Cell[];
       atom = all([
         { op: "SumTotal", channel, cells: sorted, total },
         ...(repeats || sorted.length < 2 ? [] : [{ op: "Distinct", channel, collection: "set", cells: sorted } as Formula]),

@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { sortedCells } from "./board.js";
+import { cellOrder, sortedCells } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, distinct, sumTotal, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -152,7 +152,7 @@ export function lowerNumberProperty(ast: DeclarationAST, board: CanonicalBoard):
         for (let i = 0; i < cells.length; i++) if (at.get(cells[i]) !== undefined && at.get(cells[i]) !== read[i]) return; else at.set(cells[i], read[i]);
         const number = (list: number[]) => list.reduce((n, d) => n * 10n + BigInt(d), 0n);
         branches.push({ value: number(read), reversed: number([...read].reverse()),
-          formula: all([...at].sort(([x], [y]) => x < y ? -1 : 1).map(([cell, d]): Formula => ({ op: "Allowed", channel: "D", cell, values: [d] }))) });
+          formula: all([...at].sort(([x], [y]) => cellOrder(x, y)).map(([cell, d]): Formula => ({ op: "Allowed", channel: "D", cell, values: [d] }))) });
       };
       walk([]);
       results.push({ extra: [], branches: branches.filter(wanted) });

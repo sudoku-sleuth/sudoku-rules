@@ -1,5 +1,5 @@
 import type { DeclarationAST } from "../declarations.js";
-import { cellAt } from "./board.js";
+import { cellAt, cellOrder } from "./board.js";
 import { semanticDeclaration } from "./declaration.js";
 import { all, pair, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -35,7 +35,7 @@ export function lowerCoordinateArrows(ast: DeclarationAST, board: CanonicalBoard
         if (needs.has(cell) && needs.get(cell) !== held) agree = false;
         needs.set(cell, held);
       }
-      if (agree) cases.push(all([...needs].sort(([x], [y]) => x < y ? -1 : 1).map(([cell, held]) => only(cell, held))));
+      if (agree) cases.push(all([...needs].sort(([x], [y]) => cellOrder(x, y)).map(([cell, held]) => only(cell, held))));
     }
     return { op: "Any", children: cases };
   };

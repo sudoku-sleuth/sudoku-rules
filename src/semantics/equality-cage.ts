@@ -1,5 +1,6 @@
 import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
+import { cellOrder } from "./board.js";
 import { all, distinct, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Formula } from "./types.js";
 
@@ -19,7 +20,7 @@ export function lowerEqualityCage(ast: DeclarationAST, board: CanonicalBoard): F
   const cells = instance.cells ?? [];
   const n = cells.length;
   if (new Set(cells).size !== n) throw new UnsupportedSemantics("An equality cage that lists a cell more than once is not lowered; the whole instance remains uncovered.");
-  const sorted = [...cells].sort();
+  const sorted = [...cells].sort(cellOrder);
   const twiceMiddle = board.alphabet.length + 1;
   const odd = (d: number) => Math.abs(d % 2) === 1;
   const lowOdd = board.alphabet.filter(d => 2 * d < twiceMiddle && odd(d));

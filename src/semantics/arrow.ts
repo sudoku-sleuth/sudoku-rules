@@ -1,5 +1,6 @@
 import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
+import { cellOrder } from "./board.js";
 import { all, sumTotal, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
@@ -44,7 +45,7 @@ export function lowerArrow(ast: DeclarationAST, board: CanonicalBoard): Formula 
   // and the cells visited once keep a plain total.
   const times = new Map<Cell, number>();
   for (const cell of shaft) times.set(cell, (times.get(cell) ?? 0) + 1);
-  const repeated = [...times].filter(([, n]) => n > 1).sort(([x], [y]) => x < y ? -1 : 1);
+  const repeated = [...times].filter(([, n]) => n > 1).sort(([x], [y]) => cellOrder(x, y));
   const once = [...times].filter(([, n]) => n === 1).map(([cell]) => cell);
   if (board.alphabet.length ** repeated.length > maxRepeatReadings) throw new UnsupportedSemantics("A partial arrow whose shaft repeats cells with more than 20,000 readings is not lowered; the whole instance remains uncovered.");
   let shaftReadings: { values: number[]; part: number }[] = [{ values: [], part: 0 }];

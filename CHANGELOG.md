@@ -97,6 +97,7 @@ Each release lists what changed. A change that breaks a published export, front-
 
 - The evaluator reads a parameter typed `set<cell>` as a set at any depth. A set inside a record or list is now its distinct cells in numeric row then column order, so a cage written `[r1c1, r1c1, r1c2]` counts r1c1 once and two declarations that differ only in the order or repeats of a nested set's cells give equal results. Lists keep their order and repeats. Cage Expressions declarations that list a cell twice in a cage are now lowered instead of left uncovered.
 - A custom rule parameter that declares `default: []` in YAML keeps that empty list for list, set and path types (including named aliases), so a case that omits the parameter receives an empty list instead of undefined.
+- Cell names are ordered by row and then column as numbers everywhere the normal form sorts them, so `r2c1` comes before `r10c1` and `r1c2` before `r1c10`. One `cellOrder` serves the sorted cell lists, canonical orientation, group order and board headers. Boards of 10 or more rows or columns now list cells in grid order in the normal form.
 
 ## 1.0.0
 

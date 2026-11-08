@@ -1,6 +1,6 @@
 import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
-import { key } from "./board.js";
+import { cellListOrder, cellOrder, key } from "./board.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
@@ -19,8 +19,8 @@ export function lowerMeanLines(ast: DeclarationAST, board: CanonicalBoard): Form
   const raw = semanticDeclaration(ast).parameters.lines;
   if (!Array.isArray(raw) || raw.some(l => !Array.isArray(l) || l.some(c => !board.activeCells.includes(c)))) throw Error("Supply lines as lists of active board cells.");
   // Which line the others are compared with must not depend on how they are listed: sort each line, then the lines, and drop repeats.
-  const lines = [...new Map((raw as Cell[][]).filter(l => l.length).map(l => [key([...l].sort()), [...l].sort() as Cell[]])).entries()]
-    .sort(([x], [y]) => x < y ? -1 : x > y ? 1 : 0).map(([, l]) => l);
+  const lines = [...new Map((raw as Cell[][]).filter(l => l.length).map(l => [key([...l].sort(cellOrder)), [...l].sort(cellOrder) as Cell[]])).entries()]
+    .map(([, l]) => l).sort(cellListOrder);
   const work = lines.slice(1).reduce((sum, l) => sum + 2 * lines[0].length * l.length, 0);
   if (work > maxWork) throw new UnsupportedSemantics("Finite mean-lines expansion exceeds 1,000,000 cell occurrences for this declaration.");
   const times = (cells: Cell[], n: number): Cell[] => cells.flatMap(c => Array<Cell>(n).fill(c));

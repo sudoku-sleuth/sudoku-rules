@@ -3,7 +3,7 @@ import { valueLines } from "./lines.js";
 import { fogPlay } from "./fog.js";
 export { visibleCells } from "./fog.js";
 import { location } from "../language/diagnostics.js";
-import { boardHouseSources, canonicalBoard, groups, key, standardHouses } from "./board.js";
+import { boardHouseSources, canonicalBoard, cellOrder, groups, key, sortedCells, standardHouses } from "./board.js";
 import { addSources, canonicalise, sourceLinks, type CanonicalState } from "./canonical.js";
 import { all, condition, lower, validateCells, UnsupportedSemantics } from "./lower.js";
 import { checkBoardHeaders, checkMetadataHeaders, type NormaliseOptions } from "./headers.js";
@@ -109,7 +109,7 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
     }
     if (kind === "decoration") {
       const data = declarationParameters(instance.ast, "cells");
-      for (const source of sources) decorations.push({cells: [...new Set(data.cells as Cell[])].sort(),
+      for (const source of sources) decorations.push({cells: sortedCells(data.cells as Cell[]),
         ...(typeof data.note === "string" ? {note: data.note} : {}),
         ...(typeof data.element === "string" ? {element: data.element} : {}), source});
       cover("lowered");
@@ -172,9 +172,9 @@ function support(term: Formula): Cell[] {
   switch (term.op) {
     case "Pair": case "Distinct": case "CountAtLeast": case "SumTotal": return term.cells;
     case "Allowed": return [term.cell];
-    case "SumEqual": return [...new Set([...term.left, ...term.right])].sort();
+    case "SumEqual": return [...new Set([...term.left, ...term.right])].sort(cellOrder);
     case "Not": return support(term.child);
-    default: return [...new Set(term.children.flatMap(support))].sort();
+    default: return [...new Set(term.children.flatMap(support))].sort(cellOrder);
   }
 }
 /** Equal complete forms prove equivalence. Structural mismatches remain unresolved. */
@@ -194,7 +194,7 @@ export function compare(left: Normalisation, right: Normalisation): Comparison {
       else if (field === "activeCells") form.board.activeCells.filter(c => !other.board.activeCells.includes(c)).forEach(c => changed.add(c));
       else form.board.activeCells.forEach(c => changed.add(c));
     }
-    differences.push({ primitive: "Board", cells: [...changed].sort(), side, term: form.board,
+    differences.push({ primitive: "Board", cells: [...changed].sort(cellOrder), side, term: form.board,
       sources: form.sources.filter(s => s.primitive === "board" || s.primitive.startsWith("house:")).flatMap(s => s.sources), message: `Board differs in ${fields.join(", ")}.` });
   }
   const terms = (f: Formula): Formula[] => f.op === "All" ? f.children : [f];
@@ -206,7 +206,7 @@ export function compare(left: Normalisation, right: Normalisation): Comparison {
     }
   }
   if (key(a.play) !== key(b.play)) for (const [form, side] of [[a, "left"], [b, "right"]] as const) {
-    const cells = typeof form.play === "object" ? [...new Set([...form.play.initiallyLit, ...(form.play.links ?? []).flatMap(l => [...l.trigger, ...l.lights])])].sort() : [];
+    const cells = typeof form.play === "object" ? [...new Set([...form.play.initiallyLit, ...(form.play.links ?? []).flatMap(l => [...l.trigger, ...l.lights])])].sort(cellOrder) : [];
     differences.push({ primitive: "Play", cells, side, term: form.play, sources: form.sources.filter(s => s.primitive.startsWith("play:")).flatMap(s => s.sources), message: `Visibility setup on the ${side} differs.` });
   }
   return { status: !differences.length && !uncovered.length && a.play !== "unresolved" && b.play !== "unresolved" ? "equivalent" : "unresolved", covered: differences.length ? "structural-difference" : "equal", differences, uncovered, issues };

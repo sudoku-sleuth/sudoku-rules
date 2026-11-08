@@ -1,6 +1,6 @@
 import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
-import { cellAt, coordinates } from "./board.js";
+import { cellAt, coordinates, sortedCells } from "./board.js";
 import { all, UnsupportedSemantics } from "./primitives.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
 
@@ -42,7 +42,7 @@ export function lowerIndex(ast: DeclarationAST, board: CanonicalBoard): Formula 
   const instance = semanticDeclaration(ast), p = instance.parameters;
   if (p.axis !== "row" && p.axis !== "column") throw Error('Choose axis "row" or "column".');
   const active = new Set(board.activeCells);
-  const marked = [...new Set(instance.cells ?? [])].sort();
+  const marked = sortedCells(instance.cells ?? []);
   const children = marked.map(cell => {
     const [row, col] = coordinates(cell);
     const line = p.axis === "column" ? Array.from({ length: board.cols }, (_, i) => cellAt(row, i + 1)) : Array.from({ length: board.rows }, (_, i) => cellAt(i + 1, col));

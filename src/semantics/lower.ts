@@ -51,7 +51,7 @@ import { lowerDiagonalLines } from "./diagonal-lines.js";
 import { lowerSameClass, lowerWindowClasses } from "./window-classes.js";
 import { edgeLines, lineFields, lowerLine } from "./lines.js";
 import { holds, relation } from "./relations.js";
-import { cellAt, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
+import { cellAt, cellOrder, coordinates, groups, key, sortedCells, standardHouses } from "./board.js";
 import type { DeclarationAST } from "../declarations.js";
 import { semanticDeclaration } from "./declaration.js";
 import type { CanonicalBoard, Cell, Formula } from "./types.js";
@@ -222,7 +222,7 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
     }
     case "quadruple": case "outside": {
       const digits = digitList(p.digits, board);
-      const positions = kind === "quadruple" ? cells : [...instance.cells!].sort();
+      const positions = kind === "quadruple" ? cells : [...instance.cells!].sort(cellOrder);
       return all([...new Set(digits)].map(digit => ({ op: "CountAtLeast", channel: "D", cells: positions, digit, count: digits.filter(d => d === digit).length })));
     }
     case "negative": return lowerNegative(p, board);
@@ -299,7 +299,7 @@ export function lowerDiagonalSum(p: Record<string, unknown>, listed: Cell[], boa
   const channel = p.channel === "V" ? "V" : "D";
   const times = new Map<Cell, number>();
   for (const cell of listed) times.set(cell, (times.get(cell) ?? 0) + 1);
-  const repeated = [...times].filter(([, n]) => n > 1).sort(([a], [b]) => a < b ? -1 : 1);
+  const repeated = [...times].filter(([, n]) => n > 1).sort(([a], [b]) => cellOrder(a, b));
   if (p.repeats === false) {
     if (repeated.length) return { op: "Any", children: [] };
     if (listed.length * (listed.length - 1) / 2 * board.alphabet.length ** 2 > 1_000_000) throw new UnsupportedSemantics("Finite pair expansion exceeds 1,000,000 value combinations for this declaration.");
@@ -354,7 +354,7 @@ function lowerNegative(p: Record<string, unknown>, board: CanonicalBoard): Formu
   const within = p.within === undefined ? undefined : cellGroups(p.within);
   if (p.direction !== undefined && (typeof p.direction !== "string" || !["horizontal", "vertical"].includes(p.direction))) throw Error("Choose horizontal or vertical.");
   const nodes: Formula[] = [];
-  const ordered = [...board.activeCells].sort((a,b) => { const [ar,ac] = coordinates(a), [br,bc] = coordinates(b); return ar-br || ac-bc; });
+  const ordered = sortedCells(board.activeCells);
   ordered.forEach((a,i) => ordered.slice(i+1).forEach(b => {
     const [ar,ac] = coordinates(a), [br,bc] = coordinates(b);
     if (Math.abs(ar-br)+Math.abs(ac-bc) !== 1 || p.direction === "horizontal" && ar !== br || p.direction === "vertical" && ac !== bc || within && !within.some(g => g.includes(a) && g.includes(b)) || except.some(g => g.includes(a) && g.includes(b))) return;
@@ -387,7 +387,7 @@ function lowerMarks(kind: string, p: Record<string, unknown>, cells: Cell[] | un
   let expansion = 0;
   for (const [name, pairs] of marks) {
     const r = relation(specs[name as keyof typeof specs]);
-    for (const [a,b] of new Map(pairs.map(g => [key([...g].sort()), g])).values()) {
+    for (const [a,b] of new Map(pairs.map(g => [key([...g].sort(cellOrder)), g])).values()) {
       expansion += board.alphabet.length ** 2;
       if (expansion > 1_000_000) throw new UnsupportedSemantics("Finite marked-pair expansion exceeds 1,000,000 value combinations.");
       nodes.push({...pair(board, a, b, (x,y) => holds(r,x,y)), channel: "V"} as Formula);
