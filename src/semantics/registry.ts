@@ -82,7 +82,7 @@ export const declarationRegistry = {
 
   lookup: lowered,
   "difference-line": lowered,
-  "split-pea": pending("Reversible decimal endpoint readings are not lowered."),
+  "split-pea": lowered,
   "prefix-sum": pending("Answer-dependent stopping prefixes are not lowered."),
   "blocked-sight": lowered,
   "sum-partition": pending("Covering intervals and partition cuts are not lowered."),
