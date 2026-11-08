@@ -110,7 +110,7 @@ export const declarationRegistry = {
   "window-classes": lowered,
   extremum: lowered,
   pair: lowered,
-  "cage-expressions": pending("Shared integer letter witnesses and expression evaluation are not lowered."),
+  "cage-expressions": lowered,
   bremban: lowered,
   "cage-pair": lowered,
   between: lowered,
