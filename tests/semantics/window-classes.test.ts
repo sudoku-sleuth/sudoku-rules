@@ -77,6 +77,15 @@ test("thirds follow the ordered alphabet, and classes come from the alphabet's o
   expect(holds(negative, at(2, -2, -2, 1, 1))).toBe(false);
 });
 
+test("entropy splits the alphabet in its listed order, not numeric order", () => {
+  const f = form(wc("entropy"), 2, 2, [3, 1, 2, 6, 5, 4]);
+  // Thirds are 3,1 / 2,6 / 5,4.
+  expect(holds(f, at(2, 3, 2, 5, 5))).toBe(true);
+  expect(holds(f, at(2, 1, 3, 2, 5))).toBe(true);
+  expect(holds(f, at(2, 1, 2, 3, 6))).toBe(false);
+  expect(holds(f, at(2, 1, 2, 3, 4))).toBe(true);
+});
+
 test("a class missing from the alphabet makes the rule unsatisfiable", () => {
   const f = form(wc("mod3"), 2, 2, [1, 2, 4, 5]);
   for (const a of [1, 2, 4, 5]) for (const b of [1, 2, 4, 5]) expect(holds(f, at(2, a, b, a, b))).toBe(false);
@@ -114,7 +123,7 @@ test("near misses have different normal forms", () => {
 });
 
 const layouts: { rows: number; cols: number; symbols: number[]; classes: string }[] = [];
-for (const classes of ["parity", "mod3", "entropy"]) for (const symbols of [[1, 2, 3], [2, 3, 4, 5, 6, 8], [0, 1, 2, 3, 4, 5], [4, 5, 6, 7], [-2, -1, 0, 1, 2, 3]]) layouts.push({ rows: 2, cols: 2, symbols, classes });
+for (const classes of ["parity", "mod3", "entropy"]) for (const symbols of [[1, 2, 3], [2, 3, 4, 5, 6, 8], [0, 1, 2, 3, 4, 5], [4, 5, 6, 7], [3, 1, 2, 6, 5, 4], [-2, -1, 0, 1, 2, 3]]) layouts.push({ rows: 2, cols: 2, symbols, classes });
 layouts.push({ rows: 2, cols: 3, symbols: [1, 2, 3], classes: "mod3" }, { rows: 3, cols: 2, symbols: [1, 2], classes: "parity" });
 for (const { rows, cols, symbols, classes } of layouts) for (const negate of [false, true]) test(`lowered formula and public evaluator agree: ${negate ? "not " : ""}${classes} on ${rows}x${cols} over ${symbols.join(",")}`, () => {
   const text = `${negate ? "not " : ""}${wc(classes)}`;
