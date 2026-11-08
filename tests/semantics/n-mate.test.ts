@@ -105,6 +105,39 @@ test("near misses compare as different", () => {
   differs(base, "unique r1c4-r1c5");
 });
 
+/** Every Allowed in a formula, with the cells it names. */
+function allowedAtoms(f: Formula): { cell: string; values: number[] }[] {
+  if (f.op === "Allowed") return [{ cell: f.cell, values: f.values }];
+  if (f.op === "All" || f.op === "Any") return f.children.flatMap(allowedAtoms);
+  if (f.op === "Not") return allowedAtoms(f.child);
+  return [];
+}
+
+test("only clue digits that name a ray position appear, and no case names an undefined cell", () => {
+  // A ray of two cells on the alphabet 0..3: the clue is 1 or 2, never 0 (no position) or 3 (past the ray).
+  const f = form(mate(1, [2, 3], [4]), 5, [0, 1, 2, 3]);
+  const atoms = allowedAtoms(f);
+  expect(atoms.every(a => a.cell.startsWith("r1c") && !a.values.some(v => v === undefined))).toBe(true);
+  const clueValues = [...new Set(atoms.filter(a => a.cell === "r1c1").flatMap(a => a.values))].sort();
+  expect(clueValues).toEqual([1, 2]);
+  expect(atoms.some(a => a.cell === "r1c5")).toBe(false);
+  // The same formula as on the alphabet 1..2 with the same cases for the clue, apart from the ray-digit choices.
+  const ray = new Set(atoms.filter(a => a.cell === "r1c2" || a.cell === "r1c3").map(a => a.cell));
+  expect(ray.size).toBe(2);
+  // A one-cell ray allows only the clue 1.
+  const one = allowedAtoms(form(mate(1, [2], [4]), 5, [0, 1, 2, 3])).filter(a => a.cell === "r1c1").flatMap(a => a.values);
+  expect([...new Set(one)]).toEqual([1]);
+});
+
+test("a ray cell written twice is read at each position it holds", () => {
+  const f = form(mate(1, [2, 2], [4]), 5, [1, 2, 3]);
+  // Clue 1 and clue 2 both pick r1c2, so r1c2 = v needs the cage to total 1 + v or 2 + v.
+  expect(holds(f, at(1, 2, 1, 3))).toBe(true);
+  expect(holds(f, at(2, 1, 1, 3))).toBe(true);
+  expect(holds(f, at(1, 2, 1, 2))).toBe(false);
+  expect(holds(f, at(2, 3, 1, 3))).toBe(false);
+});
+
 test("the declaration is covered beside a value modifier because it reads printed digits", () => {
   const r = nf(`${mate(1, [2, 3], [5])}\n${modifier}`);
   expect(r.normalForm!.coverage.find(x => x.kind === "n-mate")).toMatchObject({ status: "lowered" });
@@ -142,6 +175,7 @@ diffTest("a one-cell cage", 4, [1, 2, 3], [mate(1, [2, 3], [4]), mate(1, [2, 3, 
 diffTest("a two-cell cage", 4, [1, 2, 3], [mate(1, [2], [3, 4]), mate(2, [3, 4], [1, 3])], 10);
 diffTest("a clue on its own ray or in its cage", 4, [1, 2, 3], [mate(1, [1, 3], [4]), mate(1, [2, 3], [1, 4]), mate(1, [2, 1], [3])], 10);
 diffTest("a ray cell in the cage and a repeated cage cell", 4, [1, 2, 3], [mate(1, [2, 3], [2, 4]), mate(1, [2, 3], [4, 4])], 10);
+diffTest("a ray that repeats a cell", 4, [1, 2, 3], [mate(1, [2, 2], [4]), mate(1, [2, 3, 2], [4])], 10);
 diffTest("a negation", 4, [1, 2, 3], [`not ${mate(1, [2, 3], [4])}`], 6);
 diffTest("a zero-based alphabet", 4, [0, 1, 2, 3], [mate(1, [2, 3], [4])], 10);
 diffTest("an alphabet that cannot name a position", 4, [2, 3, 4], [mate(1, [2, 3], [4])], 10, 0);
