@@ -112,7 +112,8 @@ function differential(n: number, symbols: number[], entries: Entry[], extra = ""
     const r = normalise({ file: "synthetic.rules.md", text: `${header}---\n${body(text + extra)}` }, context);
     expect(r.issues).toEqual([]);
     expect(r.normalForm!.coverage.filter(x => x.kind === "equal-sums").every(x => x.status === "lowered")).toBe(true);
-    expect(extra ? "partial" : "complete").toBe(r.status);
+    // A value modifier beside rules that read only printed digits lowers too.
+    expect(r.status).toBe("complete");
     const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: ${n}, symbols: [${symbols}], regions: [[${used.join(", ")}]]}\n---${body(text + extra)}` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
     const rule = compiled.value!.rules[0];

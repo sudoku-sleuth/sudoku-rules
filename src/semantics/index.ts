@@ -67,6 +67,7 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
   const neutralDefinitions = valueNeutralDefinitions(file, customDefinitions, prelude);
   const neutral = (i: typeof read.instances[number]) => i.source.custom === true && neutralDefinitions.has(i.kind);
   const valuesUnknown = read.instances.some(i => i.kind === "value-modifier" || i.kind === "liar-cells" || i.kind === "clue-count" || i.kind === "mapped-values" || !Object.hasOwn(capabilities, i.kind) && !neutral(i)) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
+  const valuesUnknownBesides = (self: typeof read.instances[number]) => read.instances.some(i => i !== self && i.kind !== "value-modifier" && (i.kind === "liar-cells" || i.kind === "clue-count" || i.kind === "mapped-values" || !Object.hasOwn(capabilities, i.kind) && !neutral(i))) || read.extras.some(e => !["header:board", "header:givens", "header:fog"].includes(e.kind));
   let expansion = 0;
   const charged = new Set<string>();
   const cost = (f: Formula): number => f.op === "Pair" ? f.table.length : f.op === "Distinct" ? f.cells.length * (f.cells.length - 1) / 2 * board.alphabet.length ** 2 : f.op === "Not" ? cost(f.child) : f.op === "All" || f.op === "Any" ? f.children.reduce((n,c) => n + cost(c), 0) : f.op === "Allowed" ? f.values.length : f.op === "SumEqual" ? f.left.length + f.right.length : f.op === "SumTotal" ? f.cells.length : 0;
@@ -78,6 +79,8 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
     else grouped.set(id, { instance, sources: [instance.source] });
   }
   const ordered = [...grouped.entries()].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0).map(([, group]) => group);
+  // A value modifier is judged last: it lowers only when no other declaration reads the values it changes.
+  ordered.sort((x, y) => Number(x.instance.kind === "value-modifier") - Number(y.instance.kind === "value-modifier"));
   // Context regions are already resolved, including irregular partitions. Resolve
   // declaration-supplied geometry too, before any formula can read regions.
   for (const { instance, sources } of ordered) {
@@ -113,6 +116,12 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
       continue;
     }
     try {
+      if (kind === "value-modifier") {
+        // Every other declaration counts as a reader of the values unless it is lowered, and a lowered one reads printed digits only (one that read values would have been left uncovered above).
+        const readers = coverage.some(c => c.status !== "lowered") || valuesUnknownBesides(instance);
+        const obstacle = ordered.filter(g => g.instance.kind === "value-modifier").length > 1 ? "Several different value modifiers share no lowered choice of modified cells." : readers ? "Other declarations read or bind the values this modifier changes, and they are not lowered with it." : undefined;
+        if (obstacle) { cover("unsupported", obstacle); continue; }
+      }
       let formula = definition ? lowerCustom(definition, instance.ast, board, prelude) : lower(instance.ast, board);
       const bulb = instance.parameters.bulb;
       const readsValues = (kind === "arrow" && instance.parameters.partial !== true && Array.isArray(bulb) && bulb.length === 1) || (valueLines.includes(kind) && instance.parameters.channel !== "D") || (kind === "pair" && instance.parameters.channel !== "D") || ["parity-cells", "odd-even-cells", "kropki", "xv", "marked-pairs", "cage-totals", "perfect-square-cages", "perfect-cube-cages"].includes(kind) || (["cage", "killer"].includes(kind) && instance.parameters.channel !== "D" && (instance.parameters.total !== undefined || instance.parameters.sum !== undefined)) || (["diagonal-sum", "little-killer", "equal-sums", "skyscraper", "double-arrow", "extremum", "neighbour-extremum", "relation-scope", "tardis"].includes(kind) && instance.parameters.channel === "V");
