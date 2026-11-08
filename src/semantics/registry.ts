@@ -136,7 +136,7 @@ export const declarationRegistry = {
   "constructed-regions": pending("Connected region partition witnesses are not lowered."),
   "region-sum": lowered,
   "diagonal-lines": pending("Diagonal class constancy and windows are not lowered."),
-  "coordinate-arrows": pending("Guarded board lookups and coordinate pair distinctness are not lowered."),
+  "coordinate-arrows": lowered,
   "layered-cage": pending("Ordered row-slice layers are not lowered."),
   quadruple: lowered,
   "product-cage": pending("Exact cage products are not lowered."),
