@@ -14,7 +14,7 @@ import { lowerPointingArrow } from "./pointing-arrow.js";
 import { lowerPointingThermo } from "./pointing-thermo.js";
 import { lowerLookup } from "./lookup.js";
 import { lowerFlatMates } from "./flat-mates.js";
-import { lowerExtremum } from "./extremum.js";
+import { lowerExtremum, lowerExtremumOf } from "./extremum.js";
 import { lowerEqualityCage } from "./equality-cage.js";
 import { lowerVault } from "./vault.js";
 import { lowerRelationScope } from "./relation-scope.js";
@@ -63,6 +63,7 @@ const fields: Record<string, string[]> = {
   "hidden-modular": ["extent"],
   "pressure-gauge": ["type", "cell", "neighbours"],
   "neighbour-count": ["cell", "scope", "move", "includeSelf", "relations", "total", "exhaustive", "channel"],
+  tardis: ["cell", "neighbours", "channel"],
   "scoped-move": ["move", "relation", "digits"], "allowed-digits": ["digits"], "absent-digits": ["digits"], "parity-cells": ["parity"],
   extremum: ["type", "exhaustive", "neighbourhood", "boundary", "channel", "neighbours"],
   "branched-thermo": ["edges", "strict", "channel"],
@@ -154,6 +155,11 @@ export function lower(ast: DeclarationAST, board: CanonicalBoard): Formula {
   if (kind === "hidden-modular") return lowerHiddenModular(ast, board);
   if (kind === "pressure-gauge") return lowerPressureGauge(ast, board);
   if (kind === "neighbour-count") return lowerNeighbourCount(ast, board);
+  if (kind === "tardis") {
+    // The clue cell is a maximum of the listed neighbours, which replace its orthogonal neighbours.
+    if (typeof p.cell !== "string") throw Error("Supply the clue cell.");
+    return lowerExtremumOf([p.cell as Cell], { type: "max", exhaustive: false, neighbourhood: "orthogonal", boundary: false, neighbours: p.neighbours, ...(p.channel === undefined ? {} : { channel: p.channel }) }, board);
+  }
   if (kind === "equal-sums") return lowerEqualSums(p, board);
   const cells = sortedCells(instance.cells ?? []);
   const checkPairExpansion = () => {
