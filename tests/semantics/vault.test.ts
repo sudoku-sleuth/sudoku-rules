@@ -142,7 +142,7 @@ for (const { n, symbols, text } of layouts) for (const negate of [false, true]) 
   const walk = (digits: number[]) => {
     if (digits.length === n) {
       const v = at(...digits);
-      expect([rules, digits, holds(r.normalForm!.solution, v)]).toEqual([rules, digits, evaluate(rl, { digits: v }).status === "holds"]);
+      expect([rules, digits, holds(r.normalForm!.solution, v)]).toEqual([rules, digits, evaluate({ ...rl, finite: undefined }, { digits: v, values: v }).status === "holds"]);
       total++;
       return;
     }

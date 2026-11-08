@@ -185,7 +185,7 @@ function differential(rows: number, cols: number, symbols: number[], entries: En
     let satisfied = 0, total = 0;
     const walk = (index: number, values: Record<string, number>) => {
       if (index === used.length) {
-        const expected = evaluate(compiledRule, { digits: values }).status === "holds";
+        const expected = evaluate({ ...compiledRule, finite: undefined }, { digits: values, values: values }).status === "holds";
         expect([text, JSON.stringify(values), holds(r.normalForm!.solution, values)]).toEqual([text, JSON.stringify(values), expected]);
         total++; if (expected) satisfied++;
         return;

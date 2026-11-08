@@ -99,7 +99,7 @@ for (const [n, centre] of shapes) for (const negate of [false, true]) test(`lowe
     const walk = (digits: number[]) => {
       if (digits.length === n) {
         const d = values(n, digits);
-        const expected = evaluate(rl, { digits: d }).status === "holds";
+        const expected = evaluate({ ...rl, finite: undefined }, { digits: d, values: d }).status === "holds";
         expect([text, digits, holds(r.normalForm!.solution, d)]).toEqual([text, digits, expected]);
         total++; if (expected) satisfied++;
         return;

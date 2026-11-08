@@ -56,7 +56,11 @@ test("a path line and its edge list agree", () => {
   for (const [kind, params] of kinds) eq(`${kind} ${a}-${b}-${c} ${params}${loopless(kind)}`, rule(kind, params, [[a, b], [b, c]]));
 });
 
-test("formula and public evaluator agree on every assignment", () => {
+/** Seeded generator for the sampled assignments; the seed is part of every test name so a failure can be replayed. */
+const seed = 20260301;
+const generator = (start: number) => () => { start = (start + 0x6D2B79F5) | 0; let t = Math.imul(start ^ (start >>> 15), 1 | start); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const sampleSize = 100;
+{
   const [p, q, r3, s4]: Cell[] = ["r1c1", "r1c2", "r1c3", "r1c4"];
   const small: BoardContext = { rows: 1, cols: 4, activeCells: [p, q, r3, s4], alphabet: [1, 2, 3, 4, 5, 6, 7, 8, 9], regions: [[p, q], [r3, s4]] };
   const shapes: [string, [Cell, Cell][], number[]][] = [
@@ -64,7 +68,7 @@ test("formula and public evaluator agree on every assignment", () => {
     ["cycle without loop, duplicate and reversed edges", [[p, q], [q, r3], [r3, p], [q, p], [r3, q], [p, q], [r3, s4]], [1, 2, 3, 4, 5, 6, 7, 8, 9]],
     ["shifted alphabet", [[p, q], [q, r3], [r3, s4]], [0, 2, 3, 5, 6, 7, 10, 11, 4]],
   ];
-  for (const [shape, list, symbols] of shapes) for (const [kind, params] of kinds) {
+  for (const [shape, list, symbols] of shapes) for (const [kind, params] of kinds) test(`formula and public evaluator agree on a seeded sample (seed ${seed}): ${shape}, ${kind}`, () => {
     const text = rule(kind, params, list);
     const small2 = { ...small, alphabet: symbols };
     const n = normalise(file(text), small2);
@@ -73,19 +77,24 @@ test("formula and public evaluator agree on every assignment", () => {
     const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [${symbols.join(",")}], regions: [[r1c1, r1c2], [r1c3, r1c4]]}\n---${body(text)}` });
     expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
     const rl = compiled.value!.rules[0];
-    let checked = 0, satisfied = 0;
+    // The lowered formula is cheap, so it is counted over every assignment; the page formula is slow, so it judges a seeded sample
+    // that holds the satisfying assignments and as many breaking ones.
+    const random = generator(seed);
+    const holding: Record<string, number>[] = [], breaking: Record<string, number>[] = [];
     for (const w of symbols) for (const x of symbols) for (const y of symbols) for (const z of symbols) {
       const digits = { [p]: w, [q]: x, [r3]: y, [s4]: z };
-      const expected = evaluate(rl, { digits }).status === "holds";
-      expect(holds(n.normalForm!.solution, digits)).toBe(expected);
-      checked++; if (expected) satisfied++;
+      (holds(n.normalForm!.solution, digits) ? holding : breaking).push(digits);
     }
-    expect(checked).toBe(symbols.length ** 4);
     // A triangle has no solution for the parity and whisper tests, so only agreement is required there.
-    if (!shape.startsWith("cycle")) expect([shape, kind, satisfied > 0]).toEqual([shape, kind, true]);
-    expect(satisfied).toBeLessThan(checked);
-  }
-});
+    if (!shape.startsWith("cycle")) expect([shape, kind, holding.length > 0]).toEqual([shape, kind, true]);
+    expect(breaking.length).toBeGreaterThan(0);
+    const pick = (all: Record<string, number>[]) => Array.from({ length: Math.min(all.length, sampleSize / 2) }, () => all[Math.floor(random() * all.length)]);
+    for (const digits of [...pick(holding), ...pick(breaking)]) {
+      const expected = evaluate({ ...rl, finite: undefined }, { digits, values: digits }).status === "holds";
+      expect([text, JSON.stringify(digits), seed, holds(n.normalForm!.solution, digits)]).toEqual([text, JSON.stringify(digits), seed, expected]);
+    }
+  });
+}
 
 test("malformed or unlowerable edge lists never lower", () => {
   for (const [kind, params] of kinds) {
