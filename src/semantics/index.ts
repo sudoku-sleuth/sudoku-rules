@@ -130,7 +130,9 @@ export function normalise(file: SemanticFile, context: BoardContext, options?: N
       if (readsValues) {
         const before = key(formula);
         const ray = ["diagonal-sum", "little-killer", "equal-sums", "double-arrow", "sum-partition"].includes(kind);
-        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" || f.op === "SumTotal" || (f.op === "Distinct" && ray) ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? { ...f, child: convert(f.child) } : f;
+        const convert = (f: Formula): Formula => f.op === "Allowed" || f.op === "Pair" || f.op === "SumEqual" || f.op === "SumTotal" || (f.op === "Distinct" && ray) ? { ...f, channel: "D" } : f.op === "All" || f.op === "Any" ? { ...f, children: f.children.map(convert) } : f.op === "Not" ? (kind === "prefix-sum" && f.child.op === "Allowed" ? prefixExclusion(f.child) : { ...f, child: convert(f.child) }) : f;
+        // A prefix sum's cells before a value stop read "not the target"; on printed digits that is the rest of the alphabet.
+        const prefixExclusion = (a: Formula & { op: "Allowed" }): Formula => ({ ...a, channel: "D", values: board.alphabet.filter(d => !a.values.includes(d)) });
         formula = convert(formula);
         state.rewrites.push({ rule: "value-channel", version: 1, before, after: key(formula), sources });
       }
