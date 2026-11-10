@@ -217,11 +217,24 @@ test("a doubled value before the stop is allowed on the value channel", () => {
   expect(verdict([6, 5, 6, 1], [12, 5, 12, 1])).toBe(false);
 });
 
-test("a value target inside the alphabet and the digit channel keep their lowering", () => {
-  const { verdict } = valueRule('stop "target" target 4 total 5');
-  expect(verdict([2, 3, 4, 1], [2, 3, 4, 1])).toBe(true);
-  expect(verdict([2, 3, 4, 1], [2, 3, 8, 1])).toBe(false);
+test("a value outside the alphabet before the stop is allowed, and the digit channel keeps its lowering", () => {
+  const { verdict } = valueRule('stop "target" target 4 total 8');
+  // The first cell reads 8 (a doubled 4), which is not an alphabet digit but is not the target either.
+  expect(verdict([4, 4, 1, 1], [8, 4, 1, 1])).toBe(true);
+  expect(verdict([4, 4, 1, 1], [7, 4, 1, 1])).toBe(false);
   expect(form(ps(4, 'stop "target" target 5 total 7'), row(4))).toEqual(form(ps(4, 'stop "target" target 5 total 7 channel "D"'), row(4)));
+});
+
+test("another rule's negated terms keep their normal form", () => {
+  // Pins a form the prefix sum lowering must not move: a negated term is not rewritten by the canonicaliser.
+  const count = (digit: number, n: number) => ({ op: "CountAtLeast", channel: "D", cells: ["r1c1", "r1c2"], digit, count: n });
+  expect(form("counting-circles r1c1-r1c2", row(2, [1, 2]))).toEqual({
+    op: "All",
+    children: [
+      { op: "Any", children: [{ op: "All", children: [count(1, 1), { op: "Not", child: count(1, 2) }] }, { op: "Not", child: count(1, 1) }] },
+      { op: "Any", children: [count(2, 2), { op: "Not", child: count(2, 1) }] },
+    ],
+  });
 });
 
 /**

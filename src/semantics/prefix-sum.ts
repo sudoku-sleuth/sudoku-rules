@@ -13,8 +13,9 @@ const none: Formula = { op: "Any", children: [] };
  * printed digit) or is a given of the board (`stop` "given"). The stopping cell is part of the prefix only when `include` is true, and
  * a ray with no stopping cell fails. An empty prefix totals zero.
  * The result is an exact disjunction over the position of the first stopping cell: the cells before it hold none of the stopping
- * values, it holds one of them, and the prefix adds up to the total. On the value channel a target is the stopping value itself, whatever the alphabet holds, and the cells before the stop are those not reading it. A target of `absent`, a target or crust list that no alphabet
- * digit meets, and a ray with no given make the rule false. A total that is not a whole number is never met. A ray that lists a cell
+ * values, it holds one of them, and the prefix adds up to the total. On the value channel a target is the stopping value itself,
+ * whatever the alphabet holds, and the cells before the stop are those not reading it. A target of `absent`, a target or crust list
+ * that no alphabet digit meets, and a ray with no given make the rule false. A total that is not a whole number is never met. A ray that lists a cell
  * twice and a total that is not a safe integer are not lowered.
  */
 export function lowerPrefixSum(ast: DeclarationAST, board: CanonicalBoard): Formula {
