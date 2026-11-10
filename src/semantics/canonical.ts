@@ -120,6 +120,11 @@ export function canonicalise(input: Formula, state: CanonicalState, sources: Sem
         for (const a of state.board.alphabet) for (const b of state.board.alphabet) if (!excluded.has(key([a,b]))) table.push([a,b]);
         result = canonicalise({ ...child, table }, state, sources, positive);
         rewrite(state, "boolean-canonical", input, result, sources);
+      } else if (child.op === "Allowed" && child.channel === "D") {
+        // A printed digit is an alphabet digit, so excluding some digits allows the rest of the alphabet.
+        const excluded = new Set(child.values);
+        result = canonicalise({ ...child, values: state.board.alphabet.filter(d => !excluded.has(d)) }, state, sources, positive);
+        rewrite(state, "boolean-canonical", input, result, sources);
       } else result = { op: "Not", child };
       break;
     }

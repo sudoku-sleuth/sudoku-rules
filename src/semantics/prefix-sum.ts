@@ -13,7 +13,7 @@ const none: Formula = { op: "Any", children: [] };
  * printed digit) or is a given of the board (`stop` "given"). The stopping cell is part of the prefix only when `include` is true, and
  * a ray with no stopping cell fails. An empty prefix totals zero.
  * The result is an exact disjunction over the position of the first stopping cell: the cells before it hold none of the stopping
- * values, it holds one of them, and the prefix adds up to the total. A target of `absent`, a target or crust list that no alphabet
+ * values, it holds one of them, and the prefix adds up to the total. On the value channel a target is the stopping value itself, whatever the alphabet holds, and the cells before the stop are those not reading it. A target of `absent`, a target or crust list that no alphabet
  * digit meets, and a ray with no given make the rule false. A total that is not a whole number is never met. A ray that lists a cell
  * twice and a total that is not a safe integer are not lowered.
  */
@@ -43,13 +43,17 @@ export function lowerPrefixSum(ast: DeclarationAST, board: CanonicalBoard): Form
   }
   // A crust is a printed digit, so its tests stay on D when the sum reads effective values.
   const testChannel: Channel = p.stop === "crust" ? "D" : channel;
-  const stops = board.alphabet.filter(d => p.stop === "target" ? p.target !== undefined && d === p.target : (crusts as number[]).includes(d));
+  // A target read on V is an effective value, which need not be a digit of the alphabet (a doubled cell reads twice its digit), so the
+  // target itself is the stopping value and "before the stop" is "not the target", with no restriction to alphabet digits.
+  const onValues = p.stop === "target" && channel === "V";
+  const stops = onValues ? (p.target !== undefined ? [p.target] : []) : board.alphabet.filter(d => p.stop === "target" ? p.target !== undefined && d === p.target : (crusts as number[]).includes(d));
   const others = board.alphabet.filter(d => !stops.includes(d));
   const allowed = (cell: Cell, values: number[]): Formula => ({ op: "Allowed", channel: testChannel, cell, values });
+  const before = (cell: Cell): Formula => onValues ? { op: "Not", child: allowed(cell, stops) } : allowed(cell, others);
   const branches: Formula[] = [];
   cells.forEach((cell, stop) => {
-    if (!stops.length || (stop > 0 && !others.length)) return;
-    branches.push(all([...cells.slice(0, stop).map(c => allowed(c, others)), allowed(cell, stops), prefix(stop)]));
+    if (!stops.length || (!onValues && stop > 0 && !others.length)) return;
+    branches.push(all([...cells.slice(0, stop).map(before), allowed(cell, stops), prefix(stop)]));
   });
   return { op: "Any", children: branches };
 }

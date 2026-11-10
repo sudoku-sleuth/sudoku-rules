@@ -180,6 +180,51 @@ test("the lowered formula and the public evaluator agree on empty prefixes and u
 });
 
 /**
+ * Effective values twice the digit on some cells, so a value can pass the alphabet maximum. The lowered formula (read with the values)
+ * and the page's published formula (read by the public evaluator) must give the same verdict, and a target above 9 must still stop.
+ */
+function valueRule(params: string) {
+  const text = ps(4, `${params} channel "V"`);
+  const compiled = compileCase({ file: "example.md", text: `${header}board: {rows: 1, cols: 4, symbols: [1,2,3,4,5,6,7,8,9], regions: [[r1c1, r1c2, r1c3, r1c4]]}\n---${body(text)}` });
+  expect(compiled.diagnostics.filter(x => !x.code.startsWith("W_"))).toEqual([]);
+  const rule = compiled.value!.rules[0];
+  expect(rule.finite).toBeDefined();
+  const verdict = (digits: number[], values: number[]) => {
+    const lowered = holds(rule.finite!, at(...digits), at(...values));
+    const published = evaluate({ ...rule, finite: undefined }, { digits: at(...digits), values: at(...values) }).status === "holds";
+    expect(lowered).toBe(published);
+    return lowered;
+  };
+  return { rule, verdict };
+}
+
+test("a target above the alphabet maximum stops the prefix on the value channel", () => {
+  const { rule, verdict } = valueRule('stop "target" target 12 total 12');
+  // A doubled 6 reads 12 and stops the prefix; the cells before it read 7 and 5.
+  expect(verdict([7, 5, 6, 1], [7, 5, 12, 1])).toBe(true);
+  expect(verdict([7, 4, 6, 1], [7, 4, 12, 1])).toBe(false);
+  // The digit 6 alone, read as 6, is not the target.
+  expect(verdict([7, 5, 6, 1], [7, 5, 6, 1])).toBe(false);
+  expect(rule.finite).not.toEqual({ op: "Any", children: [] });
+});
+
+test("a doubled value before the stop is allowed on the value channel", () => {
+  const { verdict } = valueRule('stop "target" target 12 total 10');
+  // A doubled 5 reads 10 before the stop and is the whole prefix.
+  expect(verdict([5, 6, 1, 1], [10, 12, 1, 1])).toBe(true);
+  expect(verdict([5, 6, 1, 1], [5, 12, 1, 1])).toBe(false);
+  // Another doubled cell reading 12 before the stop is itself the stop.
+  expect(verdict([6, 5, 6, 1], [12, 5, 12, 1])).toBe(false);
+});
+
+test("a value target inside the alphabet and the digit channel keep their lowering", () => {
+  const { verdict } = valueRule('stop "target" target 4 total 5');
+  expect(verdict([2, 3, 4, 1], [2, 3, 4, 1])).toBe(true);
+  expect(verdict([2, 3, 4, 1], [2, 3, 8, 1])).toBe(false);
+  expect(form(ps(4, 'stop "target" target 5 total 7'), row(4))).toEqual(form(ps(4, 'stop "target" target 5 total 7 channel "D"'), row(4)));
+});
+
+/**
  * A given stop reads the board's givens. Removing the lowered formula from the compiled rule makes the public evaluator interpret the
  * page's published formula, which the normal form is compared with; the effective values differ from the digits to show the channel D
  * rule ignores them. The givens come from the case header, as the evaluator reads them.
